@@ -12,5 +12,11 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@11.24.0"
+  "packageManager": "pnpm@11.24.0",
+  "devDependencies": {
+    "@vitest/ui": "^4.1.11",
+    "typescript": "^5.9.3",
+    "typescript-language-server": "^6.0.0",
+    "vitest": "^2.1.9"
+  }
 }

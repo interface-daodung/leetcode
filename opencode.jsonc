@@ -1,4 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": ["AGENT.md"]
+  "instructions": ["AGENT.md"],
+  "lsp": {
+    "servers": {
+      "typescript": {
+        "command": "typescript-language-server",
+        "args": ["--stdio"],
+        "rootPatterns": ["tsconfig.json", "package.json"],
+        "filePatterns": ["*.ts", "*.tsx", "*.js", "*.jsx"]
+      }
+    }
+  }
 }
