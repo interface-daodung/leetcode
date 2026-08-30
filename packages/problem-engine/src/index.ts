@@ -1,10 +1,5 @@
-import { db } from "@leetcode/database";
-import type { ProblemMeta, Difficulty } from "@leetcode/shared";
-
-export interface TestCase {
-  input: unknown;
-  expected: unknown;
-}
+import { problemDb } from "@leetcode/database";
+import type { ProblemMeta, Difficulty, TestCase } from "@leetcode/shared";
 
 export interface Problem extends ProblemMeta {
   description: string;
@@ -17,12 +12,7 @@ export class ProblemEngine {
 
   register(problem: Problem): void {
     this.problems.set(problem.id, problem);
-    db.add({
-      id: problem.id,
-      title: problem.title,
-      difficulty: problem.difficulty,
-      tags: problem.tags,
-    });
+    void problemDb.add(problem);
   }
 
   get(id: number): Problem | undefined {

@@ -1,23 +1,41 @@
 import type { ProblemMeta, Difficulty } from "@leetcode/shared";
+import { db, schema } from "./client";
+import { eq } from "drizzle-orm";
 
 export class ProblemDatabase {
-  private problems: Map<number, ProblemMeta> = new Map();
-
-  add(problem: ProblemMeta): void {
-    this.problems.set(problem.id, problem);
+  async add(problem: ProblemMeta): Promise<void> {
+    await db
+      .insert(schema.problems)
+      .values({
+        id: problem.id,
+        title: problem.title,
+        difficulty: problem.difficulty,
+        tags: problem.tags,
+        description: problem.description ?? "",
+        testCases: problem.testCases ?? [],
+        solution: problem.solution,
+      })
+      .onConflictDoNothing();
   }
 
-  get(id: number): ProblemMeta | undefined {
-    return this.problems.get(id);
+  async get(id: number): Promise<ProblemMeta | undefined> {
+    const [row] = await db.select().from(schema.problems).where(eq(schema.problems.id, id)).limit(1);
+    return row as ProblemMeta | undefined;
   }
 
-  getByDifficulty(difficulty: Difficulty): ProblemMeta[] {
-    return Array.from(this.problems.values()).filter((p) => p.difficulty === difficulty);
+  async getByDifficulty(difficulty: Difficulty): Promise<ProblemMeta[]> {
+    const rows = await db.select().from(schema.problems).where(eq(schema.problems.difficulty, difficulty));
+    return rows as ProblemMeta[];
   }
 
-  getAll(): ProblemMeta[] {
-    return Array.from(this.problems.values());
+  async getAll(): Promise<ProblemMeta[]> {
+    const rows = await db.select().from(schema.problems);
+    return rows as ProblemMeta[];
+  }
+
+  async delete(id: number): Promise<void> {
+    await db.delete(schema.problems).where(eq(schema.problems.id, id));
   }
 }
 
-export const db = new ProblemDatabase();
+export const problemDb = new ProblemDatabase();

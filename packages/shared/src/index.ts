@@ -6,9 +6,17 @@ export function formatProblemId(id: number): string {
 
 export type Difficulty = "easy" | "medium" | "hard";
 
+export interface TestCase {
+  input: unknown;
+  expected: unknown;
+}
+
 export interface ProblemMeta {
   id: number;
   title: string;
   difficulty: Difficulty;
   tags: string[];
+  description?: string;
+  testCases?: TestCase[];
+  solution?: string;
 }
