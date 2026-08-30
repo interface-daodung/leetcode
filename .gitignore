@@ -7,3 +7,4 @@ node_modules
 !.env.example
 packages/database/data/assets/
 tham_khao/
+dist/

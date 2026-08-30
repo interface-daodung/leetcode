@@ -1,53 +1,68 @@
 # Backend Walkthrough
 
-> Tài liệu này sẽ được bổ sung dựa trên implementation thực tế.
+> Hướng dẫn sử dụng server cho người mới — chỉ cần biết cách chạy và thử API.
 
-## Overview
+## Bạn sẽ làm được gì
 
-`apps/server` là API server Fastify 4, chạy trên port 3000. Dữ liệu problem được đọc từ in-memory registry (`@leetcode/problem-engine`), không phải từ SQLite.
+- Khởi động API server và kiểm tra nó đang chạy.
+- Hiểu các API chính để web và extension dùng (không cần nhớ code).
+- Đổi host/port một chỗ trong `.env` cho cả hệ thống.
 
-## Flow
+## Chuẩn bị
 
-```text
-apps/server/src/index.ts (Fastify, logger: true)
-  ├─ GET /health
-  │    └─ trả { status: "ok", timestamp }
-  ├─ GET /api/problems/:id
-  │    ├─ zod: z.object({ id: z.string().transform(Number) })
-  │    ├─ engine.get(id)
-  │    └─ 404 nếu không tồn tại
-  ├─ GET /api/problems/random/:difficulty?
-  │    ├─ zod: difficulty ∈ { easy, medium, hard } (optional)
-  │    └─ engine.getRandom(difficulty)
-  ├─ POST /api/problems/:id/run
-  │    ├─ body: { code: string }
-  │    ├─ new Function("return " + code)() → solution
-  │    ├─ engine.runTests(id, solution) → { passed, total }
-  │    └─ 400 nếu code không hợp lệ
-  └─ POST /api/problems/:id/hint
-       ├─ body: { code: string }
-       └─ ai.getHint(id, code) → placeholder response
+- File `.env` ở thư mục gốc (copy từ `.env.example` nếu chưa có):
+  ```
+  PORT=3000
+  HOST=0.0.0.0
+  API_URL=http://localhost:3000
+  VITE_API_URL=http://localhost:3000
+  EXTENSION_API_URL=http://localhost:3000
+  ```
+- Đã `pnpm install`.
 
-app.listen({ port: 3000, host: "0.0.0.0" })
-```
+## Các bước
 
-## Important Components
+### Bước 1 — Chạy server
 
-- `index.ts` — toàn bộ Fastify routes.
-- `engine` (singleton từ `@leetcode/problem-engine`) — nguồn dữ liệu problem.
-- `getHint` từ `@leetcode/ai` — placeholder.
+1. Chạy `pnpm --filter=@leetcode/server dev`
+2. Thấy log `Server listening at http://0.0.0.0:3000` và `Assets served from ... at http://localhost:3000/assets/` là thành công.
+3. Mở `http://localhost:3000/health` → trả `{ status: "ok" }`.
 
-## Entry Points
+> Đổi port: sửa `PORT` và `API_URL` trong root `.env`, rồi chạy lại server. Web và extension sẽ tự đọc lại sau khi bạn chạy `pnpm --filter=@leetcode/extension sync:config` (xem `AI/walkthrough/execution.md`).
 
-- `apps/server/src/index.ts`
+### Bước 2 — Thử các API chính (không cần code)
 
-## Related Files
+- **Xem tất cả đề:** `GET http://localhost:3000/api/problems`
+- **Xem 1 đề:** `GET http://localhost:3000/api/problems/1`
+- **Lấy đề ngẫu nhiên:** `GET http://localhost:3000/api/problems/random` hoặc `/random/medium`
+- **Chạy code:** `POST http://localhost:3000/api/problems/1/run` với body `{ "code": "function(nums, target){...}" }`
+- **Thêm đề (extension/web dùng):** `POST http://localhost:3000/api/problems/import` với body là JSON `ProblemClip` (gồm `id`, `title`, `difficulty`, `description`...)
 
-- `packages/problem-engine/src/index.ts` — `ProblemEngine`, `runTests`.
-- `packages/shared/src/index.ts` — `ProblemMeta`, `Difficulty`.
-- `packages/ai/src/index.ts` — `getHint`.
+Bạn có thể thử bằng trình duyệt (GET) hoặc `curl`/Postman (POST).
 
-## Notes
+### Bước 3 — Hiểu luồng import
 
-- Dữ liệu đến từ in-memory registry; để API có dữ liệu, cần `engine.register(...)` được gọi (seed đã bị bỏ khỏi dự án — dữ liệu sẽ được đưa vào qua server/API).
-- Database (SQLite) chưa được dùng làm nguồn đọc cho API.
+Khi extension hoặc web gửi `POST /api/problems/import`:
+1. Server kiểm tra đủ trường (`id`, `title`, `difficulty`, `description`...) — thiếu sẽ báo 400.
+2. Nếu ảnh trong `description` có `<img src="https://...">`, server tự tải về `packages/database/data/assets/<slug>/` và đổi link thành `/assets/...`.
+3. Lưu vào DB + bộ nhớ tạm, trả 201 (mới) hoặc 409 (đã tồn tại).
+
+Bạn không cần làm gì thêm — chỉ cần thấy web hiện đề mới là xong.
+
+## Kết quả mong đợi
+
+- Server tự tạo DB `packages/database/data/leetcode.db` lần đầu chạy (auto-migrate).
+- Ảnh được serve tại `GET http://localhost:3000/assets/<slug>/<file>` — mở link này sẽ thấy ảnh.
+
+## Mẹo & xử lý lỗi
+
+- **Server không chạy?** Kiểm tra port 3000 có bị chiếm không, hoặc đổi `PORT` trong `.env`.
+- **CORS lỗi ở web?** Server đã bật `Access-Control-Allow-Origin: *` — chỉ cần chắc web gọi đúng `VITE_API_URL`.
+- **Import báo 400?** Thường do `description` rỗng hoặc `difficulty` sai — hãy clip lại.
+- **Import báo 409?** Đề đã có — không cần lưu lại.
+
+## Đọc thêm
+
+- Tổng quan kiến trúc: `AI/ARCHITECTURE.md`
+- Chi tiết API: `AI/index/APP_STRUCTURE.md`
+- Quyết định chọn clip DOM thay vì API: `AI/context/decisions.md`

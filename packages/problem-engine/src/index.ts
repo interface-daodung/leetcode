@@ -4,13 +4,13 @@ import type { ProblemMeta, Difficulty, TestCase } from "@leetcode/shared";
 export interface Problem extends ProblemMeta {
   description: string;
   testCases: TestCase[];
-  solution?: string;
 }
 
 export class ProblemEngine {
   private problems: Map<number, Problem> = new Map();
 
   register(problem: Problem): void {
+    // Lưu slug/url/template/hints/description đầy đủ
     this.problems.set(problem.id, problem);
     void problemDb.add(problem);
   }

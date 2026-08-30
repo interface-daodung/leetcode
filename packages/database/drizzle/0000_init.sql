@@ -1,12 +1,12 @@
-CREATE TABLE [problems] (
-	[id] INT PRIMARY KEY NOT NULL,
-	[title] NVARCHAR(MAX) NOT NULL,
-	[difficulty] NVARCHAR(MAX) NOT NULL,
-	[tags] NVARCHAR(MAX) DEFAULT '[]',
-	[description] NVARCHAR(MAX) NOT NULL,
-	[solution] NVARCHAR(MAX),
-	[test_cases] NVARCHAR(MAX) DEFAULT '[]',
-	[created_at] DATETIME DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE "problems" (
+	"id" integer PRIMARY KEY NOT NULL,
+	"title" text NOT NULL,
+	"difficulty" text NOT NULL,
+	"tags" text DEFAULT '[]',
+	"description" text NOT NULL,
+	"solution" text,
+	"test_cases" text DEFAULT '[]',
+	"created_at" text DEFAULT (datetime('now'))
 );
 --> statement-breakpoint
 INSERT INTO [problems] ([id], [title], [difficulty], [tags], [description], [test_cases], [solution]) VALUES

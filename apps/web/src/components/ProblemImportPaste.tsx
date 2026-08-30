@@ -135,6 +135,35 @@ export function ProblemImportPaste({ onImported }: { onImported?: (clip: Problem
             dangerouslySetInnerHTML={{ __html: sanitizeDescriptionHtml(clip.description) }}
           />
 
+          {clip.url && (
+            <div style={{ marginTop: "0.5rem", fontSize: "0.8rem", color: "#6b7280" }}>
+              URL: <a href={clip.url} target="_blank" rel="noreferrer" style={{ color: "#2563eb" }}>{clip.url}</a>
+            </div>
+          )}
+
+          {clip.template && (
+            <div style={{ marginTop: "0.5rem" }}>
+              <div style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.25rem" }}>Template:</div>
+              <pre style={{ background: "#f3f4f6", border: "1px solid #e5e7eb", borderRadius: "6px", padding: "0.5rem", fontSize: "12px", whiteSpace: "pre-wrap", maxHeight: "160px", overflow: "auto" }}>{clip.template}</pre>
+            </div>
+          )}
+
+          {clip.hints && clip.hints.length > 0 && (
+            <div style={{ marginTop: "0.5rem" }}>
+              <div style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: "0.25rem" }}>Hints ({clip.hints.length}):</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {clip.hints.map((h, i) => (
+                  <div
+                    key={i}
+                    style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "6px", padding: "0.5rem", fontSize: "0.85rem" }}
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{ __html: sanitizeDescriptionHtml(h) }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           <div style={{ marginTop: "0.75rem", display: "flex", gap: "0.5rem", alignItems: "center" }}>
             <button
               type="button"

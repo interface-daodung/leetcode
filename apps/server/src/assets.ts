@@ -2,35 +2,17 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile, access } from "node:fs/promises";
 import { join, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+import { problemDb } from "@leetcode/database";
 
-// Thu mục lưu ảnh: packages/database/data/assets (resolve từ import.meta.url, không phụ thuộc CWD)
+// Thư mục lưu ảnh: packages/database/data/assets (resolve từ import.meta.url, không phụ thuộc CWD)
 export const ASSETS_ROOT = fileURLToPath(new URL("../../../packages/database/data/assets", import.meta.url));
-const HASH_INDEX_PATH = join(ASSETS_ROOT, ".hash-index.json");
-
-type HashIndex = Record<string, string>; // hash -> relativePath (vd "two-sum/abc.png")
 
 async function ensureDir(dir: string): Promise<void> {
   await mkdir(dir, { recursive: true });
 }
 
-async function loadHashIndex(): Promise<HashIndex> {
-  try {
-    await access(HASH_INDEX_PATH);
-    const raw = await readFile(HASH_INDEX_PATH, "utf-8");
-    return JSON.parse(raw) as HashIndex;
-  } catch {
-    return {};
-  }
-}
-
-async function saveHashIndex(index: HashIndex): Promise<void> {
-  await ensureDir(ASSETS_ROOT);
-  await writeFile(HASH_INDEX_PATH, JSON.stringify(index, null, 2), "utf-8");
-}
-
 function sanitizeSlug(slug: string): string {
   const s = slug.trim().toLowerCase();
-  // giữ a-z0-9-_ , thay còn lại bằng -
   return s.replace(/[^a-z0-9-_]+/g, "-").replace(/^-+|-+$/g, "") || "unknown";
 }
 
@@ -41,25 +23,19 @@ function sanitizeFilename(src: string, contentType: string | null): string {
     const pathName = u.pathname;
     const last = pathName.split("/").filter(Boolean).pop() ?? "";
     name = decodeURIComponent(last);
-    // loại bỏ query/hash đã được bỏ qua vì pathname không chứa chúng
   } catch {
-    // src có thể là relative — lấy phần sau /
     const parts = src.split("/").filter(Boolean);
     name = parts.pop() ?? "";
-    // loại bỏ query string
     name = name.split("?")[0].split("#")[0];
   }
 
-  // Nếu không có tên hoặc không có extension, sinh từ content-type
   if (!name || !extname(name)) {
     const extFromType = contentType ? extensionFromContentType(contentType) : "";
     if (name && extFromType && !extname(name)) name += extFromType;
     if (!name) name = `image${extFromType || ".png"}`;
   }
 
-  // Sanitize: chỉ giữ alphanum, dot, dash, underscore
   name = name.replace(/[^a-zA-Z0-9._-]/g, "_");
-  // Giới hạn 120 ký tự
   if (name.length > 120) {
     const ext = extname(name);
     name = name.slice(0, 120 - ext.length) + ext;
@@ -87,19 +63,19 @@ function extractImgSrcs(html: string): string[] {
     const src = m[1]?.trim();
     if (src) srcs.push(src);
   }
-  // dedupe giữ order
   return [...new Set(srcs)];
 }
 
 /**
  * Tải ảnh từ description, lưu vào packages/database/data/assets/<slug>/{name},
- * dedupe bằng SHA-256 hash của buffer.
- * Trả về description đã rewrite src thành `${apiBase}/assets/<slug>/<name>` (hoặc giữ nguyên nếu download fail).
+ * dedupe bằng SHA-256 hash lưu trong DB (bảng problem_assets).
+ * Trả về description đã rewrite src thành `${apiBase}/assets/<localPath>`.
  */
 export async function downloadAndRewriteImages(
   description: string,
   slug: string,
   apiBase: string,
+  problemId: number,
 ): Promise<string> {
   const srcs = extractImgSrcs(description);
   if (srcs.length === 0) return description;
@@ -108,12 +84,9 @@ export async function downloadAndRewriteImages(
   const slugDir = join(ASSETS_ROOT, safeSlug);
   await ensureDir(slugDir);
 
-  const hashIndex = await loadHashIndex();
   let newDescription = description;
-  let indexDirty = false;
 
   for (const originalSrc of srcs) {
-    // Bỏ qua data: URL hoặc đã là local assets
     if (originalSrc.startsWith("data:")) continue;
     if (originalSrc.includes("/assets/")) continue;
 
@@ -130,84 +103,96 @@ export async function downloadAndRewriteImages(
       buffer = Buffer.from(ab);
       if (buffer.length === 0) continue;
     } catch {
-      continue; // giữ nguyên src nếu fetch fail
+      continue;
     }
 
-    // Buffer -> SHA-256 -> kiểm tra đã tồn tại chưa
     const hash = createHash("sha256").update(buffer).digest("hex");
 
-    let relativePath: string | undefined = hashIndex[hash];
-    let filename: string;
-
-    if (relativePath) {
-      // Đã tồn tại — reuse path cũ (có thể thuộc slug khác, vẫn reuse)
-      filename = basename(relativePath);
-      // Nếu file thực tế không còn tồn tại (bị xóa tay), thì sẽ ghi lại vào slug hiện tại
-      try {
-        await access(join(ASSETS_ROOT, relativePath));
-      } catch {
-        // file mất — ghi lại
-        filename = sanitizeFilename(originalSrc, contentType);
-        const targetPath = join(slugDir, filename);
-        // Nếu trùng tên nhưng khác hash, thêm hash suffix
-        let finalPath = targetPath;
-        let finalFilename = filename;
-        try {
-          await access(finalPath);
-          // file tồn tại nhưng hash khác (vì hashIndex không có) -> thêm suffix
-          const ext = extname(filename);
-          const base = basename(filename, ext);
-          finalFilename = `${base}-${hash.slice(0, 8)}${ext}`;
-          finalPath = join(slugDir, finalFilename);
-        } catch {
-          // không tồn tại, dùng tên gốc
-        }
-        await writeFile(finalPath, buffer);
-        relativePath = `${safeSlug}/${finalFilename}`;
-        hashIndex[hash] = relativePath;
-        indexDirty = true;
-      }
-    } else {
-      // Chưa tồn tại — ghi file mới
-      filename = sanitizeFilename(originalSrc, contentType);
-      let targetPath = join(slugDir, filename);
-      let finalFilename = filename;
-      // Tránh ghi đè file cùng tên nhưng nội dung khác (hash khác)
-      try {
-        await access(targetPath);
-        const existing = await readFile(targetPath);
-        const existingHash = createHash("sha256").update(existing).digest("hex");
-        if (existingHash !== hash) {
-          const ext = extname(filename);
-          const base = basename(filename, ext);
-          finalFilename = `${base}-${hash.slice(0, 8)}${ext}`;
-          targetPath = join(slugDir, finalFilename);
-        } else {
-          // cùng file đã tồn tại — dedupe, chỉ cập nhật index
-          relativePath = `${safeSlug}/${finalFilename}`;
-          hashIndex[hash] = relativePath;
-          indexDirty = true;
-          // rewrite src và tiếp tục
-          const newSrc = `${apiBase.replace(/\/$/, "")}/assets/${relativePath}`;
-          newDescription = newDescription.split(originalSrc).join(newSrc);
-          continue;
-        }
-      } catch {
-        // file chưa tồn tại — ok
-      }
-      await writeFile(targetPath, buffer);
-      relativePath = `${safeSlug}/${finalFilename}`;
-      hashIndex[hash] = relativePath;
-      indexDirty = true;
+    // Kiểm tra dedupe toàn cục qua DB
+    let localPath: string | undefined;
+    let existingGlobal: { localPath: string } | undefined;
+    try {
+      existingGlobal = await problemDb.findAssetByHash(hash);
+    } catch {
+      existingGlobal = undefined;
     }
 
-    const newSrc = `${apiBase.replace(/\/$/, "")}/assets/${relativePath}`;
-    // Thay tất cả occurrence của originalSrc
-    newDescription = newDescription.split(originalSrc).join(newSrc);
-  }
+    if (existingGlobal) {
+      // Kiểm tra file thực tế còn tồn tại không
+      try {
+        await access(join(ASSETS_ROOT, existingGlobal.localPath));
+        localPath = existingGlobal.localPath;
+      } catch {
+        // file mất — sẽ ghi lại bên dưới
+        localPath = undefined;
+      }
+    }
 
-  if (indexDirty) {
-    await saveHashIndex(hashIndex);
+    if (localPath) {
+      // Reuse file cũ — đảm bảo có row cho problem hiện tại
+      try {
+        // Nếu chưa có row cho problem này với hash này, tạo thêm để tracking per-problem
+        const assetsForProblem = await problemDb.findAssetsByProblem(problemId);
+        const already = assetsForProblem.find((a) => a.hash === hash);
+        if (!already) {
+          await problemDb.addAsset({
+            problemId,
+            originalUrl: originalSrc,
+            localPath,
+            hash,
+          });
+        }
+      } catch {
+        // ignore DB error, vẫn rewrite
+      }
+      const newSrc = `${apiBase.replace(/\/$/, "")}/assets/${localPath}`;
+      newDescription = newDescription.split(originalSrc).join(newSrc);
+      continue;
+    }
+
+    // Chưa tồn tại — ghi file mới
+    let filename = sanitizeFilename(originalSrc, contentType);
+    let targetPath = join(slugDir, filename);
+    let finalFilename = filename;
+
+    try {
+      await access(targetPath);
+      const existing = await readFile(targetPath);
+      const existingHash = createHash("sha256").update(existing).digest("hex");
+      if (existingHash !== hash) {
+        const ext = extname(filename);
+        const base = basename(filename, ext);
+        finalFilename = `${base}-${hash.slice(0, 8)}${ext}`;
+        targetPath = join(slugDir, finalFilename);
+      } else {
+        // cùng file đã tồn tại — dedupe, chỉ lưu DB
+        localPath = `${safeSlug}/${finalFilename}`;
+        try {
+          await problemDb.addAsset({ problemId, originalUrl: originalSrc, localPath, hash });
+        } catch {}
+        const newSrc = `${apiBase.replace(/\/$/, "")}/assets/${localPath}`;
+        newDescription = newDescription.split(originalSrc).join(newSrc);
+        continue;
+      }
+    } catch {
+      // file chưa tồn tại — ok
+    }
+
+    await writeFile(targetPath, buffer);
+    localPath = `${safeSlug}/${finalFilename}`;
+    try {
+      await problemDb.addAsset({
+        problemId,
+        originalUrl: originalSrc,
+        localPath,
+        hash,
+      });
+    } catch {
+      // ignore nếu trùng (race)
+    }
+
+    const newSrc = `${apiBase.replace(/\/$/, "")}/assets/${localPath}`;
+    newDescription = newDescription.split(originalSrc).join(newSrc);
   }
 
   return newDescription;

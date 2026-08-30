@@ -13,21 +13,26 @@ export interface TestCase {
 
 export interface ProblemMeta {
   id: number;
+  slug?: string;
   title: string;
+  url?: string;
   difficulty: Difficulty;
   tags: string[];
   description?: string;
+  template?: string;
   testCases?: TestCase[];
-  solution?: string;
+  hints?: string[];
 }
 
 export interface ProblemClip {
   id: number;
   slug: string;
   title: string;
+  url?: string;
   difficulty: Difficulty;
   tags: string[];
   description: string;
-  url?: string;
+  template?: string;
+  hints?: string[];
   clippedAt?: string;
 }

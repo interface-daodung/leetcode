@@ -39,10 +39,12 @@ export function parseProblemClipJson(raw: string): ParseResult {
     id: o["id"] as number,
     slug: typeof o["slug"] === "string" ? (o["slug"] as string) : "",
     title: (o["title"] as string).trim(),
+    url: typeof o["url"] === "string" ? (o["url"] as string) : undefined,
     difficulty: o["difficulty"] as ProblemClip["difficulty"],
     tags: Array.isArray(o["tags"]) ? (o["tags"] as string[]) : [],
     description: o["description"] as string,
-    url: typeof o["url"] === "string" ? (o["url"] as string) : undefined,
+    template: typeof o["template"] === "string" ? (o["template"] as string) : undefined,
+    hints: Array.isArray(o["hints"]) ? (o["hints"] as string[]) : undefined,
     clippedAt: typeof o["clippedAt"] === "string" ? (o["clippedAt"] as string) : undefined,
   };
 

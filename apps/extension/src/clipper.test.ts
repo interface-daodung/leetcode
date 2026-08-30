@@ -8,6 +8,8 @@ import {
   extractDifficulty,
   extractTags,
   cleanDescription,
+  extractHints,
+  extractTemplate,
   buildProblemClip,
   isValidProblemClip,
 } from "./clipper.js";
@@ -253,6 +255,22 @@ describe("isValidProblemClip", () => {
     ).toBe(true);
   });
 
+  it("valid với hints + template + url", () => {
+    expect(
+      isValidProblemClip({
+        id: 5,
+        slug: "a",
+        title: "T",
+        url: "https://leetcode.com/problems/two-sum/",
+        difficulty: "easy",
+        tags: [],
+        description: "<p>hi</p>",
+        template: "function solve(){}",
+        hints: ["hint1", "hint2"],
+      }),
+    ).toBe(true);
+  });
+
   it("invalid nếu thiếu title", () => {
     expect(
       isValidProblemClip({
@@ -277,5 +295,64 @@ describe("isValidProblemClip", () => {
         description: "<p>hi</p>",
       }),
     ).toBe(false);
+  });
+});
+
+describe("extractHints", () => {
+  it("lấy 1 hint từ mẫu HTML lightbulb", () => {
+    document.body.innerHTML = `
+      <div><div class="flex flex-col"><div class="group flex cursor-pointer items-center transition-colors text-label-2 dark:text-dark-label-2 hover:text-label-1 dark:hover:text-dark-label-1"><div class="flex-1 text-sm leading-[22px]"><div class="flex items-center gap-2 text-sd-foreground"><div class="relative text-[16px] leading-[normal] p-0.5 before:block before:h-4 before:w-4 fill-none stroke-current"><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" height="1em" width="0.75em" class="svg-inline--fa fa-lightbulb absolute h-[1em] -translate-x-1/2 -translate-y-1/2 align-[-0.125em] left-1/2 top-1/2"><path fill="currentColor" d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"></path></svg></div><div class="text-body">Hint 1</div></div></div><div class="text-[24px] transition-colors text-gray-4 dark:text-dark-gray-4 group-hover:text-gray-5 dark:group-hover:text-dark-gray-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="origin-center transition-transform rotate-180"><path fill-rule="evenodd" d="M16.293 9.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L12 13.586l4.293-4.293z" clip-rule="evenodd"></path></svg></div></div><div class="overflow-hidden transition-all" style="height: auto; transition-duration: 0.25s;"><div class="mt-2 pl-7 text-body text-sd-foreground HTMLContent_html__0OZLp">Maintain two pointers and update one with a delay of n steps.</div></div></div></div>
+    `;
+    const hints = extractHints(document);
+    expect(hints).toHaveLength(1);
+    expect(hints[0]).toContain("Maintain two pointers");
+  });
+
+  it("lấy 3 hints", () => {
+    document.body.innerHTML = `
+      <div class="flex flex-col"><div class="group"><div class="text-body">Hint 1</div></div><div class="overflow-hidden"><div>Hint content 1</div></div></div>
+      <div class="flex flex-col"><div class="group"><div class="text-body">Hint 2</div></div><div class="overflow-hidden"><div>Hint content 2</div></div></div>
+      <div class="flex flex-col"><div class="group"><div class="text-body">Hint 3</div></div><div class="overflow-hidden"><div>Hint content 3</div></div></div>
+    `;
+    const hints = extractHints(document);
+    expect(hints).toEqual(["Hint content 1", "Hint content 2", "Hint content 3"]);
+  });
+
+  it("trả [] nếu không có hint", () => {
+    document.body.innerHTML = `<div data-track-load="description_content"><p>desc</p></div>`;
+    expect(extractHints(document)).toEqual([]);
+  });
+});
+
+describe("extractTemplate", () => {
+  it("lấy template từ monaco view-line", () => {
+    document.body.innerHTML = `
+      <div class="monaco-editor"><div class="view-lines"><div class="view-line">function twoSum(nums, target) {</div><div class="view-line">  return [];</div><div class="view-line">}</div></div></div>
+    `;
+    const tpl = extractTemplate(document);
+    expect(tpl).toContain("function twoSum");
+  });
+
+  it("trả undefined nếu không có editor", () => {
+    document.body.innerHTML = `<div><p>no editor</p></div>`;
+    expect(extractTemplate(document)).toBeUndefined();
+  });
+});
+
+describe("buildProblemClip với hints/template/url", () => {
+  it("build kèm hints và template và url", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/two-sum/">1. Two Sum</a></div>
+      <div class="text-difficulty-easy">Easy</div>
+      <div data-track-load="description_content"><p>desc</p></div>
+      <div class="flex flex-col"><div class="group"><div class="text-body">Hint 1</div></div><div class="overflow-hidden"><div>Hint A</div></div></div>
+      <div class="monaco-editor"><div class="view-lines"><div class="view-line">function solve(){}</div></div></div>
+    `;
+    document.title = "Two Sum - LeetCode";
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/two-sum/");
+    expect(clip).not.toBeNull();
+    expect(clip!.url).toBe("https://leetcode.com/problems/two-sum/");
+    expect(clip!.hints).toEqual(["Hint A"]);
+    expect(clip!.template).toContain("function solve");
   });
 });

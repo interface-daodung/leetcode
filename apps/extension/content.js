@@ -96,6 +96,66 @@
     return tags;
   }
 
+  function extractHints(doc) {
+    const hints = [];
+    const containers = Array.from(doc.querySelectorAll("div.flex.flex-col"));
+    for (const container of containers) {
+      const labelEl = container.querySelector("div.text-body");
+      if (!labelEl) continue;
+      const labelText = (labelEl.textContent ?? "").trim();
+      if (!/^Hint\s*\d+/i.test(labelText)) continue;
+      let contentEl =
+        container.querySelector("div.overflow-hidden > div") ||
+        container.querySelector('[class*="HTMLContent_html"]') ||
+        container.querySelector("div.mt-2");
+      if (!contentEl) continue;
+      const clone = contentEl.cloneNode(true);
+      clone.querySelectorAll("script, style, iframe, noscript, button, svg").forEach((el) => el.remove());
+      let html = clone.innerHTML.trim();
+      if (!html) html = (contentEl.textContent ?? "").trim();
+      if (html) hints.push(html);
+    }
+    if (hints.length === 0) {
+      const hintHeaders = Array.from(doc.querySelectorAll("div.text-body")).filter((el) => /^Hint\s*\d+/i.test((el.textContent ?? "").trim()));
+      for (const header of hintHeaders) {
+        const parent = header.closest("div.flex.flex-col") || header.parentElement?.closest("div.flex.flex-col");
+        if (!parent) continue;
+        const contentEl = parent.querySelector("div.overflow-hidden div");
+        if (!contentEl) continue;
+        const clone = contentEl.cloneNode(true);
+        clone.querySelectorAll("script, style, iframe, noscript, button, svg").forEach((el) => el.remove());
+        const html = clone.innerHTML.trim() || (contentEl.textContent ?? "").trim();
+        if (html && !hints.includes(html)) hints.push(html);
+      }
+    }
+    return hints;
+  }
+
+  function extractTemplate(doc) {
+    const monacoLines = doc.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
+    if (monacoLines.length > 0) {
+      const text = Array.from(monacoLines)
+        .map((el) => el.textContent ?? "")
+        .join("\n")
+        .trim();
+      if (text && text.length > 2 && text.length < 20000) {
+        if (/function|class|var |let |const |return|=>/.test(text)) return text;
+        if (text.split("\n").length >= 1) return text;
+      }
+    }
+    const monaco = doc.querySelector(".monaco-editor");
+    if (monaco) {
+      const t = (monaco.textContent ?? "").trim();
+      if (t && t.length > 10 && t.length < 20000 && /function|class|var |let |const |def |public/.test(t)) return t;
+    }
+    const cm = doc.querySelector(".CodeMirror-code, .cm-content");
+    if (cm) {
+      const t = (cm.textContent ?? "").trim();
+      if (t && t.length > 2) return t;
+    }
+    return undefined;
+  }
+
   function cleanDescription(container) {
     const clone = container.cloneNode(true);
     clone.querySelectorAll("script, style, iframe, noscript, svg, button").forEach((el) => el.remove());
@@ -158,15 +218,19 @@
 
     const difficulty = extractDifficulty(doc) ?? "medium";
     const tags = extractTags(doc);
+    const hints = extractHints(doc);
+    const template = extractTemplate(doc);
 
     return {
       id,
       slug,
       title,
+      url,
       difficulty,
       tags,
       description,
-      url,
+      template,
+      hints: hints.length > 0 ? hints : undefined,
       clippedAt: new Date().toISOString(),
     };
   }

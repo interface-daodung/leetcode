@@ -9,10 +9,12 @@ export interface ProblemClip {
   id: number;
   slug: string;
   title: string;
+  url: string;
   difficulty: Difficulty;
   tags: string[];
   description: string;
-  url: string;
+  template?: string;
+  hints?: string[];
   clippedAt: string;
 }
 
@@ -137,17 +139,130 @@ export function extractTags(doc: Document): string[] {
 }
 
 /**
+ * Trích xuất hints (mỗi hint là HTML string).
+ * LeetCode render mỗi hint là 1 block `div.flex.flex-col` chứa header `Hint N`
+ * với icon lightbulb và content trong `div.overflow-hidden > div.HTMLContent_html__*`.
+ */
+export function extractHints(doc: Document): string[] {
+  const hints: string[] = [];
+  // Mỗi hint là một container flex-col chứa label Hint N
+  const containers = Array.from(doc.querySelectorAll("div.flex.flex-col"));
+  for (const container of containers) {
+    const labelEl = container.querySelector("div.text-body");
+    if (!labelEl) continue;
+    const labelText = (labelEl.textContent ?? "").trim();
+    if (!/^Hint\s*\d+/i.test(labelText)) continue;
+
+    // Content nằm trong overflow-hidden hoặc HTMLContent
+    let contentEl: Element | null =
+      container.querySelector("div.overflow-hidden > div") ??
+      container.querySelector('[class*="HTMLContent_html"]') ??
+      container.querySelector("div.mt-2");
+
+    // Fallback: tìm div sau header
+    if (!contentEl) {
+      const allDivs = Array.from(container.querySelectorAll("div"));
+      for (const d of allDivs) {
+        if (d.textContent?.trim() && !/^Hint\s*\d+/i.test(d.textContent.trim()) && d !== labelEl) {
+          // heuristric: div có class HTMLContent hoặc pl-7
+          if (d.className.includes("HTMLContent") || d.className.includes("pl-7") || d.className.includes("text-sd-foreground")) {
+            contentEl = d;
+            break;
+          }
+        }
+      }
+    }
+
+    if (!contentEl) continue;
+    // Loại bỏ script/style trong hint
+    const clone = contentEl.cloneNode(true) as Element;
+    clone.querySelectorAll("script, style, iframe, noscript, button, svg").forEach((el) => el.remove());
+    let html = clone.innerHTML.trim();
+    if (!html) {
+      const text = (contentEl.textContent ?? "").trim();
+      if (text) html = text;
+    }
+    if (html) hints.push(html);
+  }
+
+  // Fallback: nếu không tìm thấy theo container, thử tìm trực tiếp các block overflow-hidden chứa hint
+  if (hints.length === 0) {
+    const hintHeaders = Array.from(doc.querySelectorAll("div.text-body")).filter((el) => /^Hint\s*\d+/i.test((el.textContent ?? "").trim()));
+    for (const header of hintHeaders) {
+      const parent = header.closest("div.flex.flex-col") ?? header.parentElement?.closest("div.flex.flex-col");
+      if (!parent) continue;
+      const contentEl = parent.querySelector("div.overflow-hidden div");
+      if (!contentEl) continue;
+      const clone = contentEl.cloneNode(true) as Element;
+      clone.querySelectorAll("script, style, iframe, noscript, button, svg").forEach((el) => el.remove());
+      const html = clone.innerHTML.trim() || (contentEl.textContent ?? "").trim();
+      if (html && !hints.includes(html)) hints.push(html);
+    }
+  }
+
+  return hints;
+}
+
+/**
+ * Trích xuất code template (JS mặc định nếu có).
+ * Thử nhiều selector: monaco editor view-line, CodeMirror, pre chứa function.
+ */
+export function extractTemplate(doc: Document): string | undefined {
+  // 1) Monaco editor — LeetCode dùng monaco
+  const monacoLines = doc.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
+  if (monacoLines.length > 0) {
+    const text = Array.from(monacoLines)
+      .map((el) => el.textContent ?? "")
+      .join("\n")
+      .trim();
+    // Lọc trash: nếu text quá ngắn hoặc chỉ whitespace thì bỏ
+    if (text && text.length > 2 && text.length < 20000) {
+      // Đảm bảo có keyword code
+      if (/function|class|var |let |const |return|=>/.test(text)) return text;
+      // Nếu không có keyword nhưng có nhiều dòng, vẫn trả về (có thể là template rỗng)
+      if (text.split("\n").length >= 1) return text;
+    }
+  }
+
+  // Fallback: toàn bộ monaco container text
+  const monaco = doc.querySelector(".monaco-editor");
+  if (monaco) {
+    const t = (monaco.textContent ?? "").trim();
+    if (t && t.length > 10 && t.length < 20000 && /function|class|var |let |const |def |public/.test(t)) {
+      return t;
+    }
+  }
+
+  // 2) CodeMirror
+  const cm = doc.querySelector(".CodeMirror-code, .cm-content");
+  if (cm) {
+    const t = (cm.textContent ?? "").trim();
+    if (t && t.length > 2) return t;
+  }
+
+  // 3) Thử tìm trong script/json có template (LeetCode embed)
+  // 4) Pre/code chứa template (ít dùng)
+  const pres = Array.from(doc.querySelectorAll("pre"));
+  for (const pre of pres) {
+    const t = (pre.textContent ?? "").trim();
+    if (t && /function\s+\w+|class\s+\w+|var\s+\w+|let\s+\w+/.test(t) && t.length < 5000) {
+      // Đảm bảo pre này không phải example trong description (description đã có)
+      // Nếu pre nằm ngoài description container thì có thể là template
+      return t;
+    }
+  }
+
+  return undefined;
+}
+
+/**
  * Làm sạch description HTML: loại bỏ script/style/iframe, chuẩn hoá &nbsp;
  */
 export function cleanDescription(container: Element): string {
   const clone = container.cloneNode(true) as Element;
 
-  // Loại bỏ các tag nguy hiểm / rác
+  // Loại bỏ các tag nguy hiểm / rác — nhưng giữ hints riêng
   clone.querySelectorAll("script, style, iframe, noscript, svg, button").forEach((el) => el.remove());
-
-  // Loại bỏ các attribute style/class không cần thiết? Giữ class tối thiểu để không vỡ layout
-  // Phase 1: giữ nguyên, chỉ xoá style inline rỗng
-  // Chuẩn hoá &nbsp; đã được innerHTML xử lý
 
   let html = clone.innerHTML;
 
@@ -226,15 +341,19 @@ export function buildProblemClip(doc: Document, url: string): ProblemClip | null
 
   const difficulty = extractDifficulty(doc) ?? "medium";
   const tags = extractTags(doc);
+  const hints = extractHints(doc);
+  const template = extractTemplate(doc);
 
   return {
     id,
     slug,
     title,
+    url,
     difficulty,
     tags,
     description,
-    url,
+    template,
+    hints: hints.length > 0 ? hints : undefined,
     clippedAt: new Date().toISOString(),
   };
 }
@@ -245,7 +364,7 @@ export function buildProblemClip(doc: Document, url: string): ProblemClip | null
 export function isValidProblemClip(obj: unknown): obj is ProblemClip {
   if (typeof obj !== "object" || obj === null) return false;
   const o = obj as Record<string, unknown>;
-  return (
+  const basic =
     typeof o["id"] === "number" &&
     Number.isInteger(o["id"]) &&
     (o["id"] as number) > 0 &&
@@ -255,6 +374,10 @@ export function isValidProblemClip(obj: unknown): obj is ProblemClip {
     (o["difficulty"] === "easy" || o["difficulty"] === "medium" || o["difficulty"] === "hard") &&
     Array.isArray(o["tags"]) &&
     typeof o["description"] === "string" &&
-    (o["description"] as string).length > 0
-  );
+    (o["description"] as string).length > 0;
+  if (!basic) return false;
+  if (o["url"] !== undefined && o["url"] !== null && typeof o["url"] !== "string") return false;
+  if (o["template"] !== undefined && o["template"] !== null && typeof o["template"] !== "string") return false;
+  if (o["hints"] !== undefined && o["hints"] !== null && !Array.isArray(o["hints"])) return false;
+  return true;
 }
