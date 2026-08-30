@@ -51,7 +51,7 @@ pnpm --filter=@leetcode/database db:generate|db:migrate|db:studio   # drizzle-ki
 - TypeScript `strict: true` ở mọi nơi.
 - Không tự commit/merge/push trừ khi được yêu cầu. Không xóa file ngoài phạm vi task.
 - Plan: lưu `AI/plans/active/<name>.md`; khi xong chạy `AI\skills\feature-development\move-plan-to-completed.bat <name>` từ repo root (xem `AI/skills/feature-development/SKILL.md`).
-- Sau khi đổi code, cập nhật `AI/index/`, `AI/ARCHITECTURE.md`, `AI/walkthrough/`, `AI/context/decisions.md`, `AI/context/known-issues.md`, `AI/history/` nếu liên quan.
+- Sau khi đổi code, cập nhật `AI/ARCHITECTURE.md`, `AI/CONVENTIONS.md`, `AI/INDEX.md`, `AI/PROJECT.md`, `AI/context/glossary.md`, `AI/context/decisions.md`, `AI/context/known-issues.md`, `AI/walkthrough/`, `AI/history/` nếu liên quan.
 
 ## Source of Truth
 

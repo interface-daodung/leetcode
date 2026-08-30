@@ -1,8 +1,9 @@
 # Fix: `created_at` lưu sai chuỗi "(datetime('now'))"
 
-Trạng thái: **backlog**
+Trạng thái: **completed**
 Source: `AI/context/known-issues.md#1` — Current Issues / Issue 1
 Ngày tạo: 2026-08-30
+Ngày resolve: 2026-08-30
 
 ---
 
@@ -53,13 +54,21 @@ Không sửa file ngoài phạm vi backlog này.
 - Insert test: verify `created_at` không còn là `"(datetime('now'))"` và match regex `^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$` hoặc ISO.
 - `pnpm -r build` pass (không break package khác).
 
+## 6b. Kết quả verify (2026-08-30)
+
+- Fix đã nằm sẵn trong commit `fa9c962` (schema.ts đổi sang `default(sql\`(datetime('now'))\`)`) kèm migration `0001`.
+- Chạy `db:generate` → `No schema changes, nothing to migrate` (không cần migration mới).
+- Insert test tạm (vitest) → `created_at` lưu datetime thật, pass.
+- Kiểm tra DB thật: mọi row `created_at` đều là timestamp (vd `2026-08-30 15:19:46`), `COUNT(*) WHERE created_at = '(datetime(''now''))'` = 0.
+- `pnpm -r build` pass.
+
 ## 7. Tiêu chí hoàn thành (DoD)
 
-- [ ] `schema.ts` dùng `sql`(datetime('now'))` thay vì string literal.
-- [ ] Migration mới được generate.
-- [ ] Insert không truyền `created_at` → DB lưu datetime thật.
-- [ ] Build pass.
-- [ ] Cập nhật `AI/context/known-issues.md` (chuyển issue sang Resolved) và `AI/STATUS.md` nếu cần sau khi move.
+- [x] `schema.ts` dùng `sql`(datetime('now'))` thay vì string literal.
+- [x] Migration mới được generate (đã có trong `fa9c962`, `db:generate` xác nhận không còn thay đổi).
+- [x] Insert không truyền `created_at` → DB lưu datetime thật.
+- [x] Build pass.
+- [x] Cập nhật `AI/context/known-issues.md` (chuyển issue sang Resolved).
 
 ## 8. Hoàn thành
 

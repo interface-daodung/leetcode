@@ -47,6 +47,7 @@ Giai đoạn implement — feature **LeetCode Clipper** tiếp tục trên nhán
   - Web: `lib/problemClip.ts` parse thêm `template`/`hints`/`url`, `ProblemImportPaste.tsx` hiển thị preview `url`, `template` (pre) và `hints` (list HTML), `App.tsx` không đổi.
   - Đã test end-to-end (fresh DB): `POST 9999` với `url`/`template`/3 hints + `https://httpbin.org/image/png` → `201` với `assets` 1 row (`test-new-features/png.png` hash `541a...`), `GET /9999` trả `hints`/`assets`/`template`/`url`, dedupe `POST 9998` cùng ảnh reuse `localPath` `test-new-features/png.png` (không tạo file mới, cùng hash), `GET /api/problems` list 5 với hints.
 - **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (DB 3 bảng, runtime/data flow mới, assets DB, hints/template), `AI/STATUS.md`, `context/decisions.md`, tạo `AI/history/2026-08/leetcode-clipper-db-hints-template-assets.md`.
+- **[mới] Fix `created_at`** — `packages/database/src/schema.ts:14` đổi `default("(datetime('now'))")` → `default(sql\`(datetime('now'))\`)` (đã áp dụng trong commit `fa9c962`), verify DB lưu datetime thật. Backlog: `AI/plans/completed/fix-created-at-default.md`.
 
 ## Đang làm
 

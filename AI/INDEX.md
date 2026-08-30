@@ -43,6 +43,10 @@
 
 `skills/bug-fix/SKILL.md`
 
+### Context Cleanup
+
+`skills/context-cleanup/SKILL.md`
+
 ### Code Review
 
 `skills/code-review/SKILL.md`
