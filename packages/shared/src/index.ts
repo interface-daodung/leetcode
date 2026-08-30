@@ -33,6 +33,7 @@ export interface ProblemClip {
   tags: string[];
   description: string;
   template?: string;
+  testCases?: TestCase[];
   hints?: string[];
   clippedAt?: string;
 }

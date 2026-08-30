@@ -131,27 +131,281 @@
     return hints;
   }
 
+  function findCodeSnippetInJson(data, preferredLang) {
+    preferredLang = preferredLang || "javascript";
+    const stack = [data];
+    const candidates = [];
+    const seen = new WeakSet();
+    while (stack.length) {
+      const cur = stack.pop();
+      if (!cur || typeof cur !== "object") continue;
+      if (seen.has(cur)) continue;
+      seen.add(cur);
+      if (Array.isArray(cur)) {
+        for (const v of cur) stack.push(v);
+        continue;
+      }
+      const obj = cur;
+      if (typeof obj.code === "string" && (typeof obj.lang === "string" || typeof obj.langSlug === "string")) {
+        const lang = String(obj.lang || obj.langSlug || "").toLowerCase();
+        candidates.push({ lang, code: String(obj.code) });
+      }
+      if (typeof obj.code === "string" && obj.code.length > 10 && /function|class|var |let |const/.test(String(obj.code))) {
+        if (!obj.lang && !obj.langSlug) {
+          const codeStr = String(obj.code);
+          if (codeStr.length < 50000) candidates.push({ lang: "", code: codeStr });
+        }
+      }
+      for (const v of Object.values(obj)) {
+        if (v && typeof v === "object") stack.push(v);
+      }
+    }
+    if (candidates.length === 0) return undefined;
+    const js = candidates.find((c) => c.lang.includes("javascript") || c.lang.includes("js"));
+    if (js) return js.code.trim();
+    return candidates[0] && candidates[0].code ? candidates[0].code.trim() : undefined;
+  }
+
+  function parseJsonLine(line) {
+    const trimmed = line.trim();
+    if (!trimmed) return trimmed;
+    try {
+      return JSON.parse(trimmed);
+    } catch {
+      return trimmed;
+    }
+  }
+
+  function buildTestCasesFromLines(inputLines, expectedLines, doc) {
+    if (expectedLines.length === 0) return undefined;
+    const totalCases = expectedLines.length;
+    const perCaseInputCount = inputLines.length / totalCases;
+    const perCase = Number.isInteger(perCaseInputCount) && perCaseInputCount > 0 ? perCaseInputCount : 1;
+    let paramNames = [];
+    const labelEls = Array.from(doc.querySelectorAll("div.mx-3.mb-2.text-xs"));
+    const labels = labelEls.map((el) => (el.textContent || "").trim().replace(/\s*=\s*$/, "").trim()).filter(Boolean);
+    if (labels.length === perCase) {
+      paramNames = labels;
+    } else {
+      const template = extractTemplate(doc);
+      if (template) {
+        let m = template.match(/function\s+\w*\s*\(([^)]*)\)/) || template.match(/var\s+\w+\s*=\s*function\s*\(([^)]*)\)/) || template.match(/\(([^)]*)\)\s*=>/);
+        if (m && m[1]) {
+          const params = m[1].split(",").map((p) => p.trim().split(/\s*=\s*/)[0].trim()).filter(Boolean);
+          if (params.length === perCase) paramNames = params;
+          else if (params.length > 0) paramNames = params.slice(0, perCase);
+        }
+        if (paramNames.length === 0) {
+          const paramMatches = Array.from(template.matchAll(/@param\s+\{[^}]+\}\s+(\w+)/g)).map((mm) => mm[1]);
+          if (paramMatches.length === perCase) paramNames = paramMatches;
+        }
+      }
+    }
+    const cases = [];
+    for (let i = 0; i < totalCases; i++) {
+      const inputChunk = inputLines.slice(i * perCase, (i + 1) * perCase);
+      const expectedRaw = expectedLines[i];
+      const expected = parseJsonLine(expectedRaw);
+      let input;
+      const parsedInputs = inputChunk.map(parseJsonLine);
+      if (paramNames.length === parsedInputs.length && paramNames.length > 0) {
+        input = Object.fromEntries(paramNames.map((k, idx) => [k, parsedInputs[idx]]));
+      } else if (parsedInputs.length === 1) {
+        input = parsedInputs[0];
+      } else if (parsedInputs.length > 1) {
+        input = parsedInputs;
+      } else {
+        input = parsedInputs[0];
+      }
+      cases.push({ input, expected });
+    }
+    return cases.length > 0 ? cases : undefined;
+  }
+
+  function findTestCasesInJson(data) {
+    const stack = [data];
+    const seen = new WeakSet();
+    while (stack.length) {
+      const cur = stack.pop();
+      if (!cur || typeof cur !== "object") continue;
+      if (seen.has(cur)) continue;
+      seen.add(cur);
+      if (Array.isArray(cur)) {
+        if (cur.length > 0 && typeof cur[0] === "object" && cur[0] && "input" in cur[0] && "expected" in cur[0]) {
+          return cur;
+        }
+        for (const v of cur) stack.push(v);
+        continue;
+      }
+      const obj = cur;
+      if (Array.isArray(obj.testCases) && obj.testCases.length > 0) return obj.testCases;
+      for (const v of Object.values(obj)) {
+        if (v && typeof v === "object") stack.push(v);
+      }
+    }
+    return undefined;
+  }
+
+  function extractTestCases(doc) {
+    const hidden = doc.querySelector("div.mt-0.h-0.overflow-hidden.opacity-0") || doc.querySelector("div.opacity-0.h-0") || doc.querySelector("div.h-0.overflow-hidden.opacity-0");
+    if (hidden) {
+      const cmContents = Array.from(hidden.querySelectorAll(".cm-content"));
+      let inputLines = [];
+      let expectedLines = [];
+      const headers = Array.from(hidden.querySelectorAll("div.text-xs.font-medium"));
+      const headerTexts = headers.map((h) => (h.textContent || "").trim().toLowerCase());
+      if (headerTexts.includes("input") && headerTexts.includes("expected")) {
+        const inputIdx = headerTexts.indexOf("input");
+        const expectedIdx = headerTexts.indexOf("expected");
+        if (cmContents[inputIdx]) {
+          inputLines = Array.from(cmContents[inputIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        }
+        if (cmContents[expectedIdx]) {
+          expectedLines = Array.from(cmContents[expectedIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        }
+      } else if (cmContents.length >= 3) {
+        inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        expectedLines = Array.from(cmContents[2].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+      } else if (cmContents.length === 2) {
+        inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        expectedLines = Array.from(cmContents[1].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+      }
+      inputLines = inputLines.filter((l) => l.length > 0);
+      expectedLines = expectedLines.filter((l) => l.length > 0);
+      if (inputLines.length > 0 && expectedLines.length > 0) {
+        const parsed = buildTestCasesFromLines(inputLines, expectedLines, doc);
+        if (parsed && parsed.length > 0) return parsed;
+      }
+    }
+    const consoleContainer = doc.querySelector("div.flex-1.overflow-y-auto");
+    if (consoleContainer) {
+      const inputLabels = Array.from(consoleContainer.querySelectorAll("div.mx-3.mb-2.text-xs")).map((el) => (el.textContent || "").trim().replace(/\s*=\s*$/, ""));
+      let expectedEl = consoleContainer.querySelector("span.text-green-s") || consoleContainer.querySelector("span[class*='text-green']") || consoleContainer.querySelector("div.group.relative.rounded-lg.bg-fill-4")?.parentElement?.querySelector("span.text-green-s") || null;
+      if (!expectedEl) {
+        const expectedHeader = Array.from(consoleContainer.querySelectorAll("div.text-xs.font-medium")).find((el) => (el.textContent || "").trim().toLowerCase() === "expected");
+        if (expectedHeader) {
+          const maybe = expectedHeader.parentElement?.parentElement?.querySelector("div.font-menlo, span.text-green-s");
+          if (maybe) expectedEl = maybe;
+        }
+      }
+      if (!expectedEl) {
+        const candidates = Array.from(consoleContainer.querySelectorAll("span, div.font-menlo"));
+        expectedEl = candidates.find((el) => {
+          const t = (el.textContent || "").trim();
+          return /^\s*\[.*\]\s*$/.test(t) || t === "[]" || /^\s*\d+\s*$/.test(t);
+        }) || null;
+        const green = candidates.find((el) => el.className.includes("text-green") || el.className.includes("green"));
+        if (green) expectedEl = green;
+      }
+      if (inputLabels.length > 0) {
+        const inputValues = [];
+        const labelElements = Array.from(consoleContainer.querySelectorAll("div.mx-3.mb-2.text-xs"));
+        for (const labelEl of labelElements) {
+          const container = labelEl.parentElement || labelEl.closest("div.group");
+          const valueEl = container ? container.querySelector("div.font-menlo") : null;
+          const actualValueEl = valueEl || (labelEl.nextElementSibling);
+          if (actualValueEl) {
+            const raw = (actualValueEl.textContent || "").trim();
+            if (raw) inputValues.push(parseJsonLine(raw));
+          } else {
+            const next = labelEl.nextElementSibling;
+            if (next) {
+              const raw = (next.textContent || "").trim();
+              if (raw) inputValues.push(parseJsonLine(raw));
+            }
+          }
+        }
+        const expectedRaw = expectedEl ? (expectedEl.textContent || "").trim() : "";
+        const expected = expectedRaw ? parseJsonLine(expectedRaw) : undefined;
+        if (inputValues.length > 0 && expected !== undefined) {
+          let input;
+          if (inputLabels.length === inputValues.length && inputLabels.every(Boolean)) {
+            input = Object.fromEntries(inputLabels.map((k, i) => [k, inputValues[i]]));
+          } else if (inputValues.length === 1) {
+            input = inputValues[0];
+          } else {
+            input = inputValues;
+          }
+          return [{ input, expected }];
+        }
+      }
+    }
+    try {
+      const nextDataEl = doc.getElementById("__NEXT_DATA__") || doc.querySelector('script#__NEXT_DATA__');
+      if (nextDataEl && nextDataEl.textContent) {
+        const data = JSON.parse(nextDataEl.textContent);
+        const tcs = findTestCasesInJson(data);
+        if (tcs && tcs.length > 0) return tcs;
+      }
+    } catch {}
+    return undefined;
+  }
+
   function extractTemplate(doc) {
+    try {
+      const win = typeof window !== "undefined" ? window : null;
+      const monaco = win && win.monaco;
+      if (monaco && monaco.editor && monaco.editor.getModels) {
+        const models = monaco.editor.getModels();
+        if (models && models.length > 0) {
+          const v = models[0] && models[0].getValue ? models[0].getValue() : null;
+          if (typeof v === "string" && v.trim().length > 2 && v.trim().length < 50000) return v.trim();
+        }
+      }
+    } catch {}
+    try {
+      const nextDataEl = doc.getElementById("__NEXT_DATA__") || doc.querySelector('script#__NEXT_DATA__');
+      if (nextDataEl && nextDataEl.textContent) {
+        const data = JSON.parse(nextDataEl.textContent);
+        const found = findCodeSnippetInJson(data);
+        if (found) return found;
+      }
+      for (const s of Array.from(doc.querySelectorAll('script[type="application/json"]'))) {
+        try {
+          const d = JSON.parse(s.textContent || "");
+          const f = findCodeSnippetInJson(d);
+          if (f) return f;
+        } catch {}
+      }
+    } catch {}
+    const codeEditorContainer = doc.querySelector('[data-track-load="code_editor"]');
+    if (codeEditorContainer) {
+      const monacoInEditor = codeEditorContainer.querySelector(".monaco-editor");
+      if (monacoInEditor) {
+        const lines = codeEditorContainer.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
+        if (lines.length > 0) {
+          const text = Array.from(lines).map((el) => (el.textContent || "").replace(/\u00a0/g, " ")).join("\n").trim();
+          if (text && text.length > 2 && text.length < 50000) return text;
+        }
+        const t = (monacoInEditor.textContent || "").trim();
+        if (t && t.length > 10 && t.length < 50000) return t;
+      }
+      const t2 = (codeEditorContainer.textContent || "").trim();
+      if (t2 && /function|class|var |let |const |return|=>/.test(t2) && t2.length < 50000 && t2.length > 10) {
+        const cleaned = t2.split("\n").map((l) => l.trim()).filter(Boolean).join("\n");
+        if (cleaned) return cleaned;
+      }
+    }
     const monacoLines = doc.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
     if (monacoLines.length > 0) {
-      const text = Array.from(monacoLines)
-        .map((el) => el.textContent ?? "")
-        .join("\n")
-        .trim();
-      if (text && text.length > 2 && text.length < 20000) {
+      const text = Array.from(monacoLines).map((el) => (el.textContent || "").replace(/\u00a0/g, " ")).join("\n").trim();
+      if (text && text.length > 2 && text.length < 50000) {
         if (/function|class|var |let |const |return|=>/.test(text)) return text;
         if (text.split("\n").length >= 1) return text;
       }
     }
     const monaco = doc.querySelector(".monaco-editor");
     if (monaco) {
-      const t = (monaco.textContent ?? "").trim();
-      if (t && t.length > 10 && t.length < 20000 && /function|class|var |let |const |def |public/.test(t)) return t;
+      const t = (monaco.textContent || "").trim();
+      if (t && t.length > 10 && t.length < 50000 && /function|class|var |let |const |def |public/.test(t)) return t;
     }
     const cm = doc.querySelector(".CodeMirror-code, .cm-content");
     if (cm) {
-      const t = (cm.textContent ?? "").trim();
-      if (t && t.length > 2) return t;
+      const t = (cm.textContent || "").trim();
+      if (t && t.length > 2 && t.length < 20000) {
+        const inConsole = cm.closest(".flex-1.overflow-y-auto");
+        if (!inConsole && /function|class|var |let |const/.test(t)) return t;
+      }
     }
     return undefined;
   }
@@ -220,6 +474,7 @@
     const tags = extractTags(doc);
     const hints = extractHints(doc);
     const template = extractTemplate(doc);
+    const testCases = extractTestCases(doc);
 
     return {
       id,
@@ -230,6 +485,7 @@
       tags,
       description,
       template,
+      testCases,
       hints: hints.length > 0 ? hints : undefined,
       clippedAt: new Date().toISOString(),
     };

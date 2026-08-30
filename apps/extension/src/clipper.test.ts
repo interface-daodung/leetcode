@@ -10,6 +10,7 @@ import {
   cleanDescription,
   extractHints,
   extractTemplate,
+  extractTestCases,
   buildProblemClip,
   isValidProblemClip,
 } from "./clipper.js";
@@ -354,5 +355,131 @@ describe("buildProblemClip với hints/template/url", () => {
     expect(clip!.url).toBe("https://leetcode.com/problems/two-sum/");
     expect(clip!.hints).toEqual(["Hint A"]);
     expect(clip!.template).toContain("function solve");
+  });
+});
+
+describe("extractTemplate với DOM code_editor mẫu mới", () => {
+  it("lấy template từ data-track-load=code_editor với monaco view-lines (ListNode)", () => {
+    document.body.innerHTML = `
+      <div class="flex flex-col min-h-0 flex-1 pb-2" data-track-load="code_editor" translate="no">
+        <div class="relative min-h-0 flex-1">
+          <div class="relative h-full w-full" data-keybinding-context="1" data-mode-id="javascript">
+            <div class="monaco-editor no-user-select showUnused showDeprecated vs-dark" role="code" data-uri="inmemory://model/1" style="width: 493px; height: 218px;">
+              <div data-mprt="3" class="overflow-guard" style="width: 493px; height: 218px;">
+                <div class="view-lines monaco-mouse-cursor-text" role="presentation">
+                  <div class="view-line"><span><span class="mtk3">/**</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * Definition for singly-linked list.</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * function ListNode(val, next) {</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> *     this.val = (val===undefined ? 0 : val)</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> *     this.next = (next===undefined ? null : next)</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * }</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> */</span></span></div>
+                  <div class="view-line"><span><span class="mtk3">/**</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * @param {ListNode} head</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * @param {number} n</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> * @return {ListNode}</span></span></div>
+                  <div class="view-line"><span><span class="mtk3"> */</span></span></div>
+                  <div class="view-line"><span><span class="mtk3">var removeNthFromEnd = function(head, n) {</span></span></div>
+                  <div class="view-line"><span><span class="mtk3">    </span></span></div>
+                  <div class="view-line"><span><span class="mtk3">};</span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    const tpl = extractTemplate(document);
+    expect(tpl).toBeDefined();
+    expect(tpl).toContain("ListNode");
+    expect(tpl).toContain("removeNthFromEnd");
+    expect(tpl).toContain("@param");
+  });
+
+  it("fallback lấy template từ __NEXT_DATA__ khi monaco không có", () => {
+    document.body.innerHTML = `
+      <div><p>no editor</p></div>
+      <script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"question":{"codeSnippets":[{"lang":"javascript","code":"function hello() { return 1; }"},{"lang":"python","code":"def hello():"}]}}}}</script>
+    `;
+    const tpl = extractTemplate(document);
+    expect(tpl).toContain("function hello");
+  });
+});
+
+describe("extractTestCases", () => {
+  it("lấy 3 testCases từ hidden cm-content (opacity-0) — mẫu console Wrong Answer", () => {
+    document.body.innerHTML = `
+      <div class="flex-1 overflow-y-auto"><div><div class="space-y-4 px-5 py-4"><div>Case 3 active</div></div></div></div>
+      <div class="mt-0 h-0 overflow-hidden opacity-0">
+        <div class="h-full space-y-2">
+          <div class="flex flex-col pt-4"><div class="text-xs font-medium">Input</div><div class="px-4"><div class="cm-editor"><div class="cm-content"><div class="cm-line">[1,2,3,4,5]</div><div class="cm-line">2</div><div class="cm-line">[1]</div><div class="cm-line">1</div><div class="cm-line">[1,2]</div><div class="cm-line">1</div></div></div></div></div>
+          <div class="flex flex-col pt-4"><div class="text-xs font-medium">Output</div><div class="px-4"><div class="cm-editor"><div class="cm-content"><div class="cm-line">undefined</div><div class="cm-line">undefined</div><div class="cm-line">undefined</div></div></div></div></div>
+          <div class="pb-4"><div class="flex flex-col pt-4"><div class="text-xs font-medium">Expected</div><div class="px-4"><div class="cm-editor"><div class="cm-content"><div class="cm-line">[1,2,3,5]</div><div class="cm-line">[]</div><div class="cm-line">[1]</div></div></div></div></div></div>
+        </div>
+      </div>
+      <!-- visible labels để param names -->
+      <div><div class="mx-3 mb-2 text-xs">head =</div><div class="mx-3 mb-2 text-xs">n =</div></div>
+    `;
+    const tcs = extractTestCases(document);
+    expect(tcs).toBeDefined();
+    expect(tcs).toHaveLength(3);
+    expect(tcs![0].expected).toEqual([1,2,3,5]);
+    expect(tcs![1].expected).toEqual([]);
+    expect(tcs![2].expected).toEqual([1]);
+    // input của case 0 phải có head và n
+    expect(tcs![0].input).toEqual({ head: [1,2,3,4,5], n: 2 });
+    expect(tcs![1].input).toEqual({ head: [1], n: 1 });
+  });
+
+  it("lấy 1 testCase từ visible console khi không có hidden", () => {
+    document.body.innerHTML = `
+      <div class="flex-1 overflow-y-auto">
+        <div class="space-y-4">
+          <div><div class="mx-3 mb-2 text-xs">head =</div><div class="font-menlo">[1,2]</div></div>
+          <div><div class="mx-3 mb-2 text-xs">n =</div><div class="font-menlo">1</div></div>
+          <div><span class="text-green-s">[1]</span></div>
+        </div>
+      </div>
+    `;
+    const tcs = extractTestCases(document);
+    expect(tcs).toBeDefined();
+    expect(tcs).toHaveLength(1);
+    expect(tcs![0].input).toEqual({ head: [1,2], n: 1 });
+    expect(tcs![0].expected).toEqual([1]);
+  });
+
+  it("trả undefined nếu không có test case", () => {
+    document.body.innerHTML = `<div><p>no console</p></div>`;
+    expect(extractTestCases(document)).toBeUndefined();
+  });
+
+  it("parse testCases từ __NEXT_DATA__ fallback", () => {
+    document.body.innerHTML = `
+      <script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"question":{"testCases":[{"input":{"nums":[2,7,11,15],"target":9},"expected":[0,1]}]}}}}</script>
+    `;
+    const tcs = extractTestCases(document);
+    expect(tcs).toEqual([{ input: { nums: [2,7,11,15], target: 9 }, expected: [0,1] }]);
+  });
+});
+
+describe("buildProblemClip với testCases", () => {
+  it("build kèm testCases từ hidden editor", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List</a></div>
+      <div class="text-difficulty-medium">Medium</div>
+      <div data-track-load="description_content"><p>Given linked list</p></div>
+      <div class="flex flex-col min-h-0 flex-1 pb-2" data-track-load="code_editor"><div class="monaco-editor"><div class="view-lines"><div class="view-line">var removeNthFromEnd = function(head, n) {</div><div class="view-line">};</div></div></div></div>
+      <div class="mt-0 h-0 overflow-hidden opacity-0">
+        <div><div class="flex flex-col pt-4"><div class="text-xs font-medium">Input</div><div class="cm-content"><div class="cm-line">[1,2,3,4,5]</div><div class="cm-line">2</div></div></div>
+        <div class="flex flex-col pt-4"><div class="text-xs font-medium">Expected</div><div class="cm-content"><div class="cm-line">[1,2,3,5]</div></div></div></div>
+      </div>
+      <div><div class="mx-3 mb-2 text-xs">head =</div><div class="mx-3 mb-2 text-xs">n =</div></div>
+    `;
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/remove-nth-node-from-end-of-list/");
+    expect(clip).not.toBeNull();
+    expect(clip!.testCases).toBeDefined();
+    expect(clip!.testCases).toHaveLength(1);
+    expect(clip!.testCases![0].expected).toEqual([1,2,3,5]);
+    expect(clip!.template).toContain("removeNthFromEnd");
   });
 });
