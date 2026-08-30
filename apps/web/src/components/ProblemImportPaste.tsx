@@ -2,7 +2,8 @@ import { useState } from "react";
 import { parseProblemClipJson, sanitizeDescriptionHtml } from "../lib/problemClip.js";
 import type { ProblemClip } from "@leetcode/shared";
 
-const API_BASE = "http://localhost:3000";
+// Host lưu ở root .env (VITE_API_URL), đồng bộ với server và extension
+const API_BASE: string = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL ?? "http://localhost:3000";
 
 export function ProblemImportPaste({ onImported }: { onImported?: (clip: ProblemClip) => void }) {
   const [raw, setRaw] = useState("");

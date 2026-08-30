@@ -3,6 +3,9 @@ import { createEditorState, languageTemplates } from "@leetcode/editor";
 import { useState, useEffect } from "react";
 import { ProblemImportPaste } from "./components/ProblemImportPaste.js";
 
+// Host lưu ở root .env (VITE_API_URL), fallback localhost để dev không cần .env
+const API_BASE: string = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL ?? "http://localhost:3000";
+
 function App() {
   const [editorState, setEditorState] = useState(createEditorState());
   const [output, setOutput] = useState("");
@@ -10,7 +13,7 @@ function App() {
 
   const fetchProblems = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/problems");
+      const res = await fetch(`${API_BASE}/api/problems`);
       if (res.ok) {
         const data = (await res.json()) as { id: number; title: string; difficulty: string }[];
         setProblems(Array.isArray(data) ? data : []);

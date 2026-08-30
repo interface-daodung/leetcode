@@ -118,6 +118,25 @@ export function extractDifficulty(doc: Document): Difficulty | null {
 }
 
 /**
+ * Trích xuất tags từ DOM — các anchor href="/tag/*" (Topics).
+ * VD: <a href="/tag/linked-list/">Linked List</a> → "Linked List"
+ */
+export function extractTags(doc: Document): string[] {
+  const anchors = Array.from(doc.querySelectorAll<HTMLAnchorElement>('a[href^="/tag/"]'));
+  const tags: string[] = [];
+  const seen = new Set<string>();
+  for (const a of anchors) {
+    const text = (a.textContent ?? "").trim().replace(/\s+/g, " ");
+    if (!text) continue;
+    const key = text.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    tags.push(text);
+  }
+  return tags;
+}
+
+/**
  * Làm sạch description HTML: loại bỏ script/style/iframe, chuẩn hoá &nbsp;
  */
 export function cleanDescription(container: Element): string {
@@ -206,13 +225,14 @@ export function buildProblemClip(doc: Document, url: string): ProblemClip | null
   }
 
   const difficulty = extractDifficulty(doc) ?? "medium";
+  const tags = extractTags(doc);
 
   return {
     id,
     slug,
     title,
     difficulty,
-    tags: [],
+    tags,
     description,
     url,
     clippedAt: new Date().toISOString(),

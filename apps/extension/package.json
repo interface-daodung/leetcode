@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
+    "sync:config": "node scripts/sync-api-url.mjs",
+    "prebuild": "node scripts/sync-api-url.mjs",
     "test": "vitest run --passWithNoTests",
     "lint": "eslint src --ext .ts"
   },

@@ -6,6 +6,7 @@ import {
   findDescriptionContainer,
   findTitleAnchor,
   extractDifficulty,
+  extractTags,
   cleanDescription,
   buildProblemClip,
   isValidProblemClip,
@@ -116,6 +117,47 @@ describe("findTitleAnchor", () => {
   });
 });
 
+describe("extractTags", () => {
+  it("lấy tags từ a[href^=\"/tag/\"]", () => {
+    document.body.innerHTML = `
+      <div class="mt-2 flex flex-wrap gap-1 pl-7">
+        <a href="/tag/linked-list/">Linked List</a>
+        <a href="/tag/two-pointers/">Two Pointers</a>
+      </div>
+    `;
+    expect(extractTags(document)).toEqual(["Linked List", "Two Pointers"]);
+  });
+
+  it("lấy tags theo mẫu debai.html (4 topics)", () => {
+    document.body.innerHTML = `
+      <div class="mt-2 flex flex-wrap gap-1 pl-7">
+        <a target="_blank" rel="noopener noreferrer" class="no-underline hover:text-current relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-text-secondary" href="/tag/two-pointers/">Two Pointers</a>
+        <a target="_blank" rel="noopener noreferrer" class="no-underline hover:text-current relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-text-secondary" href="/tag/string/">String</a>
+        <a target="_blank" rel="noopener noreferrer" class="no-underline hover:text-current relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-text-secondary" href="/tag/dynamic-programming/">Dynamic Programming</a>
+        <a target="_blank" rel="noopener noreferrer" class="no-underline hover:text-current relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-text-secondary" href="/tag/manacher/">Manacher</a>
+      </div>
+    `;
+    expect(extractTags(document)).toEqual(["Two Pointers", "String", "Dynamic Programming", "Manacher"]);
+  });
+
+  it("dedupe tags (không phân biệt hoa thường)", () => {
+    document.body.innerHTML = `
+      <div><a href="/tag/string/">String</a><a href="/tag/string/">String</a><a href="/tag/STRING/">STRING</a></div>
+    `;
+    expect(extractTags(document)).toEqual(["String"]);
+  });
+
+  it("trả [] nếu không có tag anchor", () => {
+    document.body.innerHTML = `<div><a href="/problems/two-sum/">1. Two Sum</a></div>`;
+    expect(extractTags(document)).toEqual([]);
+  });
+
+  it("loại bỏ tag rỗng và trim whitespace", () => {
+    document.body.innerHTML = `<div><a href="/tag/empty/">  </a><a href="/tag/valid/">  Linked   List  </a></div>`;
+    expect(extractTags(document)).toEqual(["Linked List"]);
+  });
+});
+
 describe("cleanDescription", () => {
   it("loại bỏ script/style/iframe/button và giữ p/pre", () => {
     document.body.innerHTML = `
@@ -157,6 +199,32 @@ describe("buildProblemClip", () => {
     expect(clip!.description).toContain("Given a string");
     expect(clip!.url).toBe("https://leetcode.com/problems/longest-palindromic-substring/");
     expect(clip!.tags).toEqual([]);
+  });
+
+  it("build với tags từ DOM debai.html", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/longest-palindromic-substring/">5. Longest Palindromic Substring</a></div>
+      <div class="text-difficulty-medium">Medium</div>
+      <div data-track-load="description_content"><p>desc</p></div>
+      <div class="mt-2 flex flex-wrap gap-1 pl-7">
+        <a href="/tag/two-pointers/">Two Pointers</a>
+        <a href="/tag/string/">String</a>
+        <a href="/tag/dynamic-programming/">Dynamic Programming</a>
+      </div>
+    `;
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/longest-palindromic-substring/");
+    expect(clip!.tags).toEqual(["Two Pointers", "String", "Dynamic Programming"]);
+  });
+
+  it("build với 1 tag Linked List như feedback", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/add-two-numbers/">2. Add Two Numbers</a></div>
+      <div class="text-difficulty-medium">Medium</div>
+      <div data-track-load="description_content"><p>desc</p></div>
+      <a target="_blank" rel="noopener noreferrer" class="no-underline hover:text-current relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-text-secondary" href="/tag/linked-list/">Linked List</a>
+    `;
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/add-two-numbers/");
+    expect(clip!.tags).toEqual(["Linked List"]);
   });
 
   it("trả null nếu không có description", () => {

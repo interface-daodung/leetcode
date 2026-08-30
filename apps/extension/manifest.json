@@ -3,13 +3,26 @@
   "name": "LeetCode Clipper",
   "version": "0.1.0",
   "description": "Clip đề bài LeetCode thành JSON vào clipboard để dán vào LeetCode Lab.",
-  "permissions": ["clipboardWrite"],
-  "host_permissions": ["*://leetcode.com/*"],
+  "permissions": [
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "*://leetcode.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["*://leetcode.com/problems/*"],
-      "css": ["style.css"],
-      "js": ["content.js"],
+      "matches": [
+        "*://leetcode.com/problems/*"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "js": [
+        "api-config.js",
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],

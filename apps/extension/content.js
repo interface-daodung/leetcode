@@ -81,6 +81,21 @@
     return null;
   }
 
+  function extractTags(doc) {
+    const anchors = Array.from(doc.querySelectorAll('a[href^="/tag/"]'));
+    const tags = [];
+    const seen = new Set();
+    for (const a of anchors) {
+      const text = (a.textContent ?? "").trim().replace(/\s+/g, " ");
+      if (!text) continue;
+      const key = text.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      tags.push(text);
+    }
+    return tags;
+  }
+
   function cleanDescription(container) {
     const clone = container.cloneNode(true);
     clone.querySelectorAll("script, style, iframe, noscript, svg, button").forEach((el) => el.remove());
@@ -142,13 +157,14 @@
     }
 
     const difficulty = extractDifficulty(doc) ?? "medium";
+    const tags = extractTags(doc);
 
     return {
       id,
       slug,
       title,
       difficulty,
-      tags: [],
+      tags,
       description,
       url,
       clippedAt: new Date().toISOString(),
@@ -206,6 +222,47 @@
     }
   }
 
+  // ----- Config: host từ .env (đồng bộ toàn monorepo) -----
+  // api-config.js được inject trước content.js, định nghĩa var LC_API_BASE
+  const API_BASE =
+    typeof LC_API_BASE !== "undefined" && LC_API_BASE ? LC_API_BASE : "http://localhost:3000";
+
+  function isValidClipForPost(clip) {
+    if (!clip) return "clip rỗng";
+    if (typeof clip.id !== "number" || !Number.isInteger(clip.id) || clip.id <= 0) return "id không hợp lệ";
+    if (typeof clip.title !== "string" || !clip.title.trim()) return "title rỗng";
+    if (clip.difficulty !== "easy" && clip.difficulty !== "medium" && clip.difficulty !== "hard")
+      return "difficulty không hợp lệ";
+    if (typeof clip.description !== "string" || !clip.description.trim()) return "description rỗng";
+    if (!Array.isArray(clip.tags)) return "tags không hợp lệ";
+    return null;
+  }
+
+  async function postToServer(clip) {
+    const err = isValidClipForPost(clip);
+    if (err) {
+      showToast(`JSON không hợp lệ: ${err}`, "error");
+      return { ok: false, error: err };
+    }
+    try {
+      const res = await fetch(`${API_BASE.replace(/\/$/, "")}/api/problems/import`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(clip),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && res.status === 201) {
+        return { ok: true, data };
+      }
+      if (res.status === 409) {
+        return { ok: false, dup: true, error: data.error || "Đã tồn tại" };
+      }
+      return { ok: false, error: data.error || `HTTP ${res.status}` };
+    } catch (e) {
+      return { ok: false, error: String(e) };
+    }
+  }
+
   // ----- Widget -----
 
   function handleClip() {
@@ -224,10 +281,21 @@
       return;
     }
     const json = JSON.stringify(clip, null, 2);
-    copyToClipboard(json).then((ok) => {
-      if (ok) {
-        showToast(`Đã copy: ${clip.id}. ${clip.title} (${json.length} chars)`, "success");
-        const w = document.getElementById(WIDGET_ID);
+    // 1) Copy vào clipboard (giữ để paste thủ công nếu cần)
+    copyToClipboard(json);
+    // 2) Gọi trực tiếp server localhost (host từ root .env) để lưu DB
+    const validationErr = isValidClipForPost(clip);
+    if (validationErr) {
+      showToast(`Không gửi được: ${validationErr}`, "error");
+      console.warn("[LeetCode Clipper] validation fail:", validationErr, clip);
+      return;
+    }
+    // Hiển thị trạng thái đang gửi
+    showToast(`Đang gửi ${clip.id}. ${clip.title} tới ${API_BASE}...`, "");
+    postToServer(clip).then((result) => {
+      const w = document.getElementById(WIDGET_ID);
+      if (result.ok) {
+        showToast(`Đã lưu: ${clip.id}. ${clip.title} vào DB`, "success");
         if (w) {
           w.classList.add("success");
           w.textContent = "✓";
@@ -236,10 +304,16 @@
             w.textContent = "LC";
           }, 1800);
         }
+        console.log("[LeetCode Clipper] POST ok:", result.data);
+      } else if (result.dup) {
+        showToast(`Đã tồn tại: ${clip.id}. ${clip.title}`, "error");
+        if (w) {
+          w.classList.add("error");
+          setTimeout(() => w.classList.remove("error"), 1500);
+        }
       } else {
-        // fallback: hiện JSON trong toast để user copy thủ công
-        showToast("Không copy được vào clipboard. Mở console để lấy JSON.", "error");
-        console.log("[LeetCode Clipper] JSON:", json);
+        showToast(`Lỗi gửi server: ${result.error} (đã copy JSON)`, "error");
+        console.log("[LeetCode Clipper] POST fail, JSON:", json, result);
       }
     });
   }

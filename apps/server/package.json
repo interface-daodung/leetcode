@@ -16,6 +16,8 @@
     "@leetcode/problem-engine": "workspace:*",
     "@leetcode/ai": "workspace:*",
     "fastify": "^4.28.0",
+    "@fastify/static": "^7.0.0",
+    "dotenv": "^16.4.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {

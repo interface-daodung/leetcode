@@ -1,11 +1,34 @@
 import Fastify from "fastify";
+import fastifyStatic from "@fastify/static";
+import dotenv from "dotenv";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { engine } from "@leetcode/problem-engine";
 import { problemDb } from "@leetcode/database";
 import { getHint } from "@leetcode/ai";
 import { formatProblemId } from "@leetcode/shared";
+import { ASSETS_ROOT, downloadAndRewriteImages } from "./assets.js";
+
+// Load .env từ root monorepo (không phụ thuộc CWD)
+try {
+  dotenv.config({ path: fileURLToPath(new URL("../../../.env", import.meta.url)) });
+} catch {
+  // ignore nếu không có .env
+}
+
+const PORT = Number(process.env.PORT ?? 3000);
+const HOST = process.env.HOST ?? "0.0.0.0";
+const API_URL = process.env.API_URL ?? process.env.VITE_API_URL ?? `http://localhost:${PORT}`;
 
 const app = Fastify({ logger: true });
+
+// Serve ảnh đã tải về: packages/database/data/assets -> /assets/*
+await app.register(fastifyStatic, {
+  root: ASSETS_ROOT,
+  prefix: "/assets/",
+  wildcard: false,
+  decorateReply: false,
+});
 
 // CORS cho web (localhost:5173) gọi API
 app.addHook("onSend", async (_request, reply) => {
@@ -111,16 +134,19 @@ app.post("/api/problems/:id/hint", async (request, reply) => {
 });
 
 app.post("/api/problems/import", async (request, reply) => {
+  // Validation chặt: các trường không được null/undefined, đúng type, trim check
   const schema = z.object({
-    id: z.number().int().positive(),
-    slug: z.string().optional(),
-    title: z.string().min(1),
-    difficulty: z.enum(["easy", "medium", "hard"]),
-    tags: z.array(z.string()).optional().default([]),
-    description: z.string().min(1),
-    testCases: z.array(z.object({ input: z.unknown(), expected: z.unknown() })).optional().default([]),
-    solution: z.string().optional(),
-  });
+    id: z.number({ required_error: "Thiếu id" }).int().positive(),
+    slug: z.string().optional().nullable().transform((v) => (v ?? "").trim()),
+    title: z.string({ required_error: "Thiếu title" }).min(1).transform((v) => v.trim()).refine((v) => v.length > 0, "title rỗng"),
+    difficulty: z.enum(["easy", "medium", "hard"], { required_error: "difficulty phải là easy|medium|hard" }),
+    tags: z.array(z.string()).optional().nullable().default([]).transform((arr) => (arr ?? []).map((t) => t.trim()).filter(Boolean)),
+    description: z.string({ required_error: "Thiếu description" }).min(1).refine((v) => v.trim().length > 0, "description rỗng"),
+    url: z.string().url().optional().nullable(),
+    clippedAt: z.string().optional().nullable(),
+    testCases: z.array(z.object({ input: z.unknown(), expected: z.unknown() })).optional().nullable().default([]),
+    solution: z.string().optional().nullable(),
+  }).strict();
 
   let parsed: z.infer<typeof schema>;
   try {
@@ -135,14 +161,23 @@ app.post("/api/problems/import", async (request, reply) => {
     return reply.code(409).send({ error: "Problem already exists", problem: existing });
   }
 
+  // Xử lý ảnh trong description: tải về packages/database/data/assets/<slug>/
+  const rawSlug = (parsed.slug && parsed.slug.length > 0 ? parsed.slug : `problem-${parsed.id}`).trim();
+  let processedDescription = parsed.description;
+  try {
+    processedDescription = await downloadAndRewriteImages(parsed.description, rawSlug, API_URL);
+  } catch (e) {
+    request.log.warn({ err: e }, "Download ảnh thất bại, giữ nguyên description gốc");
+  }
+
   const problem: import("@leetcode/problem-engine").Problem = {
     id: parsed.id,
     title: parsed.title,
     difficulty: parsed.difficulty,
     tags: parsed.tags ?? [],
-    description: parsed.description,
+    description: processedDescription,
     testCases: (parsed.testCases as { input: unknown; expected: unknown }[]) ?? [],
-    solution: parsed.solution,
+    solution: parsed.solution ?? undefined,
   };
 
   engine.register(problem);
@@ -156,6 +191,7 @@ app.post("/api/problems/import", async (request, reply) => {
   return reply.code(201).send({ ok: true, problem });
 });
 
-app.listen({ port: 3000, host: "0.0.0.0" }).then(() => {
-  console.log("Server running on http://localhost:3000");
+app.listen({ port: PORT, host: HOST }).then(() => {
+  console.log(`Server running on ${API_URL} (host ${HOST}:${PORT})`);
+  console.log(`Assets served from ${ASSETS_ROOT} at ${API_URL}/assets/`);
 });

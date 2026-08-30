@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
+  // Đọc .env từ root monorepo để dùng chung VITE_API_URL / API_URL (theo yêu cầu host lưu ở .env)
+  envDir: path.resolve(__dirname, "../../"),
   plugins: [react()],
   resolve: {
     alias: {

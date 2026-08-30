@@ -4,11 +4,12 @@ Cập nhật: 2026-08-30
 
 ## Current Phase
 
-Giai đoạn implement — feature **LeetCode Clipper (Browser Extension Widget)** đã hoàn thành code, test, build.
+Giai đoạn implement — feature **LeetCode Clipper (Browser Extension Widget)** đã hoàn thành và mở rộng **direct import + assets** trên cùng nhánh.
 
 - Nhánh: `feat/leetcode-clipper-extension`
-- Plan: `AI/plans/active/leetcode-clipper-extension.md` (chuẩn bị move sang completed)
-- Kết quả: extension clip DOM → clipboard, web paste → preview → `POST /api/problems/import` → SQLite, 28 tests pass, `pnpm -r build` pass.
+- Plan gốc: `AI/plans/completed/leetcode-clipper-extension.md` (đã move từ active)
+- Mở rộng (chưa có plan riêng): direct POST từ extension tới server (host từ root `.env`), tải ảnh trong description về `packages/database/data/assets/<slug>/` với dedupe SHA-256, serve `GET /assets/*`, validate chặt, hiển thị list từ DB.
+- Kết quả: extension clip DOM → POST trực tiếp `http://localhost:3000/api/problems/import` (fallback clipboard), web `GET /api/problems` hiển thị list, server tải ảnh và lưu assets, 35 tests extension + 5 tests server assets pass, `pnpm -r build` pass.
 
 ## Đã hoàn thành
 
@@ -24,22 +25,31 @@ Giai đoạn implement — feature **LeetCode Clipper (Browser Extension Widget)
 - DB path cố định tại `packages/database/data/leetcode.db`, auto-migrate runtime.
 - Tất cả package nội bộ đồng bộ ESM (`"type": "module"`).
 - Seed script đã bị bỏ khỏi dự án.
-- **[mới] LeetCode Clipper Extension** — `apps/extension` (MV3: `manifest.json`, `content.js` widget LC draggable, `style.css`, `src/clipper.ts` pure logic, 28 tests với jsdom, `vitest.config.ts`).
+- **[mới] LeetCode Clipper Extension (base)** — `apps/extension` (MV3: `manifest.json`, `content.js` widget LC draggable, `style.css`, `src/clipper.ts` pure logic, `vitest.config.ts`).
+  - `src/clipper.ts` có `extractTags` (a[href^="/tag/"]) — đã fix để tags không còn rỗng (VD `debai.html` → 4 tags).
+  - 35 tests với jsdom (`clipper.test.ts`).
 - **[mới] Shared `ProblemClip` type** — `packages/shared/src/index.ts` (id, slug, title, difficulty, tags, description, url, clippedAt).
-- **[mới] Server API** — `GET /api/problems`, `GET /api/problems/:id` (fallback DB), `POST /api/problems/import` (Zod, 201/409/400), CORS, hydrate engine từ SQLite khi khởi động.
-- **[mới] Web Import UI** — `apps/web/src/components/ProblemImportPaste.tsx` + `lib/problemClip.ts` (parse, sanitize), `App.tsx` tích hợp list `GET /api/problems`.
+- **[mới] Server API (base)** — `GET /api/problems`, `GET /api/problems/:id` (fallback DB), `POST /api/problems/import` (Zod, 201/409/400), CORS, hydrate engine từ SQLite khi khởi động.
+- **[mới] Web Import UI (base)** — `apps/web/src/components/ProblemImportPaste.tsx` + `lib/problemClip.ts` (parse, sanitize), `App.tsx` tích hợp list `GET /api/problems`.
 - **[mới] Sửa BOM** — xoá BOM trong `packages/{shared,editor,ai,javascript-docs}/package.json`; tạo `tsconfig.json` cho các package thiếu; `vitest --passWithNoTests` cho `pnpm -r test`.
-- **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md`, `AI/index/*`, `AI/context/decisions.md`.
+- **[mới] Direct import + Env + Assets (2026-08-30 mở rộng trên cùng nhánh)**:
+  - Root `.env` + `.env.example` (PORT/HOST/API_URL/VITE_API_URL/EXTENSION_API_URL) — một chỗ sửa cho toàn monorepo (`.gitignore` thêm `.env` và `assets/`).
+  - Server: `dotenv` đọc root `.env`, `API_URL`/`PORT`/`HOST` từ env, `@fastify/static` serve `GET /assets/*` từ `packages/database/data/assets`, `src/assets.ts` (`downloadAndRewriteImages`: HTTP Response → Buffer → SHA-256 → check `.hash-index.json` → ghi `assets/<slug>/{name}` + rewrite description src thành `${API_URL}/assets/...`), validation Zod strict (null check), 5 tests `src/assets.test.ts`.
+  - Extension: `api-config.js` (auto-gen từ root `.env` via `scripts/sync-api-url.mjs` + `prebuild`), `manifest.json` thêm `api-config.js` trước `content.js` và `host_permissions` localhost + API host, `content.js` thêm `API_BASE` từ `LC_API_BASE`, `isValidClipForPost`, `postToServer` (fetch POST trực tiếp, toast 201/409/error) + vẫn copy clipboard.
+  - Web: `vite.config.ts` `envDir=root`, `App.tsx` và `ProblemImportPaste.tsx` dùng `import.meta.env.VITE_API_URL ?? "http://localhost:3000"`, list đọc từ DB hiển thị ngay sau import.
+  - Đã test end-to-end local: `POST /api/problems/import` với `<img src="https://httpbin.org/image/png">` → rewrite thành `http://localhost:3000/assets/test-img2/png.png`, dedupe cùng hash giữa 2 problem khác slug.
+- **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (3 apps + runtime/data flow mới, assets, env), `AI/STATUS.md`, `packages/database` assets handling.
 
 ## Đang làm
 
-- Chuẩn bị move plan `leetcode-clipper-extension` sang `AI/plans/completed/` và ghi history.
+- Hoàn thiện docs/history cho mở rộng direct import + assets, chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
 
 ## Tiếp theo
 
-- [ ] Move plan: chạy `AI\skills\feature-development\move-plan-to-completed.bat leetcode-clipper-extension` từ repo root.
-- [ ] Test thủ công end-to-end: load unpacked `apps/extension` → mở `leetcode.com/problems/two-sum` → click LC → paste vào `localhost:5173` → Save → check `GET /api/problems/:id` và DB.
-- [ ] (tùy chọn) Thêm `testCases` parsing từ Example, thêm `slug`/`url` vào DB schema, publish extension.
+- [ ] (tuỳ chọn) Tạo plan riêng cho mở rộng direct import + assets và move sang completed, hoặc gộp vào plan cũ.
+- [ ] Test thủ công end-to-end với extension unpacked: `pnpm --filter=@leetcode/extension sync:config` → Load unpacked `apps/extension` → mở `leetcode.com/problems/two-sum` (có ảnh) → click LC → check toast "Đã lưu" → check `http://localhost:3000/api/problems` và `http://localhost:5173` list → check `packages/database/data/assets/<slug>/` và `GET http://localhost:3000/assets/<slug>/{name}`.
+- [ ] Dọn `tham_khao/` (untracked) trước khi PR, và cân nhắc `pnpm -r lint`.
+- [ ] (tùy chọn) Thêm `testCases` parsing từ Example, publish extension.
 
 Roadmap chung (README `Next Steps`, chưa chốt):
 

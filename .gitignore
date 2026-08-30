@@ -3,3 +3,7 @@ node_modules
 *.db-journal
 *.db-wal
 *.db-shm
+.env
+!.env.example
+packages/database/data/assets/
+tham_khao/
