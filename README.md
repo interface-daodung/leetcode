@@ -1,79 +1,83 @@
-# LeetCode Lab - Learning Journey Monorepo
+# LeetCode Lab — Learning Journey Monorepo
 
-A monorepo for learning algorithms, data structures, and full-stack development through LeetCode problems.
+> Monorepo học algorithms, data structures và full-stack development qua giải LeetCode problems.
 
 ## Philosophy
 
 > **"Feature này giúp tôi học công nghệ hoặc lưu lại hành trình lập trình của mình như thế nào?"**
 
-Every feature in this repo should answer this question. This is a **learning lab**, not a product.
+Đây là một **learning lab**, không phải product thương mại.
 
-## Architecture
+## Cấu trúc
 
-```
-leetcode/
-├── apps/
-│   ├── web/          # React frontend - practice coding in browser
-│   └── server/       # Fastify API - problem engine, AI hints
-├── packages/
-│   ├── shared/       # Types, utilities, constants
-│   ├── database/     # Problem storage (in-memory → SQLite → PostgreSQL)
-│   ├── editor/       # Monaco/CodeMirror integration, templates
-│   ├── javascript-docs/  # JS/TS reference for problem solving
-│   ├── problem-engine/   # Test runner, problem registry
-│   └── ai/           # LLM integration for hints/explanations
-├── problems/
-│   ├── easy/         # Markdown/JSON problem files
-│   ├── medium/
-│   └── hard/
-├── docs/             # Learning notes, architecture decisions
-├── scripts/          # Automation, seeding, migration
-└── docker/           # Container configs
+```text
+apps/
+├── web/          # React 18 + Vite frontend (chạy code cục bộ)
+└── server/       # Fastify API (problems, test runner, AI hints)
+packages/
+├── shared/           # Types, utilities, constants
+├── database/         # Drizzle ORM + SQLite
+├── editor/           # Editor state, language templates
+├── javascript-docs/  # JS/TS reference (static)
+├── problem-engine/   # In-memory registry + test runner
+└── ai/               # LLM integration (placeholder)
+problems/         # Dự kiến chứa problem files (rỗng)
+docs/             # Tài liệu người dùng
+docker/           # Dự kiến container configs (rỗng)
 ```
 
 ## Quick Start
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development servers
-pnpm dev        # Web on :5173
-pnpm --filter=@leetcode/server dev  # Server on :3000
+pnpm install                          # Cài dependency
+pnpm dev                              # Web trên :5173
+pnpm --filter=@leetcode/server dev    # Server trên :3000
 ```
 
-Database tự động migrate + seed khi server khởi động (auto-migrate trong `packages/database/src/client.ts`, migration `0000_init.sql` chứa 3 problems mẫu).
+Database tự động migrate khi server khởi động (auto-migrate trong `packages/database/src/client.ts`, migration `0000_init.sql` chứa 3 problems mẫu).
+
+## Tài liệu
+
+Xem [docs/](docs/README.md) cho hướng dẫn chi tiết:
+
+- [Cài đặt và chạy project](docs/getting-started.md)
+- [Kiến trúc tổng quan](docs/architecture.md)
+- [API Server](docs/features/api-server.md)
+- [Web Frontend](docs/features/web-frontend.md)
+- [Problem Engine](docs/features/problem-engine.md)
+- [Database](docs/features/database.md)
+- [AI Hints](docs/features/ai-hints.md)
 
 ## Learning Goals
 
-| Package | What You'll Learn |
-|---------|-------------------|
+| Package | Nội dung học |
+|---------|--------------|
 | `shared` | TypeScript types, monorepo package design |
-| `database` | Data modeling, migrations, ORM (Prisma/Drizzle) |
-| `editor` | Monaco Editor, code execution sandboxing |
-| `javascript-docs` | MDX, documentation site generation |
-| `problem-engine` | Test runners, isolated code execution |
+| `database` | Data modeling, migrations, ORM |
+| `editor` | Editor state, language templates |
+| `javascript-docs` | Documentation reference |
+| `problem-engine` | Test runner, isolated code execution |
 | `ai` | LLM APIs, prompt engineering, streaming |
-| `web` | React 18, Vite, state management |
-| `server` | Fastify, Zod validation, WebSocket |
+| `web` | React 18, Vite |
+| `server` | Fastify, Zod validation |
 
-## Development Principles
+## Nguyên tắc phát triển
 
-1. **Start simple** - In-memory storage first, add persistence when needed
-2. **Type-safe everywhere** - Shared types via `@leetcode/shared`
-3. **Test-driven** - Write tests for problem engine, AI responses
-4. **Document decisions** - ADR in `docs/adr/` for architectural choices
-5. **No premature abstraction** - Extract packages only when reused
+1. **Bắt đầu đơn giản** — in-memory storage trước, thêm persistence khi cần
+2. **Type-safe ở mọi nơi** — shared types qua `@leetcode/shared`
+3. **Test-driven** — viết test cho problem engine, AI responses
+4. **Ghi lại quyết định** — ADR trong `docs/` cho architectural choices
+5. **Không abstraction sớm** — chỉ tách package khi tái sử dụng
 
-## Next Steps
+## Next Steps (roadmap)
 
-- [ ] Add Prisma + SQLite for problem persistence
-- [ ] Integrate Monaco Editor in web app
-- [ ] Add WebSocket for real-time code execution
-- [ ] Implement AI hint streaming with Vercel AI SDK
-- [ ] Build problem import from LeetCode API
-- [ ] Add progress tracking and spaced repetition
+- [ ] Thống nhất ORM cho problem persistence (Prisma vs Drizzle)
+- [ ] Tích hợp Monaco Editor trong web app
+- [ ] Thêm WebSocket cho real-time code execution
+- [ ] Implement AI hint streaming với Vercel AI SDK
+- [ ] Build problem import từ LeetCode API
+- [ ] Thêm progress tracking và spaced repetition
 
 ## License
 
-MIT - For learning purposes
+MIT — For learning purposes

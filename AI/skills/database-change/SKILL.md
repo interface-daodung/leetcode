@@ -1,3 +1,8 @@
+---
+name: database-change
+description: Hướng dẫn thay đổi database an toàn với Drizzle/SQLite. Use when thay đổi schema, migration, model, hoặc cấu trúc dữ liệu.
+---
+
 # Database Change
 
 ## Workflow

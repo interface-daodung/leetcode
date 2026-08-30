@@ -59,6 +59,10 @@
 
 `skills/agent-workflow/SKILL.md`
 
+### Docs Generator
+
+`skills/docs-generator/SKILL.md`
+
 ---
 
 ## Current Work

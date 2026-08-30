@@ -21,3 +21,15 @@ Agent có nguyên tắc làm việc ngay từ đầu mà không cần tự khám
 #### Consequences
 
 - Mọi thay đổi về quy tắc làm việc phải đi qua AGENT.md.
+
+### [2026-08-30] Gộp Plan Management vào skill feature-development
+
+#### Context
+
+Thư mục `AI/skills/plan-management/` trùng chức năng với `feature-development`, gây phân mảnh skill. Script `move-plan-to-completed.bat` đã nằm trong `feature-development/`.
+
+#### Decision
+
+- Xoá `AI/skills/plan-management/`.
+- Quy trình plan (tạo/edit/hoàn thành) nhập vào `AI/skills/feature-development/SKILL.md` (mục Plan Management).
+- Mọi tham chiếu (AGENTS.md) trỏ về `feature-development`.

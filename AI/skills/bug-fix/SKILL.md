@@ -1,3 +1,8 @@
+---
+name: bug-fix
+description: Hướng dẫn sửa bug đúng quy trình. Use when debugging, fixing bugs, hoặc khi có lỗi cần trace root cause.
+---
+
 # Bug Fix
 
 ## Workflow

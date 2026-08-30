@@ -1,3 +1,8 @@
+---
+name: vitest-logic-testing
+description: Tạo unit test cho logic thuần bằng Vitest. Use when viết test cho function logic, utility, algorithm, hoặc được yêu cầu unit test.
+---
+
 # Vitest Logic Testing Skill
 
 ## Purpose
