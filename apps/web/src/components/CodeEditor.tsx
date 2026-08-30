@@ -55,20 +55,20 @@ export function CodeEditor({ value, onChange, language = "javascript", placehold
   };
 
   return (
-    <div className="relative rounded-xl border border-border bg-code-bg font-mono">
+    <div className="relative min-h-[300px] rounded-xl border border-border bg-code-bg font-mono">
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onScroll={handleScroll}
         spellCheck={false}
         placeholder={placeholder}
-        aria-label="Code editor"
-        className="code-editor-overlay min-h-[240px] w-full"
+        aria-label="Trình soạn thảo mã"
+        className="code-editor-overlay h-full w-full"
       />
       <pre
         ref={preRef}
         aria-hidden
-        className="pointer-events-none absolute inset-0 m-0 overflow-hidden p-3 text-[0.85rem] leading-[1.6]"
+        className="code-editor-highlight pointer-events-none absolute inset-0 m-0 overflow-hidden p-3"
       >
         {highlighted}
       </pre>

@@ -1,8 +1,34 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile, access } from "node:fs/promises";
-import { join, extname, basename } from "node:path";
+import { join, extname, basename, dirname } from "node:path";
 import { problemDb } from "@leetcode/database";
 import { ASSETS_ROOT } from "../config.js";
+
+/**
+ * Kiểm tra từng asset đã có file trên đĩa chưa; nếu thiếu thì tải lại từ original_url.
+ * Gọi lúc hydrate / getById để đảm bảo ảnh luôn hiển thị dù file bị xoá.
+ */
+export async function ensureAssetFiles(assets: { originalUrl: string; localPath: string }[]): Promise<void> {
+  for (const asset of assets) {
+    const target = join(ASSETS_ROOT, asset.localPath);
+    try {
+      await access(target);
+      continue;
+    } catch {
+      // file thiếu — tải lại
+    }
+    try {
+      const res = await fetch(asset.originalUrl);
+      if (!res.ok) continue;
+      const buffer = Buffer.from(await res.arrayBuffer());
+      if (buffer.length === 0) continue;
+      await mkdir(dirname(target), { recursive: true });
+      await writeFile(target, buffer);
+    } catch {
+      // bỏ qua nếu tải lại thất bại
+    }
+  }
+}
 
 async function ensureDir(dir: string): Promise<void> {
   await mkdir(dir, { recursive: true });

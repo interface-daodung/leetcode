@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
 import { useTheme } from "../lib/theme.js";
 
-export function Header() {
+export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean; onToggleSidebar: () => void }) {
   const { theme, toggle } = useTheme();
   return (
-    <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-border bg-header-bg px-4 backdrop-blur-md">
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-border bg-header-bg px-3 backdrop-blur-md">
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={sidebarOpen ? "Ẩn sidebar" : "Hiện sidebar"}
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
+        >
+          <span className="text-lg">{sidebarOpen ? "◁" : "▷"}</span>
+        </button>
         <Link to="/" className="flex items-center gap-2 font-semibold text-text-primary no-underline">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
             LC
@@ -15,12 +23,6 @@ export function Header() {
       </div>
 
       <nav className="flex items-center gap-1 text-sm">
-        <Link
-          to="/problems"
-          className="rounded-lg px-3 py-1.5 font-medium text-text-secondary no-underline transition-colors hover:bg-bg-hover hover:text-text-primary"
-        >
-          Problems
-        </Link>
         <a
           href="https://leetcode.com/problems"
           target="_blank"

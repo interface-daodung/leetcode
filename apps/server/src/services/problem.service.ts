@@ -3,7 +3,7 @@ import { problemDb, type ProblemDatabase } from "@leetcode/database";
 import { getHint } from "@leetcode/ai";
 import type { FastifyBaseLogger } from "fastify";
 import type { ProblemClip } from "@leetcode/shared";
-import { downloadAndRewriteImages } from "./asset.service.js";
+import { downloadAndRewriteImages, ensureAssetFiles } from "./asset.service.js";
 
 export type RunOutcome =
   | { ok: true; passed: number; total: number; problemId: string }
@@ -41,6 +41,15 @@ export class ProblemService {
     if (rows.length > 0) {
       log.info(`Hydrated ${rows.length} problems from SQLite into engine`);
     }
+    // Đảm bảo mọi asset đã có file trên đĩa (tải lại nếu thiếu) — ảnh luôn hiển thị
+    for (const row of rows) {
+      try {
+        const assets = await this.db.findAssetsByProblem(row.id);
+        await ensureAssetFiles(assets);
+      } catch {
+        // bỏ qua nếu không lấy được assets
+      }
+    }
   }
 
   async list(): Promise<unknown[]> {
@@ -68,6 +77,7 @@ export class ProblemService {
           hints: hints.length > 0 ? hints : undefined,
         };
         // đính kèm assets để client biết mapping gốc->local nếu cần
+        await ensureAssetFiles(assets);
         return { ...hydrated, assets };
       }
       return undefined;
@@ -76,6 +86,7 @@ export class ProblemService {
     // Bổ sung hints/assets nếu engine có nhưng DB có
     const hints = await this.db.getHints(id);
     const assets = await this.db.findAssetsByProblem(id);
+    await ensureAssetFiles(assets);
     return { ...problem, hints: hints.length ? hints : problem.hints, assets };
   }
 
