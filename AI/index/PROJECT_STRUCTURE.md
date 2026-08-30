@@ -12,15 +12,28 @@ leetcode/
 │   │   ├── package.json
 │   │   ├── tsconfig.json
 │   │   └── src/index.ts           # Fastify server (entry point)
-│   └── web/
-│       ├── index.html
+│   ├── web/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   ├── vite.config.ts
+│   │   └── src/
+│   │       ├── main.tsx           # React entry
+│   │       ├── App.tsx            # App component
+│   │       ├── components/ProblemImportPaste.tsx  # Paste JSON → preview → import
+│   │       └── lib/problemClip.ts # parse + sanitize clip JSON
+│   └── extension/                 # MV3 Browser Extension (unpacked)
+│       ├── manifest.json          # matches leetcode.com/problems/*
+│       ├── content.js             # widget + clip + clipboard (vanilla JS)
+│       ├── style.css              # widget style
+│       ├── assets/icon.svg
 │       ├── package.json
 │       ├── tsconfig.json
-│       ├── tsconfig.node.json
-│       ├── vite.config.ts
+│       ├── vitest.config.ts
 │       └── src/
-│           ├── main.tsx           # React entry
-│           └── App.tsx            # App component
+│           ├── clipper.ts         # pure extraction/cleaning (testable)
+│           └── clipper.test.ts    # 28 tests (jsdom)
 ├── packages/
 │   ├── shared/                    # Types, utilities, constants
 │   │   ├── package.json
@@ -66,7 +79,7 @@ leetcode/
 
 | Path | Purpose |
 | ---- | ------- |
-| `apps/` | Các ứng dụng (`web`, `server`) |
+| `apps/` | Các ứng dụng (`web`, `server`, `extension`) |
 | `packages/` | Các package dùng chung (`shared`, `database`, `editor`, `javascript-docs`, `problem-engine`, `ai`) |
 | `problems/` | Dự kiến chứa problem files theo difficulty (hiện rỗng) |
 | `docs/` | Dự kiến chứa learning notes, ADR (hiện rỗng) |
@@ -82,9 +95,12 @@ leetcode/
 | `pnpm-workspace.yaml` | Khai báo workspace `apps/*`, `packages/*` |
 | `tsconfig.json` | Root TS config + path aliases `@leetcode/*` |
 | `README.md` | Tổng quan project, architecture, quick start, learning goals |
-| `apps/server/src/index.ts` | Fastify server, tất cả API endpoints |
-| `apps/web/src/App.tsx` | React app chính |
-| `packages/shared/src/index.ts` | Types `Difficulty`, `ProblemMeta`, `TestCase`; util `formatProblemId` |
+| `apps/server/src/index.ts` | Fastify server, tất cả API endpoints (có POST /api/problems/import) |
+| `apps/web/src/App.tsx` | React app chính (tích hợp ProblemImportPaste + list problems) |
+| `apps/web/src/components/ProblemImportPaste.tsx` | Paste JSON → preview → POST import |
+| `apps/extension/content.js` | Content script widget LC (clip DOM → clipboard) |
+| `apps/extension/src/clipper.ts` | Pure clipper logic (findDescriptionContainer, cleanDescription, buildProblemClip) |
+| `packages/shared/src/index.ts` | Types `Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`; util `formatProblemId` |
 | `packages/problem-engine/src/index.ts` | `ProblemEngine` class + singleton `engine` |
 | `packages/database/src/schema.ts` | Drizzle schema bảng `problems` |
 | `packages/database/src/client.ts` | SQLite client + drizzle instance + auto-migrate |
@@ -93,8 +109,9 @@ leetcode/
 
 ## Entry Points
 
-- Server: `apps/server/src/index.ts` (chạy `pnpm --filter=@leetcode/server dev` → tsx watch).
+- Server: `apps/server/src/index.ts` (chạy `pnpm --filter=@leetcode/server dev` → tsx watch, có CORS + hydrate DB).
 - Web: `apps/web/index.html` → `src/main.tsx`.
+- Extension: `apps/extension/manifest.json` → `content.js` (load unpacked qua chrome://extensions).
 
 ## Generated / Ignored Areas
 

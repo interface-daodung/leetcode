@@ -1,0 +1,85 @@
+/* LeetCode Clipper Widget — fork từ Gemielle style.css */
+
+#lc-clipper-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #FFA116;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  border: 2px solid #fff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+#lc-clipper-widget:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+#lc-clipper-widget:active {
+  cursor: grabbing;
+  transform: scale(0.97);
+}
+
+#lc-clipper-widget.dragging {
+  cursor: grabbing;
+  opacity: 0.92;
+}
+
+#lc-clipper-widget.success {
+  background: #00AF9B;
+}
+
+#lc-clipper-widget.error {
+  background: #FF3752;
+}
+
+#lc-clipper-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 999998;
+  max-width: 320px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #262626;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#lc-clipper-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#lc-clipper-toast.success {
+  background: #1a1a1a;
+  border-left: 3px solid #00AF9B;
+}
+
+#lc-clipper-toast.error {
+  background: #1a1a1a;
+  border-left: 3px solid #FF3752;
+}

@@ -2,19 +2,20 @@
 
 ## Tổng quan
 
-Monorepo dạng pnpm workspace gồm 2 ứng dụng (`apps/web`, `apps/server`) và 6 package dùng chung (`packages/*`). Dependency chảy theo hướng `apps → packages`; các package có thể phụ thuộc lẫn nhau (ví dụ `problem-engine` phụ thuộc `database` và `shared`).
+Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, `apps/extension`) và 6 package dùng chung (`packages/*`). Dependency chảy theo hướng `apps → packages`; các package có thể phụ thuộc lẫn nhau (ví dụ `problem-engine` phụ thuộc `database` và `shared`).
 
-Hiện tại `problem-engine` dùng **in-memory registry** (`Map`) và là nguồn dữ liệu chính cho API. SQLite (`packages/database`) đã được khởi tạo với Drizzle nhưng chưa được dùng làm nguồn đọc chính trong server.
+`problem-engine` dùng **in-memory registry** (`Map`) + **SQLite** (`packages/database`) làm persistence. Server hydrate `engine` từ SQLite khi khởi động. Dữ liệu đề bài được đưa vào qua **LeetCode Clipper Extension** (DOM clip → JSON → `POST /api/problems/import`).
 
 ## Thành phần
 
 ```text
-apps/web                  # React SPA: editor state + run code cục bộ
-apps/server               # Fastify: GET/POST /api/problems/...
-packages/shared           # Types & utils dùng chung
+apps/web                  # React SPA: editor + ProblemImportPaste (paste JSON → preview → save)
+apps/server               # Fastify: GET/POST /api/problems/..., POST /api/problems/import
+apps/extension            # MV3 Browser Extension: widget nổi trên leetcode.com/problems/*, clip DOM → clipboard
+packages/shared           # Types & utils dùng chung (ProblemMeta, ProblemClip, Difficulty)
 packages/database         # Drizzle ORM + SQLite (bảng problems)
 packages/editor           # EditorState, languageTemplates
-packages/problem-engine   # Problem registry + runTests (in-memory)
+packages/problem-engine   # Problem registry + runTests (in-memory + DB hydrate)
 packages/ai               # getHint/explainSolution (placeholder)
 packages/javascript-docs  # jsDocs/getDoc (static)
 ```
@@ -22,8 +23,9 @@ packages/javascript-docs  # jsDocs/getDoc (static)
 ## Dependency Flow
 
 ```text
-apps/web ──> shared, editor, problem-engine
+apps/web ──> shared, editor
 apps/server ──> shared, database, problem-engine, ai
+apps/extension ──> (độc lập, vanilla JS; logic thuần src/clipper.ts, không phụ thuộc workspace build)
 problem-engine ──> shared, database
 database ──> shared, drizzle-orm, @libsql/client
 editor ──> shared
@@ -34,26 +36,33 @@ javascript-docs ──> shared
 ## Runtime Flow
 
 ```text
-apps/server (Fastify, port 3000)
+apps/server (Fastify, port 3000) — có CORS, hydrate từ DB khi khởi động
   ├─ GET /health
-  ├─ GET /api/problems/:id          → engine.get(id)
+  ├─ GET /api/problems              → problemDb.getAll() (đã hydrate)
+  ├─ GET /api/problems/:id          → engine.get(id) → fallback problemDb.get(id)
   ├─ GET /api/problems/random/:difficulty?
   │                                 → engine.getRandom(difficulty)
   ├─ POST /api/problems/:id/run     → new Function + engine.runTests
-  └─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
+  ├─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
+  └─ POST /api/problems/import      → validate ProblemClip → engine.register + problemDb.add (201/409)
 
 apps/web (Vite, port 5173)
-  └─ App.tsx: createEditorState + run code cục bộ (chưa gọi API)
+  ├─ App.tsx: createEditorState + run code cục bộ + fetch GET /api/problems (list)
+  └─ components/ProblemImportPaste: paste JSON → parseProblemClipJson → preview (sanitize) → POST /api/problems/import
+
+apps/extension (MV3, leetcode.com/problems/*)
+  └─ content.js: widget LC (draggable) → buildProblemClip(doc) → cleanDescription → navigator.clipboard.writeText(JSON)
 ```
 
 ## Data Flow
 
 ```text
-API read: engine.get / getRandom (in-memory)
-Database read: ProblemDatabase (chưa được server dùng để đọc)
+Clip: leetcode.com DOM [data-track-load="description_content"] → ProblemClip JSON → clipboard → web paste
+Import: web POST /api/problems/import → engine.register + problemDb.add → GET /api/problems
+Read: engine (hydrate từ DB khi start) + problemDb.getAll / get(id) → API → web
 ```
 
-Lưu ý: `engine.register` gọi `problemDb.add` không đồng bộ (`void`) để ghi vào SQLite, nhưng việc đọc từ API hiện chỉ dựa trên in-memory registry. Seed script đã bị bỏ — dữ liệu sẽ được đưa vào qua server/API sau này.
+Dữ liệu đề bài vào qua **Clipper Extension** (DOM) thay vì seed/API LeetCode. `engine.register` vừa ghi in-memory vừa `problemDb.add` (fire-and-forget + await đảm bảo); server hydrate lại từ SQLite khi khởi động để không mất dữ liệu sau restart. Seed script đã bị bỏ.
 
 ## External Services
 
@@ -71,7 +80,8 @@ Chưa xác định. `packages/ai` chỉ là placeholder, chưa gọi LLM API th�
 
 ## Deployment
 
-Chưa được xác định từ repository. Không có cấu hình deploy nào được phát hiện.
+- `apps/web` và `apps/server` chưa có cấu hình deploy.
+- `apps/extension` là MV3 unpacked: load thủ công qua `chrome://extensions` → `Load unpacked` chọn `apps/extension` (không qua store, không cần build).
 
 ## Architectural Decisions
 

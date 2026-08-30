@@ -20,3 +20,14 @@ export interface ProblemMeta {
   testCases?: TestCase[];
   solution?: string;
 }
+
+export interface ProblemClip {
+  id: number;
+  slug: string;
+  title: string;
+  difficulty: Difficulty;
+  tags: string[];
+  description: string;
+  url?: string;
+  clippedAt?: string;
+}

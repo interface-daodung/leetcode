@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Clipper",
+  "version": "0.1.0",
+  "description": "Clip đề bài LeetCode thành JSON vào clipboard để dán vào LeetCode Lab.",
+  "permissions": ["clipboardWrite"],
+  "host_permissions": ["*://leetcode.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://leetcode.com/problems/*"],
+      "css": ["style.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "128": "assets/icon.svg"
+  }
+}

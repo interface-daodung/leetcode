@@ -6,7 +6,7 @@ Monorepo chứa 6 package nội bộ (`packages/*`):
 
 | Package | Alias | Mô tả |
 |---------|-------|-------|
-| `shared` | `@leetcode/shared` | Types (`Difficulty`, `ProblemMeta`, `TestCase`), util (`formatProblemId`) |
+| `shared` | `@leetcode/shared` | Types (`Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`), util (`formatProblemId`) |
 | `database` | `@leetcode/database` | Drizzle ORM + SQLite, `ProblemDatabase` class |
 | `editor` | `@leetcode/editor` | `EditorState`, `createEditorState`, `languageTemplates` |
 | `javascript-docs` | `@leetcode/javascript-docs` | Static JS/TS reference docs, `getDoc` |
@@ -37,9 +37,10 @@ Monorepo chứa 6 package nội bộ (`packages/*`):
 | `eslint@^9.0.0` | Tất cả apps/packages (dev) |
 | `typescript@^5.5.0` | Tất cả apps/packages (dev) |
 | `tsx@^4.16.0` | `@leetcode/server` (dev) |
-| `@types/node@^22.0.0` | `@leetcode/server` (dev) |
+| `@types/node@^22.0.0` | `@leetcode/server`, `@leetcode/problem-engine` (dev) |
 | `@types/react@^18.3.0` | `@leetcode/web` (dev) |
 | `@types/react-dom@^18.3.0` | `@leetcode/web` (dev) |
+| `jsdom@^24.0.0` | `@leetcode/extension` (dev, cho clipper.test.ts) |
 
 ## Shared Packages
 
@@ -50,7 +51,7 @@ Tất cả package nội bộ đều dùng `workspace:*` alias `@leetcode/*`.
 ```text
 @leetcode/shared
   ├── (không phụ thuộc package nội bộ nào)
-  └── được dùng bởi: tất cả apps và packages khác
+  └── được dùng bởi: tất cả apps (web, server) và packages khác; ProblemClip được dùng bởi web + server + extension (copy type)
 
 @leetcode/database
   ├── @leetcode/shared

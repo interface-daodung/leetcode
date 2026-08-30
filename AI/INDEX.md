@@ -121,15 +121,16 @@ Nếu cấu trúc repository thay đổi, cập nhật `AI/index/`.
 
 ## Cấu trúc repository (đã xác định từ source code)
 
-Monorepo pnpm với 2 ứng dụng và 6 package:
+Monorepo pnpm với 3 ứng dụng và 6 package:
 
 ```text
-apps/web      # React 18 + Vite frontend
-apps/server   # Fastify API server
-packages/shared           # Types, utilities, constants
+apps/web       # React 18 + Vite frontend (có ProblemImportPaste)
+apps/server    # Fastify API server (có POST /api/problems/import)
+apps/extension # MV3 Browser Extension — widget clip DOM trên leetcode.com/problems/*
+packages/shared           # Types, utilities, constants (có ProblemClip)
 packages/database         # Drizzle ORM + SQLite (libsql)
 packages/editor           # Editor state, language templates
-packages/problem-engine   # Problem registry, test runner (in-memory)
+packages/problem-engine   # Problem registry, test runner (in-memory + hydrate)
 packages/ai               # LLM integration (placeholder)
 packages/javascript-docs  # JS/TS reference docs (static)
 ```
