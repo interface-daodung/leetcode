@@ -27,10 +27,11 @@ leetcode/
 │   │   ├── tsconfig.node.json
 │   │   ├── vite.config.ts
 │   │   └── src/
-│   │       ├── main.tsx           # React entry
-│   │       ├── App.tsx            # App component
-│   │       ├── components/ProblemImportPaste.tsx  # Paste JSON → preview → import
-│   │       └── lib/problemClip.ts # parse + sanitize clip JSON
+│   │       ├── index.css           # Tailwind + CSS variables theme
+│   │       ├── main.tsx            # React entry (BrowserRouter + ThemeProvider)
+│   │       ├── App.tsx             # Routes (Layout → /problems/:id)
+│   │       ├── components/         # Layout, Header, Sidebar, ProblemDetail, CodeEditor, DifficultyBadge
+│   │       └── lib/                # api.ts, theme.tsx, sanitize.ts
 │   └── extension/                 # MV3 Browser Extension (unpacked)
 │       ├── manifest.json          # matches leetcode.com/problems/*
 │       ├── content.js             # widget + clip + clipboard (vanilla JS)
@@ -105,8 +106,8 @@ leetcode/
 | `README.md` | Tổng quan project, architecture, quick start, learning goals |
 | `apps/server/src/index.ts` | Fastify entry (env + createApp + hydrate + listen) |
 | `apps/server/src/services/problem.service.ts` | Logic nghiệp vụ problem (hydrate, import flow, run) |
-| `apps/web/src/App.tsx` | React app chính (tích hợp ProblemImportPaste + list problems) |
-| `apps/web/src/components/ProblemImportPaste.tsx` | Paste JSON → preview → POST import |
+| `apps/web/src/App.tsx` | React app chính (Routes: Layout → /problems/:id) |
+| `apps/web/src/components/Layout.tsx` | Layout Header + Sidebar + Outlet |
 | `apps/extension/content.js` | Content script widget LC (clip DOM → clipboard) |
 | `apps/extension/src/clipper.ts` | Pure clipper logic (findDescriptionContainer, cleanDescription, buildProblemClip) |
 | `packages/shared/src/index.ts` | Types `Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`; util `formatProblemId` |

@@ -4,9 +4,9 @@
 
 ## Bạn sẽ làm được gì
 
-- Mở web LeetCode Lab, xem danh sách đề bài đã lưu.
-- Dán JSON từ extension để thêm đề mới (có preview trước khi lưu).
-- Chạy thử code ngay trên trình duyệt và xem kết quả.
+- Mở web LeetCode Lab, xem danh sách đề bài đã lưu (sidebar + tìm kiếm + lọc độ khó).
+- Bấm vào đề để xem mô tả, gợi ý, template code và chạy thử code ngay trên trình duyệt.
+- Chuyển đổi theme sáng/tối.
 
 ## Chuẩn bị
 
@@ -20,37 +20,32 @@
 
 1. Chạy `pnpm dev` ở thư mục gốc.
 2. Mở `http://localhost:5173` trên trình duyệt.
-3. Bạn sẽ thấy: vùng editor (chạy code), vùng **Paste JSON** và danh sách **Đã lưu**.
+3. Bạn sẽ thấy: **Header** (logo + nav + nút đổi theme), **Sidebar** (danh sách đề, ô tìm kiếm, bộ lọc All/Easy/Medium/Hard) và vùng hiển thị đề bài.
+4. Mở trang đầu tự chuyển tới đề bài đầu tiên trong danh sách.
 
-### Bước 2 — Thêm đề bài (2 cách)
+### Bước 2 — Xem đề bài
 
-**Cách A — tự động qua extension (khuyên dùng):**
-- Cài extension theo `AI/walkthrough/execution.md` → mở `leetcode.com/problems/<slug>` → bấm widget **LC** → web tự hiện đề mới sau 1-2 giây (extension đã POST thẳng tới server).
+1. Ở **Sidebar**, bấm vào một đề → chi tiết hiện ra: tiêu đề, badge độ khó, tags, link LeetCode, mô tả (ảnh đã tải về local qua `/assets/...`).
+2. Phần **Gợi ý** (nếu có) bấm để mở ra, hiển thị từng hint.
+3. Phần **Code** có sẵn template (nếu đề có), đã tô màu cú pháp theo theme.
 
-**Cách B — dán thủ công:**
-1. Ở web, tìm khung **“Dán JSON từ extension”**.
-2. Bấm **Paste từ clipboard** (hoặc `Ctrl+V` vào textarea).
-3. Xem **preview**: tiêu đề, độ khó (Easy/Medium/Hard), mô tả đã làm sạch.
-4. Bấm **Lưu vào DB** → báo “Đã lưu” là thành công, list bên dưới tự cập nhật.
+### Bước 3 — Chạy code
 
-> Mẹo: nếu JSON thiếu `title`/`description`, web sẽ báo lỗi ngay — hãy clip lại từ LeetCode.
+1. Viết/dán code giải vào editor → bấm **▶ Run**.
+2. Kết quả hiện ngay cạnh nút: `Kết quả: passed / total test case đúng` (gọi `POST /api/problems/:id/run`).
 
-### Bước 3 — Xem và chạy code
+### Bước 4 — Đổi theme
 
-1. Trong danh sách **Đã lưu**, bấm vào đề bài để xem mô tả (ảnh trong đề đã được tải về local, hiển thị qua `/assets/...`).
-2. Ở editor, chọn ngôn ngữ (hiện hỗ trợ `javascript`), dán code giải.
-3. Bấm **Run** → kết quả `passed/total` hiện ngay bên dưới (chạy cục bộ bằng `new Function`, không gửi server).
+1. Bấm nút **🌙/☀️** ở góc phải header để chuyển sáng/tối — cả trang và code editor đổi màu theo CSS variables (`data-theme`), nhớ lựa chọn qua `localStorage`.
 
-## Kết quả mong đợi
+## Cách đề bài được thêm
 
-- Sau khi lưu, `GET /api/problems` trả về đề mới và web hiển thị ngay.
-- Ảnh trong mô tả không còn trỏ ra ngoài internet mà là `http://localhost:3000/assets/<slug>/...` (đã dedupe).
+Không cần nhập tay. Mở `leetcode.com/problems/<slug>` → bấm widget **LC** của extension → đề được POST thẳng tới server → quay lại web, sidebar có đề mới (reload trang).
 
 ## Mẹo & xử lý lỗi
 
 - **Web không hiện list?** Kiểm tra server đã chạy và `VITE_API_URL` đúng. Thử mở `http://localhost:3000/api/problems` trên trình duyệt — phải trả JSON.
-- **Paste báo “JSON không hợp lệ”?** Hãy clip lại, đảm bảo copy đủ JSON từ extension (không cắt dòng).
-- **Lưu báo 409 “Đã tồn tại”?** Đề đã có trong DB — không cần lưu lại.
+- **Bấm đề báo "Không tìm thấy"?** Đề chưa có trong DB (chưa clip qua extension) hoặc ID không tồn tại.
 - **Ảnh không hiện?** Kiểm tra `packages/database/data/assets/<slug>/` có file không; nếu fetch ảnh gốc fail, mô tả sẽ giữ nguyên link cũ.
 
 ## Đọc thêm

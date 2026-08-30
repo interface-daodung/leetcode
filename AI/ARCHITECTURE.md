@@ -9,7 +9,7 @@ Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, 
 ## Thành phần
 
 ```text
-apps/web                  # React SPA: editor + ProblemImportPaste (paste JSON → preview → save + hiển thị hints/template/url), đọc VITE_API_URL từ root .env
+apps/web                  # React SPA (Vite + Tailwind CSS 4 + React Router DOM 7): layout Header + Sidebar + ProblemDetail (mô tả HTML, hints, template, editor syntax-highlight), theme light/dark bằng CSS variables + data-theme, đọc VITE_API_URL từ root .env
 apps/server               # Fastify (MVC/phân tầng): routes/ → controllers/ → services/ → plugins/; GET/POST /api/problems/..., POST /api/problems/import (validate chặt, tải ảnh → assets DB), GET /assets/* static, GET /api/problems/:id/hints|assets, đọc PORT/HOST/API_URL từ root .env
 apps/extension            # MV3 Browser Extension: widget nổi trên leetcode.com/problems/*, clip DOM (description + hints + template) → POST trực tiếp tới API_URL (đọc từ api-config.js sinh từ root .env) + clipboard fallback
 packages/shared           # Types & utils dùng chung (ProblemMeta, ProblemClip với url/template/hints, Difficulty)
@@ -53,8 +53,10 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
 ```
 
 apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
-  ├─ App.tsx: createEditorState + run code cục bộ + fetch GET /api/problems (list từ DB, hiển thị ngay sau import)
-  └─ components/ProblemImportPaste: paste JSON → parseProblemClipJson → preview (sanitize) → POST /api/problems/import (dùng API_BASE từ VITE_API_URL)
+  ├─ main.tsx: BrowserRouter + ThemeProvider (data-theme + localStorage) → App.tsx (Routes)
+  ├─ Layout: Header (logo/nav/theme toggle) + Sidebar (GET /api/problems, search + filter difficulty) + <Outlet />
+  ├─ /problems/:id → ProblemDetail: GET /api/problems/:id → description (sanitize + dangerouslySetInnerHTML) + hints + template + CodeEditor (react-syntax-highlighter, oneDark/oneLight theo theme) → POST /api/problems/:id/run
+  └─ Không còn nhập đề thủ công: việc import do extension POST thẳng tới server
 
 apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + localhost/* + API host từ .env)
   ├─ api-config.js: var LC_API_BASE = "http://localhost:3000" (auto-gen từ root .env via pnpm sync:config)
@@ -65,8 +67,7 @@ apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + 
 
 ```text
 Clip (direct): leetcode.com DOM [data-track-load="description_content"] + tags a[href^="/tag/"] + hints (lightbulb + HTMLContent) + template (monaco .view-line) → ProblemClip JSON (id/slug/url/title/difficulty/tags/description/template/hints) → extension POST trực tiếp tới ${API_URL}/api/problems/import (host từ root .env) → server validate → engine.register + problemDb.add (tạo FK) → tải ảnh (<img src>) → Buffer → SHA-256 → DB problem_assets dedupe (check hash) → lưu packages/database/data/assets/<slug>/{name} + rewrite description src → update DB description → web GET /api/problems hiển thị list
-Clip (fallback): ProblemClip JSON → clipboard → web paste (ProblemImportPaste) → POST /api/problems/import (cùng flow tải ảnh)
-Read: engine (hydrate từ DB khi start) + problemDb.getAllWithHints / get(id)+hints+assets → API → web (description đã chứa /assets/... trỏ tới server, ảnh serve qua GET /assets/*, hints/template hiển thị riêng)
+Read: engine (hydrate từ DB khi start) + problemDb.getAllWithHints / get(id)+hints+assets → API → web (description đã chứa /assets/... trỏ tới server, ảnh serve qua GET /assets/*, hints/template hiển thị riêng trong ProblemDetail)
 ```
 
 Dữ liệu đề bài vào qua **Clipper Extension** (DOM) thay vì seed/API LeetCode. `engine.register` vừa ghi in-memory vừa `problemDb.add` (fire-and-forget + await đảm bảo); server hydrate lại từ SQLite khi khởi động để không mất dữ liệu sau restart. Seed script đã bị bỏ. Ảnh được xử lý: HTTP Response → Buffer → SHA-256 → kiểm tra DB `problem_assets` (hash) đã tồn tại chưa → nếu mới thì ghi file + insert `problem_assets` (problem_id, original_url, local_path, hash), nếu trùng thì reuse `localPath` cũ (tránh lưu trùng file) và vẫn insert row per-problem để tracking. Hints lưu bảng `hints` (problem_id, ord, content). Template/url/slug lưu trong `problems` (bỏ cột `solution`).

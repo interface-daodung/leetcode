@@ -4,12 +4,13 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
-**[mới 2026-08-31] Server refactor sang MVC / phân tầng** trên nhánh `refactor/server-mvc` — `apps/server` chuyển từ single-file (`index.ts` 251 dòng) sang `routes/` → `controllers/` → `services/` → `plugins/` + `config.ts` + `app.ts`. Refactor thuần (giữ nguyên API), thêm `problem.service.test.ts` (6 tests) → server 11 tests pass, `pnpm -r build` pass, smoke-test end-to-end ok.
+**[mới 2026-08-31] Frontend redesign** — `apps/web` chuyển sang **Tailwind CSS 4 + React Router DOM 7 + react-syntax-highlighter**, theme sáng/tối bằng CSS variables (`data-theme` + `@custom-variant dark`), layout Header + Sidebar + ProblemDetail, code editor có syntax highlighting. **Đã loại bỏ nhập đề thủ công** (`ProblemImportPaste.tsx`, `lib/problemClip.ts`) vì extension đã POST thẳng tới server. `pnpm -r build` pass, server 11 tests pass, dev server ok.
 
 ## Đang làm
 
-- [ ] Hoàn thiện plan `AI/plans/active/server-mvc-restructure.md` → move sang completed.
+- [ ] Hoàn thiện plan `AI/plans/active/frontend-redesign-tailwind-router.md` → move sang completed.
 - [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
+- [ ] Hoàn thiện plan `AI/plans/active/server-mvc-restructure.md` → move sang completed.
 
 ## Đã hoàn thành
 
@@ -48,6 +49,7 @@ Cập nhật: 2026-08-31
 - **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (DB 3 bảng, runtime/data flow mới, assets DB, hints/template), `AI/STATUS.md`, `context/decisions.md`, tạo `AI/history/2026-08/leetcode-clipper-db-hints-template-assets.md`.
 - **[mới] Fix `created_at`** — `packages/database/src/schema.ts:14` đổi `default("(datetime('now'))")` → `default(sql\`(datetime('now'))\`)` (đã áp dụng trong commit `fa9c962`), verify DB lưu datetime thật. Backlog: `AI/plans/completed/fix-created-at-default.md`.
 - **[mới 2026-08-31] Server refactor sang MVC / phân tầng** — `apps/server` chuyển từ single-file (`index.ts` 251 dòng) sang `routes/` → `controllers/` → `services/` → `plugins/` + `config.ts` + `app.ts`. Thêm `problem.service.test.ts` (6 tests) → server 11 tests pass, `pnpm -r build` pass, smoke-test ok. Xem `AI/history/2026-08/server-mvc-refactor.md`.
+- **[mới 2026-08-31] Frontend redesign** — `apps/web` dùng Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7 (`/problems/:id`), `react-syntax-highlighter` (PrismLight oneDark/oneLight). Theme bằng CSS variables (`:root` / `[data-theme=dark]`) + `@custom-variant dark`, toggle trong Header lưu localStorage. Sidebar có search + filter difficulty. Đã xóa `ProblemImportPaste.tsx`/`lib/problemClip.ts` (không còn nhập tay). `pnpm -r build` pass, server 11 tests pass. Xem `AI/history/2026-08/frontend-redesign-tailwind-router.md`.
 
 ## Đang làm
 

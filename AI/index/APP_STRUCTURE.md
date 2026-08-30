@@ -16,12 +16,16 @@ Có 3 ứng dụng trong monorepo:
 
 ## Frontend
 
-- **Framework**: React 18.3, Vite 5, `@vitejs/plugin-react`.
-- **Entry**: `index.html` → `main.tsx` → `App.tsx`.
-- **App.tsx** hiện tại: textarea editor + `ProblemImportPaste` (paste JSON → preview → POST import) + list problems từ `GET /api/problems`.
-- **Components**: `components/ProblemImportPaste.tsx` (paste/clipboard, validate, sanitize, save), `lib/problemClip.ts` (parse + sanitize HTML).
-- **Dependencies**: `@leetcode/shared`.
-- **Chưa có**: routing, state management, Monaco Editor thật.
+- **Framework**: React 18.3, Vite 5, `@vitejs/plugin-react`, Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7.
+- **Entry**: `index.html` → `main.tsx` (BrowserRouter + ThemeProvider) → `App.tsx` (Routes).
+- **Routing**: Layout (`Header` + `Sidebar` + `<Outlet />`) → `/problems/:id` (ProblemDetail). `/` và `/problems` redirect về first problem.
+- **Components**: `Layout.tsx`, `Header.tsx` (logo, nav, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả HTML, hints, template, editor, run), `CodeEditor.tsx` (textarea + syntax highlight động), `DifficultyBadge.tsx`.
+- **Theme**: CSS variables (`:root` light / `[data-theme=dark]`) trong `src/index.css`, `@custom-variant dark` cho Tailwind, `lib/theme.tsx` (ThemeProvider + useTheme, lưu localStorage).
+- **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme).
+- **API**: `lib/api.ts` — `fetchProblems` (GET /api/problems), `fetchProblem` (GET /api/problems/:id), `runCode` (POST /api/problems/:id/run). Host từ root `.env` (`VITE_API_URL`), fallback localhost.
+- **Đã loại bỏ**: `ProblemImportPaste.tsx`, `lib/problemClip.ts` — web không còn nhập đề thủ công (extension POST thẳng tới server).
+- **Dependencies**: `@leetcode/shared`, `@leetcode/editor`, `@leetcode/problem-engine`, `react-router-dom`, `react-syntax-highlighter`.
+- **Chưa có**: Monaco Editor thật.
 
 ## Backend
 
@@ -65,10 +69,17 @@ Không có shared UI component. Các package chia sẻ logic và types:
 
 | Path | Purpose |
 |------|---------|
-| `apps/web/src/App.tsx` | UI + ProblemImportPaste + problem list |
-| `apps/web/src/components/ProblemImportPaste.tsx` | Paste JSON → preview → import |
-| `apps/web/src/lib/problemClip.ts` | parse + sanitize clip JSON |
-| `apps/web/src/main.tsx` | React DOM mount |
+| `apps/web/src/main.tsx` | React DOM mount + BrowserRouter + ThemeProvider |
+| `apps/web/src/App.tsx` | Routes (Layout → /problems/:id) |
+| `apps/web/src/components/Layout.tsx` | Header + Sidebar + Outlet layout |
+| `apps/web/src/components/Header.tsx` | Logo, nav, theme toggle |
+| `apps/web/src/components/Sidebar.tsx` | Problem list (search, filter) |
+| `apps/web/src/components/ProblemDetail.tsx` | Full problem view (description, hints, editor, run) |
+| `apps/web/src/components/CodeEditor.tsx` | Code input + syntax highlighting |
+| `apps/web/src/lib/api.ts` | API client (list, detail, run) |
+| `apps/web/src/lib/theme.tsx` | ThemeProvider (light/dark, localStorage) |
+| `apps/web/src/lib/sanitize.ts` | Sanitize HTML trước dangerouslySetInnerHTML |
+| `apps/web/src/index.css` | Tailwind + CSS variables theme |
 | `apps/server/src/index.ts` | Entry: env + createApp + hydrate + listen |
 | `apps/server/src/app.ts` | createApp(): Fastify instance + plugins + routes |
 | `apps/server/src/routes/` | Khai báo path (health, problems) |

@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* dark: variant theo data-theme toggle (không phụ thuộc OS) */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  color-scheme: light;
+  --bg-primary: #f7f7f8;
+  --bg-secondary: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover: #f0f0f1;
+  --bg-active: #e8e8ea;
+  --text-primary: #1a1a2e;
+  --text-secondary: #5a5a6e;
+  --text-muted: #8b8b9e;
+  --border: #e4e4e7;
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: #eef2ff;
+  --sidebar-bg: #fbfbfc;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --code-bg: #f6f6f7;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --warning: #d97706;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #0f1117;
+  --bg-secondary: #161923;
+  --bg-elevated: #1b1f2b;
+  --bg-hover: #222636;
+  --bg-active: #2a2e42;
+  --text-primary: #e6e6f0;
+  --text-secondary: #a0a4b8;
+  --text-muted: #6b7085;
+  --border: #2a2e3f;
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+  --accent-soft: #1e2438;
+  --sidebar-bg: #12141c;
+  --header-bg: rgba(18, 20, 28, 0.85);
+  --code-bg: #0b0d13;
+  --danger: #f87171;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-hover: var(--bg-hover);
+  --color-bg-active: var(--bg-active);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-header-bg: var(--header-bg);
+  --color-code-bg: var(--code-bg);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --shadow-soft: var(--shadow);
+  --shadow-lg: var(--shadow-lg);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Nội dung HTML mô tả đề bài */
+.problem-description {
+  line-height: 1.65;
+  font-size: 0.925rem;
+  color: var(--text-primary);
+}
+
+.problem-description p {
+  margin: 0.6rem 0;
+}
+
+.problem-description h1,
+.problem-description h2,
+.problem-description h3,
+.problem-description h4 {
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.problem-description ul,
+.problem-description ol {
+  margin: 0.5rem 0;
+  padding-left: 1.4rem;
+}
+
+.problem-description li {
+  margin: 0.25rem 0;
+}
+
+.problem-description pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+.problem-description code {
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  background: var(--code-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.problem-description pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.problem-description img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.problem-description table {
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+}
+
+.problem-description th,
+.problem-description td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+}
+
+.problem-description blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0.75rem 0;
+  padding-left: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Code editor overlay */
+.code-editor-overlay {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  caret-color: var(--text-primary);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  line-height: 1.6;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+}
+
+.code-editor-overlay::selection {
+  background: var(--accent-soft);
+  color: transparent;
+}

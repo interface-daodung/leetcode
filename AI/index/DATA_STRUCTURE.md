@@ -27,11 +27,11 @@
 ## Data Flow
 
 ```text
-Clip (extension → clipboard → web):
-  leetcode.com DOM [data-track-load="description_content"] → ProblemClip JSON → clipboard → web ProblemImportPaste
+Clip (direct, extension POST thẳng server):
+  leetcode.com DOM [data-track-load="description_content"] → ProblemClip JSON → extension POST ${API_URL}/api/problems/import
 
 API server (apps/server, có CORS + hydrate)
-  ├─ GET /api/problems          → problemDb.getAll()
+  ├─ GET /api/problems          → problemDb.getAllWithHints()
   ├─ GET /api/problems/:id      → engine.get(id) → fallback problemDb.get(id)
   ├─ GET /api/problems/random   → engine.getRandom → in-memory
   ├─ POST /api/problems/:id/run → engine.runTests → in-memory
@@ -39,8 +39,9 @@ API server (apps/server, có CORS + hydrate)
   └─ POST /api/problems/import  → validate ProblemClip → engine.register + problemDb.add (201/409)
 
 Web app (apps/web)
-  ├─ ProblemImportPaste: POST /api/problems/import → preview + save
-  └─ App.tsx: GET /api/problems (list) + run code locally (new Function)
+  ├─ Sidebar: GET /api/problems (list từ DB, search + filter)
+  ├─ ProblemDetail: GET /api/problems/:id (description/hints/template) + POST /:id/run
+  └─ Không còn nhập tay (đã bỏ ProblemImportPaste / lib/problemClip)
 ```
 
 Dữ liệu đề bài vào qua **Clipper Extension** (DOM clip → JSON). Seed script đã bị bỏ.

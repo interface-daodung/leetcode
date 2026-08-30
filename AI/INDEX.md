@@ -128,7 +128,7 @@ Nếu cấu trúc repository thay đổi, cập nhật `AI/index/`.
 Monorepo pnpm với 3 ứng dụng và 6 package:
 
 ```text
-apps/web       # React 18 + Vite frontend (có ProblemImportPaste)
+apps/web       # React 18 + Vite frontend (Tailwind + Router, Sidebar + ProblemDetail)
 apps/server    # Fastify API server (có POST /api/problems/import)
 apps/extension # MV3 Browser Extension — widget clip DOM trên leetcode.com/problems/*
 packages/shared           # Types, utilities, constants (có ProblemClip)
