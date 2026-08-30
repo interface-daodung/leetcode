@@ -12,12 +12,11 @@ Hiện tại `problem-engine` dùng **in-memory registry** (`Map`) và là ngu�
 apps/web                  # React SPA: editor state + run code cục bộ
 apps/server               # Fastify: GET/POST /api/problems/...
 packages/shared           # Types & utils dùng chung
-packages/database         # Drizzle ORM + SQLite client (bảng problems)
+packages/database         # Drizzle ORM + SQLite (bảng problems)
 packages/editor           # EditorState, languageTemplates
 packages/problem-engine   # Problem registry + runTests (in-memory)
 packages/ai               # getHint/explainSolution (placeholder)
 packages/javascript-docs  # jsDocs/getDoc (static)
-scripts/seed-problems.ts  # Đăng ký sample problems vào engine
 ```
 
 ## Dependency Flow
@@ -50,16 +49,11 @@ apps/web (Vite, port 5173)
 ## Data Flow
 
 ```text
-Seed: scripts/seed-problems.ts
-        └─ engine.register(problem)
-             ├─ lưu vào in-memory Map
-             └─ void problemDb.add(problem) → SQLite (bảng problems)
-
 API read: engine.get / getRandom (in-memory)
 Database read: ProblemDatabase (chưa được server dùng để đọc)
 ```
 
-Lưu ý: `engine.register` gọi `problemDb.add` không đồng bộ (`void`) để ghi vào SQLite, nhưng việc đọc từ API hiện chỉ dựa trên in-memory registry.
+Lưu ý: `engine.register` gọi `problemDb.add` không đồng bộ (`void`) để ghi vào SQLite, nhưng việc đọc từ API hiện chỉ dựa trên in-memory registry. Seed script đã bị bỏ — dữ liệu sẽ được đưa vào qua server/API sau này.
 
 ## External Services
 
@@ -67,11 +61,12 @@ Chưa xác định. `packages/ai` chỉ là placeholder, chưa gọi LLM API th�
 
 ## Database
 
-- SQLite qua `@libsql/client` (url `file:leetcode.db`).
+- SQLite qua `@libsql/client`, DB file tại `packages/database/data/leetcode.db` (path resolve cố định từ `client.ts`, không phụ thuộc CWD).
 - Drizzle ORM với schema `problems` (`packages/database/src/schema.ts`).
-- Migration đầu tiên: `packages/database/drizzle/0000_faithful_captain_britain.sql`.
-- Các script: `db:push`, `db:generate`, `db:studio` (drizzle-kit).
-- File `leetcode.db` hiện chưa được tạo (chưa có trong repo).
+- Migration đầu tiên: `packages/database/drizzle/0000_init.sql` (bao gồm seed 3 problems mẫu).
+- **Auto-migrate lúc runtime**: `client.ts` gọi `migrate()` mỗi khi import → tự tạo/cập nhật schema.
+- CLI migration (optional): `db:migrate` (drizzle-kit, dùng `@libsql/client` không cần native build). Đã bỏ `db:push`.
+- Các script: `db:generate`, `db:migrate`, `db:studio`.
 - README ghi kế hoạch: in-memory → SQLite → PostgreSQL.
 
 ## Deployment

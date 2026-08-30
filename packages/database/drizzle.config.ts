@@ -5,6 +5,6 @@ export default defineConfig({
   schema: "./src/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    url: "./leetcode.db",
+    url: "./data/leetcode.db",
   },
 });

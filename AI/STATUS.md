@@ -17,8 +17,9 @@ Giai đoạn khởi tạo — scaffold monorepo và các package core.
 - Tạo `packages/problem-engine` (in-memory registry + test runner).
 - Tạo `packages/ai` (placeholder hints).
 - Tạo `packages/javascript-docs` (placeholder static docs).
-- Tạo `scripts/seed-problems.ts` (seed 3 sample problems).
-- Commit SQLite database init (feat(database): initialize SQLite database).
+- DB path cố định tại `packages/database/data/leetcode.db`, auto-migrate runtime.
+- Tất cả package nội bộ đồng bộ ESM (`"type": "module"`).
+- Seed script đã bị bỏ khỏi dự án.
 
 ## Đang làm
 

@@ -49,5 +49,5 @@ app.listen({ port: 3000, host: "0.0.0.0" })
 
 ## Notes
 
-- Dữ liệu đến từ in-memory registry; để API có dữ liệu, cần chạy seed trước (hoặc trong process) để `engine.register(...)` được gọi.
+- Dữ liệu đến từ in-memory registry; để API có dữ liệu, cần `engine.register(...)` được gọi (seed đã bị bỏ khỏi dự án — dữ liệu sẽ được đưa vào qua server/API).
 - Database (SQLite) chưa được dùng làm nguồn đọc cho API.

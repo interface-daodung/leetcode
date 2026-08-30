@@ -40,6 +40,10 @@ Documentation cấp project nằm trong:
 - Documentation sử dụng tiếng Việt.
 - Comment code sử dụng tiếng Việt khi cần giải thích logic.
 
+## Plan Management
+
+Xem: `AI/skills/plan-management/SKILL.md`
+
 ## Documentation Synchronization
 
 Sau khi thay đổi code:

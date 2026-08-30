@@ -18,8 +18,8 @@
 
 - Database: SQLite (`@libsql/client`).
 - ORM: Drizzle (`packages/database/src/schema.ts`).
-- Migration: `drizzle-kit generate` / `push` (config: `packages/database/drizzle.config.ts`).
-- Migration hiện có: `packages/database/drizzle/0000_faithful_captain_britain.sql`.
+- Migration: `drizzle-kit generate` / auto-migrate runtime (config: `packages/database/drizzle.config.ts`).
+- Migration hiện có: `packages/database/drizzle/0000_init.sql` (khởi tạo + seed 3 problems).
 
 ## Không được
 

@@ -37,13 +37,12 @@ leetcode/
 # Install dependencies
 pnpm install
 
-# Seed sample problems
-pnpm --filter=@leetcode/server tsx scripts/seed-problems.ts
-
 # Start development servers
 pnpm dev        # Web on :5173
 pnpm --filter=@leetcode/server dev  # Server on :3000
 ```
+
+Database tự động migrate + seed khi server khởi động (auto-migrate trong `packages/database/src/client.ts`, migration `0000_init.sql` chứa 3 problems mẫu).
 
 ## Learning Goals
 

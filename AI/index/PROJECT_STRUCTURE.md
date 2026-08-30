@@ -29,7 +29,7 @@ leetcode/
 │   │   ├── package.json
 │   │   ├── drizzle.config.ts
 │   │   ├── drizzle/               # Generated migrations
-│   │   │   ├── 0000_faithful_captain_britain.sql
+│   │   │   ├── 0000_init.sql
 │   │   │   └── meta/
 │   │   └── src/
 │   │       ├── client.ts          # SQLite client + drizzle db
@@ -52,8 +52,7 @@ leetcode/
 │   ├── medium/
 │   └── hard/
 ├── docs/                          # Learning notes / ADR (empty)
-├── scripts/
-│   └── seed-problems.ts           # Seed sample problems
+├── scripts/                          # Automation (seed đã bị bỏ)
 ├── docker/                        # Container configs (empty)
 ├── .gitignore
 ├── package.json
@@ -71,7 +70,7 @@ leetcode/
 | `packages/` | Các package dùng chung (`shared`, `database`, `editor`, `javascript-docs`, `problem-engine`, `ai`) |
 | `problems/` | Dự kiến chứa problem files theo difficulty (hiện rỗng) |
 | `docs/` | Dự kiến chứa learning notes, ADR (hiện rỗng) |
-| `scripts/` | Automation, seeding |
+| `scripts/` | Automation (seed đã bị bỏ) |
 | `docker/` | Dự kiến chứa container configs (hiện rỗng) |
 | `AI/` | Project knowledge base dành cho Agent |
 
@@ -88,14 +87,14 @@ leetcode/
 | `packages/shared/src/index.ts` | Types `Difficulty`, `ProblemMeta`, `TestCase`; util `formatProblemId` |
 | `packages/problem-engine/src/index.ts` | `ProblemEngine` class + singleton `engine` |
 | `packages/database/src/schema.ts` | Drizzle schema bảng `problems` |
-| `packages/database/src/client.ts` | SQLite client + drizzle instance |
-| `packages/database/drizzle/0000_faithful_captain_britain.sql` | Migration đầu tiên |
+| `packages/database/src/client.ts` | SQLite client + drizzle instance + auto-migrate |
+| `packages/database/data/` | Thư mục chứa DB file (`leetcode.db`, bị git ignore) |
+| `packages/database/drizzle/0000_init.sql` | Migration đầu tiên (khởi tạo + seed) |
 
 ## Entry Points
 
 - Server: `apps/server/src/index.ts` (chạy `pnpm --filter=@leetcode/server dev` → tsx watch).
 - Web: `apps/web/index.html` → `src/main.tsx`.
-- Seed: `scripts/seed-problems.ts` (`pnpm --filter=@leetcode/server tsx scripts/seed-problems.ts`).
 
 ## Generated / Ignored Areas
 

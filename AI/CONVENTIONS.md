@@ -48,7 +48,7 @@
 - Web: React 18 + Vite, entry `apps/web/index.html` → `src/main.tsx` → `App.tsx`.
 - Server: Fastify 4, validation bằng Zod (`z.object().parse(...)`), logger bật (`{ logger: true }`).
 - Database: Drizzle ORM + SQLite (`@libsql/client`).
-- Migration: drizzle-kit (`db:generate`, `db:push`, `db:studio`).
+- Migration: drizzle-kit (`db:generate`), auto-migrate runtime trong `client.ts` (`migrate()`), CLI optional `db:migrate`, `db:studio`.
 
 ---
 

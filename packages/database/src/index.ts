@@ -1,5 +1,5 @@
 import type { ProblemMeta, Difficulty } from "@leetcode/shared";
-import { db, schema } from "./client";
+import { db, schema } from "./client.js";
 import { eq } from "drizzle-orm";
 
 export class ProblemDatabase {

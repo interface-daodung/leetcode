@@ -20,7 +20,6 @@ Mỗi feature trong repo phải trả lời được câu hỏi:
 - API server cung cấp problem engine và AI hints.
 - Storage problem: in-memory → SQLite → (kế hoạch) PostgreSQL.
 - Packages phục vụ học tập: shared types, database, editor, docs, problem-engine, AI.
-- Scripts: seeding problems.
 - Docs: ghi chú học tập và architecture decisions.
 
 ## Người dùng / đối tượng sử dụng
@@ -39,7 +38,6 @@ Chủ yếu là chính tác giả repository — dùng để học và lưu lạ
 - `packages/problem-engine` — In-memory problem registry + test runner.
 - `packages/ai` — AI hint/explanation (hiện là placeholder, chưa gắn LLM thật).
 - `packages/javascript-docs` — Static JS/TS reference (placeholder).
-- `scripts/seed-problems.ts` — Seed sample problems.
 - `docker/` — Thư mục dự kiến chứa container configs (hiện rỗng).
 - `docs/` — Thư mục dự kiến chứa learning notes và ADR (hiện rỗng).
 - `problems/` — Thư mục dự kiến chứa problem files theo difficulty (hiện chỉ có subfolder rỗng).
@@ -51,7 +49,7 @@ Chủ yếu là chính tác giả repository — dùng để học và lưu lạ
 - **Package manager**: pnpm 11.24.0 (workspace monorepo, `pnpm-workspace.yaml`).
 - **Framework**: React 18.3, Vite 5, Fastify 4.
 - **ORM**: Drizzle ORM 0.45 + drizzle-kit 0.31; client `@libsql/client` (SQLite).
-- **Database**: SQLite (file `leetcode.db`, hiện chưa được tạo/commit).
+- **Database**: SQLite (file tại `packages/database/data/leetcode.db`, bị git ignore; auto-migrate runtime).
 - **Validation**: Zod 3.
 - **Testing**: Vitest 2 (đã khai báo trong scripts, chưa có test file).
 - **Lint**: ESLint 9.

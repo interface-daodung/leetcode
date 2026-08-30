@@ -5,7 +5,9 @@
 - **Engine**: SQLite (qua `@libsql/client`).
 - **ORM**: Drizzle ORM.
 - **Config**: `packages/database/drizzle.config.ts` (dialect: sqlite, schema: `./src/schema.ts`, out: `./drizzle`).
-- **Connection URL**: `file:leetcode.db` (SQLite file local).
+- **Connection URL**: `file:<abs path>/packages/database/data/leetcode.db` (được resolve cố định từ `client.ts` qua `import.meta.url`, không phụ thuộc CWD).
+- **DB file location**: `packages/database/data/leetcode.db`.
+- **Migration**: auto-migrate lúc runtime trong `packages/database/src/client.ts` (`migrate(db, { migrationsFolder })`), chạy mỗi khi import package.
 
 ## Models / Tables / Collections
 
@@ -25,11 +27,6 @@
 ## Data Flow
 
 ```text
-Seed script (scripts/seed-problems.ts)
-  └─ engine.register(problem)
-       ├─ problem-engine: lưu vào in-memory Map
-       └─ (void) problemDb.add(problem) → SQLite
-
 API server (apps/server)
   ├─ GET /api/problems/:id  → engine.get(id)  → in-memory
   ├─ GET /api/problems/random → engine.getRandom → in-memory
@@ -40,19 +37,22 @@ Web app (apps/web)
   └─ App.tsx: run code locally (new Function), không gọi API database
 ```
 
+> Seed script đã bị bỏ khỏi dự án. Dữ liệu sẽ được đưa vào qua server/API sau này.
+
 ## Migrations
 
-- Migration đầu tiên: `packages/database/drizzle/0000_faithful_captain_britain.sql`.
-- Workflow: `drizzle-kit generate` → `drizzle-kit push`.
+- Migration đầu tiên: `packages/database/drizzle/0000_init.sql` (tạo bảng `problems` + seed 3 problems mẫu).
+- Workflow:
+  - Tạo/đổi schema trong `packages/database/src/schema.ts`.
+  - Generate migration: `pnpm --filter=@leetcode/database db:generate` (drizzle-kit generate).
+  - **Auto-apply**: `packages/database/src/client.ts` tự gọi `migrate()` khi import → server/API tự cập nhật schema, không cần chạy lệnh riêng.
+  - CLI (optional): `pnpm --filter=@leetcode/database db:migrate` (drizzle-kit migrate, dùng `@libsql/client` WASM không cần native build).
+- Migration journal table: `__drizzle_migrations`.
 - Schema hiện tại chỉ có 1 bảng `problems`.
 
 ## Seed
 
-- `scripts/seed-problems.ts` đăng ký 3 sample problems vào `engine`:
-  1. Two Sum (easy)
-  2. Add Two Numbers (medium)
-  3. Longest Substring Without Repeating Characters (medium)
-- Cách chạy: `pnpm --filter=@leetcode/server tsx scripts/seed-problems.ts`
+- Đã bỏ khỏi dự án (theo quyết định — dữ liệu vào qua server khác, không dùng seed nhiều).
 
 ## External Data
 
