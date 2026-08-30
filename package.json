@@ -1,0 +1,16 @@
+{
+  "name": "leetcode-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "LeetCode learning journey monorepo",
+  "scripts": {
+    "dev": "pnpm --filter=web dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.24.0"
+}

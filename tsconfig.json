@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@leetcode/shared": ["packages/shared/src"],
+      "@leetcode/database": ["packages/database/src"],
+      "@leetcode/editor": ["packages/editor/src"],
+      "@leetcode/javascript-docs": ["packages/javascript-docs/src"],
+      "@leetcode/problem-engine": ["packages/problem-engine/src"],
+      "@leetcode/ai": ["packages/ai/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "apps/*/dist", "packages/*/dist"]
+}
