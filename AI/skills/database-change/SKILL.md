@@ -1,0 +1,29 @@
+# Database Change
+
+## Workflow
+
+1. Xác định database hiện tại.
+2. Đọc schema/model.
+3. Đọc migration hiện tại.
+4. Xác định ảnh hưởng.
+5. Tạo migration theo framework hiện tại.
+6. Không sửa database production trực tiếp nếu workflow project không cho phép.
+7. Test migration.
+8. Test rollback nếu hệ thống hỗ trợ.
+9. Cập nhật `AI/index/DATA_STRUCTURE.md`.
+10. Ghi technical decision nếu cần.
+11. Ghi history.
+
+## Ghi chú project cụ thể
+
+- Database: SQLite (`@libsql/client`).
+- ORM: Drizzle (`packages/database/src/schema.ts`).
+- Migration: `drizzle-kit generate` / `push` (config: `packages/database/drizzle.config.ts`).
+- Migration hiện có: `packages/database/drizzle/0000_faithful_captain_britain.sql`.
+
+## Không được
+
+- xóa data tùy tiện
+- reset database production
+- bỏ qua migration
+- sửa schema nhưng không cập nhật documentation
