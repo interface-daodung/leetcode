@@ -11,8 +11,8 @@
     "declarationMap": true,
     "noEmit": true,
     "isolatedModules": true,
-    "baseUrl": ".",
     "paths": {
+      "*": ["./*"],
       "@leetcode/shared": ["packages/shared/src"],
       "@leetcode/database": ["packages/database/src"],
       "@leetcode/editor": ["packages/editor/src"],

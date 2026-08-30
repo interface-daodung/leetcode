@@ -4,7 +4,9 @@
   "private": true,
   "description": "LeetCode learning journey monorepo",
   "scripts": {
-    "dev": "pnpm --filter=web dev",
+    "web": "pnpm --filter=@leetcode/web dev",
+    "server": "pnpm --filter=@leetcode/server dev",
+    "dev": "concurrently \"pnpm web\" \"pnpm server\"",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "lint": "pnpm -r lint"
@@ -15,6 +17,7 @@
   "packageManager": "pnpm@11.24.0",
   "devDependencies": {
     "@vitest/ui": "^4.1.11",
+    "concurrently": "^10.0.5",
     "typescript": "^5.9.3",
     "typescript-language-server": "^6.0.0",
     "vitest": "^2.1.9"

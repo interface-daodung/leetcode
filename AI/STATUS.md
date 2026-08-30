@@ -1,16 +1,15 @@
 # Project Status
 
-Cập nhật: 2026-08-30
+Cập nhật: 2026-08-31
 
 ## Current Phase
 
-Giai đoạn implement — feature **LeetCode Clipper** tiếp tục trên nhánh `feat/leetcode-clipper-extension` với **DB migration + hints/template/assets DB**.
+**[mới 2026-08-31] Server refactor sang MVC / phân tầng** trên nhánh `refactor/server-mvc` — `apps/server` chuyển từ single-file (`index.ts` 251 dòng) sang `routes/` → `controllers/` → `services/` → `plugins/` + `config.ts` + `app.ts`. Refactor thuần (giữ nguyên API), thêm `problem.service.test.ts` (6 tests) → server 11 tests pass, `pnpm -r build` pass, smoke-test end-to-end ok.
 
-- Nhánh: `feat/leetcode-clipper-extension` (tiếp tục, đã push base + direct import trước đó)
-- Plan gốc: `AI/plans/completed/leetcode-clipper-extension.md` (đã move)
-- Mở rộng 1 (2026-08-30): direct POST từ extension tới server (host từ root `.env`), tải ảnh trong description về `packages/database/data/assets/<slug>/` với dedupe SHA-256 (lúc đầu `.hash-index.json`), serve `GET /assets/*`.
-- **Mở rộng 2 (hiện tại)**: bỏ `.hash-index.json` → tạo migration `0001_add_url_template_hints_assets` (`slug`/`url`/`template`, bỏ `solution`, tạo `problem_assets` + `hints`), lưu assets trong DB (hash dedupe per-problem), thêm hints (parse lightbulb Hint 1..N từ DOM) và template (monaco view-line), lưu `url` từ clip.
-- Kết quả mới: 42 tests extension (thêm hints/template) + 5 tests server assets (mock DB) pass, `pnpm -r build` pass, end-to-end POST với hints/template/url/assets và dedupe hash đã verify (httpbin png → `test-new-features/png.png` reuse giữa 2 problem).
+## Đang làm
+
+- [ ] Hoàn thiện plan `AI/plans/active/server-mvc-restructure.md` → move sang completed.
+- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
 
 ## Đã hoàn thành
 
@@ -48,10 +47,11 @@ Giai đoạn implement — feature **LeetCode Clipper** tiếp tục trên nhán
   - Đã test end-to-end (fresh DB): `POST 9999` với `url`/`template`/3 hints + `https://httpbin.org/image/png` → `201` với `assets` 1 row (`test-new-features/png.png` hash `541a...`), `GET /9999` trả `hints`/`assets`/`template`/`url`, dedupe `POST 9998` cùng ảnh reuse `localPath` `test-new-features/png.png` (không tạo file mới, cùng hash), `GET /api/problems` list 5 với hints.
 - **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (DB 3 bảng, runtime/data flow mới, assets DB, hints/template), `AI/STATUS.md`, `context/decisions.md`, tạo `AI/history/2026-08/leetcode-clipper-db-hints-template-assets.md`.
 - **[mới] Fix `created_at`** — `packages/database/src/schema.ts:14` đổi `default("(datetime('now'))")` → `default(sql\`(datetime('now'))\`)` (đã áp dụng trong commit `fa9c962`), verify DB lưu datetime thật. Backlog: `AI/plans/completed/fix-created-at-default.md`.
+- **[mới 2026-08-31] Server refactor sang MVC / phân tầng** — `apps/server` chuyển từ single-file (`index.ts` 251 dòng) sang `routes/` → `controllers/` → `services/` → `plugins/` + `config.ts` + `app.ts`. Thêm `problem.service.test.ts` (6 tests) → server 11 tests pass, `pnpm -r build` pass, smoke-test ok. Xem `AI/history/2026-08/server-mvc-refactor.md`.
 
 ## Đang làm
 
-- Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
+- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
 
 ## Tiếp theo
 

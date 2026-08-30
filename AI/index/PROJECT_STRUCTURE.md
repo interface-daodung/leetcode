@@ -11,7 +11,15 @@ leetcode/
 │   ├── server/
 │   │   ├── package.json
 │   │   ├── tsconfig.json
-│   │   └── src/index.ts           # Fastify server (entry point)
+│   │   ├── README.md
+│   │   └── src/
+│   │       ├── index.ts           # Entry: env + createApp + hydrate + listen
+│   │       ├── app.ts             # createApp(): Fastify instance + plugins + routes
+│   │       ├── config.ts          # Đọc env một chỗ (PORT, HOST, API_URL, ASSETS_ROOT)
+│   │       ├── plugins/           # CORS + @fastify/static (/assets/*)
+│   │       ├── routes/            # health.routes, problems.routes, index (prefix /api)
+│   │       ├── controllers/       # Zod validate + trả response (health, problems)
+│   │       └── services/          # problem.service, asset.service (logic nghiệp vụ)
 │   ├── web/
 │   │   ├── index.html
 │   │   ├── package.json
@@ -95,7 +103,8 @@ leetcode/
 | `pnpm-workspace.yaml` | Khai báo workspace `apps/*`, `packages/*` |
 | `tsconfig.json` | Root TS config + path aliases `@leetcode/*` |
 | `README.md` | Tổng quan project, architecture, quick start, learning goals |
-| `apps/server/src/index.ts` | Fastify server, tất cả API endpoints (có POST /api/problems/import) |
+| `apps/server/src/index.ts` | Fastify entry (env + createApp + hydrate + listen) |
+| `apps/server/src/services/problem.service.ts` | Logic nghiệp vụ problem (hydrate, import flow, run) |
 | `apps/web/src/App.tsx` | React app chính (tích hợp ProblemImportPaste + list problems) |
 | `apps/web/src/components/ProblemImportPaste.tsx` | Paste JSON → preview → POST import |
 | `apps/extension/content.js` | Content script widget LC (clip DOM → clipboard) |

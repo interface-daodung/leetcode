@@ -62,7 +62,7 @@ describe("assets — downloadAndRewriteImages (DB dedupe)", () => {
   afterEach(() => vi.restoreAllMocks());
 
   it("giữ nguyên description nếu không có <img>", async () => {
-    const { downloadAndRewriteImages } = await import("./assets.js");
+    const { downloadAndRewriteImages } = await import("./services/asset.service.js");
     const html = "<p>Hello</p><pre>code</pre>";
     const out = await downloadAndRewriteImages(html, "test-slug", "http://localhost:3000", 1);
     expect(out).toBe(html);
@@ -81,7 +81,7 @@ describe("assets — downloadAndRewriteImages (DB dedupe)", () => {
     });
     vi.stubGlobal("fetch", fetchMock);
 
-    const { downloadAndRewriteImages } = await import("./assets.js");
+    const { downloadAndRewriteImages } = await import("./services/asset.service.js");
     const { problemDb } = await import("@leetcode/database");
     const html = `<p>desc</p><img src="http://example.com/foo.png" alt="x"><img src="http://example.com/foo.png" alt="x">`;
     const out = await downloadAndRewriteImages(html, "my-problem", "http://localhost:3000", 42);
@@ -110,11 +110,11 @@ describe("assets — downloadAndRewriteImages (DB dedupe)", () => {
     } as unknown as Response));
     vi.stubGlobal("fetch", fetchMock);
 
-    const { downloadAndRewriteImages: fn1 } = await import("./assets.js");
+    const { downloadAndRewriteImages: fn1 } = await import("./services/asset.service.js");
     const html1 = `<img src="http://example.com/a.jpg">`;
     await fn1(html1, "slug-1", "http://localhost:3000", 1);
 
-    const { downloadAndRewriteImages: fn2 } = await import("./assets.js");
+    const { downloadAndRewriteImages: fn2 } = await import("./services/asset.service.js");
     const html2 = `<img src="http://example.com/b.jpg">`;
     const out2 = await fn2(html2, "slug-2", "http://localhost:3000", 2);
 
@@ -139,7 +139,7 @@ describe("assets — downloadAndRewriteImages (DB dedupe)", () => {
 
   it("giữ nguyên src nếu fetch fail", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false } as Response)));
-    const { downloadAndRewriteImages } = await import("./assets.js");
+    const { downloadAndRewriteImages } = await import("./services/asset.service.js");
     const html = `<img src="http://example.com/notfound.png">`;
     const out = await downloadAndRewriteImages(html, "slug-x", "http://localhost:3000", 99);
     expect(out).toBe(html);
@@ -148,7 +148,7 @@ describe("assets — downloadAndRewriteImages (DB dedupe)", () => {
   it("bỏ qua data: URL", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock as unknown as typeof fetch);
-    const { downloadAndRewriteImages } = await import("./assets.js");
+    const { downloadAndRewriteImages } = await import("./services/asset.service.js");
     const html = `<img src="data:image/png;base64,abc">`;
     const out = await downloadAndRewriteImages(html, "slug", "http://localhost:3000", 5);
     expect(out).toBe(html);

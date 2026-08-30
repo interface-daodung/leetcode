@@ -26,14 +26,17 @@ Có 3 ứng dụng trong monorepo:
 ## Backend
 
 - **Framework**: Fastify 4 với logger, CORS (`Access-Control-Allow-Origin: *`), hydrate DB khi khởi động.
-- **Entry**: `apps/server/src/index.ts`.
+- **Entry**: `apps/server/src/index.ts` (env + `createApp()` + hydrate + listen); `src/app.ts` đăng ký plugins/routes.
+- **Kiến trúc**: MVC / phân tầng — `routes/` (path) → `controllers/` (Zod validate + trả response) → `services/` (logic nghiệp vụ) → `plugins/` (CORS, static) + `config.ts`.
 - **Endpoints**:
   - `GET /health` — health check.
-  - `GET /api/problems` — list tất cả problems (từ DB).
-  - `GET /api/problems/:id` — lấy problem theo id (engine → fallback DB).
+  - `GET /api/problems` — list tất cả problems (từ DB, kèm hints).
+  - `GET /api/problems/:id` — lấy problem theo id (engine → fallback DB, kèm hints/assets).
   - `GET /api/problems/random/:difficulty?` — random problem.
   - `POST /api/problems/:id/run` — chạy test với code body.
   - `POST /api/problems/:id/hint` — lấy hint (placeholder).
+  - `GET /api/problems/:id/hints` — hints từ DB.
+  - `GET /api/problems/:id/assets` — assets từ DB.
   - `POST /api/problems/import` — import ProblemClip JSON (validate Zod, 201/409/400).
 - **Validation**: Zod (parse params/body manually, không dùng Fastify schema).
 - **Dependencies**: `@leetcode/shared`, `@leetcode/database`, `@leetcode/problem-engine`, `@leetcode/ai`.
@@ -66,7 +69,11 @@ Không có shared UI component. Các package chia sẻ logic và types:
 | `apps/web/src/components/ProblemImportPaste.tsx` | Paste JSON → preview → import |
 | `apps/web/src/lib/problemClip.ts` | parse + sanitize clip JSON |
 | `apps/web/src/main.tsx` | React DOM mount |
-| `apps/server/src/index.ts` | Fastify routes (có POST /api/problems/import) |
+| `apps/server/src/index.ts` | Entry: env + createApp + hydrate + listen |
+| `apps/server/src/app.ts` | createApp(): Fastify instance + plugins + routes |
+| `apps/server/src/routes/` | Khai báo path (health, problems) |
+| `apps/server/src/controllers/` | Zod validate + trả response |
+| `apps/server/src/services/` | Logic nghiệp vụ (problem.service, asset.service) |
 | `apps/extension/manifest.json` | MV3 manifest |
 | `apps/extension/content.js` | Content script widget |
 | `apps/extension/src/clipper.ts` | Pure clipper logic (testable) |

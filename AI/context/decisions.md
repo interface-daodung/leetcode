@@ -4,6 +4,38 @@
 
 ## Decisions
 
+### [2026-08-31] Server refactor sang MVC / phân tầng (routes → controllers → services)
+
+#### Context
+
+`apps/server/src/index.ts` (251 dòng) gói toàn bộ: load env, config, register static, CORS, hydrate engine và 10 route handlers inline (Zod validate inline). Khó đọc, khó mở rộng (thêm API phải sửa entry), khó test (logic bị dính vào Fastify reply/request).
+
+#### Decision
+
+- Tách server thành các lớp theo MVC / clean architecture:
+  - `src/index.ts` — entry thuần: env + `createApp()` + hydrate + listen.
+  - `src/app.ts` — `createApp()`: tạo Fastify instance, đăng ký plugins + routes (tách khỏi listen để dễ test).
+  - `src/config.ts` — đọc env một chỗ (PORT, HOST, API_URL, ASSETS_ROOT).
+  - `src/plugins/` — `cors.ts` (onSend hook + OPTIONS), `static.ts` (@fastify/static cho /assets/*).
+  - `src/routes/` — chỉ khai báo method + path (health, problems, index prefix /api).
+  - `src/controllers/` — Zod validate + quyết định status code/shape response, KHÔNG truy cập DB.
+  - `src/services/` — logic nghiệp vụ: `problem.service.ts` (hydrate, list, getById, run, hint, getHints, getAssets, exists, importClip), `asset.service.ts` (chuyển từ `src/assets.ts`).
+- Dependency injection đơn giản qua constructor/factory (service nhận `ProblemDatabase` + engine, controller nhận service) — không dùng thư viện DI (tránh over-engineering).
+- `ProblemService.run` trả discriminated union `RunOutcome` (`ok: true`/`reason: "not-found"`/`reason: "invalid-code"`) để controller map sang HTTP status.
+
+#### Reason
+
+- Tuân theo CONVENTIONS: function nhỏ, trách nhiệm đơn nhất, abstraction vừa đủ, tránh over-engineering.
+- Tách logic khỏi Fastify giúp test đơn vị dễ (đã thêm `problem.service.test.ts` 6 tests; tổng server 11 tests).
+- Mở rộng API mới chỉ cần thêm route + controller, không đụng entry.
+
+#### Consequences
+
+- Refactor thuần: API/response/status giữ nguyên, `packages/*` và `apps/web`/`apps/extension` không đổi.
+- `apps/server/src/assets.ts` cũ đã xóa, chuyển thành `services/asset.service.ts` (giữ nguyên `downloadAndRewriteImages`, test chỉ đổi import path).
+- `index.ts` giảm còn ~25 dòng; toàn bộ 9 endpoint hoạt động y hệt (đã smoke-test: health, list 5, import 201, run 200, duplicate 409).
+- Lint server vẫn lỗi sẵn từ trước do repo chưa có `eslint.config.*` (không phải do refactor này).
+
 ### [2026-08-30] Dùng AGENT.md làm instruction entry cho opencode
 
 #### Context

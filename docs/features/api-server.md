@@ -11,14 +11,23 @@
 | Method | Path | Mô tả |
 |--------|------|-------|
 | `GET` | `/health` | Health check, trả `{ status: "ok", timestamp }` |
-| `GET` | `/api/problems/:id` | Lấy problem theo id (404 nếu không tồn tại) |
+| `GET` | `/api/problems` | Danh sách tất cả problems (từ DB, kèm hints) |
+| `GET` | `/api/problems/:id` | Lấy problem theo id (404 nếu không tồn tại, kèm hints/assets) |
 | `GET` | `/api/problems/random/:difficulty?` | Random problem, `difficulty ∈ { easy, medium, hard }` (optional) |
 | `POST` | `/api/problems/:id/run` | Chạy test với `{ code: string }` trong body |
 | `POST` | `/api/problems/:id/hint` | Lấy hint với `{ code: string }` trong body (placeholder) |
+| `GET` | `/api/problems/:id/hints` | Lấy hints từ DB (theo thứ tự `ord`) |
+| `GET` | `/api/problems/:id/assets` | Lấy assets (ảnh đã tải) từ DB |
+| `POST` | `/api/problems/import` | Import `ProblemClip` JSON (validate chặt, tải ảnh về local, 201/409/400) |
+| `GET` | `/assets/*` | Serve ảnh đã tải từ `packages/database/data/assets/<slug>/` |
 
 ## Validation {#validation}
 
 Validation bằng **Zod 3**: parse params/body thủ công (`z.object().parse(...)`), chưa dùng Fastify schema.
+
+## Kiến trúc MVC {#kien-truc-mvc}
+
+Server tổ chức theo MVC / phân tầng (xem `apps/server/README.md`): `routes/` (khai báo path) → `controllers/` (validate + trả response) → `services/` (logic nghiệp vụ, gồm `problem.service` và `asset.service`) → `plugins/` (CORS, static). Entry `index.ts` chỉ load env + `createApp()` + hydrate + listen.
 
 ## Run Code Flow {#run-code}
 

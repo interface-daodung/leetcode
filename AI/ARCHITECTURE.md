@@ -10,7 +10,7 @@ Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, 
 
 ```text
 apps/web                  # React SPA: editor + ProblemImportPaste (paste JSON → preview → save + hiển thị hints/template/url), đọc VITE_API_URL từ root .env
-apps/server               # Fastify: GET/POST /api/problems/..., POST /api/problems/import (validate chặt, tải ảnh → assets DB), GET /assets/* static, GET /api/problems/:id/hints|assets, đọc PORT/HOST/API_URL từ root .env
+apps/server               # Fastify (MVC/phân tầng): routes/ → controllers/ → services/ → plugins/; GET/POST /api/problems/..., POST /api/problems/import (validate chặt, tải ảnh → assets DB), GET /assets/* static, GET /api/problems/:id/hints|assets, đọc PORT/HOST/API_URL từ root .env
 apps/extension            # MV3 Browser Extension: widget nổi trên leetcode.com/problems/*, clip DOM (description + hints + template) → POST trực tiếp tới API_URL (đọc từ api-config.js sinh từ root .env) + clipboard fallback
 packages/shared           # Types & utils dùng chung (ProblemMeta, ProblemClip với url/template/hints, Difficulty)
 packages/database         # Drizzle ORM + SQLite (bảng problems + problem_assets + hints) + assets folder (data/assets/<slug>/)
@@ -36,7 +36,9 @@ javascript-docs ──> shared
 ## Runtime Flow
 
 ```text
-apps/server (Fastify, PORT/HOST/API_URL từ root .env) — có CORS, hydrate từ DB khi khởi động, serve static /assets/*
+apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân tầng)
+  entry src/index.ts → createApp() (src/app.ts: plugins + routes) → hydrate engine → listen
+  layers: routes/* (path) → controllers/* (Zod validate + trả response) → services/* (logic nghiệp vụ) → plugins/* (CORS, static)
   ├─ GET /health
   ├─ GET /assets/*                  → serve file từ packages/database/data/assets/<slug>/ (ảnh đã tải, dedupe SHA-256 lưu DB problem_assets)
   ├─ GET /api/problems              → problemDb.getAllWithHints() (đã hydrate)
@@ -88,7 +90,7 @@ Chưa xác định. `packages/ai` chỉ là placeholder, chưa gọi LLM API th�
 
 ## Deployment
 
-- `apps/web` và `apps/server` chưa có cấu hình deploy. Host/port đọc từ root `.env` (`PORT`, `HOST`, `API_URL`, `VITE_API_URL`, `EXTENSION_API_URL`) — sửa một chỗ áp dụng cho toàn monorepo (xem `.env.example`, `apps/web/vite.config.ts: envDir=root`, `apps/server/src/index.ts: dotenv`, `apps/extension/scripts/sync-api-url.mjs`).
+- `apps/web` và `apps/server` chưa có cấu hình deploy. Host/port đọc từ root `.env` (`PORT`, `HOST`, `API_URL`, `VITE_API_URL`, `EXTENSION_API_URL`) — sửa một chỗ áp dụng cho toàn monorepo (xem `.env.example`, `apps/web/vite.config.ts: envDir=root`, `apps/server/src/config.ts` + `index.ts: dotenv`, `apps/extension/scripts/sync-api-url.mjs`).
 - `apps/extension` là MV3 unpacked: load thủ công qua `chrome://extensions` → `Load unpacked` chọn `apps/extension` (không qua store). Trước khi load, chạy `pnpm --filter=@leetcode/extension sync:config` (hoặc `build` tự chạy prebuild) để sync `api-config.js` từ root `.env`. Manifest `host_permissions` bao gồm `leetcode.com` + `localhost` + origin của `API_URL`.
 
 ## Architectural Decisions

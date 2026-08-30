@@ -1,11 +1,8 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile, access } from "node:fs/promises";
 import { join, extname, basename } from "node:path";
-import { fileURLToPath } from "node:url";
 import { problemDb } from "@leetcode/database";
-
-// Thư mục lưu ảnh: packages/database/data/assets (resolve từ import.meta.url, không phụ thuộc CWD)
-export const ASSETS_ROOT = fileURLToPath(new URL("../../../packages/database/data/assets", import.meta.url));
+import { ASSETS_ROOT } from "../config.js";
 
 async function ensureDir(dir: string): Promise<void> {
   await mkdir(dir, { recursive: true });

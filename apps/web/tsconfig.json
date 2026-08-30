@@ -15,8 +15,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
+      "*": ["./*"],
       "@leetcode/shared": ["../../packages/shared/src"],
       "@leetcode/editor": ["../../packages/editor/src"],
       "@leetcode/problem-engine": ["../../packages/problem-engine/src"]
