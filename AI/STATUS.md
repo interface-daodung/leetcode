@@ -4,12 +4,13 @@ Cập nhật: 2026-08-30
 
 ## Current Phase
 
-Giai đoạn implement — feature **LeetCode Clipper (Browser Extension Widget)** đã hoàn thành và mở rộng **direct import + assets** trên cùng nhánh.
+Giai đoạn implement — feature **LeetCode Clipper** tiếp tục trên nhánh `feat/leetcode-clipper-extension` với **DB migration + hints/template/assets DB**.
 
-- Nhánh: `feat/leetcode-clipper-extension`
-- Plan gốc: `AI/plans/completed/leetcode-clipper-extension.md` (đã move từ active)
-- Mở rộng (chưa có plan riêng): direct POST từ extension tới server (host từ root `.env`), tải ảnh trong description về `packages/database/data/assets/<slug>/` với dedupe SHA-256, serve `GET /assets/*`, validate chặt, hiển thị list từ DB.
-- Kết quả: extension clip DOM → POST trực tiếp `http://localhost:3000/api/problems/import` (fallback clipboard), web `GET /api/problems` hiển thị list, server tải ảnh và lưu assets, 35 tests extension + 5 tests server assets pass, `pnpm -r build` pass.
+- Nhánh: `feat/leetcode-clipper-extension` (tiếp tục, đã push base + direct import trước đó)
+- Plan gốc: `AI/plans/completed/leetcode-clipper-extension.md` (đã move)
+- Mở rộng 1 (2026-08-30): direct POST từ extension tới server (host từ root `.env`), tải ảnh trong description về `packages/database/data/assets/<slug>/` với dedupe SHA-256 (lúc đầu `.hash-index.json`), serve `GET /assets/*`.
+- **Mở rộng 2 (hiện tại)**: bỏ `.hash-index.json` → tạo migration `0001_add_url_template_hints_assets` (`slug`/`url`/`template`, bỏ `solution`, tạo `problem_assets` + `hints`), lưu assets trong DB (hash dedupe per-problem), thêm hints (parse lightbulb Hint 1..N từ DOM) và template (monaco view-line), lưu `url` từ clip.
+- Kết quả mới: 42 tests extension (thêm hints/template) + 5 tests server assets (mock DB) pass, `pnpm -r build` pass, end-to-end POST với hints/template/url/assets và dedupe hash đã verify (httpbin png → `test-new-features/png.png` reuse giữa 2 problem).
 
 ## Đã hoàn thành
 
@@ -38,11 +39,18 @@ Giai đoạn implement — feature **LeetCode Clipper (Browser Extension Widget)
   - Extension: `api-config.js` (auto-gen từ root `.env` via `scripts/sync-api-url.mjs` + `prebuild`), `manifest.json` thêm `api-config.js` trước `content.js` và `host_permissions` localhost + API host, `content.js` thêm `API_BASE` từ `LC_API_BASE`, `isValidClipForPost`, `postToServer` (fetch POST trực tiếp, toast 201/409/error) + vẫn copy clipboard.
   - Web: `vite.config.ts` `envDir=root`, `App.tsx` và `ProblemImportPaste.tsx` dùng `import.meta.env.VITE_API_URL ?? "http://localhost:3000"`, list đọc từ DB hiển thị ngay sau import.
   - Đã test end-to-end local: `POST /api/problems/import` với `<img src="https://httpbin.org/image/png">` → rewrite thành `http://localhost:3000/assets/test-img2/png.png`, dedupe cùng hash giữa 2 problem khác slug.
-- **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (3 apps + runtime/data flow mới, assets, env), `AI/STATUS.md`, `packages/database` assets handling.
+- **[mới] DB migration + hints/template/assets DB (2026-08-30 tiếp tục cùng nhánh)**:
+  - DB: `packages/database/src/schema.ts` thêm `slug`/`url`/`template` vào `problems`, bỏ `solution`, tạo `problem_assets` (id, problem_id FK cascade, original_url, local_path, hash + index) và `hints` (id, problem_id FK, ord, content). Migration `0001_add_url_template_hints_assets.sql` + update `0000_init.sql` dùng `text` thay `NVARCHAR(MAX)` để fix `SQLITE_ERROR near "MAX"`, update `meta/_journal.json` + `0001_snapshot.json`. Xóa `packages/database/data/assets/.hash-index.json` (chuyển sang DB).
+  - DB layer: `ProblemDatabase` thêm `getAllWithHints`, `getHints/setHints`, `addAsset/findAssetByHash/findAssetsByProblem`, `updateDescription/update`, `ProblemMeta`/`ProblemClip` thêm `slug`/`url`/`template`/`hints`, bỏ `solution`.
+  - Server: `src/assets.ts` viết lại dùng DB dedupe (check `findAssetByHash` → reuse `localPath` → `addAsset` per-problem, `ensureDir`, `writeFile`), `src/index.ts` thay đổi import flow (tạo problem trước để FK hợp lệ → `downloadAndRewriteImages` với `problemId` → `updateDescription`), thêm `GET /api/problems/:id/hints` và `/assets`, hydrate `getAllWithHints`, trả `assets`/`hints` trong `GET /:id` và `POST /import`.
+  - Extension: `src/clipper.ts` thêm `extractHints` (parse `div.flex.flex-col` + `Hint N` + `HTMLContent_html__*`/`overflow-hidden`) và `extractTemplate` (monaco `.view-line` → join, fallback `CodeMirror`/`.monaco-editor`), `buildProblemClip` trả `url`/`template`/`hints`, `isValidProblemClip` check thêm, `content.js` đồng bộ; thêm 7 tests mới (hints 3, template 2, build với hints/template) → 42 tests pass.
+  - Web: `lib/problemClip.ts` parse thêm `template`/`hints`/`url`, `ProblemImportPaste.tsx` hiển thị preview `url`, `template` (pre) và `hints` (list HTML), `App.tsx` không đổi.
+  - Đã test end-to-end (fresh DB): `POST 9999` với `url`/`template`/3 hints + `https://httpbin.org/image/png` → `201` với `assets` 1 row (`test-new-features/png.png` hash `541a...`), `GET /9999` trả `hints`/`assets`/`template`/`url`, dedupe `POST 9998` cùng ảnh reuse `localPath` `test-new-features/png.png` (không tạo file mới, cùng hash), `GET /api/problems` list 5 với hints.
+- **[mới] Docs** — cập nhật `AI/ARCHITECTURE.md` (DB 3 bảng, runtime/data flow mới, assets DB, hints/template), `AI/STATUS.md`, `context/decisions.md`, tạo `AI/history/2026-08/leetcode-clipper-db-hints-template-assets.md`.
 
 ## Đang làm
 
-- Hoàn thiện docs/history cho mở rộng direct import + assets, chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
+- Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
 
 ## Tiếp theo
 

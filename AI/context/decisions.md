@@ -87,3 +87,34 @@ Host `http://localhost:3000` bị hard-code rải rác ở server/web/extension;
 - `packages/database/data/assets/` và `.hash-index.json` bị `.gitignore`, không commit; cần backup nếu cần migrate.
 - Server phụ thuộc `dotenv`, `@fastify/static`; cần `pnpm install`.
 - Nếu `fetch` ảnh fail (404/timeout) thì giữ nguyên src gốc, không fail cả import (đã có test).
+
+### [2026-08-30] LeetCode Clipper — DB migration: bỏ .hash-index.json, thêm hints/template/url và problem_assets
+
+#### Context
+
+`.hash-index.json` lưu hash → path ngoài DB, khó quản lý per-problem, không có FK, không query được; `problems` còn `solution` nhưng cần `template` (code khởi tạo) và `url` (link gốc) để lưu trong JSON; cần lưu hints của LeetCode (mỗi problem có 1..3+ hints, mẫu HTML với lightbulb + `HTMLContent_html__0OZLp`).
+
+#### Decision
+
+- Xóa `packages/database/data/assets/.hash-index.json`, tạo migration `0001_add_url_template_hints_assets`:
+  - `problems`: thêm `slug` text, `url` text, `template` text, bỏ `solution` (`DROP COLUMN`), giữ `tags`/`description`/`testCases`.
+  - Tạo `problem_assets` (id PK autoincrement, problem_id FK→problems.id cascade, original_url, local_path, hash + index hash/problem) để lưu per-problem ảnh (originalUrl → localPath + hash dedupe toàn cục).
+  - Tạo `hints` (id PK, problem_id FK cascade, ord, content) để lưu hints theo thứ tự.
+  - Sửa `0000_init.sql` dùng `text` thay `NVARCHAR(MAX)`/`DATETIME` để fix `SQLITE_ERROR near "MAX"` trên libsql khi tạo DB mới.
+- `packages/shared`: `ProblemMeta`/`ProblemClip` thêm `slug?`/`url?`/`template?`/`hints?`, bỏ `solution`.
+- `packages/database`: `ProblemDatabase` thêm `getAllWithHints`, `getHints/setHints`, `addAsset/findAssetByHash/findAssetsByProblem`, `updateDescription/update`, `ProblemMeta` mapping.
+- `apps/server`: `src/assets.ts` viết lại dùng DB (`findAssetByHash` → reuse `localPath` → `addAsset` per-problem, không dùng file JSON), thêm `problemId` param, check `access` file tồn tại; `src/index.ts` đổi import flow (tạo problem trước để FK hợp lệ → `downloadAndRewriteImages` với `problemId` → `updateDescription` + cập nhật engine), thêm `GET /:id/hints`/`/assets`, hydrate `getAllWithHints`, `GET /:id` trả `hints`+`assets`.
+- `apps/extension`: `src/clipper.ts` thêm `extractHints` (quét `div.flex.flex-col` có `Hint N` + `overflow-hidden`/`HTMLContent`) và `extractTemplate` (monaco `.view-line` join, fallback `CodeMirror`/`.monaco-editor`), `buildProblemClip` trả `url`/`template`/`hints`, `isValidProblemClip` check thêm, `content.js` đồng bộ, thêm 7 tests → 42 tests.
+- `apps/web`: `lib/problemClip.ts` parse thêm `template`/`hints`/`url`, `ProblemImportPaste.tsx` hiển thị `url` link, `template` pre, `hints` list (sanitize).
+
+#### Reason
+
+- Đưa assets/hints vào DB giúp query per-problem, FK cascade khi xóa problem, dedupe toàn cục qua `hash` index, không còn file JSON rời rạc.
+- `template` thay `solution` vì clip lấy code khởi tạo từ LeetCode, không phải lời giải; `url` để lưu link gốc trong JSON.
+- Hints parse từ DOM thực tế (lightbulb) cho AI/học tập, số lượng biến động.
+
+#### Consequences
+
+- Cần xóa DB cũ hoặc chạy migration `0001` để có schema mới (đã test fresh DB tạo mới ok, hydrated 3 problems); nếu DB cũ còn `.hash-index.json` thì xóa file (đã `.gitignore`).
+- Import phải tạo `problems` trước rồi mới `addAsset` (FK), nên `src/index.ts` đã đổi thứ tự và thêm `updateDescription`.
+- `pnpm -r build` pass, `extension` 42 tests + `server` 5 tests (mock DB) pass; end-to-end với `https://httpbin.org/image/png` verify dedupe reuse cùng `localPath` giữa 2 problem.
