@@ -1,4 +1,4 @@
-import type { IJsonModel, TabNode } from "flexlayout-react";
+import type { IJsonModel, IJsonTabNode, TabNode } from "flexlayout-react";
 
 /**
  * Tên component được đăng ký trong FlexLayout factory.
@@ -6,11 +6,35 @@ import type { IJsonModel, TabNode } from "flexlayout-react";
  */
 export type LayoutComponentName = "explorer" | "editor" | "description" | "output";
 
+/** Danh sách đầy đủ các panel trong workspace. */
+export const ALL_COMPONENTS: LayoutComponentName[] = ["explorer", "editor", "description", "output"];
+
+/** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
+export type DefaultTabsetId = "tabset-explorer" | "tabset-editor" | "tabset-output";
+
 export interface LayoutTabDefinition {
   id?: string;
   name: string;
   component: LayoutComponentName;
   config?: Record<string, unknown>;
+}
+
+/** Map component → tabset mặc định chứa panel đó. */
+export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId {
+  switch (component) {
+    case "explorer":
+      return "tabset-explorer";
+    case "editor":
+    case "description":
+      return "tabset-editor";
+    case "output":
+      return "tabset-output";
+  }
+}
+
+/** Tạo JSON tab cho một panel (dùng khi mở lại panel qua menu View). */
+export function defaultTabJson(component: LayoutComponentName): IJsonTabNode {
+  return { type: "tab", name: defaultName(component), component };
 }
 
 /**
@@ -39,6 +63,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
       children: [
         {
           type: "tabset",
+          id: "tabset-explorer",
           weight: 25,
           children: explorer.map(toJsonTab),
         },
@@ -48,11 +73,13 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
           children: [
             {
               type: "tabset",
+              id: "tabset-editor",
               weight: 70,
               children: [...editor.map(toJsonTab), ...description.map(toJsonTab)],
             },
             {
               type: "tabset",
+              id: "tabset-output",
               weight: 30,
               children: output.map(toJsonTab),
             },

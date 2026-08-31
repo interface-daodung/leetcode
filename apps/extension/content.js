@@ -906,7 +906,7 @@
       const lineHeight = fontSize * 1.15;
       const totalH = (lines.length - 1) * lineHeight;
       const centerY = (safeY0 + safeY1) / 2 - ty;
-      const yStart = centerY - totalH / 2 + fontSize * 0.25;
+      const yStart = centerY - totalH / 2 + fontSize * 0.5;
       const xCenter = (safeX0 + safeX1) / 2 - tx - fontSize * 0.15;
       let newAttrs = attrs.replace(/font-size:\s*[\d.]+px/, `font-size: ${fontSize.toFixed(2)}px`);
       newAttrs = newAttrs.replace(/\sx="[^"]*"/, "").replace(/\sy="[^"]*"/, "");

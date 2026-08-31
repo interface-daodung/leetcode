@@ -71,7 +71,7 @@ Source code là nguồn sự thật. Nếu `AI/` mâu thuẫn source code → c�
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **leetcode** (2342 symbols, 3708 relationships, 88 execution flows).
+This project is indexed by GitNexus as **leetcode** (2359 symbols, 3723 relationships, 88 execution flows).
 
 > Index stale? Run `node .gitnexus/run.cjs analyze --index-only` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? Bootstrap with `npx`, `bunx`, or `pnpm dlx` — e.g. `bunx gitnexus@latest analyze` (npm 11 npx crash; #1939).
 
@@ -105,11 +105,11 @@ This project is indexed by GitNexus as **leetcode** (2342 symbols, 3708 relation
 
 | Task | Read this skill file |
 | --- | --- |
-| Understand architecture / "How does X work?" | Use GitNexus `query`/`context` instead |
-| Blast radius / "What breaks if I change X?" | `AI/skills/gitnexus-impact-analysis/SKILL.md` (note: relocated from .claude — see `AI/skills/`) |
-| Trace bugs / "Why is X failing?" | `AI/skills/gitnexus-debugging/SKILL.md` |
-| Rename / extract / split / refactor | `AI/skills/gitnexus-refactoring/SKILL.md` |
-| Tools, resources, schema reference | `AI/skills/gitnexus-guide/SKILL.md` |
-| Index, status, clean, wiki CLI commands | `AI/skills/gitnexus-cli/SKILL.md` |
+| Understand architecture / "How does X work?" | `.claude/skills/gitnexus-exploring/SKILL.md` |
+| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus-impact-analysis/SKILL.md` |
+| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus-debugging/SKILL.md` |
+| Rename / extract / split / refactor | `.claude/skills/gitnexus-refactoring/SKILL.md` |
+| Tools, resources, schema reference | `.claude/skills/gitnexus-guide/SKILL.md` |
+| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus-cli/SKILL.md` |
 
 <!-- gitnexus:end -->

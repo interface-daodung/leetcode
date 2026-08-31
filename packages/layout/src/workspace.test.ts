@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { createDefaultLayout, getComponentName, getTabConfig } from "./workspace.js";
+import { createDefaultLayout, defaultTabsetId, defaultTabJson, ALL_COMPONENTS, getComponentName, getTabConfig } from "./workspace.js";
 import { flexThemeClass, flexCssOverrides } from "./theme.js";
 
 describe("createDefaultLayout", () => {
@@ -11,6 +11,21 @@ describe("createDefaultLayout", () => {
     const right = model.layout.children![1];
     expect(left.type).toBe("tabset");
     expect(right.type).toBe("row");
+  });
+
+  it("gán id ổn định cho từng tabset mặc định", () => {
+    const model = createDefaultLayout();
+    const left = model.layout.children![0];
+    expect(left.type).toBe("tabset");
+    expect(left.id).toBe("tabset-explorer");
+
+    const right = model.layout.children![1];
+    expect(right.type).toBe("row");
+    const rightChildren = right.children!;
+    expect(rightChildren[0].type).toBe("tabset");
+    expect(rightChildren[0].id).toBe("tabset-editor");
+    expect(rightChildren[1].type).toBe("tabset");
+    expect(rightChildren[1].id).toBe("tabset-output");
   });
 
   it("tab child đầu tiên có component explorer", () => {
@@ -31,6 +46,30 @@ describe("createDefaultLayout", () => {
     expect(json.layout.type).toBe("row");
     expect(json.layout.children[0].type).toBe("tabset");
     expect(json.layout.children[1].type).toBe("row");
+  });
+});
+
+describe("defaultTabsetId", () => {
+  it("map đúng component → tabset mặc định", () => {
+    expect(defaultTabsetId("explorer")).toBe("tabset-explorer");
+    expect(defaultTabsetId("editor")).toBe("tabset-editor");
+    expect(defaultTabsetId("description")).toBe("tabset-editor");
+    expect(defaultTabsetId("output")).toBe("tabset-output");
+  });
+});
+
+describe("defaultTabJson", () => {
+  it("tạo tab JSON đúng name + component cho từng panel", () => {
+    expect(defaultTabJson("explorer")).toEqual({ type: "tab", name: "Explorer", component: "explorer" });
+    expect(defaultTabJson("editor")).toEqual({ type: "tab", name: "Editor", component: "editor" });
+    expect(defaultTabJson("description")).toEqual({ type: "tab", name: "Description", component: "description" });
+    expect(defaultTabJson("output")).toEqual({ type: "tab", name: "Output", component: "output" });
+  });
+});
+
+describe("ALL_COMPONENTS", () => {
+  it("liệt kê đủ 4 panel", () => {
+    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output"]);
   });
 });
 
