@@ -4,6 +4,8 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
+**[mới 2026-08-31] Extension component-based refactor + esbuild** — tách `clipper.ts` (907 dòng) + `content.js` (1093 dòng) thành `src/parsers/` (7 file thuần), `src/clip.ts` (orchestrator), `src/widget/`, `src/toast/`, `src/api/`, `src/index.ts` (entry). Thêm esbuild bundle `src/index.ts` → `content.js` (IIFE) — **content.js không còn sửa tay**. 53 tests pass, `pnpm -r build` pass. Xem `AI/history/2026-08/extension-component-based-refactor.md`.
+
 **[mới 2026-08-31] Widget ảnh động + Toast SVG + Backend ghi đè** — nhánh `feat/widget-animated-images`. Widget thay text "LC" bằng 4 ảnh PNG (`Idle.png`/`Loading.png`/`Success.png`/`Error.png`) qua `chrome.runtime.getURL`. Thêm `@keyframes squashStretch` 1.2s animation khi click. Toast dùng `assets/toast-text.svg` render text động (auto font-size 24-72px, auto wrap, lệch trái/lên). Backend thêm `PUT /api/problems/:id` để ghi đè, CORS thêm PUT. Extension tự retry PUT khi 409. `pnpm -r build` pass, server 36 tests + extension 53 tests pass.
 
 **[mới 2026-08-31] Shared icon assets** — thêm `packages/shared/asset/icon/` lưu file ảnh icon `leetcodeLab.{ico,png,webp}` (nguồn dùng chung), và bản copy ảnh cần thiết vào asset riêng từng app: `apps/web/public/assets/leetcodeLab.*` (web) và `apps/extension/assets/leetcodeLab.*` (extension). **Không thêm logic/helper TS** — chỉ đặt file ảnh, các app tự tham chiếu ảnh cục bộ của mình. `pnpm -r build` pass.

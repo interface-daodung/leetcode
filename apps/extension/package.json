@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "tsc --noEmit && node scripts/bundle.mjs",
     "sync:config": "node scripts/sync-api-url.mjs",
     "prebuild": "node scripts/sync-api-url.mjs",
     "test": "vitest run --passWithNoTests",
@@ -14,6 +14,7 @@
     "typescript": "^5.5.0",
     "vitest": "^2.0.0",
     "jsdom": "^24.0.0",
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "esbuild": "^0.25.0"
   }
 }

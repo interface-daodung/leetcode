@@ -1,19 +1,12 @@
 import { describe, it, expect } from "vitest";
-import {
-  parseTitle,
-  extractSlug,
-  normalizeDifficulty,
-  findDescriptionContainer,
-  findTitleAnchor,
-  extractDifficulty,
-  extractTags,
-  cleanDescription,
-  extractHints,
-  extractTemplate,
-  extractTestCases,
-  buildProblemClip,
-  isValidProblemClip,
-} from "./clipper.js";
+import { parseTitle, extractSlug } from "./parsers/title.js";
+import { normalizeDifficulty, extractDifficulty } from "./parsers/difficulty.js";
+import { findDescriptionContainer, findTitleAnchor, cleanDescription } from "./parsers/description.js";
+import { extractTags } from "./parsers/tags.js";
+import { extractHints } from "./parsers/hints.js";
+import { extractTemplate } from "./parsers/template.js";
+import { extractTestCases } from "./parsers/testcases.js";
+import { buildProblemClip, isValidProblemClip } from "./clip.js";
 
 describe("parseTitle", () => {
   it("parse dạng '5. Title'", () => {

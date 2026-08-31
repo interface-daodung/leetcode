@@ -62,9 +62,15 @@ apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
   └─ Không còn nhập đề thủ công: việc import do extension POST thẳng tới server
 
 apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + localhost/* + API host từ .env)
+  ├─ build: tsc --noEmit + esbuild bundle src/index.ts → content.js (IIFE) — content.js không sửa tay
   ├─ api-config.js: var LC_API_BASE = "http://localhost:3000" (auto-gen từ root .env via pnpm sync:config)
-  ├─ src/clipper.ts (logic thuần, test với jsdom): findDescriptionContainer, extractTemplate (ưu tiên code_editor DOM → __NEXT_DATA__ codeSnippets → view-lines → window.monaco duyệt ngược + lọc js), extractTestCases (hidden cm-content opacity-0/h-0 → visible console flex-1 overflow-y-auto → __NEXT_DATA__ testCases/exampleTestcases string → description <pre> Input/Output fallback), extractHints, buildProblemClip
-  └─ content.js: widget ảnh động (Idle.png/Loading.png/Success.png/Error.png, chrome.runtime.getURL) + @keyframes squashStretch (1.2s animation khi click) → buildProblemClip(doc) → validate → clipboard + POST /import → nếu 409 tự PUT /:id ghi đè → toast SVG với text động (auto font-size 24-72px, auto wrap, position top-right của widget) thay toast text thuần
+  ├─ src/shared.ts: types + asset URLs (chrome.runtime.getURL) + API_BASE + copyToClipboard
+  ├─ src/parsers/ (thuần, test jsdom): title, difficulty, tags, description, hints, template, testcases (4 nguồn)
+  ├─ src/clip.ts: buildProblemClip + isValidProblemClip (orchestrator)
+  ├─ src/widget/: create (img Idle) + drag (draggable, keepInBounds) + state (4 ảnh PNG, squashStretch)
+  ├─ src/toast/: create + svg (generateToastSvg auto font-size 24-72px + wrap) + show (position top-right widget)
+  ├─ src/api/: validate + post (POST /import → 409 → PUT /:id ghi đè)
+  └─ src/index.ts: handleClip + init + SPA hook
 ```
 
 ## Data Flow
