@@ -5,6 +5,7 @@ import { createDefaultLayout, defaultTabsetId, defaultTabJson, ALL_COMPONENTS } 
 import type { LayoutComponentName } from "@leetcode/layout";
 import type { ProblemMeta } from "@leetcode/shared";
 import type { TestCaseResultView } from "../../lib/api.js";
+import type { TabNode } from "@leetcode/layout";
 
 const STORAGE_KEY = "lc:layout:json";
 
@@ -69,35 +70,41 @@ const defaultState: WorkspaceState = {
   running: false,
 };
 
-function getPanelsVisible(model: Model): Record<LayoutComponentName, boolean> {
-  const visible: Record<string, boolean> = {};
+/** Đếm tab hiện có trong model cho từng component. */
+function countTabs(model: Model): Record<LayoutComponentName, number> {
+  const counts: Record<string, number> = {};
   for (const c of ALL_COMPONENTS) {
-    visible[c] = false;
+    counts[c] = 0;
   }
-  for (const node of model.getNodesByType("tab")) {
-    const comp = node.getComponent() as LayoutComponentName;
-    if (comp && comp in visible) {
-      visible[comp] = true;
+  model.visitNodes((node) => {
+    if (node.getType() === "tab") {
+      const tab = node as TabNode;
+      const comp = tab.getComponent() as LayoutComponentName;
+      if (comp && comp in counts) {
+        counts[comp] += 1;
+      }
     }
-  }
-  return visible as Record<LayoutComponentName, boolean>;
+  });
+  return counts as Record<LayoutComponentName, number>;
 }
 
 export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<WorkspaceState>(defaultState);
-  const { model, setModel, undo, redo, canUndo, canRedo } = useUndo(loadModel, { ignoreActionTypes: [Actions.SET_ACTIVE_TABSET] });
+  const { model, undo, redo, canUndo, canRedo } = useUndo(loadModel, { ignoreActionTypes: [Actions.SET_ACTIVE_TABSET] });
   const persistTimer = useRef<number | null>(null);
-  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>(() => getPanelsVisible(model));
+  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>({ explorer: true, editor: true, description: true, output: true });
 
-  // Theo dõi model thay đổi → cập nhật panelsVisible
-  // Dùng keydown để đếm số lần model thay đổi (không có callback onModelChange ở đây)
+  // Theo dõi model thay đổi (useUndo replace model mỗi lần undo/redo, hoặc user thao tác layout)
+  // → cập nhật panelsVisible + persist. (onModelChange của FlexLayout không fire khi useUndo replace model.)
   useEffect(() => {
-    const update = () => setPanelsVisible(getPanelsVisible(model));
-    // useUndo replace model → cần re-run
-    update();
-  }, [model]);
+    if (!model) return;
+    const counts = countTabs(model);
+    const visible = {} as Record<LayoutComponentName, boolean>;
+    for (const c of ALL_COMPONENTS) {
+      visible[c] = counts[c] > 0;
+    }
+    setPanelsVisible(visible);
 
-  const persistModel = useCallback(() => {
     if (persistTimer.current !== null) {
       window.clearTimeout(persistTimer.current);
     }
@@ -110,29 +117,46 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     }, 500);
   }, [model]);
 
-  const reopenPanel = useCallback((component: LayoutComponentName) => {
-    const visible = getPanelsVisible(model);
-    if (visible[component]) {
-      // Đã có tab → focus tab đầu tiên
-      for (const node of model.getNodesByType("tab")) {
-        if (node.getComponent() === component) {
-          model.doAction(Actions.selectTab(node.getId()));
-          return;
-        }
+  const persistModel = useCallback(() => {
+    if (!model) return;
+    if (persistTimer.current !== null) {
+      window.clearTimeout(persistTimer.current);
+    }
+    persistTimer.current = window.setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(model.toJson()));
+      } catch {
+        // storage đầy / private mode → bỏ qua
       }
-      return;
-    }
-
-    // Thử thêm vào tabset mặc định
-    const tabsetId = defaultTabsetId(component);
-    const tabset = model.getNodeById(tabsetId);
-    if (tabset) {
-      model.doAction(Actions.addTab(defaultTabJson(component), tabsetId, DockLocation.CENTER, -1, true));
-    } else {
-      // Tabset mặc định đã bị xóa → tạo tabset mới
-      model.doAction(Actions.addTabToNewGroup(defaultTabJson(component), undefined, component));
-    }
+    }, 500);
   }, [model]);
+
+  const reopenPanel = useCallback(
+    (component: LayoutComponentName) => {
+      if (!model) return;
+      const counts = countTabs(model);
+      if (counts[component] > 0) {
+        // Đã có tab → focus tab đầu tiên của component
+        let found = false;
+        model.visitNodes((node) => {
+          if (!found && node.getType() === "tab" && (node as TabNode).getComponent() === component) {
+            found = true;
+            model.doAction(Actions.selectTab(node.getId()));
+          }
+        });
+        return;
+      }
+
+      // Chưa có tab → thêm về vị trí mặc định (hoặc tabset active / root row nếu tabset default đã bị xóa)
+      const tabsetId = defaultTabsetId(component);
+      const tabset = model.getNodeById(tabsetId);
+      const target = tabset ?? model.getActiveTabset() ?? model.getRootRow();
+      if (target) {
+        model.doAction(Actions.addTab(defaultTabJson(component), target.getId(), DockLocation.CENTER, -1, true));
+      }
+    },
+    [model],
+  );
 
   const actions: WorkspaceActions = {
     setProblem: useCallback((p) => setState((s) => ({ ...s, problem: p })), []),
@@ -145,7 +169,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     setShowHints: useCallback((b) => setState((s) => ({ ...s, showHints: b })), []),
     setVscodeMsg: useCallback((s) => setState((o) => ({ ...o, vscodeMsg: s })), []),
     setRunning: useCallback((b) => setState((s) => ({ ...s, running: b })), []),
-    model,
+    model: model!,
     undo,
     redo,
     canUndo,

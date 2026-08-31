@@ -1,31 +1,16 @@
-import { useMemo, useRef, useState } from "react";
-import { Layout, Model, createDefaultLayout, flexThemeClass, flexCssOverrides } from "@leetcode/layout";
-import type { IJsonModel } from "@leetcode/layout";
+import { useMemo } from "react";
+import { Layout, flexThemeClass, flexCssOverrides } from "@leetcode/layout";
+import type { LayoutComponentName } from "@leetcode/layout";
 import { useTheme } from "../../lib/theme.js";
+import { useWorkspace } from "./WorkspaceContext.js";
 import { ExplorerPanel } from "./ExplorerPanel.js";
 import { EditorPanel } from "./EditorPanel.js";
 import { DescriptionPanel } from "./DescriptionPanel.js";
 import { OutputPanel } from "./OutputPanel.js";
-import type { LayoutComponentName } from "@leetcode/layout";
-
-const STORAGE_KEY = "lc:layout:json";
-
-function loadModel(): Model {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      return Model.fromJson(JSON.parse(raw) as IJsonModel);
-    }
-  } catch {
-    // bỏ qua, dùng default
-  }
-  return Model.fromJson(createDefaultLayout());
-}
 
 export function WorkspaceLayout() {
   const { theme } = useTheme();
-  const [model] = useState<Model>(() => loadModel());
-  const persistTimer = useRef<number | null>(null);
+  const { model, persistModel } = useWorkspace();
 
   const factory = useMemo(() => {
     return (node: Parameters<NonNullable<Parameters<typeof Layout>[0]["factory"]>>[0]) => {
@@ -45,26 +30,12 @@ export function WorkspaceLayout() {
     };
   }, []);
 
-  // Khi model thay đổi (kéo thả tab, resize...) → persist vào localStorage (debounce).
-  const handleModelChange = (m: Model) => {
-    if (persistTimer.current !== null) {
-      window.clearTimeout(persistTimer.current);
-    }
-    persistTimer.current = window.setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(m.toJson()));
-      } catch {
-        // storage đầy / private mode → bỏ qua
-      }
-    }, 500);
-  };
-
   const themeClass = flexThemeClass(theme);
   const cssOverrides = useMemo(() => flexCssOverrides(theme), [theme]);
 
   return (
     <div className={`flexlayout__theme ${themeClass}`} style={{ ...cssOverrides, position: "relative", height: "100%", width: "100%" }}>
-      <Layout model={model} factory={factory} onModelChange={handleModelChange} />
+      <Layout model={model} factory={factory} onModelChange={persistModel} />
     </div>
   );
 }
