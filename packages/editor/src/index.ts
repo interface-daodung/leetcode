@@ -1,4 +1,20 @@
 import type { ProblemMeta } from "@leetcode/shared";
+import { languageTemplates } from "./templates.js";
+import {
+  createEditorTree,
+  createEditorTreeFromProblem,
+  createFileFromLanguage,
+  createFileNode,
+  createGroupNode,
+  findNode,
+  openFile,
+  updateCode,
+  markSaved,
+  closeFile,
+  setActive,
+  toFlatFiles,
+} from "./editorTree.js";
+import type { EditorNode, EditorNodeType, EditorTreeState } from "./editorTree.js";
 
 export interface EditorState {
   code: string;
@@ -14,8 +30,21 @@ export function createEditorState(problem?: ProblemMeta): EditorState {
   };
 }
 
-export const languageTemplates: Record<string, string> = {
-  javascript: "// Your solution here\nfunction solution() {\n  \n}",
-  python: "# Your solution here\ndef solution():\n    pass",
-  typescript: "// Your solution here\nfunction solution(): void {\n  \n}",
+export { languageTemplates };
+
+// EditorTree state/tree model
+export {
+  createEditorTree,
+  createEditorTreeFromProblem,
+  createFileFromLanguage,
+  createFileNode,
+  createGroupNode,
+  findNode,
+  openFile,
+  updateCode,
+  markSaved,
+  closeFile,
+  setActive,
+  toFlatFiles,
 };
+export type { EditorNode, EditorNodeType, EditorTreeState };
