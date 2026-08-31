@@ -1,4 +1,4 @@
-# LeetCode Clipper Extension
+# LeetCode Widget Extension
 
 Browser extension (Manifest V3) hiển thị widget nổi trên `https://leetcode.com/problems/*`.
 

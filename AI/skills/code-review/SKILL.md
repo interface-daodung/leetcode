@@ -20,6 +20,8 @@ description: Hướng dẫn review code theo checklist và phân loại mức đ
 
 ## Output
 
+Chỉ đưa ra danh sách Issues; KHÔNG sửa code trực tiếp dù issue rõ ràng hay dễ sửa. Kết quả review là danh sách Issue, mọi thay đổi code là task riêng (do người dùng yêu cầu sau khi xem review).
+
 Phân loại:
 
 ### Critical

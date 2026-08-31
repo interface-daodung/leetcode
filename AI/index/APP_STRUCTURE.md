@@ -19,9 +19,9 @@ Có 3 ứng dụng trong monorepo:
 - **Framework**: React 18.3, Vite 5, `@vitejs/plugin-react`, Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7.
 - **Entry**: `index.html` → `main.tsx` (BrowserRouter + ThemeProvider) → `App.tsx` (Routes).
 - **Routing**: Layout (`Header` + `Sidebar` + `<Outlet />`) → `/problems/:id` (ProblemDetail). `/` và `/problems` redirect về first problem.
-- **Components**: `Layout.tsx`, `Header.tsx` (logo, nav, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả HTML, hints, template, editor, run), `CodeEditor.tsx` (textarea + syntax highlight động), `DifficultyBadge.tsx`.
+- **Components**: `Layout.tsx`, `Header.tsx` (logo bấm để ẩn/hiện sidebar, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả trái, editor + Run phải, hints), `CodeEditor.tsx` (contentEditable div + react-syntax-highlighter, selection tự nhiên), `DifficultyBadge.tsx`.
 - **Theme**: CSS variables (`:root` light / `[data-theme=dark]`) trong `src/index.css`, `@custom-variant dark` cho Tailwind, `lib/theme.tsx` (ThemeProvider + useTheme, lưu localStorage).
-- **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme).
+- **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme), render HTML string qua `renderToStaticMarkup`, contentEditable div hiển thị trực tiếp — không overlay nên không lệch dòng, selection nhìn thấy được.
 - **API**: `lib/api.ts` — `fetchProblems` (GET /api/problems), `fetchProblem` (GET /api/problems/:id), `runCode` (POST /api/problems/:id/run). Host từ root `.env` (`VITE_API_URL`), fallback localhost.
 - **Đã loại bỏ**: `ProblemImportPaste.tsx`, `lib/problemClip.ts` — web không còn nhập đề thủ công (extension POST thẳng tới server).
 - **Dependencies**: `@leetcode/shared`, `@leetcode/editor`, `@leetcode/problem-engine`, `react-router-dom`, `react-syntax-highlighter`.
@@ -37,7 +37,7 @@ Có 3 ứng dụng trong monorepo:
   - `GET /api/problems` — list tất cả problems (từ DB, kèm hints).
   - `GET /api/problems/:id` — lấy problem theo id (engine → fallback DB, kèm hints/assets).
   - `GET /api/problems/random/:difficulty?` — random problem.
-  - `POST /api/problems/:id/run` — chạy test với code body.
+  - `POST /api/problems/:id/run` — lọc comment → trích hàm giải duy nhất → wrap spread input → engine.runTests (xem `services/solution.util.ts`).
   - `POST /api/problems/:id/hint` — lấy hint (placeholder).
   - `GET /api/problems/:id/hints` — hints từ DB.
   - `GET /api/problems/:id/assets` — assets từ DB.
@@ -51,7 +51,7 @@ Có 3 ứng dụng trong monorepo:
 - **Type**: Manifest V3, content script vanilla JS (không bundler).
 - **Manifest**: `apps/extension/manifest.json` — `matches: *://leetcode.com/problems/*`, `permissions: clipboardWrite`, `host_permissions: *://leetcode.com/*`.
 - **Content**: `content.js` — widget `LC` draggable (fixed, z-index 999999), click → `buildProblemClip` → `navigator.clipboard.writeText`, toast.
-- **Logic thuần**: `src/clipper.ts` — `findDescriptionContainer`, `extractDifficulty`, `cleanDescription`, `buildProblemClip`, `isValidProblemClip` (28 tests với jsdom).
+- **Logic thuần**: `src/clipper.ts` — `findDescriptionContainer`, `extractDifficulty`, `cleanDescription`, `buildProblemClip`, `isValidProblemClip` (42 tests với jsdom).
 - **Style**: `style.css` — widget tròn 52px, toast, trạng thái success/error.
 
 ## Shared Components
@@ -87,7 +87,7 @@ Không có shared UI component. Các package chia sẻ logic và types:
 | `apps/server/src/services/` | Logic nghiệp vụ (problem.service, asset.service) |
 | `apps/extension/manifest.json` | MV3 manifest |
 | `apps/extension/content.js` | Content script widget |
-| `apps/extension/src/clipper.ts` | Pure clipper logic (testable) |
+| `apps/extension/src/clipper.ts` | Pure extraction logic (testable) |
 | `packages/shared/src/index.ts` | Types và utils (có ProblemClip) |
 | `packages/editor/src/index.ts` | Editor state |
 | `packages/problem-engine/src/index.ts` | ProblemEngine class |

@@ -4,6 +4,7 @@ import { getHint } from "@leetcode/ai";
 import type { FastifyBaseLogger } from "fastify";
 import type { ProblemClip } from "@leetcode/shared";
 import { downloadAndRewriteImages, ensureAssetFiles } from "./asset.service.js";
+import { extractSolutionFunction, wrapSolution } from "./solution.util.js";
 
 export type RunOutcome =
   | { ok: true; passed: number; total: number; problemId: string }
@@ -98,7 +99,8 @@ export class ProblemService {
     const problem = this.reg.get(id);
     if (!problem) return { ok: false, reason: "not-found" };
     try {
-      const solution = new Function("return " + code)();
+      // Lọc comment → trích hàm giải duy nhất → bọc để chạy test case
+      const solution = wrapSolution(extractSolutionFunction(code));
       const result = this.reg.runTests(id, solution);
       return { ok: true, ...result, problemId: `LC${String(id).padStart(4, "0")}` };
     } catch (e) {

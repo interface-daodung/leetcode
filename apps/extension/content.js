@@ -1,4 +1,4 @@
-// LeetCode Clipper — content script
+// LeetCode Widget — content script
 // Hiển thị widget nổi trên leetcode.com/problems/*, clip DOM → JSON → clipboard
 
 (function () {
@@ -607,7 +607,7 @@
     const validationErr = isValidClipForPost(clip);
     if (validationErr) {
       showToast(`Không gửi được: ${validationErr}`, "error");
-      console.warn("[LeetCode Clipper] validation fail:", validationErr, clip);
+      console.warn("[LeetCode Widget] validation fail:", validationErr, clip);
       return;
     }
     // Hiển thị trạng thái đang gửi
@@ -624,7 +624,7 @@
             w.textContent = "LC";
           }, 1800);
         }
-        console.log("[LeetCode Clipper] POST ok:", result.data);
+        console.log("[LeetCode Widget] POST ok:", result.data);
       } else if (result.dup) {
         showToast(`Đã tồn tại: ${clip.id}. ${clip.title}`, "error");
         if (w) {
@@ -633,7 +633,7 @@
         }
       } else {
         showToast(`Lỗi gửi server: ${result.error} (đã copy JSON)`, "error");
-        console.log("[LeetCode Clipper] POST fail, JSON:", json, result);
+        console.log("[LeetCode Widget] POST fail, JSON:", json, result);
       }
     });
   }

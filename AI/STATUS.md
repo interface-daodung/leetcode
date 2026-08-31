@@ -4,12 +4,12 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
-**[mới 2026-08-31] Frontend redesign** — `apps/web` chuyển sang **Tailwind CSS 4 + React Router DOM 7 + react-syntax-highlighter**, theme sáng/tối bằng CSS variables (`data-theme` + `@custom-variant dark`), layout Header + Sidebar + ProblemDetail, code editor có syntax highlighting. **Đã loại bỏ nhập đề thủ công** (`ProblemImportPaste.tsx`, `lib/problemClip.ts`) vì extension đã POST thẳng tới server. `pnpm -r build` pass, server 11 tests pass, dev server ok.
+**[mới 2026-08-31] Frontend redesign + run test cải tiến** — `apps/web` dùng **Tailwind CSS 4 + React Router DOM 7 + react-syntax-highlighter**, theme sáng/tối CSS variables (`data-theme`), layout Header (bấm logo ẩn/hiện sidebar) + Sidebar + ProblemDetail (description trái, editor + Run phải). CodeEditor chuyển sang **contentEditable div + highlight trực tiếp** (hết lệch dòng, selection nhìn thấy). Server `run` dùng `services/solution.util.ts`: **lọc comment (stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input)** thay cho `new Function("return " + code)`. Fix ảnh assets 404 bằng bỏ `wildcard: false` + `ensureAssetFiles`. **Đã loại bỏ nhập đề thủ công** (ProblemImportPaste, lib/problemClip). `pnpm -r build` pass, server 30 tests + extension 49 tests pass.
 
 ## Đang làm
 
 - [ ] Hoàn thiện plan `AI/plans/active/frontend-redesign-tailwind-router.md` → move sang completed.
-- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
+- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-widget-extension`.
 - [ ] Hoàn thiện plan `AI/plans/active/server-mvc-restructure.md` → move sang completed.
 
 ## Đã hoàn thành
@@ -26,7 +26,7 @@ Cập nhật: 2026-08-31
 - DB path cố định tại `packages/database/data/leetcode.db`, auto-migrate runtime.
 - Tất cả package nội bộ đồng bộ ESM (`"type": "module"`).
 - Seed script đã bị bỏ khỏi dự án.
-- **[mới] LeetCode Clipper Extension (base)** — `apps/extension` (MV3: `manifest.json`, `content.js` widget LC draggable, `style.css`, `src/clipper.ts` pure logic, `vitest.config.ts`).
+- **[mới] LeetCode Widget Extension (base)** — `apps/extension` (MV3: `manifest.json`, `content.js` widget LC draggable, `style.css`, `src/clipper.ts` pure logic, `vitest.config.ts`).
   - `src/clipper.ts` có `extractTags` (a[href^="/tag/"]) — đã fix để tags không còn rỗng (VD `debai.html` → 4 tags).
   - 35 tests với jsdom (`clipper.test.ts`).
 - **[mới] Shared `ProblemClip` type** — `packages/shared/src/index.ts` (id, slug, title, difficulty, tags, description, url, clippedAt).
@@ -50,10 +50,11 @@ Cập nhật: 2026-08-31
 - **[mới] Fix `created_at`** — `packages/database/src/schema.ts:14` đổi `default("(datetime('now'))")` → `default(sql\`(datetime('now'))\`)` (đã áp dụng trong commit `fa9c962`), verify DB lưu datetime thật. Backlog: `AI/plans/completed/fix-created-at-default.md`.
 - **[mới 2026-08-31] Server refactor sang MVC / phân tầng** — `apps/server` chuyển từ single-file (`index.ts` 251 dòng) sang `routes/` → `controllers/` → `services/` → `plugins/` + `config.ts` + `app.ts`. Thêm `problem.service.test.ts` (6 tests) → server 11 tests pass, `pnpm -r build` pass, smoke-test ok. Xem `AI/history/2026-08/server-mvc-refactor.md`.
 - **[mới 2026-08-31] Frontend redesign** — `apps/web` dùng Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7 (`/problems/:id`), `react-syntax-highlighter` (PrismLight oneDark/oneLight). Theme bằng CSS variables (`:root` / `[data-theme=dark]`) + `@custom-variant dark`, toggle trong Header lưu localStorage. Sidebar có search + filter difficulty. Đã xóa `ProblemImportPaste.tsx`/`lib/problemClip.ts` (không còn nhập tay). `pnpm -r build` pass, server 11 tests pass. Xem `AI/history/2026-08/frontend-redesign-tailwind-router.md`.
+- **[mới 2026-08-31] Cải tiến editor + run test + assets** — `apps/web` CodeEditor chuyển sang **contentEditable div + react-syntax-highlighter** (render HTML string qua `renderToStaticMarkup`, giữ caret bằng tree-walker) → hết lệch dòng, selection nhìn thấy; Header bấm logo để ẩn/hiện sidebar (bỏ nút ◁/▷); ProblemDetail 2 cột (description trái, editor + Run phải). Server `run` dùng `services/solution.util.ts` (stripComments → extractSolutionFunction → wrapSolution) thay `new Function("return " + code)` — chạy được template có comment + function declaration/expression/arrow; thêm 19 tests → server 30 tests. Fix ảnh 404 bằng bỏ `wildcard: false` trong `@fastify/static` + `ensureAssetFiles` (tải lại file thiếu lúc hydrate/getById). Xem `AI/history/2026-08/code-editor-run-test-assets.md`.
 
 ## Đang làm
 
-- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-clipper-extension`.
+- [ ] (từ nhánh cũ) Hoàn thiện docs/history cho mở rộng DB hints/template/assets, cleanup test data (9999/9998) và chuẩn bị commit trên nhánh `feat/leetcode-widget-extension`.
 
 ## Tiếp theo
 

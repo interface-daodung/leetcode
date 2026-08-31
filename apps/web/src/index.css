@@ -188,42 +188,39 @@ body {
   color: var(--text-secondary);
 }
 
-/* Code editor overlay */
-.code-editor-overlay {
+/* Code editor: contentEditable div hiển thị syntax highlight trực tiếp */
+.code-editor-ce {
   position: relative;
-  z-index: 1;
-  color: transparent;
+  color: var(--text-primary);
   caret-color: var(--text-primary);
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-y: auto;
-  overflow-x: hidden;
   padding: 0.75rem;
   font-size: 0.85rem;
   font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
   line-height: 1.6;
-  border: none;
-  outline: none;
-  resize: none;
-  background: transparent;
-  min-height: 300px;
-}
-
-.code-editor-overlay::selection {
-  background: var(--accent-soft);
-  color: transparent;
-}
-
-.code-editor-highlight {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  margin: 0;
-  overflow: hidden;
-  font-size: 0.85rem;
-  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
-  line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
+  min-height: 300px;
+  outline: none;
+  tab-size: 2;
+  overflow: hidden;
+}
+
+.code-editor-ce:focus {
+  outline: none;
+}
+
+.code-editor-ce:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-muted);
   pointer-events: none;
+}
+
+.code-editor-ce::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.code-editor-ce code,
+.code-editor-ce pre {
+  background: transparent !important;
+  font-family: inherit;
 }

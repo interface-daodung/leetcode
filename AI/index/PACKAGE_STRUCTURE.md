@@ -40,7 +40,7 @@ Monorepo chứa 6 package nội bộ (`packages/*`):
 | `@types/node@^22.0.0` | `@leetcode/server`, `@leetcode/problem-engine` (dev) |
 | `@types/react@^18.3.0` | `@leetcode/web` (dev) |
 | `@types/react-dom@^18.3.0` | `@leetcode/web` (dev) |
-| `jsdom@^24.0.0` | `@leetcode/extension` (dev, cho clipper.test.ts) |
+| `jsdom@^24.0.0` | `@leetcode/extension` (dev, cho clipper.test.ts — pure extraction logic) |
 
 ## Shared Packages
 

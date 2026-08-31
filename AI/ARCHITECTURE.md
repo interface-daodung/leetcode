@@ -4,7 +4,7 @@
 
 Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, `apps/extension`) và 6 package dùng chung (`packages/*`). Dependency chảy theo hướng `apps → packages`; các package có thể phụ thuộc lẫn nhau (ví dụ `problem-engine` phụ thuộc `database` và `shared`).
 
-`problem-engine` dùng **in-memory registry** (`Map`) + **SQLite** (`packages/database`) làm persistence. Server hydrate `engine` từ SQLite khi khởi động. Dữ liệu đề bài được đưa vào qua **LeetCode Clipper Extension** (DOM clip → JSON → `POST /api/problems/import` trực tiếp tới server, host cấu hình ở root `.env`). Ảnh trong `description` được tải về `packages/database/data/assets/<slug>/` với dedupe SHA-256 lưu trong DB (`problem_assets`). Hints và template/url được lưu riêng (`hints`, `problems.template/url`).
+`problem-engine` dùng **in-memory registry** (`Map`) + **SQLite** (`packages/database`) làm persistence. Server hydrate `engine` từ SQLite khi khởi động. Dữ liệu đề bài được đưa vào qua **LeetCode Widget Extension** (DOM clip → JSON → `POST /api/problems/import` trực tiếp tới server, host cấu hình ở root `.env`). Ảnh trong `description` được tải về `packages/database/data/assets/<slug>/` với dedupe SHA-256 lưu trong DB (`problem_assets`). Hints và template/url được lưu riêng (`hints`, `problems.template/url`).
 
 ## Thành phần
 
@@ -47,7 +47,7 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
   ├─ GET /api/problems/:id/assets   → problemDb.findAssetsByProblem(id)
   ├─ GET /api/problems/random/:difficulty?
   │                                 → engine.getRandom(difficulty)
-  ├─ POST /api/problems/:id/run     → new Function + engine.runTests
+  ├─ POST /api/problems/:id/run     → lọc comment (solution.util.stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input) → engine.runTests
   ├─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
   └─ POST /api/problems/import      → validate chặt (null check, Zod strict, url/template/hints) → engine.register + problemDb.add (FK ok) → downloadAndRewriteImages (fetch Buffer → SHA-256 → DB problem_assets dedupe → lưu assets/<slug>/{name}) → update description + hints (201/409)
 ```

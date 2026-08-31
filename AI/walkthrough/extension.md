@@ -1,6 +1,6 @@
 # Extension Walkthrough
 
-> Hướng dẫn cài và dùng LeetCode Clipper cho người mới.
+> Hướng dẫn cài và dùng LeetCode Widget cho người mới.
 
 ## Bạn sẽ làm được gì
 
@@ -25,7 +25,7 @@
 
 1. Mở `chrome://extensions` → bật **Developer mode**.
 2. Bấm **Load unpacked** → chọn thư mục `apps/extension`.
-3. Thấy **LeetCode Clipper** hiện trong list là xong. Bấm **Reload** nếu vừa sync lại.
+3. Thấy **LeetCode Widget** hiện trong list là xong. Bấm **Reload** nếu vừa sync lại.
 
 ### Bước 3 — Dùng trên LeetCode
 

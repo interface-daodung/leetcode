@@ -1,26 +1,20 @@
-import { Link } from "react-router-dom";
 import { useTheme } from "../lib/theme.js";
 
 export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean; onToggleSidebar: () => void }) {
   const { theme, toggle } = useTheme();
   return (
     <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-border bg-header-bg px-3 backdrop-blur-md">
-      <div className="flex items-center gap-1">
-        <button
-          type="button"
-          onClick={onToggleSidebar}
-          aria-label={sidebarOpen ? "Ẩn sidebar" : "Hiện sidebar"}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
-        >
-          <span className="text-lg">{sidebarOpen ? "◁" : "▷"}</span>
-        </button>
-        <Link to="/" className="flex items-center gap-2 font-semibold text-text-primary no-underline">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
-            LC
-          </span>
-          <span className="hidden text-sm sm:inline">LeetCode Lab</span>
-        </Link>
-      </div>
+      <button
+        type="button"
+        onClick={onToggleSidebar}
+        title={sidebarOpen ? "Ẩn sidebar" : "Hiện sidebar"}
+        className="flex items-center gap-2 rounded-lg px-1 py-1 no-underline transition-colors hover:bg-bg-hover"
+      >
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
+          LC
+        </span>
+        <span className="hidden text-sm font-semibold text-text-primary sm:inline">LeetCode Lab</span>
+      </button>
 
       <nav className="flex items-center gap-1 text-sm">
         <a
