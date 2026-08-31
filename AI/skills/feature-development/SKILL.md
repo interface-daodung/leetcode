@@ -22,12 +22,13 @@ Sử dụng khi phát triển feature mới hoặc thay đổi lớn.
 9. Chờ lựa chọn:
    - **Chạy**: tiếp tục các bước bên dưới.
    - **Thay đổi**: sửa plan trong `AI/plans/active/` rồi quay lại bước 8.
-10. Tạo branch.
+10. Tạo branch `feat/<name>` (hoặc `fix/<name>`).
 11. Implement.
 12. Test.
 13. Update documentation.
 14. Ghi history.
-15. Hoàn thành plan (xem Plan Management).
+15. Commit từng phần việc với message đúng convention (xem `AGENTS.md` / `AI/CONVENTIONS.md`).
+16. Hoàn thành plan (xem Plan Management).
 
 ## Plan Management
 

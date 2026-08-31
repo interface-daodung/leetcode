@@ -45,13 +45,24 @@ pnpm --filter=@leetcode/database db:generate|db:migrate|db:studio   # drizzle-ki
 - Hiện chưa có test file (chỉ template ở `AI/skills/vitest-logic-testing/test-template.test.ts`).
 - Khi viết test logic: đặt `*.test.ts` cạnh file logic, tham khảo `AI/skills/vitest-logic-testing/skill.md`.
 
-## Conventions
+## Git Workflow (tự chủ cục bộ)
 
-- Documentation và comment code: tiếng Việt.
-- TypeScript `strict: true` ở mọi nơi.
-- Không tự commit/merge/push trừ khi được yêu cầu. Không xóa file ngoài phạm vi task.
-- Plan: lưu `AI/plans/active/<name>.md`; khi xong chạy `AI\skills\feature-development\move-plan-to-completed.bat <name>` từ repo root (xem `AI/skills/feature-development/SKILL.md`).
-- Sau khi đổi code, cập nhật `AI/ARCHITECTURE.md`, `AI/CONVENTIONS.md`, `AI/INDEX.md`, `AI/PROJECT.md`, `AI/context/glossary.md`, `AI/context/decisions.md`, `AI/context/known-issues.md`, `AI/walkthrough/`, `AI/history/` nếu liên quan.
+AI được phép **tự chủ thao tác git cục bộ** để quản lý tiến độ liên tục:
+
+- **Commit thường xuyên**: sau mỗi phần việc hoàn chỉnh (implement xong, fix xong, docs cập nhật), commit ngay với message rõ ràng, đúng convention.
+- **Tự tạo nhánh**: khi bắt đầu một tính năng mới hoặc triển khai một kế hoạch, tự tạo nhánh `feat/<name>` hoặc `fix/<name>` rồi làm việc trên nhánh đó.
+- **Merge nội bộ**: được phép merge giữa các nhánh cục bộ (vd gộp `fix/*` về `feat/*`) khi hợp lý.
+- **KHÔNG được public lên**: tuyệt đối không `push` lên remote, không `publish`, không tạo PR/release. Remote chỉ phục vụ đồng bộ cá nhân khi user tự chủ động.
+
+Quy tắc khi commit:
+
+- Chỉ stage đúng các file thuộc phạm vi công việc hiện tại (kiểm tra `git status`/`git diff` trước), không commit file lạ hoặc file vô tình sửa.
+- Không bao giờ commit secret/key/.env.
+- Message commit ngắn gọn, khớp style repo (xem `git log --oneline`): vd `feat(x): ...`, `fix(x): ...`, `refactor(x): ...`, `docs(x): ...`.
+- Không xóa file ngoài phạm vi task.
+- Sau khi commit xong, ghi nhận trạng thái vào `AI/STATUS.md` và `AI/history/` nếu thay đổi lớn.
+
+Plan: lưu `AI/plans/active/<name>.md`; khi xong chạy `AI\skills\feature-development\move-plan-to-completed.bat <name>` từ repo root (xem `AI/skills/feature-development/SKILL.md`).
 
 ## Source of Truth
 

@@ -90,6 +90,15 @@ Nếu cố tình tự triển khai, phải ghi rõ lý do.
 
 ---
 
+## Git Workflow
+
+- AI tự chủ commit/tạo nhánh/merge cục bộ — không cần xin phép từng lần.
+- Chỉ stage đúng file thuộc phạm vi task (kiểm tra `git status`/`git diff` trước).
+- KHÔNG push lên remote, không publish, không tạo PR — remote chỉ do user chủ động.
+- Message commit: `feat(x):`, `fix(x):`, `refactor(x):`, `docs(x):` — xem `git log --oneline`.
+
+---
+
 ## Folder Convention
 
 - Apps: `apps/<name>/src/`
