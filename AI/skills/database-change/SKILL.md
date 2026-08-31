@@ -15,7 +15,7 @@ description: Hướng dẫn thay đổi database an toàn với Drizzle/SQLite. 
 6. Không sửa database production trực tiếp nếu workflow project không cho phép.
 7. Test migration.
 8. Test rollback nếu hệ thống hỗ trợ.
-9. Cập nhật `AI/index/DATA_STRUCTURE.md`.
+9. Cập nhật documentation nếu cần (dùng GitNexus hoặc ghi history).
 10. Ghi technical decision nếu cần.
 11. Ghi history.
 

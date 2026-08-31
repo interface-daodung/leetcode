@@ -4,6 +4,8 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
+**[mới 2026-08-31] GitNexus + archive tài liệu tĩnh** — cài GitNexus (v1.6.10, index 2.353 symbols / 3.718 edges / 56 clusters / 88 flows, MCP cấu hình trong OpenCode). Archive `AI/index/`, `AI/ARCHITECTURE.md`, `AI/walkthrough/` sang `AI/history/archived/` và xóa `CLAUDE.md`/`.claude/` để agent không đọc lãng phí token; từ nay hiểu codebase bằng GitNexus (`query`/`context`/`impact`) thay vì tài liệu tĩnh. Cập nhật `AGENTS.md`, `AI/INDEX.md`, `AI/README.md`, các skills, decision + history. Xem `AI/history/2026-08/archive-index-architecture-walkthrough.md`.
+
 **[mới 2026-08-31] Dockable Layout (IDE-like) + Package State/Tree Redesign** — nhánh `feat/dockable-layout`. Biến `apps/web` thành giao diện IDE-like dockable layout bằng **FlexLayout** (`flexlayout-react`), đồng thời tái thiết kế `packages/editor` và `packages/problem-engine` sang **state/tree model**. Xem `AI/history/2026-08/dockable-layout-package-state-tree.md`.
 
 Thay đổi chính:

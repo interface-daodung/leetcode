@@ -21,7 +21,7 @@ Giữ cho `AI/` luôn "tươi" để Agent mới không bị rối và không t�
 ### Phase 0 — Pre-flight
 
 1. Đọc `AI/INDEX.md`, `AI/STATUS.md`, `AI/CONVENTIONS.md` (theo AGENTS.md).
-2. Đọc `AI/ARCHITECTURE.md` để nắm chắc "source of truth" hiện tại — không dọn nhầm.
+2. Dùng GitNexus (`query`/`context`) để nắm "source of truth" hiện tại — không dọn nhầm. (`AI/ARCHITECTURE.md` đã archive sang `history/archived/`.)
 
 ### Phase 1 — Đánh giá độ phình
 
@@ -54,18 +54,18 @@ Giữ cho `AI/` luôn "tươi" để Agent mới không bị rối và không t�
 
 ### Phase 5 — Đồng bộ `AI/INDEX.md`
 
-- Nếu cấu trúc thay đổi (vd thêm folder archive, đổi tên file), cập nhật `AI/INDEX.md` và `AI/ARCHITECTURE.md` nếu cần.
+- Nếu cấu trúc thay đổi (vd thêm folder archive, đổi tên file), cập nhật `AI/INDEX.md` nếu cần.
 
 ### Phase 6 — Kiểm tra (Verify)
 
 1. Mọi link tương đối trong các file vừa sửa vẫn trỏ đúng (dùng `Test-Path` hoặc đọc thử).
-2. Không mất tri thức nền: `decisions.md`, `glossary.md`, `ARCHITECTURE.md` còn nguyên nội dung quan trọng.
+2. Không mất tri thức nền: `decisions.md`, `glossary.md`, `history/archived/ARCHITECTURE.md` còn nguyên nội dung quan trọng.
 3. `git status` chỉ show đúng các file thuộc phạm vi dọn dẹp, không có file tạm.
 4. Báo cáo ngắn cho user: đã cắt bao nhiêu dòng, chuyển gì sang history, tiết kiệm được gì.
 
 ## Không được
 
-- xóa nội dung `decisions.md`, `glossary.md`, `ARCHITECTURE.md` trừ khi chắc chắn là rác/hết hiệu lực.
+- xóa nội dung `decisions.md`, `glossary.md`, `history/archived/ARCHITECTURE.md` trừ khi chắc chắn là rác/hết hiệu lực.
 - xóa `AI/plans/completed/*` (đó là archive chính thức).
 - xóa thông tin lý do ("tại sao") — phải chuyển sang history trước khi xoá ở nơi khác.
 - sửa code để khớp tài liệu sau khi dọn — nếu source và doc mâu thuẫn, ưu tiên source rồi mới cập nhật doc.

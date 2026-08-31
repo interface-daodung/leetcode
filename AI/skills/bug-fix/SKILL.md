@@ -34,7 +34,7 @@ Lặp cho đến khi `AI/plans/backlog/` rỗng (chỉ còn `.gitkeep`):
    5. Xác định root cause (đối chiếu với `Nguyên nhân` trong known-issues/backlog).
    6. Sửa **nguyên nhân** thay vì chỉ che triệu chứng — chỉ sửa file liên quan, không sửa ngẫu nhiên nhiều file.
    7. Test regression (Vitest `vitest run` hoặc test thủ công liên quan).
-   8. Cập nhật documentation nếu cần (`AI/index/`, `AI/ARCHITECTURE.md`, `AI/context/decisions.md`, ...).
+    8. Cập nhật documentation nếu cần (ghi `AI/context/decisions.md` hoặc `AI/history/` — kiến trúc/codebase dùng GitNexus, `AI/index/`, `AI/ARCHITECTURE.md` đã archive).
    9. Ghi history nếu thay đổi đáng kể (`AI/history/`).
 3. Khi backlog đạt Definition of Done:
    - Chạy **`AI\skills\bug-fix\move-backlog-to-completed.bat <name>`** từ **repo root** để **move** (không copy) file `AI/plans/backlog/<name>.md` → `AI/plans/completed/<name>.md`.

@@ -1,11 +1,21 @@
 ---
 name: walkthrough
-description: Hướng dẫn viết lại AI/walkthrough thành hướng dẫn sử dụng hoàn thiện, không quá kỹ thuật. Use when cập nhật walkthrough, đồng bộ history/index vào hướng dẫn người dùng.
+description: Hướng dẫn viết lại AI/walkthrough thành hướng dẫn sử dụng hoàn thiện. Use when cập nhật walkthrough, đồng bộ history/index vào hướng dẫn người dùng.
 ---
 
 # Walkthrough
 
-## Trigger
+## Trạng thái: ARCHIVED
+
+`AI/walkthrough/` đã archive sang **`AI/history/archived/walkthrough/`** (2026-08-31). Hiểu kiến trúc/codebase bằng **GitNexus** (`query`, `context`, `impact`) thay vì walkthrough.
+
+**KHÔNG tạo lại `AI/walkthrough/` hoặc cập nhật file trong đó.** Nếu cần hướng dẫn sử dụng cho người dùng, viết vào `docs/` (xem `skills/docs-generator`).
+
+Nội dung dưới đây giữ lại để tham khảo quy trình cũ (đã ngừng áp dụng).
+
+---
+
+## Trigger (cũ)
 
 Sử dụng khi cần viết lại hoặc cập nhật `AI/walkthrough/*.md` để hướng dẫn sử dụng hoàn thiện hơn — đặc biệt sau khi có feature mới, history/index thay đổi, hoặc walkthrough hiện tại còn sơ sài/quá kỹ thuật.
 

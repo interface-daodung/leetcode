@@ -205,6 +205,32 @@ Host `http://localhost:3000` bị hard-code rải rác ở server/web/extension;
 - Import phải tạo `problems` trước rồi mới `addAsset` (FK), nên `src/index.ts` đã đổi thứ tự và thêm `updateDescription`.
 - `pnpm -r build` pass, `extension` 42 tests + `server` 5 tests (mock DB) pass; end-to-end với `https://httpbin.org/image/png` verify dedupe reuse cùng `localPath` giữa 2 problem.
 
+### [2026-08-31] Archive AI/index/, AI/ARCHITECTURE.md, AI/walkthrough/ — dùng GitNexus thay thế
+
+#### Context
+
+GitNexus đã được cài đặt (v1.6.10) và index toàn bộ monorepo (2.353 symbols, 3.718 edges, 56 clusters, 88 flows). Các file `AI/index/`, `AI/ARCHITECTURE.md`, `AI/walkthrough/` được viết tay, nhanh lỗi thời, tốn token khi agent đọc. GitNexus tự động đồng bộ với source code, biết import/dependency/cluster/execution flow.
+
+#### Decision
+
+- Archive `AI/index/` (4 files), `AI/ARCHITECTURE.md`, `AI/walkthrough/` (6 files) vào `AI/history/archived/`.
+- Xóa `CLAUDE.md` và `.claude/` (do gitnexus setup tạo cho Claude Code, không dùng với OpenCode).
+- Cập nhật `AGENTS.md`, `AI/INDEX.md`, `AI/README.md`, và các skills (bug-fix, context-cleanup, database-change, docs-generator, walkthrough) để không tham chiếu file đã archive.
+- Agent dùng GitNexus (`query`, `context`, `impact`) để hiểu codebase thay vì đọc index/ARCHITECTURE/walkthrough.
+- Skills GitNexus vẫn dùng qua `AGENTS.md` (CLI table trỏ `AI/skills/` thay `.claude/skills/`).
+
+#### Reason
+
+- Tiết kiệm token: agent không đọc ~10 file tĩnh (~600 dòng) mỗi lần khởi động.
+- Luôn đồng bộ: GitNexus phản ánh source code thật, không lỗi thời.
+- Giảm maintenance: không cập nhật index/ARCHITECTURE/walkthrough bằng tay nữa.
+
+#### Consequences
+
+- File archive vẫn giữ nguyên trong `AI/history/archived/` để tham khảo lịch sử.
+- Agent bắt buộc phải dùng GitNexus MCP tools (đã cấu hình trong OpenCode).
+- `AGENTS.md` GitNexus section đã cập nhật CLI table trỏ `AI/skills/` thay `.claude/`.
+
 ### [2026-08-31] Fix extension clip — template nhiễm shipWithinDays và thiếu testCases cho 1091
 
 #### Context

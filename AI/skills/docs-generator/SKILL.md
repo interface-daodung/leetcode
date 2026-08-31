@@ -11,21 +11,16 @@ Khi được yêu cầu tạo/cập nhật tài liệu người dùng (README, d
 
 ## Nguồn dữ liệu
 
-**CHỈ ĐỌC từ `AI/`**, KHÔNG đọc source code:
+**CHỈ ĐỌC từ `AI/` + GitNexus**, KHÔNG đọc source code (trừ khi cần xác nhận qua GitNexus `query`/`context`):
 
 ```text
 AI/INDEX.md
 AI/PROJECT.md
-AI/ARCHITECTURE.md
 AI/STATUS.md
 AI/CONVENTIONS.md
-AI/index/PROJECT_STRUCTURE.md
-AI/index/APP_STRUCTURE.md
-AI/index/PACKAGE_STRUCTURE.md
-AI/index/DATA_STRUCTURE.md
-AI/walkthrough/*.md
 AI/context/glossary.md
 AI/context/decisions.md
+AI/history/archived/*  (ARCHITECTURE.md, index/, walkthrough/ — bản sao tĩnh cũ)
 ```
 
 Thứ tự đọc: `INDEX.md` → xác định file liên quan → đọc. Không đọc file không cần thiết.

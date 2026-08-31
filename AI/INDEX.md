@@ -7,29 +7,10 @@
 ## Project
 
 - `PROJECT.md`
-- `ARCHITECTURE.md`
 - `CONVENTIONS.md`
 - `STATUS.md`
 
----
-
-## Source Code Index
-
-### Repository
-
-`index/PROJECT_STRUCTURE.md`
-
-### Applications
-
-`index/APP_STRUCTURE.md`
-
-### Packages
-
-`index/PACKAGE_STRUCTURE.md`
-
-### Data
-
-`index/DATA_STRUCTURE.md`
+> Lưu ý: `ARCHITECTURE.md`, `index/`, `walkthrough/` đã archive sang `history/archived/` — hiểu kiến trúc/codebase bằng GitNexus (`query`, `context`, `impact`), không đọc các file archive.
 
 ---
 
@@ -51,21 +32,17 @@
 
 `skills/code-review/SKILL.md`
 
-### API
-
-`skills/add-api/SKILL.md`
-
 ### Database
 
 `skills/database-change/SKILL.md`
 
-### General Agent Workflow
-
-`skills/agent-workflow/SKILL.md`
-
 ### Docs Generator
 
 `skills/docs-generator/SKILL.md`
+
+### Walkthrough
+
+`skills/walkthrough/SKILL.md` (archive: `history/archived/walkthrough/`)
 
 ---
 
@@ -112,14 +89,14 @@ Task
  ↓
 INDEX
  ↓
-Relevant index
+STATUS / CONVENTIONS
  ↓
-Relevant walkthrough
+GitNexus (query / context / impact)
  ↓
 Relevant source
 ```
 
-Nếu cấu trúc repository thay đổi, cập nhật `AI/index/`.
+Nếu cấu trúc repository thay đổi, dùng GitNexus để cập nhật hiểu biết — `AI/index/` đã archive, không cập nhật nữa.
 
 ---
 
@@ -139,4 +116,4 @@ packages/ai               # LLM integration (placeholder)
 packages/javascript-docs  # JS/TS reference docs (static)
 ```
 
-Chi tiết: `index/PROJECT_STRUCTURE.md`
+Chi tiết: dùng GitNexus (`gitnexus://repo/leetcode/clusters`, `query`) — bản sao tĩnh tại `history/archived/index/PROJECT_STRUCTURE.md`.
