@@ -2,27 +2,29 @@
 
 ## Giới thiệu {#gioi-thieu}
 
-`apps/web` là SPA dùng **React 18.3 + Vite 5 + Tailwind CSS 4 + React Router DOM 7**. Giao diện hiện đại với sidebar, header và chi tiết đề bài 2 cột.
+`apps/web` là SPA dùng **React 18.3 + Vite 5 + Tailwind CSS 4 + React Router DOM 7 + FlexLayout**. Giao diện IDE-like dockable layout: kéo thả tab, resize panel, persist layout.
 
 ## Entry {#entry}
 
 ```text
 apps/web/index.html
-  └─ src/main.tsx (BrowserRouter + ThemeProvider)
+  └─ src/main.tsx (BrowserRouter + ThemeProvider + WorkspaceProvider)
        └─ App.tsx (Routes)
-            ├─ Layout (Header + Sidebar + <Outlet />)
-            └─ /problems/:id → ProblemDetail
+            ├─ Header
+            └─ /problems/:id → ProblemLoader → WorkspaceLayout
 ```
 
 ## Tính năng {#tinh-nang}
 
-- Sidebar: danh sách đề từ `GET /api/problems`, tìm kiếm, lọc theo độ khó.
-- ProblemDetail: mô tả HTML (trái) + code editor (phải).
-- CodeEditor: contentEditable div + react-syntax-highlighter (highlight trực tiếp, selection tự nhiên, không lệch dòng).
-- Nút **Run**: gọi `POST /api/problems/:id/run`, hiển thị `passed/total`.
-- Nút **VS Code**: gọi `POST /api/playground/:slug` → ghi `playground/<slug>.js` → mở `vscode://file/...`.
-- **TestCaseTabs**: tabs dưới code, mỗi tab hiển thị Input / Expected / Actual + badge đúng/sai + tổng `passed/total`.
-- Theme sáng/tối: CSS variables + `data-theme`, lưu localStorage.
+- **Dockable Layout** (FlexLayout): 4 tabs mặc định — Explorer / Editor / Description / Output.
+- **Explorer Panel**: danh sách đề từ `GET /api/problems`, tìm kiếm, lọc theo độ khó.
+- **Editor Panel** (CodeEditor: contentEditable div + react-syntax-highlighter), nút **Run** (`POST /api/problems/:id/run`, hiển thị `passed/total`) + nút **VS Code** (`POST /api/playground/:slug` → mở `vscode://file/...`).
+- **Description Panel**: mô tả HTML (sanitize) + hints (toggle).
+- **Output Panel**: TestCaseTabs (Input / Expected / Actual + badge đúng/sai + tổng `passed/total`).
+- **Kéo thả tab** giữa các tabset, resize splitter, maximize tabset.
+- **Persist layout**: JSON model lưu vào `localStorage` (`lc:layout:json`), khôi phục khi reload.
+- **Theme sáng/tối**: CSS variables + `data-theme` + đồng bộ FlexLayout theme class (`flexlayout__theme_alpha_light/dark`) + CSS var overrides.
+- **WorkspaceContext**: state tập trung (problem, code, results, loading) cho các panel.
 
 ## API client {#api-client}
 
@@ -35,5 +37,5 @@ apps/web/index.html
 
 ## Ghi chú {#ghi-chu}
 
-- Chưa có Monaco Editor thật, state management.
+- Chưa có Monaco Editor thật.
 - Host API đọc từ root `.env` (`VITE_API_URL`), fallback `http://localhost:3000`.

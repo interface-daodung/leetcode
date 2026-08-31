@@ -2,20 +2,21 @@
 
 ## Tổng quan
 
-Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, `apps/extension`) và 6 package dùng chung (`packages/*`). Dependency chảy theo hướng `apps → packages`; các package có thể phụ thuộc lẫn nhau (ví dụ `problem-engine` phụ thuộc `database` và `shared`).
+Monorepo dạng pnpm workspace gồm 3 ứng dụng (`apps/web`, `apps/server`, `apps/extension`) và 7 package dùng chung (`packages/*`). Dependency chảy theo hướng `apps → packages`; các package có thể phụ thuộc lẫn nhau (ví dụ `problem-engine` phụ thuộc `database` và `shared`).
 
 `problem-engine` dùng **in-memory registry** (`Map`) + **SQLite** (`packages/database`) làm persistence. Server hydrate `engine` từ SQLite khi khởi động. Dữ liệu đề bài được đưa vào qua **LeetCode Widget Extension** (DOM clip → JSON → `POST /api/problems/import` trực tiếp tới server, host cấu hình ở root `.env`). Ảnh trong `description` được tải về `packages/database/data/assets/<slug>/` với dedupe SHA-256 lưu trong DB (`problem_assets`). Hints và template/url được lưu riêng (`hints`, `problems.template/url`).
 
 ## Thành phần
 
 ```text
-apps/web                  # React SPA (Vite + Tailwind CSS 4 + React Router DOM 7): layout Header + Sidebar + ProblemDetail (mô tả HTML, hints, template, editor syntax-highlight), theme light/dark bằng CSS variables + data-theme, đọc VITE_API_URL từ root .env
+apps/web                  # React SPA (Vite + Tailwind CSS 4 + React Router DOM 7 + FlexLayout): IDE-like dockable layout (Explorer/Editor/Description/Output panels), kéo thả tab, resize, persist layout localStorage, theme light/dark bằng CSS variables + data-theme + đồng bộ FlexLayout theme, đọc VITE_API_URL từ root .env
 apps/server               # Fastify (MVC/phân tầng): routes/ → controllers/ → services/ → plugins/; GET/POST /api/problems/..., POST /api/problems/import (validate chặt, tải ảnh → assets DB), GET /assets/* static, GET /api/problems/:id/hints|assets, đọc PORT/HOST/API_URL từ root .env
 apps/extension            # MV3 Browser Extension: widget nổi trên leetcode.com/problems/*, clip DOM (description + hints + template) → POST trực tiếp tới API_URL (đọc từ api-config.js sinh từ root .env) + clipboard fallback
 packages/shared           # Types & utils dùng chung (ProblemMeta, ProblemClip với url/template/hints, Difficulty)
 packages/database         # Drizzle ORM + SQLite (bảng problems + problem_assets + hints) + assets folder (data/assets/<slug>/)
-packages/editor           # EditorState, languageTemplates
-packages/problem-engine   # Problem registry + runTests (in-memory + DB hydrate)
+packages/editor           # EditorTreeState (state/tree model: cây file + pure ops open/update/close), EditorState, languageTemplates
+packages/layout           # Wrap flexlayout-react: createDefaultLayout (IDE tree), theme helpers (flexThemeClass/flexCssOverrides), re-export Model/Actions/DockLocation
+packages/problem-engine   # ProblemEngine + ProblemTreeState (state/tree model: byDifficulty/byTag/byId + search/list), runTests, hydrate DB
 packages/ai               # getHint/explainSolution (placeholder)
 packages/javascript-docs  # jsDocs/getDoc (static)
 ```
@@ -23,12 +24,13 @@ packages/javascript-docs  # jsDocs/getDoc (static)
 ## Dependency Flow
 
 ```text
-apps/web ──> shared, editor
+apps/web ──> shared, editor, layout, problem-engine
 apps/server ──> shared, database, problem-engine, ai
 apps/extension ──> (độc lập, vanilla JS; logic thuần src/clipper.ts, không phụ thuộc workspace build)
 problem-engine ──> shared, database
 database ──> shared, drizzle-orm, @libsql/client
 editor ──> shared
+layout ──> shared, react, react-dom, flexlayout-react
 ai ──> shared
 javascript-docs ──> shared
 ```
@@ -56,9 +58,10 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
 ```
 
 apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
-  ├─ main.tsx: BrowserRouter + ThemeProvider (data-theme + localStorage) → App.tsx (Routes)
-  ├─ Layout: Header (bấm logo ẩn/hiện sidebar + theme toggle) + Sidebar (GET /api/problems, search + filter difficulty) + <Outlet />
-  ├─ /problems/:id → ProblemDetail: GET /api/problems/:id → description (sanitize) trái + hints + CodeEditor (contentEditable + react-syntax-highlighter) phải → POST /api/problems/:id/run + nút "VS Code" (POST /api/playground/:slug → mở vscode://file/<path>:<line>:<column>)
+  ├─ main.tsx: BrowserRouter + ThemeProvider (data-theme + localStorage) + WorkspaceProvider → App.tsx (Routes)
+  ├─ Header (logo + theme toggle) + <main> bọc Routes
+  ├─ /problems/:id → ProblemLoader: GET /api/problems/:id → set problem/code vào WorkspaceContext → WorkspaceLayout
+  ├─ WorkspaceLayout: FlexLayout (dockable IDE layout) — tab Explorer (list + search + filter) / Editor (CodeEditor contentEditable + Run + VS Code) / Description (sanitize + hints) / Output (TestCaseTabs); kéo thả tab + resize → model thay đổi → persist JSON vào localStorage (lc:layout:json), khôi phục khi load; theme đồng bộ qua class flexlayout__theme_alpha_light/dark + CSS var overrides
   └─ Không còn nhập đề thủ công: việc import do extension POST thẳng tới server
 
 apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + localhost/* + API host từ .env)

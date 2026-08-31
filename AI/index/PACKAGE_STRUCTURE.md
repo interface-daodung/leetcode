@@ -8,9 +8,10 @@ Monorepo chứa 6 package nội bộ (`packages/*`):
 |---------|-------|-------|
 | `shared` | `@leetcode/shared` | Types (`Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`), util (`formatProblemId`), ảnh icon gốc (`asset/icon`) |
 | `database` | `@leetcode/database` | Drizzle ORM + SQLite, `ProblemDatabase` class |
-| `editor` | `@leetcode/editor` | `EditorState`, `createEditorState`, `languageTemplates` |
+| `editor` | `@leetcode/editor` | `EditorTreeState` (state/tree model), `EditorState`, `languageTemplates` |
+| `layout` | `@leetcode/layout` | Wrap `flexlayout-react` (dockable IDE layout), default tree model, theme helpers |
 | `javascript-docs` | `@leetcode/javascript-docs` | Static JS/TS reference docs, `getDoc` |
-| `problem-engine` | `@leetcode/problem-engine` | `ProblemEngine` registry (in-memory) + test runner |
+| `problem-engine` | `@leetcode/problem-engine` | `ProblemEngine` registry + test runner + `ProblemTreeState` (state/tree model) |
 | `ai` | `@leetcode/ai` | `getHint`, `explainSolution` (placeholder) |
 
 ## Dependencies
@@ -59,6 +60,11 @@ Tất cả package nội bộ đều dùng `workspace:*` alias `@leetcode/*`.
 
 @leetcode/editor
   ├── @leetcode/shared
+  └── được dùng bởi: @leetcode/web
+
+@leetcode/layout
+  ├── @leetcode/shared
+  ├── react, react-dom, flexlayout-react
   └── được dùng bởi: @leetcode/web
 
 @leetcode/javascript-docs
