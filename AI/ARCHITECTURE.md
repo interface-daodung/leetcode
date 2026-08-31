@@ -47,7 +47,7 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
   ├─ GET /api/problems/:id/assets   → problemDb.findAssetsByProblem(id)
   ├─ GET /api/problems/random/:difficulty?
   │                                 → engine.getRandom(difficulty)
-  ├─ POST /api/problems/:id/run     → lọc comment (solution.util.stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input) → engine.runTests
+  ├─ POST /api/problems/:id/run     → lọc comment (solution.util.stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input) → engine.runTestsDetailed (trả per-case results input/expected/actual/error)
   ├─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
   ├─ POST /api/playground/:slug     → playground.service.saveToPlayground (ghi playground/<slug>.js + tìm dòng body) → mở VS Code
   └─ POST /api/problems/import      → validate chặt (null check, Zod strict, url/template/hints) → engine.register + problemDb.add (FK ok) → downloadAndRewriteImages (fetch Buffer → SHA-256 → DB problem_assets dedupe → lưu assets/<slug>/{name}) → update description + hints (201/409)

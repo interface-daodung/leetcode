@@ -17,6 +17,11 @@
 | `get(id)` | Lấy problem theo id |
 | `getRandom(difficulty?)` | Lấy random problem, có thể lọc theo difficulty |
 | `runTests(id, solution)` | Chạy test cases, trả `{ passed, total }` |
+| `runTestsDetailed(id, solution)` | Chạy từng test case, trả `{ passed, total, results }` với `results: { input, expected, actual, ok, error }[]` |
+
+## Các kiểu dữ liệu {#cac-kieu-du-lieu}
+
+- `TestCaseResult`: `{ input: unknown; expected: unknown; actual: unknown; ok: boolean; error?: string }`
 
 ## Dependency {#dependency}
 

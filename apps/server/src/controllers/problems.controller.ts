@@ -58,7 +58,7 @@ export function createProblemController(service: ProblemService) {
         return reply.code(404).send({ error: "Problem not found" });
       }
       return reply.code(400).send({ error: "Invalid code", details: result.error });
-    }    return { passed: result.passed, total: result.total, problemId: result.problemId };
+    }    return { passed: result.passed, total: result.total, problemId: result.problemId, results: result.results };
   }
 
   /** POST /api/problems/:id/hint */

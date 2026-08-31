@@ -1,4 +1,4 @@
-import { engine, type Problem } from "@leetcode/problem-engine";
+import { engine, type Problem, type TestCaseResult } from "@leetcode/problem-engine";
 import { problemDb, type ProblemDatabase } from "@leetcode/database";
 import { getHint } from "@leetcode/ai";
 import type { FastifyBaseLogger } from "fastify";
@@ -7,7 +7,7 @@ import { downloadAndRewriteImages, ensureAssetFiles } from "./asset.service.js";
 import { extractSolutionFunction, wrapSolution } from "./solution.util.js";
 
 export type RunOutcome =
-  | { ok: true; passed: number; total: number; problemId: string }
+  | { ok: true; passed: number; total: number; problemId: string; results: TestCaseResult[] }
   | { ok: false; reason: "not-found" }
   | { ok: false; reason: "invalid-code"; error: string };
 
@@ -101,7 +101,7 @@ export class ProblemService {
     try {
       // Lọc comment → trích hàm giải duy nhất → bọc để chạy test case
       const solution = wrapSolution(extractSolutionFunction(code));
-      const result = this.reg.runTests(id, solution);
+      const result = this.reg.runTestsDetailed(id, solution);
       return { ok: true, ...result, problemId: `LC${String(id).padStart(4, "0")}` };
     } catch (e) {
       return { ok: false, reason: "invalid-code", error: String(e) };

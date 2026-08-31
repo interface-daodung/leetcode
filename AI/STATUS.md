@@ -4,7 +4,7 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
-**[mới 2026-08-31] Frontend nâng cấp — nhánh `feat/frontend-vscode-open`** — các cải tiến frontend tách sang nhánh riêng. Thêm nút **"VS Code"** trong header code editor (icon `public/assets/vscode.svg`): gọi `POST /api/playground/:slug` → server ghi `playground/<slug>.js` + tìm dòng mở body hàm (`playground.service.findFunctionBodyLine`) → web mở `vscode://file/<path>:<line>:<column>`. Thêm `playground/` vào `.gitignore`. Trước đó (cùng nhánh gốc): CodeEditor contentEditable + highlight trực tiếp, Header bấm logo ẩn/hiện sidebar, server `run` lọc comment → trích hàm → wrapSolution, fix ảnh assets 404. `pnpm -r build` pass, server 36 tests + extension 49 tests pass.
+**[mới 2026-08-31] Frontend nâng cấp — nhánh `feat/frontend-vscode-open`** — các cải tiến frontend tách sang nhánh riêng. Thêm nút **"VS Code"** trong header code editor (icon `public/assets/vscode.svg`): gọi `POST /api/playground/:slug` → server ghi `playground/<slug>.js` + tìm dòng mở body hàm (`playground.service.findFunctionBodyLine`) → web mở `vscode://file/<path>:<line>:<column>`. Thêm **khung tabs test case** dưới code (`TestCaseTabs`): mỗi tab hiển thị Input/Expected/Actual + badge đúng/sai + tổng `passed/total`, dữ liệu từ `engine.runTestsDetailed` (per-case results). Thêm `playground/` vào `.gitignore`. Trước đó (cùng nhánh gốc): CodeEditor contentEditable + highlight trực tiếp, Header bấm logo ẩn/hiện sidebar, server `run` lọc comment → trích hàm → wrapSolution, fix ảnh assets 404. `pnpm -r build` pass, server 36 tests + extension 49 tests pass.
 
 ## Đang làm
 

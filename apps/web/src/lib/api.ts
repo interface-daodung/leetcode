@@ -1,5 +1,13 @@
 import type { ProblemMeta } from "@leetcode/shared";
 
+export interface TestCaseResultView {
+  input: unknown;
+  expected: unknown;
+  actual: unknown;
+  ok: boolean;
+  error?: string;
+}
+
 export const API_BASE: string =
   (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL ?? "http://localhost:3000";
 
@@ -23,14 +31,19 @@ export async function fetchProblem(id: number): Promise<ProblemMeta | null> {
 export async function runCode(
   id: number,
   code: string,
-): Promise<{ passed?: number; total?: number; error?: string }> {
+): Promise<{ passed?: number; total?: number; error?: string; results?: TestCaseResultView[] }> {
   try {
     const res = await fetch(`${API_BASE}/api/problems/${id}/run`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code }),
     });
-    const data = (await res.json()) as { passed?: number; total?: number; error?: string };
+    const data = (await res.json()) as {
+      passed?: number;
+      total?: number;
+      error?: string;
+      results?: TestCaseResultView[];
+    };
     return data;
   } catch (e) {
     return { error: String(e) };

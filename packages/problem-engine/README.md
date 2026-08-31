@@ -10,6 +10,7 @@ In-memory problem registry + test runner cho LeetCode Lab.
 - `get(id)` — lấy problem theo id
 - `getRandom(difficulty?)` — random problem theo difficulty (optional)
 - `runTests(id, solution)` — chạy test cases, trả `{ passed, total }`
+- `runTestsDetailed(id, solution)` — chạy từng test case, trả `{ passed, total, results }` với `results: TestCaseResult[]` (`{ input, expected, actual, ok, error }`) để hiển thị trên UI
 
 ## Dependency
 

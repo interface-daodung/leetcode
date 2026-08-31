@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { ProblemMeta } from "@leetcode/shared";
 import { fetchProblem, runCode, saveToPlayground } from "../lib/api.js";
+import type { TestCaseResultView } from "../lib/api.js";
 import { sanitizeDescriptionHtml } from "../lib/sanitize.js";
 import { DifficultyBadge } from "./DifficultyBadge.js";
 import { CodeEditor } from "./CodeEditor.js";
+import { TestCaseTabs } from "./TestCaseTabs.js";
 
 export function ProblemDetail() {
   const { id } = useParams();
@@ -16,6 +18,9 @@ export function ProblemDetail() {
   const [running, setRunning] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [vscodeMsg, setVscodeMsg] = useState<string | null>(null);
+  const [results, setResults] = useState<TestCaseResultView[] | null>(null);
+  const [runPassed, setRunPassed] = useState(0);
+  const [runTotal, setRunTotal] = useState(0);
 
   useEffect(() => {
     if (!id) return;
@@ -29,6 +34,7 @@ export function ProblemDetail() {
       setProblem(p);
       setCode(p?.template ?? "");
       setOutput("");
+      setResults(null);
       setLoading(false);
     });
   }, [id]);
@@ -37,9 +43,15 @@ export function ProblemDetail() {
     if (!problem) return;
     setRunning(true);
     setOutput("Đang chạy...");
+    setResults(null);
     const result = await runCode(problem.id, code);
     if (result.error) {
       setOutput(`Lỗi: ${result.error}`);
+    } else if (result.results) {
+      setResults(result.results);
+      setRunPassed(result.passed ?? 0);
+      setRunTotal(result.total ?? 0);
+      setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
     } else {
       setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
     }
@@ -200,6 +212,9 @@ export function ProblemDetail() {
             language="javascript"
             placeholder="// Viết code giải tại đây"
           />
+          {results && results.length > 0 && (
+            <TestCaseTabs results={results} passed={runPassed} total={runTotal} />
+          )}
         </div>
       </div>
     </div>

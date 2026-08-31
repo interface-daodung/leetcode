@@ -32,6 +32,7 @@ function createEngineMock() {
     get: vi.fn((id: number) => problems.get(id)),
     getRandom: vi.fn(),
     runTests: vi.fn(),
+    runTestsDetailed: vi.fn(),
   };
 }
 
@@ -58,12 +59,28 @@ describe("ProblemService", () => {
   it("run trả kết quả pass/total + problemId khi problem tồn tại", () => {
     const reg = createEngineMock();
     reg.register({ id: 1, slug: "a", title: "A", difficulty: "easy", tags: [], description: "", testCases: [] });
-    reg.runTests.mockReturnValue({ passed: 2, total: 2 });
+    reg.runTestsDetailed.mockReturnValue({
+      passed: 2,
+      total: 2,
+      results: [
+        { input: 1, expected: 2, actual: 2, ok: true, error: undefined },
+        { input: 2, expected: 3, actual: 3, ok: true, error: undefined },
+      ],
+    });
 
     const svc = new ProblemService(dbMock as never, reg as never);
     const result = svc.run(1, "function(){ return 1 }");
 
-    expect(result).toEqual({ ok: true, passed: 2, total: 2, problemId: "LC0001" });
+    expect(result).toEqual({
+      ok: true,
+      passed: 2,
+      total: 2,
+      problemId: "LC0001",
+      results: [
+        { input: 1, expected: 2, actual: 2, ok: true, error: undefined },
+        { input: 2, expected: 3, actual: 3, ok: true, error: undefined },
+      ],
+    });
   });
 
   it("run trả not-found khi problem không tồn tại", () => {

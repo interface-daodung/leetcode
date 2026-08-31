@@ -19,7 +19,7 @@ Có 3 ứng dụng trong monorepo:
 - **Framework**: React 18.3, Vite 5, `@vitejs/plugin-react`, Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7.
 - **Entry**: `index.html` → `main.tsx` (BrowserRouter + ThemeProvider) → `App.tsx` (Routes).
 - **Routing**: Layout (`Header` + `Sidebar` + `<Outlet />`) → `/problems/:id` (ProblemDetail). `/` và `/problems` redirect về first problem.
-- **Components**: `Layout.tsx`, `Header.tsx` (logo bấm để ẩn/hiện sidebar, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả trái, editor + Run + nút VS Code phải, hints), `CodeEditor.tsx` (contentEditable div + react-syntax-highlighter, selection tự nhiên), `DifficultyBadge.tsx`.
+- **Components**: `Layout.tsx`, `Header.tsx` (logo bấm để ẩn/hiện sidebar, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả trái, editor + Run + nút VS Code phải, hints), `CodeEditor.tsx` (contentEditable div + react-syntax-highlighter, selection tự nhiên), `TestCaseTabs.tsx` (tabs hiển thị input/expected/actual từng test case), `DifficultyBadge.tsx`.
 - **Theme**: CSS variables (`:root` light / `[data-theme=dark]`) trong `src/index.css`, `@custom-variant dark` cho Tailwind, `lib/theme.tsx` (ThemeProvider + useTheme, lưu localStorage).
 - **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme), render HTML string qua `renderToStaticMarkup`, contentEditable div hiển thị trực tiếp — không overlay nên không lệch dòng, selection nhìn thấy được.
 - **Mở trong VS Code**: nút "VS Code" (icon `public/assets/vscode.svg`) gọi `POST /api/playground/:slug` → ghi `playground/<slug>.js` → mở `vscode://file/<path>:<line>:<column>` (line = dòng mở body hàm).
@@ -38,7 +38,7 @@ Có 3 ứng dụng trong monorepo:
   - `GET /api/problems` — list tất cả problems (từ DB, kèm hints).
   - `GET /api/problems/:id` — lấy problem theo id (engine → fallback DB, kèm hints/assets).
   - `GET /api/problems/random/:difficulty?` — random problem.
-  - `POST /api/problems/:id/run` — lọc comment → trích hàm giải duy nhất → wrap spread input → engine.runTests (xem `services/solution.util.ts`).
+  - `POST /api/problems/:id/run` — lọc comment → trích hàm giải duy nhất → wrap spread input → engine.runTestsDetailed (trả per-case results input/expected/actual/ok/error).
   - `POST /api/problems/:id/hint` — lấy hint (placeholder).
   - `GET /api/problems/:id/hints` — hints từ DB.
   - `GET /api/problems/:id/assets` — assets từ DB.
