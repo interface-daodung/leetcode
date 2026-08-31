@@ -50,7 +50,9 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
   ├─ POST /api/problems/:id/run     → lọc comment (solution.util.stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input) → engine.runTestsDetailed (trả per-case results input/expected/actual/error)
   ├─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
   ├─ POST /api/playground/:slug     → playground.service.saveToPlayground (ghi playground/<slug>.js + tìm dòng body) → mở VS Code
-  └─ POST /api/problems/import      → validate chặt (null check, Zod strict, url/template/hints) → engine.register + problemDb.add (FK ok) → downloadAndRewriteImages (fetch Buffer → SHA-256 → DB problem_assets dedupe → lưu assets/<slug>/{name}) → update description + hints (201/409)
+  ├─ POST /api/problems/import      → validate chặt → check exists → engine.register + problemDb.add (201 mới / 409 đã tồn tại)
+├─ PUT /api/problems/:id          → validate + check id match → engine.register + problemDb.update (200 ghi đè)
+└─ downloadAndRewriteImages (fetch Buffer → SHA-256 → DB problem_assets dedupe → lưu assets/<slug>/{name}) → update description + hints
 ```
 
 apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
@@ -62,13 +64,14 @@ apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
 apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + localhost/* + API host từ .env)
   ├─ api-config.js: var LC_API_BASE = "http://localhost:3000" (auto-gen từ root .env via pnpm sync:config)
   ├─ src/clipper.ts (logic thuần, test với jsdom): findDescriptionContainer, extractTemplate (ưu tiên code_editor DOM → __NEXT_DATA__ codeSnippets → view-lines → window.monaco duyệt ngược + lọc js), extractTestCases (hidden cm-content opacity-0/h-0 → visible console flex-1 overflow-y-auto → __NEXT_DATA__ testCases/exampleTestcases string → description <pre> Input/Output fallback), extractHints, buildProblemClip
-  └─ content.js: widget LC (draggable, đồng bộ 1-1 với clipper.ts) → buildProblemClip(doc) → validate (id/title/difficulty/description/tags != null) → clipboard + fetch POST ${API_BASE}/api/problems/import (JSON body) → toast success/409/error
+  └─ content.js: widget ảnh động (Idle.png/Loading.png/Success.png/Error.png, chrome.runtime.getURL) + @keyframes squashStretch (1.2s animation khi click) → buildProblemClip(doc) → validate → clipboard + POST /import → nếu 409 tự PUT /:id ghi đè → toast SVG với text động (auto font-size 24-72px, auto wrap, position top-right của widget) thay toast text thuần
 ```
 
 ## Data Flow
 
 ```text
 Clip (direct): leetcode.com DOM [data-track-load="description_content"] + tags a[href^="/tag/"] + hints (lightbulb + HTMLContent) + template (code_editor → __NEXT_DATA__ codeSnippets → view-lines → window.monaco duyệt ngược, tránh nhiễm model cũ shipWithinDays) + testCases (hidden cm-content opacity-0/h-0 → visible console → __NEXT_DATA__ testCases/exampleTestcases string → description <pre> Input/Output fallback cho 1091) → ProblemClip JSON (id/slug/url/title/difficulty/tags/description/template/testCases/hints) → extension POST trực tiếp tới ${API_URL}/api/problems/import (host từ root .env) → server validate → engine.register + problemDb.add (tạo FK) → tải ảnh (<img src>) → Buffer → SHA-256 → DB problem_assets dedupe (check hash) → lưu packages/database/data/assets/<slug>/{name} + rewrite description src → update DB description → web GET /api/problems hiển thị list
+Clip (overwrite): leetcode.com DOM → extension POST /import → 409 (đã tồn tại) → extension tự PUT /:id ghi đè → server engine.register + problemDb.update → toast "Đã ghi đè"
 Read: engine (hydrate từ DB khi start) + problemDb.getAllWithHints / get(id)+hints+assets → API → web (description đã chứa /assets/... trỏ tới server, ảnh serve qua GET /assets/*, hints/template/testCases hiển thị riêng trong ProblemDetail)
 ```
 

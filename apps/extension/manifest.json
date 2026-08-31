@@ -26,6 +26,20 @@
       "run_at": "document_idle"
     }
   ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/Idle.png",
+        "assets/Loading.png",
+        "assets/Success.png",
+        "assets/Error.png",
+        "assets/toast-text.svg"
+      ],
+      "matches": [
+        "*://leetcode.com/*"
+      ]
+    }
+  ],
   "icons": {
     "16": "assets/leetcodeLab.png",
     "32": "assets/leetcodeLab.png",

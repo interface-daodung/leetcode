@@ -4,6 +4,35 @@
 
 ## Decisions
 
+### [2026-08-31] Widget ảnh động + Toast SVG động + Backend ghi đè problem
+
+#### Context
+
+Widget "LC" chỉ là text + màu nền, ít sinh động, không phản ánh trạng thái. Toast cố định font 60.5px, không co giãn khi text dài/ngắn. Khi problem ID đã tồn tại, server trả 409 chặn — user phải xóa thủ công trong DB mới clip lại được.
+
+#### Decision
+
+- **Widget 4 trạng thái ảnh PNG** (`Idle/Loading/Success/Error.png`) thay text "LC", load qua `chrome.runtime.getURL("assets/...")` (yêu cầu thêm `web_accessible_resources` trong manifest). Thêm hàm `setWidgetState(widget, state)` đổi `img.src` + class.
+- **Hiệu ứng Squash & Stretch** 1.2s khi click: `@keyframes squashStretch` theo thứ tự `0% scale(1,1) → 20% (0.75,1.25) → 40% (1.25,0.75) → 55% (0.9,1.1) → 70% (1.05,0.95) → 85% (0.98,1.02) → 100% (1,1)` — dùng `classList.add("squash-stretch")` rồi `setTimeout` 1200ms gỡ.
+- **Toast SVG động** port logic từ `sua_svg.js` (Node) sang JS browser: fetch `toast-text.svg` → parse `<g transform="matrix(...)">` lấy translate → tìm `<path d="...">` bbox (robust extreme bỏ mỏ neo lặp 1 lần) → tính font-size tối ưu 24-72px (giảm nếu vượt width, wrap nếu vượt height) → build `<tspan>` escape XML → thay thẻ `<text>` cũ. Position toast ở góc trên-phải widget: `bottom = innerHeight - widgetRect.top + 8`, `right = innerWidth - widgetRect.right`. Lệch text trái `-fontSize*0.15`, lên `-fontSize*0.10`.
+- **Backend ghi đè**: thêm `PUT /api/problems/:id` route + `updateClip()` service method (gọi `db.update(id, patch)` thay `db.add`). Validate `body.id === url.id` → 400. CORS thêm `PUT` vào `Access-Control-Allow-Methods` (cả `onSend` hook và OPTIONS handler).
+- **Extension tự retry overwrite**: `postToServer()` POST /import trước, nếu 409 → PUT /:id với cùng body, return `{ ok: true, overwritten: true }`. `handleClip()` bỏ branch `result.dup` (error), toast hiển thị "Đã lưu" (mới) hoặc "Đã ghi đè" (overwrite) tùy `result.overwritten`.
+
+#### Reason
+
+- Ảnh PNG cho cảm giác "sống", dễ nhận biết trạng thái; Squash & Stretch là nguyên tắc animation kinh điển của Disney (squash khi chạm đất, stretch khi bay → khối lượng đàn hồi).
+- Toast SVG dùng chung 1 khung thoại, chỉ thay text → tận dụng asset có sẵn, auto-scale không cần nhiều biến thể.
+- Ghi đè qua PUT thay vì xóa-thêm: idempotent, không mất `assets` cũ nếu description không đổi, an toàn hơn khi clip lại đề đã có.
+- CORS PUT: thêm method vào allow-list thay vì `*` để giữ nguyên tắc allow rõ ràng, không phải config khác.
+
+#### Consequences
+
+- `pnpm -r build` pass; extension 53 tests + server 36 tests pass.
+- Cần restart server để CORS mới áp dụng (`pnpm --filter=@leetcode/server dev`).
+- Reload extension sau khi sửa `content.js` (content script chạy trực tiếp, không qua build).
+- `assets/toast-text.svg` viewBox 512x512, text mặc định 60.5px — `generateToastSvg` tự thay thành text cần hiển thị.
+- History: `AI/history/2026-08/widget-animated-images-and-overwrite.md`.
+
 ### [2026-08-31] Server refactor sang MVC / phân tầng (routes → controllers → services)
 
 #### Context

@@ -126,6 +126,69 @@ export class ProblemService {
     return Boolean(this.reg.get(id) ?? (await this.db.get(id)));
   }
 
+  /** Update existing problem from clip (ghi đè) */
+  async updateClip(parsed: ProblemClip, apiBase: string): Promise<ImportClipResult> {
+    const rawSlug = (parsed.slug && parsed.slug.length > 0 ? parsed.slug : `problem-${parsed.id}`).trim();
+
+    const problem: Problem = {
+      id: parsed.id,
+      slug: rawSlug,
+      title: parsed.title,
+      url: parsed.url,
+      difficulty: parsed.difficulty,
+      tags: parsed.tags ?? [],
+      description: parsed.description,
+      template: parsed.template,
+      testCases: (parsed.testCases as { input: unknown; expected: unknown }[]) ?? [],
+      hints: parsed.hints ?? undefined,
+    };
+
+    // Update in engine (register overwrites)
+    this.reg.register(problem);
+
+    // Update in DB
+    await this.db.update(parsed.id, {
+      description: parsed.description,
+      template: parsed.template,
+      url: parsed.url,
+      slug: rawSlug,
+    });
+
+    // Process images
+    let processedDescription = parsed.description;
+    let assetsInserted = false;
+    try {
+      processedDescription = await downloadAndRewriteImages(parsed.description, rawSlug, apiBase, parsed.id);
+      assetsInserted = processedDescription !== parsed.description;
+    } catch {
+      // Download ảnh thất bại, giữ nguyên description gốc
+    }
+
+    if (assetsInserted && processedDescription !== parsed.description) {
+      try {
+        await this.db.updateDescription(parsed.id, processedDescription);
+        const eng = this.reg.get(parsed.id);
+        if (eng) eng.description = processedDescription;
+        problem.description = processedDescription;
+      } catch {
+        // Cập nhật description sau tải ảnh thất bại
+      }
+    }
+
+    // Update hints
+    if (parsed.hints && parsed.hints.length > 0) {
+      try {
+        await this.db.setHints(parsed.id, parsed.hints);
+      } catch {
+        // ignore
+      }
+    }
+
+    const hints = parsed.hints ?? [];
+    const assets = await this.db.findAssetsByProblem(parsed.id).catch(() => []);
+    return { ok: true, problem: { ...problem, hints, assets } };
+  }
+
   /** Flow import: validate-đã xong ở controller, ở đây chỉ thao tác engine + DB + ảnh */
   async importClip(parsed: ProblemClip, apiBase: string): Promise<ImportClipResult> {
     const rawSlug = (parsed.slug && parsed.slug.length > 0 ? parsed.slug : `problem-${parsed.id}`).trim();

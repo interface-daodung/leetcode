@@ -8,6 +8,16 @@ Chưa có issue đang mở.
 
 ## Resolved Issues
 
+### 4. CORS chặn PUT /api/problems/:id — extension ghi đè thất bại
+
+- **File**: `apps/server/src/plugins/cors.ts`, `apps/extension/content.js:851-864`
+- **Mô tả**: Sau khi thêm tính năng ghi đè, extension POST `/api/problems/import` nhận 409 (đã tồn tại) → tự PUT `/api/problems/3298` để ghi đè. Browser chặn preflight vì `Access-Control-Allow-Methods: GET, POST, OPTIONS` không có PUT → `net::ERR_FAILED` (Failed to fetch).
+- **Ảnh hưởng**: Tính năng ghi đè không hoạt động khi problem ID đã tồn tại; user phải xóa thủ công trong DB.
+- **Nguyên nhân**: `registerCors` chỉ cho phép 3 method; CORS preflight browser kiểm tra `Access-Control-Allow-Methods` trước khi gửi PUT thực sự, không thấy PUT → block.
+- **Cách fix**: Đổi `CORS_METHODS = "GET, POST, PUT, OPTIONS"` trong `cors.ts`, áp dụng cho cả `onSend` hook và `app.options("/*", ...)` handler. Cần restart server.
+- **Ngày resolve**: 2026-08-31
+- **History**: `AI/history/2026-08/widget-animated-images-and-overwrite.md`
+
 ### 3. Extension clip thiếu testCases cho bài chỉ có Example trong description (VD 1091)
 
 - **File**: `apps/extension/src/clipper.ts:391` (`extractTestCases`, `findTestCasesInJson`, `extractTestCasesFromDescription`), `apps/extension/content.js`

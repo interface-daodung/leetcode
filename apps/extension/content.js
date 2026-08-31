@@ -8,6 +8,22 @@
   const TOAST_ID = "lc-clipper-toast";
   const DRAG_THRESHOLD = 5;
 
+  // Asset paths - sử dụng chrome.runtime.getURL để truy cập web_accessible_resources
+  function getAssetUrl(path) {
+    try {
+      return chrome.runtime.getURL(path);
+    } catch {
+      // Fallback nếu không có chrome.runtime (test environment)
+      return path;
+    }
+  }
+  
+  const IDLE_IMG = getAssetUrl("assets/Idle.png");
+  const LOADING_IMG = getAssetUrl("assets/Loading.png");
+  const SUCCESS_IMG = getAssetUrl("assets/Success.png");
+  const ERROR_IMG = getAssetUrl("assets/Error.png");
+  const TOAST_SVG = getAssetUrl("assets/toast-text.svg");
+
   // ----- Pure clipper logic (đồng bộ với src/clipper.ts) -----
 
   function parseTitle(raw) {
@@ -605,18 +621,183 @@
     return toastEl;
   }
 
+  /**
+   * Tạo SVG toast với text tùy chỉnh
+   * Dựa trên logic từ sua_svg.js - tự động co giãn font-size / xuống dòng
+   */
+  async function generateToastSvg(text) {
+    try {
+      const response = await fetch(TOAST_SVG);
+      if (!response.ok) throw new Error("Không tải được toast SVG");
+      let svg = await response.text();
+
+      // Parse group transform
+      const groupMatch = svg.match(/<g[^>]*transform="matrix\(([^)]+)\)"/);
+      let tx = 0, ty = 0;
+      if (groupMatch) {
+        const vals = groupMatch[1].split(",").map(v => parseFloat(v.trim()));
+        if (vals.length === 6) { tx = vals[4]; ty = vals[5]; }
+      }
+
+      // Find path bbox for text container
+      const pathMatch = svg.match(/<path[^>]*\sd="([^"]+)"/);
+      if (!pathMatch) throw new Error("Không tìm thấy path trong SVG");
+      const nums = (pathMatch[1].match(/-?\d+\.?\d*/g) || []).map(Number);
+      const xs = nums.filter((_, i) => i % 2 === 0);
+      const ys = nums.filter((_, i) => i % 2 === 1);
+      
+      // Robust extreme values (bỏ qua các điểm mỏ neo)
+      function robustExtreme(values, wantMax, tol = 0.5) {
+        const rounded = values.map(v => Math.round(v / tol) * tol);
+        const counts = new Map();
+        for (const v of rounded) counts.set(v, (counts.get(v) || 0) + 1);
+        const distinct = [...new Set(rounded)].sort((a, b) => wantMax ? b - a : a - b);
+        for (const v of distinct) {
+          if (counts.get(v) >= 2) return v;
+        }
+        return distinct[0];
+      }
+
+      const bbox = {
+        x0: robustExtreme(xs, false),
+        y0: robustExtreme(ys, false),
+        x1: robustExtreme(xs, true),
+        y1: robustExtreme(ys, true),
+      };
+
+      const padding = 24;
+      const minFont = 24;
+      const maxFont = 72;
+      const safeX0 = bbox.x0 + padding;
+      const safeX1 = bbox.x1 - padding;
+      const safeY0 = bbox.y0 + padding;
+      const safeY1 = bbox.y1 - padding;
+      const maxWidth = safeX1 - safeX0;
+      const maxHeight = safeY1 - safeY0;
+
+      // Find original text element
+      const textMatch = svg.match(/<text([^>]*)>([\s\S]*?)<\/text>/);
+      if (!textMatch) throw new Error("Không tìm thấy thẻ <text> trong SVG");
+      const attrs = textMatch[1];
+      const origFontMatch = attrs.match(/font-size:\s*([\d.]+)px/);
+      const origFont = origFontMatch ? parseFloat(origFontMatch[1]) : 60.5;
+
+      // Calculate optimal font size - start from maxFont for larger text
+      let fontSize = Math.min(maxFont, origFont);
+      const ratio = 0.56;
+      function estimateWidth(t, fs) { return t.length * ratio * fs; }
+      
+      while (fontSize > minFont && estimateWidth(text, fontSize) > maxWidth) {
+        fontSize -= 1;
+      }
+
+      // Wrap text if needed
+      function wrapText(txt, fs, mw) {
+        const words = txt.split(/\s+/).filter(Boolean);
+        const lines = [];
+        let cur = "";
+        for (const w of words) {
+          const trial = (cur + " " + w).trim();
+          if (estimateWidth(trial, fs) <= mw || !cur) {
+            cur = trial;
+          } else {
+            lines.push(cur);
+            cur = w;
+          }
+        }
+        if (cur) lines.push(cur);
+        return lines;
+      }
+
+      let lines;
+      if (estimateWidth(text, fontSize) <= maxWidth) {
+        lines = [text];
+      } else {
+        fontSize = Math.max(fontSize, minFont);
+        lines = wrapText(text, fontSize, maxWidth);
+        let lineHeight = fontSize * 1.15;
+        while (lines.length * lineHeight > maxHeight && fontSize > minFont) {
+          fontSize -= 1;
+          lineHeight = fontSize * 1.15;
+          lines = wrapText(text, fontSize, maxWidth);
+        }
+      }
+
+      const lineHeight = fontSize * 1.15;
+      const totalH = (lines.length - 1) * lineHeight;
+      const centerY = (safeY0 + safeY1) / 2 - ty;
+      const yStart = centerY - totalH / 2 + fontSize * 0.25;
+      const xCenter = (safeX0 + safeX1) / 2 - tx - fontSize * 0.15;
+
+      // Update attributes
+      let newAttrs = attrs.replace(/font-size:\s*[\d.]+px/, `font-size: ${fontSize.toFixed(2)}px`);
+      newAttrs = newAttrs.replace(/\sx="[^"]*"/, "").replace(/\sy="[^"]*"/, "");
+      newAttrs += ' text-anchor="middle"';
+
+      // Escape XML
+      function escapeXml(s) {
+        return s.replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">");
+      }
+
+      const tspans = lines.map((line, i) => {
+        const y = yStart + i * lineHeight;
+        return `<tspan x="${xCenter.toFixed(2)}" y="${y.toFixed(2)}">${escapeXml(line)}</tspan>`;
+      }).join("");
+
+      const newTextEl = `<text${newAttrs}>${tspans}</text>`;
+      svg = svg.slice(0, textMatch.index) + newTextEl + svg.slice(textMatch.index + textMatch[0].length);
+
+      return svg;
+    } catch (e) {
+      console.warn("[LeetCode Widget] Toast SVG generation failed:", e);
+      return null;
+    }
+  }
+
   function showToast(message, variant) {
     const el = ensureToast();
-    el.textContent = message;
-    el.className = variant || "";
-    // force reflow
-    void el.offsetWidth;
-    el.classList.add("show");
-    if (variant) el.classList.add(variant);
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      el.classList.remove("show");
-    }, 3000);
+    const widget = document.getElementById(WIDGET_ID);
+    
+    // Generate SVG toast with custom text
+    generateToastSvg(message).then(svg => {
+      if (svg) {
+        el.innerHTML = svg;
+        el.style.width = "auto";
+        el.style.maxWidth = "500px";
+        el.style.padding = "0";
+      } else {
+        // Fallback to text
+        el.textContent = message;
+        el.style.width = "";
+        el.style.maxWidth = "320px";
+        el.style.padding = "10px 14px";
+      }
+      
+      // Position toast at top-right of widget
+      if (widget) {
+        const widgetRect = widget.getBoundingClientRect();
+        el.style.position = "fixed";
+        el.style.bottom = `${window.innerHeight - widgetRect.top + 8}px`;
+        el.style.right = `${window.innerWidth - widgetRect.right}px`;
+        el.style.left = "auto";
+        el.style.top = "auto";
+      } else {
+        // Fallback position
+        el.style.bottom = "110px";
+        el.style.right = "20px";
+        el.style.left = "auto";
+        el.style.top = "auto";
+      }
+      
+      el.className = variant || "";
+      void el.offsetWidth;
+      el.classList.add("show");
+      if (variant) el.classList.add(variant);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.classList.remove("show");
+      }, 3000);
+    });
   }
 
   // ----- Clipboard -----
@@ -666,18 +847,32 @@
       return { ok: false, error: err };
     }
     try {
-      const res = await fetch(`${API_BASE.replace(/\/$/, "")}/api/problems/import`, {
+      // Thử POST trước (tạo mới)
+      let res = await fetch(`${API_BASE.replace(/\/$/, "")}/api/problems/import`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(clip),
       });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && res.status === 201) {
+      let data = await res.json().catch(() => ({}));
+      
+      if (res.ok && (res.status === 201 || res.status === 200)) {
         return { ok: true, data };
       }
+      
+      // Nếu 409 (đã tồn tại) → thử PUT để ghi đè
       if (res.status === 409) {
-        return { ok: false, dup: true, error: data.error || "Đã tồn tại" };
+        res = await fetch(`${API_BASE.replace(/\/$/, "")}/api/problems/${clip.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(clip),
+        });
+        data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          return { ok: true, data, overwritten: true };
+        }
+        return { ok: false, error: data.error || `HTTP ${res.status} (ghi đè thất bại)` };
       }
+      
       return { ok: false, error: data.error || `HTTP ${res.status}` };
     } catch (e) {
       return { ok: false, error: String(e) };
@@ -686,21 +881,84 @@
 
   // ----- Widget -----
 
+  function createWidget() {
+    if (document.getElementById(WIDGET_ID)) return;
+    const widget = document.createElement("div");
+    widget.id = WIDGET_ID;
+    widget.title = "Click để copy đề bài thành JSON";
+    
+    // Tạo image element cho trạng thái idle
+    const img = document.createElement("img");
+    img.src = IDLE_IMG;
+    img.alt = "LeetCode Widget";
+    img.draggable = false;
+    widget.appendChild(img);
+    
+    document.body.appendChild(widget);
+    ensureToast();
+    makeDraggable(widget);
+  }
+
+  function setWidgetState(widget, state) {
+    const img = widget.querySelector("img");
+    if (!img) return;
+    
+    switch (state) {
+      case "idle":
+        img.src = IDLE_IMG;
+        widget.classList.remove("loading", "success", "error");
+        break;
+      case "loading":
+        img.src = LOADING_IMG;
+        widget.classList.add("loading");
+        widget.classList.remove("success", "error");
+        break;
+      case "success":
+        img.src = SUCCESS_IMG;
+        widget.classList.add("success");
+        widget.classList.remove("loading", "error");
+        break;
+      case "error":
+        img.src = ERROR_IMG;
+        widget.classList.add("error");
+        widget.classList.remove("loading", "success");
+        break;
+    }
+  }
+
+  function playSquashStretch(widget) {
+    widget.classList.add("squash-stretch");
+    // Remove animation class after it completes
+    setTimeout(() => {
+      widget.classList.remove("squash-stretch");
+    }, 1200);
+  }
+
   function handleClip() {
+    const widget = document.getElementById(WIDGET_ID);
     const clip = buildProblemClip(document, location.href);
     if (!clip) {
       showToast("Không tìm thấy đề bài. Hãy đợi trang tải xong.", "error");
-      const w = document.getElementById(WIDGET_ID);
-      if (w) {
-        w.classList.add("error");
-        setTimeout(() => w.classList.remove("error"), 1500);
+      if (widget) {
+        setWidgetState(widget, "error");
+        setTimeout(() => setWidgetState(widget, "idle"), 1500);
       }
       return;
     }
     if (!clip.id || clip.id === 0) {
       showToast("Không parse được ID đề bài. Kiểm tra DOM.", "error");
+      if (widget) {
+        setWidgetState(widget, "error");
+        setTimeout(() => setWidgetState(widget, "idle"), 1500);
+      }
       return;
     }
+    
+    // Play squash and stretch animation on click
+    if (widget) {
+      playSquashStretch(widget);
+    }
+
     const json = JSON.stringify(clip, null, 2);
     // 1) Copy vào clipboard (giữ để paste thủ công nếu cần)
     copyToClipboard(json);
@@ -709,31 +967,33 @@
     if (validationErr) {
       showToast(`Không gửi được: ${validationErr}`, "error");
       console.warn("[LeetCode Widget] validation fail:", validationErr, clip);
+      if (widget) {
+        setWidgetState(widget, "error");
+        setTimeout(() => setWidgetState(widget, "idle"), 1500);
+      }
       return;
     }
     // Hiển thị trạng thái đang gửi
     showToast(`Đang gửi ${clip.id}. ${clip.title} tới ${API_BASE}...`, "");
+    if (widget) setWidgetState(widget, "loading");
     postToServer(clip).then((result) => {
       const w = document.getElementById(WIDGET_ID);
       if (result.ok) {
-        showToast(`Đã lưu: ${clip.id}. ${clip.title} vào DB`, "success");
+        const msg = result.overwritten 
+          ? `Đã ghi đè: ${clip.id}. ${clip.title} vào DB`
+          : `Đã lưu: ${clip.id}. ${clip.title} vào DB`;
+        showToast(msg, "success");
         if (w) {
-          w.classList.add("success");
-          w.textContent = "✓";
-          setTimeout(() => {
-            w.classList.remove("success");
-            w.textContent = "LC";
-          }, 1800);
+          setWidgetState(w, "success");
+          setTimeout(() => setWidgetState(w, "idle"), 1800);
         }
         console.log("[LeetCode Widget] POST ok:", result.data);
-      } else if (result.dup) {
-        showToast(`Đã tồn tại: ${clip.id}. ${clip.title}`, "error");
-        if (w) {
-          w.classList.add("error");
-          setTimeout(() => w.classList.remove("error"), 1500);
-        }
       } else {
         showToast(`Lỗi gửi server: ${result.error} (đã copy JSON)`, "error");
+        if (w) {
+          setWidgetState(w, "error");
+          setTimeout(() => setWidgetState(w, "idle"), 1500);
+        }
         console.log("[LeetCode Widget] POST fail, JSON:", json, result);
       }
     });
@@ -799,8 +1059,8 @@
   function keepInBounds(el) {
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const w = rect.width || el.offsetWidth || 52;
-    const h = rect.height || el.offsetHeight || 52;
+    const w = rect.width || el.offsetWidth || 80;
+    const h = rect.height || el.offsetHeight || 80;
     if (el.style.left || el.style.top) {
       const maxLeft = Math.max(0, window.innerWidth - w);
       const maxTop = Math.max(0, window.innerHeight - h);
@@ -811,17 +1071,6 @@
       el.style.right = "auto";
       el.style.bottom = "auto";
     }
-  }
-
-  function createWidget() {
-    if (document.getElementById(WIDGET_ID)) return;
-    const widget = document.createElement("div");
-    widget.id = WIDGET_ID;
-    widget.textContent = "LC";
-    widget.title = "Click để copy đề bài thành JSON";
-    document.body.appendChild(widget);
-    ensureToast();
-    makeDraggable(widget);
   }
 
   // Khởi tạo — đợi body sẵn sàng

@@ -30,10 +30,10 @@
 ### Bước 3 — Dùng trên LeetCode
 
 1. Mở `https://leetcode.com/problems/two-sum/`.
-2. Đợi trang render → góc phải dưới hiện nút tròn **LC** (có thể kéo thả).
-3. Bấm nút → widget hiện toast:
-   - “Đã lưu” → thành công, web sẽ hiện đề mới.
-   - “Đã tồn tại” → đề đã lưu trước đó.
+2. Đợi trang render → góc phải dưới hiện widget ảnh **Idle.png** (có thể kéo thả).
+3. Bấm widget → hiệu ứng **Squash & Stretch** 1.2s, widget đổi sang Loading → Success/Error tùy kết quả, toast SVG hiển thị:
+   - “Đã lưu” → thành công (tạo mới).
+   - “Đã ghi đè” → đề đã tồn tại, server cập nhật bản mới.
    - “Lỗi gửi server” → kiểm tra server có chạy không.
 
 > Widget đồng thời copy JSON vào clipboard — nếu server chưa chạy, bạn vẫn dán thủ công ở web.
@@ -55,4 +55,5 @@
 
 - Lịch sử extension: `AI/history/2026-08/leetcode-clipper-extension.md`
 - Direct import + assets: `AI/history/2026-08/leetcode-clipper-direct-import-assets.md`
+- Widget ảnh động + ghi đè: `AI/history/2026-08/widget-animated-images-and-overwrite.md`
 - Luồng tổng thể: `AI/walkthrough/execution.md`

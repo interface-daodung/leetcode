@@ -80,6 +80,27 @@ export function createProblemController(service: ProblemService) {
     return service.getAssets(params.id);
   }
 
+  /** PUT /api/problems/:id */
+  async function updateClip(request: FastifyRequest, reply: FastifyReply) {
+    const params = idParams.parse(request.params);
+    
+    let parsed: z.infer<typeof importSchema>;
+    try {
+      parsed = importSchema.parse(request.body);
+    } catch (e) {
+      return reply.code(400).send({ error: "Invalid ProblemClip JSON", details: String(e) });
+    }
+
+    // Ensure ID matches
+    if (parsed.id !== params.id) {
+      return reply.code(400).send({ error: "ID in body does not match URL" });
+    }
+
+    const apiBase = process.env.API_URL ?? process.env.VITE_API_URL ?? `http://localhost:${Number(process.env.PORT ?? 3000)}`;
+    const result = await service.updateClip(parsed as never, apiBase);
+    return reply.code(200).send(result);
+  }
+
   /** POST /api/problems/import */
   async function importClip(request: FastifyRequest, reply: FastifyReply) {
     let parsed: z.infer<typeof importSchema>;
@@ -99,5 +120,5 @@ export function createProblemController(service: ProblemService) {
     return reply.code(201).send(result);
   }
 
-  return { list, getById, getRandom, run, hint, getHints, getAssets, importClip };
+  return { list, getById, getRandom, run, hint, getHints, getAssets, importClip, updateClip };
 }
