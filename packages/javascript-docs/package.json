@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "generate": "python scripts/generate.py"
   },
   "dependencies": {
     "@leetcode/shared": "workspace:*"

@@ -1,0 +1,270 @@
+{
+  "sourceFile": "conditionals-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/conditionals-examples.md",
+  "category": "conditional",
+  "title": "Conditional statements",
+  "description": "- [MDN if statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)",
+  "tags": [
+    "conditional",
+    "if",
+    "ternary",
+    "switch",
+    "boolean"
+  ],
+  "totalSections": 8,
+  "sections": [
+    {
+      "id": "conditional-boolean-object",
+      "title": "Boolean object",
+      "headingLevel": 2,
+      "anchor": "#boolean-object",
+      "summary": "The value passed as the first parameter is converted to a boolean value, if necessary.",
+      "keywords": [
+        "boolean",
+        "conditional",
+        "if",
+        "object",
+        "switch",
+        "ternary"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) for specific do's and don'ts for this object.",
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "The value passed as the first parameter is converted to a boolean value, if necessary. If the value is omitted or is 0, -0, null, false, NaN, undefined, or the empty string (\"\"), the object has an initial value of false. All other values, including any object, an empty array ([]), or the string \"false\", create an object with an initial value of true.\n\nCheck out [MDN Boolean object docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) for specific do's and don'ts for this object.",
+      "searchText": "boolean object the value passed as the first parameter is converted to a boolean value, if necessary.  if boolean ternary switch conditional object",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-if-else-statements",
+      "title": "if else statements",
+      "headingLevel": 2,
+      "anchor": "#if-else-statements",
+      "summary": "if (condition) {",
+      "keywords": [
+        "boolean",
+        "condition",
+        "conditional",
+        "else",
+        "if",
+        "statements",
+        "switch",
+        "ternary"
+      ],
+      "syntax": "if (condition) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "if (condition) {\n  statement1;\n} else {\n  statement2;\n}\n\n// example\nfunction strEntry(str) {\n  if (str !== \"\") {\n    return str.split(\"\");\n  } else {\n    return \"Field is empty\";\n  }\n}\nconsole.log(strEntry(\"string\")); // [\"s\",\"t\",\"r\",\"i\",\"n\",\"g\"]",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Syntax:\n\n```js\nif (condition) {\n  statement1;\n} else {\n  statement2;\n}\n\n// example\nfunction strEntry(str) {\n  if (str !== \"\") {\n    return str.split(\"\");\n  } else {\n    return \"Field is empty\";\n  }\n}\nconsole.log(strEntry(\"string\")); // [\"s\",\"t\",\"r\",\"i\",\"n\",\"g\"]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "if else statements if (condition) { if (condition) { if condition else ternary switch statements boolean conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-else-if",
+      "title": "else if",
+      "headingLevel": 3,
+      "anchor": "#else-if",
+      "summary": "if (condition1)",
+      "keywords": [
+        "boolean",
+        "condition1",
+        "conditional",
+        "else",
+        "if",
+        "switch",
+        "ternary"
+      ],
+      "syntax": "if (condition1)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "if (condition1)\n  statement1\nelse if (condition2)\n  statement2\nelse if (condition3)\n  statement3\n...\nelse\n  statementN",
+          "explanation": ""
+        },
+        {
+          "code": "if (x > 50) {\n  /* do something */\n} else if (x > 5) {\n  /* do something */\n} else {\n  /* do something */\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Syntax:\n\n```js\nif (condition1)\n  statement1\nelse if (condition2)\n  statement2\nelse if (condition3)\n  statement3\n...\nelse\n  statementN\n```\n\nTo execute multiple statements within a clause, use a block statement ({ /_ ... _/ }) to group those statements. In general, it is a good practice to always use block statements, especially in code involving nested if statements:\n\n```js\nif (x > 50) {\n  /* do something */\n} else if (x > 5) {\n  /* do something */\n} else {\n  /* do something */\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "else if if (condition1) if (condition1) if else condition1 ternary switch boolean conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-ternary-operator",
+      "title": "Ternary operator",
+      "headingLevel": 2,
+      "anchor": "#ternary-operator",
+      "summary": "condition ? exprIfTrue : exprIfFalse;",
+      "keywords": [
+        "boolean",
+        "conditional",
+        "if",
+        "operator",
+        "switch",
+        "ternary"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "condition ? exprIfTrue : exprIfFalse;\na ? b : c;\n\n// example:\nvar age = 26;\nvar beverage = age >= 21 ? \"Beer\" : \"Juice\";\nconsole.log(beverage); // \"Beer\"\n\n// Handling null values\nlet greeting = person => {\n  let name = person ? person.name : `stranger`;\n  return `Howdy, ${name}`;\n};\nconsole.log(greeting({ name: `Alice` })); // \"Howdy, Alice\"\nconsole.log(greeting(null)); // \"Howdy, stranger\"",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Syntax:\n\n```js\ncondition ? exprIfTrue : exprIfFalse;\na ? b : c;\n\n// example:\nvar age = 26;\nvar beverage = age >= 21 ? \"Beer\" : \"Juice\";\nconsole.log(beverage); // \"Beer\"\n\n// Handling null values\nlet greeting = person => {\n  let name = person ? person.name : `stranger`;\n  return `Howdy, ${name}`;\n};\nconsole.log(greeting({ name: `Alice` })); // \"Howdy, Alice\"\nconsole.log(greeting(null)); // \"Howdy, stranger\"\n```",
+      "searchText": "ternary operator condition ? expriftrue : expriffalse;  if ternary switch operator boolean conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-conditional-chains",
+      "title": "Conditional chains",
+      "headingLevel": 3,
+      "anchor": "#conditional-chains",
+      "summary": "The ternary operator is right-associative, which means it can be chained in the following way, similar to an if … else if … else if … else chain:",
+      "keywords": [
+        "boolean",
+        "chains",
+        "conditional",
+        "example",
+        "if",
+        "switch",
+        "ternary"
+      ],
+      "syntax": "function example(…) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function example(…) {\n    return condition1 ? value1\n         : condition2 ? value2\n         : condition3 ? value3\n         : value4;\n}\n\n// Equivalent to:\nfunction example(…) {\n    if (condition1) { return value1; }\n    else if (condition2) { return value2; }\n    else if (condition3) { return value3; }\n    else { return value4; }\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "The ternary operator is right-associative, which means it can be \"chained\" in the following way, similar to an if … else if … else if … else chain:\n\n```js\nfunction example(…) {\n    return condition1 ? value1\n         : condition2 ? value2\n         : condition3 ? value3\n         : value4;\n}\n\n// Equivalent to:\nfunction example(…) {\n    if (condition1) { return value1; }\n    else if (condition2) { return value2; }\n    else if (condition3) { return value3; }\n    else { return value4; }\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "conditional chains the ternary operator is right-associative, which means it can be chained in the following way, similar to an if … else if … else if … else chain: function example(…) { if example ternary switch boolean chains conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-switch",
+      "title": "Switch",
+      "headingLevel": 2,
+      "anchor": "#switch",
+      "summary": "switch (expression) {",
+      "keywords": [
+        "boolean",
+        "conditional",
+        "expression",
+        "if",
+        "switch",
+        "ternary"
+      ],
+      "syntax": "switch (expression) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch#block-scope_variables_within_switch_statements)\n\n<div align=",
+      "examples": [
+        {
+          "code": "switch (expression) {\n  case value1:\n    //Statements executed when the\n    //result of expression matches value1\n    [break;]\n  case value2:\n    //Statements executed when the\n    //result of expression matches value2\n    [break;]\n  ...\n  case valueN:\n    //Statements executed when the\n    //result of expression matches valueN\n    [break;]\n  [default:\n    //Statements executed when none of\n    //the values match the value of the expression\n    [break;]]\n}",
+          "explanation": ""
+        },
+        {
+          "code": "switch (expr) {\n  case \"Oranges\":\n    console.log(\"Oranges are $0.59 a pound.\");\n    break;\n  case \"Apples\":\n    console.log(\"Apples are $0.32 a pound.\");\n    break;\n  case \"Bananas\":\n    console.log(\"Bananas are $0.48 a pound.\");\n    break;\n  case \"Cherries\":\n    console.log(\"Cherries are $3.00 a pound.\");\n    break;\n  case \"Mangoes\":\n  case \"Papayas\":\n    console.log(\"Mangoes and papayas are $2.79 a pound.\");\n    break;\n  default:\n    console.log(\"Sorry, we are out of \" + expr + \".\");\n}\nconsole.log(\"Is there anything else you'd like?\");\n\n// Example 2:\n\n// Get day of week for November 1st for the current year\nconst d = new Date();\nconst year = d.getFullYear();\nlet currentNovFirst = \"11/01/\" + year;\nlet novFirstDay = new Date(currentNovFirst).getDay();\n\n// For the current year, find the day of the week for the 1st of November\nswitch (novFirstDay) {\n  case 0:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 1:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 2:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 3:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 4:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 5:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 6:\n    weekOne = new Date(`11/1/${year}`);\n}",
+          "explanation": ""
+        },
+        {
+          "code": "var Animal = \"Giraffe\";\nswitch (Animal) {\n  case \"Cow\":\n  case \"Giraffe\":\n  case \"Dog\":\n  case \"Pig\":\n    console.log(\"This animal is not extinct.\");\n    break;\n  case \"Dinosaur\":\n  default:\n    console.log(\"This animal is extinct.\");\n}",
+          "explanation": ""
+        },
+        {
+          "code": "var foo = 1;\nvar output = \"Output: \";\nswitch (foo) {\n  case 0:\n    output += \"So \";\n  case 1:\n    output += \"What \";\n    output += \"Is \";\n  case 2:\n    output += \"Your \";\n  case 3:\n    output += \"Name\";\n  case 4:\n    output += \"?\";\n    console.log(output);\n    break;\n  case 5:\n    output += \"!\";\n    console.log(output);\n    break;\n  default:\n    console.log(\"Please pick a number from 0 to 5!\");\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Syntax:\n\n```js\nswitch (expression) {\n  case value1:\n    //Statements executed when the\n    //result of expression matches value1\n    [break;]\n  case value2:\n    //Statements executed when the\n    //result of expression matches value2\n    [break;]\n  ...\n  case valueN:\n    //Statements executed when the\n    //result of expression matches valueN\n    [break;]\n  [default:\n    //Statements executed when none of\n    //the values match the value of the expression\n    [break;]]\n}\n```\n\n<br />\n\nExamples:\n\n```js\nswitch (expr) {\n  case \"Oranges\":\n    console.log(\"Oranges are $0.59 a pound.\");\n    break;\n  case \"Apples\":\n    console.log(\"Apples are $0.32 a pound.\");\n    break;\n  case \"Bananas\":\n    console.log(\"Bananas are $0.48 a pound.\");\n    break;\n  case \"Cherries\":\n    console.log(\"Cherries are $3.00 a pound.\");\n    break;\n  case \"Mangoes\":\n  case \"Papayas\":\n    console.log(\"Mangoes and papayas are $2.79 a pound.\");\n    break;\n  default:\n    console.log(\"Sorry, we are out of \" + expr + \".\");\n}\nconsole.log(\"Is there anything else you'd like?\");\n\n// Example 2:\n\n// Get day of week for November 1st for the current year\nconst d = new Date();\nconst year = d.getFullYear();\nlet currentNovFirst = \"11/01/\" + year;\nlet novFirstDay = new Date(currentNovFirst).getDay();\n\n// For the current year, find the day of the week for the 1st of November\nswitch (novFirstDay) {\n  case 0:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 1:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 2:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 3:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 4:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 5:\n    weekOne = new Date(`11/1/${year}`);\n    break;\n  case 6:\n    weekOne = new Date(`11/1/${year}`);\n}\n```\n\n<br />\n\nMethods for multi-criteria case:\n\n```js\nvar Animal = \"Giraffe\";\nswitch (Animal) {\n  case \"Cow\":\n  case \"Giraffe\":\n  case \"Dog\":\n  case \"Pig\":\n    console.log(\"This animal is not extinct.\");\n    break;\n  case \"Dinosaur\":\n  default:\n    console.log(\"This animal is extinct.\");\n}\n```\n\n<br />\n\nMulti-case : chained operations\n\n```js\nvar foo = 1;\nvar output = \"Output: \";\nswitch (foo) {\n  case 0:\n    output += \"So \";\n  case 1:\n    output += \"What \";\n    output += \"Is \";\n  case 2:\n    output += \"Your \";\n  case 3:\n    output += \"Name\";\n  case 4:\n    output += \"?\";\n    console.log(output);\n    break;\n  case 5:\n    output += \"!\";\n    console.log(output);\n    break;\n  default:\n    console.log(\"Please pick a number from 0 to 5!\");\n}\n```\n\nAlso: [Block-scope variables within switch statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch#block-scope_variables_within_switch_statements)\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "switch switch (expression) { switch (expression) { if expression boolean ternary switch conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-miscellaneous",
+      "title": "Miscellaneous",
+      "headingLevel": 2,
+      "anchor": "#miscellaneous",
+      "summary": "- type conversion",
+      "keywords": [
+        "boolean",
+        "conditional",
+        "if",
+        "miscellaneous",
+        "switch",
+        "ternary"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "- type conversion\n- `==` vs `===`",
+      "searchText": "miscellaneous - type conversion  if ternary switch boolean conditional miscellaneous",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    },
+    {
+      "id": "conditional-notes",
+      "title": "Notes",
+      "headingLevel": 3,
+      "anchor": "#notes",
+      "summary": "A switch statement first evaluates its expression.",
+      "keywords": [
+        "boolean",
+        "conditional",
+        "if",
+        "notes",
+        "switch",
+        "ternary"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "A **switch** statement first evaluates its expression. It then looks for the first `case` clause whose expression evaluates to the same value as the result of the input expression (using the strict comparison, `===`) and transfers control to that clause, executing the associated statements. (If multiple cases match the provided value, the first `case` that matches is selected, even if the cases are not equal to each other.)\n\nIf no matching `case` clause is found, the program looks for the optional `default` clause, and if found, transfers control to that clause, executing the associated statements. If no `default` clause is found, the program continues execution at the statement following the end of `switch`. By convention, the `default` clause is the last clause,\n\n- expression: An expression whose result is matched against each `case` clause\n- `case valueN`: A `case` clause used to match against expression. If the expression matches the specified `valueN`, the statements inside the `case` clause are executed until either the end of the `switch` statement or a `break`\n- break: The optional statement associated with each case label ensures that the program breaks out of switch once the matched statement is executed and continues execution at the statement following `switch`. If `break` is omitted, the program continues execution at the next statement in the switch statement. The `break` statement is not required if a `return` statement precedes it.\n- default: A default clause; if provided, this clause is executed if the value of expression doesn't match any of the `case` clauses\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "notes a switch statement first evaluates its expression.  if ternary switch boolean notes conditional",
+      "sourceFile": "conditionals-examples.md",
+      "category": "conditional"
+    }
+  ]
+}

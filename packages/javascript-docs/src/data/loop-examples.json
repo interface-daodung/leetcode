@@ -1,0 +1,310 @@
+{
+  "sourceFile": "loop-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/loop-examples.md",
+  "category": "loop",
+  "title": "Loops and iterations",
+  "description": "Notes for not so common loop code snippets.",
+  "tags": [
+    "loop",
+    "iteration",
+    "for",
+    "while"
+  ],
+  "totalSections": 9,
+  "sections": [
+    {
+      "id": "loop-while-loop",
+      "title": "while loop",
+      "headingLevel": 2,
+      "anchor": "#while-loop",
+      "summary": "The while statement creates a loop that executes a specified statement as long as the test condition evaluates to true.",
+      "keywords": [
+        "condition",
+        "for",
+        "iteration",
+        "loop",
+        "while"
+      ],
+      "syntax": "while (condition)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "while (condition)\n  statement\n\n// example\nlet i = 0;\ndo {\n  i += 1;\n  console.log(i);\n} while (i < 5);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "The `while` statement creates a loop that executes a specified statement as long as the test `condition` evaluates to true. The condition is evaluated before executing the statement.\n\n- `condition`: An expression evaluated before each pass through the loop. If this condition evaluates to `true`, statement is executed. When condition evaluates to `false`, execution continues with the statement after the while loop\n\nSyntax:\n```js\nwhile (condition)\n  statement\n\n// example\nlet i = 0;\ndo {\n  i += 1;\n  console.log(i);\n} while (i < 5);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "while loop the while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. while (condition) iteration condition while for loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-do-while-loop",
+      "title": "do while loop",
+      "headingLevel": 2,
+      "anchor": "#do-while-loop",
+      "summary": "The do...while statement creates a loop that executes a specified statement until the test condition evaluates to false.",
+      "keywords": [
+        "do",
+        "for",
+        "iteration",
+        "loop",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "do\n  statement\nwhile (condition);\n\n// example\nlet n = 0;\nlet x = 0;\nwhile (n < 3) {\n  n++;\n  x += n;\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "The do...while statement creates a loop that executes a specified statement until the test condition evaluates to false. The condition is evaluated after executing the statement, resulting in the specified statement executing at least once. \n\n- `condition`: An expression evaluated after each pass through the loop. If condition evaluates to `true`, the statement is re-executed. When condition evaluates to `false`, control passes to the statement following the `do...while`\n\nSyntax:\n```js\ndo\n  statement\nwhile (condition);\n\n// example\nlet n = 0;\nlet x = 0;\nwhile (n < 3) {\n  n++;\n  x += n;\n}\n```\n\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "do while loop the do...while statement creates a loop that executes a specified statement until the test condition evaluates to false.  iteration while do for loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-loop",
+      "title": "for loop",
+      "headingLevel": 2,
+      "anchor": "#for-loop",
+      "summary": "A for loop repeats until a specified condition evaluates to false.",
+      "keywords": [
+        "conditionexpression",
+        "for",
+        "incrementexpression",
+        "initialexpression",
+        "iteration",
+        "loop",
+        "while"
+      ],
+      "syntax": "for ([initialExpression]; [conditionExpression]; [incrementExpression])",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for ([initialExpression]; [conditionExpression]; [incrementExpression])\n  statement\n// or \nfor  (initialization; condition; final-expression)\n\n// example\nlet arr = [1, 2, 3, 4, 5, 6, 7];\nfunction someFx() {\n  for (let i = 0; i < arr.length; i++) {\n    // code here\n  }\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "A `for` loop repeats until a specified condition evaluates to `false`.\n\nSyntax:\n```js\nfor ([initialExpression]; [conditionExpression]; [incrementExpression])\n  statement\n// or \nfor  (initialization; condition; final-expression)\n\n// example\nlet arr = [1, 2, 3, 4, 5, 6, 7];\nfunction someFx() {\n  for (let i = 0; i < arr.length; i++) {\n    // code here\n  }\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "for loop a for loop repeats until a specified condition evaluates to false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) iteration while incrementexpression initialexpression conditionexpression for loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-in-and-for-of-loops",
+      "title": "for in and for of loops",
+      "headingLevel": 2,
+      "anchor": "#for-in-and-for-of-loops",
+      "summary": " The difference between a for...of loop and a for...in loop: while for...in iterates over property insnames/keys/ins, for...of iterates over property insvalues/ins.",
+      "keywords": [
+        "and",
+        "for",
+        "in",
+        "iteration",
+        "loop",
+        "loops",
+        "of",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "> The difference between a `for...of` loop and a `for...in` loop: while `for...in` iterates over property **<ins>names/keys</ins>**, `for...of` iterates over property **<ins>values</ins>**.",
+      "searchText": "for in and for of loops  the difference between a for...of loop and a for...in loop: while for...in iterates over property insnames/keys/ins, for...of iterates over property insvalues/ins.  iteration loops while in of for loop and",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-in",
+      "title": "for in",
+      "headingLevel": 3,
+      "anchor": "#for-in",
+      "summary": "The for...in statement iterates a specified variable over all the enumerable properties of an object.",
+      "keywords": [
+        "for",
+        "in",
+        "iteration",
+        "loop",
+        "object",
+        "variable",
+        "while"
+      ],
+      "syntax": "for (variable in object) {",
+      "returns": "the keys",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for (variable in object) {\n  statement\n}",
+          "explanation": ""
+        },
+        {
+          "code": "const user = {\n  first: \"Jim\",\n  last: \"Kernix\",\n  age: 56\n}\n\nfor (let x in user) {\n  console.log(x); // returns the keys\n  console.log(user[x]); // returns the values\n}\n\n// example 2\nfunction dump_props(obj, obj_name) {\n  let result = '';\n  for (let i in obj) {\n    result += obj_name + '.' + i + ' = ' + obj[i] + '<br>';\n  }\n  result += '<hr>';\n  return result;\n}\n// For an object car with properties make and model, result would be:\ncar.make = Ford\ncar.model = Mustang",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "The `for...in` statement iterates a specified variable over all the enumerable properties of an object. For each distinct property, JavaScript executes the specified statements.\n\n`for in`, syntax:\n```js\nfor (variable in object) {\n  statement\n}\n```\n\nExample:\n```js\nconst user = {\n  first: \"Jim\",\n  last: \"Kernix\",\n  age: 56\n}\n\nfor (let x in user) {\n  console.log(x); // returns the keys\n  console.log(user[x]); // returns the values\n}\n\n// example 2\nfunction dump_props(obj, obj_name) {\n  let result = '';\n  for (let i in obj) {\n    result += obj_name + '.' + i + ' = ' + obj[i] + '<br>';\n  }\n  result += '<hr>';\n  return result;\n}\n// For an object car with properties make and model, result would be:\ncar.make = Ford\ncar.model = Mustang\n```\n\n<br />",
+      "searchText": "for in the for...in statement iterates a specified variable over all the enumerable properties of an object. for (variable in object) { iteration while in object for loop variable the keys",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-of",
+      "title": "for of",
+      "headingLevel": 3,
+      "anchor": "#for-of",
+      "summary": "The for...of statement creates a loop Iterating over iterable objects (including Array, Map, Set, arguments object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property (?)",
+      "keywords": [
+        "for",
+        "iterable",
+        "iteration",
+        "loop",
+        "of",
+        "variable",
+        "while"
+      ],
+      "syntax": "for (variable of iterable) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for (variable of iterable) {\n  statement\n}",
+          "explanation": ""
+        },
+        {
+          "code": "const arr = [3, 5, 7];\narr.foo = 'hello';\n\nfor (let i in arr) {\n   console.log(i); // logs \"0\", \"1\", \"2\", \"foo\"\n}\n\nfor (let i of arr) {\n   console.log(i); // logs 3, 5, 7\n}\n\n// my example: Sum All Odd Fibonacci Numbers\nfunction sumFibs(num) {\n  if (num <= 0) return 0;\n\n  const startNums = [1, 1];\n  let nextNum = 0;\n\n  for (let i of startNums) {\n    let nextNum = startNums[i - 1] + startNums[i];\n    if (nextNum <= num) {\n      startNums.unshift(nextNum);\n    }\n  }\n  return startNums.filter(x => x % 2 != 0).reduce((a, b) => a + b);\n}\nsumFibs(4);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "The `for...of` statement creates a loop Iterating over iterable objects (including `Array`, `Map`, `Set`, `arguments` object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property (?)\n\nSyntax:\n```js\nfor (variable of iterable) {\n  statement\n}\n```\n\nExample:\n```js\nconst arr = [3, 5, 7];\narr.foo = 'hello';\n\nfor (let i in arr) {\n   console.log(i); // logs \"0\", \"1\", \"2\", \"foo\"\n}\n\nfor (let i of arr) {\n   console.log(i); // logs 3, 5, 7\n}\n\n// my example: Sum All Odd Fibonacci Numbers\nfunction sumFibs(num) {\n  if (num <= 0) return 0;\n\n  const startNums = [1, 1];\n  let nextNum = 0;\n\n  for (let i of startNums) {\n    let nextNum = startNums[i - 1] + startNums[i];\n    if (nextNum <= num) {\n      startNums.unshift(nextNum);\n    }\n  }\n  return startNums.filter(x => x % 2 != 0).reduce((a, b) => a + b);\n}\nsumFibs(4);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "for of the for...of statement creates a loop iterating over iterable objects (including array, map, set, arguments object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property (?) for (variable of iterable) { iteration while of for loop iterable variable",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-array-methods",
+      "title": "Array methods",
+      "headingLevel": 2,
+      "anchor": "#array-methods",
+      "summary": "Use high order array methods like map and forEach instead of a for loop when working with arrays:",
+      "keywords": [
+        "array",
+        "cars",
+        "for",
+        "foreach",
+        "iteration",
+        "loop",
+        "methods",
+        "while"
+      ],
+      "syntax": "cars.forEach(function(a, b, c) {})",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "cars.forEach(function(a, b, c) {})",
+          "explanation": ""
+        },
+        {
+          "code": "const cars = [\"Ford\", \"Honda\", \"Toyota\", \"Chevy\"];\n\ncars.forEach(function(car) {\n  console.log(car);\n});",
+          "explanation": ""
+        },
+        {
+          "code": "const users = [\n  {id: 1, name: \"Jim\"},\n  {id: 2, name: \"Buddy\"},\n  {id: 3, name: \"Luna\"}\n];\n\nconst ids = users.map(function(user) {\n  return user.id;\n});\nconsole.log(ids); // (3) [1, 2, 3]",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Use high order array methods like `map` and `forEach` instead of a `for` loop when working with arrays:\n\n`forEach()` \n\nsyntax:\n```js\ncars.forEach(function(a, b, c) {})\n```\n\nExample:\n```js\nconst cars = [\"Ford\", \"Honda\", \"Toyota\", \"Chevy\"];\n\ncars.forEach(function(car) {\n  console.log(car);\n});\n\n```\n\n<br />\n\n`map()`: array of objects\n\n```js\nconst users = [\n  {id: 1, name: \"Jim\"},\n  {id: 2, name: \"Buddy\"},\n  {id: 3, name: \"Luna\"}\n];\n\nconst ids = users.map(function(user) {\n  return user.id;\n});\nconsole.log(ids); // (3) [1, 2, 3]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "array methods use high order array methods like map and foreach instead of a for loop when working with arrays: cars.foreach(function(a, b, c) {}) iteration while cars foreach methods for loop array",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-continue-and-break",
+      "title": "Continue and break",
+      "headingLevel": 2,
+      "anchor": "#continue-and-break",
+      "summary": "Use the break statement to terminate a loop, switch, or in conjunction with a labeled statement.",
+      "keywords": [
+        "and",
+        "break",
+        "continue",
+        "for",
+        "iteration",
+        "loop",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nThe `continue` statement can be used to restart a `while`, `do-while`, `for`, or `label` statement. See [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nBreak syntax:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nContinue syntax:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(",
+      "examples": [
+        {
+          "code": "break;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}",
+          "explanation": ""
+        },
+        {
+          "code": "continue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(\"The number 2 is great\");\n    continue;\n  }\n\n  if (i === 5) {\n    break;\n  }\n\n  console.log(\"Number \" + i)\n}\n\n// example 2\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n    continue;\n  }\n  n += i;\n  console.log(n);\n}\n//1,3,7,12\n\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n     // continue;\n  }\n  n += i;\n  console.log(n);\n}\n// 1,3,6,10,15\n\n// example 3\nlet i = 0;\nlet j = 10;\ncheckiandj:\n  while (i < 4) {\n    console.log(i);\n    i += 1;\n    checkj:\n      while (j > 4) {\n        console.log(j);\n        j -= 1;\n        if ((j % 2) === 0) {\n          continue checkj;\n        }\n        console.log(j + ' is odd.');\n      }\n      console.log('i = ' + i);\n      console.log('j = ' + j);\n  }",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Use the `break` statement to terminate a loop, `switch`, or in conjunction with a labeled statement. See [MDN break statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nThe `continue` statement can be used to restart a `while`, `do-while`, `for`, or `label` statement. See [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nBreak syntax:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nContinue syntax:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(\"The number 2 is great\");\n    continue;\n  }\n\n  if (i === 5) {\n    break;\n  }\n\n  console.log(\"Number \" + i)\n}\n\n// example 2\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n    continue;\n  }\n  n += i;\n  console.log(n);\n}\n//1,3,7,12\n\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n     // continue;\n  }\n  n += i;\n  console.log(n);\n}\n// 1,3,6,10,15\n\n// example 3\nlet i = 0;\nlet j = 10;\ncheckiandj:\n  while (i < 4) {\n    console.log(i);\n    i += 1;\n    checkj:\n      while (j > 4) {\n        console.log(j);\n        j -= 1;\n        if ((j % 2) === 0) {\n          continue checkj;\n        }\n        console.log(j + ' is odd.');\n      }\n      console.log('i = ' + i);\n      console.log('j = ' + j);\n  }\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "continue and break use the break statement to terminate a loop, switch, or in conjunction with a labeled statement.  iteration while continue break for loop and",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-miscellaneous",
+      "title": "Miscellaneous",
+      "headingLevel": 2,
+      "anchor": "#miscellaneous",
+      "summary": "- accumulators",
+      "keywords": [
+        "for",
+        "iteration",
+        "loop",
+        "miscellaneous",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "- accumulators\n- recursion: examples in [function-examples.md](https://github.com/Kernix13/javascript-cheat-sheet/blob/master/function-examples.md)\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
+      "searchText": "miscellaneous - accumulators  iteration while for loop miscellaneous",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    }
+  ]
+}
