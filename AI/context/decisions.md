@@ -4,6 +4,31 @@
 
 ## Decisions
 
+### [2026-08-31] Mở khóa AI tự chủ thao tác git (chỉ cục bộ)
+
+#### Context
+
+Trước đây `AGENTS.md` quy định AI "Không tự commit/merge/push trừ khi được yêu cầu", khiến AI phải dừng lại xin phép sau mỗi phần việc, làm gián đoạn tiến độ liên tục.
+
+#### Decision
+
+- AI được phép **tự chủ thao tác git cục bộ**:
+  - **Commit thường xuyên**: sau mỗi phần việc hoàn chỉnh (implement xong, fix xong, docs cập nhật), commit ngay với message rõ ràng, đúng convention (`feat(x):`, `fix(x):`, `refactor(x):`, `docs(x):`).
+  - **Tự tạo nhánh**: khi bắt đầu tính năng mới hoặc triển khai kế hoạch, tự tạo nhánh `feat/<name>` / `fix/<name>` rồi làm việc trên nhánh đó.
+  - **Merge nội bộ**: được phép merge giữa các nhánh cục bộ (vd gộp `fix/*` về `feat/*`) khi hợp lý.
+- **KHÔNG được public lên**: tuyệt đối không `push` lên remote, không `publish`, không tạo PR/release. Remote chỉ phục vụ đồng bộ cá nhân khi user tự chủ động.
+- Khi commit: chỉ stage đúng file thuộc phạm vi task (kiểm tra `git status`/`git diff` trước), không commit secret/key/.env, không xóa file ngoài phạm vi.
+
+#### Reason
+
+- Giữ tiến độ liên tục, mỗi phần việc là một commit riêng dễ review/rollback, không bị gián đoạn bởi việc xin phép thủ công.
+- Repository là learning lab cá nhân của tác giả (không phải product công khai), nên quản lý git cục bộ là đủ.
+
+#### Consequences
+
+- Cập nhật `AGENTS.md`, `AI/CONVENTIONS.md` (thêm mục Git Workflow), `AI/skills/feature-development/SKILL.md` (thêm bước tạo nhánh + commit).
+- AI vẫn tuyệt đối không push/publish/PR.
+
 ### [2026-08-31] Widget ảnh động + Toast SVG động + Backend ghi đè problem
 
 #### Context

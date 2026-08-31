@@ -4,6 +4,8 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
+**[mới 2026-08-31] Mở khóa AI tự chủ git cục bộ** — cập nhật quy tắc làm việc: `AGENTS.md` thay quy định "Không tự commit/merge/push trừ khi được yêu cầu" bằng **Git Workflow (tự chủ cục bộ)**: AI tự commit thường xuyên sau mỗi phần việc, tự tạo nhánh `feat/<name>`/`fix/<name>` khi bắt đầu tính năng mới/triển khai kế hoạch, được merge nội bộ giữa các nhánh cục bộ — **nhưng tuyệt đối không push/publish/PR** (remote chỉ do user chủ động). Đồng bộ vào `AI/CONVENTIONS.md` (mục Git Workflow), `AI/skills/feature-development/SKILL.md` (thêm bước tạo nhánh + commit), ghi decision mới trong `AI/context/decisions.md`.
+
 **[mới 2026-08-31] Widget ảnh động + Toast SVG + Backend ghi đè** — nhánh `feat/widget-animated-images`. Widget thay text "LC" bằng 4 ảnh PNG (`Idle.png`/`Loading.png`/`Success.png`/`Error.png`) qua `chrome.runtime.getURL`. Thêm `@keyframes squashStretch` 1.2s animation khi click. Toast dùng `assets/toast-text.svg` render text động (auto font-size 24-72px, auto wrap, lệch trái/lên). Backend thêm `PUT /api/problems/:id` để ghi đè, CORS thêm PUT. Extension tự retry PUT khi 409. `pnpm -r build` pass, server 36 tests + extension 53 tests pass.
 
 **[mới 2026-08-31] Shared icon assets** — thêm `packages/shared/asset/icon/` lưu file ảnh icon `leetcodeLab.{ico,png,webp}` (nguồn dùng chung), và bản copy ảnh cần thiết vào asset riêng từng app: `apps/web/public/assets/leetcodeLab.*` (web) và `apps/extension/assets/leetcodeLab.*` (extension). **Không thêm logic/helper TS** — chỉ đặt file ảnh, các app tự tham chiếu ảnh cục bộ của mình. `pnpm -r build` pass.
