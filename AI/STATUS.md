@@ -4,6 +4,18 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
+**[mới 2026-08-31] Dockable Layout (IDE-like) + Package State/Tree Redesign** — nhánh `feat/dockable-layout`. Biến `apps/web` thành giao diện IDE-like dockable layout bằng **FlexLayout** (`flexlayout-react`), đồng thời tái thiết kế `packages/editor` và `packages/problem-engine` sang **state/tree model**. Xem `AI/history/2026-08/dockable-layout-package-state-tree.md`.
+
+Thay đổi chính:
+- **Package mới `@leetcode/layout`** — wrap FlexLayout (Model/Actions/theme + default tree `row → tabset → tab`), 6 tests.
+- **`packages/editor`** — thêm `EditorTreeState` (cây file: root/group/file + pure ops open/update/close/setActive/find/toFlatFiles), 11 tests.
+- **`packages/problem-engine`** — thêm `ProblemTreeState` (byDifficulty/byTag/byId + search/list), tích hợp vào `ProblemEngine` giữ nguyên API cũ (server 36 tests + extension 53 tests vẫn pass), 10 tests.
+- **`apps/web`** — FlexLayout dockable layout thay thế 2 cột cứng: 4 panels (Explorer/Editor/Description/Output), kéo thả tab + resize + persist localStorage (`lc:layout:json`) + theme đồng bộ.
+- **Docs** — cập nhật ARCHITECTURE, PACKAGE_STRUCTURE, walkthrough frontend, docs/features.
+- `pnpm -r build` + `pnpm -r test` pass (137 tests).
+
+## Current Phase
+
 **[mới 2026-08-31] Mở khóa AI tự chủ git cục bộ** — cập nhật quy tắc làm việc: `AGENTS.md` thay quy định "Không tự commit/merge/push trừ khi được yêu cầu" bằng **Git Workflow (tự chủ cục bộ)**: AI tự commit thường xuyên sau mỗi phần việc, tự tạo nhánh `feat/<name>`/`fix/<name>` khi bắt đầu tính năng mới/triển khai kế hoạch, được merge nội bộ giữa các nhánh cục bộ — **nhưng tuyệt đối không push/publish/PR** (remote chỉ do user chủ động). Đồng bộ vào `AI/CONVENTIONS.md` (mục Git Workflow), `AI/skills/feature-development/SKILL.md` (thêm bước tạo nhánh + commit), ghi decision mới trong `AI/context/decisions.md`.
 
 **[mới 2026-08-31] Extension component-based refactor + esbuild** — tách `clipper.ts` (907 dòng) + `content.js` (1093 dòng) thành `src/parsers/` (7 file thuần), `src/clip.ts` (orchestrator), `src/widget/`, `src/toast/`, `src/api/`, `src/index.ts` (entry). Thêm esbuild bundle `src/index.ts` → `content.js` (IIFE) — **content.js không còn sửa tay**. 53 tests pass, `pnpm -r build` pass. Xem `AI/history/2026-08/extension-component-based-refactor.md`.
