@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import "flexlayout-react/style/combined.css";
 
 /* dark: variant theo data-theme toggle (không phụ thuộc OS) */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -224,4 +225,11 @@ body {
 .code-editor-ce pre {
   background: transparent !important;
   font-family: inherit;
+}
+
+/* FlexLayout cần container position relative */
+.flexlayout__theme {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }

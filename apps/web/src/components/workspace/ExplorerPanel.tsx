@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import type { ProblemMeta } from "@leetcode/shared";
-import { fetchProblems } from "../lib/api.js";
-import { DifficultyBadge } from "./DifficultyBadge.js";
+import { fetchProblems } from "../../lib/api.js";
+import { DifficultyBadge } from "../DifficultyBadge.js";
 
 type Filter = "all" | "easy" | "medium" | "hard";
 
-export function Sidebar() {
+export function ExplorerPanel() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [problems, setProblems] = useState<ProblemMeta[]>([]);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
@@ -48,7 +49,7 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="flex h-full w-full shrink-0 flex-col border-r border-border bg-sidebar-bg">
+    <div className="flex h-full w-full flex-col overflow-hidden bg-sidebar-bg">
       <div className="border-b border-border p-3">
         <div className="relative">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-muted">
@@ -69,9 +70,7 @@ export function Sidebar() {
               type="button"
               onClick={() => setFilter(f.key)}
               className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
-                filter === f.key
-                  ? "bg-accent text-white"
-                  : "text-text-secondary hover:bg-bg-hover"
+                filter === f.key ? "bg-accent text-white" : "text-text-secondary hover:bg-bg-hover"
               }`}
             >
               {f.label}
@@ -92,9 +91,10 @@ export function Sidebar() {
               const active = String(p.id) === id;
               return (
                 <li key={p.id}>
-                  <Link
-                    to={`/problems/${p.id}`}
-                    className={`block px-3 py-2 no-underline transition-colors ${
+                  <button
+                    type="button"
+                    onClick={() => navigate(`/problems/${p.id}`)}
+                    className={`block w-full px-3 py-2 text-left no-underline transition-colors ${
                       active ? "bg-accent-soft" : "hover:bg-bg-hover"
                     }`}
                   >
@@ -108,22 +108,19 @@ export function Sidebar() {
                     {p.tags && p.tags.length > 0 && (
                       <div className="mt-1 flex flex-wrap gap-1">
                         {p.tags.slice(0, 3).map((t) => (
-                          <span
-                            key={t}
-                            className="rounded bg-bg-hover px-1.5 py-0.5 text-[10px] text-text-muted"
-                          >
+                          <span key={t} className="rounded bg-bg-hover px-1.5 py-0.5 text-[10px] text-text-muted">
                             {t}
                           </span>
                         ))}
                       </div>
                     )}
-                  </Link>
+                  </button>
                 </li>
               );
             })}
           </ul>
         )}
       </div>
-    </aside>
+    </div>
   );
 }
