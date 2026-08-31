@@ -18,7 +18,8 @@
       "@leetcode/editor": ["packages/editor/src"],
       "@leetcode/javascript-docs": ["packages/javascript-docs/src"],
       "@leetcode/problem-engine": ["packages/problem-engine/src"],
-      "@leetcode/ai": ["packages/ai/src"]
+      "@leetcode/ai": ["packages/ai/src"],
+      "@leetcode/layout": ["packages/layout/src"]
     }
   },
   "exclude": ["node_modules", "dist", "apps/*/dist", "packages/*/dist"]
