@@ -1,3 +1,13 @@
+export {
+  ICON_FORMATS,
+  ICON_FILES,
+  APP_ICON_NAME,
+  getIconPath,
+  getIconFileName,
+  getAppIconUrl,
+} from "./icons.js";
+export type { IconFormat } from "./icons.js";
+
 export const version = "0.0.0";
 
 export function formatProblemId(id: number): string {

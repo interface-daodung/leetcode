@@ -1,4 +1,5 @@
 import { useTheme } from "../lib/theme.js";
+import { appIconUrl } from "../appIcon.js";
 
 export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean; onToggleSidebar: () => void }) {
   const { theme, toggle } = useTheme();
@@ -10,8 +11,8 @@ export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean;
         title={sidebarOpen ? "Ẩn sidebar" : "Hiện sidebar"}
         className="flex items-center gap-2 rounded-lg px-1 py-1 no-underline transition-colors hover:bg-bg-hover"
       >
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-sm font-bold text-white">
-          LC
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
+          <img src={appIconUrl} alt="LeetCode Lab" className="h-7 w-7 rounded object-contain" />
         </span>
         <span className="hidden text-sm font-semibold text-text-primary sm:inline">LeetCode Lab</span>
       </button>

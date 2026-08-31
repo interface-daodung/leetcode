@@ -9,3 +9,6 @@ packages/database/data/assets/
 playground/
 tham_khao/
 dist/
+
+# ?nh icon copy t? packages/shared/asset/icon (sinh b?i sync-icons), không track riêng
+apps/extension/assets/leetcodeLab.*

@@ -4,16 +4,15 @@ Browser extension (Manifest V3) hiển thị widget nổi trên `https://leetcod
 
 ## Chức năng
 
-- Hiện icon tròn `LC` ở góc phải dưới khi ở trang đề bài LeetCode.
+- Hiện icon tròn (logo `LeetCode Lab`, ảnh từ `packages/shared/asset/icon`) ở góc phải dưới khi ở trang đề bài LeetCode.
 - Click → cắt DOM đề bài (`[data-track-load="description_content"]` + title/difficulty) → làm sạch → copy JSON vào clipboard.
 - Kéo thả để di chuyển widget (giới hạn trong viewport).
 
 ## Cài đặt (Load unpacked)
 
 1. Mở Chrome → `chrome://extensions/` → bật **Developer mode**.
-2. Bấm **Load unpacked** → chọn thư mục `apps/extension`.
-3. Mở `https://leetcode.com/problems/two-sum/` → thấy widget → click → JSON đã copy.
-4. Sang `http://localhost:5173` → dán JSON vào vùng **Import** → Save.
+2. Chạy `pnpm --filter=@leetcode/extension prebuild` để tạo `api-config.js` + copy icon vào `assets/` (hoặc chạy `pnpm --filter=@leetcode/extension sync:icons`).
+3. Bấm **Load unpacked** → chọn thư mục `apps/extension`.
 
 ## JSON mẫu
 

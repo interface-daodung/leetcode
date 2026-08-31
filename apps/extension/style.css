@@ -22,6 +22,35 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
   border: 2px solid #fff;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  overflow: hidden;
+}
+
+#lc-clipper-widget .lc-widget-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#lc-clipper-widget .lc-widget-check {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 175, 155, 0.75);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+}
+
+#lc-clipper-widget.success .lc-widget-check {
+  opacity: 1;
+  transform: scale(1);
 }
 
 #lc-clipper-widget:hover {
@@ -40,11 +69,13 @@
 }
 
 #lc-clipper-widget.success {
-  background: #00AF9B;
+  border-color: #00AF9B;
+  box-shadow: 0 0 0 3px rgba(0, 175, 155, 0.35);
 }
 
 #lc-clipper-widget.error {
-  background: #FF3752;
+  border-color: #FF3752;
+  box-shadow: 0 0 0 3px rgba(255, 55, 82, 0.35);
 }
 
 #lc-clipper-toast {

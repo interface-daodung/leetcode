@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "LeetCode Widget",
   "version": "0.1.0",
-  "description": "Clip đề bài LeetCode thành JSON vào clipboard để dán vào LeetCode Lab.",
+  "description": "Clip đề bài LeetCode thành JSON, tự động gửi về localhost để lưu DB. Giữ clipboard cho test thủ công.",
   "permissions": [
     "clipboardWrite"
   ],
@@ -27,6 +27,21 @@
     }
   ],
   "icons": {
-    "128": "assets/icon.svg"
-  }
+    "16": "assets/leetcodeLab.png",
+    "32": "assets/leetcodeLab.png",
+    "48": "assets/leetcodeLab.png",
+    "128": "assets/leetcodeLab.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/leetcodeLab.webp",
+        "assets/leetcodeLab.png",
+        "assets/leetcodeLab.ico"
+      ],
+      "matches": [
+        "*://leetcode.com/*"
+      ]
+    }
+  ]
 }

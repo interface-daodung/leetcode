@@ -60,7 +60,7 @@ Có 3 ứng dụng trong monorepo:
 
 Không có shared UI component. Các package chia sẻ logic và types:
 
-- `packages/shared` — types (`ProblemMeta`, `ProblemClip`, `Difficulty`, `TestCase`), utils (`formatProblemId`).
+- `packages/shared` — types (`ProblemMeta`, `ProblemClip`, `Difficulty`, `TestCase`), utils (`formatProblemId`), icon app (`asset/icon` + `getAppIconUrl`...).
 - `packages/editor` — `EditorState`, `createEditorState`, `languageTemplates`.
 - `packages/problem-engine` — `ProblemEngine` (registry + test runner, hydrate từ DB).
 - `packages/database` — `ProblemDatabase` (SQLite CRUD).
