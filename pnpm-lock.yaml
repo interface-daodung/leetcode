@@ -93,12 +93,18 @@ importers:
       '@leetcode/editor':
         specifier: workspace:*
         version: link:../../packages/editor
+      '@leetcode/layout':
+        specifier: workspace:*
+        version: link:../../packages/layout
       '@leetcode/problem-engine':
         specifier: workspace:*
         version: link:../../packages/problem-engine
       '@leetcode/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      flexlayout-react:
+        specifier: ^0.10.7
+        version: 0.10.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.0
         version: 18.3.1
