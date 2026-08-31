@@ -835,7 +835,7 @@
         let cur = "";
         for (const w of words) {
           const trial = (cur + " " + w).trim();
-          if (estimateWidth2(trial, fs) <= mw || !cur) {
+          if (estimateWidth2(trial, fs) <= mw * 1.2 || !cur) {
             cur = trial;
           } else {
             lines2.push(cur);
@@ -906,7 +906,7 @@
       const lineHeight = fontSize * 1.15;
       const totalH = (lines.length - 1) * lineHeight;
       const centerY = (safeY0 + safeY1) / 2 - ty;
-      const yStart = centerY - totalH / 2 + fontSize * 0.5;
+      const yStart = centerY - totalH / 2 + fontSize * 0.25 - 20;
       const xCenter = (safeX0 + safeX1) / 2 - tx - fontSize * 0.15;
       let newAttrs = attrs.replace(/font-size:\s*[\d.]+px/, `font-size: ${fontSize.toFixed(2)}px`);
       newAttrs = newAttrs.replace(/\sx="[^"]*"/, "").replace(/\sy="[^"]*"/, "");
@@ -932,8 +932,8 @@
     if (widget) {
       const widgetRect = widget.getBoundingClientRect();
       el.style.position = "fixed";
-      el.style.bottom = `${window.innerHeight - widgetRect.top + 8}px`;
-      el.style.right = `${window.innerWidth - widgetRect.right}px`;
+      el.style.bottom = `${window.innerHeight - widgetRect.top * 1.24}px`;
+      el.style.right = `${window.innerWidth - widgetRect.right * 1.2}px`;
       el.style.left = "auto";
       el.style.top = "auto";
     } else {

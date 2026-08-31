@@ -81,7 +81,7 @@ export async function generateToastSvg(text: string): Promise<string | null> {
       let cur = "";
       for (const w of words) {
         const trial = (cur + " " + w).trim();
-        if (estimateWidth(trial, fs) <= mw || !cur) {
+        if (estimateWidth(trial, fs) <= mw * 1.2 || !cur) {
           cur = trial;
         } else {
           lines.push(cur);
@@ -110,7 +110,7 @@ export async function generateToastSvg(text: string): Promise<string | null> {
     const totalH = (lines.length - 1) * lineHeight;
     const centerY = (safeY0 + safeY1) / 2 - ty;
     // Lệch lên + trái một chút
-    const yStart = centerY - totalH / 2 + fontSize * 0.50;
+    const yStart = centerY - totalH / 2 + fontSize * 0.25 - 20;
     const xCenter = (safeX0 + safeX1) / 2 - tx - fontSize * 0.15;
 
     // Cập nhật attrs text
