@@ -19,8 +19,7 @@
       "*": ["./*"],
       "@leetcode/shared": ["../../packages/shared/src"],
       "@leetcode/editor": ["../../packages/editor/src"],
-      "@leetcode/problem-engine": ["../../packages/problem-engine/src"],
-      "@icons/*": ["../../packages/shared/asset/icon/*"]
+      "@leetcode/problem-engine": ["../../packages/problem-engine/src"]
     }
   },
   "include": ["src"],

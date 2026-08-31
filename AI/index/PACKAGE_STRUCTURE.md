@@ -6,7 +6,7 @@ Monorepo chứa 6 package nội bộ (`packages/*`):
 
 | Package | Alias | Mô tả |
 |---------|-------|-------|
-| `shared` | `@leetcode/shared` | Types (`Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`), util (`formatProblemId`), icon app (`asset/icon`, `getAppIconUrl`...) |
+| `shared` | `@leetcode/shared` | Types (`Difficulty`, `ProblemMeta`, `ProblemClip`, `TestCase`), util (`formatProblemId`), ảnh icon gốc (`asset/icon`) |
 | `database` | `@leetcode/database` | Drizzle ORM + SQLite, `ProblemDatabase` class |
 | `editor` | `@leetcode/editor` | `EditorState`, `createEditorState`, `languageTemplates` |
 | `javascript-docs` | `@leetcode/javascript-docs` | Static JS/TS reference docs, `getDoc` |

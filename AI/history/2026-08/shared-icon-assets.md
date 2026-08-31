@@ -1,34 +1,35 @@
-# Shared icon assets
+# Shared icon assets (copy - không logic)
 
 Ngày: 2026-08-31
 
 ## Bối cảnh
 
-App cần một nơi trung tâm lưu file ảnh icon (nhiều định dạng) và helper để các
-app (web, extension, winget...) link ảnh làm icon/logp mà không phải copy ảnh
-rời rạc ở từng app.
+App cần một nơi lưu file ảnh icon dùng chung và bản copy ảnh cần thiết cho từng
+app. Đã từng thử thêm helper/logic TS (`src/icons.ts`, `appIcon.ts`, alias
+`@icons`, `sync-icons.mjs`...) nhưng bị **loại bỏ** theo yêu cầu để tránh rối
+code — giữ thật đơn giản: chỉ đặt file ảnh, không code thêm.
 
-## Thay đổi
+## Thay đổi cuối
 
 ### `packages/shared/asset/icon/` (mới)
 
-- Folder lưu file ảnh icon. Người dùng tự thêm file; `.gitkeep` giữ folder trong git.
-- Logo chính đặt tên `leetcodeLab` gồm các định dạng: `leetcodeLab.icon`, `leetcodeLab.png`, `leetcodeLab.webp`.
+- Folder lưu ảnh icon gốc dùng chung: `leetcodeLab.ico`, `leetcodeLab.png`, `leetcodeLab.webp`.
 
-### `packages/shared/src/icons.ts` (mới)
+### Copy ảnh vào asset riêng từng app
 
-- `ICON_FORMATS` — `["icon", "png", "webp"]` (thứ tự ưu tiên).
-- `ICON_FILES` — map tên icon → tên file từng định dạng.
-- `APP_ICON_NAME` — `"leetcodeLab"`.
-- `getIconPath(name, format)` — path tương đối từ root package (`asset/icon/...`).
-- `getIconFileName(name, format)` — tên file ảnh.
-- `getAppIconUrl(baseUrl, name, format)` — URL hoàn chỉnh.
+- `apps/web/public/assets/leetcodeLab.{ico,png,webp}` — bản copy cho web.
+- `apps/extension/assets/leetcodeLab.{ico,png,webp}` — bản copy cho extension.
+- Các app tự tham chiếu ảnh cục bộ của mình, không dùng chung trực tiếp từ shared.
 
-### `packages/shared/src/index.ts`
+### Đã loại bỏ (không giữ)
 
-- Export thêm `ICON_FORMATS`, `ICON_FILES`, `APP_ICON_NAME`, `getIconPath`, `getIconFileName`, `getAppIconUrl`, type `IconFormat`.
+- `packages/shared/src/icons.ts` + export icon trong `src/index.ts`.
+- `apps/web/src/appIcon.ts`, `src/vite-env.d.ts`, alias `@icons` (vite.config + tsconfig).
+- Sửa `Header.tsx`/`Layout.tsx` (logo img + favicon).
+- `apps/extension/scripts/sync-icons.mjs`, sửa `manifest.json`/`content.js`/`style.css`/`package.json`.
+- Bổ sung `.gitignore`.
 
 ## Kết quả
 
-- `pnpm --filter=@leetcode/shared build` (tsc --noEmit) pass.
-- Cập nhật README + `AI/STATUS.md`, `AI/index/PACKAGE_STRUCTURE.md`, `AI/index/APP_STRUCTURE.md`.
+- `pnpm -r build` pass.
+- Trạng thái: chỉ có ảnh copy trong asset từng app; không còn logic/helper icon.

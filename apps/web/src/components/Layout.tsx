@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header.js";
 import { Sidebar } from "./Sidebar.js";
-import { applyFavicon } from "../appIcon.js";
 
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  useEffect(() => {
-    applyFavicon();
-  }, []);
 
   return (
     <div className="flex h-full flex-col">

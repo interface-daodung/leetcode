@@ -719,7 +719,11 @@
         showToast(`Đã lưu: ${clip.id}. ${clip.title} vào DB`, "success");
         if (w) {
           w.classList.add("success");
-          setTimeout(() => w.classList.remove("success"), 1800);
+          w.textContent = "✓";
+          setTimeout(() => {
+            w.classList.remove("success");
+            w.textContent = "LC";
+          }, 1800);
         }
         console.log("[LeetCode Widget] POST ok:", result.data);
       } else if (result.dup) {
@@ -809,28 +813,12 @@
     }
   }
 
-  // ----- Icon (ảnh copy từ packages/shared/asset/icon qua scripts/sync-icons.mjs) -----
-
-  const ICON_URL = chrome.runtime.getURL("assets/leetcodeLab.webp");
-
   function createWidget() {
     if (document.getElementById(WIDGET_ID)) return;
     const widget = document.createElement("div");
     widget.id = WIDGET_ID;
+    widget.textContent = "LC";
     widget.title = "Click để copy đề bài thành JSON";
-
-    const img = document.createElement("img");
-    img.src = ICON_URL;
-    img.alt = "LeetCode Lab";
-    img.className = "lc-widget-icon";
-    widget.appendChild(img);
-
-    const check = document.createElement("span");
-    check.id = `${WIDGET_ID}-check`;
-    check.className = "lc-widget-check";
-    check.textContent = "✓";
-    widget.appendChild(check);
-
     document.body.appendChild(widget);
     ensureToast();
     makeDraggable(widget);

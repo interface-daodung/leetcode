@@ -1,5 +1,4 @@
 import { useTheme } from "../lib/theme.js";
-import { appIconUrl } from "../appIcon.js";
 
 export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean; onToggleSidebar: () => void }) {
   const { theme, toggle } = useTheme();
@@ -11,8 +10,8 @@ export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean;
         title={sidebarOpen ? "Ẩn sidebar" : "Hiện sidebar"}
         className="flex items-center gap-2 rounded-lg px-1 py-1 no-underline transition-colors hover:bg-bg-hover"
       >
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
-          <img src={appIconUrl} alt="LeetCode Lab" className="h-7 w-7 rounded object-contain" />
+        <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-accent">
+          <img src="/assets/leetcodeLab.webp" alt="LeetCode Lab" className="h-full w-full object-cover" />
         </span>
         <span className="hidden text-sm font-semibold text-text-primary sm:inline">LeetCode Lab</span>
       </button>
@@ -34,7 +33,7 @@ export function Header({ sidebarOpen, onToggleSidebar }: { sidebarOpen: boolean;
         aria-label="Đổi theme"
         className="flex h-9 w-9 items-center justify-center rounded-lg text-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
       >
-        {theme === "light" ? "🌙" : "☀️"}
+        {theme === "light" ? <i className="fa-regular fa-moon" /> : <i className="fa-solid fa-sun" />}
       </button>
     </header>
   );

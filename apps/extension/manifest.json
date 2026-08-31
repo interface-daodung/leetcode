@@ -31,17 +31,5 @@
     "32": "assets/leetcodeLab.png",
     "48": "assets/leetcodeLab.png",
     "128": "assets/leetcodeLab.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "assets/leetcodeLab.webp",
-        "assets/leetcodeLab.png",
-        "assets/leetcodeLab.ico"
-      ],
-      "matches": [
-        "*://leetcode.com/*"
-      ]
-    }
-  ]
+  }
 }

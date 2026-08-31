@@ -23,6 +23,7 @@ Có 3 ứng dụng trong monorepo:
 - **Theme**: CSS variables (`:root` light / `[data-theme=dark]`) trong `src/index.css`, `@custom-variant dark` cho Tailwind, `lib/theme.tsx` (ThemeProvider + useTheme, lưu localStorage).
 - **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme), render HTML string qua `renderToStaticMarkup`, contentEditable div hiển thị trực tiếp — không overlay nên không lệch dòng, selection nhìn thấy được.
 - **Mở trong VS Code**: nút "VS Code" (icon `public/assets/vscode.svg`) gọi `POST /api/playground/:slug` → ghi `playground/<slug>.js` → mở `vscode://file/<path>:<line>:<column>` (line = dòng mở body hàm).
+- **Icon app**: bản copy ảnh logo ở `public/assets/leetcodeLab.*` (`ico/png/webp`) — nguồn ảnh dùng chung đặt tại `packages/shared/asset/icon`. Không có logic riêng; web tham chiếu ảnh cục bộ.
 - **API**: `lib/api.ts` — `fetchProblems` (GET /api/problems), `fetchProblem` (GET /api/problems/:id), `runCode` (POST /api/problems/:id/run), `saveToPlayground` (POST /api/playground/:slug). Host từ root `.env` (`VITE_API_URL`), fallback localhost.
 - **Đã loại bỏ**: `ProblemImportPaste.tsx`, `lib/problemClip.ts` — web không còn nhập đề thủ công (extension POST thẳng tới server).
 - **Dependencies**: `@leetcode/shared`, `@leetcode/editor`, `@leetcode/problem-engine`, `react-router-dom`, `react-syntax-highlighter`.
@@ -51,8 +52,8 @@ Có 3 ứng dụng trong monorepo:
 ## Extension (Browser)
 
 - **Type**: Manifest V3, content script vanilla JS (không bundler).
-- **Manifest**: `apps/extension/manifest.json` — `matches: *://leetcode.com/problems/*`, `permissions: clipboardWrite`, `host_permissions: *://leetcode.com/*`.
-- **Content**: `content.js` — widget `LC` draggable (fixed, z-index 999999), click → `buildProblemClip` → `navigator.clipboard.writeText`, toast.
+- **Manifest**: `apps/extension/manifest.json` — `matches: *://leetcode.com/problems/*`, `permissions: clipboardWrite`, `host_permissions: *://leetcode.com/*`. `icons` dùng `assets/icon.svg`.
+- **Content**: `content.js` — widget `LC` draggable (fixed, z-index 999999), click → `buildProblemClip` → `navigator.clipboard.writeText`, toast. Biểu tượng thêm sau: bản copy logo `assets/leetcodeLab.*` đặt sẵn trong `assets/` (nguồn `packages/shared/asset/icon`).
 - **Logic thuần**: `src/clipper.ts` — `findDescriptionContainer`, `extractDifficulty`, `cleanDescription`, `buildProblemClip`, `isValidProblemClip` (42 tests với jsdom).
 - **Style**: `style.css` — widget tròn 52px, toast, trạng thái success/error.
 
@@ -60,7 +61,7 @@ Có 3 ứng dụng trong monorepo:
 
 Không có shared UI component. Các package chia sẻ logic và types:
 
-- `packages/shared` — types (`ProblemMeta`, `ProblemClip`, `Difficulty`, `TestCase`), utils (`formatProblemId`), icon app (`asset/icon` + `getAppIconUrl`...).
+- `packages/shared` — types (`ProblemMeta`, `ProblemClip`, `Difficulty`, `TestCase`), utils (`formatProblemId`), ảnh icon gốc (`asset/icon`).
 - `packages/editor` — `EditorState`, `createEditorState`, `languageTemplates`.
 - `packages/problem-engine` — `ProblemEngine` (registry + test runner, hydrate từ DB).
 - `packages/database` — `ProblemDatabase` (SQLite CRUD).
