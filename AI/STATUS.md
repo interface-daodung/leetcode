@@ -4,7 +4,7 @@ Cập nhật: 2026-08-31
 
 ## Current Phase
 
-**[mới 2026-08-31] Frontend redesign + run test cải tiến** — `apps/web` dùng **Tailwind CSS 4 + React Router DOM 7 + react-syntax-highlighter**, theme sáng/tối CSS variables (`data-theme`), layout Header (bấm logo ẩn/hiện sidebar) + Sidebar + ProblemDetail (description trái, editor + Run phải). CodeEditor chuyển sang **contentEditable div + highlight trực tiếp** (hết lệch dòng, selection nhìn thấy). Server `run` dùng `services/solution.util.ts`: **lọc comment (stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input)** thay cho `new Function("return " + code)`. Fix ảnh assets 404 bằng bỏ `wildcard: false` + `ensureAssetFiles`. **Đã loại bỏ nhập đề thủ công** (ProblemImportPaste, lib/problemClip). `pnpm -r build` pass, server 30 tests + extension 49 tests pass.
+**[mới 2026-08-31] Frontend nâng cấp — nhánh `feat/frontend-vscode-open`** — các cải tiến frontend tách sang nhánh riêng. Thêm nút **"VS Code"** trong header code editor (icon `public/assets/vscode.svg`): gọi `POST /api/playground/:slug` → server ghi `playground/<slug>.js` + tìm dòng mở body hàm (`playground.service.findFunctionBodyLine`) → web mở `vscode://file/<path>:<line>:<column>`. Thêm `playground/` vào `.gitignore`. Trước đó (cùng nhánh gốc): CodeEditor contentEditable + highlight trực tiếp, Header bấm logo ẩn/hiện sidebar, server `run` lọc comment → trích hàm → wrapSolution, fix ảnh assets 404. `pnpm -r build` pass, server 36 tests + extension 49 tests pass.
 
 ## Đang làm
 

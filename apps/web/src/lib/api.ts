@@ -36,3 +36,28 @@ export async function runCode(
     return { error: String(e) };
   }
 }
+
+export interface PlaygroundOpenResult {
+  path: string;
+  line: number;
+  column: number;
+  file: string;
+}
+
+export async function saveToPlayground(
+  slug: string,
+  code: string,
+): Promise<{ ok: true; result: PlaygroundOpenResult } | { ok: false; error: string }> {
+  try {
+    const res = await fetch(`${API_BASE}/api/playground/${encodeURIComponent(slug)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
+    const data = (await res.json()) as PlaygroundOpenResult & { error?: string };
+    if (!res.ok) return { ok: false, error: data.error ?? `Lỗi ${res.status}` };
+    return { ok: true, result: data };
+  } catch (e) {
+    return { ok: false, error: String(e) };
+  }
+}

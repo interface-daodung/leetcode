@@ -6,5 +6,6 @@ node_modules
 .env
 !.env.example
 packages/database/data/assets/
+playground/
 tham_khao/
 dist/

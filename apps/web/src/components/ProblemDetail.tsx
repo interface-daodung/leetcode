@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { ProblemMeta } from "@leetcode/shared";
-import { fetchProblem, runCode } from "../lib/api.js";
+import { fetchProblem, runCode, saveToPlayground } from "../lib/api.js";
 import { sanitizeDescriptionHtml } from "../lib/sanitize.js";
 import { DifficultyBadge } from "./DifficultyBadge.js";
 import { CodeEditor } from "./CodeEditor.js";
@@ -15,6 +15,7 @@ export function ProblemDetail() {
   const [output, setOutput] = useState("");
   const [running, setRunning] = useState(false);
   const [showHints, setShowHints] = useState(false);
+  const [vscodeMsg, setVscodeMsg] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -43,6 +44,24 @@ export function ProblemDetail() {
       setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
     }
     setRunning(false);
+  }, [problem, code]);
+
+  const handleOpenInVscode = useCallback(async () => {
+    if (!problem || !problem.slug) {
+      setVscodeMsg("Không có slug để mở trong VS Code");
+      return;
+    }
+    setVscodeMsg("Đang lưu vào playground...");
+    const res = await saveToPlayground(problem.slug, code);
+    if (!res.ok) {
+      setVscodeMsg(`Lỗi: ${res.error}`);
+      return;
+    }
+    const { path, line, column } = res.result;
+    // Mở VS Code qua URI scheme vscode://file/<path>:<line>:<column> (tương đương code --goto)
+    const uri = `vscode://file/${path}:${line}:${column}`;
+    window.location.href = uri;
+    setVscodeMsg(`Đã mở ${path}:${line}:${column}`);
   }, [problem, code]);
 
   if (loading) {
@@ -154,6 +173,16 @@ export function ProblemDetail() {
                 {output}
               </span>
             )}
+            {vscodeMsg && <span className="max-w-[160px] truncate text-xs text-text-secondary">{vscodeMsg}</span>}
+            <button
+              type="button"
+              onClick={handleOpenInVscode}
+              title="Mở trong VS Code"
+              className="flex items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
+            >
+              <img src="/assets/vscode.svg" alt="VS Code" className="h-4 w-4" />
+              VS Code
+            </button>
             <button
               type="button"
               onClick={handleRun}

@@ -19,10 +19,11 @@ Có 3 ứng dụng trong monorepo:
 - **Framework**: React 18.3, Vite 5, `@vitejs/plugin-react`, Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7.
 - **Entry**: `index.html` → `main.tsx` (BrowserRouter + ThemeProvider) → `App.tsx` (Routes).
 - **Routing**: Layout (`Header` + `Sidebar` + `<Outlet />`) → `/problems/:id` (ProblemDetail). `/` và `/problems` redirect về first problem.
-- **Components**: `Layout.tsx`, `Header.tsx` (logo bấm để ẩn/hiện sidebar, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả trái, editor + Run phải, hints), `CodeEditor.tsx` (contentEditable div + react-syntax-highlighter, selection tự nhiên), `DifficultyBadge.tsx`.
+- **Components**: `Layout.tsx`, `Header.tsx` (logo bấm để ẩn/hiện sidebar, theme toggle), `Sidebar.tsx` (list + search + filter theo difficulty), `ProblemDetail.tsx` (mô tả trái, editor + Run + nút VS Code phải, hints), `CodeEditor.tsx` (contentEditable div + react-syntax-highlighter, selection tự nhiên), `DifficultyBadge.tsx`.
 - **Theme**: CSS variables (`:root` light / `[data-theme=dark]`) trong `src/index.css`, `@custom-variant dark` cho Tailwind, `lib/theme.tsx` (ThemeProvider + useTheme, lưu localStorage).
 - **Code highlighting**: `react-syntax-highlighter` (PrismLight, register javascript/typescript/python/css, theme `oneDark`/`oneLight` theo theme), render HTML string qua `renderToStaticMarkup`, contentEditable div hiển thị trực tiếp — không overlay nên không lệch dòng, selection nhìn thấy được.
-- **API**: `lib/api.ts` — `fetchProblems` (GET /api/problems), `fetchProblem` (GET /api/problems/:id), `runCode` (POST /api/problems/:id/run). Host từ root `.env` (`VITE_API_URL`), fallback localhost.
+- **Mở trong VS Code**: nút "VS Code" (icon `public/assets/vscode.svg`) gọi `POST /api/playground/:slug` → ghi `playground/<slug>.js` → mở `vscode://file/<path>:<line>:<column>` (line = dòng mở body hàm).
+- **API**: `lib/api.ts` — `fetchProblems` (GET /api/problems), `fetchProblem` (GET /api/problems/:id), `runCode` (POST /api/problems/:id/run), `saveToPlayground` (POST /api/playground/:slug). Host từ root `.env` (`VITE_API_URL`), fallback localhost.
 - **Đã loại bỏ**: `ProblemImportPaste.tsx`, `lib/problemClip.ts` — web không còn nhập đề thủ công (extension POST thẳng tới server).
 - **Dependencies**: `@leetcode/shared`, `@leetcode/editor`, `@leetcode/problem-engine`, `react-router-dom`, `react-syntax-highlighter`.
 - **Chưa có**: Monaco Editor thật.
@@ -41,6 +42,7 @@ Có 3 ứng dụng trong monorepo:
   - `POST /api/problems/:id/hint` — lấy hint (placeholder).
   - `GET /api/problems/:id/hints` — hints từ DB.
   - `GET /api/problems/:id/assets` — assets từ DB.
+  - `POST /api/playground/:slug` — ghi `playground/<slug>.js` + trả line/column body hàm để mở VS Code (`services/playground.service.ts`).
   - `POST /api/problems/import` — import ProblemClip JSON (validate Zod, 201/409/400).
 - **Validation**: Zod (parse params/body manually, không dùng Fastify schema).
 - **Dependencies**: `@leetcode/shared`, `@leetcode/database`, `@leetcode/problem-engine`, `@leetcode/ai`.

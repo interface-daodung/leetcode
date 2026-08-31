@@ -49,13 +49,14 @@ apps/server (Fastify, PORT/HOST/API_URL từ root .env, kiến trúc MVC/phân t
   │                                 → engine.getRandom(difficulty)
   ├─ POST /api/problems/:id/run     → lọc comment (solution.util.stripComments) → trích hàm giải duy nhất (extractSolutionFunction) → wrapSolution (spread input) → engine.runTests
   ├─ POST /api/problems/:id/hint    → ai.getHint (placeholder)
+  ├─ POST /api/playground/:slug     → playground.service.saveToPlayground (ghi playground/<slug>.js + tìm dòng body) → mở VS Code
   └─ POST /api/problems/import      → validate chặt (null check, Zod strict, url/template/hints) → engine.register + problemDb.add (FK ok) → downloadAndRewriteImages (fetch Buffer → SHA-256 → DB problem_assets dedupe → lưu assets/<slug>/{name}) → update description + hints (201/409)
 ```
 
 apps/web (Vite, port 5173, envDir=root, VITE_API_URL từ root .env)
   ├─ main.tsx: BrowserRouter + ThemeProvider (data-theme + localStorage) → App.tsx (Routes)
-  ├─ Layout: Header (logo/nav/theme toggle) + Sidebar (GET /api/problems, search + filter difficulty) + <Outlet />
-  ├─ /problems/:id → ProblemDetail: GET /api/problems/:id → description (sanitize + dangerouslySetInnerHTML) + hints + template + CodeEditor (react-syntax-highlighter, oneDark/oneLight theo theme) → POST /api/problems/:id/run
+  ├─ Layout: Header (bấm logo ẩn/hiện sidebar + theme toggle) + Sidebar (GET /api/problems, search + filter difficulty) + <Outlet />
+  ├─ /problems/:id → ProblemDetail: GET /api/problems/:id → description (sanitize) trái + hints + CodeEditor (contentEditable + react-syntax-highlighter) phải → POST /api/problems/:id/run + nút "VS Code" (POST /api/playground/:slug → mở vscode://file/<path>:<line>:<column>)
   └─ Không còn nhập đề thủ công: việc import do extension POST thẳng tới server
 
 apps/extension (MV3, leetcode.com/problems/*, host_permissions gồm leetcode + localhost/* + API host từ .env)
