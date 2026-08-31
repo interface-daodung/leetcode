@@ -222,9 +222,82 @@
     return cases.length > 0 ? cases : undefined;
   }
 
+  function parseExampleTestcasesString(str, _ctx) {
+    const trimmed = str.trim();
+    if (!trimmed) return undefined;
+    const lines = trimmed.split("\n").map((l) => l.trim()).filter(Boolean);
+    if (lines.length === 0) return undefined;
+    const parsed = [];
+    for (const line of lines) {
+      try {
+        parsed.push(JSON.parse(line));
+      } catch {
+        const m = line.match(/=\s*(.+)$/);
+        if (m) {
+          try {
+            parsed.push(JSON.parse(m[1].trim()));
+            continue;
+          } catch {}
+        }
+        parsed.push(line);
+      }
+    }
+    return parsed.length > 0 ? parsed : undefined;
+  }
+
+  function extractTestCasesFromDescription(doc) {
+    const container = findDescriptionContainer(doc);
+    if (!container) return undefined;
+    const pres = Array.from(container.querySelectorAll("pre"));
+    const cases = [];
+    for (const pre of pres) {
+      const text = (pre.textContent || "").trim();
+      if (!text) continue;
+      const inputMatch = text.match(/Input:\s*([\s\S]*?)\s*Output:/i);
+      const outputMatch = text.match(/Output:\s*([\s\S]*)/i);
+      if (!inputMatch || !outputMatch) continue;
+      const inputRaw = inputMatch[1].trim();
+      const outputRaw = outputMatch[1].trim().split("\n")[0].trim();
+      let inputVal = inputRaw;
+      const eqIdx = inputRaw.indexOf("=");
+      const jsonPart = eqIdx >= 0 ? inputRaw.slice(eqIdx + 1).trim() : inputRaw;
+      try {
+        inputVal = JSON.parse(jsonPart);
+      } catch {
+        inputVal = jsonPart;
+      }
+      let expectedVal = outputRaw;
+      try {
+        expectedVal = JSON.parse(outputRaw);
+      } catch {
+        expectedVal = outputRaw;
+      }
+      let paramName = "grid";
+      if (eqIdx >= 0) {
+        const beforeEq = inputRaw.slice(0, eqIdx).trim();
+        if (/^[a-zA-Z_]\w*$/.test(beforeEq)) paramName = beforeEq;
+      } else {
+        const tpl = extractTemplate(doc);
+        if (tpl) {
+          const m = tpl.match(/function\s+\w*\s*\(([^)]*)\)/) || tpl.match(/var\s+\w+\s*=\s*function\s*\(([^)]*)\)/);
+          if (m && m[1]) {
+            const firstParam = m[1].split(",")[0] && m[1].split(",")[0].trim().split(/\s*=\s*/)[0].trim();
+            if (firstParam) paramName = firstParam;
+          }
+        }
+      }
+      const inputObj = {};
+      inputObj[paramName] = inputVal;
+      cases.push({ input: inputObj, expected: expectedVal });
+    }
+    return cases.length > 0 ? cases : undefined;
+  }
+
   function findTestCasesInJson(data) {
     const stack = [data];
     const seen = new WeakSet();
+    let exampleTestcasesStr = null;
+    let exampleInputs = null;
     while (stack.length) {
       const cur = stack.pop();
       if (!cur || typeof cur !== "object") continue;
@@ -239,15 +312,47 @@
       }
       const obj = cur;
       if (Array.isArray(obj.testCases) && obj.testCases.length > 0) return obj.testCases;
+      if (typeof obj.exampleTestcases === "string" && obj.exampleTestcases.trim()) exampleTestcasesStr = obj.exampleTestcases;
+      if (typeof obj.exampleTestcaseList === "string" && obj.exampleTestcaseList.trim()) exampleTestcasesStr = obj.exampleTestcaseList;
+      if (typeof obj.jsonExampleTestcases === "string" && obj.jsonExampleTestcases.trim()) exampleTestcasesStr = obj.jsonExampleTestcases;
+      if (exampleTestcasesStr) {
+        const parsed = parseExampleTestcasesString(exampleTestcasesStr, obj);
+        if (parsed && parsed.length > 0) exampleInputs = parsed;
+      }
       for (const v of Object.values(obj)) {
         if (v && typeof v === "object") stack.push(v);
       }
+    }
+    if (exampleInputs && exampleInputs.length > 0) return exampleInputs.map((inp) => ({ input: inp, expected: null }));
+    if (exampleTestcasesStr) {
+      const fallback = parseExampleTestcasesString(exampleTestcasesStr, null);
+      if (fallback && fallback.length > 0) return fallback.map((inp) => ({ input: inp, expected: null }));
     }
     return undefined;
   }
 
   function extractTestCases(doc) {
-    const hidden = doc.querySelector("div.mt-0.h-0.overflow-hidden.opacity-0") || doc.querySelector("div.opacity-0.h-0") || doc.querySelector("div.h-0.overflow-hidden.opacity-0");
+    const hiddenSelectors = [
+      "div.mt-0.h-0.overflow-hidden.opacity-0",
+      "div.opacity-0.h-0",
+      "div.h-0.overflow-hidden.opacity-0",
+      'div[class*="opacity-0"][class*="h-0"]',
+      "div.overflow-hidden.opacity-0",
+    ];
+    let hidden = null;
+    for (const sel of hiddenSelectors) {
+      const el = doc.querySelector(sel);
+      if (el && el.querySelector(".cm-content")) { hidden = el; break; }
+    }
+    if (!hidden) {
+      const allHiddenCm = Array.from(doc.querySelectorAll(".cm-content")).filter((el) => {
+        const parent = el.closest("div");
+        if (!parent) return false;
+        const cls = parent.className;
+        return cls.includes("opacity-0") || cls.includes("h-0");
+      });
+      if (allHiddenCm.length > 0) hidden = allHiddenCm[0].closest("div");
+    }
     if (hidden) {
       const cmContents = Array.from(hidden.querySelectorAll(".cm-content"));
       let inputLines = [];
@@ -257,18 +362,17 @@
       if (headerTexts.includes("input") && headerTexts.includes("expected")) {
         const inputIdx = headerTexts.indexOf("input");
         const expectedIdx = headerTexts.indexOf("expected");
-        if (cmContents[inputIdx]) {
-          inputLines = Array.from(cmContents[inputIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
-        }
-        if (cmContents[expectedIdx]) {
-          expectedLines = Array.from(cmContents[expectedIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
-        }
+        if (cmContents[inputIdx]) inputLines = Array.from(cmContents[inputIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        if (cmContents[expectedIdx]) expectedLines = Array.from(cmContents[expectedIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
       } else if (cmContents.length >= 3) {
         inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
         expectedLines = Array.from(cmContents[2].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
       } else if (cmContents.length === 2) {
         inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
         expectedLines = Array.from(cmContents[1].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+      } else if (cmContents.length === 1) {
+        inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
+        expectedLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent || "").trim());
       }
       inputLines = inputLines.filter((l) => l.length > 0);
       expectedLines = expectedLines.filter((l) => l.length > 0);
@@ -290,10 +394,7 @@
       }
       if (!expectedEl) {
         const candidates = Array.from(consoleContainer.querySelectorAll("span, div.font-menlo"));
-        expectedEl = candidates.find((el) => {
-          const t = (el.textContent || "").trim();
-          return /^\s*\[.*\]\s*$/.test(t) || t === "[]" || /^\s*\d+\s*$/.test(t);
-        }) || null;
+        expectedEl = candidates.find((el) => { const t = (el.textContent || "").trim(); return /^\s*\[.*\]\s*$/.test(t) || t === "[]" || /^\s*\d+\s*$/.test(t); }) || null;
         const green = candidates.find((el) => el.className.includes("text-green") || el.className.includes("green"));
         if (green) expectedEl = green;
       }
@@ -309,23 +410,16 @@
             if (raw) inputValues.push(parseJsonLine(raw));
           } else {
             const next = labelEl.nextElementSibling;
-            if (next) {
-              const raw = (next.textContent || "").trim();
-              if (raw) inputValues.push(parseJsonLine(raw));
-            }
+            if (next) { const raw = (next.textContent || "").trim(); if (raw) inputValues.push(parseJsonLine(raw)); }
           }
         }
         const expectedRaw = expectedEl ? (expectedEl.textContent || "").trim() : "";
         const expected = expectedRaw ? parseJsonLine(expectedRaw) : undefined;
         if (inputValues.length > 0 && expected !== undefined) {
           let input;
-          if (inputLabels.length === inputValues.length && inputLabels.every(Boolean)) {
-            input = Object.fromEntries(inputLabels.map((k, i) => [k, inputValues[i]]));
-          } else if (inputValues.length === 1) {
-            input = inputValues[0];
-          } else {
-            input = inputValues;
-          }
+          if (inputLabels.length === inputValues.length && inputLabels.every(Boolean)) input = Object.fromEntries(inputLabels.map((k, i) => [k, inputValues[i]]));
+          else if (inputValues.length === 1) input = inputValues[0];
+          else input = inputValues;
           return [{ input, expected }];
         }
       }
@@ -337,22 +431,34 @@
         const tcs = findTestCasesInJson(data);
         if (tcs && tcs.length > 0) return tcs;
       }
+      for (const s of Array.from(doc.querySelectorAll('script[type="application/json"]'))) {
+        try { const d = JSON.parse(s.textContent || ""); const tcs2 = findTestCasesInJson(d); if (tcs2 && tcs2.length > 0) return tcs2; } catch {}
+      }
     } catch {}
+    const descCases = extractTestCasesFromDescription(doc);
+    if (descCases && descCases.length > 0) return descCases;
     return undefined;
   }
 
   function extractTemplate(doc) {
-    try {
-      const win = typeof window !== "undefined" ? window : null;
-      const monaco = win && win.monaco;
-      if (monaco && monaco.editor && monaco.editor.getModels) {
-        const models = monaco.editor.getModels();
-        if (models && models.length > 0) {
-          const v = models[0] && models[0].getValue ? models[0].getValue() : null;
-          if (typeof v === "string" && v.trim().length > 2 && v.trim().length < 50000) return v.trim();
+    const codeEditorContainer = doc.querySelector('[data-track-load="code_editor"]');
+    if (codeEditorContainer) {
+      const monacoInEditor = codeEditorContainer.querySelector(".monaco-editor");
+      if (monacoInEditor) {
+        const lines = codeEditorContainer.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
+        if (lines.length > 0) {
+          const text = Array.from(lines).map((el) => (el.textContent || "").replace(/\u00a0/g, " ")).join("\n").trim();
+          if (text && text.length > 2 && text.length < 50000 && /function|class|var |let |const |return|=>/.test(text)) return text;
         }
+        const t = (monacoInEditor.textContent || "").trim();
+        if (t && t.length > 10 && t.length < 50000 && /function|class|var |let |const |return|=>/.test(t)) return t;
       }
-    } catch {}
+      const t2 = (codeEditorContainer.textContent || "").trim();
+      if (t2 && /function|class|var |let |const |return|=>/.test(t2) && t2.length > 10 && t2.length < 50000) {
+        const cleaned = t2.split("\n").map((l) => l.trim()).filter(Boolean).join("\n");
+        if (cleaned && /function|class|var |let |const |return|=>/.test(cleaned)) return cleaned;
+      }
+    }
     try {
       const nextDataEl = doc.getElementById("__NEXT_DATA__") || doc.querySelector('script#__NEXT_DATA__');
       if (nextDataEl && nextDataEl.textContent) {
@@ -361,44 +467,39 @@
         if (found) return found;
       }
       for (const s of Array.from(doc.querySelectorAll('script[type="application/json"]'))) {
-        try {
-          const d = JSON.parse(s.textContent || "");
-          const f = findCodeSnippetInJson(d);
-          if (f) return f;
-        } catch {}
+        try { const d = JSON.parse(s.textContent || ""); const f = findCodeSnippetInJson(d); if (f) return f; } catch {}
       }
     } catch {}
-    const codeEditorContainer = doc.querySelector('[data-track-load="code_editor"]');
-    if (codeEditorContainer) {
-      const monacoInEditor = codeEditorContainer.querySelector(".monaco-editor");
-      if (monacoInEditor) {
-        const lines = codeEditorContainer.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
-        if (lines.length > 0) {
-          const text = Array.from(lines).map((el) => (el.textContent || "").replace(/\u00a0/g, " ")).join("\n").trim();
-          if (text && text.length > 2 && text.length < 50000) return text;
-        }
-        const t = (monacoInEditor.textContent || "").trim();
-        if (t && t.length > 10 && t.length < 50000) return t;
-      }
-      const t2 = (codeEditorContainer.textContent || "").trim();
-      if (t2 && /function|class|var |let |const |return|=>/.test(t2) && t2.length < 50000 && t2.length > 10) {
-        const cleaned = t2.split("\n").map((l) => l.trim()).filter(Boolean).join("\n");
-        if (cleaned) return cleaned;
-      }
-    }
     const monacoLines = doc.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
     if (monacoLines.length > 0) {
       const text = Array.from(monacoLines).map((el) => (el.textContent || "").replace(/\u00a0/g, " ")).join("\n").trim();
-      if (text && text.length > 2 && text.length < 50000) {
-        if (/function|class|var |let |const |return|=>/.test(text)) return text;
-        if (text.split("\n").length >= 1) return text;
-      }
+      if (text && text.length > 2 && text.length < 50000 && /function|class|var |let |const |return|=>/.test(text)) return text;
     }
-    const monaco = doc.querySelector(".monaco-editor");
-    if (monaco) {
-      const t = (monaco.textContent || "").trim();
+    const monacoEl = doc.querySelector(".monaco-editor");
+    if (monacoEl) {
+      const t = (monacoEl.textContent || "").trim();
       if (t && t.length > 10 && t.length < 50000 && /function|class|var |let |const |def |public/.test(t)) return t;
     }
+    try {
+      const win = typeof window !== "undefined" ? window : null;
+      const monaco = win && win.monaco;
+      if (monaco && monaco.editor && monaco.editor.getModels) {
+        const models = monaco.editor.getModels();
+        if (models && models.length > 0) {
+          for (let i = models.length - 1; i >= 0; i--) {
+            const v = models[i] && models[i].getValue ? models[i].getValue() : null;
+            if (typeof v === "string" && v.trim().length > 10 && v.trim().length < 50000 && /function|class|var |let |const |return|=>/.test(v)) {
+              const lang = models[i].getLanguageId ? models[i].getLanguageId() : null;
+              if (lang && String(lang).toLowerCase().includes("javascript")) return v.trim();
+            }
+          }
+          for (let i = models.length - 1; i >= 0; i--) {
+            const v = models[i] && models[i].getValue ? models[i].getValue() : null;
+            if (typeof v === "string" && v.trim().length > 10 && v.trim().length < 50000 && /function|class|var |let |const/.test(v)) return v.trim();
+          }
+        }
+      }
+    } catch {}
     const cm = doc.querySelector(".CodeMirror-code, .cm-content");
     if (cm) {
       const t = (cm.textContent || "").trim();

@@ -150,3 +150,28 @@ Host `http://localhost:3000` bị hard-code rải rác ở server/web/extension;
 - Cần xóa DB cũ hoặc chạy migration `0001` để có schema mới (đã test fresh DB tạo mới ok, hydrated 3 problems); nếu DB cũ còn `.hash-index.json` thì xóa file (đã `.gitignore`).
 - Import phải tạo `problems` trước rồi mới `addAsset` (FK), nên `src/index.ts` đã đổi thứ tự và thêm `updateDescription`.
 - `pnpm -r build` pass, `extension` 42 tests + `server` 5 tests (mock DB) pass; end-to-end với `https://httpbin.org/image/png` verify dedupe reuse cùng `localPath` giữa 2 problem.
+
+### [2026-08-31] Fix extension clip — template nhiễm shipWithinDays và thiếu testCases cho 1091
+
+#### Context
+
+Clip `1091. Shortest Path in Binary Matrix` cho JSON `template: "shipWithinDays"` (bài 1011) và `testCases: undefined`. LeetCode SPA giữ `window.monaco` models của các bài đã mở, `extractTemplate` lấy `models[0]` (cũ nhất) trước `code_editor` DOM nên nhiễm. `extractTestCases` chỉ dựa `hidden cm-content (opacity-0)` và `__NEXT_DATA__.testCases` dạng object, bỏ qua `exampleTestcases` string và `description <pre>` — nơi duy nhất `1091` có dữ liệu.
+
+#### Decision
+
+- **Template**: đổi thứ tự `extractTemplate` thành `code_editor DOM → __NEXT_DATA__ codeSnippets → monaco view-lines → window.monaco (duyệt ngược + lọc javascript + regex)`. `window.monaco` xuống cuối, duyệt `models.length-1 → 0`, ưu tiên `getLanguageId() === "javascript"` và regex `/function|class|var|let|const|return|=>/`.
+- **TestCases**: mở rộng `extractTestCases` thành 4 nguồn: `hidden cm-content` (thêm selector `div[class*="opacity-0"][class*="h-0"]` + fallback quét `.cm-content` có parent `opacity-0`/`h-0`) → `visible console` → `__NEXT_DATA__` (thêm parser `exampleTestcases`/`exampleTestcaseList`/`jsonExampleTestcases` string qua `parseExampleTestcasesString` tách `\n` + `JSON.parse`) → `description <pre>` fallback qua `extractTestCasesFromDescription` (regex `Input: grid = [[...]]` + `Output: 2` → `{grid: [...]}` → `expected`).
+- Đồng bộ `apps/extension/content.js` 1-1 với `src/clipper.ts` (4 hàm mới).
+- Thêm 4 tests regression trong `clipper.test.ts` (ưu tiên code_editor, fallback __NEXT_DATA__, description 3 cases, buildProblemClip 1091).
+
+#### Reason
+
+- `code_editor` DOM là nguồn chính xác nhất cho bài hiện tại, tránh nhiễm cross-problem do SPA cache.
+- `__NEXT_DATA__` đáng tin cậy hơn global memory, nên đứng trước `window.monaco`.
+- `description <pre>` luôn tồn tại (Example) nên là fallback an toàn nhất cho testCases khi LeetCode đổi DOM console.
+
+#### Consequences
+
+- `pnpm --filter=@leetcode/extension test` → 53 pass (49 cũ + 4 mới).
+- Clip `1091` giờ cho `template: "shortestPathBinaryMatrix"` và `testCases.length === 3` (`grid → 2/4/-1`).
+- Cần giữ đồng bộ `content.js` khi sửa `clipper.ts` (hiện làm thủ công, có thể thêm script generate).

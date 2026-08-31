@@ -483,3 +483,85 @@ describe("buildProblemClip với testCases", () => {
     expect(clip!.template).toContain("removeNthFromEnd");
   });
 });
+
+describe("regression: shortestPathBinaryMatrix — template không bị nhiễm shipWithinDays", () => {
+  it("ưu tiên code_editor thay vì window.monaco cũ", () => {
+    // Mô phỏng window.monaco có model cũ shipWithinDays, nhưng code_editor có shortestPath
+    (window as unknown as Record<string, unknown>)["monaco"] = {
+      editor: {
+        getModels: () => [
+          { getValue: () => "var shipWithinDays = function(weights, days) {}", getLanguageId: () => "javascript" },
+          { getValue: () => "var shortestPathBinaryMatrix = function(grid) {}", getLanguageId: () => "javascript" },
+        ],
+      },
+    };
+    document.body.innerHTML = `
+      <div data-track-load="description_content"><p>Given an n x n binary matrix grid</p><pre><strong>Input:</strong> grid = [[0,1],[1,0]]\n<strong>Output:</strong> 2</pre></div>
+      <div class="text-title-large"><a href="/problems/shortest-path-in-binary-matrix/">1091. Shortest Path in Binary Matrix</a></div>
+      <div class="flex flex-col min-h-0 flex-1 pb-2" data-track-load="code_editor"><div class="monaco-editor"><div class="view-lines"><div class="view-line">var shortestPathBinaryMatrix = function(grid) {</div><div class="view-line">};</div></div></div></div>
+      <script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"question":{"codeSnippets":[{"lang":"javascript","code":"var shortestPathBinaryMatrix = function(grid) {\\n    \\n};"}]}}}}</script>
+    `;
+    const tpl = extractTemplate(document);
+    expect(tpl).toContain("shortestPathBinaryMatrix");
+    expect(tpl).not.toContain("shipWithinDays");
+    // cleanup
+    delete (window as unknown as Record<string, unknown>)["monaco"];
+  });
+
+  it("fallback __NEXT_DATA__ khi code_editor trống, không lấy shipWithinDays từ monaco", () => {
+    (window as unknown as Record<string, unknown>)["monaco"] = {
+      editor: {
+        getModels: () => [{ getValue: () => "var shipWithinDays = function(weights, days) {}", getLanguageId: () => "javascript" }],
+      },
+    };
+    document.body.innerHTML = `
+      <div data-track-load="description_content"><p>desc</p></div>
+      <script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"question":{"codeSnippets":[{"lang":"javascript","code":"var shortestPathBinaryMatrix = function(grid) {\\n};"}]}}}}</script>
+    `;
+    const tpl = extractTemplate(document);
+    expect(tpl).toContain("shortestPathBinaryMatrix");
+    expect(tpl).not.toContain("shipWithinDays");
+    delete (window as unknown as Record<string, unknown>)["monaco"];
+  });
+
+  it("extractTestCases từ description <pre> cho shortestPathBinaryMatrix", () => {
+    document.body.innerHTML = `
+      <div data-track-load="description_content">
+        <p>Given an <code>n x n</code> binary matrix <code>grid</code></p>
+        <pre><strong>Input:</strong> grid = [[0,1],[1,0]]\n<strong>Output:</strong> 2</pre>
+        <pre><strong>Input:</strong> grid = [[0,0,0],[1,1,0],[1,1,0]]\n<strong>Output:</strong> 4</pre>
+        <pre><strong>Input:</strong> grid = [[1,0,0],[1,1,0],[1,1,0]]\n<strong>Output:</strong> -1</pre>
+      </div>
+    `;
+    const tcs = extractTestCases(document);
+    expect(tcs).toBeDefined();
+    expect(tcs).toHaveLength(3);
+    expect(tcs![0].input).toEqual({ grid: [[0,1],[1,0]] });
+    expect(tcs![0].expected).toBe(2);
+    expect(tcs![1].expected).toBe(4);
+    expect(tcs![2].expected).toBe(-1);
+  });
+
+  it("buildProblemClip đầy đủ cho 1091 với 3 testCases từ description", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/shortest-path-in-binary-matrix/">1091. Shortest Path in Binary Matrix</a></div>
+      <div class="text-difficulty-medium">Medium</div>
+      <div data-track-load="description_content">
+        <p>Given an <code>n x n</code> binary matrix <code>grid</code></p>
+        <pre><strong>Input:</strong> grid = [[0,1],[1,0]]\n<strong>Output:</strong> 2</pre>
+        <pre><strong>Input:</strong> grid = [[0,0,0],[1,1,0],[1,1,0]]\n<strong>Output:</strong> 4</pre>
+        <pre><strong>Input:</strong> grid = [[1,0,0],[1,1,0],[1,1,0]]\n<strong>Output:</strong> -1</pre>
+      </div>
+      <div class="flex flex-col min-h-0 flex-1 pb-2" data-track-load="code_editor"><div class="monaco-editor"><div class="view-lines"><div class="view-line">var shortestPathBinaryMatrix = function(grid) {</div><div class="view-line">};</div></div></div></div>
+    `;
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/shortest-path-in-binary-matrix/description/");
+    expect(clip).not.toBeNull();
+    expect(clip!.id).toBe(1091);
+    expect(clip!.slug).toBe("shortest-path-in-binary-matrix");
+    expect(clip!.template).toContain("shortestPathBinaryMatrix");
+    expect(clip!.template).not.toContain("shipWithinDays");
+    expect(clip!.testCases).toBeDefined();
+    expect(clip!.testCases).toHaveLength(3);
+    expect(clip!.testCases![0].expected).toBe(2);
+  });
+});

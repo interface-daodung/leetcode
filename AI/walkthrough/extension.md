@@ -47,6 +47,8 @@
 
 - **Không thấy widget?** Chỉ hiện ở `*/problems/*`. Reload trang, đợi 2-3 giây.
 - **Bấm báo “Chưa tải xong”?** Đợi khối mô tả hiện rồi bấm lại.
+- **Template sai (hiện tên hàm bài khác, VD `shipWithinDays` thay `shortestPathBinaryMatrix`)?** Do LeetCode SPA cache `window.monaco`. Đã fix từ 2026-08-31: extension ưu tiên `code_editor` DOM trước `window.monaco`. Nếu vẫn sai, reload trang (F5) rồi bấm lại LC sau khi editor hiện.
+- **Thiếu testCases (JSON không có `testCases` hoặc chỉ 1 case)?** Extension thử 4 nguồn: `hidden cm-content` → `visible console` → `__NEXT_DATA__ exampleTestcases` → `description <pre>`. Với bài như `1091` (chỉ có Example), testCases được parse từ `<pre> Input: grid = [[...]] / Output: 2`. Nếu vẫn thiếu, kiểm tra xem description có `<pre>` Example không, và mở Console (DevTools) xem `buildProblemClip` có lỗi.
 - **Đổi port?** Sửa `.env` → `sync:config` → Reload extension → restart server/web.
 
 ## Đọc thêm

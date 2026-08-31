@@ -211,27 +211,44 @@ export function extractHints(doc: Document): string[] {
 
 /**
  * Trích xuất code template (JS mặc định nếu có).
- * Ưu tiên: monaco global → __NEXT_DATA__ → data-track-load="code_editor" → monaco view-lines.
+ * Ưu tiên: data-track-load="code_editor" → __NEXT_DATA__ → monaco view-lines → monaco global → CodeMirror → pre.
+ * Đặt `data-track-load="code_editor"` và `__NEXT_DATA__` trước `window.monaco` để tránh lấy nhầm model cũ (shipWithinDays).
  */
 export function extractTemplate(doc: Document): string | undefined {
-  // 0) Thử lấy từ window.monaco (full value, không bị virtualize)
-  try {
-    const win = (typeof window !== "undefined" ? (window as unknown as Record<string, unknown>) : null) as
-      | Record<string, unknown>
-      | null;
-    const monaco = win?.["monaco"] as { editor?: { getModels?: () => { getValue?: () => string }[] } } | undefined;
-    if (monaco?.editor?.getModels) {
-      const models = monaco.editor.getModels();
-      if (models && models.length > 0) {
-        const v = models[0]?.getValue?.();
-        if (typeof v === "string" && v.trim().length > 2 && v.trim().length < 50000) return v.trim();
+  // 1) Thử container code_editor cụ thể — chính xác nhất, lấy trực tiếp editor của problem hiện tại
+  const codeEditorContainer = doc.querySelector('[data-track-load="code_editor"]');
+  if (codeEditorContainer) {
+    const monacoInEditor = codeEditorContainer.querySelector(".monaco-editor");
+    if (monacoInEditor) {
+      const lines = codeEditorContainer.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
+      if (lines.length > 0) {
+        const text = Array.from(lines)
+          .map((el) => (el.textContent ?? "").replace(/\u00a0/g, " "))
+          .join("\n")
+          .trim();
+        if (text && text.length > 2 && text.length < 50000 && /function|class|var |let |const |return|=>/.test(text)) {
+          return text;
+        }
+      }
+      const t = (monacoInEditor.textContent ?? "").trim();
+      if (t && t.length > 10 && t.length < 50000 && /function|class|var |let |const |return|=>/.test(t)) {
+        return t;
       }
     }
-  } catch {
-    // ignore
+    const t2 = (codeEditorContainer.textContent ?? "").trim();
+    if (t2 && /function|class|var |let |const |return|=>/.test(t2) && t2.length > 10 && t2.length < 50000) {
+      const cleaned = t2
+        .split("\n")
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .join("\n");
+      if (cleaned && /function|class|var |let |const |return|=>/.test(cleaned)) {
+        return cleaned;
+      }
+    }
   }
 
-  // 0b) Thử từ __NEXT_DATA__ (LeetCode embed codeSnippets)
+  // 2) Thử từ __NEXT_DATA__ (LeetCode embed codeSnippets) — đáng tin cậy hơn window.monaco global
   try {
     const nextDataEl = doc.getElementById("__NEXT_DATA__") ?? doc.querySelector('script#__NEXT_DATA__');
     if (nextDataEl?.textContent) {
@@ -239,7 +256,6 @@ export function extractTemplate(doc: Document): string | undefined {
       const found = findCodeSnippetInJson(data);
       if (found) return found;
     }
-    // Thử các script application/json khác
     for (const s of Array.from(doc.querySelectorAll('script[type="application/json"]'))) {
       try {
         const d = JSON.parse(s.textContent ?? "");
@@ -253,71 +269,69 @@ export function extractTemplate(doc: Document): string | undefined {
     // ignore
   }
 
-  // 1) Thử container code_editor cụ thể (sample mới)
-  const codeEditorContainer = doc.querySelector('[data-track-load="code_editor"]');
-  if (codeEditorContainer) {
-    // Trong container này tìm monaco
-    const monacoInEditor = codeEditorContainer.querySelector(".monaco-editor");
-    if (monacoInEditor) {
-      const lines = codeEditorContainer.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
-      if (lines.length > 0) {
-        const text = Array.from(lines)
-          .map((el) => (el.textContent ?? "").replace(/\u00a0/g, " "))
-          .join("\n")
-          .trim();
-        if (text && text.length > 2 && text.length < 50000) return text;
-      }
-      const t = (monacoInEditor.textContent ?? "").trim();
-      if (t && t.length > 10 && t.length < 50000) return t;
-    }
-    // Fallback: lấy toàn bộ text trong code_editor (loại bỏ line numbers)
-    const t2 = (codeEditorContainer.textContent ?? "").trim();
-    // Heuristic: nếu chứa function/var/class thì likely là template
-    if (t2 && /function|class|var |let |const |return|=>/.test(t2) && t2.length < 50000 && t2.length > 10) {
-      // Loại bỏ line numbers (chỉ số dòng) nếu có
-      const cleaned = t2
-        .split("\n")
-        .map((l) => l.trim())
-        .filter(Boolean)
-        .join("\n");
-      if (cleaned) return cleaned;
-    }
-  }
-
-  // 2) Monaco editor — LeetCode dùng monaco (fallback chung)
+  // 3) Monaco view-lines — fallback DOM
   const monacoLines = doc.querySelectorAll(".monaco-editor .view-line, .monaco-editor .view-lines .view-line");
   if (monacoLines.length > 0) {
     const text = Array.from(monacoLines)
       .map((el) => (el.textContent ?? "").replace(/\u00a0/g, " "))
       .join("\n")
       .trim();
-    if (text && text.length > 2 && text.length < 50000) {
-      if (/function|class|var |let |const |return|=>/.test(text)) return text;
-      if (text.split("\n").length >= 1) return text;
+    if (text && text.length > 2 && text.length < 50000 && /function|class|var |let |const |return|=>/.test(text)) {
+      return text;
     }
   }
 
-  const monaco = doc.querySelector(".monaco-editor");
-  if (monaco) {
-    const t = (monaco.textContent ?? "").trim();
+  const monacoEl = doc.querySelector(".monaco-editor");
+  if (monacoEl) {
+    const t = (monacoEl.textContent ?? "").trim();
     if (t && t.length > 10 && t.length < 50000 && /function|class|var |let |const |def |public/.test(t)) {
       return t;
     }
   }
 
-  // 3) CodeMirror
+  // 4) window.monaco global — để cuối cùng để tránh lấy model cũ (shipWithinDays)
+  // Duyệt ngược (model mới nhất trước) và chỉ lấy model có nội dung giống template
+  try {
+    const win = (typeof window !== "undefined" ? (window as unknown as Record<string, unknown>) : null) as
+      | Record<string, unknown>
+      | null;
+    const monaco = win?.["monaco"] as { editor?: { getModels?: () => { getValue?: () => string; getLanguageId?: () => string }[] } } | undefined;
+    if (monaco?.editor?.getModels) {
+      const models = monaco.editor.getModels();
+      if (models && models.length > 0) {
+        // Duyệt ngược để ưu tiên model mới nhất
+        for (let i = models.length - 1; i >= 0; i--) {
+          const v = models[i]?.getValue?.();
+          if (typeof v === "string" && v.trim().length > 10 && v.trim().length < 50000 && /function|class|var |let |const |return|=>/.test(v)) {
+            // Nếu có nhiều model, ưu tiên model có ngôn ngữ javascript
+            const lang = models[i]?.getLanguageId?.();
+            if (lang && String(lang).toLowerCase().includes("javascript")) return v.trim();
+          }
+        }
+        // Fallback: model mới nhất có code
+        for (let i = models.length - 1; i >= 0; i--) {
+          const v = models[i]?.getValue?.();
+          if (typeof v === "string" && v.trim().length > 10 && v.trim().length < 50000 && /function|class|var |let |const/.test(v)) {
+            return v.trim();
+          }
+        }
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  // 5) CodeMirror
   const cm = doc.querySelector(".CodeMirror-code, .cm-content");
   if (cm) {
     const t = (cm.textContent ?? "").trim();
     if (t && t.length > 2 && t.length < 20000) {
-      // Chỉ trả về nếu có vẻ là code template, không phải test case console (tránh nhầm với test case Input)
-      // Nếu cm nằm trong console (flex-1 overflow-y-auto) thì bỏ qua
       const inConsole = cm.closest(".flex-1.overflow-y-auto");
       if (!inConsole && /function|class|var |let |const/.test(t)) return t;
     }
   }
 
-  // 4) Pre/code chứa template
+  // 6) Pre/code chứa template
   const pres = Array.from(doc.querySelectorAll("pre"));
   for (const pre of pres) {
     const t = (pre.textContent ?? "").trim();
@@ -383,27 +397,45 @@ function parseJsonLine(line: string): unknown {
 
 /**
  * Trích xuất testCases từ console DOM.
- * Hỗ trợ 2 dạng:
- * - Hidden cm-content (opacity-0) chứa Input/Output/Expected cho tất cả cases
- * - Visible per-case Input/Output/Expected trong flex-1 overflow-y-auto
+ * Ưu tiên: hidden cm-content → visible console → __NEXT_DATA__ → description <pre>.
  */
 export function extractTestCases(doc: Document): { input: unknown; expected: unknown }[] | undefined {
-  // Thử 1: Hidden editor với tất cả cases (sample thứ 2)
-  const hidden = (doc.querySelector("div.mt-0.h-0.overflow-hidden.opacity-0") ??
-    doc.querySelector("div.opacity-0.h-0") ??
-    doc.querySelector("div.h-0.overflow-hidden.opacity-0")) as Element | null;
+  // Thử 1: Hidden editor với tất cả cases
+  const hiddenSelectors = [
+    "div.mt-0.h-0.overflow-hidden.opacity-0",
+    "div.opacity-0.h-0",
+    "div.h-0.overflow-hidden.opacity-0",
+    'div[class*="opacity-0"][class*="h-0"]',
+    "div.overflow-hidden.opacity-0",
+  ];
+  let hidden: Element | null = null;
+  for (const sel of hiddenSelectors) {
+    const el = doc.querySelector(sel);
+    if (el && el.querySelector(".cm-content")) {
+      hidden = el;
+      break;
+    }
+  }
+  // Fallback: tìm mọi .cm-content nằm trong container ẩn
+  if (!hidden) {
+    const allHiddenCm = Array.from(doc.querySelectorAll<HTMLElement>(".cm-content")).filter((el) => {
+      const style = (el as HTMLElement).style;
+      const parent = el.closest("div");
+      if (!parent) return false;
+      const cls = parent.className;
+      return cls.includes("opacity-0") || cls.includes("h-0") || style.display === "none";
+    });
+    if (allHiddenCm.length > 0) {
+      hidden = allHiddenCm[0].closest("div") as Element | null;
+    }
+  }
 
   if (hidden) {
     const cmContents = Array.from(hidden.querySelectorAll(".cm-content"));
-    // Sample có 3 cm-content: Input (6 lines), Output (3), Expected (3)
-    // Tìm theo header text "Input"/"Output"/"Expected" để map đúng
     let inputLines: string[] = [];
     let expectedLines: string[] = [];
-
-    // Thử map theo thứ tự header
     const headers = Array.from(hidden.querySelectorAll("div.text-xs.font-medium"));
     const headerTexts = headers.map((h) => (h.textContent ?? "").trim().toLowerCase());
-    // Nếu có header, lấy cm-content tương ứng theo index
     if (headerTexts.includes("input") && headerTexts.includes("expected")) {
       const inputIdx = headerTexts.indexOf("input");
       const expectedIdx = headerTexts.indexOf("expected");
@@ -414,17 +446,17 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
         expectedLines = Array.from(cmContents[expectedIdx].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
       }
     } else if (cmContents.length >= 3) {
-      // Fallback theo thứ tự Input, Output, Expected như sample
       inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
       expectedLines = Array.from(cmContents[2].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
     } else if (cmContents.length === 2) {
       inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
       expectedLines = Array.from(cmContents[1].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
+    } else if (cmContents.length === 1) {
+      inputLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
+      expectedLines = Array.from(cmContents[0].querySelectorAll(".cm-line")).map((el) => (el.textContent ?? "").trim());
     }
-
     inputLines = inputLines.filter((l) => l.length > 0);
     expectedLines = expectedLines.filter((l) => l.length > 0);
-
     if (inputLines.length > 0 && expectedLines.length > 0) {
       const parsed = buildTestCasesFromLines(inputLines, expectedLines, doc);
       if (parsed && parsed.length > 0) return parsed;
@@ -435,14 +467,12 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
   const consoleContainer = doc.querySelector("div.flex-1.overflow-y-auto");
   if (consoleContainer) {
     const inputLabels = Array.from(consoleContainer.querySelectorAll("div.mx-3.mb-2.text-xs")).map((el) => (el.textContent ?? "").trim().replace(/\s*=\s*$/, ""));
-    // Expected có thể ở span.text-green-s hoặc div.font-menlo dưới header "Expected"
     let expectedEl: Element | null =
       consoleContainer.querySelector("span.text-green-s") ??
       consoleContainer.querySelector("span[class*='text-green']") ??
       consoleContainer.querySelector("div.group.relative.rounded-lg.bg-fill-4")?.parentElement?.querySelector("span.text-green-s") ??
       null;
     if (!expectedEl) {
-      // Fallback: tìm header "Expected" rồi lấy font-menlo kế tiếp
       const expectedHeader = Array.from(consoleContainer.querySelectorAll("div.text-xs.font-medium")).find(
         (el) => (el.textContent ?? "").trim().toLowerCase() === "expected",
       );
@@ -452,13 +482,11 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
       }
     }
     if (!expectedEl) {
-      // Fallback: tìm span/div chứa JSON array như "[1]" trong console
       const candidates = Array.from(consoleContainer.querySelectorAll("span, div.font-menlo"));
       expectedEl = candidates.find((el) => {
         const t = (el.textContent ?? "").trim();
         return /^\s*\[.*\]\s*$/.test(t) || t === "[]" || /^\s*\d+\s*$/.test(t);
       }) ?? null;
-      // Ưu tiên phần tử có class text-green hoặc nằm dưới Expected
       const green = candidates.find((el) => el.className.includes("text-green") || el.className.includes("green"));
       if (green) expectedEl = green;
     }
@@ -472,7 +500,6 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
           const raw = (valueEl.textContent ?? "").trim();
           if (raw) inputValues.push(parseJsonLine(raw));
         } else {
-          // Fallback: lấy text ngay sau label
           const next = labelEl.nextElementSibling;
           if (next) {
             const raw = (next.textContent ?? "").trim();
@@ -483,7 +510,6 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
       const expectedRaw = (expectedEl?.textContent ?? "").trim();
       const expected = expectedRaw ? parseJsonLine(expectedRaw) : undefined;
       if (inputValues.length > 0 && expected !== undefined) {
-        // Tạo input object nếu có label
         let input: unknown;
         if (inputLabels.length === inputValues.length && inputLabels.every(Boolean)) {
           input = Object.fromEntries(inputLabels.map((k, i) => [k, inputValues[i]]));
@@ -505,9 +531,22 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
       const tcs = findTestCasesInJson(data);
       if (tcs && tcs.length > 0) return tcs;
     }
+    for (const s of Array.from(doc.querySelectorAll('script[type="application/json"]'))) {
+      try {
+        const d = JSON.parse(s.textContent ?? "");
+        const tcs2 = findTestCasesInJson(d);
+        if (tcs2 && tcs2.length > 0) return tcs2;
+      } catch {
+        // ignore
+      }
+    }
   } catch {
     // ignore
   }
+
+  // Thử 4: Parse từ description <pre> (Example Input/Output) — fallback cuối cùng cho shortestPathBinaryMatrix...
+  const descCases = extractTestCasesFromDescription(doc);
+  if (descCases && descCases.length > 0) return descCases;
 
   return undefined;
 }
@@ -515,13 +554,16 @@ export function extractTestCases(doc: Document): { input: unknown; expected: unk
 function findTestCasesInJson(data: unknown): { input: unknown; expected: unknown }[] | undefined {
   const stack: unknown[] = [data];
   const seen = new WeakSet<object>();
+  // Lưu exampleTestcases string để xử lý sau nếu không tìm thấy testCases dạng object
+  let exampleTestcasesStr: string | null = null;
+  let exampleInputs: unknown[] | null = null;
+
   while (stack.length) {
     const cur = stack.pop();
     if (!cur || typeof cur !== "object") continue;
     if (seen.has(cur as object)) continue;
     seen.add(cur as object);
     if (Array.isArray(cur)) {
-      // Nếu array chứa object với input/expected, có thể là testCases
       if (cur.length > 0 && typeof cur[0] === "object" && cur[0] && "input" in (cur[0] as Record<string, unknown>) && "expected" in (cur[0] as Record<string, unknown>)) {
         return cur as { input: unknown; expected: unknown }[];
       }
@@ -529,19 +571,135 @@ function findTestCasesInJson(data: unknown): { input: unknown; expected: unknown
       continue;
     }
     const obj = cur as Record<string, unknown>;
-    // Thử các key thường gặp
     if (Array.isArray(obj["testCases"]) && (obj["testCases"] as unknown[]).length > 0) {
       return obj["testCases"] as { input: unknown; expected: unknown }[];
     }
-    if (Array.isArray(obj["exampleTestcases"]) && (obj["exampleTestcases"] as unknown[]).length > 0) {
-      // exampleTestcases thường là array string như "[1,2,3]\n2" — cần parse
-      // Không xử lý ở đây
+    // exampleTestcases có thể là string với các case cách nhau \n (VD: "[[0,1],[1,0]]\n[[0,0,0],...]")
+    if (typeof obj["exampleTestcases"] === "string" && (obj["exampleTestcases"] as string).trim()) {
+      exampleTestcasesStr = obj["exampleTestcases"] as string;
+    }
+    if (typeof obj["exampleTestcaseList"] === "string" && (obj["exampleTestcaseList"] as string).trim()) {
+      exampleTestcasesStr = obj["exampleTestcaseList"] as string;
+    }
+    // Một số payload có jsonExampleTestcases
+    if (typeof obj["jsonExampleTestcases"] === "string" && (obj["jsonExampleTestcases"] as string).trim()) {
+      exampleTestcasesStr = obj["jsonExampleTestcases"] as string;
+    }
+    // Thử parse exampleTestcases nếu là string JSON array
+    if (exampleTestcasesStr) {
+      const parsed = parseExampleTestcasesString(exampleTestcasesStr, obj);
+      if (parsed && parsed.length > 0) exampleInputs = parsed;
     }
     for (const v of Object.values(obj)) {
       if (v && typeof v === "object") stack.push(v);
     }
   }
+  // Nếu tìm thấy exampleInputs dạng string, thử tạo testCases với expected từ description hoặc để expected = null
+  if (exampleInputs && exampleInputs.length > 0) {
+    // Gọi không cần expected — sẽ trả về input với expected undefined, caller có thể fallback description
+    // Nhưng ở đây ta trả về luôn để clip có testCases (dù expected có thể thiếu)
+    // Thử tìm expected tương ứng trong cùng object nếu có
+    return exampleInputs.map((inp) => ({ input: inp, expected: null }));
+  }
+  if (exampleTestcasesStr) {
+    const fallback = parseExampleTestcasesString(exampleTestcasesStr, null);
+    if (fallback && fallback.length > 0) return fallback.map((inp) => ({ input: inp, expected: null }));
+  }
   return undefined;
+}
+
+function parseExampleTestcasesString(str: string, _ctx: Record<string, unknown> | null): unknown[] | undefined {
+  const trimmed = str.trim();
+  if (!trimmed) return undefined;
+  // LeetCode exampleTestcases thường là "[[0,1],[1,0]]\n[[0,0,0],[1,1,0],[1,1,0]]\n..."
+  // hoặc "[1,2,2,1]\n[1,2]"
+  const lines = trimmed
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+  if (lines.length === 0) return undefined;
+  // Mỗi line là 1 JSON value (có thể là 2D array)
+  const parsed: unknown[] = [];
+  for (const line of lines) {
+    try {
+      parsed.push(JSON.parse(line));
+    } catch {
+      // Nếu line là "grid = [[0,1],[1,0]]" dạng text, thử extract phần sau "="
+      const m = line.match(/=\s*(.+)$/);
+      if (m) {
+        try {
+          parsed.push(JSON.parse(m[1].trim()));
+          continue;
+        } catch {
+          // ignore
+        }
+      }
+      parsed.push(line);
+    }
+  }
+  // Nếu parsed thành công, mỗi phần tử là input của 1 case (grid)
+  // Với shortestPathBinaryMatrix: input là grid (2D array), nên mỗi case 1 grid
+  return parsed.length > 0 ? parsed : undefined;
+}
+
+/**
+ * Fallback: trích xuất testCases từ description <pre> blocks (Example Input/Output).
+ * Dùng cho khi console DOM và __NEXT_DATA__ không có testCases.
+ */
+function extractTestCasesFromDescription(doc: Document): { input: unknown; expected: unknown }[] | undefined {
+  const container = findDescriptionContainer(doc);
+  if (!container) return undefined;
+  const pres = Array.from(container.querySelectorAll("pre"));
+  const cases: { input: unknown; expected: unknown }[] = [];
+  for (const pre of pres) {
+    const text = (pre.textContent ?? "").trim();
+    if (!text) continue;
+    // Tìm Input: ... Output: ...
+    // VD: "Input: grid = [[0,1],[1,0]]\nOutput: 2"
+    const inputMatch = text.match(/Input:\s*([\s\S]*?)\s*Output:/i);
+    const outputMatch = text.match(/Output:\s*([\s\S]*)/i);
+    if (!inputMatch || !outputMatch) continue;
+    const inputRaw = inputMatch[1].trim();
+    const outputRaw = outputMatch[1].trim().split("\n")[0].trim();
+    // Parse input: có thể là "grid = [[0,1],[1,0]]" hoặc "[[0,1],[1,0]]"
+    let inputVal: unknown = inputRaw;
+    const eqIdx = inputRaw.indexOf("=");
+    const jsonPart = eqIdx >= 0 ? inputRaw.slice(eqIdx + 1).trim() : inputRaw;
+    try {
+      inputVal = JSON.parse(jsonPart);
+    } catch {
+      // Thử parse dạng "grid = [[...]]" đã xử lý, nếu vẫn fail giữ raw
+      inputVal = jsonPart;
+    }
+    // Output thường là số hoặc array, parse JSON
+    let expectedVal: unknown = outputRaw;
+    try {
+      expectedVal = JSON.parse(outputRaw);
+    } catch {
+      expectedVal = outputRaw;
+    }
+    // Xác định param name: với shortestPathBinaryMatrix là grid
+    // Thử lấy tên biến trước "="
+    let paramName = "grid";
+    if (eqIdx >= 0) {
+      const beforeEq = inputRaw.slice(0, eqIdx).trim();
+      // beforeEq có thể là "grid"
+      if (/^[a-zA-Z_]\w*$/.test(beforeEq)) paramName = beforeEq;
+    } else {
+      // Thử lấy param name từ template nếu có
+      const tpl = extractTemplate(doc);
+      if (tpl) {
+        const m = tpl.match(/function\s+\w*\s*\(([^)]*)\)/) ?? tpl.match(/var\s+\w+\s*=\s*function\s*\(([^)]*)\)/);
+        if (m?.[1]) {
+          const firstParam = m[1].split(",")[0]?.trim().split(/\s*=\s*/)[0]?.trim();
+          if (firstParam) paramName = firstParam;
+        }
+      }
+    }
+    const inputObj = { [paramName]: inputVal };
+    cases.push({ input: inputObj, expected: expectedVal });
+  }
+  return cases.length > 0 ? cases : undefined;
 }
 
 function buildTestCasesFromLines(inputLines: string[], expectedLines: string[], doc: Document): { input: unknown; expected: unknown }[] | undefined {
