@@ -44,6 +44,10 @@
 
 `skills/walkthrough/SKILL.md` (archive: `history/archived/walkthrough/`)
 
+### Layout
+
+`skills/layout-add-tab/SKILL.md`
+
 ---
 
 ## Current Work
