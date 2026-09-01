@@ -14,12 +14,97 @@ function loadModel(): Model {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      return Model.fromJson(JSON.parse(raw));
+      const json = JSON.parse(raw);
+      migrateLayoutJson(json);
+      return Model.fromJson(json);
     }
   } catch {
     // bỏ qua, dùng default
   }
   return Model.fromJson(createDefaultLayout());
+}
+
+/**
+ * Migrate layout JSON lưu trong localStorage:
+ * - Tab "knowledge" (panel cũ gộp search+result) → tab "knowledge-search" (result mở qua panel riêng)
+ * - Thêm tabset "tabset-knowledge-result" (chi tiết kết quả) cạnh tabset-output nếu chưa có
+ */
+function migrateLayoutJson(json: { layout?: { children?: unknown[] } }): void {
+  if (!json.layout || !Array.isArray(json.layout.children)) return;
+
+  const rootRow = json.layout;
+
+  const visitTabsets = (fn: (tabset: { id?: string; children?: Array<Record<string, unknown>> }) => void): void => {
+    const walk = (node: unknown): void => {
+      if (!node || typeof node !== "object") return;
+      const n = node as { type?: string; id?: string; children?: unknown[] };
+      if (n.type === "tabset") {
+        fn(n as { id?: string; children?: Array<Record<string, unknown>> });
+      }
+      if (Array.isArray(n.children)) {
+        for (const child of n.children) walk(child);
+      }
+    };
+    walk(rootRow);
+  };
+
+  // 1) Đổi component "knowledge" → "knowledge-search" (panel cũ gộp giờ chỉ còn phần search)
+  let hadKnowledgeTab = false;
+  visitTabsets((tabset) => {
+    if (!Array.isArray(tabset.children)) return;
+    for (const tab of tabset.children) {
+      if (tab && typeof tab === "object" && (tab as { component?: string }).component === "knowledge") {
+        (tab as { component: string }).component = "knowledge-search";
+        hadKnowledgeTab = true;
+      }
+    }
+  });
+
+  // 2) Nếu user còn tab knowledge → thêm tabset-knowledge-result (chứa tab result) cạnh tabset-output
+  let hasKnowledgeResultTabset = false;
+  visitTabsets((tabset) => {
+    if (tabset.id === "tabset-knowledge-result") hasKnowledgeResultTabset = true;
+  });
+  if (hadKnowledgeTab && !hasKnowledgeResultTabset) {
+    const outputTabset = findTabset(rootRow, "tabset-output");
+    const parentRow = findParentRow(rootRow, "tabset-output");
+    if (outputTabset && parentRow && Array.isArray(parentRow.children)) {
+      parentRow.children.splice(parentRow.children.indexOf(outputTabset) + 1, 0, {
+        type: "tabset",
+        id: "tabset-knowledge-result",
+        children: [{ type: "tab", name: "Knowledge Result", component: "knowledge-result" }],
+      });
+    }
+  }
+}
+
+/** Tìm tabset theo id trong cây layout JSON. */
+function findTabset(node: unknown, id: string): Record<string, unknown> | undefined {
+  if (!node || typeof node !== "object") return undefined;
+  const n = node as { type?: string; id?: string; children?: unknown[] };
+  if (n.type === "tabset" && n.id === id) return n as Record<string, unknown>;
+  if (Array.isArray(n.children)) {
+    for (const child of n.children) {
+      const found = findTabset(child, id);
+      if (found) return found;
+    }
+  }
+  return undefined;
+}
+
+/** Tìm row cha trực tiếp chứa tabset với id cho trước. */
+function findParentRow(node: unknown, tabsetId: string): Record<string, unknown> | undefined {
+  if (!node || typeof node !== "object") return undefined;
+  const n = node as { type?: string; children?: unknown[] };
+  if (Array.isArray(n.children)) {
+    for (const child of n.children) {
+      const c = child as { type?: string; id?: string } | null;
+      if (c && c.type === "tabset" && c.id === tabsetId) return n as Record<string, unknown>;
+      const found = findParentRow(child, tabsetId);
+      if (found) return found;
+    }
+  }
+  return undefined;
 }
 
 function jsonEqual(model: Model): string {
@@ -153,6 +238,7 @@ export interface WorkspaceActions {
   canRedo: boolean;
   panelsVisible: Record<LayoutComponentName, boolean>;
   reopenPanel: (component: LayoutComponentName) => void;
+  focusPanelTab: (component: LayoutComponentName) => void;
   refreshPanelsVisible: () => void;
   persistModel: () => void;
 }
@@ -204,7 +290,15 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<WorkspaceState>(defaultState);
   const { model, undo, redo, canUndo, canRedo } = useLayoutUndo(loadModel);
   const persistTimer = useRef<number | null>(null);
-  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>({ explorer: true, editor: true, description: true, output: true, knowledge: true });
+  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>({
+    explorer: true,
+    editor: true,
+    description: true,
+    output: true,
+    "knowledge-search": true,
+    "knowledge-result": true,
+    knowledge: false,
+  });
 
   // Theo dõi model thay đổi (useUndo replace model mỗi lần undo/redo, hoặc user thao tác layout)
   // → cập nhật panelsVisible + persist. (onModelChange của FlexLayout không fire khi useUndo replace model.)
@@ -275,6 +369,19 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     [model],
   );
 
+  /**
+   * Focus tab của component; nếu chưa có tab nào thì thêm về tabset mặc định.
+   * Khác reopenPanel: dùng khi panel A muốn "mở sang" panel B (vd bấm kết quả search
+   * → mở tab Knowledge Result), không cần refreshPanelsVisible từ menu View.
+   */
+  const focusPanelTab = useCallback(
+    (component: LayoutComponentName) => {
+      reopenPanel(component);
+      refreshPanelsVisible();
+    },
+    [reopenPanel, refreshPanelsVisible],
+  );
+
   const actions: WorkspaceActions = {
     setProblem: useCallback((p) => setState((s) => ({ ...s, problem: p })), []),
     setCode: useCallback((code) => setState((s) => ({ ...s, code })), []),
@@ -293,6 +400,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     canRedo,
     panelsVisible,
     reopenPanel,
+    focusPanelTab,
     refreshPanelsVisible,
     persistModel,
   };

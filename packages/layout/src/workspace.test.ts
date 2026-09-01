@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import type { IJsonRowNode } from "flexlayout-react";
 import { createDefaultLayout, defaultTabsetId, defaultTabJson, ALL_COMPONENTS, getComponentName, getTabConfig } from "./workspace.js";
 import { flexThemeClass, flexCssOverrides } from "./theme.js";
 
@@ -24,8 +25,16 @@ describe("createDefaultLayout", () => {
     const rightChildren = right.children!;
     expect(rightChildren[0].type).toBe("tabset");
     expect(rightChildren[0].id).toBe("tabset-editor");
-    expect(rightChildren[1].type).toBe("tabset");
-    expect(rightChildren[1].id).toBe("tabset-output");
+    expect(rightChildren[1].type).toBe("row");
+
+    // Row dưới phải: tabset-output + tabset-knowledge-result
+    const bottomRow = rightChildren[1] as IJsonRowNode;
+    expect(bottomRow.children).toHaveLength(2);
+    const bottomChildren = bottomRow.children!;
+    expect(bottomChildren[0].type).toBe("tabset");
+    expect(bottomChildren[0].id).toBe("tabset-output");
+    expect(bottomChildren[1].type).toBe("tabset");
+    expect(bottomChildren[1].id).toBe("tabset-knowledge-result");
   });
 
   it("tab child đầu tiên có component explorer", () => {
@@ -55,6 +64,8 @@ describe("defaultTabsetId", () => {
     expect(defaultTabsetId("editor")).toBe("tabset-editor");
     expect(defaultTabsetId("description")).toBe("tabset-editor");
     expect(defaultTabsetId("output")).toBe("tabset-output");
+    expect(defaultTabsetId("knowledge-search")).toBe("tabset-output");
+    expect(defaultTabsetId("knowledge-result")).toBe("tabset-knowledge-result");
   });
 });
 
@@ -64,12 +75,14 @@ describe("defaultTabJson", () => {
     expect(defaultTabJson("editor")).toEqual({ type: "tab", name: "Editor", component: "editor" });
     expect(defaultTabJson("description")).toEqual({ type: "tab", name: "Description", component: "description" });
     expect(defaultTabJson("output")).toEqual({ type: "tab", name: "Output", component: "output" });
+    expect(defaultTabJson("knowledge-search")).toEqual({ type: "tab", name: "Knowledge Search", component: "knowledge-search" });
+    expect(defaultTabJson("knowledge-result")).toEqual({ type: "tab", name: "Knowledge Result", component: "knowledge-result" });
   });
 });
 
 describe("ALL_COMPONENTS", () => {
-  it("liệt kê đủ 5 panel", () => {
-    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge"]);
+  it("liệt kê đủ 7 panel (5 cũ + 2 knowledge split)", () => {
+    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge-search", "knowledge-result", "knowledge"]);
   });
 });
 

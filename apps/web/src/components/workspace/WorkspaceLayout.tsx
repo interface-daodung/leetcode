@@ -3,11 +3,13 @@ import { Layout, flexThemeClass, flexCssOverrides } from "@leetcode/layout";
 import type { LayoutComponentName } from "@leetcode/layout";
 import { useTheme } from "../../lib/theme.js";
 import { useWorkspace } from "./WorkspaceContext.js";
+import { KnowledgeProvider } from "./KnowledgeContext.js";
 import { ExplorerPanel } from "./ExplorerPanel.js";
 import { EditorPanel } from "./EditorPanel.js";
 import { DescriptionPanel } from "./DescriptionPanel.js";
 import { OutputPanel } from "./OutputPanel.js";
-import { KnowledgePanel } from "./KnowledgePanel.js";
+import { KnowledgeSearchPanel } from "./KnowledgeSearchPanel.js";
+import { KnowledgeResultPanel } from "./KnowledgeResultPanel.js";
 
 export function WorkspaceLayout() {
   const { theme } = useTheme();
@@ -25,8 +27,13 @@ export function WorkspaceLayout() {
           return <DescriptionPanel />;
         case "output":
           return <OutputPanel />;
+        case "knowledge-search":
+          return <KnowledgeSearchPanel />;
+        case "knowledge-result":
+          return <KnowledgeResultPanel />;
         case "knowledge":
-          return <KnowledgePanel />;
+          // Legacy panel (layout cũ) — render search, kết quả mở sang Knowledge Result
+          return <KnowledgeSearchPanel />;
         default:
           return <div>Unknown: {name}</div>;
       }
@@ -38,7 +45,9 @@ export function WorkspaceLayout() {
 
   return (
     <div className={`flexlayout__theme ${themeClass}`} style={{ ...cssOverrides, position: "relative", height: "100%", width: "100%" }}>
-      <Layout model={model} factory={factory} onModelChange={persistModel} />
+      <KnowledgeProvider>
+        <Layout model={model} factory={factory} onModelChange={persistModel} />
+      </KnowledgeProvider>
     </div>
   );
 }
