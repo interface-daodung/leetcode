@@ -9,6 +9,7 @@ const PANEL_LABELS: Record<LayoutComponentName, string> = {
   editor: "Editor",
   description: "Description",
   output: "Output",
+  knowledge: "Knowledge",
 };
 
 export function Header() {

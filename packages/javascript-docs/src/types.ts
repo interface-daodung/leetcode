@@ -37,8 +37,10 @@ export interface DocSection {
   tables: string[];
   /** các anchor liên quan trong cùng file */
   related: string[];
-  /** nội dung thô (đã truncate 4000 chars) */
+  /** nội dung thô — text markdown nguyên của section (tăng limit 10000, không cắt bảng/code) */
   content: string;
+  /** html đã phaser từ markdown — dùng hiển thị chính (bảng + code có màu qua codehilite/pygments) */
+  contentHtml: string;
   /** chuỗi searchText đã lower-case hoá: title + summary + syntax + keywords */
   searchText: string;
   /** file nguồn ví dụ `array-examples.md` */

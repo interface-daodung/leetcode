@@ -4,10 +4,10 @@ import type { IJsonModel, IJsonTabNode, TabNode } from "flexlayout-react";
  * Tên component được đăng ký trong FlexLayout factory.
  * App (web) map tên này → React component panel tương ứng.
  */
-export type LayoutComponentName = "explorer" | "editor" | "description" | "output";
+export type LayoutComponentName = "explorer" | "editor" | "description" | "output" | "knowledge";
 
 /** Danh sách đầy đủ các panel trong workspace. */
-export const ALL_COMPONENTS: LayoutComponentName[] = ["explorer", "editor", "description", "output"];
+export const ALL_COMPONENTS: LayoutComponentName[] = ["explorer", "editor", "description", "output", "knowledge"];
 
 /** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
 export type DefaultTabsetId = "tabset-explorer" | "tabset-editor" | "tabset-output";
@@ -28,6 +28,7 @@ export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId
     case "description":
       return "tabset-editor";
     case "output":
+    case "knowledge":
       return "tabset-output";
   }
 }
@@ -50,6 +51,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
   const editor = tabs("editor", defs);
   const description = tabs("description", defs);
   const output = tabs("output", defs);
+  const knowledge = tabs("knowledge", defs);
 
   return {
     global: {
@@ -81,7 +83,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
               type: "tabset",
               id: "tabset-output",
               weight: 30,
-              children: output.map(toJsonTab),
+              children: [...output.map(toJsonTab), ...knowledge.map(toJsonTab)],
             },
           ],
         },
@@ -100,6 +102,8 @@ function defaultName(component: LayoutComponentName): string {
       return "Description";
     case "output":
       return "Output";
+    case "knowledge":
+      return "Knowledge";
   }
 }
 

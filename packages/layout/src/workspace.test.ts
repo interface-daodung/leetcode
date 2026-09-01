@@ -68,8 +68,8 @@ describe("defaultTabJson", () => {
 });
 
 describe("ALL_COMPONENTS", () => {
-  it("liệt kê đủ 4 panel", () => {
-    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output"]);
+  it("liệt kê đủ 5 panel", () => {
+    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge"]);
   });
 });
 

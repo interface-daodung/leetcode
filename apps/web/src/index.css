@@ -233,3 +233,90 @@ body {
   height: 100%;
   width: 100%;
 }
+
+/* Knowledge markdown — render từ contentHtml (markdown → html qua python) */
+.knowledge-markdown {
+  line-height: 1.65;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+.knowledge-markdown p { margin: 0.6rem 0; }
+.knowledge-markdown h1,
+.knowledge-markdown h2,
+.knowledge-markdown h3,
+.knowledge-markdown h4 { margin: 1rem 0 0.5rem; font-weight: 600; line-height: 1.3; }
+.knowledge-markdown h1 { font-size: 1.2rem; }
+.knowledge-markdown h2 { font-size: 1.05rem; }
+.knowledge-markdown h3 { font-size: 0.95rem; }
+.knowledge-markdown ul, .knowledge-markdown ol { margin: 0.5rem 0; padding-left: 1.4rem; }
+.knowledge-markdown li { margin: 0.25rem 0; }
+.knowledge-markdown a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.knowledge-markdown a:hover { color: var(--accent-strong); }
+.knowledge-markdown blockquote { border-left: 3px solid var(--accent); margin: 0.75rem 0; padding-left: 0.75rem; color: var(--text-secondary); }
+.knowledge-markdown img { max-width: 100%; border-radius: 0.5rem; }
+.knowledge-markdown hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+.knowledge-markdown table { border-collapse: collapse; margin: 0.75rem 0; width: 100%; display: block; overflow-x: auto; }
+.knowledge-markdown th, .knowledge-markdown td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; text-align: left; font-size: 0.8rem; }
+.knowledge-markdown th { background: var(--bg-hover); font-weight: 600; }
+.knowledge-markdown code { font-family: "JetBrains Mono", "Fira Code", Consolas, monospace; background: var(--code-bg); padding: 0.1rem 0.3rem; border-radius: 0.25rem; font-size: 0.85em; }
+.knowledge-markdown pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem 1rem; overflow-x: auto; margin: 0.6rem 0; }
+.knowledge-markdown pre code { background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.55; }
+
+/* Pygments codehilite theme (python-markdown) */
+.codehilite { background: var(--code-bg); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem 1rem; margin: 0.6rem 0; overflow-x: auto; }
+.codehilite pre { background: transparent; border: none; padding: 0; margin: 0; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite .c { color: #3D7B7B; font-style: italic }
+.codehilite .err { border: 1px solid #F00 }
+.codehilite .k { color: #008000; font-weight: bold }
+.codehilite .o { color: #666 }
+.codehilite .ch { color: #3D7B7B; font-style: italic }
+.codehilite .cm { color: #3D7B7B; font-style: italic }
+.codehilite .cp { color: #9C6500 }
+.codehilite .cpf { color: #3D7B7B; font-style: italic }
+.codehilite .c1 { color: #3D7B7B; font-style: italic }
+.codehilite .cs { color: #3D7B7B; font-style: italic }
+.codehilite .gd { color: #A00000 }
+.codehilite .ge { font-style: italic }
+.codehilite .gr { color: #E40000 }
+.codehilite .gh { color: #000080; font-weight: bold }
+.codehilite .gi { color: #008400 }
+.codehilite .go { color: #717171 }
+.codehilite .gp { color: #000080; font-weight: bold }
+.codehilite .gs { font-weight: bold }
+.codehilite .gu { color: #800080; font-weight: bold }
+.codehilite .gt { color: #04D }
+.codehilite .kc { color: #008000; font-weight: bold }
+.codehilite .kd { color: #008000; font-weight: bold }
+.codehilite .kn { color: #008000; font-weight: bold }
+.codehilite .kp { color: #008000 }
+.codehilite .kr { color: #008000; font-weight: bold }
+.codehilite .kt { color: #B00040 }
+.codehilite .m { color: #666 }
+.codehilite .s { color: #BA2121 }
+.codehilite .na { color: #687822 }
+.codehilite .nb { color: #008000 }
+.codehilite .nc { color: #00F; font-weight: bold }
+.codehilite .no { color: #800 }
+.codehilite .nd { color: #A2F }
+.codehilite .ni { color: #717171; font-weight: bold }
+.codehilite .ne { color: #CB3F38; font-weight: bold }
+.codehilite .nf { color: #00F }
+.codehilite .nl { color: #767600 }
+.codehilite .nn { color: #00F; font-weight: bold }
+.codehilite .nt { color: #008000; font-weight: bold }
+.codehilite .nv { color: #19177C }
+.codehilite .ow { color: #A2F; font-weight: bold }
+.codehilite .w { color: #BBB }
+.codehilite .mb, .codehilite .mf, .codehilite .mh, .codehilite .mi, .codehilite .mo, .codehilite .il { color: #666 }
+.codehilite .sa, .codehilite .sb, .codehilite .sc, .codehilite .dl, .codehilite .sd, .codehilite .s2, .codehilite .sh { color: #BA2121 }
+.codehilite .sd { font-style: italic }
+.codehilite .se { color: #AA5D1F; font-weight: bold }
+.codehilite .si { color: #A45A77; font-weight: bold }
+.codehilite .sx { color: #008000 }
+.codehilite .sr { color: #A45A77 }
+.codehilite .s1 { color: #BA2121 }
+.codehilite .ss { color: #19177C }
+.codehilite .bp { color: #008000 }
+.codehilite .fm { color: #00F }
+.codehilite .vc, .codehilite .vg, .codehilite .vi, .codehilite .vm { color: #19177C }

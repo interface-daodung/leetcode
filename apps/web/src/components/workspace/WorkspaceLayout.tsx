@@ -7,6 +7,7 @@ import { ExplorerPanel } from "./ExplorerPanel.js";
 import { EditorPanel } from "./EditorPanel.js";
 import { DescriptionPanel } from "./DescriptionPanel.js";
 import { OutputPanel } from "./OutputPanel.js";
+import { KnowledgePanel } from "./KnowledgePanel.js";
 
 export function WorkspaceLayout() {
   const { theme } = useTheme();
@@ -24,6 +25,8 @@ export function WorkspaceLayout() {
           return <DescriptionPanel />;
         case "output":
           return <OutputPanel />;
+        case "knowledge":
+          return <KnowledgePanel />;
         default:
           return <div>Unknown: {name}</div>;
       }

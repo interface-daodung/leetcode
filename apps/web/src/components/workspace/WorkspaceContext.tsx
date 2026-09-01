@@ -204,7 +204,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<WorkspaceState>(defaultState);
   const { model, undo, redo, canUndo, canRedo } = useLayoutUndo(loadModel);
   const persistTimer = useRef<number | null>(null);
-  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>({ explorer: true, editor: true, description: true, output: true });
+  const [panelsVisible, setPanelsVisible] = useState<Record<LayoutComponentName, boolean>>({ explorer: true, editor: true, description: true, output: true, knowledge: true });
 
   // Theo dõi model thay đổi (useUndo replace model mỗi lần undo/redo, hoặc user thao tác layout)
   // → cập nhật panelsVisible + persist. (onModelChange của FlexLayout không fire khi useUndo replace model.)

@@ -7,6 +7,26 @@ try:
 except Exception:
     pass
 
+# Markdown → HTML (thư viện phaser md to html). Nếu thiếu, fallback giữ raw.
+try:
+    import markdown as md_lib
+    HAS_MARKDOWN = True
+except ImportError:
+    HAS_MARKDOWN = False
+    md_lib = None
+
+def md_to_html(md_text: str) -> str:
+    if not HAS_MARKDOWN or not md_text.strip():
+        return ""
+    try:
+        # extra = tables + fenced_code + ... ; codehilite cho màu code (pygments)
+        return md_lib.markdown(md_text, extensions=["extra", "tables", "fenced_code", "codehilite", "sane_lists"])
+    except Exception:
+        try:
+            return md_lib.markdown(md_text, extensions=["extra", "tables", "fenced_code"])
+        except Exception:
+            return ""
+
 # Hỗ trợ chạy từ mọi CWD: mặc định lấy tmp_reference và src/data tương đối với script
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
 DEFAULT_SRC = SCRIPT_DIR.parent / "tmp_reference"
@@ -259,11 +279,11 @@ def parse_markdown_file(path: pathlib.Path):
         search_text_parts = [clean_title, summary, syntax or "", " ".join(keywords)]
         if returns: search_text_parts.append(returns)
         search_text = " ".join(search_text_parts).lower()
-        # also add full content words for full-text but truncated
+        # html render từ markdown nguyên
+        content_html = md_to_html(content) if content else ""
+
         # create id
         id_slug = f"{category}-{slugify(clean_title)}"
-        # avoid duplicates
-        # ensure unique by appending hash if needed later
 
         sections.append({
             "id": id_slug,
@@ -277,9 +297,10 @@ def parse_markdown_file(path: pathlib.Path):
             "mutates": mutates,
             "mdnUrl": mdn,
             "examples": examples,
-            "tables": tables[:2], # keep at most 2 tables
+            "tables": tables[:2], # keep at most 2 tables (legacy, html đã chứa bảng đầy đủ)
             "related": related,
-            "content": content[:4000], # truncated raw content
+            "content": content[:15000], # raw markdown nguyên — tăng từ 4000 lên 15000 để không cắt mất bảng/code
+            "contentHtml": content_html[:20000], # html đã phaser — dùng hiển thị chính (bảng + code có màu)
             "searchText": search_text[:1000],
             "sourceFile": fname,
             "category": category

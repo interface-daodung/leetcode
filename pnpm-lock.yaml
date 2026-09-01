@@ -96,6 +96,9 @@ importers:
       '@leetcode/editor':
         specifier: workspace:*
         version: link:../../packages/editor
+      '@leetcode/javascript-docs':
+        specifier: workspace:*
+        version: link:../../packages/javascript-docs
       '@leetcode/layout':
         specifier: workspace:*
         version: link:../../packages/layout
