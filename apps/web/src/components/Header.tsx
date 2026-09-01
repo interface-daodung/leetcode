@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useTheme } from "../lib/theme.js";
 import { useWorkspace } from "./workspace/WorkspaceContext.js";
 import { ALL_COMPONENTS } from "@leetcode/layout";
@@ -14,6 +15,8 @@ const PANEL_LABELS: Record<LayoutComponentName, string> = {
 };
 
 export function Header() {
+  const location = useLocation();
+  const isDocPage = location.pathname.startsWith("/doc");
   const { theme, toggle } = useTheme();
   const { undo, redo, canUndo, canRedo, panelsVisible, reopenPanel, refreshPanelsVisible } = useWorkspace();
   const [viewOpen, setViewOpen] = useState(false);
@@ -68,70 +71,74 @@ export function Header() {
         <span className="hidden text-sm font-semibold text-text-primary sm:inline">LeetCode Lab</span>
       </div>
 
-      {/* Menu View */}
-      <div className="relative" ref={viewRef}>
-        <button
-          type="button"
-          onClick={() => {
-            refreshPanelsVisible();
-            setViewOpen((v) => !v);
-          }}
-          className="rounded-lg px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
-        >
-          View
-        </button>
-        {viewOpen && (
-          <div className="absolute left-0 top-full mt-1 w-44 rounded-lg border border-border bg-bg-elevated py-1 shadow-lg">
-            {ALL_COMPONENTS.map((comp) => {
-              const visible = panelsVisible[comp];
-              return (
-                <button
-                  key={comp}
-                  type="button"
-                  disabled={visible}
-                  onClick={() => handleViewItem(comp)}
-                  className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors disabled:cursor-default enabled:hover:bg-bg-hover"
-                >
-                  <span className={visible ? "text-text-muted" : "text-text-primary"}>
-                    {PANEL_LABELS[comp]}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      {/* Menu View — ẩn trên trang /doc */}
+      {!isDocPage && (
+        <div className="relative" ref={viewRef}>
+          <button
+            type="button"
+            onClick={() => {
+              refreshPanelsVisible();
+              setViewOpen((v) => !v);
+            }}
+            className="rounded-lg px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
+          >
+            View
+          </button>
+          {viewOpen && (
+            <div className="absolute left-0 top-full mt-1 w-44 rounded-lg border border-border bg-bg-elevated py-1 shadow-lg">
+              {ALL_COMPONENTS.map((comp) => {
+                const visible = panelsVisible[comp];
+                return (
+                  <button
+                    key={comp}
+                    type="button"
+                    disabled={visible}
+                    onClick={() => handleViewItem(comp)}
+                    className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors disabled:cursor-default enabled:hover:bg-bg-hover"
+                  >
+                    <span className={visible ? "text-text-muted" : "text-text-primary"}>
+                      {PANEL_LABELS[comp]}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
-      <nav className="flex items-center gap-1 text-sm">
-        {/* Undo / Redo */}
-        <button
-          type="button"
-          onClick={undo}
-          disabled={!canUndo}
-          title="Undo (Ctrl+Z)"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary disabled:opacity-30"
-        >
-          <i className="fa-solid fa-rotate-left" />
-        </button>
-        <button
-          type="button"
-          onClick={redo}
-          disabled={!canRedo}
-          title="Redo (Ctrl+Shift+Z)"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary disabled:opacity-30"
-        >
-          <i className="fa-solid fa-rotate-right" />
-        </button>
+      {!isDocPage && (
+        <nav className="flex items-center gap-1 text-sm">
+          {/* Undo / Redo */}
+          <button
+            type="button"
+            onClick={undo}
+            disabled={!canUndo}
+            title="Undo (Ctrl+Z)"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary disabled:opacity-30"
+          >
+            <i className="fa-solid fa-rotate-left" />
+          </button>
+          <button
+            type="button"
+            onClick={redo}
+            disabled={!canRedo}
+            title="Redo (Ctrl+Shift+Z)"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary disabled:opacity-30"
+          >
+            <i className="fa-solid fa-rotate-right" />
+          </button>
 
-        <a
-          href="https://leetcode.com/problems"
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-lg px-3 py-1.5 font-medium text-text-secondary no-underline transition-colors hover:bg-bg-hover hover:text-text-primary"
-        >
-          LeetCode ↗
-        </a>
-      </nav>
+          <a
+            href="https://leetcode.com/problems"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg px-3 py-1.5 font-medium text-text-secondary no-underline transition-colors hover:bg-bg-hover hover:text-text-primary"
+          >
+            LeetCode ↗
+          </a>
+        </nav>
+      )}
 
       <button
         type="button"

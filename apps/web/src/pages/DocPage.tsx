@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useParams, Link, useSearchParams, useLocation } from "react-router-dom";
 import { marked } from "marked";
 
 /**
@@ -34,9 +34,22 @@ function resolveModule(file: string, lang: string): (() => Promise<string>) | un
   return hit?.[1];
 }
 
+// slug giống logic python slugify trong generate.py — để anchor #es6-syntax khớp với heading
+// Python dùng re.UNICODE nên \w giữ chữ có dấu (phương-thức -> phương-thức)
+// JS dùng unicode property escape để giữ dấu tiếng Việt
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export function DocPage() {
   const { file } = useParams<{ file: string }>();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const lang = (searchParams.get("lang") === "en" ? "en" : "vi") as "vi" | "en";
   const [html, setHtml] = useState<string>("");
   const [raw, setRaw] = useState<string>("");
@@ -60,25 +73,55 @@ export function DocPage() {
     loader()
       .then((md) => {
         setRaw(md);
-        // marked: GFM tables + breaks
-        const parsed = marked.parse(md, { gfm: true, breaks: false }) as string;
+        const rawHtml = marked.parse(md, { gfm: true, breaks: false }) as string;
+        // Gắn id cho heading để anchor #es6-syntax hoạt động — khớp logic slugify của generate.py
+        const parsed = rawHtml.replace(/<h([1-6])>(.*?)<\/h\1>/g, (_m: string, level: string, inner: string) => {
+          const stripped = inner.replace(/<[^>]+>/g, "");
+          const id = slugify(stripped);
+          return `<h${level} id="${id}">${inner}</h${level}>`;
+        });
         setHtml(parsed);
       })
       .catch((e) => setError(String(e)))
       .finally(() => setLoading(false));
   }, [file, lang]);
 
-  // Scroll tới anchor sau khi render
+  // Scroll tới anchor sau khi render — hỗ trợ http://localhost:5173/doc/README#es6-syntax
   useEffect(() => {
     if (!html) return;
-    const hash = window.location.hash;
-    if (!hash) return;
-    // hash dạng #phuong-thuc, slug thường lower-case không dấu
-    const id = decodeURIComponent(hash.slice(1));
-    // thử tìm theo id hoặc theo text heading
-    const el = document.getElementById(id) ?? document.querySelector(`[id="${CSS.escape(id)}"]`);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [html]);
+    const doScroll = () => {
+      const hash = location.hash || window.location.hash;
+      if (!hash) return;
+      const id = decodeURIComponent(hash.slice(1));
+      // 1) khớp trực tiếp id
+      let el: Element | null = document.getElementById(id);
+      // 2) thử slugify lại (phòng khi id trong URL khác case/dấu)
+      if (!el) {
+        const slug = slugify(id);
+        el = document.getElementById(slug) ?? document.querySelector(`[id="${CSS.escape(slug)}"]`);
+      }
+      // 3) fallback: tìm heading có text chứa hash (cho trường hợp anchor tiếng Việt)
+      if (!el) {
+        const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        const target = id.toLowerCase();
+        const targetSlug = slugify(target);
+        for (const h of headings) {
+          if (h.id === target || h.id === targetSlug || slugify(h.textContent ?? "") === targetSlug || (h.textContent ?? "").toLowerCase().includes(target)) {
+            el = h;
+            break;
+          }
+        }
+      }
+      if (el) {
+        // bù header sticky (h-14 ~56px + doc header) để không bị che
+        const y = el.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    };
+    // delay 1 frame để DOM đã paint
+    const t = window.setTimeout(doScroll, 80);
+    return () => window.clearTimeout(t);
+  }, [html, location.hash]);
 
   if (loading) {
     return (
