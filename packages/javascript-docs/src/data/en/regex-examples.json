@@ -50,7 +50,7 @@
       "tables": [],
       "related": [],
       "content": "USe forward slashes (`/`) to enclose your Regular Expression (RegEx):\n\n```js\n/regex/\n```\n\n<br />\n\nMatch literal strings:\n```js\nlet myString = \"Hello, World!\";\nlet myRegex = /Hello/;\nlet result = myRegex.test(myString);\n\nlet waldoIsHiding = \"Somewhere Waldo is hiding in this text.\";\nlet waldoRegex = /Waldo/; \nlet result = waldoRegex.test(waldoIsHiding);\n\nlet extractStr = \"Extract the word 'coding' from this string.\";\nlet codingRegex = /coding/;\nlet result = extractStr.match(codingRegex);\n```\n\n<br />\n\nUse the pipe character (`|`) as an \"or\" conditional:\n```js\nlet petString = \"James has a pet cat.\";\nlet petRegex = /dog|cat|bird|fish/;\nlet result = petRegex.test(petString);\n```\n\n<br />\n\nFlags: `i` for case insensitive, and `g` for global matches or to maych all occurences. Here are the best ones:\n```js\n/regex/i // ignore upper or lowercase\n/regex/g // to match every occurrence\n/regex/m // multiline\n/regex/x // ignore whitespace/verbose\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "basics use forward slashes (/) to enclose your regular expression (regex):  pattern regex basics string regexp",
+      "searchText": "basics use forward slashes (/) to enclose your regular expression (regex):  string pattern basics regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -92,7 +92,7 @@
       "tables": [],
       "related": [],
       "content": "Period is the wildcard `.`. Quantifiers are: `+`, `?`, `*`, `*?`, `++`, `{#}`, `{#,}`, and `{#,#}` \n\n> WHY DO CHARACTER CLASSES (`[]`) NOT WORK WITH `+`?\n\n- `*` = zero or more\n- `+` = one or more\n- `?` = zero or one\n- `{n}` = \"n\" times\n- `{n,}` = \"n\" or more times\n- `{n,m}` = at least \"n\" and at most \"m\" times\n- greedy matches = `*` and `+`\n- lazy matches = `*?`, `+?`, `??`, `{n}?`, `{n,}?`, and `{n,m}?`\n\nMatch Anything with Wildcard Period `.`: matches when a character occurs one or more times. Match characters that occur one or more times:\n```js\n// match anything with the wildcard . e.g. fun, gun, pun, run\n/.un/gi\n\nlet exampleStr = \"Let's have fun with regular expressions!\";\nlet unRegex = /.un/; \nlet result = unRegex.test(exampleStr);\n```\n\n<br />\n\nMatch Characters that Occur One or More Times with `+`\n```js\n// + Matches one or more consecutive characters: a aa aaa aaaa bab baab\n/a+/gi \n// match s\nlet difficultSpelling = \"Mississippi\";\nlet myRegex = /s+/g; // this is the solution\nlet result = difficultSpelling.match(myRegex);\n```\n\n<br />\n\nCheck for zero or one with `?`\n```js\n// ? Matches a character or nothing.: ba b a\n/ba?/g\n\nlet american = \"color\";\nlet british = \"colour\";\nlet rainbowRegex= /colou?r/;\nrainbowRegex.test(american); // true\nrainbowRegex.test(british); // true\n\nlet favWord = \"favorite\";\nlet favRegex = /favou?rite/; \nlet result = favRegex.test(favWord);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "wildcard and quantifiers period is the wildcard .. /.un/gi quantifiers un pattern regex gi wildcard string regexp and",
+      "searchText": "wildcard and quantifiers period is the wildcard .. /.un/gi wildcard and string pattern gi un regex quantifiers regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -132,7 +132,7 @@
       "tables": [],
       "related": [],
       "content": "Match Characters that Occur Zero or More Times with `*`: \n```js\n\n// * Matches zero or more consecutive characters: a ba baa aaa ba b\n/ba*/g\n/Aa*/\n\nlet phrase = \"ba humbug\";\nlet regexPlus = /bah+/;\nlet regexStar = /bah*/;\nregexPlus.test(phrase); // returns false\nregexStar.test(phrase); // returns true\n\nlet regexPlus = /wo+w/;\nlet regexStar = /wo*w/;\nregexPlus.test(phrase); // returns true\nregexStar.test(phrase); // returns true\n\nlet soccerWord = \"gooooooooal!\";\nlet gPhrase = \"gut feeling\";\nlet oPhrase = \"over the moon\";\nlet goRegex = /go*/;\nsoccerWord.match(goRegex); // ['goooooooo']\ngPhrase.match(goRegex); // ['g']\noPhrase.match(goRegex); // null\n\nlet chewieQuote = \"Aaaaaaaaaaaaaaaarrrgh!\";\nlet chewieRegex = /Aa*/; // Change this line\nlet result = chewieQuote.match(chewieRegex);\n```\n\n<br />\n\nLazy matching: use the `*?` character\n```js\n/t[a-z]*?i/\n\n// lazy quantifier with `*?`\nlet text = \"<h1>Winter is coming</h1>\";\nlet myRegex = /<.*?>/; // it's the answer!\nlet result = text.match(myRegex);\n```\n\n<br />\n\n```js\n// possessive quantifer with ++ (WHY?)\n/\\d++./\n123\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "matches with asterisk match characters that occur zero or more times with :  matches pattern regex with string asterisk regexp false",
+      "searchText": "matches with asterisk match characters that occur zero or more times with :  string pattern with asterisk regexp regex matches false",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -172,7 +172,7 @@
       "tables": [],
       "related": [],
       "content": "Match a spcific number of times with `{#}`:\n```js\nlet A4 = \"haaaah\";\nlet A3 = \"haaah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleHA = /ha{3}h/;\nmultipleHA.test(A4); // false\nmultipleHA.test(A3); // true\nmultipleHA.test(A100); // false\n\nlet timStr = \"Timmmmber\";\nlet timRegex = /Tim{4}ber/; \nlet result = timRegex.test(timStr);\n```\n\n<br />\n\nSpecify Only the Lower Number of Matches with `{#,}` : \n```js\nlet A4 = \"haaaah\";\nlet A2 = \"haah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleA = /ha{3,}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\nmultipleA.test(A100); // true\n\nlet haStr = \"Hazzzzah\";\nlet haRegex = /Haz{4,}ah/; \nlet result = haRegex.test(haStr);\n```\n\n<br />\n\nSpecify Upper and Lower Number of Matches `{#,#}`:\n```js\nlet A4 = \"aaaah\";\nlet A2 = \"aah\";\nlet multipleA = /a{3,5}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\n\nlet threeAs = \"aaa\";\nlet fourAs = \"aaaa\";\nlet sevenAs = \"aaaaaaa\";\n\nlet myRegex = /a{2,4}/;\nmyRegex.test(threeAs); // true\nmyRegex.test(fourAs); // true\nmyRegex.test(sevenAs); // true\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "specific match count match a spcific number of times with {#}:  specific pattern regex count string regexp match",
+      "searchText": "specific match count match a spcific number of times with {#}:  string count pattern specific regex regexp match",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -210,7 +210,7 @@
       "tables": [],
       "related": [],
       "content": "Anchors: the caret symbol (`^` or `\\A`) both inside and outside of character classes, and the dollar sign (`$` or `\\Z`).\n\nTo create a negated character set, you place a caret character (^) after the opening bracket and before the characters you do not want to match:\n```js\n// Anything but/except with the caret symbol INSIDE character set, ^ or \\A:\n/^This/  // returns 'T'\n\n/[^aeiou]/gi\nlet quoteSample = \"3 blind mice.\";\nlet myRegex = /[^aeiou^0-9]/gi; \nlet result = quoteSample.match(myRegex); \n```\n\n<br />\n\nmatch start of string qith ^ or \\A OUTSIDE of a character set:\n```js\nlet firstString = \"Ricky is first and can be found.\";\nlet firstRegex = /^Ricky/;\nfirstRegex.test(firstString);\nlet notFirst = \"You can't find Ricky now.\";\nfirstRegex.test(notFirst); // true\n\nlet rickyAndCal = \"Cal and Ricky both like racing.\";\nlet calRegex = /^Cal/; \nlet result = calRegex.test(rickyAndCal);\n```\n\n<br />\n\nuse `$` to match the end of a string - this one if messed up???\n```js\n/end.$/\n// match end of string with $ or \\Z\n/end.$/ // for 'end.' vs \n/[end.]$/ // just returning `.`\n\nlet theEnding = \"This is a never ending story\";\nlet storyRegex = /story$/;\nstoryRegex.test(theEnding);\nlet noEnding = \"Sometimes a story will have to end\";\nstoryRegex.test(noEnding); // true\n\nlet caboose = \"The last car on a train is the caboose\";\nlet lastRegex = /caboose$/; \nlet result = lastRegex.test(caboose);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "anchors anchors: the caret symbol (^ or \\a) both inside and outside of character classes, and the dollar sign ($ or \\z).  anchors pattern regex string regexp 't'",
+      "searchText": "anchors anchors: the caret symbol (^ or \\a) both inside and outside of character classes, and the dollar sign ($ or \\z).  string pattern anchors regex regexp 't'",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -241,7 +241,7 @@
       "tables": [],
       "related": [],
       "content": "Use the backslash `\\` to escape special characters that are in your string\n```js\n// escape thw wildcard as part of your regex\n/\\./\n\n// escape one or more character +\n/\\+/\n\n// escape zero or more character *\n/\\*/\n\n// escape end of string character $\n/\\$/\n\n// escape star of string or negation character ^\n/\\^/\n\n// escape zero or one character ?\n/\\?/\n\n// escape backslash\n/\\\\/\n\n// escape parentheses\n/\\(\\)/\n\n// escape square brackets or character classes\n/\\[\\]/\n\n// escape curly brackets\n/\\{\\}/\n\n// escape single quote\n/\\'/\n\n// escape double quotes\n/\\\"/\n\n// escape pipe\n/\\|/\n\n// escape new line\n/\\n/\n\n// escape TAB\n/\\t/\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "escaping symbols use the backslash \\ to escape special characters that are in your string  pattern regex escaping string symbols regexp",
+      "searchText": "escaping symbols use the backslash \\ to escape special characters that are in your string  string pattern symbols escaping regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -276,7 +276,7 @@
       "tables": [],
       "related": [],
       "content": "Character classes/sets with `[]`, e.g. bag, big, bug\n\n```js\n/b[aiu]g/gi\n\nlet quoteSample = \"I have only proved it correct, but not tried it.\";\nlet vowelRegex = /[aeiou]/gi; \nlet result = quoteSample.match(vowelRegex);\n\nlet catStr = \"cat\";\nlet batStr = \"bat\";\nlet matStr = \"mat\";\nlet bgRegex = /[a-e]at/;\ncatStr.match(bgRegex); // ['cat']\nbatStr.match(bgRegex); // ['bat']\nmatStr.match(bgRegex); // null\n\nlet quoteSample = \"The quick brown fox jumps over the lazy dog.\";\nlet alphabetRegex = /[a-z]/gi; \nlet result = quoteSample.match(alphabetRegex);\n```\n\n<br />\n\nCharacter classes/sets with hyphens (`-`) for ranges\n\n```js\n/[a-e]/gi\n/[a-z0-9]/ig\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "character classes character classes/sets with [], e.g.  pattern regex character string regexp classes",
+      "searchText": "character classes character classes/sets with [], e.g.  character string pattern regex classes regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -314,7 +314,7 @@
       "tables": [],
       "related": [],
       "content": "Any digit and any non-digit with `\\d` and `\\D`:\n```js\n/\\d/g // match all numbers\nlet movieName = \"2001: A Space Odyssey\";\nlet numRegex = /\\d/g;\nlet result = movieName.match(numRegex).length;\n\n/\\D/ig // match anything but a number\nlet movieName = \"2001: A Space Odyssey\";\nlet noNumRegex = /\\D/g;\nlet result = movieName.match(noNumRegex).length;\n```\n<br />\n\nMatch word characters or non-word characters ith `\\w` and `\\W`:\n```js\n/\\w/ig // shorthand for [A-Za-z0-9_]\n\nlet longHand = /[A-Za-z0-9_]+/;\nlet shortHand = /\\w+/;\nlet numbers = \"42\";\nlet varNames = \"important_var\";\nlongHand.test(numbers); // true\nshortHand.test(numbers); // true\nlongHand.test(varNames); // true\nshortHand.test(varNames); // true\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet alphabetRegexV2 = /\\w/g; \nlet result = quoteSample.match(alphabetRegexV2).length;\n\n/\\W/g // shorthand for [^A-Za-z0-9_]\nlet shortHand = /\\W/;\nlet numbers = \"42%\";\nlet sentence = \"Coding!\";\nnumbers.match(shortHand); // ['%']\nsentence.match(shortHand); // ['!']\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet nonAlphabetRegex = /\\W/g;\nlet result = quoteSample.match(nonAlphabetRegex).length;\n```\n\n<br />\n\nMatch whitespace and non whitespace with `\\w` and `\\W`::\n```js\nlet whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet spaceRegex = /\\s/g;\nwhiteSpace.match(spaceRegex); // [\" \", \" \"]\n\nlet sample = \"Whitespace is important in separating words\";\nlet countWhiteSpace = /\\s\\w*/;\nlet result = sample.match(countWhiteSpace);\n\nlet whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet nonSpaceRegex = /\\S/g;\nwhiteSpace.match(nonSpaceRegex).length; // 32\n\nlet sample = \"Whitespace is important in separating words\";\nlet countNonWhiteSpace = /\\S/g; \nlet result = sample.match(countNonWhiteSpace); \n\n// Remove Whitespace from Start and End with, you could also use str.trim()\nlet hello = \"   Hello, World!  \";\nlet wsRegex = /^\\s+|\\s+$/g; \nlet result = hello.replace(wsRegex, \"\");\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "shorthand any digit and any non-digit with \\d and \\d:  pattern regex string regexp shorthand",
+      "searchText": "shorthand any digit and any non-digit with \\d and \\d:  string pattern shorthand regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -357,7 +357,7 @@
       "tables": [],
       "related": [],
       "content": "Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses `()`.\n\n```js\n// find either Penguin or Pumpkin in a string\nlet testStr = \"Pumpkin\";\nlet testRegex = /P(engu|umpk)in/;\ntestRegex.test(testStr); // true\n\n// check for the names of Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner\nlet myString = \"Eleanor Roosevelt\";\nlet myRegex = /(Franklin|Eleanor).*Roosevelt/;\nlet result = myRegex.test(myString);\n```\n\n<br />\n\nReuse Patterns Using Capture Groups: \n```js\nlet repeatRegex = /(\\w+) \\1 \\1/;\nrepeatRegex.test(repeatStr); // Returns true\nrepeatStr.match(repeatRegex); // Returns [\"row row row\", \"row\"]\n\n// match a string that consists of only the same number repeated exactly three times separated by single spaces\nlet repeatNum = \"42 42 42\";\nlet reRegex = /^(\\d+)\\s\\1\\s\\1$/;\nlet result = reRegex.test(repeatNum);\n```\n\n<br />\n\nUse Capture Groups to Search and Replace:\n```js\nlet wrongText = \"The sky is silver.\";\nlet silverRegex = /silver/;\nwrongText.replace(silverRegex, \"blue\"); // \"The sky is blue.\"\n```\n\n<br />\n\naccess capture groups in the replacement string with dollar signs `($)`:\n```js\n\"Code Camp\".replace(/(\\w+)\\s(\\w+)/, '$2 $1'); // returns \"Code Camp\"\n\n// three capture groups that will search for each word in the string one two three then replace them \nlet str = \"one two three\";\nlet fixRegex = /(\\w+)\\s(\\w+)\\s(\\w+)/; \nlet replaceText = \"$3 $2 $1\"; //\nlet result = str.replace(fixRegex, replaceText);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "capture groups sometimes we want to check for groups of characters using a regular expression and to achieve that we use parentheses ().  pattern regex string capture groups regexp true",
+      "searchText": "capture groups sometimes we want to check for groups of characters using a regular expression and to achieve that we use parentheses ().  string pattern groups capture regex regexp true",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -389,7 +389,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// syntax\n/(?<name>...)/\n\n// alternate notation\n(?'name'...) // or \n(?P<name>...)\n\n// example\n/(?<name>Sally)/\nCall me Sally.\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "named groups /(?name...)/ /(?<name>...)/ pattern regex name named string groups regexp",
+      "searchText": "named groups /(?name...)/ /(?<name>...)/ named string pattern name groups regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -419,7 +419,7 @@
       "tables": [],
       "related": [],
       "content": "A positive lookahead is used as `(?=...)` where the ... is the required part that is not matched.\n\nA negative lookahead is used as `(?!...)` where the ... is the pattern that you do not want to be there.\n\n```js\n// positive lookahead syntax:\n(?=...)\n/foo(?=bar)/\nlet string = \"foobar foobaz\" // matches both\n\n// negative lookahead syntax:\n(?!...)\n/foo(?!bar)/\nlet string = \"foobar foobaz\" // matches 2nd 'foo'\n\nlet quit = \"qu\";\nlet noquit = \"qt\";\nlet quRegex= /q(?=u)/;\nlet qRegex = /q(?!u)/;\nquit.match(quRegex); // ['q']\nnoquit.match(qRegex); // ['q']\n\n// check two or more patterns in one string: a simple password \n// checker that looks for between 3 and 6 characters and at least one number\nlet password = \"abc123\";\nlet checkPass = /(?=\\w{3,6})(?=\\D*\\d)/;\ncheckPass.test(password);\n\n// Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, \n// and have two consecutive digits:\nlet sampleWord = \"astronaut\";\nlet pwRegex = /(?=\\w{6})(?=\\w*\\d{2})/;\nlet result = pwRegex.test(sampleWord);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "lookaheads a positive lookahead is used as (?=...) where the ... (?=...) lookaheads pattern regex string regexp",
+      "searchText": "lookaheads a positive lookahead is used as (?=...) where the ... (?=...) lookaheads string pattern regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -451,7 +451,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// syntax\n(?(?<=...)yes|no)\n\n// positive lookbehind syntax:\n(?<=...)\n/(?<=foo)bar/ \nlet string = \"foobar fuubar\"; // matches 'bar'\n\n// NEGATIVE lookbehind syntax:\n(?<!...)\n/(?<!not )foo/\nlet string = \"not foo but foo\" // matches 2nd 'foo'\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) pattern regex no string regexp lookbehinds yes",
+      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) lookbehinds string pattern no yes regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -477,7 +477,7 @@
       "tables": [],
       "related": [],
       "content": "1. Match and replace\n1. Validation\n1. something else",
-      "searchText": "practical examples 1.  pattern regex string examples practical regexp",
+      "searchText": "practical examples 1.  practical string pattern examples regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -521,7 +521,7 @@
       "tables": [],
       "related": [],
       "content": "Reorder and reformat a pet object from species, last name, first name:\n```js\nconst pets = [\n  \"cat: Smith, Meowsalot\",\n  \"young dog: Jones, Barksalot\",\n  \"rabbit: Doe, Fluffy\"\n];\n\nconst petPattern = /([a-z\\s]+):\\s([a-z]+),\\s([a-z]+)/i;\n\nconst petsUpdated = pets.map(pet => pet.replace(petPattern, '$3 $2 <span class=\"description\">$1</span>'));\n```\nTo HTML Output of first name, last name, species:\n\n- Meowsalot Smith cat\n- Barksalot Jones young dog\n- Fluffy Doe rabbit\n\nUses: character sets, `\\s`, `+`, `.replace()` method with capture groups `$3`, `$2`, `$1`\n\n- - - \n\n<br />\n\nFormat phone numbers into preferred format. Examples:\n```\n12345678920\n123-456-7890\n321.321.4321\n555 555 5555\n1 555 555 5555\n(555) 123 1234\n555 555-5555\n1.987.654.3210\n```\n\n<br />\n\nFind and replace phone numbers:\n\n```js\nconst phonePattern = /1?[-.\\s]?\\(?(\\d{3})\\)?[-.\\s]?(\\d{3})[-.\\s]?(\\d{4})/g;\n\nlet results = input.match(phonePattern); // input = source text with phone #'s\nif (!results) results = [];\n\nconst resultsUniform = results.map(x => x.replace(phonePattern, '($1) $2-$3'));\n```\n\nFind and replace common HTML entities (<, >, ', \", &) with a function\n\n```js\nfunction replaceEntity(str) {\nconst entityPattern = /[&<>\"']/g;\nlet  replacements = {\n    \"&\":\"&amp;\",\n    \"<\":\"&lt;\",\n    \">\":\"&gt;\",\n    \"\\\"\":\"&quot;\",\n    \"'\":\"&apos;\"\n  }\n  return str.replace(entityPattern, match => replacements[match]);\n}\n\nreplaceEntity(`<?php the_post_thumbnail() ?>`)\nconsole.log(replaceEntity(`<?php the_post_thumbnail() ?>`))\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "match and replace reorder and reformat a pet object from species, last name, first name:  pattern regex match string regexp and replace",
+      "searchText": "match and replace reorder and reformat a pet object from species, last name, first name:  and string pattern replace regex regexp match",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     },
@@ -557,7 +557,7 @@
       "tables": [],
       "related": [],
       "content": "Create a regular expression here that does the following:\n\n1. Can only contain letters and the 26 letters of the alphabet\n2. Must begin with a letter, not a number\n3. Must be at least 8 characters long, and not more than 30 characters\n\n```js\nconst usernamePattern = /^[a-z][a-z0-9]{7,29}$/i\n\n  if (usernamePattern.test(userInput)) {\n    showSuccess()\n  } else {\n    showError()\n  }\n}\n```\n\n<br /> \n\nUser name 2:\n\n1. Usernames can only use alpha-numeric characters.\n1. The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.\n1. Username letters can be lowercase and uppercase.\n1. Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.\n\n```js\nlet username = \"SomeUserName12\";\nlet userCheck = /^[a-z][a-z]+\\d*$|^[a-z]\\d\\d+$/i;\nlet result = userCheck.test(username);\n// RegEx 2:\nlet userCheck2 = /^[a-z]([0-9]{2,}|[a-z]+\\d*)$/i;\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "user name validation create a regular expression here that does the following:  user pattern regex name validation string regexp",
+      "searchText": "user name validation create a regular expression here that does the following:  validation string pattern name user regex regexp",
       "sourceFile": "regex-examples.md",
       "category": "regex"
     }

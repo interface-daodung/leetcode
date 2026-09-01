@@ -1,17 +1,31 @@
-import indexData from "./data/index.json" with { type: "json" };
-import arrayData from "./data/array-examples.json" with { type: "json" };
-import conditionalsData from "./data/conditionals-examples.json" with { type: "json" };
-import fccData from "./data/fcc-lessons.json" with { type: "json" };
-import functionData from "./data/function-examples.json" with { type: "json" };
-import loopData from "./data/loop-examples.json" with { type: "json" };
-import notesData from "./data/notes.json" with { type: "json" };
-import numberDateData from "./data/number-date-examples.json" with { type: "json" };
-import objectData from "./data/object-examples.json" with { type: "json" };
-import practicalData from "./data/practical-examples.json" with { type: "json" };
-import reactData from "./data/react.json" with { type: "json" };
-import readmeData from "./data/README.json" with { type: "json" };
-import regexData from "./data/regex-examples.json" with { type: "json" };
-import stringData from "./data/string-examples.json" with { type: "json" };
+import indexData from "./data/en/index.json" with { type: "json" };
+import arrayData from "./data/en/array-examples.json" with { type: "json" };
+import conditionalsData from "./data/en/conditionals-examples.json" with { type: "json" };
+import fccData from "./data/en/fcc-lessons.json" with { type: "json" };
+import functionData from "./data/en/function-examples.json" with { type: "json" };
+import loopData from "./data/en/loop-examples.json" with { type: "json" };
+import notesData from "./data/en/notes.json" with { type: "json" };
+import numberDateData from "./data/en/number-date-examples.json" with { type: "json" };
+import objectData from "./data/en/object-examples.json" with { type: "json" };
+import practicalData from "./data/en/practical-examples.json" with { type: "json" };
+import reactData from "./data/en/react.json" with { type: "json" };
+import readmeData from "./data/en/README.json" with { type: "json" };
+import regexData from "./data/en/regex-examples.json" with { type: "json" };
+import stringData from "./data/en/string-examples.json" with { type: "json" };
+import viIndexData from "./data/vi/index.json" with { type: "json" };
+import viArrayData from "./data/vi/array-examples.json" with { type: "json" };
+import viConditionalsData from "./data/vi/conditionals-examples.json" with { type: "json" };
+import viFccData from "./data/vi/fcc-lessons.json" with { type: "json" };
+import viFunctionData from "./data/vi/function-examples.json" with { type: "json" };
+import viLoopData from "./data/vi/loop-examples.json" with { type: "json" };
+import viNotesData from "./data/vi/notes.json" with { type: "json" };
+import viNumberDateData from "./data/vi/number-date-examples.json" with { type: "json" };
+import viObjectData from "./data/vi/object-examples.json" with { type: "json" };
+import viPracticalData from "./data/vi/practical-examples.json" with { type: "json" };
+import viReactData from "./data/vi/react.json" with { type: "json" };
+import viReadmeData from "./data/vi/README.json" with { type: "json" };
+import viRegexData from "./data/vi/regex-examples.json" with { type: "json" };
+import viStringData from "./data/vi/string-examples.json" with { type: "json" };
 import type { DocsIndex, DocFile, DocSection, IndexEntry } from "./types.js";
 
 // Cast JSON import để có type an toàn; `resolveJsonModule` đã bật
@@ -33,6 +47,24 @@ const allDocFiles: DocFile[] = [
   stringData as unknown as DocFile,
 ];
 
+const viIndex = viIndexData as unknown as DocsIndex;
+
+const allViDocFiles: DocFile[] = [
+  viArrayData as unknown as DocFile,
+  viConditionalsData as unknown as DocFile,
+  viFccData as unknown as DocFile,
+  viFunctionData as unknown as DocFile,
+  viLoopData as unknown as DocFile,
+  viNotesData as unknown as DocFile,
+  viNumberDateData as unknown as DocFile,
+  viObjectData as unknown as DocFile,
+  viPracticalData as unknown as DocFile,
+  viReactData as unknown as DocFile,
+  viReadmeData as unknown as DocFile,
+  viRegexData as unknown as DocFile,
+  viStringData as unknown as DocFile,
+];
+
 // Lazy cache cho DocFile theo category/sourceFile
 let docFilesCache: Map<string, DocFile> | null = null;
 
@@ -52,6 +84,31 @@ async function loadDocFiles(): Promise<Map<string, DocFile>> {
 function getDocFilesSync(): Map<string, DocFile> {
   const map = new Map<string, DocFile>();
   for (const doc of allDocFiles) {
+    map.set(doc.sourceFile, doc);
+    map.set(doc.category, doc);
+  }
+  return map;
+}
+
+// Lazy cache cho DocFile tiếng Việt
+let viDocFilesCache: Map<string, DocFile> | null = null;
+
+async function loadViDocFiles(): Promise<Map<string, DocFile>> {
+  if (viDocFilesCache) return viDocFilesCache;
+  const map = new Map<string, DocFile>();
+  for (const doc of allViDocFiles) {
+    map.set(doc.sourceFile, doc);
+    map.set(doc.category, doc);
+    map.set(doc.sourceFile.replace(".md", ""), doc);
+    map.set(doc.sourceFile.replace(".md", ".json"), doc);
+  }
+  viDocFilesCache = map;
+  return map;
+}
+
+function getViDocFilesSync(): Map<string, DocFile> {
+  const map = new Map<string, DocFile>();
+  for (const doc of allViDocFiles) {
     map.set(doc.sourceFile, doc);
     map.set(doc.category, doc);
   }
@@ -293,4 +350,157 @@ export function getAllDocFiles(): DocFile[] {
  */
 export function getDoc(topic: string): IndexEntry | undefined {
   return searchDocs(topic, { limit: 1, exactTitle: false })[0] ?? getById(topic);
+}
+
+// ---------------------------------------------------------------------------
+// Tiếng Việt — cùng bộ API như EN nhưng đọc từ data/vi/
+// ---------------------------------------------------------------------------
+
+/**
+ * Tìm kiếm toàn văn trên index tiếng Việt.
+ * Tương tự `searchDocs()` nhưng dùng dữ liệu `data/vi/`.
+ */
+export function searchDocsVi(query: string, opts: SearchOptions = {}): IndexEntry[] {
+  const { limit = 20, category, keyword, exactTitle, caseSensitive } = opts;
+  const qNorm = normalize(query, caseSensitive);
+  if (!qNorm && !category && !keyword) return [];
+
+  const tokens = qNorm ? qNorm.split(" ").filter(Boolean) : [];
+
+  let pool: IndexEntry[] = (viIndex as DocsIndex).entries;
+
+  if (category) {
+    const catLower = category.toLowerCase();
+    pool = pool.filter((e) => e.category.toLowerCase() === catLower);
+  }
+
+  if (keyword) {
+    const kwLower = keyword.toLowerCase();
+    const ids = (viIndex as DocsIndex).keywordIndex[kwLower] ?? [];
+    const idSet = new Set(ids.map((id) => id.toLowerCase()));
+    pool = pool.filter((e) => idSet.has(e.id.toLowerCase()) || e.keywords.map((k) => k.toLowerCase()).includes(kwLower));
+  }
+
+  if (exactTitle && qNorm) {
+    return pool.filter((e) => e.title.toLowerCase() === qNorm).slice(0, limit);
+  }
+
+  if (tokens.length === 0) {
+    return [...pool].sort((a, b) => a.title.localeCompare(b.title)).slice(0, limit);
+  }
+
+  const scored = pool
+    .map((e) => ({ e, score: scoreEntry(e, tokens) }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score || a.e.title.localeCompare(b.e.title))
+    .map((x) => x.e)
+    .slice(0, limit);
+
+  return scored;
+}
+
+/** Gợi ý lệnh/autocomplete trên dữ liệu tiếng Việt */
+export function suggestCommandsVi(prefix: string, limit = 10): IndexEntry[] {
+  const p = normalize(prefix);
+  if (!p) return [];
+  const pool = (viIndex as DocsIndex).entries;
+  const scored = pool
+    .filter((e) => e.title.toLowerCase().startsWith(p) || e.keywords.some((k) => k.toLowerCase().startsWith(p)))
+    .sort((a, b) => a.title.length - b.title.length || a.title.localeCompare(b.title))
+    .slice(0, limit);
+  if (scored.length < limit) {
+    const extra = pool
+      .filter((e) => !scored.includes(e) && (e.searchText.includes(p) || e.title.toLowerCase().includes(p)))
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .slice(0, limit - scored.length);
+    return [...scored, ...extra];
+  }
+  return scored;
+}
+
+/** Lấy entry tiếng Việt theo id chính xác */
+export function getByIdVi(id: string): IndexEntry | undefined {
+  const lower = id.toLowerCase();
+  return (viIndex as DocsIndex).entries.find((e) => e.id.toLowerCase() === lower);
+}
+
+/** Lấy tất cả entry tiếng Việt thuộc 1 category */
+export function getByCategoryVi(category: string): IndexEntry[] {
+  return searchDocsVi("", { category, limit: 1000 });
+}
+
+/** Lấy tất cả entry tiếng Việt chứa keyword */
+export function getByKeywordVi(keyword: string): IndexEntry[] {
+  return searchDocsVi("", { keyword, limit: 1000 });
+}
+
+/** Lấy danh sách keywords tiếng Việt duy nhất (sorted) */
+export function getAllKeywordsVi(): string[] {
+  return Object.keys((viIndex as DocsIndex).keywordIndex).sort();
+}
+
+/** Lấy danh sách categories tiếng Việt */
+export function getCategoriesVi(): string[] {
+  return [...(viIndex as DocsIndex).categories];
+}
+
+/** Lấy toàn bộ index tiếng Việt (read-only) */
+export function getIndexVi(): DocsIndex {
+  return viIndex as DocsIndex;
+}
+
+/** Lấy DocFile tiếng Việt đầy đủ (category hoặc file name) */
+export async function getDocFileVi(categoryOrFile: string): Promise<DocFile | undefined> {
+  const map = await loadViDocFiles();
+  if (map.has(categoryOrFile)) return map.get(categoryOrFile);
+  const lower = categoryOrFile.toLowerCase();
+  for (const [k, v] of map) {
+    if (k.toLowerCase() === lower) return v;
+  }
+  const withMd = lower.endsWith(".md") ? lower : `${lower}.md`;
+  if (map.has(withMd)) return map.get(withMd);
+  for (const v of map.values()) {
+    if (v.category.toLowerCase() === lower) return v;
+  }
+  return undefined;
+}
+
+/** Lấy 1 section tiếng Việt chi tiết theo id */
+export async function getSectionByIdVi(id: string): Promise<DocSection | undefined> {
+  const entry = getByIdVi(id);
+  if (!entry) return undefined;
+  const doc = await getDocFileVi(entry.sourceFile);
+  if (!doc) return undefined;
+  return doc.sections.find((s) => s.id.toLowerCase() === id.toLowerCase());
+}
+
+/** Đồng bộ: DocFile tiếng Việt ngay lập tức */
+export function getDocFileSyncVi(categoryOrFile: string): DocFile | undefined {
+  const map = getViDocFilesSync();
+  if (map.has(categoryOrFile)) return map.get(categoryOrFile);
+  const lower = categoryOrFile.toLowerCase();
+  for (const [k, v] of map) if (k.toLowerCase() === lower) return v;
+  const withMd = lower.endsWith(".md") ? lower : `${lower}.md`;
+  if (map.has(withMd)) return map.get(withMd);
+  for (const v of map.values()) if (v.category.toLowerCase() === lower) return v;
+  return undefined;
+}
+
+/** Đồng bộ: section tiếng Việt theo id */
+export function getSectionByIdSyncVi(id: string): DocSection | undefined {
+  const entry = getByIdVi(id);
+  if (!entry) return undefined;
+  const doc = getDocFileSyncVi(entry.sourceFile);
+  if (!doc) return undefined;
+  return doc.sections.find((s) => s.id.toLowerCase() === id.toLowerCase());
+}
+
+/** Lấy toàn bộ DocFile tiếng Việt (static, sync) */
+export function getAllDocFilesVi(): DocFile[] {
+  return [...allViDocFiles];
+}
+
+/** Alias tương thích `getDoc(topic)` cho tiếng Việt */
+export function getDocVi(topic: string): IndexEntry | undefined {
+  return searchDocsVi(topic, { limit: 1, exactTitle: false })[0] ?? getByIdVi(topic);
 }

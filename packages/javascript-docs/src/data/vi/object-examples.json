@@ -1,0 +1,833 @@
+{
+  "sourceFile": "object-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/object-examples.md",
+  "category": "object",
+  "title": "Ví dụ mã đối tượng",
+  "description": "Cú pháp và ví dụ mã cho các phương thức đối tượng phổ biến nhất",
+  "tags": [
+    "object",
+    "prototype",
+    "class",
+    "oop"
+  ],
+  "totalSections": 24,
+  "sections": [
+    {
+      "id": "object-phương-thức-đối-tượng-phổ-biến",
+      "title": "Phương thức đối tượng phổ biến",
+      "headingLevel": 2,
+      "anchor": "#phương-thức-đối-tượng-phổ-biến",
+      "summary": "Dưới đây là các phương thức và thuộc tính đối tượng phổ biến nhất.",
+      "keywords": [
+        "biến",
+        "class",
+        "object",
+        "oop",
+        "phương",
+        "phổ",
+        "prototype",
+        "thức",
+        "tượng",
+        "đối"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign): sao chép tất cả các thuộc tính riêng có thể liệt kê từ một hoặc nhiều đối tượng nguồn tới một đối tượng đích. Nó trả về đối tượng đích đã được sửa đổi\n- [Object.defineProperties()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties): định nghĩa mới hoặc sửa đổi các thuộc tính hiện có trực tiếp trên một đối tượng, trả về đối tượng\n- [Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty): định nghĩa một thuộc tính mới trực tiếp trên một đối tượng, hoặc sửa đổi một thuộc tính hiện có trên một đối tượng, và trả về đối tượng\n- [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze): đóng băng một đối tượng. Một đối tượng đã đóng băng không còn có thể thay đổi được nữa; việc đóng băng một đối tượng ngăn không cho thêm thuộc tính mới vào nó, ngăn xóa các thuộc tính hiện có, ngăn thay đổi tính có thể liệt kê, tính có thể cấu hình hoặc tính có thể ghi của các thuộc tính hiện có, và ngăn thay đổi giá trị của các thuộc tính hiện có. Ngoài ra, việc đóng băng một đối tượng cũng ngăn không cho prototype của nó bị thay đổi. `freeze()` trả về cùng một đối tượng đã được truyền vào.\n- Và những phương thức này: `fromEntries()`, `getOwnPropertyDescriptor()`, `getOwnPropertyDescriptors()`, `getOwnPropertyNames()`, `getOwnPropertySymbols()`, `getPrototypeOf()`, `is()`,  `isExtensible()`, `isFrozen()`, `isSealed()`, `preventExtensions()`, `propertyIsEnumerable()`, `seal()`, `setPrototypeOf()`, `toLocaleString()`, `toString()`, và `valueOf()`. \n\nXem [MDN Object docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) để biết thêm về các phương thức đó.\n\n<div align=",
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Dưới đây là các phương thức và thuộc tính đối tượng phổ biến nhất. Tôi đã bỏ qua:\n\n- [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign): sao chép tất cả các thuộc tính riêng có thể liệt kê từ một hoặc nhiều đối tượng nguồn tới một đối tượng đích. Nó trả về đối tượng đích đã được sửa đổi\n- [Object.defineProperties()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties): định nghĩa mới hoặc sửa đổi các thuộc tính hiện có trực tiếp trên một đối tượng, trả về đối tượng\n- [Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty): định nghĩa một thuộc tính mới trực tiếp trên một đối tượng, hoặc sửa đổi một thuộc tính hiện có trên một đối tượng, và trả về đối tượng\n- [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze): đóng băng một đối tượng. Một đối tượng đã đóng băng không còn có thể thay đổi được nữa; việc đóng băng một đối tượng ngăn không cho thêm thuộc tính mới vào nó, ngăn xóa các thuộc tính hiện có, ngăn thay đổi tính có thể liệt kê, tính có thể cấu hình hoặc tính có thể ghi của các thuộc tính hiện có, và ngăn thay đổi giá trị của các thuộc tính hiện có. Ngoài ra, việc đóng băng một đối tượng cũng ngăn không cho prototype của nó bị thay đổi. `freeze()` trả về cùng một đối tượng đã được truyền vào.\n- Và những phương thức này: `fromEntries()`, `getOwnPropertyDescriptor()`, `getOwnPropertyDescriptors()`, `getOwnPropertyNames()`, `getOwnPropertySymbols()`, `getPrototypeOf()`, `is()`,  `isExtensible()`, `isFrozen()`, `isSealed()`, `preventExtensions()`, `propertyIsEnumerable()`, `seal()`, `setPrototypeOf()`, `toLocaleString()`, `toString()`, và `valueOf()`. \n\nXem [MDN Object docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) để biết thêm về các phương thức đó.\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "phương thức đối tượng phổ biến dưới đây là các phương thức và thuộc tính đối tượng phổ biến nhất.  phổ thức object prototype oop đối tượng biến class phương",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-object-keys",
+      "title": "Object keys",
+      "headingLevel": 3,
+      "anchor": "#object-keys",
+      "summary": "Object.keys(obj)",
+      "keywords": [
+        "class",
+        "keys",
+        "obj",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": "Object.keys(obj)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys): Trả về một mảng tên các khóa được lặp theo cùng thứ tự mà một vòng lặp thông thường sẽ thực hiện.\n\n```js\n// syntax\nObject.keys(obj)\n\n// Example\nconst chordIntervals = {\n  ",
+      "examples": [
+        {
+          "code": "// syntax\nObject.keys(obj)\n\n// Example\nconst chordIntervals = {\n  \"Chord\": \"maj\",\n  \"Intervals\": [\"1\", \"3\", \"5\"],\n  \"steps\": [0, 4, 7],\n  \"Equal Chords\": [{\"key\": \"\", \"name\": \"\"}],\n  \"Chord Substitutes\": [{\"key\": \"\", \"name\": \"\"}],\n  \"scales\": {\n    \"Major Scale\": [\"1st\", \" 4th\", \" 5th\"],\n    \"Minor Pentatonic\": [\"2nd\"],\n    \"Blues Scale\": [\"2nd\"],\n    \"Harmonic Minor\": [\"5th\", \"6th\"],\n    \"Melodic Minor\": [\"4th\", \"5th\"],\n    \"Whole Tone\": [\"\"],\n    \"Augmented\": [\"1st\", \"3rd\", \"5th\"],\n    \"HW Diminished\": [\"1st\", \"3rd\", \"5th\", \"7th\"],\n    \"Major Bebop\": [\"1st\", \"4th\", \"5th\"],\n    \"Minor Bebop\": [\"3rd\", \"5th\", \"8th\"]\n  }\n  }\nconsole.log(Object.keys(chordIntervals)) // [\"Chord\",\"Intervals\",\"steps\",\"Equal Chords\",\"Chord Substitutes\",\"scales\"]\nconsole.log(Object.keys(chordIntervals.scales)) // [\"Major Scale\",\"Minor Pentatonic\",\"Blues Scale\",\"Harmonic Minor\", ...]\n\n// To check whether an object is empty or not\nObject.keys(obj).length",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN Object.keys docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys): Trả về một mảng tên các khóa được lặp theo cùng thứ tự mà một vòng lặp thông thường sẽ thực hiện.\n\n```js\n// syntax\nObject.keys(obj)\n\n// Example\nconst chordIntervals = {\n  \"Chord\": \"maj\",\n  \"Intervals\": [\"1\", \"3\", \"5\"],\n  \"steps\": [0, 4, 7],\n  \"Equal Chords\": [{\"key\": \"\", \"name\": \"\"}],\n  \"Chord Substitutes\": [{\"key\": \"\", \"name\": \"\"}],\n  \"scales\": {\n    \"Major Scale\": [\"1st\", \" 4th\", \" 5th\"],\n    \"Minor Pentatonic\": [\"2nd\"],\n    \"Blues Scale\": [\"2nd\"],\n    \"Harmonic Minor\": [\"5th\", \"6th\"],\n    \"Melodic Minor\": [\"4th\", \"5th\"],\n    \"Whole Tone\": [\"\"],\n    \"Augmented\": [\"1st\", \"3rd\", \"5th\"],\n    \"HW Diminished\": [\"1st\", \"3rd\", \"5th\", \"7th\"],\n    \"Major Bebop\": [\"1st\", \"4th\", \"5th\"],\n    \"Minor Bebop\": [\"3rd\", \"5th\", \"8th\"]\n  }\n  }\nconsole.log(Object.keys(chordIntervals)) // [\"Chord\",\"Intervals\",\"steps\",\"Equal Chords\",\"Chord Substitutes\",\"scales\"]\nconsole.log(Object.keys(chordIntervals.scales)) // [\"Major Scale\",\"Minor Pentatonic\",\"Blues Scale\",\"Harmonic Minor\", ...]\n\n// To check whether an object is empty or not\nObject.keys(obj).length \n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "object keys object.keys(obj) object.keys(obj) keys obj object oop prototype class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-object-values",
+      "title": "Object values",
+      "headingLevel": 3,
+      "anchor": "#object-values",
+      "summary": "Object.values(obj)",
+      "keywords": [
+        "class",
+        "obj",
+        "object",
+        "oop",
+        "prototype",
+        "values"
+      ],
+      "syntax": "Object.values(obj)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values): Trả về một mảng các giá trị cho mỗi khóa/thuộc tính theo cùng thứ tự được cung cấp bởi vòng lặp `for...in`.\n\n```js\n// syntax\nObject.values(obj)\n\n// Examples:\nconst chordIntervals = {\n    ",
+      "examples": [
+        {
+          "code": "// syntax\nObject.values(obj)\n\n// Examples:\nconst chordIntervals = {\n    \"Chord\": \"maj\",\n    \"Intervals\": [\"1\", \"3\", \"5\"],\n    \"steps\": [0, 4, 7],\n  }\nconsole.log(Object.values(chordIntervals)) // [\"maj\", [\"1\",\"3\",\"5\"], [0,4,7]]",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN Object.values docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values): Trả về một mảng các giá trị cho mỗi khóa/thuộc tính theo cùng thứ tự được cung cấp bởi vòng lặp `for...in`.\n\n```js\n// syntax\nObject.values(obj)\n\n// Examples:\nconst chordIntervals = {\n    \"Chord\": \"maj\",\n    \"Intervals\": [\"1\", \"3\", \"5\"],\n    \"steps\": [0, 4, 7],\n  }\nconsole.log(Object.values(chordIntervals)) // [\"maj\", [\"1\",\"3\",\"5\"], [0,4,7]]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "object values object.values(obj) object.values(obj) obj object oop prototype class values",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-hasownproperty",
+      "title": "hasOwnProperty",
+      "headingLevel": 3,
+      "anchor": "#hasownproperty",
+      "summary": "obj.hasOwnProperty(prop)",
+      "keywords": [
+        "class",
+        "hasownproperty",
+        "obj",
+        "object",
+        "oop",
+        "prop",
+        "prototype"
+      ],
+      "syntax": "obj.hasOwnProperty(prop)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): Trả về `true` nếu đối tượng có thuộc tính được chỉ định như là thuộc tính riêng của nó (trái ngược với việc kế thừa nó); ngược lại là `false`.\n\n```js\n// syntax\nobj.hasOwnProperty(prop)\t\n// prop: The String name or Symbol of the property to test\n\n\n// Example, RECORD COLLECTION 1:\nfunction updateRecords(records, id, prop, value) {\n  if (prop !== 'tracks' && value !== ",
+      "examples": [
+        {
+          "code": "// syntax\nobj.hasOwnProperty(prop)\t\n// prop: The String name or Symbol of the property to test\n\n\n// Example, RECORD COLLECTION 1:\nfunction updateRecords(records, id, prop, value) {\n  if (prop !== 'tracks' && value !== \"\") {\n    records[id][prop] = value;\n  } else if (prop === \"tracks\" && records[id].hasOwnProperty(\"tracks\") === false) {\n    records[id][prop] = [value];\n  } else if (prop === \"tracks\" && value !== \"\") {\n    records[id][prop].push(value);\n  } else if (value === \"\") {\n    delete records[id][prop];\n  }\n  return records;\n}\n\n// Example, RECORD COLLECTION 2:\nfunction updateRecords(records, id, prop, value) {\n  if (value === '') {\n    delete records[id][prop];\n  } else if (prop === 'tracks') {\n    records[id][prop] = records[id][prop] || []; // this is called shortcircuit evaluation, see below for explanation\n    records[id][prop].push(value);\n  } else {\n    records[id][prop] = value;\n  }\n  return records;\n}",
+          "explanation": ""
+        },
+        {
+          "code": "// own prop vs prototype prop\nfunction YourClass(name) {\n  this.name = name;           // own property\n}\nYourClass.prototype.prop = 2; // prototype property\n\n\nlet ownProps = [];\nlet prototypeProps = [];\n\nfor (let property in duck) {\n  if(duck.hasOwnProperty(property)) {\n    ownProps.push(property);\n  } else {\n    prototypeProps.push(property);\n  }\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN hasOwnProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): Trả về `true` nếu đối tượng có thuộc tính được chỉ định như là thuộc tính riêng của nó (trái ngược với việc kế thừa nó); ngược lại là `false`.\n\n```js\n// syntax\nobj.hasOwnProperty(prop)\t\n// prop: The String name or Symbol of the property to test\n\n\n// Example, RECORD COLLECTION 1:\nfunction updateRecords(records, id, prop, value) {\n  if (prop !== 'tracks' && value !== \"\") {\n    records[id][prop] = value;\n  } else if (prop === \"tracks\" && records[id].hasOwnProperty(\"tracks\") === false) {\n    records[id][prop] = [value];\n  } else if (prop === \"tracks\" && value !== \"\") {\n    records[id][prop].push(value);\n  } else if (value === \"\") {\n    delete records[id][prop];\n  }\n  return records;\n}\n\n// Example, RECORD COLLECTION 2:\nfunction updateRecords(records, id, prop, value) {\n  if (value === '') {\n    delete records[id][prop];\n  } else if (prop === 'tracks') {\n    records[id][prop] = records[id][prop] || []; // this is called shortcircuit evaluation, see below for explanation\n    records[id][prop].push(value);\n  } else {\n    records[id][prop] = value;\n  }\n  return records;\n}\n```\n\n<br />\n\nThuộc tính riêng so với thuộc tính prototype:\n```js\n// own prop vs prototype prop\nfunction YourClass(name) {\n  this.name = name;           // own property\n}\nYourClass.prototype.prop = 2; // prototype property\n\n\nlet ownProps = [];\nlet prototypeProps = [];\n\nfor (let property in duck) {\n  if(duck.hasOwnProperty(property)) {\n    ownProps.push(property);\n  } else {\n    prototypeProps.push(property);\n  }\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "hasownproperty obj.hasownproperty(prop) obj.hasownproperty(prop) hasownproperty prop obj object prototype oop class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-prototype",
+      "title": "prototype",
+      "headingLevel": 3,
+      "anchor": "#prototype",
+      "summary": "// prototype chain properties:",
+      "keywords": [
+        "class",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes): cơ chế mà qua đó các đối tượng JavaScript kế thừa các tính năng từ nhau.\n\n```js\n// prototype chain properties:\n__defineGetter__\n__defineSetter__\n__lookupGetter__\n__lookupSetter__\n__proto__\nconstructor\nobj.hasOwnProperty\nobj.isPrototypeOf\nobj.propertyIsEnumerable\nobj.toLocaleString\nobj.toString\nobj.toValueOf\n```\n\n**constructor**: thuộc tính constructor là một tham chiếu đến hàm khởi tạo đã tạo ra thể hiện. Có một tác dụng phụ quan trọng khi thiết lập thủ công prototype thành một đối tượng mới. Nó xóa thuộc tính constructor. \n*** Để khắc phục điều này, bất cứ khi nào prototype được thiết lập thủ công thành một đối tượng mới, hãy nhớ định nghĩa thuộc tính constructor\n\n```js\nBird.prototype = {\n  constructor: Bird,\n  numLegs: 2, ...\n```\n\nTất cả các đối tượng trong JavaScript (với một vài ngoại lệ) đều có prototype - Vì prototype là một đối tượng, prototype có thể có prototype riêng của nó: prototype của Bird.prototype là Object.prototype: Object.prototype.isPrototypeOf(Bird.prototype)\n\n```js\n\n```\n\n<div align=",
+      "examples": [
+        {
+          "code": "// prototype chain properties:\n__defineGetter__\n__defineSetter__\n__lookupGetter__\n__lookupSetter__\n__proto__\nconstructor\nobj.hasOwnProperty\nobj.isPrototypeOf\nobj.propertyIsEnumerable\nobj.toLocaleString\nobj.toString\nobj.toValueOf",
+          "explanation": ""
+        },
+        {
+          "code": "Bird.prototype = {\n  constructor: Bird,\n  numLegs: 2, ...",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN prototype](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes): cơ chế mà qua đó các đối tượng JavaScript kế thừa các tính năng từ nhau.\n\n```js\n// prototype chain properties:\n__defineGetter__\n__defineSetter__\n__lookupGetter__\n__lookupSetter__\n__proto__\nconstructor\nobj.hasOwnProperty\nobj.isPrototypeOf\nobj.propertyIsEnumerable\nobj.toLocaleString\nobj.toString\nobj.toValueOf\n```\n\n**constructor**: thuộc tính constructor là một tham chiếu đến hàm khởi tạo đã tạo ra thể hiện. Có một tác dụng phụ quan trọng khi thiết lập thủ công prototype thành một đối tượng mới. Nó xóa thuộc tính constructor. \n*** Để khắc phục điều này, bất cứ khi nào prototype được thiết lập thủ công thành một đối tượng mới, hãy nhớ định nghĩa thuộc tính constructor\n\n```js\nBird.prototype = {\n  constructor: Bird,\n  numLegs: 2, ...\n```\n\nTất cả các đối tượng trong JavaScript (với một vài ngoại lệ) đều có prototype - Vì prototype là một đối tượng, prototype có thể có prototype riêng của nó: prototype của Bird.prototype là Object.prototype: Object.prototype.isPrototypeOf(Bird.prototype)\n\n```js\n\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "prototype // prototype chain properties:  object oop prototype class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-instanceof",
+      "title": "instanceof",
+      "headingLevel": 3,
+      "anchor": "#instanceof",
+      "summary": "// syntax:",
+      "keywords": [
+        "class",
+        "constructor",
+        "instanceof",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": "object instanceof constructor",
+      "returns": "true",
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof): kiểm tra xem thuộc tính prototype của một hàm khởi tạo có xuất hiện ở bất kỳ đâu trong chuỗi prototype của một đối tượng hay không. Giá trị trả về là một giá trị boolean. Trả về true nếu một đối tượng là một thể hiện của một kiểu đối tượng. \n\n```js\n// syntax: \nobject instanceof constructor\n\n// MDN examples:\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nconst auto = new Car('Honda', 'Accord', 1998);\nconsole.log(auto instanceof Car); // true \nconsole.log(auto instanceof Object); // true\n\n\n// with dates:\nlet myDate = new Date();\nmyDate instanceof Date;      // true\nmyDate instanceof Object;    // true\nmyDate instanceof String;    // false\n\n\n// Objects created using Object.create()\nfunction Shape() {\n}\nfunction Rectangle() {\n  Shape.call(this); // call super constructor.\n}\nRectangle.prototype = Object.create(Shape.prototype);\nRectangle.prototype.constructor = Rectangle;\nlet rect = new Rectangle();\nrect instanceof Object;    // true\nrect instanceof Shape;     // true\nrect instanceof Rectangle; // true\nrect instanceof String;    // false\n\nlet literalObject     = {};\nlet nullObject  = Object.create(null);\nnullObject.name = ",
+      "examples": [
+        {
+          "code": "// syntax: \nobject instanceof constructor\n\n// MDN examples:\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nconst auto = new Car('Honda', 'Accord', 1998);\nconsole.log(auto instanceof Car); // true \nconsole.log(auto instanceof Object); // true\n\n\n// with dates:\nlet myDate = new Date();\nmyDate instanceof Date;      // true\nmyDate instanceof Object;    // true\nmyDate instanceof String;    // false\n\n\n// Objects created using Object.create()\nfunction Shape() {\n}\nfunction Rectangle() {\n  Shape.call(this); // call super constructor.\n}\nRectangle.prototype = Object.create(Shape.prototype);\nRectangle.prototype.constructor = Rectangle;\nlet rect = new Rectangle();\nrect instanceof Object;    // true\nrect instanceof Shape;     // true\nrect instanceof Rectangle; // true\nrect instanceof String;    // false\n\nlet literalObject     = {};\nlet nullObject  = Object.create(null);\nnullObject.name = \"My object\";\n\nliteralObject instanceof Object; // true, every object literal has Object.prototype as prototype\n({}) instanceof Object; // true, same case as above\nnullObject instanceof Object;   // false, prototype is end of prototype chain (null)\n\n\n// example 3\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nlet mycar = new Car('Honda', 'Accord', 1998)\nlet a = mycar instanceof Car     // returns true\nlet b = mycar instanceof Object  // returns true",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN instanceof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof): kiểm tra xem thuộc tính prototype của một hàm khởi tạo có xuất hiện ở bất kỳ đâu trong chuỗi prototype của một đối tượng hay không. Giá trị trả về là một giá trị boolean. Trả về true nếu một đối tượng là một thể hiện của một kiểu đối tượng. \n\n```js\n// syntax: \nobject instanceof constructor\n\n// MDN examples:\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nconst auto = new Car('Honda', 'Accord', 1998);\nconsole.log(auto instanceof Car); // true \nconsole.log(auto instanceof Object); // true\n\n\n// with dates:\nlet myDate = new Date();\nmyDate instanceof Date;      // true\nmyDate instanceof Object;    // true\nmyDate instanceof String;    // false\n\n\n// Objects created using Object.create()\nfunction Shape() {\n}\nfunction Rectangle() {\n  Shape.call(this); // call super constructor.\n}\nRectangle.prototype = Object.create(Shape.prototype);\nRectangle.prototype.constructor = Rectangle;\nlet rect = new Rectangle();\nrect instanceof Object;    // true\nrect instanceof Shape;     // true\nrect instanceof Rectangle; // true\nrect instanceof String;    // false\n\nlet literalObject     = {};\nlet nullObject  = Object.create(null);\nnullObject.name = \"My object\";\n\nliteralObject instanceof Object; // true, every object literal has Object.prototype as prototype\n({}) instanceof Object; // true, same case as above\nnullObject instanceof Object;   // false, prototype is end of prototype chain (null)\n\n\n// example 3\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nlet mycar = new Car('Honda', 'Accord', 1998)\nlet a = mycar instanceof Car     // returns true\nlet b = mycar instanceof Object  // returns true\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "instanceof // syntax: object instanceof constructor instanceof object oop prototype constructor class true",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-isprototypeof",
+      "title": "isPrototypeOf",
+      "headingLevel": 3,
+      "anchor": "#isprototypeof",
+      "summary": "isPrototypeOf(object)",
+      "keywords": [
+        "class",
+        "isprototypeof",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": "isPrototypeOf(object)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf): kiểm tra xem một đối tượng có tồn tại trong chuỗi prototype của đối tượng khác hay không\n\n```js\n// syntax\nisPrototypeOf(object)\n\n// example\nfunction Foo() {}\nfunction Bar() {}\n\nBar.prototype = Object.create(Foo.prototype);\nconst bar = new Bar();\nconsole.log(Foo.prototype.isPrototypeOf(bar)); // true\nconsole.log(Bar.prototype.isPrototypeOf(bar)); // true\n\n\n// example 2\nfunction Bird(name) {\n  this.name = name;\n}\nlet duck = new Bird(",
+      "examples": [
+        {
+          "code": "// syntax\nisPrototypeOf(object)\n\n// example\nfunction Foo() {}\nfunction Bar() {}\n\nBar.prototype = Object.create(Foo.prototype);\nconst bar = new Bar();\nconsole.log(Foo.prototype.isPrototypeOf(bar)); // true\nconsole.log(Bar.prototype.isPrototypeOf(bar)); // true\n\n\n// example 2\nfunction Bird(name) {\n  this.name = name;\n}\nlet duck = new Bird(\"Donald\");\nBird.prototype.isPrototypeOf(duck);\n\n// prototype of prototype\nconsole.log(Object.prototype.isPrototypeOf(Bird.prototype)); // true",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN isPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf): kiểm tra xem một đối tượng có tồn tại trong chuỗi prototype của đối tượng khác hay không\n\n```js\n// syntax\nisPrototypeOf(object)\n\n// example\nfunction Foo() {}\nfunction Bar() {}\n\nBar.prototype = Object.create(Foo.prototype);\nconst bar = new Bar();\nconsole.log(Foo.prototype.isPrototypeOf(bar)); // true\nconsole.log(Bar.prototype.isPrototypeOf(bar)); // true\n\n\n// example 2\nfunction Bird(name) {\n  this.name = name;\n}\nlet duck = new Bird(\"Donald\");\nBird.prototype.isPrototypeOf(duck);\n\n// prototype of prototype\nconsole.log(Object.prototype.isPrototypeOf(Bird.prototype)); // true\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "isprototypeof isprototypeof(object) isprototypeof(object) object oop prototype isprototypeof class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-object-create",
+      "title": "Object create",
+      "headingLevel": 3,
+      "anchor": "#object-create",
+      "summary": "freeCodeCamp: Bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) Animal: tạo một thể hiện mới của Animal.",
+      "keywords": [
+        "class",
+        "create",
+        "object",
+        "oop",
+        "proto",
+        "prototype"
+      ],
+      "syntax": "Object.create(proto)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create): tạo một đối tượng mới, sử dụng một đối tượng hiện có làm prototype của đối tượng mới được tạo - một cách tiếp cận thay thế cho kế thừa thay vì `new ClssName()`.\n\n`freeCodeCamp`: Bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) Animal: tạo một thể hiện mới của Animal. bước tiếp theo: đặt prototype của kiểu con (hoặc con)—trong trường hợp này, Bird—thành một thể hiện của Animal: `Bird.prototype = Object.create(Animal.prototype);`.\n\n```js\n// syntax:\nObject.create(proto)\nObject.create(proto, propertiesObject)\nObject.create(Class.prototype)\n\n\n// example\nconst person = {\n  isHuman: false,\n  printIntroduction: function() {\n    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);\n  }\n};\nconst me = Object.create(person);\nme.name = 'Matthew'; // ",
+      "examples": [
+        {
+          "code": "// syntax:\nObject.create(proto)\nObject.create(proto, propertiesObject)\nObject.create(Class.prototype)\n\n\n// example\nconst person = {\n  isHuman: false,\n  printIntroduction: function() {\n    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);\n  }\n};\nconst me = Object.create(person);\nme.name = 'Matthew'; // \"name\" is a property set on \"me\", but not on \"person\"\nme.isHuman = true; // inherited properties can be overwritten\nme.printIntroduction();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create): tạo một đối tượng mới, sử dụng một đối tượng hiện có làm prototype của đối tượng mới được tạo - một cách tiếp cận thay thế cho kế thừa thay vì `new ClssName()`.\n\n`freeCodeCamp`: Bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) Animal: tạo một thể hiện mới của Animal. bước tiếp theo: đặt prototype của kiểu con (hoặc con)—trong trường hợp này, Bird—thành một thể hiện của Animal: `Bird.prototype = Object.create(Animal.prototype);`.\n\n```js\n// syntax:\nObject.create(proto)\nObject.create(proto, propertiesObject)\nObject.create(Class.prototype)\n\n\n// example\nconst person = {\n  isHuman: false,\n  printIntroduction: function() {\n    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);\n  }\n};\nconst me = Object.create(person);\nme.name = 'Matthew'; // \"name\" is a property set on \"me\", but not on \"person\"\nme.isHuman = true; // inherited properties can be overwritten\nme.printIntroduction();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "object create freecodecamp: bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) animal: tạo một thể hiện mới của animal. object.create(proto) object create oop prototype proto class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-object-entries",
+      "title": "Object entries",
+      "headingLevel": 3,
+      "anchor": "#object-entries",
+      "summary": "Thứ tự của mảng được trả về bởi Object.entries() giống như thứ tự được cung cấp bởi vòng lặp for...in.",
+      "keywords": [
+        "class",
+        "entries",
+        "obj",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": "Object.entries(obj)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries): trả về một mảng các cặp [khóa, giá trị] của một đối tượng cho trước. Điều này giống như lặp với vòng lặp for...in, ngoại trừ việc vòng lặp for...in liệt kê các thuộc tính trong chuỗi prototype nữa. \n\nThứ tự của mảng được trả về bởi `Object.entries()` giống như thứ tự được cung cấp bởi vòng lặp for...in. Nếu cần thứ tự khác, thì mảng nên được sắp xếp trước, như `Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`.\n\n```js\n// syntax:\nObject.entries(obj)\n\n\n// examples:\nconst object1 = {\n  a: 'word',\n  b: 42\n};\n\nfor (const [key, value] of Object.entries(object1)) {\n  console.log(`${key}: ${value}`); // ",
+      "examples": [
+        {
+          "code": "// syntax:\nObject.entries(obj)\n\n\n// examples:\nconst object1 = {\n  a: 'word',\n  b: 42\n};\n\nfor (const [key, value] of Object.entries(object1)) {\n  console.log(`${key}: ${value}`); // \"a: word\", \"b: 42\"\n}\n\nconst obj = { foo: 'bar', baz: 42 };\nconsole.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]\n\n// array like object\nconst obj = { 0: 'a', 1: 'b', 2: 'c' };\nconsole.log(Object.entries(obj)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]\n\n// array like object with random key ordering\nconst anObj = { 100: 'a', 2: 'b', 7: 'c' };\nconsole.log(Object.entries(anObj)); // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]\n\n// iterate through key-value gracefully\nconst obj = { a: 5, b: 7, c: 9 };\nfor (const [key, value] of Object.entries(obj)) {\n  console.log(`${key} ${value}`); // \"a 5\", \"b 7\", \"c 9\"\n}\n\n// Or, using array extras\nObject.entries(obj).forEach(([key, value]) => {\n  console.log(`${key} ${value}`); // \"a 5\", \"b 7\", \"c 9\"\n});",
+          "explanation": ""
+        },
+        {
+          "code": "const obj = { foo: 'bar', baz: 42 };\nconst map = new Map(Object.entries(obj));\nconsole.log(map); // Map(2) {\"foo\" => \"bar\", \"baz\" => 42}",
+          "explanation": ""
+        },
+        {
+          "code": "const obj = { foo: 'bar', baz: 42 };\nObject.entries(obj).forEach(([key, value]) => console.log(`${key}: ${value}`)); // \"foo: bar\", \"baz: 42\"",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN Object.entries](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries): trả về một mảng các cặp [khóa, giá trị] của một đối tượng cho trước. Điều này giống như lặp với vòng lặp for...in, ngoại trừ việc vòng lặp for...in liệt kê các thuộc tính trong chuỗi prototype nữa. \n\nThứ tự của mảng được trả về bởi `Object.entries()` giống như thứ tự được cung cấp bởi vòng lặp for...in. Nếu cần thứ tự khác, thì mảng nên được sắp xếp trước, như `Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`.\n\n```js\n// syntax:\nObject.entries(obj)\n\n\n// examples:\nconst object1 = {\n  a: 'word',\n  b: 42\n};\n\nfor (const [key, value] of Object.entries(object1)) {\n  console.log(`${key}: ${value}`); // \"a: word\", \"b: 42\"\n}\n\nconst obj = { foo: 'bar', baz: 42 };\nconsole.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]\n\n// array like object\nconst obj = { 0: 'a', 1: 'b', 2: 'c' };\nconsole.log(Object.entries(obj)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]\n\n// array like object with random key ordering\nconst anObj = { 100: 'a', 2: 'b', 7: 'c' };\nconsole.log(Object.entries(anObj)); // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]\n\n// iterate through key-value gracefully\nconst obj = { a: 5, b: 7, c: 9 };\nfor (const [key, value] of Object.entries(obj)) {\n  console.log(`${key} ${value}`); // \"a 5\", \"b 7\", \"c 9\"\n}\n\n// Or, using array extras\nObject.entries(obj).forEach(([key, value]) => {\n  console.log(`${key} ${value}`); // \"a 5\", \"b 7\", \"c 9\"\n});\n```\n\nChuyển đổi một Đối tượng thành Map\n\n```js\nconst obj = { foo: 'bar', baz: 42 };\nconst map = new Map(Object.entries(obj));\nconsole.log(map); // Map(2) {\"foo\" => \"bar\", \"baz\" => 42}\n```\n\nLặp qua một Đối tượng\n\n```js\nconst obj = { foo: 'bar', baz: 42 };\nObject.entries(obj).forEach(([key, value]) => console.log(`${key}: ${value}`)); // \"foo: bar\", \"baz: 42\"\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "object entries thứ tự của mảng được trả về bởi object.entries() giống như thứ tự được cung cấp bởi vòng lặp for...in. object.entries(obj) obj object entries oop prototype class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-kế-thừa",
+      "title": "kế thừa",
+      "headingLevel": 2,
+      "anchor": "#kế-thừa",
+      "summary": "freeCodeCamp: Nhưng duck và tất cả các thể hiện của Bird nên cho thấy rằng chúng được tạo bởi Bird chứ không phải Animal.",
+      "keywords": [
+        "childobject",
+        "class",
+        "create",
+        "kế",
+        "object",
+        "oop",
+        "parentobject",
+        "prototype",
+        "thừa"
+      ],
+      "syntax": "ChildObject.prototype = Object.create(ParentObject.prototype);",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#inheritance_with_the_prototype_chain): điều gì đó về hàm khởi tạo và siêu kiểu.\n\n`freeCodeCamp`: Nhưng duck và tất cả các thể hiện của Bird nên cho thấy rằng chúng được tạo bởi Bird chứ không phải Animal. Để làm như vậy, bạn có thể thiết lập thủ công thuộc tính constructor của Bird thành đối tượng Bird\n\n```js\n// syntax:\nChildObject.prototype = Object.create(ParentObject.prototype);\n// Then the ChildObject received its own methods by chaining them onto its prototype:\nChildObject.prototype.methodName = function() {...};\n\n\n// A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods\nfunction Animal() { }\nAnimal.prototype.eat = function() {\n  console.log(",
+      "examples": [
+        {
+          "code": "// syntax:\nChildObject.prototype = Object.create(ParentObject.prototype);\n// Then the ChildObject received its own methods by chaining them onto its prototype:\nChildObject.prototype.methodName = function() {...};\n\n\n// A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods\nfunction Animal() { }\nAnimal.prototype.eat = function() {\n  console.log(\"nom nom nom\");\n};\nfunction Bird() { }\nBird.prototype = Object.create(Animal.prototype);\nBird.prototype.constructor = Bird;\n\nBird.prototype.fly = function() {\n  console.log(\"I'm flying!\");\n};\n\nlet duck = new Bird();\nduck.eat();\nduck.fly();\n\n// another one\nfunction Animal() {}\nAnimal.prototype.eat = function() {\n  console.log(\"nom nom nom\");\n};\n\nfunction Dog() {}\n\nDog.prototype = Object.create(Animal.prototype);\nDog.prototype.constructor = Dog;\nDog.prototype.bark = function() {\n  console.log(\"Woof!\");\n};\n\nlet beagle = new Dog();\n\nbeagle.eat(); \nbeagle.bark();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "[MDN inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#inheritance_with_the_prototype_chain): điều gì đó về hàm khởi tạo và siêu kiểu.\n\n`freeCodeCamp`: Nhưng duck và tất cả các thể hiện của Bird nên cho thấy rằng chúng được tạo bởi Bird chứ không phải Animal. Để làm như vậy, bạn có thể thiết lập thủ công thuộc tính constructor của Bird thành đối tượng Bird\n\n```js\n// syntax:\nChildObject.prototype = Object.create(ParentObject.prototype);\n// Then the ChildObject received its own methods by chaining them onto its prototype:\nChildObject.prototype.methodName = function() {...};\n\n\n// A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods\nfunction Animal() { }\nAnimal.prototype.eat = function() {\n  console.log(\"nom nom nom\");\n};\nfunction Bird() { }\nBird.prototype = Object.create(Animal.prototype);\nBird.prototype.constructor = Bird;\n\nBird.prototype.fly = function() {\n  console.log(\"I'm flying!\");\n};\n\nlet duck = new Bird();\nduck.eat();\nduck.fly();\n\n// another one\nfunction Animal() {}\nAnimal.prototype.eat = function() {\n  console.log(\"nom nom nom\");\n};\n\nfunction Dog() {}\n\nDog.prototype = Object.create(Animal.prototype);\nDog.prototype.constructor = Dog;\nDog.prototype.bark = function() {\n  console.log(\"Woof!\");\n};\n\nlet beagle = new Dog();\n\nbeagle.eat(); \nbeagle.bark(); \n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "kế thừa freecodecamp: nhưng duck và tất cả các thể hiện của bird nên cho thấy rằng chúng được tạo bởi bird chứ không phải animal. childobject.prototype = object.create(parentobject.prototype); parentobject object create prototype oop thừa childobject class kế",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-vòng-lặp-for-in",
+      "title": "vòng lặp for in",
+      "headingLevel": 2,
+      "anchor": "#vòng-lặp-for-in",
+      "summary": "Sử dụng for in:",
+      "keywords": [
+        "class",
+        "for",
+        "hasownproperty",
+        "in",
+        "lặp",
+        "obj",
+        "object",
+        "oop",
+        "prop1",
+        "prototype",
+        "vòng"
+      ],
+      "syntax": "obj.hasOwnProperty('Prop1');",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// syntax:\nobj.hasOwnProperty('Prop1');\n'Prop1' in uobjsers;\n\nfor (let user in users) {...}\n\n// example 1:\nfunction Bird(name) {\n  this.name = name;\n  this.numLegs = 2;\n}\n\nlet duck = new Bird(\"Donald\");\nlet canary = new Bird(\"Tweety\");\nlet ownProps = [];\nfor (let property in duck) {\n  if (duck.hasOwnProperty(property)) {\n    ownProps.push(property);\n    console.log(duck[property])\n  }\n}\nconsole.log(ownProps); // ['name', 'numLegs']\n\n\n// example 2:\nconst chordIntervals = {\n  \"Chord\": \"maj\",\n  \"Intervals\": [\"1\", \"3\", \"5\"],\n  \"steps\": [0, 4, 7]\n}\n\nlet chordProps = [];\nfor (let prop in chordIntervals) {\n  if (chordIntervals.hasOwnProperty(prop)) {\n    chordProps.push(prop);\n    console.log(chordIntervals[prop]) // maj ['1', '3', '5'] [0, 4, 7]\n  }\n}\nconsole.log(chordProps); // ['Chord', 'Intervals', 'steps']\n\n\n// Example 3\nconst users = {\n  Alan: {\n    online: false\n  },\n  Jeff: {\n    online: true\n  },\n  Sarah: {\n    online: false\n  }\n}\n\nfunction countOnline(usersObj) {\n  // Only change code below this line\n  let result = 0;\n  for (let user in usersObj) {\n    if (usersObj[user].online === true) {\n      result++;\n    }\n  }\n  return result;\n  // Only change code above this line\n}\n\nconsole.log(countOnline(users));",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Sử dụng `for in`:\n```js\n// syntax:\nobj.hasOwnProperty('Prop1');\n'Prop1' in uobjsers;\n\nfor (let user in users) {...}\n\n// example 1:\nfunction Bird(name) {\n  this.name = name;\n  this.numLegs = 2;\n}\n\nlet duck = new Bird(\"Donald\");\nlet canary = new Bird(\"Tweety\");\nlet ownProps = [];\nfor (let property in duck) {\n  if (duck.hasOwnProperty(property)) {\n    ownProps.push(property);\n    console.log(duck[property])\n  }\n}\nconsole.log(ownProps); // ['name', 'numLegs']\n\n\n// example 2:\nconst chordIntervals = {\n  \"Chord\": \"maj\",\n  \"Intervals\": [\"1\", \"3\", \"5\"],\n  \"steps\": [0, 4, 7]\n}\n\nlet chordProps = [];\nfor (let prop in chordIntervals) {\n  if (chordIntervals.hasOwnProperty(prop)) {\n    chordProps.push(prop);\n    console.log(chordIntervals[prop]) // maj ['1', '3', '5'] [0, 4, 7]\n  }\n}\nconsole.log(chordProps); // ['Chord', 'Intervals', 'steps']\n\n\n// Example 3\nconst users = {\n  Alan: {\n    online: false\n  },\n  Jeff: {\n    online: true\n  },\n  Sarah: {\n    online: false\n  }\n}\n\nfunction countOnline(usersObj) {\n  // Only change code below this line\n  let result = 0;\n  for (let user in usersObj) {\n    if (usersObj[user].online === true) {\n      result++;\n    }\n  }\n  return result;\n  // Only change code above this line\n}\n\nconsole.log(countOnline(users));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "vòng lặp for in sử dụng for in: obj.hasownproperty('prop1'); in prop1 hasownproperty obj object lặp prototype oop for class vòng",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-sửa-đổi-giá-trị-và-xóa-khóa",
+      "title": "Sửa đổi giá trị và xóa khóa",
+      "headingLevel": 2,
+      "anchor": "#sửa-đổi-giá-trị-và-xóa-khóa",
+      "summary": "let something = {",
+      "keywords": [
+        "class",
+        "giá",
+        "khóa",
+        "object",
+        "oop",
+        "prototype",
+        "sửa",
+        "trị",
+        "và",
+        "xóa",
+        "đổi"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let something = {\n  id: 23894201352,\n  location: \"New York\",\n  date: 'January 1, 2017',\n  data: {\n    totalUsers: 51,\n    online: 42\n  }\n};\n// Add:\nsomething.data.offline = 100;\n// Modify:\nsomething.data.online = 45;\n// Delete/remove a key/property:\ndelete something.location;",
+          "explanation": ""
+        },
+        {
+          "code": "// something here",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\nlet something = {\n  id: 23894201352,\n  location: \"New York\",\n  date: 'January 1, 2017',\n  data: {\n    totalUsers: 51,\n    online: 42\n  }\n};\n// Add:\nsomething.data.offline = 100;\n// Modify:\nsomething.data.online = 45;\n// Delete/remove a key/property:\ndelete something.location;\n```\n\n<br />\n\nTruy cập giá trị bằng cách sử dụng `obj[prop]` hoặc `obj.prop[i]` hoặc `obj.[prop][i]`.\n```js\n// something here\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "sửa đổi giá trị và xóa khóa let something = {  sửa trị giá đổi và object prototype oop class khóa xóa",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-lớp",
+      "title": "Lớp",
+      "headingLevel": 2,
+      "anchor": "#lớp",
+      "summary": "Video tuyệt vời về Lớp ES6: https://youtu.be/vmLIClIJS8",
+      "keywords": [
+        "class",
+        "lớp",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Video tuyệt vời về Lớp ES6: https://youtu.be/_vmLIClIJS8",
+      "searchText": "lớp video tuyệt vời về lớp es6: https://youtu.be/vmliclijs8  object oop prototype class lớp",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-phiên-bản-prototype",
+      "title": "phiên bản prototype",
+      "headingLevel": 3,
+      "anchor": "#phiên-bản-prototype",
+      "summary": "// Amusement park food pass example:",
+      "keywords": [
+        "bản",
+        "class",
+        "object",
+        "oop",
+        "phiên",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// Amusement park food pass example:\nfunction Park (firstName, lastName, fastPass, mealPass) {\n  this.firstName = firstName,\n  this.lastName = lastName,\n  this.fastPass = fastPass,\n  this.mealPass = mealPass\n}\nPark.prototype.getFullName = function() {\n  return `${this.firstName} ${this.lastName}`;\n}\nPark.prototype.canSkip = function() {\n  return `${this.getFullName()} ${this.fastPass ? \" can skip the line\" : \" can't skip the line\"}.`;\n}\nPark.prototype.canEat = function() {\n  return `${this.getFullName()} ${this.mealPass ? \" can eat here\" : \" can't eat here\"}.`;\n}\nconst molly = new Park(\"Molly\", \"Stevens\", false, false);\nconst steve = new Park(\"Steve\", \"Jones\", true, true);\nconst sue = new Park(\"Sue\", \"Smith\", true, false);\nconst joe = new Park(\"Joe\", \"Thomas\", false, true);\n\nconsole.log(molly.canEat());\nconsole.log(steve.canEat());\nconsole.log(joe);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// Amusement park food pass example:\nfunction Park (firstName, lastName, fastPass, mealPass) {\n  this.firstName = firstName,\n  this.lastName = lastName,\n  this.fastPass = fastPass,\n  this.mealPass = mealPass\n}\nPark.prototype.getFullName = function() {\n  return `${this.firstName} ${this.lastName}`;\n}\nPark.prototype.canSkip = function() {\n  return `${this.getFullName()} ${this.fastPass ? \" can skip the line\" : \" can't skip the line\"}.`;\n}\nPark.prototype.canEat = function() {\n  return `${this.getFullName()} ${this.mealPass ? \" can eat here\" : \" can't eat here\"}.`;\n}\nconst molly = new Park(\"Molly\", \"Stevens\", false, false);\nconst steve = new Park(\"Steve\", \"Jones\", true, true);\nconst sue = new Park(\"Sue\", \"Smith\", true, false);\nconst joe = new Park(\"Joe\", \"Thomas\", false, true);\n\nconsole.log(molly.canEat());\nconsole.log(steve.canEat());\nconsole.log(joe);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "phiên bản prototype // amusement park food pass example:  object bản prototype oop class phiên",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-phiên-bản-lớp-es6",
+      "title": "Phiên bản Lớp ES6",
+      "headingLevel": 3,
+      "anchor": "#phiên-bản-lớp-es6",
+      "summary": "GHI CHÚ: Nhấp vào tên lớp để hiển thị bóng đèn vàng, nhấp vào bóng đèn, chuyển đổi sang cú pháp lớp ES6:",
+      "keywords": [
+        "bản",
+        "class",
+        "es6",
+        "lớp",
+        "object",
+        "oop",
+        "phiên",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "<br />\n\nTruy cập giá trị bằng cách sử dụng",
+          "explanation": ""
+        },
+        {
+          "code": "<br />\n\nVí dụ với khách hàng của tôi:",
+          "explanation": ""
+        },
+        {
+          "code": "<br />\n\nĐối tượng ví dụ:",
+          "explanation": ""
+        },
+        {
+          "code": "<br />\n\nConsole.log hàm rỗng:",
+          "explanation": ""
+        },
+        {
+          "code": "<br />\n\nTừ khóa `new` thay đổi cách hoạt động của hàm. Sau đó bạn có quyền truy cập vào đối tượng qua từ khóa `this`.",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "**GHI CHÚ**: Nhấp vào tên lớp để hiển thị bóng đèn vàng, nhấp vào bóng đèn, chuyển đổi sang cú pháp lớp ES6:\n\n```JS\n// syntax\nconst Name = function(arg) {\n\nclass Name {\n  constructor(arg) {\n}\n\n// check this property to find out what kind of object it is, it’s generally better to use the instanceof method to check the type of an object\n(candidate.constructor === Bird) // true or false\n\nfunction joinBirdFraternity(candidate) {\n  if (candidate.constructor === Bird) {\n    return true;\n  } else {\n    return false;\n  }\n}\n\n// prototype as objet:\nBird.prototype = {\n  numLegs: 2, \n  eat: function() {\n    console.log(\"nom nom nom\");\n  },\n  describe: function() {\n    console.log(\"My name is \" + this.name);\n  }\n};\n```\n\n<br />\n\nTruy cập giá trị bằng cách sử dụng\n\n```js\n// Amusement park fast pass example:\nclass Park2 {\n  constructor(firstName, lastName, fastPass, mealPass) {\n    this.firstName = firstName,\n      this.lastName = lastName,\n      this.fastPass = fastPass,\n      this.mealPass = mealPass;\n  }\n  getFullName() {\n    return `${this.firstName} ${this.lastName}`;\n  }\n  canSkip() {\n    return `${this.getFullName()} ${this.fastPass ? \" can skip the line\" : \" can't skip the line\"}.`;\n  }\n  canEat() {\n    return `${this.getFullName()} ${this.mealPass ? \" can eat here\" : \" can't eat here\"}.`;\n  }\n}\nconst molly2 = new Park2(\"Molly\", \"Stevens\", false, false);\nconst steve2 = new Park2(\"Steve\", \"Jones\", true, true);\nconst sue2 = new Park2(\"Sue\", \"Smith\", true, false);\nconst joe2 = new Park2(\"Joe\", \"Thomas\", false, true);\n\nconsole.log(steve2.canSkip());\nconsole.log(joe2.canSkip());\n```\n\n<br />\n\nVí dụ với khách hàng của tôi:\n```js\n// petNames as an array of objects\nconst philMiller = new Client(\"Phil Miller\", \"2001 Hamilton # 305\", \"pmiller83@gmail.com\", \"215-834-8218\", {\"Dog\": \"Sadie\"}, {\"Dog\": \"Abby\"}, {\"Cat\": \"Luna\"});\n// petNames as an array\n// const philMiller = new Client(\"Phil Miller\", \"2001 Hamilton # 305\", \"pmiller83@gmail.com\", \"215-834-8218\", \"Sadie\", \"Abby\", \"Bella\");\n\nconsole.log(philMiller);\n\nclass SecondClient {\n  constructor(secondName, secondEmail, secondPhone) {\n    this.secondName = secondName,\n    this.secondEmail = secondEmail,\n    this.secondPhone = secondPhone\n  }\n}\n\nconst philSpouse = new SecondClient(\"Rachel Miller\", \"soandso@gmail.com\", \"555-555-5555\")\nconsole.log(philSpouse);\n\nlet totalClient = {...philMiller, ...philSpouse};\nconsole.log(totalClient);\n```\n\n<br />\n\nĐối tượng ví dụ:\n```js\nconst student1 = {\n  firstName: \"Mary\",\n  lastName: \"Williams\",\n  gradeLevel: \"Junior\",\n  currentAverage: \"A\"\n};\n```\n\n<br />\n\nConsole.log hàm rỗng:\n```js\nfunction Student() {\n\n}\nconsole.log(Student()); // undefined\nconsole.log(new Student()); // Student {}\n```\n\n<br />\n\nTừ khóa `new` thay đổi cách hoạt động của hàm. Sau đó bạn có quyền truy cập vào đối tượng qua từ khóa `this`.\n\n```js\n// All students will have these properties:\nfunction Student(first, last, lvl, avg) {\n  this.firstName = first;\n  this.lastName = last;\n  this.gradeLevel = lvl;\n  this.currentAverage = avg;\n  this.getFullName = function() {\n    return `${this.firstName} ${this.lastName}`\n  }\n}\nconst student1 = new Student(\"Mary\", \"Williams\", \"Junior\", \"A\");\nconsole.log(student1); // Student {firstName: 'Mary', lastName: 'Williams', gradeLevel: 'Junior', currentAverage: 'A'}\n\n// update:\nstudent1.firstName = \"Marilyn\";\nstudent1.age = 28;\n```\n\n<br />\n\nTạo một lớp với hàm khởi tạo, phương thức và thuộc tính. Và bạn có một prototype cho mỗi lớp bạn tạo.\n\n```js\n// syntax\nclass ClassName {\n  constructor(properties to set) {\n    this.prop1 = prop1;\n    this.ptop2 = prop2;\n  }\n}\n// Person class\nclass Person {\n  constructor(firstName, lastName, dob) {\n    this.firstName = firstName;\n    this.lastName = lastName;\n    this.birthday = new Date(dob);\n  }\n\n  greeting() {\n    return `Hello, ${this.firstName} ${this.lastName}.`;\n  }\n}\n\n// create a new object based on the Person class\nconst jim = new Person(\"Jim\", \"Kernix\");\njim.greeting();\n```\n\n<br />\n\nlớp con với từ khóa `extends` và `su",
+      "searchText": "phiên bản lớp es6 ghi chú: nhấp vào tên lớp để hiển thị bóng đèn vàng, nhấp vào bóng đèn, chuyển đổi sang cú pháp lớp es6:  object bản prototype oop class lớp phiên es6",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-chủ-đề-liên-quan",
+      "title": "Chủ đề liên quan",
+      "headingLevel": 3,
+      "anchor": "#chủ-đề-liên-quan",
+      "summary": "Những chủ đề này đến từ freeCodeCamp nhưng tôi nghĩ chúng KHÔNG phải ES6.",
+      "keywords": [
+        "chủ",
+        "class",
+        "liên",
+        "object",
+        "oop",
+        "prototype",
+        "quan",
+        "đề"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Những chủ đề này đến từ freeCodeCamp nhưng tôi nghĩ chúng KHÔNG phải ES6.\n\n<br />",
+      "searchText": "chủ đề liên quan những chủ đề này đến từ freecodecamp nhưng tôi nghĩ chúng không phải es6.  liên object prototype oop quan class chủ đề",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-mixin-đối-tượng",
+      "title": "Mixin đối tượng",
+      "headingLevel": 4,
+      "anchor": "#mixin-đối-tượng",
+      "summary": "Mixin cho phép các đối tượng khác sử dụng một tập hợp các hàm.",
+      "keywords": [
+        "class",
+        "flymixin",
+        "mixin",
+        "obj",
+        "object",
+        "oop",
+        "prototype",
+        "tượng",
+        "đối"
+      ],
+      "syntax": "let flyMixin = function(obj) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let flyMixin = function(obj) {\n  obj.fly = function() {\n    console.log(\"Flying, wooosh!\");\n  }\n};\n\nlet bird = {\n  name: \"Donald\",\n  numLegs: 2\n};\n\nlet plane = {\n  model: \"777\",\n  numPassengers: 524\n};\n\nflyMixin(bird);\nflyMixin(plane);\n\nbird.fly();\nplane.fly();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Mixin cho phép các đối tượng khác sử dụng một tập hợp các hàm.\n\n```js\nlet flyMixin = function(obj) {\n  obj.fly = function() {\n    console.log(\"Flying, wooosh!\");\n  }\n};\n\nlet bird = {\n  name: \"Donald\",\n  numLegs: 2\n};\n\nlet plane = {\n  model: \"777\",\n  numPassengers: 524\n};\n\nflyMixin(bird);\nflyMixin(plane);\n\nbird.fly();\nplane.fly();\n```\n\n<br />",
+      "searchText": "mixin đối tượng mixin cho phép các đối tượng khác sử dụng một tập hợp các hàm. let flymixin = function(obj) { mixin obj object prototype oop đối tượng class flymixin",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-closure",
+      "title": "Closure",
+      "headingLevel": 4,
+      "anchor": "#closure",
+      "summary": "Cách đơn giản nhất để làm cho thuộc tính công khai này thành riêng tư là tạo một biến trong hàm khởi tạo.",
+      "keywords": [
+        "bird",
+        "class",
+        "closure",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": "function Bird() {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function Bird() {\n  // previously would have been bird.hatchedEgg = 10;\n  let hatchedEgg = 10;\n\n  this.getHatchedEggCount = function() { \n    return hatchedEgg;\n  };\n}\nlet ducky = new Bird();\nducky.getHatchedEggCount();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Cách đơn giản nhất để làm cho thuộc tính công khai này thành riêng tư là tạo một biến trong hàm khởi tạo. Trong JavaScript, một hàm luôn có quyền truy cập vào ngữ cảnh mà trong đó nó được tạo. Điều này được gọi là closure. \n\n```js\nfunction Bird() {\n  // previously would have been bird.hatchedEgg = 10;\n  let hatchedEgg = 10;\n\n  this.getHatchedEggCount = function() { \n    return hatchedEgg;\n  };\n}\nlet ducky = new Bird();\nducky.getHatchedEggCount();\n\n```\n\n<br />",
+      "searchText": "closure cách đơn giản nhất để làm cho thuộc tính công khai này thành riêng tư là tạo một biến trong hàm khởi tạo. function bird() { object oop prototype closure bird class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-iife-và-mô-đun-đối-tượng",
+      "title": "IIFE và mô-đun đối tượng",
+      "headingLevel": 4,
+      "anchor": "#iife-và-mô-đun-đối-tượng",
+      "summary": "Một biểu thức hàm được gọi ngay lập tức (IIFE) thường được sử dụng để nhóm chức năng liên quan thành một đối tượng hoặc mô-đun duy nhất.",
+      "keywords": [
+        "class",
+        "iife",
+        "mô",
+        "object",
+        "oop",
+        "prototype",
+        "tượng",
+        "và",
+        "đun",
+        "đối"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// previously\nfunction glideMixin(obj) {\n  obj.glide = function() {\n    console.log(\"Gliding on the water\");\n  };\n}\nfunction flyMixin(obj) {\n  obj.fly = function() {\n    console.log(\"Flying, wooosh!\");\n  };\n}\n\n// now mixins grouped into a module:\nlet motionModule = (function () {\n  return {\n    glideMixin: function(obj) {\n      obj.glide = function() {\n        console.log(\"Gliding on the water\");\n      };\n    },\n    flyMixin: function(obj) {\n      obj.fly = function() {\n        console.log(\"Flying, wooosh!\");\n      };\n    }\n  }\n})();\n\nmotionModule.glideMixin(duck);\nduck.glide();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Một biểu thức hàm được gọi ngay lập tức (IIFE) thường được sử dụng để nhóm chức năng liên quan thành một đối tượng hoặc mô-đun duy nhất. Bạn có thể nhóm các mixin này thành một mô-đun. Đối tượng được trả về chứa tất cả các hành vi mixin như là thuộc tính của đối tượng. Ưu điểm của mẫu mô-đun là tất cả các hành vi chuyển động có thể được đóng gói vào một đối tượng duy nhất mà sau đó có thể được sử dụng bởi các phần khác của mã của bạn. \n\n```js\n// previously\nfunction glideMixin(obj) {\n  obj.glide = function() {\n    console.log(\"Gliding on the water\");\n  };\n}\nfunction flyMixin(obj) {\n  obj.fly = function() {\n    console.log(\"Flying, wooosh!\");\n  };\n}\n\n// now mixins grouped into a module:\nlet motionModule = (function () {\n  return {\n    glideMixin: function(obj) {\n      obj.glide = function() {\n        console.log(\"Gliding on the water\");\n      };\n    },\n    flyMixin: function(obj) {\n      obj.fly = function() {\n        console.log(\"Flying, wooosh!\");\n      };\n    }\n  }\n})();\n\nmotionModule.glideMixin(duck);\nduck.glide();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "iife và mô-đun đối tượng một biểu thức hàm được gọi ngay lập tức (iife) thường được sử dụng để nhóm chức năng liên quan thành một đối tượng hoặc mô-đun duy nhất.  iife mô và đun object prototype đối oop tượng class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-destructuring-đối-tượng",
+      "title": "Destructuring đối tượng",
+      "headingLevel": 2,
+      "anchor": "#destructuring-đối-tượng",
+      "summary": "CÁCH CŨ ĐỂ DESTRUCTURING MỘT ĐỐI TƯỢNG, GÁN BIẾN TỪ CÁC ĐỐI TƯỢNG:",
+      "keywords": [
+        "54",
+        "class",
+        "destructuring",
+        "object",
+        "oop",
+        "prototype",
+        "tượng",
+        "voxel",
+        "đối"
+      ],
+      "syntax": "var voxel = {x: 3.6, y: 7.4, z: 6.54};",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "var voxel = {x: 3.6, y: 7.4, z: 6.54};\n\nlet x = voxel.x;\nlet y = voxel.y;\nlet z = voxel.z;\nconsole.log(x);",
+          "explanation": ""
+        },
+        {
+          "code": "var voxel = {x: 3.61, y: 7.4, z: 6.54};\nconst {x, y, z} = voxel; \nconsole.log(x);",
+          "explanation": ""
+        },
+        {
+          "code": "var voxel = {x: 3.61, y: 7.4, z: 6.59};\nconst {x: a, y: b, z: c} = voxel; \nconsole.log(c);",
+          "explanation": ""
+        },
+        {
+          "code": "const nest = {\n  start: {x: 51, y: 6},\n  end: {x: 6, y: -9}\n}\nconst { start: { x: startX, y: startY }} = nest;\nconsole.log(\"startX: \" + startX);",
+          "explanation": ""
+        },
+        {
+          "code": "const [q, , , , r] = [1, 2, 3, 4, 5];\nconsole.log(q, r);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "CÁCH CŨ ĐỂ DESTRUCTURING MỘT ĐỐI TƯỢNG, GÁN BIẾN TỪ CÁC ĐỐI TƯỢNG:\n```js\nvar voxel = {x: 3.6, y: 7.4, z: 6.54};\n\nlet x = voxel.x;\nlet y = voxel.y;\nlet z = voxel.z;\nconsole.log(x);\n```\n\n<br />\n\nCÁCH THỰC HIỆN TRÊN VỚI DESTRUCTURING:\n```js\nvar voxel = {x: 3.61, y: 7.4, z: 6.54};\nconst {x, y, z} = voxel; \nconsole.log(x);\n```\n\n<br />\n\nSao chép sang tên biến mới:\n```js\nvar voxel = {x: 3.61, y: 7.4, z: 6.59};\nconst {x: a, y: b, z: c} = voxel; \nconsole.log(c);\n```\n\n<br />\n\nGán biến TỪ các đối tượng lồng nhau:\n```js\nconst nest = {\n  start: {x: 51, y: 6},\n  end: {x: 6, y: -9}\n}\nconst { start: { x: startX, y: startY }} = nest;\nconsole.log(\"startX: \" + startX);\n```\n\n<br />\n\nDestructuring mảng:\n```js\nconst [q, , , , r] = [1, 2, 3, 4, 5];\nconsole.log(q, r);\n```\n\n<br />\n\nToán tử Rest để gán lại các phần tử mảng - Rest lấy phần \"còn lại\":\n```js\nconst [a, b, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(a, b, rest);\n```\n\nsử dụng destructuring để truyền một đối tượng làm tham số của hàm (???)\n```js\nconst profileUpdates = ({name, age, nationality, location}) => {\n  // do something with the vars (find the video and rewatch)\n}\n```\n\n<br />\n\nVideo: #54 Gán Destructuring Mảng\n```js\nconst colors = [\"yellow\", \"blue\", \"red\", \"green\"];\nconst [c1, c2, c3, c4] = colors;\nconsole.log(colors); // [\"yellow\",\"blue\",\"red\",\"green\"]\nconsole.log(c1, c2, c3, c4); // \"yellow\" \"blue\" \"red\" \"green\"\n\n// Another example:\nconst arr = [1,2,3,4,5]\nconst [a, b] = arr\nconsole.log(b) // 2\n```\n\n<br />\n\nVới một mảng lồng nhau - cú pháp thực sự quan trọng\n```js\nconst numbers2 = [1, 2, 3, [4, 5], 6];\nconst [n1, n2, n3, [n4, n5], n6] = numbers2;\nconsole.log(n1, n2, n3, n4, n5, n6); // 1 2 3 4 5 6\n```\n\n<br />\n\nbạn có thể sử dụng destructuring để hoán đổi các giá trị được giữ trong các biến:\n```js\nlet myStr2 = \"Cheese\";\nlet myStr3 = \"Butter\";\n[myStr2, myStr3] = [myStr3, myStr2]\nconsole.log(myStr2, myStr3); // \"Butter\" \"Cheese\"\n```\n\n<br />\n\nMột ví dụ khác:\n```js\nconst myStore = {\n    groceries: [[\"Milk\", 5], [\"Bread\", 1], [\"Butter\", 3], [\"Cereal\", 2], [\"Corn\", 3], [\"Rice\", 2], [\"Steak\", 10]],\n    generalItems: [[\"Cleaner\", 3], [\"Towels\", 6], [\"Mop\", 10], [\"Pans\", 12], [\"Shirts\", 4]],\n    purchaseItems: function (groceryIndex, generalIndex) {\n        return [this.groceries[groceryIndex], this.generalItems[generalIndex]];\n    }\n}\nconst myOrder = myStore.purchaseItems(6, 1);\nconst [[item1, price1], [item2, price2]] = myOrder;\nconsole.log(`Your item of ${item1} from grocery costs $${price1}.\\nYour item of ${item2} from general costs $${price2}.`);\n```\n\n<br />\n\nVí dụ lớn, #58 Destructuring Đối tượng Phần 1:\n```js\nconst mall = {\n  mallName: \"Mall of Irvine\",\n  address: {\n    street: \"555 Main Street\",\n    city: \"Irvine\",\n    state: \"CA\",\n    zip: \"92620\",\n  },\n  anchorStores: [\"Macy's\", \"Sears\", \"Dick's Sporting Goods\", \"JCPenny\"],\n  fastFood: [\"Panda Express 🐥\", \"Subway 🥪\", \"Burger King 🍔\"],\n  restaurants: [\n    \"Red Lobster\",\n    \"Cheesecake Factory\",\n    \"California Pizza Kitchen\",\n  ],\n  takeOut: {\n    appetizers: [\n      \"Garlic Bread\",\n      \"Goat Cheese\",\n      \"Spinach Dip and Chips\",\n      \"Wings\",\n    ],\n    main: [\n      \"Pasta and Meatballs\",\n      \"Ribs and Potatoes\",\n      \"Steak with Spanish Rice\",\n    ],\n    drinks: [\"Coke\", \"Sprite\", \"Water\", \"Beer\"],\n    deserts: [\"Chocolate Cake\", \"Apple Pie\", \"Ice Cream\"],\n  },\n  getDelivery: function ({\n    appetizerIndex,\n    mainIndex,\n    drinkIndex,\n    desertIndex,\n    time,\n    address,\n  }) {\n    const r = this.takeOut; // shorten the path to it \n    return `Your order has been received at ${time} for delivery at:\\n${address}:\\nAppetizer: ${r.appetizers[appetizerIndex]}\\nMain Dish: ${r.main[mainIndex]}\\nDrink: ${r.drinks[drinkIndex]}\\nDesert: ${r.deserts[desertIndex]}`;\n  },\n};\nconst myFood = mall.getDelivery({\n  desertIndex: 0,\n  drinkIndex: 1,\n  appetizerIndex: 2,\n  mainIndex: 2,\n  time: \"7:00 PM\",\n  address: \"123 Main Drive\\nIrvine, CA 92620\",\n});\nconsole.log(myFood);\nconst {mallName: localName, anchorStores, address: {street: stre",
+      "searchText": "destructuring đối tượng cách cũ để destructuring một đối tượng, gán biến từ các đối tượng: var voxel = {x: 3.6, y: 7.4, z: 6.54}; 54 object prototype oop đối destructuring tượng voxel class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-toán-tử-spread",
+      "title": "Toán tử Spread",
+      "headingLevel": 2,
+      "anchor": "#toán-tử-spread",
+      "summary": "kéo các cặp khóa-giá trị từ một đối tượng khác:",
+      "keywords": [
+        "class",
+        "object",
+        "oop",
+        "prototype",
+        "spread",
+        "toán",
+        "tử"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let contact = {\n  firstName: \"Jim\",\n  lastName: \"Kernix\",\n  email: \"test@test.com\"\n}\n\nlet myAddress = {\n  ...contact,\n  number: 123,\n  street: \"Main Street\",\n  city: \"Anytown\"\n}\nconsole.log(myAddress);",
+          "explanation": ""
+        },
+        {
+          "code": "const myCar = {\n  make: \"Honda\",\n  model: \"Accord\",\n  color: \"Red\",\n  year: 1999,\n  mpg: 25,\n  price: \"$1000\"\n}\nconst lunasCar = {...myCar, doors: 3, \"Spare tires\": 0};\nlunasCar.color = \"White\";\n// console.log(lunasCar);",
+          "explanation": ""
+        },
+        {
+          "code": "const applicant = {\n  firstName: \"Jamie\",\n  lastName: \"Smith\",\n  age: 29,\n  job: \"Teacher\",\n  city: \"Houston\",\n  state: \"TX\",\n  yearsExp: 5,\n  recommendations: 3,\n};\n\nconst {firstName: applicantFirstName, lastName: applicantLastName, ...otherinformation} = applicant;\nconsole.log(otherinformation);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "kéo các cặp khóa-giá trị từ một đối tượng khác: \n```js\nlet contact = {\n  firstName: \"Jim\",\n  lastName: \"Kernix\",\n  email: \"test@test.com\"\n}\n\nlet myAddress = {\n  ...contact,\n  number: 123,\n  street: \"Main Street\",\n  city: \"Anytown\"\n}\nconsole.log(myAddress);\n```\n\n<br />\n\nsao chép và thay đổi giá trị:\n```js\nconst myCar = {\n  make: \"Honda\",\n  model: \"Accord\",\n  color: \"Red\",\n  year: 1999,\n  mpg: 25,\n  price: \"$1000\"\n}\nconst lunasCar = {...myCar, doors: 3, \"Spare tires\": 0};\nlunasCar.color = \"White\";\n// console.log(lunasCar);\n```\n\n<br />\n\nvới một ví dụ về đổi tên khóa:\n```js\nconst applicant = {\n  firstName: \"Jamie\",\n  lastName: \"Smith\",\n  age: 29,\n  job: \"Teacher\",\n  city: \"Houston\",\n  state: \"TX\",\n  yearsExp: 5,\n  recommendations: 3,\n};\n\nconst {firstName: applicantFirstName, lastName: applicantLastName, ...otherinformation} = applicant;\nconsole.log(otherinformation);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "toán tử spread kéo các cặp khóa-giá trị từ một đối tượng khác:  tử toán object prototype oop spread class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-linh-tinh",
+      "title": "Linh tinh",
+      "headingLevel": 2,
+      "anchor": "#linh-tinh",
+      "summary": "Các phương thức khác: Object.entries(obj)| Object.getOwnPropertyNames()| Object.freeze(obj)| obj.toString() | obj.prop ???",
+      "keywords": [
+        "class",
+        "linh",
+        "object",
+        "oop",
+        "prototype",
+        "tinh"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let typeOfTest;\ntypeOfTest = [];  \nconsole.log(typeof typeOfTest) // object\ntypeOfTest = {};  // object\ntypeOfTest = null; // object",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Các phương thức khác: Object.entries(obj)| Object.getOwnPropertyNames()| Object.freeze(obj)| obj.toString() | obj.prop ???\n\ntypeof:\n```js\nlet typeOfTest;\ntypeOfTest = [];  \nconsole.log(typeof typeOfTest) // object\ntypeOfTest = {};  // object\ntypeOfTest = null; // object\n```\n\n- `delete`:\n- `this`:\n- `prototype`: \n- `new`: \n- `instanceof`: \n- `constructor`: \n- `super`: \n- `ChildObject.prototype`: ChildObject.prototype.methodName = function() {...}; \n\nWTF với `[ ]` hoạt động nhưng ký hiệu chấm thì không???? Điều gì đó với câu lệnh if?\n\n<br />\n\nLearnWebCode: \n\n- Ngừng suy nghĩ theo các biến và hàm riêng lẻ, và bắt đầu suy nghĩ theo các đối tượng với cặp khóa-giá trị và phương thức.\n- tạo nhiều đối tượng tương tự nhau\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "linh tinh các phương thức khác: object.entries(obj)| object.getownpropertynames()| object.freeze(obj)| obj.tostring() | obj.prop ???  object linh prototype oop tinh class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-bảng-cú-pháp",
+      "title": "Bảng cú pháp",
+      "headingLevel": 2,
+      "anchor": "#bảng-cú-pháp",
+      "summary": "Phương thức đối tượng và mã liên quan:",
+      "keywords": [
+        "bảng",
+        "class",
+        "cú",
+        "object",
+        "oop",
+        "pháp",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "const {one, one} = obj // extract\nconst { one: onething, two: twothing } = obj // assign vars\nconst { johnDoe: { age: userAge, email: userEmail }} = user // nested assignment\nconst [a, b,,, c] = [1, 2, 3, 4, 5, 6]; // assign from arrays\nconst [a, b, ...arr] = [1, 2, 3, 4, 5, 7]; // with rest\nconst half = ({ max, min }) => (max + min) / 2.0; // obj as Fx parm",
+          "explanation": ""
+        }
+      ],
+      "tables": [
+        "| method          | syntax                      |    \n| :----           | :----                       | \n| Object.keys     | Object.keys(obj)            | \n| Object.values   | Object.values(obj)          | \n| hasOwnProperty  | obj.hasOwnProperty(prop)    | \n| instanceof      | obj instanceof constructor  |\n| isPrototypeOf   | isPrototypeOf(obj)          |\n| Object.create   | Object.create(proto)        |\n|                 | Object.create(proto, propertiesObject) |\n|                 | Object.create(Class.prototype) |\n| for in          | for (let user in users)     |\n| Class           | class Name { constructor(arg) |\n|                 | { this.arg = arg; }         | \n| method          | method name() {...}         |",
+        "| example         | syntax                                  |    \n| ----:           | :----                                   | \n|                 | let a, b, rest;                         |\n| **Arrays**:     | [a, b] = [10, 20];                      |\n|                 | [a, b, ...rest] = [10, 20, 30, 40, 50]; |\n|                 | const foo = ['one', 'two', 'three'];    |\n|                 | const [red, yellow, green] = foo;       |\n| default values: | [a=5, b=7] = [1];                       |\n| swapping vars:  | [a, b] = [b, a];                        | \n|                 |                                         |\n| **Objects**:    | ({ a, b } = { a: 10, b: 20 });          |\n|                 | ({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40}); |\n|                 |                                         |"
+      ],
+      "related": [],
+      "content": "Phương thức đối tượng và mã liên quan:\n| method          | syntax                      |    \n| :----           | :----                       | \n| Object.keys     | Object.keys(obj)            | \n| Object.values   | Object.values(obj)          | \n| hasOwnProperty  | obj.hasOwnProperty(prop)    | \n| instanceof      | obj instanceof constructor  |\n| isPrototypeOf   | isPrototypeOf(obj)          |\n| Object.create   | Object.create(proto)        |\n|                 | Object.create(proto, propertiesObject) |\n|                 | Object.create(Class.prototype) |\n| for in          | for (let user in users)     |\n| Class           | class Name { constructor(arg) |\n|                 | { this.arg = arg; }         | \n| method          | method name() {...}         |\n\n<br />\n\nVí dụ Destructuring:\n| example         | syntax                                  |    \n| ----:           | :----                                   | \n|                 | let a, b, rest;                         |\n| **Arrays**:     | [a, b] = [10, 20];                      |\n|                 | [a, b, ...rest] = [10, 20, 30, 40, 50]; |\n|                 | const foo = ['one', 'two', 'three'];    |\n|                 | const [red, yellow, green] = foo;       |\n| default values: | [a=5, b=7] = [1];                       |\n| swapping vars:  | [a, b] = [b, a];                        | \n|                 |                                         |\n| **Objects**:    | ({ a, b } = { a: 10, b: 20 });          |\n|                 | ({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40}); |\n|                 |                                         |\n\n<br />\n\nví dụ freeCodeCamp:\n```js\nconst {one, one} = obj // extract\nconst { one: onething, two: twothing } = obj // assign vars\nconst { johnDoe: { age: userAge, email: userEmail }} = user // nested assignment\nconst [a, b,,, c] = [1, 2, 3, 4, 5, 6]; // assign from arrays\nconst [a, b, ...arr] = [1, 2, 3, 4, 5, 7]; // with rest\nconst half = ({ max, min }) => (max + min) / 2.0; // obj as Fx parm\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "bảng cú pháp phương thức đối tượng và mã liên quan:  bảng pháp object prototype oop cú class",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    },
+    {
+      "id": "object-ghi-chú",
+      "title": "Ghi chú",
+      "headingLevel": 2,
+      "anchor": "#ghi-chú",
+      "summary": "Điều gì đó ở đây...",
+      "keywords": [
+        "chú",
+        "class",
+        "ghi",
+        "object",
+        "oop",
+        "prototype"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Điều gì đó ở đây...\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Mục lục\">Lên đầu trang</a></div>",
+      "searchText": "ghi chú điều gì đó ở đây...  object prototype oop ghi class chú",
+      "sourceFile": "object-examples.md",
+      "category": "object"
+    }
+  ]
+}

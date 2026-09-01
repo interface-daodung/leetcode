@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-31T04:29:58.161537Z",
+  "lang": "en",
+  "generatedAt": "2026-09-01T09:39:59.980962Z",
   "generator": "generate_docs.py from Kernix13/javascript-cheat-sheet",
   "sourceRepo": "https://github.com/Kernix13/javascript-cheat-sheet",
   "totalSources": 13,
@@ -54,7 +55,7 @@
       "returns": "a - b;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "all methods simple methods with one or more high or array method. const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32]; 44 20 54 array 64 collection 12 61 45 methods 25 13 32 33 15 ages 21 16 all list a - b;",
+      "searchText": "all methods simple methods with one or more high or array method. const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32]; list 33 20 collection 45 15 methods 21 12 16 ages all array 44 25 32 64 54 61 13 a - b;",
       "tags": [
         "array",
         "collection",
@@ -78,7 +79,7 @@
       "returns": "a shallow copy of a portion of an array** into a new array object selected from `start` to `end` (`end` not includ",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice",
-      "searchText": "array slice insreturns a shallow copy of a portion of an array/ins into a new array object selected from start to end (end not included) where start and end represent the index of items in that array, does not mutate the array. slice(); array collection slice list a shallow copy of a portion of an array** into a new array object selected from `start` to `end` (`end` not includ",
+      "searchText": "array slice insreturns a shallow copy of a portion of an array/ins into a new array object selected from start to end (end not included) where start and end represent the index of items in that array, does not mutate the array. slice(); list array collection slice a shallow copy of a portion of an array** into a new array object selected from `start` to `end` (`end` not includ",
       "tags": [
         "array",
         "collection",
@@ -103,7 +104,7 @@
       "returns": "the sorted array",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) for how to sort by the key of an object.\n\n```js\n// Syntax:\nsort();\n\n// Sorting an array of strings using spread operator to NOT mutate original:\nconst arr = [",
-      "searchText": "basic sort sorts an array in ascending order and insreturns the sorted array/ins. sort(); basic sort list array collection the sorted array",
+      "searchText": "basic sort sorts an array in ascending order and insreturns the sorted array/ins. sort(); list collection sort basic array the sorted array",
       "tags": [
         "array",
         "collection",
@@ -129,7 +130,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "combinations of methods examples of chaining string and array methods together.  combinations methods of list array collection",
+      "searchText": "combinations of methods examples of chaining string and array methods together.  list collection methods of combinations array",
       "tags": [
         "array",
         "collection",
@@ -161,7 +162,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "common methods common methods with no arguments/parameters: function replacer(match, p1, p2, p3, offset, string) { p1 p3 offset methods string replacer common list array p2 collection match",
+      "searchText": "common methods common methods with no arguments/parameters: function replacer(match, p1, p2, p3, offset, string) { list replacer p3 collection offset p1 string methods p2 array common match",
       "tags": [
         "array",
         "collection",
@@ -185,7 +186,7 @@
       "returns": "a copy of the joined arrays",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat",
-      "searchText": "concat joins two or more arrays and insreturns a copy of the joined arrays/ins. concat() array concat collection list a copy of the joined arrays",
+      "searchText": "concat joins two or more arrays and insreturns a copy of the joined arrays/ins. concat() collection list array concat a copy of the joined arrays",
       "tags": [
         "array",
         "collection",
@@ -209,7 +210,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "destructuring destructuring examples:  array collection destructuring list",
+      "searchText": "destructuring destructuring examples:  list array collection destructuring",
       "tags": [
         "array",
         "collection",
@@ -233,7 +234,7 @@
       "returns": "a boolean** if EVERY element in an array passes a test",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every",
-      "searchText": "every insreturns a boolean/ins if every element in an array passes a test.  collection array every list a boolean** if every element in an array passes a test",
+      "searchText": "every insreturns a boolean/ins if every element in an array passes a test.  list array collection every a boolean** if every element in an array passes a test",
       "tags": [
         "array",
         "collection",
@@ -257,7 +258,7 @@
       "returns": "a new array** with all the elements **that pass the test",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
-      "searchText": "filter takes a function containing a test and insreturns a new array/ins with all the elements insthat pass the test/ins.  filter array collection list a new array** with all the elements **that pass the test",
+      "searchText": "filter takes a function containing a test and insreturns a new array/ins with all the elements insthat pass the test/ins.  list array collection filter a new array** with all the elements **that pass the test",
       "tags": [
         "array",
         "collection",
@@ -281,7 +282,7 @@
       "returns": "the first element** in the provided array that satisfies the provided testing function",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find",
-      "searchText": "find insreturns the first element/ins in the provided array that satisfies the provided testing function.  find array collection list the first element** in the provided array that satisfies the provided testing function",
+      "searchText": "find insreturns the first element/ins in the provided array that satisfies the provided testing function.  list find array collection the first element** in the provided array that satisfies the provided testing function",
       "tags": [
         "array",
         "collection",
@@ -305,7 +306,7 @@
       "returns": "the index** of the first element in the array that satisfies the provided testing function",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex",
-      "searchText": "findindex insreturns the index/ins of the first element in the array that satisfies the provided testing function.  findindex array collection list the index** of the first element in the array that satisfies the provided testing function",
+      "searchText": "findindex insreturns the index/ins of the first element in the array that satisfies the provided testing function.  list array collection findindex the index** of the first element in the array that satisfies the provided testing function",
       "tags": [
         "array",
         "collection",
@@ -329,7 +330,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat",
-      "searchText": "flat inscreates a new array/ins with all sub-array elements concatenated into it recursively up to the specified depth.  array collection flat list",
+      "searchText": "flat inscreates a new array/ins with all sub-array elements concatenated into it recursively up to the specified depth.  array list flat collection",
       "tags": [
         "array",
         "collection",
@@ -353,7 +354,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
-      "searchText": "foreach executes a provided function once for each array element; calls a provided callbackfn function once for each element in an array in ascending index order.  array collection list foreach",
+      "searchText": "foreach executes a provided function once for each array element; calls a provided callbackfn function once for each element in an array in ascending index order.  foreach list array collection",
       "tags": [
         "array",
         "collection",
@@ -378,7 +379,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "high order array high order array methods with callback function:  order high list array collection",
+      "searchText": "high order array high order array methods with callback function:  list collection high array order",
       "tags": [
         "array",
         "collection",
@@ -404,7 +405,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap): rns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a `map()` followed by a `flat()` of depth 1, but slightly more efficient than calling those two methods separately.\n- [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from): creates a new, shallow-copied Array instance from an array-like or iterable object.\n- [reduceRight()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight): applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.",
-      "searchText": "high order methods high order array methods = methods that use a callback function.  order methods high list array collection",
+      "searchText": "high order methods high order array methods = methods that use a callback function.  list collection high methods array order",
       "tags": [
         "array",
         "collection",
@@ -430,7 +431,7 @@
       "returns": "`true` or `false`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes",
-      "searchText": "includes determines whether an array includes a certain value among its entries, insreturns true or false/ins. arr.includes(item); includes arr list array collection item `true` or `false`",
+      "searchText": "includes determines whether an array includes a certain value among its entries, insreturns true or false/ins. arr.includes(item); list collection includes arr array item `true` or `false`",
       "tags": [
         "array",
         "collection",
@@ -455,7 +456,7 @@
       "returns": "the first index** at which a given element can be found in the array, or `-1` if it is not present",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf",
-      "searchText": "indexof insreturns the first index/ins at which a given element can be found in the array, or -1 if it is not present. indexof(searchelement); searchelement indexof list array collection the first index** at which a given element can be found in the array, or `-1` if it is not present",
+      "searchText": "indexof insreturns the first index/ins at which a given element can be found in the array, or -1 if it is not present. indexof(searchelement); list collection searchelement indexof array the first index** at which a given element can be found in the array, or `-1` if it is not present",
       "tags": [
         "array",
         "collection",
@@ -480,7 +481,7 @@
       "returns": "`true`** if the value is an Array; otherwise, **`false`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray",
-      "searchText": "isarray determines whether the passed value is an array. array.isarray(value); value list isarray array collection `true`** if the value is an array; otherwise, **`false`",
+      "searchText": "isarray determines whether the passed value is an array. array.isarray(value); list collection value isarray array `true`** if the value is an array; otherwise, **`false`",
       "tags": [
         "array",
         "collection",
@@ -504,7 +505,7 @@
       "returns": "a new string** by concatenating all of the elements in an array",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join",
-      "searchText": "join insreturns a new string/ins by concatenating all of the elements in an array. join(); collection array join list a new string** by concatenating all of the elements in an array",
+      "searchText": "join insreturns a new string/ins by concatenating all of the elements in an array. join(); list array collection join a new string** by concatenating all of the elements in an array",
       "tags": [
         "array",
         "collection",
@@ -529,7 +530,7 @@
       "returns": "the last index** at which a given element can be found in the array, or `-1` if it is not present",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf",
-      "searchText": "lastindexof insreturns the last index/ins at which a given element can be found in the array, or -1 if it is not present. lastindexof(searchelement); lastindexof searchelement list array collection the last index** at which a given element can be found in the array, or `-1` if it is not present",
+      "searchText": "lastindexof insreturns the last index/ins at which a given element can be found in the array, or -1 if it is not present. lastindexof(searchelement); list lastindexof collection searchelement array the last index** at which a given element can be found in the array, or `-1` if it is not present",
       "tags": [
         "array",
         "collection",
@@ -553,7 +554,7 @@
       "returns": "the result in a new array",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) and constrast with `.map()`. Check out [Stackoverflow: Array.from vs Array.prototype.map](https://stackoverflow.com/questions/26052699/array-from-vs-array-prototype-map).\n\n<div align=",
-      "searchText": "map performs a function on every element in an array and insreturns the result in a new array/ins.  array map collection list the result in a new array",
+      "searchText": "map performs a function on every element in an array and insreturns the result in a new array/ins.  list array collection map the result in a new array",
       "tags": [
         "array",
         "collection",
@@ -577,7 +578,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "notes turn an array into an object.  notes array collection list",
+      "searchText": "notes turn an array into an object.  list array collection notes",
       "tags": [
         "array",
         "collection",
@@ -602,7 +603,7 @@
       "returns": "that element",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop",
-      "searchText": "pop removes the last element from an array and insreturns that element/ins. let arr = [\"a\", \"b\", \"c\", \"d\"]; arr pop list array collection that element",
+      "searchText": "pop removes the last element from an array and insreturns that element/ins. let arr = [\"a\", \"b\", \"c\", \"d\"]; list collection arr pop array that element",
       "tags": [
         "array",
         "collection",
@@ -629,7 +630,7 @@
       "returns": "the new length** of the array",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
-      "searchText": "push adds one or more elements to the end of an array and insreturns the new length/ins of the array. arr.push(val1, val2, ...) val2 push arr val1 list array collection the new length** of the array",
+      "searchText": "push adds one or more elements to the end of an array and insreturns the new length/ins of the array. arr.push(val1, val2, ...) list collection val1 arr val2 push array the new length** of the array",
       "tags": [
         "array",
         "collection",
@@ -653,7 +654,7 @@
       "returns": "value from the calculation on the preceding element",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce",
-      "searchText": "reduce executes a user-supplied reducer callback function on each element of the array, passing in the return value from the calculation on the preceding element.  reduce array collection list value from the calculation on the preceding element",
+      "searchText": "reduce executes a user-supplied reducer callback function on each element of the array, passing in the return value from the calculation on the preceding element.  list array collection reduce value from the calculation on the preceding element",
       "tags": [
         "array",
         "collection",
@@ -678,7 +679,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "rest syntax rest syntax, pie eating contest scores:  syntax rest list array collection",
+      "searchText": "rest syntax rest syntax, pie eating contest scores:  list collection rest syntax array",
       "tags": [
         "array",
         "collection",
@@ -702,7 +703,7 @@
       "returns": "the reversed array**, mutates the array",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse",
-      "searchText": "reverse reverses the order of an array and insreturns the reversed array/ins, mutates the array. reverse(); reverse array collection list the reversed array**, mutates the array",
+      "searchText": "reverse reverses the order of an array and insreturns the reversed array/ins, mutates the array. reverse(); collection list array reverse the reversed array**, mutates the array",
       "tags": [
         "array",
         "collection",
@@ -727,7 +728,7 @@
       "returns": "that element",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift",
-      "searchText": "shift removes the first element from an array and insreturns that element/ins. let arr = [1, 2, 3, 4]; arr list array shift collection that element",
+      "searchText": "shift removes the first element from an array and insreturns that element/ins. let arr = [1, 2, 3, 4]; list collection arr shift array that element",
       "tags": [
         "array",
         "collection",
@@ -752,7 +753,7 @@
       "returns": "the item at that index, allowing for positive and negative integers",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at): takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item in the array. Not implemented in all browsers.\n- [copyWithin()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin): shallow copies part of an array to another location in the same array and returns it without modifying its length.\n- [entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries): returns a new Array Iterator object that contains the key/value pairs for each index in the array.\n- [fill()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill): changes all elements in an array to a static value, from a start index (default `0`) to an end index (default `array.length`). It returns the modified array.\n- [keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys): returns a new Array Iterator object that contains the keys for each index in the array.\n- [of()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of): creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.\n- [toLocaleString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString): returns a string representing the elements of the array. The elements are converted to Strings using their `toLocaleString` methods and these Strings are separated by a locale-specific String (such as a comma ",
-      "searchText": "simple array methods basic syntax for the most common methods.  methods simple list array collection the item at that index, allowing for positive and negative integers",
+      "searchText": "simple array methods basic syntax for the most common methods.  list collection methods simple array the item at that index, allowing for positive and negative integers",
       "tags": [
         "array",
         "collection",
@@ -780,7 +781,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "simple methods array or string simple methods (no high order array methods) function frankensplice(arr1, arr2, n) { methods simple arr1 arr2 frankensplice list array collection",
+      "searchText": "simple methods array or string simple methods (no high order array methods) function frankensplice(arr1, arr2, n) { list array collection arr2 simple frankensplice methods arr1",
       "tags": [
         "array",
         "collection",
@@ -804,7 +805,7 @@
       "returns": "a boolean** if at least one element passes a test",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-      "searchText": "some insreturns a boolean/ins if at least one element passes a test.  collection array some list a boolean** if at least one element passes a test",
+      "searchText": "some insreturns a boolean/ins if at least one element passes a test.  list array collection some a boolean** if at least one element passes a test",
       "tags": [
         "array",
         "collection",
@@ -828,7 +829,7 @@
       "returns": "the sorted array",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare).\n\n<div align=",
-      "searchText": "sort sorts an array in ascending order and insreturns the sorted array/ins.  array collection list sort the sorted array",
+      "searchText": "sort sorts an array in ascending order and insreturns the sorted array/ins.  list array collection sort the sorted array",
       "tags": [
         "array",
         "collection",
@@ -853,7 +854,7 @@
       "returns": "the removed items",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice",
-      "searchText": "splice changes the contents of an array by removing or replacing existing elements and/or adding new elements. splice(startindex); splice startindex list array collection the removed items",
+      "searchText": "splice changes the contents of an array by removing or replacing existing elements and/or adding new elements. splice(startindex); list collection splice startindex array the removed items",
       "tags": [
         "array",
         "collection",
@@ -878,7 +879,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "spread operator add other array items to an array:  operator list spread array collection",
+      "searchText": "spread operator add other array items to an array:  list collection spread array operator",
       "tags": [
         "array",
         "collection",
@@ -903,7 +904,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "syntax tables tables by the number of arguments and whether or not the method mutates the original source.  syntax list array tables collection",
+      "searchText": "syntax tables tables by the number of arguments and whether or not the method mutates the original source.  list collection tables syntax array",
       "tags": [
         "array",
         "collection",
@@ -927,7 +928,7 @@
       "returns": "a string** representing the specified array and its elements",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString",
-      "searchText": "tostring insreturns a string/ins representing the specified array and its elements. tostring(); tostring array collection list a string** representing the specified array and its elements",
+      "searchText": "tostring insreturns a string/ins representing the specified array and its elements. tostring(); list array collection tostring a string** representing the specified array and its elements",
       "tags": [
         "array",
         "collection",
@@ -954,7 +955,7 @@
       "returns": "the new length** of the array",
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
-      "searchText": "unshift adds one or more elements to the beginning of an array and insreturns the new length/ins of the array. arr.unshift(val1, val2, ...) val2 arr array val1 list unshift collection the new length** of the array",
+      "searchText": "unshift adds one or more elements to the beginning of an array and insreturns the new length/ins of the array. arr.unshift(val1, val2, ...) list collection val1 arr val2 unshift array the new length** of the array",
       "tags": [
         "array",
         "collection",
@@ -981,7 +982,7 @@
       "returns": "boolean: `every()`, `includes()`, `some()`",
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "array methods notes - flat(): creates a new array with all sub-array elements concatenated into it recursively up to the specified depth  cheatsheet methods notes comparison reference overview array boolean: `every()`, `includes()`, `some()`",
+      "searchText": "array methods notes - flat(): creates a new array with all sub-array elements concatenated into it recursively up to the specified depth  overview reference cheatsheet methods notes comparison array boolean: `every()`, `includes()`, `some()`",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1009,7 +1010,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [MDN Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).",
-      "searchText": "arrays and strings miscellaneous notes:  cheatsheet comparison arrays reference overview strings and",
+      "searchText": "arrays and strings miscellaneous notes:  and overview arrays reference cheatsheet comparison strings",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1036,7 +1037,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "boolean methods javascript methods, conditionals, etc.  boolean cheatsheet comparison methods reference overview",
+      "searchText": "boolean methods javascript methods, conditionals, etc.  boolean overview reference cheatsheet comparison methods",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1063,7 +1064,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "console commands useful console commands:  commands cheatsheet comparison reference overview console",
+      "searchText": "console commands useful console commands:  overview console reference cheatsheet commands comparison",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1089,7 +1090,7 @@
       "returns": "str as lowercase |",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "create create new objects or variables:  comparison cheatsheet reference overview create str as lowercase |",
+      "searchText": "create create new objects or variables:  overview reference cheatsheet comparison create str as lowercase |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1116,7 +1117,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "data types javascript primitive data types (data that is immutable, is not an object, and has no methods).  data comparison cheatsheet reference overview types",
+      "searchText": "data types javascript primitive data types (data that is immutable, is not an object, and has no methods).  overview reference data cheatsheet comparison types",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1143,7 +1144,7 @@
       "returns": "the day of the month as a # (1-31)            |",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "date methods common date methods: pulling date and time values  cheatsheet comparison methods reference overview date the day of the month as a # (1-31)            |",
+      "searchText": "date methods common date methods: pulling date and time values  overview date reference cheatsheet comparison methods the day of the month as a # (1-31)            |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1170,7 +1171,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "es6 syntax table of syntax for various es6 topics:  syntax comparison cheatsheet es6 reference overview",
+      "searchText": "es6 syntax table of syntax for various es6 topics:  overview reference cheatsheet syntax comparison es6",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1199,7 +1200,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "functions and rest syntax basic function declaration & expressions:  syntax rest cheatsheet comparison reference functions overview and",
+      "searchText": "functions and rest syntax basic function declaration & expressions:  functions and overview reference cheatsheet rest syntax comparison",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1226,7 +1227,7 @@
       "returns": "the type of a variable",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "important notes notes on various tables for specific methods and syntax for everything listed above.  comparison cheatsheet notes important reference overview the type of a variable",
+      "searchText": "important notes notes on various tables for specific methods and syntax for everything listed above.  important overview reference cheatsheet notes comparison the type of a variable",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1255,7 +1256,7 @@
       "returns": "position:",
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "javascript version of crud there are 4 ways to work with data that are known collectively as crud:  cheatsheet version comparison reference javascript crud overview of position:",
+      "searchText": "javascript version of crud there are 4 ways to work with data that are known collectively as crud:  overview reference cheatsheet crud of comparison javascript version position:",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1284,7 +1285,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "local and session storage local and session storage  local cheatsheet comparison reference overview storage session and",
+      "searchText": "local and session storage local and session storage  and overview local reference cheatsheet comparison storage session",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1310,7 +1311,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "loops types of loops:  loops comparison cheatsheet reference overview",
+      "searchText": "loops types of loops:  overview reference cheatsheet comparison loops",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1338,7 +1339,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "math and variables basic math operators:  cheatsheet comparison reference overview variables and math",
+      "searchText": "math and variables basic math operators:  and variables overview reference cheatsheet math comparison",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1370,7 +1371,7 @@
       "returns": "the result of the last expression: `function isLess(a, b) { return a <= b; }` AND `function isEqual(a, b) { return a ===",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous here are the best of my notes or tips and tricks: if (id === 100) console.log('equal'); if 100 equal id comparison cheatsheet reference overview miscellaneous log console the result of the last expression: `function isless(a, b) { return a <= b; }` and `function isequal(a, b) { return a ===",
+      "searchText": "miscellaneous here are the best of my notes or tips and tricks: if (id === 100) console.log('equal'); log miscellaneous overview console if reference cheatsheet id comparison 100 equal the result of the last expression: `function isless(a, b) { return a <= b; }` and `function isequal(a, b) { return a ===",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1397,7 +1398,7 @@
       "returns": "a string representing the Number object in exponential notation |",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "number methods common number and math methods (single argument):  number cheatsheet comparison methods reference overview a string representing the number object in exponential notation |",
+      "searchText": "number methods common number and math methods (single argument):  number overview reference cheatsheet comparison methods a string representing the number object in exponential notation |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1424,7 +1425,7 @@
       "returns": "what? |",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions).\n\n<div align=",
-      "searchText": "object methods common object methods:  comparison cheatsheet methods reference overview object what? |",
+      "searchText": "object methods common object methods:  overview reference cheatsheet object comparison methods what? |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1451,7 +1452,7 @@
       "returns": "an array with all the own (not in the prototype chain) enumerable properties names (\"keys\") of an object `o`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects) page.\n\n<div align=",
-      "searchText": "object notes - instead of using indexes to access and modify their data, you access the data in objects through what are called properties  comparison cheatsheet notes reference overview object an array with all the own (not in the prototype chain) enumerable properties names (\"keys\") of an object `o`",
+      "searchText": "object notes - instead of using indexes to access and modify their data, you access the data in objects through what are called properties  overview reference cheatsheet object notes comparison an array with all the own (not in the prototype chain) enumerable properties names (\"keys\") of an object `o`",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1479,7 +1480,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "operators and conditionals operators:  conditionals cheatsheet comparison reference overview operators and",
+      "searchText": "operators and conditionals operators:  and operators overview reference cheatsheet conditionals comparison",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1509,7 +1510,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "other string and array methods other common string methods:  methods cheatsheet string other comparison overview reference array and",
+      "searchText": "other string and array methods other common string methods:  and string overview reference cheatsheet methods comparison array other",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1539,7 +1540,7 @@
       "returns": "index # and length:",
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "read and return index and length read / return index # and length:  return cheatsheet length index read comparison overview reference and index # and length:",
+      "searchText": "read and return index and length read / return index # and length:  and return overview index reference cheatsheet length read comparison index # and length:",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1568,7 +1569,7 @@
       "returns": "/ read:",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "read and return values simple returns / read:  return values cheatsheet comparison reference read overview and / read:",
+      "searchText": "read and return values simple returns / read:  and return overview reference cheatsheet values read comparison / read:",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1594,7 +1595,7 @@
       "returns": "true or false if the pattern match is found |",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "regex shorthand syntax:  regex comparison reference cheatsheet overview true or false if the pattern match is found |",
+      "searchText": "regex shorthand syntax:  overview reference cheatsheet comparison regex true or false if the pattern match is found |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1623,7 +1624,7 @@
       "returns": "the character at the index | str",
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "string and array methods string and array methods/properties (same methods, same effect):  cheatsheet methods string comparison reference overview array and the character at the index | str",
+      "searchText": "string and array methods string and array methods/properties (same methods, same effect):  and string overview reference cheatsheet methods comparison array the character at the index | str",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1651,7 +1652,7 @@
       "returns": "a value at a specific index, e",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)).\n\n<div align=",
-      "searchText": "string methods notes - str.length: used often in for loops to loop for each element.  cheatsheet methods string notes comparison overview reference a value at a specific index, e",
+      "searchText": "string methods notes - str.length: used often in for loops to loop for each element.  overview string reference cheatsheet notes comparison methods a value at a specific index, e",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1678,7 +1679,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "table comparisons the following tables are for visual memorization.  table comparison cheatsheet reference overview comparisons",
+      "searchText": "table comparisons the following tables are for visual memorization.  comparisons overview table reference cheatsheet comparison",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1706,7 +1707,7 @@
       "returns": "`true` |",
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "update and delete update, mutate, delete:  cheatsheet update comparison reference overview delete and `true` |",
+      "searchText": "update and delete update, mutate, delete:  and overview update delete reference cheatsheet comparison `true` |",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1733,7 +1734,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) for specific do's and don'ts for this object.",
-      "searchText": "boolean object the value passed as the first parameter is converted to a boolean value, if necessary.  if boolean ternary switch conditional object",
+      "searchText": "boolean object the value passed as the first parameter is converted to a boolean value, if necessary.  boolean conditional if switch object ternary",
       "tags": [
         "conditional",
         "if",
@@ -1762,7 +1763,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "conditional chains the ternary operator is right-associative, which means it can be chained in the following way, similar to an if … else if … else if … else chain: function example(…) { if example ternary switch boolean chains conditional",
+      "searchText": "conditional chains the ternary operator is right-associative, which means it can be chained in the following way, similar to an if … else if … else if … else chain: function example(…) { chains boolean conditional if switch example ternary",
       "tags": [
         "conditional",
         "if",
@@ -1791,7 +1792,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "else if if (condition1) if (condition1) if else condition1 ternary switch boolean conditional",
+      "searchText": "else if if (condition1) if (condition1) boolean conditional else if switch condition1 ternary",
       "tags": [
         "conditional",
         "if",
@@ -1821,7 +1822,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "if else statements if (condition) { if (condition) { if condition else ternary switch statements boolean conditional",
+      "searchText": "if else statements if (condition) { if (condition) { boolean conditional else if statements switch condition ternary",
       "tags": [
         "conditional",
         "if",
@@ -1849,7 +1850,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous - type conversion  if ternary switch boolean conditional miscellaneous",
+      "searchText": "miscellaneous - type conversion  boolean conditional miscellaneous if switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1877,7 +1878,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "notes a switch statement first evaluates its expression.  if ternary switch boolean notes conditional",
+      "searchText": "notes a switch statement first evaluates its expression.  boolean conditional if switch notes ternary",
       "tags": [
         "conditional",
         "if",
@@ -1905,7 +1906,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch#block-scope_variables_within_switch_statements)\n\n<div align=",
-      "searchText": "switch switch (expression) { switch (expression) { if expression boolean ternary switch conditional",
+      "searchText": "switch switch (expression) { switch (expression) { boolean conditional if switch expression ternary",
       "tags": [
         "conditional",
         "if",
@@ -1933,7 +1934,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ternary operator condition ? expriftrue : expriffalse;  if ternary switch operator boolean conditional",
+      "searchText": "ternary operator condition ? expriftrue : expriffalse;  boolean conditional if switch operator ternary",
       "tags": [
         "conditional",
         "if",
@@ -1963,7 +1964,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "algorithms and data structures projects 5 projects  fcc data freecodecamp projects structures curriculum and algorithms",
+      "searchText": "algorithms and data structures projects 5 projects  and projects structures data freecodecamp algorithms fcc curriculum",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -1989,7 +1990,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "basic algorithm scripting 16 lessons  fcc basic freecodecamp algorithm curriculum scripting",
+      "searchText": "basic algorithm scripting 16 lessons  freecodecamp fcc curriculum basic algorithm scripting",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2015,7 +2016,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "basic data structures 20 lessons  fcc basic data freecodecamp structures curriculum",
+      "searchText": "basic data structures 20 lessons  structures data freecodecamp fcc curriculum basic",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2040,7 +2041,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "basic javascript 113 lessons: i like the structure  fcc basic freecodecamp javascript curriculum",
+      "searchText": "basic javascript 113 lessons: i like the structure  freecodecamp basic fcc curriculum javascript",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2064,7 +2065,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "debugging 12 lessons - all good  fcc curriculum freecodecamp debugging",
+      "searchText": "debugging 12 lessons - all good  freecodecamp fcc debugging curriculum",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2093,7 +2094,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "es6 29 lessons (was 31) let obj = { name:\"some-name\", prop2:\"whatevs\" }; fcc prop2 obj name freecodecamp es6 curriculum some whatevs",
+      "searchText": "es6 29 lessons (was 31) let obj = { name:\"some-name\", prop2:\"whatevs\" }; name obj freecodecamp fcc whatevs curriculum prop2 es6 some",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2118,7 +2119,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "functional programming 24 lessons  fcc freecodecamp programming curriculum functional",
+      "searchText": "functional programming 24 lessons  programming freecodecamp fcc curriculum functional",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2144,7 +2145,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "intermediate algorithm scripting 21 lessons  fcc freecodecamp algorithm curriculum scripting intermediate",
+      "searchText": "intermediate algorithm scripting 21 lessons  freecodecamp fcc curriculum intermediate algorithm scripting",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2170,7 +2171,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "object oriented programming 26 lessons  oriented fcc freecodecamp programming curriculum object",
+      "searchText": "object oriented programming 26 lessons  programming freecodecamp fcc object oriented curriculum",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2195,7 +2196,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "regular expressions 33 lessons  fcc expressions freecodecamp regular curriculum",
+      "searchText": "regular expressions 33 lessons  expressions freecodecamp fcc curriculum regular",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2221,7 +2222,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) method **<ins>calls a function</ins>** with a given `this` value, and `arguments` provided as an array (or an array-like object).\n\n```js\n// syntax:\napply(thisArg);\napply(thisArg, argsArray);\n```\n\n<br />",
-      "searchText": "apply the apply() method inscalls a function/ins with a given this value, and arguments provided as an array (or an array-like object). apply(thisarg); higher-order closure thisarg function apply callback",
+      "searchText": "apply the apply() method inscalls a function/ins with a given this value, and arguments provided as an array (or an array-like object). apply(thisarg); higher-order closure callback function thisarg apply",
       "tags": [
         "function",
         "closure",
@@ -2251,7 +2252,7 @@
       "returns": "the type of the first argument",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "arguments object mdn: arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function. console.log(typeof arguments); // 'object' higher-order closure function arguments callback log typeof object console the type of the first argument",
+      "searchText": "arguments object mdn: arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function. console.log(typeof arguments); // 'object' arguments higher-order log closure typeof console callback object function the type of the first argument",
       "tags": [
         "function",
         "closure",
@@ -2280,7 +2281,7 @@
       "returns": "a + param;",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions):\n\n```js\n// An empty arrow function returns undefined\nlet empty = () => {};\n\n(() => ",
-      "searchText": "arrow functions arrow functions have a lexical this keyword. param => expression param higher-order closure arrow function expression functions callback a + param;",
+      "searchText": "arrow functions arrow functions have a lexical this keyword. param => expression functions higher-order closure callback function param arrow expression a + param;",
       "tags": [
         "function",
         "closure",
@@ -2309,7 +2310,7 @@
       "returns": "data;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "async await async function name(parameters) { async function name(parameters) { higher-order closure async function name parameters callback await data;",
+      "searchText": "async await async function name(parameters) { async function name(parameters) { higher-order closure async name callback parameters await function data;",
       "tags": [
         "function",
         "closure",
@@ -2336,7 +2337,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.\n\nI've seen Brad Traversy use this one in some of his lessons.\n\n```js\n// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "bind the bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called. bind(thisarg) higher-order closure thisarg function bind callback",
+      "searchText": "bind the bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called. bind(thisarg) higher-order closure bind callback thisarg function",
       "tags": [
         "function",
         "closure",
@@ -2362,7 +2363,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "caching in order to boost performance, cache your selections to some variable (if using the same selection multiple times).  caching higher-order closure function callback",
+      "searchText": "caching in order to boost performance, cache your selections to some variable (if using the same selection multiple times).  caching higher-order closure callback function",
       "tags": [
         "function",
         "closure",
@@ -2388,7 +2389,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) method calls a function with a given `this` value and arguments provided individually.\n\n```js\n// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "call the call() method calls a function with a given this value and arguments provided individually. call() higher-order closure function callback call",
+      "searchText": "call the call() method calls a function with a given this value and arguments provided individually. call() higher-order closure callback call function",
       "tags": [
         "function",
         "closure",
@@ -2416,7 +2417,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "callback functions function greeting(name) { function greeting(name) { higher-order closure greeting function name functions callback",
+      "searchText": "callback functions function greeting(name) { function greeting(name) { functions higher-order greeting closure name callback function",
       "tags": [
         "function",
         "closure",
@@ -2444,7 +2445,7 @@
       "returns": "{",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "closures javascript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to). let createpet = function (name) { higher-order closure function name closures createpet callback {",
+      "searchText": "closures javascript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to). let createpet = function (name) { higher-order closure name callback closures createpet function {",
       "tags": [
         "function",
         "closure",
@@ -2472,7 +2473,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "declaration vs expression // function declaration:  declaration higher-order closure function expression callback vs",
+      "searchText": "declaration vs expression // function declaration:  higher-order closure callback declaration vs function expression",
       "tags": [
         "function",
         "closure",
@@ -2503,7 +2504,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "default parameters set default parameters for your fx’s: const greeting = (name = \"anonymous\") => \"hello \" + name; higher-order closure greeting hello function name parameters anonymous callback default",
+      "searchText": "default parameters set default parameters for your fx’s: const greeting = (name = \"anonymous\") => \"hello \" + name; higher-order greeting closure name callback parameters anonymous hello default function",
       "tags": [
         "function",
         "closure",
@@ -2529,7 +2530,7 @@
       "returns": "a function as a return value",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "definitions definitions  higher-order closure definitions function callback a function as a return value",
+      "searchText": "definitions definitions  higher-order closure callback definitions function a function as a return value",
       "tags": [
         "function",
         "closure",
@@ -2556,7 +2557,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dynamic functions let foods = {  higher-order closure function functions callback dynamic",
+      "searchText": "dynamic functions let foods = {  functions dynamic higher-order closure callback function",
       "tags": [
         "function",
         "closure",
@@ -2582,7 +2583,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "es6 here are specific function-related topics inrtroduced with es6  higher-order closure function es6 callback",
+      "searchText": "es6 here are specific function-related topics inrtroduced with es6  higher-order closure callback function es6",
       "tags": [
         "function",
         "closure",
@@ -2609,7 +2610,7 @@
       "returns": "values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a pro",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises), [MDN Incumbent settings object tracking](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#incumbent_settings_object_tracking), [MDN Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#constructor), [MDN Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods), and [MDN Instance methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#instance_methods)\n\n```js\n// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(",
-      "searchText": "es6 promises the promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.  promises higher-order closure function es6 callback values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a pro",
+      "searchText": "es6 promises the promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.  higher-order closure promises callback function es6 values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a pro",
       "tags": [
         "function",
         "closure",
@@ -2636,7 +2637,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "event delegation // list items with delete link on the items but  higher-order closure function callback event delegation",
+      "searchText": "event delegation // list items with delete link on the items but  higher-order closure callback event delegation function",
       "tags": [
         "function",
         "closure",
@@ -2663,7 +2664,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  higher-order closure export import function callback",
+      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  higher-order closure import callback export function",
       "tags": [
         "function",
         "closure",
@@ -2690,7 +2691,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "freecodecamp examples from the video  higher-order closure function freecodecamp examples callback",
+      "searchText": "freecodecamp examples from the video  higher-order closure callback freecodecamp examples function",
       "tags": [
         "function",
         "closure",
@@ -2716,7 +2717,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get): The `get` syntax binds an object property to a function that will be called when that property is looked up.\n- [set and setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set): The `set` syntax binds an object property to a function to be called when there is an attempt to set that property.",
-      "searchText": "function methods also look into  higher-order closure function methods callback",
+      "searchText": "function methods also look into  higher-order closure callback methods function",
       "tags": [
         "function",
         "closure",
@@ -2742,7 +2743,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "general look into the function properties: .length, and maybe .name.  higher-order closure general function callback",
+      "searchText": "general look into the function properties: .length, and maybe .name.  higher-order closure callback function general",
       "tags": [
         "function",
         "closure",
@@ -2768,7 +2769,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "iife (function () {  higher-order closure function callback iife",
+      "searchText": "iife (function () {  higher-order closure callback iife function",
       "tags": [
         "function",
         "closure",
@@ -2799,7 +2800,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "local storage this would be the code inside of a function: localstorage.setitem(\"key\", \"value\"); key local higher-order closure localstorage function setitem value callback storage",
+      "searchText": "local storage this would be the code inside of a function: localstorage.setitem(\"key\", \"value\"); higher-order closure localstorage value callback local setitem key storage function",
       "tags": [
         "function",
         "closure",
@@ -2826,7 +2827,7 @@
       "returns": "the maximum size of the call stack available in the JavaScript runtime in which the code is run",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "mdn examples recursion is limited by stack size:  higher-order closure function mdn examples callback the maximum size of the call stack available in the javascript runtime in which the code is run",
+      "searchText": "mdn examples recursion is limited by stack size:  higher-order closure callback examples mdn function the maximum size of the call stack available in the javascript runtime in which the code is run",
       "tags": [
         "function",
         "closure",
@@ -2853,7 +2854,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { higher-order closure function memoizedadd callback memoization",
+      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { memoization memoizedadd higher-order closure callback function",
       "tags": [
         "function",
         "closure",
@@ -2880,7 +2881,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "methods syntax: this section should be in the objects file const obj = { obj higher-order closure function methods callback",
+      "searchText": "methods syntax: this section should be in the objects file const obj = { higher-order closure callback obj methods function",
       "tags": [
         "function",
         "closure",
@@ -2907,7 +2908,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous returning boolean values from functions and typeof: function checkequal(a, b) { higher-order closure function callback checkequal miscellaneous",
+      "searchText": "miscellaneous returning boolean values from functions and typeof: function checkequal(a, b) { higher-order miscellaneous closure checkequal callback function",
       "tags": [
         "function",
         "closure",
@@ -2933,7 +2934,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions): Scope and the function stack, Recursion, Preservation of variables, No separate `this`, and Predefined functions.",
-      "searchText": "miscellaneous2 - arguments vs parameters  higher-order closure function miscellaneous2 callback",
+      "searchText": "miscellaneous2 - arguments vs parameters  higher-order closure callback miscellaneous2 function",
       "tags": [
         "function",
         "closure",
@@ -2961,7 +2962,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "multiple nested functions functions can be multiple-nested:  multiple closure higher-order function functions callback nested",
+      "searchText": "multiple nested functions functions can be multiple-nested:  functions higher-order closure multiple callback nested function",
       "tags": [
         "function",
         "closure",
@@ -2989,7 +2990,7 @@
       "returns": "x * x;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "nested functions nested functions: the nested (inner) function is private to its containing (outer) function. function addsquares(a, b) { higher-order closure addsquares function functions callback nested x * x;",
+      "searchText": "nested functions nested functions: the nested (inner) function is private to its containing (outer) function. function addsquares(a, b) { functions higher-order closure addsquares callback nested function x * x;",
       "tags": [
         "function",
         "closure",
@@ -3016,7 +3017,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "predefined functions - do not use: eval(), uneval(), escape(), and unescape().  predefined higher-order closure function functions callback",
+      "searchText": "predefined functions - do not use: eval(), uneval(), escape(), and unescape().  functions higher-order closure callback predefined function",
       "tags": [
         "function",
         "closure",
@@ -3043,7 +3044,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind): creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called (???)\n\n```js\n// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\nOther terms:\n\n- imperative approach\n- declarative programming\n- mutation, side effect, pure function\n- first class objects\n- 10. Implement the filter Method on a Prototype\n\n<div align=",
-      "searchText": "random - freecodecamp: functions are considered first class objects in javascript, which means they can be used like any other object. function test() { higher-order closure function callback test random",
+      "searchText": "random - freecodecamp: functions are considered first class objects in javascript, which means they can be used like any other object. function test() { higher-order closure callback random test function",
       "tags": [
         "function",
         "closure",
@@ -3070,7 +3071,7 @@
       "returns": "fxName();",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "recursion the act of a function calling itself, recursion is used to solve problems that contain smaller sub-problems. function recurse() { higher-order closure function recursion recurse callback fxname();",
+      "searchText": "recursion the act of a function calling itself, recursion is used to solve problems that contain smaller sub-problems. function recurse() { higher-order recurse closure callback recursion function fxname();",
       "tags": [
         "function",
         "closure",
@@ -3097,7 +3098,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "recursion notes notes on video recursion in programming - full course from freecodecamp:  higher-order closure function recursion notes callback",
+      "searchText": "recursion notes notes on video recursion in programming - full course from freecodecamp:  higher-order closure callback recursion notes function",
       "tags": [
         "function",
         "closure",
@@ -3126,7 +3127,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "rest and spread syntax with rest parameter and spread operator in argument list:  syntax higher-order closure rest function callback spread and",
+      "searchText": "rest and spread syntax with rest parameter and spread operator in argument list:  and higher-order closure callback spread rest syntax function",
       "tags": [
         "function",
         "closure",
@@ -3152,7 +3153,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "syntax // typeof:  syntax higher-order closure function callback",
+      "searchText": "syntax // typeof:  higher-order closure callback syntax function",
       "tags": [
         "function",
         "closure",
@@ -3178,7 +3179,7 @@
       "returns": "a string representing the source code of the function",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString) method returns a string representing the source code of the function.\n\n```js\n// syntax:\ntoString();\n```\n\n<div align=",
-      "searchText": "tostring the tostring() method returns a string representing the source code of the function. tostring(); higher-order closure function callback tostring a string representing the source code of the function",
+      "searchText": "tostring the tostring() method returns a string representing the source code of the function. tostring(); higher-order closure callback tostring function a string representing the source code of the function",
       "tags": [
         "function",
         "closure",
@@ -3212,7 +3213,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "treat it as an array you should not slice on arguments because it prevents optimizations in javascript engines. let args = []; // empty array, at first. first an as higher-order closure at args treat function callback it empty array",
+      "searchText": "treat it as an array you should not slice on arguments because it prevents optimizations in javascript engines. let args = []; // empty array, at first. higher-order args treat closure first callback function as it at empty array an",
       "tags": [
         "function",
         "closure",
@@ -3241,7 +3242,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "array methods use high order array methods like map and foreach instead of a for loop when working with arrays: cars.foreach(function(a, b, c) {}) iteration while cars foreach methods for loop array",
+      "searchText": "array methods use high order array methods like map and foreach instead of a for loop when working with arrays: cars.foreach(function(a, b, c) {}) for while loop cars iteration methods foreach array",
       "tags": [
         "loop",
         "iteration",
@@ -3269,7 +3270,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nThe `continue` statement can be used to restart a `while`, `do-while`, `for`, or `label` statement. See [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nBreak syntax:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nContinue syntax:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(",
-      "searchText": "continue and break use the break statement to terminate a loop, switch, or in conjunction with a labeled statement.  iteration while continue break for loop and",
+      "searchText": "continue and break use the break statement to terminate a loop, switch, or in conjunction with a labeled statement.  for and break while loop continue iteration",
       "tags": [
         "loop",
         "iteration",
@@ -3295,7 +3296,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "do while loop the do...while statement creates a loop that executes a specified statement until the test condition evaluates to false.  iteration while do for loop",
+      "searchText": "do while loop the do...while statement creates a loop that executes a specified statement until the test condition evaluates to false.  for while loop iteration do",
       "tags": [
         "loop",
         "iteration",
@@ -3323,7 +3324,7 @@
       "returns": "the keys",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for in the for...in statement iterates a specified variable over all the enumerable properties of an object. for (variable in object) { iteration while in object for loop variable the keys",
+      "searchText": "for in the for...in statement iterates a specified variable over all the enumerable properties of an object. for (variable in object) { for while loop iteration variable object in the keys",
       "tags": [
         "loop",
         "iteration",
@@ -3352,7 +3353,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for in and for of loops  the difference between a for...of loop and a for...in loop: while for...in iterates over property insnames/keys/ins, for...of iterates over property insvalues/ins.  iteration loops while in of for loop and",
+      "searchText": "for in and for of loops  the difference between a for...of loop and a for...in loop: while for...in iterates over property insnames/keys/ins, for...of iterates over property insvalues/ins.  for and while in loop iteration of loops",
       "tags": [
         "loop",
         "iteration",
@@ -3380,7 +3381,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for loop a for loop repeats until a specified condition evaluates to false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) iteration while incrementexpression initialexpression conditionexpression for loop",
+      "searchText": "for loop a for loop repeats until a specified condition evaluates to false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) for while initialexpression loop conditionexpression iteration incrementexpression",
       "tags": [
         "loop",
         "iteration",
@@ -3408,7 +3409,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for of the for...of statement creates a loop iterating over iterable objects (including array, map, set, arguments object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property (?) for (variable of iterable) { iteration while of for loop iterable variable",
+      "searchText": "for of the for...of statement creates a loop iterating over iterable objects (including array, map, set, arguments object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property (?) for (variable of iterable) { for while iterable loop iteration variable of",
       "tags": [
         "loop",
         "iteration",
@@ -3434,7 +3435,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous - accumulators  iteration while for loop miscellaneous",
+      "searchText": "miscellaneous - accumulators  for while miscellaneous loop iteration",
       "tags": [
         "loop",
         "iteration",
@@ -3460,7 +3461,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "while loop the while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. while (condition) iteration condition while for loop",
+      "searchText": "while loop the while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. while (condition) for while loop iteration condition",
       "tags": [
         "loop",
         "iteration",
@@ -3486,7 +3487,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "animation - animationend — a css animation is complete  animation notes es6 dom concepts",
+      "searchText": "animation - animationend — a css animation is complete  animation concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3514,7 +3515,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "binary search tree - 26:03 – a way to hold data that when visualized looks like a tree (think corporate hierarchy) – all data points are called nodes – the top of the tree is called the root node (html tag) and then branches out into left and right, parent and child and sibling nodes, leaf nodes are nodes at the end o  search notes es6 dom tree binary concepts",
+      "searchText": "binary search tree - 26:03 – a way to hold data that when visualized looks like a tree (think corporate hierarchy) – all data points are called nodes – the top of the tree is called the root node (html tag) and then branches out into left and right, parent and child and sibling nodes, leaf nodes are nodes at the end o  search tree concepts dom binary notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3540,7 +3541,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "clipboard - oncopy — user copies the content of an element  clipboard notes es6 dom concepts",
+      "searchText": "clipboard - oncopy — user copies the content of an element  clipboard concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3567,7 +3568,7 @@
       "returns": "an integer",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "code specific code specific  specific code es6 notes dom concepts an integer",
+      "searchText": "code specific code specific  code concepts dom specific notes es6 an integer",
       "tags": [
         "notes",
         "es6",
@@ -3592,7 +3593,7 @@
       "returns": "a new function, which takes the second one and returns a new function, which takes the third one, etc",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "concepts concepts  notes es6 dom concepts a new function, which takes the second one and returns a new function, which takes the third one, etc",
+      "searchText": "concepts concepts  concepts dom notes es6 a new function, which takes the second one and returns a new function, which takes the third one, etc",
       "tags": [
         "notes",
         "es6",
@@ -3619,7 +3620,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "data structures video: data structures and algorithms in javascript 1:52:54 |  data notes es6 structures dom concepts",
+      "searchText": "data structures video: data structures and algorithms in javascript 1:52:54 |  concepts dom structures data notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3646,7 +3647,7 @@
       "returns": "the specified attribute value of an element node",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom element methods - getattribute() — returns the specified attribute value of an element node  methods notes es6 dom element concepts the specified attribute value of an element node",
+      "searchText": "dom element methods - getattribute() — returns the specified attribute value of an element node  element concepts dom notes methods es6 the specified attribute value of an element node",
       "tags": [
         "notes",
         "es6",
@@ -3673,7 +3674,7 @@
       "returns": "an object which implements the APIs of a specified feature",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom node methods - appendchild() — adds a new child node to an element as the last child node  methods notes es6 node dom concepts an object which implements the apis of a specified feature",
+      "searchText": "dom node methods - appendchild() — adds a new child node to an element as the last child node  concepts dom notes methods node es6 an object which implements the apis of a specified feature",
       "tags": [
         "notes",
         "es6",
@@ -3700,7 +3701,7 @@
       "returns": "a live collection of all attributes registered to an element",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom node properties - attributes — returns a live collection of all attributes registered to an element  properties notes es6 node dom concepts a live collection of all attributes registered to an element",
+      "searchText": "dom node properties - attributes — returns a live collection of all attributes registered to an element  properties concepts dom notes node es6 a live collection of all attributes registered to an element",
       "tags": [
         "notes",
         "es6",
@@ -3726,7 +3727,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "drag - ondrag — an element is dragged  drag notes es6 dom concepts",
+      "searchText": "drag - ondrag — an element is dragged  drag concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3752,7 +3753,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "form - onblur — when an element loses focus  form notes es6 dom concepts",
+      "searchText": "form - onblur — when an element loses focus  concepts dom notes form es6",
       "tags": [
         "notes",
         "es6",
@@ -3778,7 +3779,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "frame - onabort — the loading of a media is aborted  frame notes es6 dom concepts",
+      "searchText": "frame - onabort — the loading of a media is aborted  frame concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3804,7 +3805,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "graphs - 1:42:08 – the graph data structure is a collection of things and the relationships/connections b\\tw them – the data or braphs are called nodes or vertices – the connections b\\tw the nodes ar called edges – a social netwrk is an example where the nodes are you and other people and the edges are whe  notes es6 dom graphs concepts",
+      "searchText": "graphs - 1:42:08 – the graph data structure is a collection of things and the relationships/connections b\\tw them – the data or braphs are called nodes or vertices – the connections b\\tw the nodes ar called edges – a social netwrk is an example where the nodes are you and other people and the edges are whe  graphs concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3831,7 +3832,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hash table - 53:20 – is used to implement associative arrays or mappings of key-value pairs – they are a common way to implement the map data structure or objects – they are widely used b\\c of their effieciency – lookup time is fast, not a fx of the # of elements – the way they work: 1.  table hash notes es6 dom concepts",
+      "searchText": "hash table - 53:20 – is used to implement associative arrays or mappings of key-value pairs – they are a common way to implement the map data structure or objects – they are widely used b\\c of their effieciency – lookup time is fast, not a fx of the # of elements – the way they work: 1.  concepts dom table hash notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3857,7 +3858,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "heap - 1:27:29 – a binary heap is a partially ordered binary tree which satisfies the heap property – each node has at most 2 child nodes – indicates a specific property b\\tw the parent and the child nodes – look into max heap and min heap for child node numbers  or  parent node numbers – left and node p  heap notes es6 dom concepts",
+      "searchText": "heap - 1:27:29 – a binary heap is a partially ordered binary tree which satisfies the heap property – each node has at most 2 child nodes – indicates a specific property b\\tw the parent and the child nodes – look into max heap and min heap for child node numbers  or  parent node numbers – left and node p  concepts dom notes es6 heap",
       "tags": [
         "notes",
         "es6",
@@ -3883,7 +3884,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "keyboard - onkeydown — when the user is pressing a key down  keyboard notes es6 dom concepts",
+      "searchText": "keyboard - onkeydown — when the user is pressing a key down  keyboard concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3909,7 +3910,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "media - onabort — media loading is aborted  media notes es6 dom concepts",
+      "searchText": "media - onabort — media loading is aborted  concepts dom media notes es6",
       "tags": [
         "notes",
         "es6",
@@ -3935,7 +3936,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "mouse - onclick — the event occurs when the user clicks on an element  notes es6 dom mouse concepts",
+      "searchText": "mouse - onclick — the event occurs when the user clicks on an element  concepts dom notes mouse es6",
       "tags": [
         "notes",
         "es6",
@@ -3961,7 +3962,7 @@
       "returns": "the possible squares a knight can move to – so move(), position var, color var but do not initialize those vars – best t",
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "oop video: intro to object oriented programming - crash course |  notes oop es6 dom concepts the possible squares a knight can move to – so move(), position var, color var but do not initialize those vars – best t",
+      "searchText": "oop video: intro to object oriented programming - crash course |  oop concepts dom notes es6 the possible squares a knight can move to – so move(), position var, color var but do not initialize those vars – best t",
       "tags": [
         "notes",
         "es6",
@@ -3988,7 +3989,7 @@
       "returns": "the error name",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "other events - transitionend — fired when a css transition has completed  events notes other es6 dom concepts the error name",
+      "searchText": "other events - transitionend — fired when a css transition has completed  concepts dom notes events es6 other the error name",
       "tags": [
         "notes",
         "es6",
@@ -4014,7 +4015,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "queue - 19:24 – the queue data structure is a way to hold data – it’s similar to a stack, a stack is filo (i think he means lifo), a queue is fifo – in js you can implement a queue with an array, - think of store or bank line or print queue – 1.  queue notes es6 dom concepts",
+      "searchText": "queue - 19:24 – the queue data structure is a way to hold data – it’s similar to a stack, a stack is filo (i think he means lifo), a queue is fifo – in js you can implement a queue with an array, - think of store or bank line or print queue – 1.  concepts dom queue notes es6",
       "tags": [
         "notes",
         "es6",
@@ -4040,7 +4041,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "sets - the set data structure is like an array except there is no duplicate items and the values are in no particular order – the typical use for a set is to check for the existence of a particular item  sets notes es6 dom concepts",
+      "searchText": "sets - the set data structure is like an array except there is no duplicate items and the values are in no particular order – the typical use for a set is to check for the existence of a particular item  sets concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -4067,7 +4068,7 @@
       "returns": "a === b;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "sloppy notes everything below here is a sloppy notebook: unordered notes, unclear notes, a true scratch-pad. function isequal(a, b) { isequal notes es6 dom sloppy concepts a === b;",
+      "searchText": "sloppy notes everything below here is a sloppy notebook: unordered notes, unclear notes, a true scratch-pad. function isequal(a, b) { isequal concepts dom sloppy notes es6 a === b;",
       "tags": [
         "notes",
         "es6",
@@ -4093,7 +4094,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "stacks - 0:20 stacked data structure → examples: book stack, lifo, browser back button (push sites on top),  notes es6 stacks dom concepts",
+      "searchText": "stacks - 0:20 stacked data structure → examples: book stack, lifo, browser back button (push sites on top),  stacks concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -4119,7 +4120,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "the dom something here...  the notes es6 dom concepts",
+      "searchText": "the dom something here...  the concepts dom notes es6",
       "tags": [
         "notes",
         "es6",
@@ -4145,7 +4146,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "trie - 1:15:00 – sometimes called a prefix tree, is a special type of tree used to store associative data structures – they store data in steps, each step is a node in the trie, is often used to store words – ex, to validate that a word is in a dictionary – each step/node would represent 1 letter of a wo  notes es6 dom trie concepts",
+      "searchText": "trie - 1:15:00 – sometimes called a prefix tree, is a special type of tree used to store associative data structures – they store data in steps, each step is a node in the trie, is often used to store words – ex, to validate that a word is in a dictionary – each step/node would represent 1 letter of a wo  concepts dom notes trie es6",
       "tags": [
         "notes",
         "es6",
@@ -4176,7 +4177,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "unique things things you don't see often: const range = array(max - min + 1) max unique notes es6 min dom things array range concepts",
+      "searchText": "unique things things you don't see often: const range = array(max - min + 1) concepts range dom unique things notes min array max es6",
       "tags": [
         "notes",
         "es6",
@@ -4204,7 +4205,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs",
-      "searchText": "absolute math.abs() math.abs(x); number abs numeric date absolute number-date math",
+      "searchText": "absolute math.abs() math.abs(x); absolute number number-date numeric date math abs",
       "tags": [
         "number",
         "math",
@@ -4232,7 +4233,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil",
-      "searchText": "ceiling math.ceil(): always rounds a number up to the next largest integer. math.ceil(x); number numeric ceil date number-date ceiling math",
+      "searchText": "ceiling math.ceil(): always rounds a number up to the next largest integer. math.ceil(x); number number-date numeric date math ceil ceiling",
       "tags": [
         "number",
         "math",
@@ -4260,7 +4261,7 @@
       "returns": "a numeric value between `-1` and `1`, which represents the cosine of the angle given in radians",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos",
-      "searchText": "cosine math.cos() math.cos(x); number cos cosine numeric date number-date math a numeric value between `-1` and `1`, which represents the cosine of the angle given in radians",
+      "searchText": "cosine math.cos() math.cos(x); number number-date numeric cosine date math cos a numeric value between `-1` and `1`, which represents the cosine of the angle given in radians",
       "tags": [
         "number",
         "math",
@@ -4289,7 +4290,7 @@
       "returns": "weekday as a number 0-6",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Here are links to MDN docs for the most common Date `get` methods:\n\n|                                                                                                                |                                                                                                                              |                                                                                                                      |\n| :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |\n|  [MDN getDate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate)  |          [MDN getDay](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay)          | [MDN getFullYear](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear) |\n| [MDN getHours](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours) | [MDN getMilliseconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds) |  [MDN getMinutes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes)  |\n| [MDN getMonth](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth) |      [MDN getSeconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds)      |     [MDN getTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)     |\n\n<br />\n\ngetDate()\n\n```js\n// syntax\ngetDate();\n\n// examples\nconst birthday = new Date(",
-      "searchText": "date get methods here is a link for the mdn date docs. getdate(); get number getdate methods numeric date number-date math weekday as a number 0-6",
+      "searchText": "date get methods here is a link for the mdn date docs. getdate(); get number number-date numeric getdate date math methods weekday as a number 0-6",
       "tags": [
         "number",
         "math",
@@ -4319,7 +4320,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate)         | [MDN setFullYear](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear) |   [MDN setHours](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours)   |\n| [MDN setMilliseconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds) |  [MDN setMinutes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes)  |   [MDN setMonth](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth)   |\n|      [MDN setSeconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds)      |     [MDN setTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime)     | [MDN setUTCDate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCDate) |\n\nFormatting the date and time values is quite involved. Check out the following links\n\n- freeCodeCamp: [How to Format Dates in JavaScript](https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/)\n- Stackoverflow: [How to format a JavaScript date](https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date)\n- CSS Tricks: [Everything You Need to Know About Date in JavaScript](https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/)\n\n<br />\n\nsetDate()\n\n```js\n// syntax\nsetDate(dayValue);\n\n// example\nconst eventDate = new Date(",
-      "searchText": "date set methods here are links to mdn docs for the most common date set methods: setdate(dayvalue); number setdate set methods dayvalue numeric date number-date math",
+      "searchText": "date set methods here are links to mdn docs for the most common date set methods: setdate(dayvalue); setdate number number-date numeric date math set methods dayvalue",
       "tags": [
         "number",
         "math",
@@ -4346,7 +4347,7 @@
       "returns": "the largest integer less than or equal to a given number",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor",
-      "searchText": "floor math.floor(): returns the largest integer less than or equal to a given number math.floor(x); number floor numeric date number-date math the largest integer less than or equal to a given number",
+      "searchText": "floor math.floor(): returns the largest integer less than or equal to a given number math.floor(x); number number-date numeric date floor math the largest integer less than or equal to a given number",
       "tags": [
         "number",
         "math",
@@ -4374,7 +4375,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "get dates no parameter (d is the var name for the date/time):  get number dates numeric date number-date math",
+      "searchText": "get dates no parameter (d is the var name for the date/time):  get number number-date numeric date math dates",
       "tags": [
         "number",
         "math",
@@ -4402,7 +4403,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite",
-      "searchText": "isfinite the global isfinite() function determines whether the passed value is a finite number. isfinite(testvalue); number isfinite numeric testvalue date number-date math",
+      "searchText": "isfinite the global isfinite() function determines whether the passed value is a finite number. isfinite(testvalue); testvalue number number-date numeric isfinite date math",
       "tags": [
         "number",
         "math",
@@ -4430,7 +4431,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger",
-      "searchText": "isinteger the number.isinteger() method determines whether the passed value is an integer. number.isinteger(value); isinteger number value numeric date number-date math",
+      "searchText": "isinteger the number.isinteger() method determines whether the passed value is an integer. number.isinteger(value); number number-date numeric value date math isinteger",
       "tags": [
         "number",
         "math",
@@ -4458,7 +4459,7 @@
       "returns": "a boolean value",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#confusing_special-case_behavior) section for _odd_ results.\n\n```js\n// syntax\nisNaN(value);\n\n// special cases\nisNaN(NaN); // true\nisNaN(undefined); // true\nisNaN({}); // true\n\nisNaN(true); // false\nisNaN(null); // false\nisNaN(37); // false\nisNaN(",
-      "searchText": "isnan the isnan() function determines whether a value is nan or not, returns a boolean value. isnan(value); number isnan value numeric date number-date math a boolean value",
+      "searchText": "isnan the isnan() function determines whether a value is nan or not, returns a boolean value. isnan(value); number number-date isnan numeric value date math a boolean value",
       "tags": [
         "number",
         "math",
@@ -4485,7 +4486,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)    |  [MDN Math.ceil](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil)  | [MDN Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) |\n| [MDN Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) | [MDN Math.round](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round) |  [MDN Math.sign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign)  |\n|   [MDN Math.sqrt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt)   | [MDN Math.trunc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc) |   [MDN Math.max](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max)   |\n|    [MDN Math.min](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min)    |   [MDN Math.pow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)   |   [MDN Math.cos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos)   |\n|    [MDN Math.sin](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin)    |   [MDN Math.tan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan)   |                                                                                                               |\n\n<br />",
-      "searchText": "math methods here are links to mdn docs for the most common math methods:  number methods numeric date number-date math",
+      "searchText": "math methods here are links to mdn docs for the most common math methods:  number number-date numeric date math methods",
       "tags": [
         "number",
         "math",
@@ -4512,7 +4513,7 @@
       "returns": "the largest of the zero or more numbers given as input parameters, or `NaN` if any parameter isn't a number and can't be",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max",
-      "searchText": "max math.max(): returns the largest of the zero or more numbers given as input parameters, or nan if any parameter isn't a number and can't be converted into one. math.max(); number max numeric date number-date math the largest of the zero or more numbers given as input parameters, or `nan` if any parameter isn't a number and can't be",
+      "searchText": "max math.max(): returns the largest of the zero or more numbers given as input parameters, or nan if any parameter isn't a number and can't be converted into one. math.max(); number number-date numeric date math max the largest of the zero or more numbers given as input parameters, or `nan` if any parameter isn't a number and can't be",
       "tags": [
         "number",
         "math",
@@ -4539,7 +4540,7 @@
       "returns": "the lowest-valued number passed into it, or `NaN` if any parameter isn't a number and can't be converted into one",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min",
-      "searchText": "min math.min(): returns the lowest-valued number passed into it, or nan if any parameter isn't a number and can't be converted into one. math.min() number min numeric date number-date math the lowest-valued number passed into it, or `nan` if any parameter isn't a number and can't be converted into one",
+      "searchText": "min math.min(): returns the lowest-valued number passed into it, or nan if any parameter isn't a number and can't be converted into one. math.min() number number-date numeric date math min the lowest-valued number passed into it, or `nan` if any parameter isn't a number and can't be converted into one",
       "tags": [
         "number",
         "math",
@@ -4566,7 +4567,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous let typeoftest;  number numeric date number-date miscellaneous math",
+      "searchText": "miscellaneous let typeoftest;  miscellaneous number number-date numeric date math",
       "tags": [
         "number",
         "math",
@@ -4593,7 +4594,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential) |   [MDN toFixed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)   | [MDN toPrecision](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision) |\n|         [MDN isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite)          | [MDN isInteger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger) |  [MDN parseFloat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat)  |\n|         [MDN parseInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)          |                                                                                                                    |                                                                                                                        |\n\nSkipped: `Number.isSafeInteger()`, `toLocaleString()`, `toString()`, and `valueOf()`.",
-      "searchText": "number methods here are links to mdn docs for the methods below:  number methods numeric date number-date math",
+      "searchText": "number methods here are links to mdn docs for the methods below:  number number-date numeric date math methods",
       "tags": [
         "number",
         "math",
@@ -4620,7 +4621,7 @@
       "returns": "`-infinity`? |",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "numbers no parameter  number numeric date number-date numbers math `-infinity`? |",
+      "searchText": "numbers no parameter  number number-date numeric date math numbers `-infinity`? |",
       "tags": [
         "number",
         "math",
@@ -4647,7 +4648,7 @@
       "returns": "a floating point number",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat",
-      "searchText": "parsefloat the number.parsefloat() method parses an argument and returns a floating point number.  number parsefloat numeric date number-date math a floating point number",
+      "searchText": "parsefloat the number.parsefloat() method parses an argument and returns a floating point number.  number number-date numeric parsefloat date math a floating point number",
       "tags": [
         "number",
         "math",
@@ -4675,7 +4676,7 @@
       "returns": "an integer of the specified radix",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt",
-      "searchText": "parseint the parseint() function parses a string argument and returns an integer of the specified radix. parseint(string); number string parseint numeric date number-date math an integer of the specified radix",
+      "searchText": "parseint the parseint() function parses a string argument and returns an integer of the specified radix. parseint(string); number string number-date numeric parseint date math an integer of the specified radix",
       "tags": [
         "number",
         "math",
@@ -4705,7 +4706,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI",
-      "searchText": "pi the math.pi property represents the ratio of the circumference of a circle to its diameter, approximately 3.14159. console.log(math.pi); // 3.141592653589793 number pi 141592653589793 numeric date number-date log math console",
+      "searchText": "pi the math.pi property represents the ratio of the circumference of a circle to its diameter, approximately 3.14159. console.log(math.pi); // 3.141592653589793 log 141592653589793 number number-date numeric console date math pi",
       "tags": [
         "number",
         "math",
@@ -4735,7 +4736,7 @@
       "returns": "`base` `exp`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow",
-      "searchText": "power math.pow(x, y): static method, given two arguments, base and exponent, returns base supexp/sup. math.pow(base, exponent); number power numeric exponent base date number-date pow math `base` `exp`",
+      "searchText": "power math.pow(x, y): static method, given two arguments, base and exponent, returns base supexp/sup. math.pow(base, exponent); exponent number number-date numeric date power math pow base `base` `exp`",
       "tags": [
         "number",
         "math",
@@ -4762,7 +4763,7 @@
       "returns": "a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately unif",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random",
-      "searchText": "random math.random(): returns a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately uniform distribution over that range — which you can then scale to your desired range math.random(); number numeric date random number-date math a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately unif",
+      "searchText": "random math.random(): returns a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately uniform distribution over that range — which you can then scale to your desired range math.random(); number number-date numeric date random math a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately unif",
       "tags": [
         "number",
         "math",
@@ -4790,7 +4791,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "rest parameter rest syntax: opposite, individual elements into an array:  number rest parameter numeric date number-date math",
+      "searchText": "rest parameter rest syntax: opposite, individual elements into an array:  parameter number number-date numeric date rest math",
       "tags": [
         "number",
         "math",
@@ -4817,7 +4818,7 @@
       "returns": "the value of a number rounded to the nearest integer",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round",
-      "searchText": "round math.round(): returns the value of a number rounded to the nearest integer math.round(x); number number-date numeric date round math the value of a number rounded to the nearest integer",
+      "searchText": "round math.round(): returns the value of a number rounded to the nearest integer math.round(x); number number-date numeric date math round the value of a number rounded to the nearest integer",
       "tags": [
         "number",
         "math",
@@ -4853,7 +4854,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "set dates single parameter (d is the var name for the date/time): let today = new date(); // \"202203-11t22:13:35.413z\" codepen? number 11t22 dates 13 413z set 202203 today numeric new date 35 number-date math codepen",
+      "searchText": "set dates single parameter (d is the var name for the date/time): let today = new date(); // \"202203-11t22:13:35.413z\" codepen? 413z today 35 number number-date numeric new codepen date 11t22 202203 math set dates 13",
       "tags": [
         "number",
         "math",
@@ -4880,7 +4881,7 @@
       "returns": "either a positive or negative +/- 1, indicating the sign of a number passed into the argument",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign",
-      "searchText": "sign math.sign(): returns either a positive or negative +/- 1, indicating the sign of a number passed into the argument. math.sign(x); number numeric date sign number-date math either a positive or negative +/- 1, indicating the sign of a number passed into the argument",
+      "searchText": "sign math.sign(): returns either a positive or negative +/- 1, indicating the sign of a number passed into the argument. math.sign(x); number number-date numeric sign date math either a positive or negative +/- 1, indicating the sign of a number passed into the argument",
       "tags": [
         "number",
         "math",
@@ -4908,7 +4909,7 @@
       "returns": "a numeric value between `-1` and `1`, which represents the sine of the angle given in radians",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin",
-      "searchText": "sine math.sin() math.sin(x); number sin numeric date sine number-date math a numeric value between `-1` and `1`, which represents the sine of the angle given in radians",
+      "searchText": "sine math.sin() math.sin(x); number number-date numeric sine date sin math a numeric value between `-1` and `1`, which represents the sine of the angle given in radians",
       "tags": [
         "number",
         "math",
@@ -4937,7 +4938,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "spread operator ignores nums afer the 3rd function addthreenumbers(x, y, z) { number addthreenumbers operator numeric date spread number-date math",
+      "searchText": "spread operator ignores nums afer the 3rd function addthreenumbers(x, y, z) { number number-date numeric spread date addthreenumbers math operator",
       "tags": [
         "number",
         "math",
@@ -4964,7 +4965,7 @@
       "returns": "the square root of a number",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt",
-      "searchText": "sqrt the math.sqrt() function returns the square root of a number. math.sqrt(x); number sqrt numeric date number-date math the square root of a number",
+      "searchText": "sqrt the math.sqrt() function returns the square root of a number. math.sqrt(x); number number-date numeric date math sqrt the square root of a number",
       "tags": [
         "number",
         "math",
@@ -4993,7 +4994,7 @@
       "returns": "the square root of a number",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt",
-      "searchText": "square root math.sqrt(): returns the square root of a number math.sqrt(x); number square root numeric sqrt date number-date math the square root of a number",
+      "searchText": "square root math.sqrt(): returns the square root of a number math.sqrt(x); number number-date root numeric date square math sqrt the square root of a number",
       "tags": [
         "number",
         "math",
@@ -5021,7 +5022,7 @@
       "returns": "a numeric value that represents the tangent of the angle given in radians",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan",
-      "searchText": "tangent math.tan() math.tan(x); number tan tangent numeric date number-date math a numeric value that represents the tangent of the angle given in radians",
+      "searchText": "tangent math.tan() math.tan(x); tan number number-date numeric date tangent math a numeric value that represents the tangent of the angle given in radians",
       "tags": [
         "number",
         "math",
@@ -5048,7 +5049,7 @@
       "returns": "a string representing the Number object in exponential notation",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential",
-      "searchText": "toexponential the toexponential() method returns a string representing the number object in exponential notation. toexponential(); number numeric date toexponential number-date math a string representing the number object in exponential notation",
+      "searchText": "toexponential the toexponential() method returns a string representing the number object in exponential notation. toexponential(); number number-date numeric date math toexponential a string representing the number object in exponential notation",
       "tags": [
         "number",
         "math",
@@ -5075,7 +5076,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed",
-      "searchText": "tofixed the tofixed() method formats a number using fixed-point notation. tofixed(); tofixed number numeric date number-date math",
+      "searchText": "tofixed the tofixed() method formats a number using fixed-point notation. tofixed(); number number-date numeric date math tofixed",
       "tags": [
         "number",
         "math",
@@ -5102,7 +5103,7 @@
       "returns": "a string representing the Number object to the specified precision",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision",
-      "searchText": "toprecision the toprecision() method returns a string representing the number object to the specified precision. toprecision(); number toprecision numeric date number-date math a string representing the number object to the specified precision",
+      "searchText": "toprecision the toprecision() method returns a string representing the number object to the specified precision. toprecision(); number number-date toprecision numeric date math a string representing the number object to the specified precision",
       "tags": [
         "number",
         "math",
@@ -5130,7 +5131,7 @@
       "returns": "the integer part of a number by removing any fractional digits",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc",
-      "searchText": "truncate math.trunc(): returns the integer part of a number by removing any fractional digits math.trunc(x); number trunc number-date numeric date truncate math the integer part of a number by removing any fractional digits",
+      "searchText": "truncate math.trunc(): returns the integer part of a number by removing any fractional digits math.trunc(x); truncate number number-date numeric date trunc math the integer part of a number by removing any fractional digits",
       "tags": [
         "number",
         "math",
@@ -5156,7 +5157,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "classes excellent video es6 classes: https://youtu.be/vmliclijs8  prototype oop class classes object",
+      "searchText": "classes excellent video es6 classes: https://youtu.be/vmliclijs8  oop class prototype object classes",
       "tags": [
         "object",
         "prototype",
@@ -5183,7 +5184,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "closure the simplest way to make this public property private is by creating a variable within the constructor function. function bird() { closure prototype oop class bird object",
+      "searchText": "closure the simplest way to make this public property private is by creating a variable within the constructor function. function bird() { oop class bird closure prototype object",
       "tags": [
         "object",
         "prototype",
@@ -5210,7 +5211,7 @@
       "returns": "the modified target object",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign): copies all enumerable own properties from one or more source objects to a target object. It returns the modified target object\n- [Object.defineProperties()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties): defines new or modifies existing properties directly on an object, returning the object\n- [Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty): defines a new property directly on an object, or modifies an existing property on an object, and returns the object\n- [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze): freezes an object. A frozen object can no longer be changed; freezing an object prevents new properties from being added to it, existing properties from being removed, prevents changing the enumerability, configurability, or writability of existing properties, and prevents the values of existing properties from being changed. In addition, freezing an object also prevents its prototype from being changed. `freeze()` returns the same object that was passed in.\n- And these: `fromEntries()`, `getOwnPropertyDescriptor()`, `getOwnPropertyDescriptors()`, `getOwnPropertyNames()`, `getOwnPropertySymbols()`, `getPrototypeOf()`, `is()`,  `isExtensible()`, `isFrozen()`, `isSealed()`, `preventExtensions()`, `propertyIsEnumerable()`, `seal()`, `setPrototypeOf()`, `toLocaleString()`, `toString()`, and `valueOf()`. \n\nSee the [MDN Object docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) for more on those methods.\n\n<div align=",
-      "searchText": "common object methods here are the most common object methods and properties.  prototype methods oop common class object the modified target object",
+      "searchText": "common object methods here are the most common object methods and properties.  oop class prototype object methods common the modified target object",
       "tags": [
         "object",
         "prototype",
@@ -5239,7 +5240,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "destructuring an object the old way to desctructure an object, assign variables from objects: var voxel = {x: 3.6, y: 7.4, z: 6.54}; an prototype oop class 54 destructuring object voxel",
+      "searchText": "destructuring an object the old way to desctructure an object, assign variables from objects: var voxel = {x: 3.6, y: 7.4, z: 6.54}; oop class 54 prototype voxel object destructuring an",
       "tags": [
         "object",
         "prototype",
@@ -5266,7 +5267,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "es6 class version note: click on the lass name to show yellow lightbulb, click the lightuld, convert to es6 class syntax:  prototype version es6 oop class object",
+      "searchText": "es6 class version note: click on the lass name to show yellow lightbulb, click the lightuld, convert to es6 class syntax:  oop class prototype object version es6",
       "tags": [
         "object",
         "prototype",
@@ -5297,7 +5298,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for in loop using for in: obj.hasownproperty('prop1'); obj prototype prop1 oop in class for loop object hasownproperty",
+      "searchText": "for in loop using for in: obj.hasownproperty('prop1'); for oop class loop prototype obj object hasownproperty prop1 in",
       "tags": [
         "object",
         "prototype",
@@ -5325,7 +5326,7 @@
       "returns": "`true` if the object has the specified property as its own property (as opposed to inheriting it); `false` otherwise",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): Returns `true` if the object has the specified property as its own property (as opposed to inheriting it); `false` otherwise.\n\n```js\n// syntax\nobj.hasOwnProperty(prop)\t\n// prop: The String name or Symbol of the property to test\n\n\n// Example, RECORD COLLECTION 1:\nfunction updateRecords(records, id, prop, value) {\n  if (prop !== 'tracks' && value !== ",
-      "searchText": "hasownproperty obj.hasownproperty(prop) obj.hasownproperty(prop) obj prop prototype oop class object hasownproperty `true` if the object has the specified property as its own property (as opposed to inheriting it); `false` otherwise",
+      "searchText": "hasownproperty obj.hasownproperty(prop) obj.hasownproperty(prop) oop class prop prototype obj object hasownproperty `true` if the object has the specified property as its own property (as opposed to inheriting it); `false` otherwise",
       "tags": [
         "object",
         "prototype",
@@ -5353,7 +5354,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "iife and object modules an immediately invoked function expression (iife) is often used to group related functionality into a single object or module.  modules prototype oop iife class object and",
+      "searchText": "iife and object modules an immediately invoked function expression (iife) is often used to group related functionality into a single object or module.  oop and class prototype modules object iife",
       "tags": [
         "object",
         "prototype",
@@ -5382,7 +5383,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#inheritance_with_the_prototype_chain): something about constructor and supertype.\n\n`freeCodeCamp`: But duck and all instances of Bird should show that they were constructed by Bird and not Animal. To do so, you can manually set the constructor property of Bird to the Bird object\n\n```js\n// syntax:\nChildObject.prototype = Object.create(ParentObject.prototype);\n// Then the ChildObject received its own methods by chaining them onto its prototype:\nChildObject.prototype.methodName = function() {...};\n\n\n// A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods\nfunction Animal() { }\nAnimal.prototype.eat = function() {\n  console.log(",
-      "searchText": "inheritance freecodecamp: but duck and all instances of bird should show that they were constructed by bird and not animal. childobject.prototype = object.create(parentobject.prototype); parentobject prototype oop class inheritance create object childobject",
+      "searchText": "inheritance freecodecamp: but duck and all instances of bird should show that they were constructed by bird and not animal. childobject.prototype = object.create(parentobject.prototype); oop class parentobject inheritance prototype object childobject create",
       "tags": [
         "object",
         "prototype",
@@ -5409,7 +5410,7 @@
       "returns": "value is a boolean value",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof): tests to see if the prototype property of a constructor appears anywhere in the prototype chain of an object. The return value is a boolean value. Returns true if an object is an instance of an object type. \n\n```js\n// syntax: \nobject instanceof constructor\n\n// MDN examples:\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nconst auto = new Car('Honda', 'Accord', 1998);\nconsole.log(auto instanceof Car); // true \nconsole.log(auto instanceof Object); // true\n\n\n// with dates:\nlet myDate = new Date();\nmyDate instanceof Date;      // true\nmyDate instanceof Object;    // true\nmyDate instanceof String;    // false\n\n\n// Objects created using Object.create()\nfunction Shape() {\n}\nfunction Rectangle() {\n  Shape.call(this); // call super constructor.\n}\nRectangle.prototype = Object.create(Shape.prototype);\nRectangle.prototype.constructor = Rectangle;\nlet rect = new Rectangle();\nrect instanceof Object;    // true\nrect instanceof Shape;     // true\nrect instanceof Rectangle; // true\nrect instanceof String;    // false\n\nlet literalObject     = {};\nlet nullObject  = Object.create(null);\nnullObject.name = ",
-      "searchText": "instanceof // syntax: object instanceof constructor constructor prototype oop class object instanceof value is a boolean value",
+      "searchText": "instanceof // syntax: object instanceof constructor oop class instanceof prototype object constructor value is a boolean value",
       "tags": [
         "object",
         "prototype",
@@ -5435,7 +5436,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf): checks if an object exists in another object's prototype chain\n\n```js\n// syntax\nisPrototypeOf(object)\n\n// example\nfunction Foo() {}\nfunction Bar() {}\n\nBar.prototype = Object.create(Foo.prototype);\nconst bar = new Bar();\nconsole.log(Foo.prototype.isPrototypeOf(bar)); // true\nconsole.log(Bar.prototype.isPrototypeOf(bar)); // true\n\n\n// example 2\nfunction Bird(name) {\n  this.name = name;\n}\nlet duck = new Bird(",
-      "searchText": "isprototypeof isprototypeof(object) isprototypeof(object) isprototypeof prototype oop class object",
+      "searchText": "isprototypeof isprototypeof(object) isprototypeof(object) oop class prototype object isprototypeof",
       "tags": [
         "object",
         "prototype",
@@ -5461,7 +5462,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous other methods: object.entries(obj)| object.getownpropertynames()| object.freeze(obj)| obj.tostring() | obj.prop ???  prototype oop class miscellaneous object",
+      "searchText": "miscellaneous other methods: object.entries(obj)| object.getownpropertynames()| object.freeze(obj)| obj.tostring() | obj.prop ???  oop class miscellaneous prototype object",
       "tags": [
         "object",
         "prototype",
@@ -5491,7 +5492,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "modify values and remove keys let something = {  modify remove values prototype oop class object keys and",
+      "searchText": "modify values and remove keys let something = {  oop and class keys remove prototype values object modify",
       "tags": [
         "object",
         "prototype",
@@ -5517,7 +5518,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "notes something here...  prototype notes oop class object",
+      "searchText": "notes something here...  oop class prototype object notes",
       "tags": [
         "object",
         "prototype",
@@ -5544,7 +5545,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create): creates a new object, using an existing object as the prototype of the newly created object - an alternate approach for inheritance rather than `new ClssName()`.\n\n`freeCodeCamp`: The first step for inheriting behavior from the supertype (or parent) Animal: making a new instance of Animal. the next step: set the prototype of the subtype (or child)—in this case, Bird—to be an instance of Animal: `Bird.prototype = Object.create(Animal.prototype);`.\n\n```js\n// syntax:\nObject.create(proto)\nObject.create(proto, propertiesObject)\nObject.create(Class.prototype)\n\n\n// example\nconst person = {\n  isHuman: false,\n  printIntroduction: function() {\n    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);\n  }\n};\nconst me = Object.create(person);\nme.name = 'Matthew'; // ",
-      "searchText": "object create freecodecamp: the first step for inheriting behavior from the supertype (or parent) animal: making a new instance of animal. object.create(proto) proto prototype oop class create object",
+      "searchText": "object create freecodecamp: the first step for inheriting behavior from the supertype (or parent) animal: making a new instance of animal. object.create(proto) oop class prototype proto object create",
       "tags": [
         "object",
         "prototype",
@@ -5571,7 +5572,7 @@
       "returns": "an array of a given object's [key, value] pairs",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries): returns an array of a given object's [key, value] pairs. This is the same as iterating with a for...in loop, except that a for...in loop enumerates properties in the prototype chain as well. \n\nThe order of the array returned by `Object.entries()` is the same as that provided by a for...in loop. If there is a need for different ordering, then the array should be sorted first, like `Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`.\n\n```js\n// syntax:\nObject.entries(obj)\n\n\n// examples:\nconst object1 = {\n  a: 'word',\n  b: 42\n};\n\nfor (const [key, value] of Object.entries(object1)) {\n  console.log(`${key}: ${value}`); // ",
-      "searchText": "object entries the order of the array returned by object.entries() is the same as that provided by a for...in loop. object.entries(obj) obj entries prototype oop class object an array of a given object's [key, value] pairs",
+      "searchText": "object entries the order of the array returned by object.entries() is the same as that provided by a for...in loop. object.entries(obj) oop class prototype obj entries object an array of a given object's [key, value] pairs",
       "tags": [
         "object",
         "prototype",
@@ -5598,7 +5599,7 @@
       "returns": "an array of the key names iterated in the same order that a normal loop would",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys): Returns an array of the key names iterated in the same order that a normal loop would.\n\n```js\n// syntax\nObject.keys(obj)\n\n// Example\nconst chordIntervals = {\n  ",
-      "searchText": "object keys object.keys(obj) object.keys(obj) obj prototype oop class keys object an array of the key names iterated in the same order that a normal loop would",
+      "searchText": "object keys object.keys(obj) object.keys(obj) oop class keys prototype obj object an array of the key names iterated in the same order that a normal loop would",
       "tags": [
         "object",
         "prototype",
@@ -5626,7 +5627,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "object mixins a mixin allows other objects to use a collection of functions. let flymixin = function(obj) { obj prototype mixins oop class object flymixin",
+      "searchText": "object mixins a mixin allows other objects to use a collection of functions. let flymixin = function(obj) { oop class flymixin mixins prototype obj object",
       "tags": [
         "object",
         "prototype",
@@ -5653,7 +5654,7 @@
       "returns": "an array of the values for each key/property in the same order as that provided by a `for",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values): Returns an array of the values for each key/property in the same order as that provided by a `for...in` loop.\n\n```js\n// syntax\nObject.values(obj)\n\n// Examples:\nconst chordIntervals = {\n    ",
-      "searchText": "object values object.values(obj) object.values(obj) obj values prototype oop class object an array of the values for each key/property in the same order as that provided by a `for",
+      "searchText": "object values object.values(obj) object.values(obj) oop class prototype obj values object an array of the values for each key/property in the same order as that provided by a `for",
       "tags": [
         "object",
         "prototype",
@@ -5678,7 +5679,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes): the mechanism by which JavaScript objects inherit features from one another.\n\n```js\n// prototype chain properties:\n__defineGetter__\n__defineSetter__\n__lookupGetter__\n__lookupSetter__\n__proto__\nconstructor\nobj.hasOwnProperty\nobj.isPrototypeOf\nobj.propertyIsEnumerable\nobj.toLocaleString\nobj.toString\nobj.toValueOf\n```\n\n**constructor**: the constructor property is a reference to the constructor function that created the instance. There is one crucial side effect of manually setting the prototype to a new object. It erases the constructor property. \n*** To fix this, whenever a prototype is manually set to a new object, remember to define the constructor property\n\n```js\nBird.prototype = {\n  constructor: Bird,\n  numLegs: 2, ...\n```\n\nAll objects in JavaScript (with a few exceptions) have a prototype - Because a prototype is an object, a prototype can have its own prototype: the prototype of Bird.prototype is Object.prototype: Object.prototype.isPrototypeOf(Bird.prototype)\n\n```js\n\n```\n\n<div align=",
-      "searchText": "prototype // prototype chain properties:  class oop object prototype",
+      "searchText": "prototype // prototype chain properties:  oop class object prototype",
       "tags": [
         "object",
         "prototype",
@@ -5704,7 +5705,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "prototype version // amusement park food pass example:  prototype version oop class object",
+      "searchText": "prototype version // amusement park food pass example:  oop class prototype object version",
       "tags": [
         "object",
         "prototype",
@@ -5731,7 +5732,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "related topics these topics are from freecodecamp but i think they are not es6.  topics prototype oop class related object",
+      "searchText": "related topics these topics are from freecodecamp but i think they are not es6.  oop class prototype topics object related",
       "tags": [
         "object",
         "prototype",
@@ -5758,7 +5759,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "spread operator pulling key-values from another object:  prototype operator oop class spread object",
+      "searchText": "spread operator pulling key-values from another object:  oop class prototype spread object operator",
       "tags": [
         "object",
         "prototype",
@@ -5785,7 +5786,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "syntax tables object methods and related code:  syntax prototype oop class tables object",
+      "searchText": "syntax tables object methods and related code:  oop class prototype tables object syntax",
       "tags": [
         "object",
         "prototype",
@@ -5809,7 +5810,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "practical 2 consider having an es6 of other exampes file for promises, async/await, fetch, local storage, etc.  example practical real-world",
+      "searchText": "practical 2 consider having an es6 of other exampes file for promises, async/await, fetch, local storage, etc.  real-world practical example",
       "tags": [
         "practical",
         "real-world",
@@ -5834,7 +5835,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "accessibility link: https://reactjs.org/docs/accessibility.html  jsx hooks component react accessibility",
+      "searchText": "accessibility link: https://reactjs.org/docs/accessibility.html  accessibility component react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -5861,7 +5862,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "api reference link: https://reactjs.org/docs/react-api.html  api jsx hooks component reference react",
+      "searchText": "api reference link: https://reactjs.org/docs/react-api.html  component react reference hooks jsx api",
       "tags": [
         "react",
         "jsx",
@@ -5888,7 +5889,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "basic list component usually you would render lists inside a component.  basic jsx hooks component list react",
+      "searchText": "basic list component usually you would render lists inside a component.  list component react hooks jsx basic",
       "tags": [
         "react",
         "jsx",
@@ -5915,7 +5916,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "code splitting link: https://reactjs.org/docs/code-splitting.html  jsx code hooks component splitting react",
+      "searchText": "code splitting link: https://reactjs.org/docs/code-splitting.html  component code react hooks jsx splitting",
       "tags": [
         "react",
         "jsx",
@@ -5953,7 +5954,7 @@
       "returns": "React elements describing what should appear on the screen",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "components and props link: https://reactjs.org/docs/components-and-props.html you can also use an es6 class to define a component: (skip) an to jsx define hooks you can props component es6 class also react components and skip use react elements describing what should appear on the screen",
+      "searchText": "components and props link: https://reactjs.org/docs/components-and-props.html you can also use an es6 class to define a component: (skip) and class component you to react define components hooks also jsx can skip an use props es6 react elements describing what should appear on the screen",
       "tags": [
         "react",
         "jsx",
@@ -5981,7 +5982,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [read later]  composition jsx hooks component vs react inheritance",
+      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [read later]  component composition inheritance react hooks vs jsx",
       "tags": [
         "react",
         "jsx",
@@ -6008,7 +6009,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "conditional rendering link: https://reactjs.org/docs/conditional-rendering.html  rendering jsx hooks component react conditional",
+      "searchText": "conditional rendering link: https://reactjs.org/docs/conditional-rendering.html  conditional component react rendering hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6034,7 +6035,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "context link: https://reactjs.org/docs/context.html  jsx hooks component react context",
+      "searchText": "context link: https://reactjs.org/docs/context.html  component react hooks context jsx",
       "tags": [
         "react",
         "jsx",
@@ -6061,7 +6062,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "controlled components form elements such as input, textarea, and select typically maintain their own state and update it based on user input.  jsx hooks controlled component react components",
+      "searchText": "controlled components form elements such as input, textarea, and select typically maintain their own state and update it based on user input.  component react controlled components hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6088,7 +6089,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "error boundaries link: https://reactjs.org/docs/error-boundaries.html  jsx hooks error component boundaries react",
+      "searchText": "error boundaries link: https://reactjs.org/docs/error-boundaries.html  component react hooks error jsx boundaries",
       "tags": [
         "react",
         "jsx",
@@ -6115,7 +6116,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "extracting components split components into smaller components:  extracting jsx hooks component react components",
+      "searchText": "extracting components split components into smaller components:  extracting component react components hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6144,7 +6145,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "extracting components with keys keys only make sense in the context of the surrounding array.  extracting jsx hooks with component react components keys",
+      "searchText": "extracting components with keys keys only make sense in the context of the surrounding array.  extracting component keys react with components hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6170,7 +6171,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "forms link: https://reactjs.org/docs/forms.html  jsx hooks component react forms",
+      "searchText": "forms link: https://reactjs.org/docs/forms.html  component react hooks jsx forms",
       "tags": [
         "react",
         "jsx",
@@ -6197,7 +6198,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "forwarding refs link: https://reactjs.org/docs/forwarding-refs.html  jsx hooks component forwarding refs react",
+      "searchText": "forwarding refs link: https://reactjs.org/docs/forwarding-refs.html  component refs react hooks jsx forwarding",
       "tags": [
         "react",
         "jsx",
@@ -6223,7 +6224,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  jsx hooks component fragments react",
+      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  component fragments react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6250,7 +6251,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "handling events link: https://reactjs.org/docs/handling-events.html  jsx handling events hooks component react",
+      "searchText": "handling events link: https://reactjs.org/docs/handling-events.html  component react hooks jsx events handling",
       "tags": [
         "react",
         "jsx",
@@ -6278,7 +6279,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "handling multiple inputs when you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of event.target.name.  multiple jsx handling hooks component inputs react",
+      "searchText": "handling multiple inputs when you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of event.target.name.  component multiple react inputs hooks jsx handling",
       "tags": [
         "react",
         "jsx",
@@ -6306,7 +6307,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  order jsx hooks higher component react components",
+      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  component higher react components hooks jsx order",
       "tags": [
         "react",
         "jsx",
@@ -6335,7 +6336,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "javascript expressions as props you can pass any javascript expression as a prop, by surrounding it with {}.  as expressions jsx hooks props component javascript react",
+      "searchText": "javascript expressions as props you can pass any javascript expression as a prop, by surrounding it with {}.  component react as expressions hooks jsx javascript props",
       "tags": [
         "react",
         "jsx",
@@ -6360,7 +6361,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "jsx introducing jsx: https://reactjs.org/docs/introducing-jsx.html  jsx hooks component react",
+      "searchText": "jsx introducing jsx: https://reactjs.org/docs/introducing-jsx.html  hooks jsx react component",
       "tags": [
         "react",
         "jsx",
@@ -6387,7 +6388,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "jsx in depth link: https://reactjs.org/docs/jsx-in-depth.html  jsx depth hooks component in react",
+      "searchText": "jsx in depth link: https://reactjs.org/docs/jsx-in-depth.html  component react hooks jsx depth in",
       "tags": [
         "react",
         "jsx",
@@ -6413,7 +6414,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "keys keys help react identify which items have changed, are added, or are removed.  jsx hooks component react keys",
+      "searchText": "keys keys help react identify which items have changed, are added, or are removed.  component keys react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6441,7 +6442,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lifting state up link: https://reactjs.org/docs/lifting-state-up.html  jsx hooks component up state react lifting",
+      "searchText": "lifting state up link: https://reactjs.org/docs/lifting-state-up.html  component react lifting hooks jsx up state",
       "tags": [
         "react",
         "jsx",
@@ -6469,7 +6470,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lists and keys link: https://reactjs.org/docs/lists-and-keys.html  jsx hooks component react lists keys and",
+      "searchText": "lists and keys link: https://reactjs.org/docs/lists-and-keys.html  and component keys react hooks jsx lists",
       "tags": [
         "react",
         "jsx",
@@ -6498,7 +6499,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "props are read-only a component must never modify its own props.  only jsx hooks are props component read react",
+      "searchText": "props are read-only a component must never modify its own props.  component are react only hooks jsx read props",
       "tags": [
         "react",
         "jsx",
@@ -6525,7 +6526,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "props in jsx there are several different ways to specify props in jsx.  jsx hooks component props in react",
+      "searchText": "props in jsx there are several different ways to specify props in jsx.  component react hooks jsx props in",
       "tags": [
         "react",
         "jsx",
@@ -6550,7 +6551,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "react component link: https://reactjs.org/docs/react-component.html  jsx hooks component react",
+      "searchText": "react component link: https://reactjs.org/docs/react-component.html  hooks jsx react component",
       "tags": [
         "react",
         "jsx",
@@ -6577,7 +6578,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "render props link: https://reactjs.org/docs/render-props.html  jsx render hooks component props react",
+      "searchText": "render props link: https://reactjs.org/docs/render-props.html  component react hooks jsx props render",
       "tags": [
         "react",
         "jsx",
@@ -6604,7 +6605,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "rendering elements link: https://reactjs.org/docs/rendering-elements.html  rendering jsx elements hooks component react",
+      "searchText": "rendering elements link: https://reactjs.org/docs/rendering-elements.html  component react rendering hooks elements jsx",
       "tags": [
         "react",
         "jsx",
@@ -6633,7 +6634,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "specifying the react element type the first part of a jsx tag determines the type of the react element.  the type jsx hooks component react element specifying",
+      "searchText": "specifying the react element type the first part of a jsx tag determines the type of the react element.  element the component specifying react hooks type jsx",
       "tags": [
         "react",
         "jsx",
@@ -6660,7 +6661,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "spread attributes stopped here https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  attributes jsx hooks component react spread",
+      "searchText": "spread attributes stopped here https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  component attributes react spread hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6688,7 +6689,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "state and lifecycle link: https://reactjs.org/docs/state-and-lifecycle.html  jsx hooks component lifecycle state react and",
+      "searchText": "state and lifecycle link: https://reactjs.org/docs/state-and-lifecycle.html  and component react hooks jsx lifecycle state",
       "tags": [
         "react",
         "jsx",
@@ -6715,7 +6716,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "thinking in react link: https://reactjs.org/docs/thinking-in-react.html  thinking jsx hooks component in react",
+      "searchText": "thinking in react link: https://reactjs.org/docs/thinking-in-react.html  component react hooks jsx thinking in",
       "tags": [
         "react",
         "jsx",
@@ -6743,7 +6744,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "typechecking with proptypes link: https://reactjs.org/docs/typechecking-with-proptypes.html  jsx proptypes hooks with component react typechecking",
+      "searchText": "typechecking with proptypes link: https://reactjs.org/docs/typechecking-with-proptypes.html  component proptypes react with hooks jsx typechecking",
       "tags": [
         "react",
         "jsx",
@@ -6774,7 +6775,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "user-defined components must be capitalized when an element type starts with a lowercase letter, it refers to a built-in component like div or span and results in a string 'div' or 'span' passed to react.createelement.  user be capitalized jsx hooks defined component must react components",
+      "searchText": "user-defined components must be capitalized when an element type starts with a lowercase letter, it refers to a built-in component like div or span and results in a string 'div' or 'span' passed to react.createelement.  be component react capitalized components hooks must user jsx defined",
       "tags": [
         "react",
         "jsx",
@@ -6800,7 +6801,7 @@
       "returns": "'T'",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "anchors anchors: the caret symbol (^ or \\a) both inside and outside of character classes, and the dollar sign ($ or \\z).  anchors pattern regex string regexp 't'",
+      "searchText": "anchors anchors: the caret symbol (^ or \\a) both inside and outside of character classes, and the dollar sign ($ or \\z).  string pattern anchors regex regexp 't'",
       "tags": [
         "regex",
         "regexp",
@@ -6826,7 +6827,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "basics use forward slashes (/) to enclose your regular expression (regex):  pattern regex basics string regexp",
+      "searchText": "basics use forward slashes (/) to enclose your regular expression (regex):  string pattern basics regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -6853,7 +6854,7 @@
       "returns": "true",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "capture groups sometimes we want to check for groups of characters using a regular expression and to achieve that we use parentheses ().  pattern regex string capture groups regexp true",
+      "searchText": "capture groups sometimes we want to check for groups of characters using a regular expression and to achieve that we use parentheses ().  string pattern groups capture regex regexp true",
       "tags": [
         "regex",
         "regexp",
@@ -6880,7 +6881,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "character classes character classes/sets with [], e.g.  pattern regex character string regexp classes",
+      "searchText": "character classes character classes/sets with [], e.g.  character string pattern regex classes regexp",
       "tags": [
         "regex",
         "regexp",
@@ -6907,7 +6908,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "escaping symbols use the backslash \\ to escape special characters that are in your string  pattern regex escaping string symbols regexp",
+      "searchText": "escaping symbols use the backslash \\ to escape special characters that are in your string  string pattern symbols escaping regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -6933,7 +6934,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lookaheads a positive lookahead is used as (?=...) where the ... (?=...) lookaheads pattern regex string regexp",
+      "searchText": "lookaheads a positive lookahead is used as (?=...) where the ... (?=...) lookaheads string pattern regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -6961,7 +6962,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) pattern regex no string regexp lookbehinds yes",
+      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) lookbehinds string pattern no yes regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -6989,7 +6990,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "match and replace reorder and reformat a pet object from species, last name, first name:  pattern regex match string regexp and replace",
+      "searchText": "match and replace reorder and reformat a pet object from species, last name, first name:  and string pattern replace regex regexp match",
       "tags": [
         "regex",
         "regexp",
@@ -7017,7 +7018,7 @@
       "returns": "false",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "matches with asterisk match characters that occur zero or more times with :  matches pattern regex with string asterisk regexp false",
+      "searchText": "matches with asterisk match characters that occur zero or more times with :  string pattern with asterisk regexp regex matches false",
       "tags": [
         "regex",
         "regexp",
@@ -7045,7 +7046,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "named groups /(?name...)/ /(?<name>...)/ pattern regex name named string groups regexp",
+      "searchText": "named groups /(?name...)/ /(?<name>...)/ named string pattern name groups regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -7072,7 +7073,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "practical examples 1.  pattern regex string examples practical regexp",
+      "searchText": "practical examples 1.  practical string pattern examples regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -7098,7 +7099,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "shorthand any digit and any non-digit with \\d and \\d:  pattern regex string regexp shorthand",
+      "searchText": "shorthand any digit and any non-digit with \\d and \\d:  string pattern shorthand regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -7126,7 +7127,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "specific match count match a spcific number of times with {#}:  specific pattern regex count string regexp match",
+      "searchText": "specific match count match a spcific number of times with {#}:  string count pattern specific regex regexp match",
       "tags": [
         "regex",
         "regexp",
@@ -7154,7 +7155,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "user name validation create a regular expression here that does the following:  user pattern regex name validation string regexp",
+      "searchText": "user name validation create a regular expression here that does the following:  validation string pattern name user regex regexp",
       "tags": [
         "regex",
         "regexp",
@@ -7184,7 +7185,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "wildcard and quantifiers period is the wildcard .. /.un/gi quantifiers un pattern regex gi wildcard string regexp and",
+      "searchText": "wildcard and quantifiers period is the wildcard .. /.un/gi wildcard and string pattern gi un regex quantifiers regexp",
       "tags": [
         "regex",
         "regexp",
@@ -7209,7 +7210,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "array string methods these are methods that can be used on both strings and arrays.  string array methods text",
+      "searchText": "array string methods these are methods that can be used on both strings and arrays.  array methods text string",
       "tags": [
         "string",
         "text"
@@ -7232,7 +7233,7 @@
       "returns": "a new string** consisting of the single UTF-16 code unit located at the specified offset into the string",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt",
-      "searchText": "charat insreturns a new string/ins consisting of the single utf-16 code unit located at the specified offset into the string. charat(index); string charat index text a new string** consisting of the single utf-16 code unit located at the specified offset into the string",
+      "searchText": "charat insreturns a new string/ins consisting of the single utf-16 code unit located at the specified offset into the string. charat(index); index charat text string a new string** consisting of the single utf-16 code unit located at the specified offset into the string",
       "tags": [
         "string",
         "text"
@@ -7255,7 +7256,7 @@
       "returns": "an integer** between `0` and `65535` representing the UTF-16 code unit at the given index",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt",
-      "searchText": "charcodeat insreturns an integer/ins between 0 and 65535 representing the utf-16 code unit at the given index. charcodeat(index); string charcodeat index text an integer** between `0` and `65535` representing the utf-16 code unit at the given index",
+      "searchText": "charcodeat insreturns an integer/ins between 0 and 65535 representing the utf-16 code unit at the given index. charcodeat(index); index charcodeat text string an integer** between `0` and `65535` representing the utf-16 code unit at the given index",
       "tags": [
         "string",
         "text"
@@ -7284,7 +7285,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter) since there is a lot to the function.\n\nExample:\n\n```js\nfunction replacer(match, p1, p2, p3, offset, string) {\n  // p1 is nondigits, p2 digits, and p3 non-alphanumerics\n  return [p1, p2, p3].join(",
-      "searchText": "common methods common methods with no arguments/parameters: function replacer(match, p1, p2, p3, offset, string) { text p1 p3 offset methods string replacer common p2 match",
+      "searchText": "common methods common methods with no arguments/parameters: function replacer(match, p1, p2, p3, offset, string) { replacer p3 offset string p1 text p2 methods common match",
       "tags": [
         "string",
         "text"
@@ -7307,7 +7308,7 @@
       "returns": "a copy of the joined arrays",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat",
-      "searchText": "concat joins two or more arrays and insreturns a copy of the joined arrays/ins. concat(str1) string concat str1 text a copy of the joined arrays",
+      "searchText": "concat joins two or more arrays and insreturns a copy of the joined arrays/ins. concat(str1) str1 concat text string a copy of the joined arrays",
       "tags": [
         "string",
         "text"
@@ -7330,7 +7331,7 @@
       "returns": "`true` or `false`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith",
-      "searchText": "endswith determines whether a string ends with the characters of a specified string. endswith(searchstring); string searchstring endswith text `true` or `false`",
+      "searchText": "endswith determines whether a string ends with the characters of a specified string. endswith(searchstring); searchstring endswith text string `true` or `false`",
       "tags": [
         "string",
         "text"
@@ -7353,7 +7354,7 @@
       "returns": "a string** created from the specified sequence of UTF-16 code units",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode",
-      "searchText": "fromcharcode insreturns a string/ins created from the specified sequence of utf-16 code units. string.fromcharcode(num1) fromcharcode num1 string text a string** created from the specified sequence of utf-16 code units",
+      "searchText": "fromcharcode insreturns a string/ins created from the specified sequence of utf-16 code units. string.fromcharcode(num1) fromcharcode num1 text string a string** created from the specified sequence of utf-16 code units",
       "tags": [
         "string",
         "text"
@@ -7376,7 +7377,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes",
-      "searchText": "includes performs a case-sensitive search to determine whether one string may be found within another string, returning true or false as appropriate includes(searchstring); string searchstring includes text",
+      "searchText": "includes performs a case-sensitive search to determine whether one string may be found within another string, returning true or false as appropriate includes(searchstring); searchstring text includes string",
       "tags": [
         "string",
         "text"
@@ -7399,7 +7400,7 @@
       "returns": "the index of the first occurrence of the specified substring",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf",
-      "searchText": "indexof given one argument: a substring to search for, searches the entire calling string, and returns the index of the first occurrence of the specified substring. indexof(searchstring); string text searchstring indexof the index of the first occurrence of the specified substring",
+      "searchText": "indexof given one argument: a substring to search for, searches the entire calling string, and returns the index of the first occurrence of the specified substring. indexof(searchstring); searchstring indexof text string the index of the first occurrence of the specified substring",
       "tags": [
         "string",
         "text"
@@ -7422,7 +7423,7 @@
       "returns": "the last index** at which a given element can be found in the array, or `-1` if it is not present",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf",
-      "searchText": "lastindexof insreturns the last index/ins at which a given element can be found in the array, or -1 if it is not present. lastindexof(searchstring); string searchstring lastindexof text the last index** at which a given element can be found in the array, or `-1` if it is not present",
+      "searchText": "lastindexof insreturns the last index/ins at which a given element can be found in the array, or -1 if it is not present. lastindexof(searchstring); lastindexof searchstring text string the last index** at which a given element can be found in the array, or `-1` if it is not present",
       "tags": [
         "string",
         "text"
@@ -7445,7 +7446,7 @@
       "returns": "an array of the match(es)** or **`null`** if no matches are found",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match",
-      "searchText": "match used to match regular expression against a string. match(regexp); string text regexp match an array of the match(es)** or **`null`** if no matches are found",
+      "searchText": "match used to match regular expression against a string. match(regexp); regexp text string match an array of the match(es)** or **`null`** if no matches are found",
       "tags": [
         "string",
         "text"
@@ -7467,7 +7468,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous let typeoftest;  string miscellaneous text",
+      "searchText": "miscellaneous let typeoftest;  miscellaneous text string",
       "tags": [
         "string",
         "text"
@@ -7490,7 +7491,7 @@
       "returns": "a new string** which contains the specified number of copies of the string on which it was called, concatenated to",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat",
-      "searchText": "repeat constructs and insreturns a new string/ins which contains the specified number of copies of the string on which it was called, concatenated together. repeat(count); string repeat count text a new string** which contains the specified number of copies of the string on which it was called, concatenated to",
+      "searchText": "repeat constructs and insreturns a new string/ins which contains the specified number of copies of the string on which it was called, concatenated together. repeat(count); repeat count text string a new string** which contains the specified number of copies of the string on which it was called, concatenated to",
       "tags": [
         "string",
         "text"
@@ -7514,7 +7515,7 @@
       "returns": "a new string** with some or all matches of a `pattern` replaced by a `replacement`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace",
-      "searchText": "replace insreturns a new string/ins with some or all matches of a pattern replaced by a replacement. replace(regexp, newsubstr); text string regexp newsubstr replace a new string** with some or all matches of a `pattern` replaced by a `replacement`",
+      "searchText": "replace insreturns a new string/ins with some or all matches of a pattern replaced by a replacement. replace(regexp, newsubstr); string text newsubstr replace regexp a new string** with some or all matches of a `pattern` replaced by a `replacement`",
       "tags": [
         "string",
         "text"
@@ -7537,7 +7538,7 @@
       "returns": "a new String consisting of the single UTF-16 code unit located at the specified offset",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/at): takes an integer value and returns a new String consisting of the single UTF-16 code unit located at the specified offset. This method allows for positive and negative integers. Negative integers count back from the last string character.\n- [codePointAt()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt): returns a non-negative integer that is the Unicode code point value at the given position.\n- [fromCodePoint()](): returns a string created by using the specified sequence of code points.\n- [localeCompare()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare): returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order.\n- [matchAll()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll): returns an iterator of all results matching a string against a regular expression, including capturing groups.\n- [normalize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize): returns the Unicode Normalization Form of the string.\n- [replaceAll()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll): returns a new string with all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.\n- [search()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search): executes a search for a match between a regular expression and this String object.\n- [startsWith()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith): determines whether a string begins with the characters of a specified string, returning true or false as appropriate.\n- [toLocaleLowerCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase): returns the calling string value converted to lower case, according to any locale-specific case mappings.\n- [toLocaleUpperCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase): returns the calling string value converted to upper case, according to any locale-specific case mappings.\n- [trimEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd): removes whitespace from the end of a string. trimRight() is an alias of this method.\n- [trimStart()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart): removes whitespace from the beginning of a string. trimLeft() is an alias of this method.\n- [valueOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf): returns the primitive value of a String object.\n\n**These two are worth looking into**:\n\n- [padEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd): pads the current string with a given string (repeated, if needed) so that the resulting string reaches a given length. The padding is applied from the end of the current string.\n- [padStart()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart): pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of the current string.\n\n<div align=",
-      "searchText": "skipped methods i skipped these methods:  string skipped methods text a new string consisting of the single utf-16 code unit located at the specified offset",
+      "searchText": "skipped methods i skipped these methods:  methods skipped text string a new string consisting of the single utf-16 code unit located at the specified offset",
       "tags": [
         "string",
         "text"
@@ -7559,7 +7560,7 @@
       "returns": "that array",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split",
-      "searchText": "split divides a string into substrings, puts these substrings into an array, and insreturns that array/ins. split(); string split text that array",
+      "searchText": "split divides a string into substrings, puts these substrings into an array, and insreturns that array/ins. split(); split text string that array",
       "tags": [
         "string",
         "text"
@@ -7589,7 +7590,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "string methods str.tolowercase(), and str.touppercase() are so basic that i am not providing examples. let badstring = \"   oops, caps lock on. need to fix.   \"; oops to text badstring on caps methods string lock fix need",
+      "searchText": "string methods str.tolowercase(), and str.touppercase() are so basic that i am not providing examples. let badstring = \"   oops, caps lock on. need to fix.   \"; string lock need caps badstring text fix on methods oops to",
       "tags": [
         "string",
         "text"
@@ -7611,7 +7612,7 @@
       "returns": "it as a new string**, _without_ modifying the original string",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice",
-      "searchText": "string slice extracts a section of a string and insreturns it as a new string/ins, without modifying the original string. slice(); string slice text it as a new string**, _without_ modifying the original string",
+      "searchText": "string slice extracts a section of a string and insreturns it as a new string/ins, without modifying the original string. slice(); slice text string it as a new string**, _without_ modifying the original string",
       "tags": [
         "string",
         "text"
@@ -7634,7 +7635,7 @@
       "returns": "the part of the string** between the start index and end index (non-inclusive), or to the end of the string if 2nd",
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring",
-      "searchText": "substring insreturns the part of the string/ins between the start index and end index (non-inclusive), or to the end of the string if 2nd parameter is omitted. substring(indexstart); string indexstart substring text the part of the string** between the start index and end index (non-inclusive), or to the end of the string if 2nd",
+      "searchText": "substring insreturns the part of the string/ins between the start index and end index (non-inclusive), or to the end of the string if 2nd parameter is omitted. substring(indexstart); indexstart substring text string the part of the string** between the start index and end index (non-inclusive), or to the end of the string if 2nd",
       "tags": [
         "string",
         "text"
@@ -7657,7 +7658,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "syntax tables tables by the number of arguments and whether or not the method mutates the original source.  string syntax text tables",
+      "searchText": "syntax tables tables by the number of arguments and whether or not the method mutates the original source.  text syntax tables string",
       "tags": [
         "string",
         "text"
@@ -7680,7 +7681,7 @@
       "returns": "`true` or `false`",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test",
-      "searchText": "test executes a search for a match between a regular expression and a specified string. test(str); string str test text `true` or `false`",
+      "searchText": "test executes a search for a match between a regular expression and a specified string. test(str); str test text string `true` or `false`",
       "tags": [
         "string",
         "text"
@@ -7703,7 +7704,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)).\n\nMDN syntax and examples:\n\n```js\n// num.toString:\nnum.toString()\nnum.toString(radix)\n// all other\ndate.toString()\nobj.toString()\nbool.toString()\narr.toString()\nfunction.toString()\n\n\n// array to stringv(?)\nfunction turnToString(val){\n  return val.toString();\n}\n// let testObj = 108 // ",
-      "searchText": "tostring tostring(): every javascript object has a tostring() method. num.tostring() string tostring num text",
+      "searchText": "tostring tostring(): every javascript object has a tostring() method. num.tostring() num text string tostring",
       "tags": [
         "string",
         "text"
@@ -7726,7 +7727,7 @@
       "returns": "a new string, without modifying the original string",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim",
-      "searchText": "trim trim(): removes whitespace from both ends of a string and returns a new string, without modifying the original string. str.trim(); string str trim text a new string, without modifying the original string",
+      "searchText": "trim trim(): removes whitespace from both ends of a string and returns a new string, without modifying the original string. str.trim(); str text trim string a new string, without modifying the original string",
       "tags": [
         "string",
         "text"

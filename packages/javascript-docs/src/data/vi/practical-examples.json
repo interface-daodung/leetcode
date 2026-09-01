@@ -1,0 +1,47 @@
+{
+  "sourceFile": "practical-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/practical-examples.md",
+  "category": "practical",
+  "title": "Ví dụ thực tế",
+  "description": "CÔNG VIỆC ĐANG TIẾN HÀNH - ĐÂY SẼ LÀ FILE CUỐI CÙNG TÔI CẬP NHẬT!",
+  "tags": [
+    "practical",
+    "real-world",
+    "example"
+  ],
+  "totalSections": 1,
+  "sections": [
+    {
+      "id": "practical-practical-2",
+      "title": "Practical 2",
+      "headingLevel": 2,
+      "anchor": "#practical-2",
+      "summary": "Cân nhắc tạo một file ES6 hoặc các ví dụ khác cho promises, async/await, fetch, local storage, v.v.",
+      "keywords": [
+        "example",
+        "new",
+        "practical",
+        "promise",
+        "real-world",
+        "reject",
+        "resolve"
+      ],
+      "syntax": "var p = new Promise(function(resolve, reject) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "var p = new Promise(function(resolve, reject) {\n\t// Do an async task async task and then...\n\tif(good_condition) {\n\t\tresolve('Success!');\n\t}\n\telse {\n\t\treject('Failure!');\n\t}\n});\n\np.then(function() {\n\t/* do something with the result */\n}).catch(function() {\n\t/* error */\n})\n\n\n// Complete example\nvar promiseCount = 0;\n\nfunction testPromise() {\n  var thisPromiseCount = ++promiseCount;\n  console.log(thisPromiseCount + ': Started - Sync code started');\n\n  var p1 = new Promise(function(resolve, reject) {\n    console.log(thisPromiseCount + ': Promise started - Async code started');\n    // This is only an example to create asynchronism\n    window.setTimeout(\n      function() {\n        resolve(thisPromiseCount);\n      }, Math.random() * 2000 + 1000);\n  });\n\n  p1.then(function(val) {\n    console.log(val + ': Promise fulfilled - Async code terminated');\n  }).catch(function(reason) {\n    console.log('Handle rejected promise ('+reason+') here.');\n  });\n\n  console.log(thisPromiseCount + ': Promise made - Sync code terminated');\n}\n\ntestPromise();\ntestPromise();\ntestPromise();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Cân nhắc tạo một file ES6 hoặc các ví dụ khác cho promises, async/await, fetch, local storage, v.v.\n\nFCC 28. tạo một javascript promise, 29. hoàn thành một promise với resolve & reject, 30. xử lý một promise đã hoàn thành với then, 31. xử lý một promise bị từ chối với catch:\n\n```js\nvar p = new Promise(function(resolve, reject) {\n\t// Do an async task async task and then...\n\tif(good_condition) {\n\t\tresolve('Success!');\n\t}\n\telse {\n\t\treject('Failure!');\n\t}\n});\n\np.then(function() {\n\t/* do something with the result */\n}).catch(function() {\n\t/* error */\n})\n\n\n// Complete example\nvar promiseCount = 0;\n\nfunction testPromise() {\n  var thisPromiseCount = ++promiseCount;\n  console.log(thisPromiseCount + ': Started - Sync code started');\n\n  var p1 = new Promise(function(resolve, reject) {\n    console.log(thisPromiseCount + ': Promise started - Async code started');\n    // This is only an example to create asynchronism\n    window.setTimeout(\n      function() {\n        resolve(thisPromiseCount);\n      }, Math.random() * 2000 + 1000);\n  });\n\n  p1.then(function(val) {\n    console.log(val + ': Promise fulfilled - Async code terminated');\n  }).catch(function(reason) {\n    console.log('Handle rejected promise ('+reason+') here.');\n  });\n\n  console.log(thisPromiseCount + ': Promise made - Sync code terminated');\n}\n\ntestPromise();\ntestPromise();\ntestPromise();\n```",
+      "searchText": "practical 2 cân nhắc tạo một file es6 hoặc các ví dụ khác cho promises, async/await, fetch, local storage, v.v. var p = new promise(function(resolve, reject) { reject real-world new resolve practical example promise",
+      "sourceFile": "practical-examples.md",
+      "category": "practical"
+    }
+  ]
+}

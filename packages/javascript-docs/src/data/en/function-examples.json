@@ -33,7 +33,7 @@
       "tables": [],
       "related": [],
       "content": "Look into the function properties: `.length`, and maybe `.name`. Also check out the function methods: `apply()`, `bind()`, `call()`, and `toString()`.",
-      "searchText": "general look into the function properties: .length, and maybe .name.  higher-order closure general function callback",
+      "searchText": "general look into the function properties: .length, and maybe .name.  higher-order closure callback function general",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -58,7 +58,7 @@
       "tables": [],
       "related": [],
       "content": "<dl>\n  <dt>Callback function</dt>\n  <dd>is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. An example is the function in `addEventListener()`.</dd>\n</dl>\n<dl>\n  <dt>First class functions</dt>\n  <dd>Functions that can be assigned to a variable, passed into another function, or returned from another function just like any other normal value, are called first class functions. In JavaScript, all functions are first class functions.</dd>\n</dl>\n<dl>\n  <dt>Higher order functions</dt>\n  <dd>Functions that take a function as an argument, or return a function as a return value.</dd>\n</dl>\n<dl>\n  <dt>Lambda functions</dt>\n  <dd>When functions are passed in to or returned from another function, then those functions which were passed in or returned can be called a lambda. Lambda expression is an anonymous function that provides a very concise and functional syntax which is further used for writing anonymous methods...a simple, short, throwaway function which is designed to be created inline in code. They're also known as lambda expressions, anonymous functions, lambda abstractions, lambda form, or function literals</dd>\n</dl>\n<dl>\n  <dt>Arity</dt>\n  <dd>The arity of a function is the number of arguments it requires.</dd>\n</dl>\n<dl>\n  <dt>Currying</dt>\n  <dd>Currying a function means to convert a function of N arity into N functions of arity 1. In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.</dd>\n</dl>\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "definitions definitions  higher-order closure definitions function callback a function as a return value",
+      "searchText": "definitions definitions  higher-order closure callback definitions function a function as a return value",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -88,7 +88,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// typeof:\nlet typeOfTest;\ntypeOfTest = function() {\n  return \"Hello\";\n}\nconsole.log(typeof typeOfTest) // function\n\n\n// no parameter\nfunction lowerCase() {\n  if() {\n    // do something\n    // return something\n  }\n}\n\n// with parameter\nfunction square(number) {\n  return number * number;\n}\n\nfunction lowerCase(str) {\n  return str.toLowerCase();\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "syntax // typeof:  syntax higher-order closure function callback",
+      "searchText": "syntax // typeof:  higher-order closure callback syntax function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -120,7 +120,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// function declaration:\nfunction myFunction() {\n  // code here\n}\n\n// function expression:\nlet myFunction = function() {\n  code here\n}\n\n// Arrow function expression:\nlet myFx = () => {\n  // code here\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "declaration vs expression // function declaration:  declaration higher-order closure function expression callback vs",
+      "searchText": "declaration vs expression // function declaration:  higher-order closure callback declaration vs function expression",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -157,7 +157,7 @@
       "tables": [],
       "related": [],
       "content": "With rest parameter and spread operator in argument list:\n\n```js\nlet someVar = [some other array]\nlet mainArray = [1, 2, ...someVar, 10, 11]\n\nfunction someFx(...arr) {\n  code here\n}\nsomeFx(mainArray);\n```\n\n<br />\n\nuse the rest parameter with function parameters:\n\n```js\nfunction howMany(...args) {\n  return \"You have passed \" + args.length + \" arguments.\";\n}\nconsole.log(howMany(0, 1, 2, -1, -2));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "rest and spread syntax with rest parameter and spread operator in argument list:  syntax higher-order closure rest function callback spread and",
+      "searchText": "rest and spread syntax with rest parameter and spread operator in argument list:  and higher-order closure callback spread rest syntax function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -196,7 +196,7 @@
       "tables": [],
       "related": [],
       "content": "set default parameters for your Fx’s:\n\n```js\nconst greeting = (name = \"Anonymous\") => \"Hello \" + name;\n```\n\n<br />\n\nDefault parameters 2:\n\n```js\nfunction greet(first = \"John\", last = \"Doe\") {\n  console.log(`Hello ${first} ${last}`);\n}\ngreet(\"Jim\", \"Kernix\");\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "default parameters set default parameters for your fx’s: const greeting = (name = \"anonymous\") => \"hello \" + name; higher-order closure greeting hello function name parameters anonymous callback default",
+      "searchText": "default parameters set default parameters for your fx’s: const greeting = (name = \"anonymous\") => \"hello \" + name; higher-order greeting closure name callback parameters anonymous hello default function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -238,7 +238,7 @@
       "tables": [],
       "related": [],
       "content": "MDN: `arguments` is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.\n\nfreeCodeCamp: The arguments object is an object that stores all of the values passed to the function. The arguments object takes on the structure of a JSON Object.\n\n```js\nconsole.log(typeof arguments); // 'object'\nconsole.log(typeof arguments[0]); // returns the type of the first argument\n\n// if a function is passed 3 arguments, you can access them as follows\narguments[0]; // first argument\narguments[1]; // second argument\narguments[2]; // third argument\n\nfunction func1(a, b, c) {\n  console.log(arguments[0]); // expected output: 1\n  console.log(arguments[1]); // expected output: 2\n  console.log(arguments[2]); // expected output: 3\n}\nfunc1(1, 2, 3);\n\n// Each argument can also be set or reassigned:\narguments[1] = \"new value\";\n\n// freeCodeCamp:\nfunction viewArgs() {\n  return arguments;\n}\nconsole.log(viewArgs([3, 5, 1, 2, 2], 2, 3, 5));\n// { '0': [ 3, 5, 1, 2, 2 ], '1': 2, '2': 3, '3': 5 }\nconsole.log(viewArgs([2, 3, 2, 3, 2, 3]));\n// { '0': [ 2, 3, 2, 3, 2, 3 ] }\nconsole.log(viewArgs(3, 2, 1, \"life the universe and all\"));\n// { '0': 3, '1': 2, '2': 1, '3': 'life the universe and all' }\nconsole.log(viewArgs(\"Douglas\", \"Adams\"));\n// { '0': 'Douglas', '1': 'Adams' }\n```\n\nThe arguments object is not an Array. It is similar, but lacks all Array properties except length. As you can do with any Array-like object, you can use ES2015's `Array.from()` method or `spread syntax` to convert arguments to a real Array:\n\n```js\nlet args = Array.from(arguments);\n// or\nlet args = [...arguments];\n```\n\nThe arguments object is useful for functions called with more arguments than they are formally declared to accept. This technique is useful for functions that can be passed a variable number of arguments, such as `Math.min()`.\n\nIf you were to pass 3 arguments to a function, say `storeNames()`, those 3 arguments would be stored inside an object called **arguments** and it would look like this when we pass the arguments storeNames(\"Springfield\", \"Clayton\", \"Smithville\") to our function. When you execute that function with n arguments, 3 in this case, it will return the object to us and it will look like an array:\n\n```js\nfunction storeNames() {\n  return arguments;\n}\n// [\"Springfield\", \"Clayton\", \"Smithville\"]\narguments.length; // 3\n```\n\nThe arguments object can be used in conjunction with _rest_, _default_, and _destructured parameters_.",
-      "searchText": "arguments object mdn: arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function. console.log(typeof arguments); // 'object' higher-order closure function arguments callback log typeof object console the type of the first argument",
+      "searchText": "arguments object mdn: arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function. console.log(typeof arguments); // 'object' arguments higher-order log closure typeof console callback object function the type of the first argument",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -276,7 +276,7 @@
       "tables": [],
       "related": [],
       "content": "You should not slice on arguments because it prevents optimizations in JavaScript engines. Instead, try constructing a new array by iterating through the arguments object - try a `for loop`:\n\n```js\nlet args = []; // Empty array, at first.\nfor (let i = 0; i < arguments.length; i++) {\n  args.push(arguments[i]);\n} // Now 'args' is an array that holds your arguments.\n\n// also try the rest parameter or Array.from() method:\nfunction func(...args) {\n  console.log(args); // or\n  console.log(Array.from(arguments));\n}\nfunction func() {\n  console.log(Array.from(arguments)); // or\n  return Array.from(arguments).sort((a, b) => a - b);\n}\nfunc(1, 2, 3); // [ 1, 2, 3 ]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "treat it as an array you should not slice on arguments because it prevents optimizations in javascript engines. let args = []; // empty array, at first. first an as higher-order closure at args treat function callback it empty array",
+      "searchText": "treat it as an array you should not slice on arguments because it prevents optimizations in javascript engines. let args = []; // empty array, at first. higher-order args treat closure first callback function as it at empty array an",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -307,7 +307,7 @@
       "tables": [],
       "related": [],
       "content": "returning boolean values from functions and `typeof`:\n\n```js\nfunction checkEqual(a, b) {\n  return a === b;\n}\n\n// or\n\nfunction boolReturn(test) {\n  // return typeof test === \"number\";\n  // return typeof test === \"string\";\n  return typeof test === \"object\";\n  // return typeof test === \"boolean\";\n}\nconsole.log(boolReturn([1, 2, 3]));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "miscellaneous returning boolean values from functions and typeof: function checkequal(a, b) { higher-order closure function callback checkequal miscellaneous",
+      "searchText": "miscellaneous returning boolean values from functions and typeof: function checkequal(a, b) { higher-order miscellaneous closure checkequal callback function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -332,7 +332,7 @@
       "tables": [],
       "related": [],
       "content": "Also look into\n\n- [get and getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get): The `get` syntax binds an object property to a function that will be called when that property is looked up.\n- [set and setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set): The `set` syntax binds an object property to a function to be called when there is an attempt to set that property.",
-      "searchText": "function methods also look into  higher-order closure function methods callback",
+      "searchText": "function methods also look into  higher-order closure callback methods function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -363,7 +363,7 @@
       "tables": [],
       "related": [],
       "content": "The [apply()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) method **<ins>calls a function</ins>** with a given `this` value, and `arguments` provided as an array (or an array-like object).\n\n```js\n// syntax:\napply(thisArg);\napply(thisArg, argsArray);\n```\n\n<br />",
-      "searchText": "apply the apply() method inscalls a function/ins with a given this value, and arguments provided as an array (or an array-like object). apply(thisarg); higher-order closure thisarg function apply callback",
+      "searchText": "apply the apply() method inscalls a function/ins with a given this value, and arguments provided as an array (or an array-like object). apply(thisarg); higher-order closure callback function thisarg apply",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -394,7 +394,7 @@
       "tables": [],
       "related": [],
       "content": "The [bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.\n\nI've seen Brad Traversy use this one in some of his lessons.\n\n```js\n// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "bind the bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called. bind(thisarg) higher-order closure thisarg function bind callback",
+      "searchText": "bind the bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called. bind(thisarg) higher-order closure bind callback thisarg function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -424,7 +424,7 @@
       "tables": [],
       "related": [],
       "content": "The [call()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) method calls a function with a given `this` value and arguments provided individually.\n\n```js\n// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "call the call() method calls a function with a given this value and arguments provided individually. call() higher-order closure function callback call",
+      "searchText": "call the call() method calls a function with a given this value and arguments provided individually. call() higher-order closure callback call function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -454,7 +454,7 @@
       "tables": [],
       "related": [],
       "content": "The [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString) method returns a string representing the source code of the function.\n\n```js\n// syntax:\ntoString();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "tostring the tostring() method returns a string representing the source code of the function. tostring(); higher-order closure function callback tostring a string representing the source code of the function",
+      "searchText": "tostring the tostring() method returns a string representing the source code of the function. tostring(); higher-order closure callback tostring function a string representing the source code of the function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -486,7 +486,7 @@
       "tables": [],
       "related": [],
       "content": "**Nested functions**: The nested (inner) function is private to its containing (outer) function. The inner function forms a closure: the inner function can use the arguments and variables of the outer function, while the outer function cannot use the arguments and variables of the inner function.\n\n```js\nfunction addSquares(a, b) {\n  function square(x) {\n    return x * x;\n  }\n  return square(a) + square(b);\n}\na = addSquares(2, 3); // returns 13\nb = addSquares(3, 4); // returns 25\nc = addSquares(4, 5); // returns 41\n\n// example 2\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8\n\n// Since the inner function forms a closure, you can call the outer function and specify arguments for both the outer and inner function:\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3);\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "nested functions nested functions: the nested (inner) function is private to its containing (outer) function. function addsquares(a, b) { higher-order closure addsquares function functions callback nested x * x;",
+      "searchText": "nested functions nested functions: the nested (inner) function is private to its containing (outer) function. function addsquares(a, b) { functions higher-order closure addsquares callback nested function x * x;",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -518,7 +518,7 @@
       "tables": [],
       "related": [],
       "content": "Functions can be multiple-nested:\n\n- A function (`A`) contains a function (`B`), which itself contains a function (`C`).\n- Both functions `B` and `C` form closures here. So, `B` can access `A`, and `C` can access `B`.\n- In addition, since `C` can access `B` which can access `A`, `C` can also access `A`.\n\nThus, the closures can contain multiple scopes; they recursively contain the scope of the functions containing it. This is called _scope chaining_.\n\n```js\n// In this example, C accesses B's y and A's x\nfunction A(x) {\n  function B(y) {\n    function C(z) {\n      console.log(x + y + z);\n    }\n    C(3);\n  }\n  B(2);\n}\nA(1); // logs 6 (1 + 2 + 3)\n```\n\n1. `B` forms a closure including `A`\n1. `C` forms a closure including `B`\n1. Because `B`'s closure includes `A`, `C`'s closure includes `A`, `C` can access both `B` and `A`'s arguments and variables. In other words, `C` chains the scopes of `B` and `A`, in that order\n1. The reverse, however, is not true. `A` cannot access `C`\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "multiple nested functions functions can be multiple-nested:  multiple closure higher-order function functions callback nested",
+      "searchText": "multiple nested functions functions can be multiple-nested:  functions higher-order closure multiple callback nested function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -550,7 +550,7 @@
       "tables": [],
       "related": [],
       "content": "JavaScript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to).\n\nHowever, the outer function does not have access to the variables and functions defined inside the inner function. This provides a sort of encapsulation for the variables of the inner function.\n\nAlso, since the inner function has access to the scope of the outer function, the variables and functions defined in the outer function will live longer than the duration of the outer function execution, if the inner function manages to survive beyond the life of the outer function. A closure is created when the inner function is somehow made available to any scope outside the outer function.\n\n```js\nlet createPet = function (name) {\n  let sex;\n\n  return {\n    setName: function (newName) {\n      name = newName;\n    },\n\n    getName: function () {\n      return name;\n    },\n\n    getSex: function () {\n      return sex;\n    },\n\n    setSex: function (newSex) {\n      if (typeof newSex === \"string\" && (newSex.toLowerCase() === \"male\" || newSex.toLowerCase() === \"female\")) {\n        sex = newSex;\n      }\n    }\n  };\n};\n\nlet pet = createPet(\"Vivie\");\npet.getName(); // Vivie\n\npet.setName(\"Oliver\");\npet.setSex(\"male\");\npet.getSex(); // male\npet.getName(); // Oliver\n\n// The functions do not even have to be assigned to a variable, or have a name:\nlet getCode = (function () {\n  let apiCode = \"0]Eal(eh&2\"; // A code we do not want outsiders to be able to modify...\n\n  return function () {\n    return apiCode;\n  };\n})();\n\ngetCode(); // Returns the apiCode\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "closures javascript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to). let createpet = function (name) { higher-order closure function name closures createpet callback {",
+      "searchText": "closures javascript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to). let createpet = function (name) { higher-order closure name callback closures createpet function {",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -584,7 +584,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// IIFE:\n(function () {\n  console.log(\"I rule because I am an IIFE!\");\n})();\n\n// IIFE with parameter:\n(function (name) {\n  console.log(`Hello, my name is ${name}`);\n})(\"Jim\");\n\n// Arrow IIFE:\n(() => {\n  console.log(\"I am an arrow function IIFE!\");\n})();\n\n// Async IIFE:\n(async () => {\n  console.log(\"I am an async IIFE!\");\n})();\n```\n\n<br />\n\nExecute an async function:\n\n```js\nconst getFileStream = async url => {\n  /* implementation */\n};\n\n(async () => {\n  const stream = await getFileStream(\"https://domain.name/path/file.ext\");\n  for await (const chunk of stream) {\n    console.log({ chunk });\n  }\n})();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "iife (function () {  higher-order closure function callback iife",
+      "searchText": "iife (function () {  higher-order closure callback iife function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -609,7 +609,7 @@
       "tables": [],
       "related": [],
       "content": "Here are specific function-related topics inrtroduced with ES6",
-      "searchText": "es6 here are specific function-related topics inrtroduced with es6  higher-order closure function es6 callback",
+      "searchText": "es6 here are specific function-related topics inrtroduced with es6  higher-order closure callback function es6",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -648,7 +648,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// Strict mode: a restricted variant of JavaScript, intentionally has different semantics\n\"use strict\";\n\n// script tag if you intend to use import and export (defer attribute added):\n<script type=\"module\" src=\"filename.js\" defer></script>\n```\n\n<br />\n\nExport:\n\n```js\n// export a code block:\nexport const add = (x, y) => {\n  return x + y;\n}\n\n// export a variable:\nconst add = (x, y) => {\n  return x + y;\n}\nexport { add };\n\n// export multiple objects:\nexport { add, subtract };\n\n// create an export fallback with export default:\nexport default function add(x, y) {\n  return x + y;\n}\n// or\nexport default function(x, y) {\n  return x + y;\n}\n```\n\n<br />\n\nImport:\n\n```js\n// import a single object:\nimport { add } from \"./math_functions.js\";\n\n// import multiple object:\nimport { add, subtract } from \"./math_functions.js\";\n\n// import all\nimport * as myMathModule from \"./math_functions.js\";\n\n// use the imported module:\nmyMathModule.add(2, 3);\nmyMathModule.subtract(5, 3);\n\n// import a default export\nimport add from \"./math_functions.js\";\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  higher-order closure export import function callback",
+      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  higher-order closure import callback export function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -689,7 +689,7 @@
       "tables": [],
       "related": [],
       "content": "Syntax:\n\n```js\nasync function name(parameters) {\n  statements;\n}\n```\n\n<br />\n\nExample using Fetch API:\n\n```js\nasync function fetchByUrl(url) {\n  try {\n    const response = await fetch(url);\n\n    if (response.ok) {\n      const data = await response.json();\n      console.log(data);\n      // Code to output data to the DOM goes here\n      // return data;\n    } else {\n      console.log(\"Not successful\");\n    }\n  } catch (err) {\n    console.error(err);\n  }\n}\nfetchByUrl(\"https://api.dictionaryapi.dev/api/v2/entries/en/hello\");\n```\n\n<br />\n\nRewriting a Promise chain with an async function\n\n```js\nfunction getProcessedData(url) {\n  return downloadData(url) // returns a promise\n    .catch(e => {\n      return downloadFallbackData(url); // returns a promise\n    })\n    .then(v => {\n      return processDataInWorker(v); // returns a promise\n    });\n}\n\n// rewritten as:\nasync function getProcessedData(url) {\n  let v;\n  try {\n    v = await downloadData(url);\n  } catch (e) {\n    v = await downloadFallbackData(url);\n  }\n  return processDataInWorker(v);\n}\n\n// or\nasync function getProcessedData(url) {\n  const v = await downloadData(url).catch(e => {\n    return downloadFallbackData(url);\n  });\n  return processDataInWorker(v);\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "async await async function name(parameters) { async function name(parameters) { higher-order closure async function name parameters callback await data;",
+      "searchText": "async await async function name(parameters) { async function name(parameters) { higher-order closure async name callback parameters await function data;",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -738,7 +738,7 @@
       "tables": [],
       "related": [],
       "content": "Arrow functions have a lexical `this` keyword.\n\nSyntax and examples:\n\n```js\nparam => expression\n(param1, paramN) => expression\n\n// examples\nparam => {\n  let a = 1;\n  return a + param;\n}\n\n(param1, paramN) => {\n   let a = 1;\n   return a + param1 + paramN;\n}\n\n// To return an object literal expression requires parentheses around expression\nparams => ({foo: \"a\"}) // returning the object {foo: \"a\"}\n\n// Rest parameters are supported:\n(a, b, ...r) => expression\n\n// Default parameters are supported:\n(a=400, b=20, c) => expression\n\n// Destructuring within params supported:\n([a, b] = [10, 20]) => a + b;  // result is 30\n({ a, b } = { a: 10, b: 20 }) => a + b; // result is 30\n```\n\n<br />\n\nArrow functions used as methods:\n\n```js\n\"use strict\";\n\nvar obj = {\n  // does not create a new scope\n  i: 10,\n  b: () => console.log(this.i, this),\n  c: function () {\n    console.log(this.i, this);\n  }\n};\n\nobj.b(); // prints undefined, Window {...} (or the global object)\nobj.c(); // prints 10, Object {...}\n```\n\n<br />\n\nAnother example involving `Object.defineProperty()`:\n\n```js\n\"use strict\";\n\nvar obj = {\n  a: 10\n};\n\nObject.defineProperty(obj, \"b\", {\n  get: () => {\n    console.log(this.a, typeof this.a, this); // undefined 'undefined' Window {...} (or the global object)\n    return this.a + 10; // represents global object 'Window', therefore 'this.a' returns 'undefined'\n  }\n});\n```\n\n<br />\n\nMore examples:\n\n```js\n// Traditional Anonymous Function\nfunction (a, b){\n  return a + b + 100;\n}\n\n// Arrow Function\n(a, b) => a + b + 100;\n\n// Traditional Anonymous Function (no arguments)\nlet a = 4;\nlet b = 2;\nfunction (){\n  return a + b + 100;\n}\n\n// Arrow Function (no arguments)\nlet a = 4;\nlet b = 2;\n() => a + b + 100;\n\n// Traditional Anonymous Function\nfunction (a, b){\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Arrow Function\n(a, b) => {\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Traditional Function\nfunction bob (a){\n  return a + 100;\n}\n\n// Arrow Function\nlet bob = a => a + 100;\n```\n\n<br />\n\nAnd more examples: Check [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions):\n\n```js\n// An empty arrow function returns undefined\nlet empty = () => {};\n\n(() => \"foobar\")();\n// Returns \"foobar\"\n// (this is an Immediately Invoked Function Expression)\n\nvar simple = a => (a > 15 ? 15 : a);\nsimple(16); // 15\nsimple(10); // 10\n\nlet max = (a, b) => (a > b ? a : b);\n\n// Easy array filtering, mapping, ...\n\nvar arr = [5, 6, 13, 0, 1, 18, 23];\n\nvar sum = arr.reduce((a, b) => a + b);\n// 66\n\nvar even = arr.filter(v => v % 2 == 0);\n// [6, 0, 18]\n\nvar double = arr.map(v => v * 2);\n// [10, 12, 26, 0, 2, 36, 46]\n\n// More concise promise chains\npromise\n  .then(a => {\n    // ...\n  })\n  .then(b => {\n    // ...\n  });\n\n// Parameterless arrow functions that are visually easier to parse\nsetTimeout(() => {\n  console.log(\"I happen sooner\");\n  setTimeout(() => {\n    // deeper code\n    console.log(\"I happen later\");\n  }, 1);\n}, 1);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "arrow functions arrow functions have a lexical this keyword. param => expression param higher-order closure arrow function expression functions callback a + param;",
+      "searchText": "arrow functions arrow functions have a lexical this keyword. param => expression functions higher-order closure callback function param arrow expression a + param;",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -773,7 +773,7 @@
       "tables": [],
       "related": [],
       "content": "Syntax: This section should be in the objects file\n\n```js\n// syntax (HUH?)\nconst obj = {\n  get property() {},\n  set property(value) {},\n  property( parameters… ) {},\n  *generator( parameters… ) {},\n  async property( parameters… ) {},\n  async* generator( parameters… ) {},\n\n  //  with computed keys\n  get [property]() {},\n  set [property](value) {},\n  [property]( parameters… ) {},\n  *[generator]( parameters… ) {},\n  async [property]( parameters… ) {},\n  async* [generator]( parameters… ) {},\n};\n\n// Given the following code:\nconst obj = {\n  foo: function() {\n    // ...\n  },\n  bar: function() {\n    // ...\n  }\n}\n// You are now able to shorten this to:\nconst obj = {\n  foo() {\n    // ...\n  },\n  bar() {\n    // ...\n  }\n}\n```\n\nAlso look into:\n\n- Generator methods\n- Async methods\n- Async generator methods\n\n<br />\n\nExamples:\n\n```js\nconst toDo = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\ntoDo.add();\n\n// define a method outside of the object:\ntoDo.delete = function () {\n  console.log(\"Delete something\");\n};\ntoDo.delete();\n\n// another example:\nconst doSomething = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\n\ndoSomething.add();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "methods syntax: this section should be in the objects file const obj = { obj higher-order closure function methods callback",
+      "searchText": "methods syntax: this section should be in the objects file const obj = { higher-order closure callback obj methods function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -813,7 +813,7 @@
       "tables": [],
       "related": [],
       "content": "Example:\n\n```js\nfunction greeting(name) {\n  alert(\"Hello \" + name);\n}\n\nfunction processUserInput(callback) {\n  var name = prompt(\"Please enter your name.\");\n  callback(name);\n}\nprocessUserInput(greeting);\n```\n\n`addEventListener`:\n\n```js\nmyvar.addEventListener(\"click\", function(e) {\n  console.log(\"Hello);\n\n  e.preventDefault();\n});\n```\n\n1. The parameter `e` is the event object. You want to prevent the default behavior associated with things like forms and links.\n\n<br />\n\nTo take a look at the event object:\n\n```js\nmyVar.addEventListener(\"click\", onClick);\n\nfunction onClick(e) {\n  let val;\n  val = e;\n  val = e.target;\n  console.log(val); // look for target\n}\n```\n\nThe most important thing you will see is the `target` which represents the element that the event happened on.\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "callback functions function greeting(name) { function greeting(name) { higher-order closure greeting function name functions callback",
+      "searchText": "callback functions function greeting(name) { function greeting(name) { functions higher-order greeting closure name callback function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -856,7 +856,7 @@
       "tables": [],
       "related": [],
       "content": "This would be the code inside of a function:\n\n```js\n// set local storage item (syntax first)\nlocalStorage.setItem(\"key\", \"value\");\nlocalStorage.setItem(\"name\", \"Jim\"); // check on Application tab\n\n// get from storage:\nconst name = localStorage.getItem(\"name\");\n\n// remove from storage:\nlocalStorage.removeItem(\"name\");\n\n// to clear everything from local storag:\nlocalStorage.clear();\n```\n\n<br />\n\nto have a form add an item to local storage amd store multiple items in an array as a string:\n\n```js\ndocument.querySelector('form').addEventListener('submit', function(e) {\n  const task = document.getElementById('task').value;\n\n  let tasks;\n\n  // check local storage\n  if (localStorage.getItem('tasks') === null) {\n    tasks = [];\n  } else {\n    tasks = JSON.parse(localStorage.getItem('tasks'));\n  }\n\n  tasks.push(task);\n\n  localStorage.setItem('tasks', JSON.stringify(tasks);\n  e.preventDefault();\n});\n```\n\n<br />\n\nThen to get and use the local storage items (still inside the event listener):\n\n```js\nconst tasks = JSON.parse(localStorage.getItem(\"tasks\"));\ntasks.forEach(function (task) {\n  console.log(tasks);\n});\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "local storage this would be the code inside of a function: localstorage.setitem(\"key\", \"value\"); key local higher-order closure localstorage function setitem value callback storage",
+      "searchText": "local storage this would be the code inside of a function: localstorage.setitem(\"key\", \"value\"); higher-order closure localstorage value callback local setitem key storage function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -891,7 +891,7 @@
       "tables": [],
       "related": [],
       "content": "```js\n// list items with delete link on the items but\n// fa fa-remove icon inside:\nfunction deleteItem(e) {\n  if (e.target.patentElement.className === \"delete-item secondary-content\") {\n    console.log(\"delete item\");\n  }\n\n  // or better...\n  if (e.target.patentElement.classList.contains(\"delete-item\")) {\n    console.log(\"delete item\");\n  }\n}\n```\n\n<br />\n\nBut the structure is ul > li > a > i and to delete the entire list item, which is the parent of the `<a>` tag, in the if statement:\n\n```js\nif (e.target.patentElement.classList.contains(\"delete-item\")) {\n  // target is the icon\n  e.target.parentElement.parentElement.remove();\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "event delegation // list items with delete link on the items but  higher-order closure function callback event delegation",
+      "searchText": "event delegation // list items with delete link on the items but  higher-order closure callback event delegation function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -921,7 +921,7 @@
       "tables": [],
       "related": [],
       "content": "In Order to boost performance, cache your selections to some variable (if using the same selection multiple times).\n\n```js\n// example\n```",
-      "searchText": "caching in order to boost performance, cache your selections to some variable (if using the same selection multiple times).  caching higher-order closure function callback",
+      "searchText": "caching in order to boost performance, cache your selections to some variable (if using the same selection multiple times).  caching higher-order closure callback function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -952,7 +952,7 @@
       "tables": [],
       "related": [],
       "content": "<dl>\n  <dt>Momoize (Memoization)</dt>\n  <dd>a way to optimize functions and make them execute much faster: caching. It iss an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again - storing in memory. A technique of storing previously executed computations. Memoization is an optimization technique where expensive function calls are cached such that the result can be immediately returned the next time the function is called with the same arguments.</dd>\n</dl>\n\n```js\n// syntax / generic examples\nconst memoizedAdd = () => {\n  let cache = {};\n  return n => {\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = // calculation here;\n        (cache[n] = result);\n      return result;\n    }\n  };\n};\n\n// second one\nconst memoize = fn => {\n  let cache = {};\n  return (...args) => {\n    let n = args[0]; // just taking one argument here\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = fn(n);\n      cache[n] = result;\n      return result;\n    }\n  };\n};\n\n// third\nfunction memo(func) {\n  var cache = {};\n  return function () {\n    var key = JSON.stringify(arguments);\n    if (cache[key]) {\n      console.log(cache);\n      return cache[key];\n    } else {\n      val = func.apply(null, arguments);\n      cache[key] = val;\n      return val;\n    }\n  };\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { higher-order closure function memoizedadd callback memoization",
+      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { memoization memoizedadd higher-order closure callback function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -991,7 +991,7 @@
       "tables": [],
       "related": [],
       "content": "The act of a function calling itself, recursion is used to solve problems that contain smaller sub-problems. A recursive function can receive two inputs: a base case (ends recursion) or a recursive case (resumes recursion)\n\n- Recursive function calls itself until condition met\n- Recursion is limited by stack size\n\nSyntax:\n\n```js\nfunction recurse() {\n    if(condition) {\n        // stop calling itself\n    } else {\n        recurse();\n    }\n}\n\n// syntax 2:\nfunction fxName() {\n  return fxName();\n  // executes forever resulting in a \"stack overflow\" - ran out of memory\n  // so you need a base case\n}\n\n// syntax 3:\nfunction recursion(parm) {\n  if (parm cond) {   // base case, when hit stop recursion\n    return;\n  }\n  return recursion(parm + 1); // here is the recursion\n}\n\n//\n```\n\n<br />\n\nExample:\n\n```js\n// recursive function, sum(arr, n), that returns the sum of the first n elements of an array arr\nfunction sum(arr, n) {\n  if(n <= 0) {\n    return 0;\n  } else {\n    return sum(arr, n - 1) + arr[n - 1];\n  }\n}\n\n\n// countdown\nfunction countDown(fromNumber) {\n    console.log(fromNumber);       // 3 2 1\n    let nextNumber = fromNumber - 1;\n    if (nextNumber > 0) {\n        countDown(nextNumber);\n    }\n}\ncountDown(3);\n// If you add the condition to stop calling itself, you will get this error:\nUncaught RangeError: Maximum call stack size exceeded.\n\n// countdown2\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// or\n// Solution 1\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// Solution 2 (Click to Show/Hide)\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.splice(0, 0, n);\n    return arr;\n  }\n}\n\n// countdown 3\nfunction countdown(n){\n   return n < 1 ? [] : [n].concat(countdown(n - 1));\n}\n// or\nfunction countdown(n){\n   return n < 1 ? [] : [n, ...countdown(n - 1)];\n}\n\n// reverse a string: (use for palindrome?)\nfunction string_reversal(string) {\n  if (string == \"\") {\n    return \"\"\n  }\n\n  return string_reversal(string.slice(1)) + string[0]\n}\n\n// Recursion to Create a Range of Numbers\nfunction rangeOfNumbers(startNum, endNum) {\n  if (endNum - startNum === 0) {\n    return [startNum];\n  } else {\n    var numbers = rangeOfNumbers(startNum, endNum - 1);\n    numbers.push(endNum);\n    return numbers;\n  }\n}\n\n// solution 2\nfunction rangeOfNumbers(startNum, endNum) {\n  return startNum === endNum\n    ? [startNum]\n    : rangeOfNumbers(startNum, endNum - 1).concat(endNum);\n}\n// or\nfunction rangeOfNumbers(startNum, endNum) {\n  return startNum === endNum\n    ? [startNum]\n    : [...rangeOfNumbers(startNum, endNum - 1), endNum ];\n}\n\n```\n\nRecursive example (computes factorials):\n\n```js\nfunction factorial(n) {\n  if (n === 0 || n === 1) return 1;\n  else return n * factorial(n - 1);\n}\n\nvar a, b, c, d, e;\na = factorial(1); // a gets the value 1\nb = factorial(2); // b gets the value 2\nc = factorial(3); // c gets the value 6\nd = factorial(4); // d gets the value 24\ne = factorial(5); // e gets the value 120\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "recursion the act of a function calling itself, recursion is used to solve problems that contain smaller sub-problems. function recurse() { higher-order closure function recursion recurse callback fxname();",
+      "searchText": "recursion the act of a function calling itself, recursion is used to solve problems that contain smaller sub-problems. function recurse() { higher-order recurse closure callback recursion function fxname();",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1026,7 +1026,7 @@
       "tables": [],
       "related": [],
       "content": "From the video\n\n```js\n// factorial example with recursion\nfunction factorial(num){\n    if(num === 1){\n        return num;\n    }\n    return num * factorial(num - 1)\n}\nconsole.log(factorial(4)); // 24 = 4 * 3 * 2 * 1\nconsole.log(factorial(5)); // 120\n\n// for loop solution for factorials\nfunction factorialize(num) {\n  let product = 1;\n  // let i = 1 also works\n  for (let i = 2; i <= num; i++) {\n    product *= i;\n  }\n  return product;\n}\nconsole.log(factorialize(5)); // 120\n\n\n// count down example\nfunction countDownFrom(number) {\n\tif (number === 0) {\n\t\treturn;\n\t}\n    console.log(number);\n    countDownFrom(number - 1);\n}\ncountDownFrom(5); // 5 4 3 2 1\n\n// Essay to revise until accepted:\nfunction revise(essay) {\n  read(essay);\n  get_feedback_on(essay);\n  apply_changes_to(essay);\n  revise(essay) unless essay.complete;\n}\n// you do a little bit of work on ecah invocation of your method call until you hit the stopping condition\n```\n\n<br />\n\nRecursion with strings:\n\n```js\n// STRING REVERSAL\n// input str: \"the simple engineer\"\n// output str: \"reenigne elpmis eht\" - string in reverse\n\nfunction revString(str) {\n  // what are the steps? last char becomes 1st\n  let len = str.length;\n  return str[len - 1];\n}\nconsole.log(revString(\"the simple engineer\")); // \"reenigne elpmis eht\"\n// Uncaught RangeError: Maximum call stack size exceeded\n// Uncaught RangeError: Maximum call stack size exceeded at String.substring\n\n//\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "freecodecamp examples from the video  higher-order closure function freecodecamp examples callback",
+      "searchText": "freecodecamp examples from the video  higher-order closure callback freecodecamp examples function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1061,7 +1061,7 @@
       "tables": [],
       "related": [],
       "content": "Recursion is limited by stack size:\n\n```js\n// The following code defines a function that returns the maximum size of the call stack available in the JavaScript runtime in which the code is run.\nconst getMaxCallStackSize = i => {\n  try {\n    return getMaxCallStackSize(++i);\n  } catch {\n    return i;\n  }\n};\n\nconsole.log(getMaxCallStackSize(0));\n```\n\n<br />\n\nCommon usage examples:\n\n```js\n// factorial with recursion\nconst factorial = n => {\n  if (n === 0) return 1;\n  else return n * factorial(n - 1);\n};\nconsole.log(factorial(10)); // 3628800\n\n// fibonacci\nconst fibonacci = n => (n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));\nconsole.log(fibonacci(10)); // 55\nconsole.log(fibonacci(6)); // 8\n\n// reduce method example\nconst reduce = (fn, acc, [cur, ...rest]) => (cur === undefined ? acc : reduce(fn, fn(acc, cur), rest));\nconsole.log(reduce((a, b) => a + b, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9])); // 45\n```\n\nLook into the _call stack_ mentioned in [A Quick Intro to Recursion in Javascript](https://www.freecodecamp.org/news/quick-intro-to-recursion/) by freeCodeCamp.\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "mdn examples recursion is limited by stack size:  higher-order closure function mdn examples callback the maximum size of the call stack available in the javascript runtime in which the code is run",
+      "searchText": "mdn examples recursion is limited by stack size:  higher-order closure callback examples mdn function the maximum size of the call stack available in the javascript runtime in which the code is run",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1087,7 +1087,7 @@
       "tables": [],
       "related": [],
       "content": "Notes on Video [Recursion in Programming - Full Course](https://youtu.be/IJDJ0kBx2LM) from freeCodeCamp:\n\n- 1. What is the least amount of work that I can do? What are the sub-problems? How do you tke a large problem and break it into sub problems?\n- 2. What is my stopping condition? When would the process complete? What is the stopping condition?\n- **Call Stack**: stack frame -> A depends on B, B depends on C, then C\n\n**PROS**:\n\n- bridges the gap between elegance and complexity. His examples will be complex traversals of data structures of trees and graphs.\n- Also, reduces the need for complex loops and auxiliary data structures. Simplies your code.\n- can reduce time complexity (memoization)\n- works really well with data structures like **_JSON Objects_**, **_trees_** and **_graphs_** - things that allow you to focus on one tiny unit of the data structure at a time\n\n**CONS**:\n\n- slowness because of CPU overhead. Can get messy with recursive data structures.\n- can lead to out of memory errors / stack overflow exceptions\n- can be complex if poorly constructed. Always ask, \"_Is this a good use case for recursion?_\"\n\n> _Uncaught RangeError: Maximum call stack size exceeded_\n\nNOTE: For string recursion, very often you can make it easier by evaluating the input length - so try a str of length 0 and of 1 -\n\nNUMBER RECURSION\n\n- 1st problem - base 10 to binary conversion -\n-\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "recursion notes notes on video recursion in programming - full course from freecodecamp:  higher-order closure function recursion notes callback",
+      "searchText": "recursion notes notes on video recursion in programming - full course from freecodecamp:  higher-order closure callback recursion notes function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1112,7 +1112,7 @@
       "tables": [],
       "related": [],
       "content": "- arguments vs parameters\n- scope\n- `return`:\n- `undefined`:\n\nOther concepts from [MDN Functions doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions): Scope and the function stack, Recursion, Preservation of variables, No separate `this`, and Predefined functions.",
-      "searchText": "miscellaneous2 - arguments vs parameters  higher-order closure function miscellaneous2 callback",
+      "searchText": "miscellaneous2 - arguments vs parameters  higher-order closure callback miscellaneous2 function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1138,7 +1138,7 @@
       "tables": [],
       "related": [],
       "content": "- DO NOT USE: `eval()`, `uneval()`, `escape()`, and `unescape()`.\n- OK TO USE: `isFinite()`, `isNaN()`, `parseFloat()`, `parseInt()` with `radix`, `decodeURI()`, `decodeURIComponent()`, `encodeURI()`, and `encodeURIComponent()`\n\n`isNaN()`: determines whether a value is NaN or not; you may alternatively want to use Number.isNaN().\n\n`decodeURI()`: decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine.\n\n`decodeURIComponent()`: decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine.\n\n`encodeURI()`: encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n\n`encodeURIComponent()`: encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two \"surrogate\" characters).\n\n<br />",
-      "searchText": "predefined functions - do not use: eval(), uneval(), escape(), and unescape().  predefined higher-order closure function functions callback",
+      "searchText": "predefined functions - do not use: eval(), uneval(), escape(), and unescape().  functions higher-order closure callback predefined function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1169,7 +1169,7 @@
       "tables": [],
       "related": [],
       "content": "The `Promise` object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.\n\nA `Promise` is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.\n\nA Promise is in one of these states:\n\n- _pending_: initial state, neither fulfilled nor rejected.\n- _fulfilled_: meaning that the operation was completed successfully.\n- _rejected_: meaning that the operation failed.\n\nA pending promise can either be fulfilled with a value or rejected with a reason (error). When either of these options happens, the associated handlers queued up by a promise's `then` method are called. If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.\n\nAs the `Promise.prototype.then()` and `Promise.prototype.catch()` methods return promises, they can be chained.\n\nSee also: [MDN Chained Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises), [MDN Incumbent settings object tracking](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#incumbent_settings_object_tracking), [MDN Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#constructor), [MDN Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods), and [MDN Instance methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#instance_methods)\n\n```js\n// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(\"Promise was fulfilled\");\n  } else {\n    reject(\"Promise was rejected\");\n  }\n});\n// or this\nconst makeServerRequest = new Promise((resolve, reject) => {\n  let responseFromServer;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\n// lesson 30 & 31 freeCodeCamp (confusing)\nconst makeServerRequest = new Promise((resolve, reject) => {\n  // responseFromServer is set to false to represent an unsuccessful response from a server\n  let responseFromServer = true;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\nmakeServerRequest.then(result => {\n  console.log(result);\n});\n\nmakeServerRequest.catch(error => {\n  console.log(error);\n});\n```\n\n- Promise, new, resolve, reject\n- pending, fulfilled, rejected\n- then, result, catch, try, error\n- refactor\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "es6 promises the promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.  promises higher-order closure function es6 callback values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a pro",
+      "searchText": "es6 promises the promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.  higher-order closure promises callback function es6 values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a pro",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1200,7 +1200,7 @@
       "tables": [],
       "related": [],
       "content": "```js\nlet foods = {\n  apples: 25,\n  oranges: 32,\n  plums: 28,\n  bananas: 13,\n  grapes: 35,\n  strawberries: 27\n};\n\nfunction checkInventory(scannedItem) {\n  return foods[scannedItem];\n}\n// console.log(checkInventory(\"apples\"));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "dynamic functions let foods = {  higher-order closure function functions callback dynamic",
+      "searchText": "dynamic functions let foods = {  functions dynamic higher-order closure callback function",
       "sourceFile": "function-examples.md",
       "category": "function"
     },
@@ -1235,7 +1235,7 @@
       "tables": [],
       "related": [],
       "content": "- **freeCodeCamp**: Functions are considered first class objects in JavaScript, which means they can be used like any other object. They can be saved in variables, stored in an object, or passed as function arguments.\n\nWeb Dev Simplied: Once You Realize This You Will Never Struggle With Callbacks Again\n\n- Functions are variables just like everything else:\n\n```js\nfunction test() {\n  console.log(\"Hello\");\n}\n\nconst test2 = test;\nconsole.log(test2 === test); // true\ntest.prop = \"Hi\";\nconsole.dir(test); // prop: \"Hi\" prototype, name, length,...\n```\n\nFunction.prototype.bind():\n\n[MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind): creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called (???)\n\n```js\n// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\nOther terms:\n\n- imperative approach\n- declarative programming\n- mutation, side effect, pure function\n- first class objects\n- 10. Implement the filter Method on a Prototype\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Back to Top</a></div>",
-      "searchText": "random - freecodecamp: functions are considered first class objects in javascript, which means they can be used like any other object. function test() { higher-order closure function callback test random",
+      "searchText": "random - freecodecamp: functions are considered first class objects in javascript, which means they can be used like any other object. function test() { higher-order closure callback random test function",
       "sourceFile": "function-examples.md",
       "category": "function"
     }

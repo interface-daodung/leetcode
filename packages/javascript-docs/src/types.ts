@@ -80,6 +80,7 @@ export interface KeywordIndex {
 
 export interface DocsIndex {
   version: string;
+  lang: string;
   generatedAt: string;
   generator: string;
   sourceRepo: string;

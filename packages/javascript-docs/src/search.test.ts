@@ -1,15 +1,24 @@
 import { describe, it, expect } from "vitest";
 import {
   getAllKeywords,
+  getAllKeywordsVi,
   getByCategory,
+  getByCategoryVi,
   getById,
+  getByIdVi,
   getByKeyword,
   getCategories,
+  getCategoriesVi,
   getDocFileSync,
+  getDocFileSyncVi,
   getIndex,
+  getIndexVi,
   getSectionByIdSync,
+  getSectionByIdSyncVi,
   searchDocs,
+  searchDocsVi,
   suggestCommands,
+  suggestCommandsVi,
 } from "./search.js";
 
 describe("javascript-docs search", () => {
@@ -94,5 +103,59 @@ describe("javascript-docs search", () => {
     expect(push?.mutates).toBe(true);
     const slice = getById("array-array-slice");
     if (slice) expect(slice.mutates).toBe(false);
+  });
+});
+
+describe("javascript-docs search (tiếng Việt)", () => {
+  it("index vi có đủ metadata", () => {
+    const idx = getIndexVi();
+    expect(idx.totalSources).toBe(13);
+    expect(idx.totalEntries).toBeGreaterThan(200);
+    expect(idx.categories).toContain("array");
+    expect(idx.lang).toBe("vi");
+  });
+
+  it("searchDocsVi tìm theo keyword tiếng Việt", () => {
+    const res = searchDocsVi("push");
+    expect(res.length).toBeGreaterThan(0);
+  });
+
+  it("getByIdVi trả về entry tiếng Việt", () => {
+    const e = getByIdVi("array-push");
+    expect(e).toBeDefined();
+  });
+
+  it("getByCategoryVi trả về đúng category", () => {
+    const arr = getByCategoryVi("array");
+    expect(arr.length).toBeGreaterThan(10);
+    expect(arr.every((e) => e.category === "array")).toBe(true);
+  });
+
+  it("getCategoriesVi trả về 13 categories", () => {
+    const cats = getCategoriesVi();
+    expect(cats.length).toBe(13);
+  });
+
+  it("getAllKeywordsVi có dữ liệu", () => {
+    const kws = getAllKeywordsVi();
+    expect(kws.length).toBeGreaterThan(100);
+  });
+
+  it("getDocFileSyncVi đọc file array", () => {
+    const doc = getDocFileSyncVi("array");
+    expect(doc).toBeDefined();
+    expect(doc?.sourceFile).toBe("array-examples.md");
+    expect(doc?.sections.length).toBeGreaterThan(20);
+  });
+
+  it("getSectionByIdSyncVi đọc section string-split", () => {
+    const sec = getSectionByIdSyncVi("string-split");
+    expect(sec).toBeDefined();
+    expect(sec?.examples.length).toBeGreaterThan(0);
+  });
+
+  it("suggestCommandsVi gợi ý theo prefix", () => {
+    const sug = suggestCommandsVi("arr");
+    expect(sug.length).toBeGreaterThan(0);
   });
 });

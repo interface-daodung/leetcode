@@ -48,18 +48,32 @@ export type {
 
 export {
   getAllDocFiles,
+  getAllDocFilesVi,
   getAllKeywords,
+  getAllKeywordsVi,
   getByCategory,
+  getByCategoryVi,
   getById,
+  getByIdVi,
   getByKeyword,
+  getByKeywordVi,
   getCategories,
+  getCategoriesVi,
   getDocFile,
   getDocFileSync,
+  getDocFileSyncVi,
+  getDocFileVi,
+  getDocVi,
   getIndex,
+  getIndexVi,
   getSectionById,
   getSectionByIdSync,
+  getSectionByIdSyncVi,
+  getSectionByIdVi,
   searchDocs,
+  searchDocsVi,
   suggestCommands,
+  suggestCommandsVi,
 } from "./search.js";
 
 // Alias mới từ search (tìm trên index) — tránh trùng tên với legacy getDoc ở trên

@@ -1,0 +1,319 @@
+{
+  "sourceFile": "loop-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/loop-examples.md",
+  "category": "loop",
+  "title": "Vòng lặp và duyệt",
+  "description": "Ghi chú cho các đoạn code vòng lặp không quá phổ biến.",
+  "tags": [
+    "loop",
+    "iteration",
+    "for",
+    "while"
+  ],
+  "totalSections": 9,
+  "sections": [
+    {
+      "id": "loop-vòng-lặp-while",
+      "title": "Vòng lặp while",
+      "headingLevel": 2,
+      "anchor": "#vòng-lặp-while",
+      "summary": "Câu lệnh while tạo một vòng lặp thực thi một câu lệnh xác định miễn là condition kiểm tra có giá trị true.",
+      "keywords": [
+        "condition",
+        "for",
+        "iteration",
+        "loop",
+        "lặp",
+        "vòng",
+        "while"
+      ],
+      "syntax": "while (condition)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "while (condition)\n  statement\n\n// example\nlet i = 0;\ndo {\n  i += 1;\n  console.log(i);\n} while (i < 5);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Câu lệnh `while` tạo một vòng lặp thực thi một câu lệnh xác định miễn là `condition` kiểm tra có giá trị true. Điều kiện được đánh giá trước khi thực thi câu lệnh.\n\n- `condition`: Một biểu thức được đánh giá trước mỗi lần đi qua vòng lặp. Nếu điều kiện này đánh giá thành `true`, câu lệnh được thực thi. Khi điều kiện đánh giá thành `false`, việc thực thi tiếp tục với câu lệnh sau vòng lặp while\n\nCú pháp:\n```js\nwhile (condition)\n  statement\n\n// example\nlet i = 0;\ndo {\n  i += 1;\n  console.log(i);\n} while (i < 5);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "vòng lặp while câu lệnh while tạo một vòng lặp thực thi một câu lệnh xác định miễn là condition kiểm tra có giá trị true. while (condition) condition iteration while lặp for vòng loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-vòng-lặp-do-while",
+      "title": "Vòng lặp do while",
+      "headingLevel": 2,
+      "anchor": "#vòng-lặp-do-while",
+      "summary": "Câu lệnh do...while tạo một vòng lặp thực thi một câu lệnh xác định cho đến khi điều kiện kiểm tra đánh giá thành false.",
+      "keywords": [
+        "do",
+        "for",
+        "iteration",
+        "loop",
+        "lặp",
+        "vòng",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "do\n  statement\nwhile (condition);\n\n// example\nlet n = 0;\nlet x = 0;\nwhile (n < 3) {\n  n++;\n  x += n;\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Câu lệnh do...while tạo một vòng lặp thực thi một câu lệnh xác định cho đến khi điều kiện kiểm tra đánh giá thành false. Điều kiện được đánh giá sau khi thực thi câu lệnh, do đó câu lệnh xác định được thực thi ít nhất một lần.\n\n- `condition`: Một biểu thức được đánh giá sau mỗi lần đi qua vòng lặp. Nếu điều kiện đánh giá thành `true`, câu lệnh được thực thi lại. Khi điều kiện đánh giá thành `false`, điều khiển chuyển sang câu lệnh theo sau `do...while`\n\nCú pháp:\n```js\ndo\n  statement\nwhile (condition);\n\n// example\nlet n = 0;\nlet x = 0;\nwhile (n < 3) {\n  n++;\n  x += n;\n}\n```\n\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "vòng lặp do while câu lệnh do...while tạo một vòng lặp thực thi một câu lệnh xác định cho đến khi điều kiện kiểm tra đánh giá thành false.  do iteration while lặp for vòng loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-vòng-lặp-for",
+      "title": "Vòng lặp for",
+      "headingLevel": 2,
+      "anchor": "#vòng-lặp-for",
+      "summary": "Vòng lặp for lặp lại cho đến khi một điều kiện xác định đánh giá thành false.",
+      "keywords": [
+        "conditionexpression",
+        "for",
+        "incrementexpression",
+        "initialexpression",
+        "iteration",
+        "loop",
+        "lặp",
+        "vòng",
+        "while"
+      ],
+      "syntax": "for ([initialExpression]; [conditionExpression]; [incrementExpression])",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for ([initialExpression]; [conditionExpression]; [incrementExpression])\n  statement\n// or \nfor  (initialization; condition; final-expression)\n\n// example\nlet arr = [1, 2, 3, 4, 5, 6, 7];\nfunction someFx() {\n  for (let i = 0; i < arr.length; i++) {\n    // code here\n  }\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Vòng lặp `for` lặp lại cho đến khi một điều kiện xác định đánh giá thành `false`.\n\nCú pháp:\n```js\nfor ([initialExpression]; [conditionExpression]; [incrementExpression])\n  statement\n// or \nfor  (initialization; condition; final-expression)\n\n// example\nlet arr = [1, 2, 3, 4, 5, 6, 7];\nfunction someFx() {\n  for (let i = 0; i < arr.length; i++) {\n    // code here\n  }\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "vòng lặp for vòng lặp for lặp lại cho đến khi một điều kiện xác định đánh giá thành false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) incrementexpression iteration while lặp conditionexpression for vòng initialexpression loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-vòng-lặp-for-in-và-for-of",
+      "title": "Vòng lặp for in và for of",
+      "headingLevel": 2,
+      "anchor": "#vòng-lặp-for-in-và-for-of",
+      "summary": " Sự khác biệt giữa vòng lặp for...of và vòng lặp for...in: trong khi for...in duyệt qua các instên/khóa/ins thuộc tính, for...of duyệt qua các insgiá trị/ins thuộc tính.",
+      "keywords": [
+        "for",
+        "in",
+        "iteration",
+        "loop",
+        "lặp",
+        "of",
+        "và",
+        "vòng",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "> Sự khác biệt giữa vòng lặp `for...of` và vòng lặp `for...in`: trong khi `for...in` duyệt qua các **<ins>tên/khóa</ins>** thuộc tính, `for...of` duyệt qua các **<ins>giá trị</ins>** thuộc tính.",
+      "searchText": "vòng lặp for in và for of  sự khác biệt giữa vòng lặp for...of và vòng lặp for...in: trong khi for...in duyệt qua các instên/khóa/ins thuộc tính, for...of duyệt qua các insgiá trị/ins thuộc tính.  in iteration và lặp while for of vòng loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-in",
+      "title": "for in",
+      "headingLevel": 3,
+      "anchor": "#for-in",
+      "summary": "Câu lệnh for...in duyệt một biến xác định qua tất cả các thuộc tính có thể đếm được (enumerable) của một đối tượng.",
+      "keywords": [
+        "for",
+        "in",
+        "iteration",
+        "loop",
+        "object",
+        "variable",
+        "while"
+      ],
+      "syntax": "for (variable in object) {",
+      "returns": "the keys",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for (variable in object) {\n  statement\n}",
+          "explanation": ""
+        },
+        {
+          "code": "const user = {\n  first: \"Jim\",\n  last: \"Kernix\",\n  age: 56\n}\n\nfor (let x in user) {\n  console.log(x); // returns the keys\n  console.log(user[x]); // returns the values\n}\n\n// example 2\nfunction dump_props(obj, obj_name) {\n  let result = '';\n  for (let i in obj) {\n    result += obj_name + '.' + i + ' = ' + obj[i] + '<br>';\n  }\n  result += '<hr>';\n  return result;\n}\n// For an object car with properties make and model, result would be:\ncar.make = Ford\ncar.model = Mustang",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Câu lệnh `for...in` duyệt một biến xác định qua tất cả các thuộc tính có thể đếm được (enumerable) của một đối tượng. Với mỗi thuộc tính riêng biệt, JavaScript thực thi các câu lệnh xác định.\n\n`for in`, cú pháp:\n```js\nfor (variable in object) {\n  statement\n}\n```\n\nVí dụ:\n```js\nconst user = {\n  first: \"Jim\",\n  last: \"Kernix\",\n  age: 56\n}\n\nfor (let x in user) {\n  console.log(x); // returns the keys\n  console.log(user[x]); // returns the values\n}\n\n// example 2\nfunction dump_props(obj, obj_name) {\n  let result = '';\n  for (let i in obj) {\n    result += obj_name + '.' + i + ' = ' + obj[i] + '<br>';\n  }\n  result += '<hr>';\n  return result;\n}\n// For an object car with properties make and model, result would be:\ncar.make = Ford\ncar.model = Mustang\n```\n\n<br />",
+      "searchText": "for in câu lệnh for...in duyệt một biến xác định qua tất cả các thuộc tính có thể đếm được (enumerable) của một đối tượng. for (variable in object) { in iteration while object for variable loop the keys",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-for-of",
+      "title": "for of",
+      "headingLevel": 3,
+      "anchor": "#for-of",
+      "summary": "Câu lệnh for...of tạo một vòng lặp duyệt qua các đối tượng có thể duyệt (iterable) (bao gồm Array, Map, Set, đối tượng arguments v.v.), gọi một hook duyệt tùy chỉnh với các câu lệnh được thực thi cho giá trị của mỗi thuộc tính riêng biệt (?)",
+      "keywords": [
+        "for",
+        "iterable",
+        "iteration",
+        "loop",
+        "of",
+        "variable",
+        "while"
+      ],
+      "syntax": "for (variable of iterable) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "for (variable of iterable) {\n  statement\n}",
+          "explanation": ""
+        },
+        {
+          "code": "const arr = [3, 5, 7];\narr.foo = 'hello';\n\nfor (let i in arr) {\n   console.log(i); // logs \"0\", \"1\", \"2\", \"foo\"\n}\n\nfor (let i of arr) {\n   console.log(i); // logs 3, 5, 7\n}\n\n// my example: Sum All Odd Fibonacci Numbers\nfunction sumFibs(num) {\n  if (num <= 0) return 0;\n\n  const startNums = [1, 1];\n  let nextNum = 0;\n\n  for (let i of startNums) {\n    let nextNum = startNums[i - 1] + startNums[i];\n    if (nextNum <= num) {\n      startNums.unshift(nextNum);\n    }\n  }\n  return startNums.filter(x => x % 2 != 0).reduce((a, b) => a + b);\n}\nsumFibs(4);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Câu lệnh `for...of` tạo một vòng lặp duyệt qua các đối tượng có thể duyệt (iterable) (bao gồm `Array`, `Map`, `Set`, đối tượng `arguments` v.v.), gọi một hook duyệt tùy chỉnh với các câu lệnh được thực thi cho giá trị của mỗi thuộc tính riêng biệt (?)\n\nCú pháp:\n```js\nfor (variable of iterable) {\n  statement\n}\n```\n\nVí dụ:\n```js\nconst arr = [3, 5, 7];\narr.foo = 'hello';\n\nfor (let i in arr) {\n   console.log(i); // logs \"0\", \"1\", \"2\", \"foo\"\n}\n\nfor (let i of arr) {\n   console.log(i); // logs 3, 5, 7\n}\n\n// my example: Sum All Odd Fibonacci Numbers\nfunction sumFibs(num) {\n  if (num <= 0) return 0;\n\n  const startNums = [1, 1];\n  let nextNum = 0;\n\n  for (let i of startNums) {\n    let nextNum = startNums[i - 1] + startNums[i];\n    if (nextNum <= num) {\n      startNums.unshift(nextNum);\n    }\n  }\n  return startNums.filter(x => x % 2 != 0).reduce((a, b) => a + b);\n}\nsumFibs(4);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "for of câu lệnh for...of tạo một vòng lặp duyệt qua các đối tượng có thể duyệt (iterable) (bao gồm array, map, set, đối tượng arguments v.v.), gọi một hook duyệt tùy chỉnh với các câu lệnh được thực thi cho giá trị của mỗi thuộc tính riêng biệt (?) for (variable of iterable) { iterable iteration while of for variable loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-phương-thức-mảng",
+      "title": "Phương thức mảng",
+      "headingLevel": 2,
+      "anchor": "#phương-thức-mảng",
+      "summary": "Sử dụng các phương thức mảng bậc cao như map và forEach thay vì vòng lặp for khi làm việc với mảng:",
+      "keywords": [
+        "cars",
+        "for",
+        "foreach",
+        "iteration",
+        "loop",
+        "mảng",
+        "phương",
+        "thức",
+        "while"
+      ],
+      "syntax": "cars.forEach(function(a, b, c) {})",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "cars.forEach(function(a, b, c) {})",
+          "explanation": ""
+        },
+        {
+          "code": "const cars = [\"Ford\", \"Honda\", \"Toyota\", \"Chevy\"];\n\ncars.forEach(function(car) {\n  console.log(car);\n});",
+          "explanation": ""
+        },
+        {
+          "code": "const users = [\n  {id: 1, name: \"Jim\"},\n  {id: 2, name: \"Buddy\"},\n  {id: 3, name: \"Luna\"}\n];\n\nconst ids = users.map(function(user) {\n  return user.id;\n});\nconsole.log(ids); // (3) [1, 2, 3]",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Sử dụng các phương thức mảng bậc cao như `map` và `forEach` thay vì vòng lặp `for` khi làm việc với mảng:\n\n`forEach()`\n\ncú pháp:\n```js\ncars.forEach(function(a, b, c) {})\n```\n\nVí dụ:\n```js\nconst cars = [\"Ford\", \"Honda\", \"Toyota\", \"Chevy\"];\n\ncars.forEach(function(car) {\n  console.log(car);\n});\n\n```\n\n<br />\n\n`map()`: mảng các đối tượng\n\n```js\nconst users = [\n  {id: 1, name: \"Jim\"},\n  {id: 2, name: \"Buddy\"},\n  {id: 3, name: \"Luna\"}\n];\n\nconst ids = users.map(function(user) {\n  return user.id;\n});\nconsole.log(ids); // (3) [1, 2, 3]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "phương thức mảng sử dụng các phương thức mảng bậc cao như map và foreach thay vì vòng lặp for khi làm việc với mảng: cars.foreach(function(a, b, c) {}) thức iteration while foreach for cars phương loop mảng",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-continue-và-break",
+      "title": "Continue và break",
+      "headingLevel": 2,
+      "anchor": "#continue-và-break",
+      "summary": "Sử dụng câu lệnh break để kết thúc một vòng lặp, switch, hoặc kết hợp với một câu lệnh có nhãn.",
+      "keywords": [
+        "break",
+        "continue",
+        "for",
+        "iteration",
+        "loop",
+        "và",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nCâu lệnh `continue` có thể được dùng để khởi động lại câu lệnh `while`, `do-while`, `for`, hoặc `label`. Xem [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nCú pháp break:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nCú pháp continue:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(",
+      "examples": [
+        {
+          "code": "break;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}",
+          "explanation": ""
+        },
+        {
+          "code": "continue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(\"The number 2 is great\");\n    continue;\n  }\n\n  if (i === 5) {\n    break;\n  }\n\n  console.log(\"Number \" + i)\n}\n\n// example 2\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n    continue;\n  }\n  n += i;\n  console.log(n);\n}\n//1,3,7,12\n\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n     // continue;\n  }\n  n += i;\n  console.log(n);\n}\n// 1,3,6,10,15\n\n// example 3\nlet i = 0;\nlet j = 10;\ncheckiandj:\n  while (i < 4) {\n    console.log(i);\n    i += 1;\n    checkj:\n      while (j > 4) {\n        console.log(j);\n        j -= 1;\n        if ((j % 2) === 0) {\n          continue checkj;\n        }\n        console.log(j + ' is odd.');\n      }\n      console.log('i = ' + i);\n      console.log('j = ' + j);\n  }",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Sử dụng câu lệnh `break` để kết thúc một vòng lặp, `switch`, hoặc kết hợp với một câu lệnh có nhãn. Xem [MDN break statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nCâu lệnh `continue` có thể được dùng để khởi động lại câu lệnh `while`, `do-while`, `for`, hoặc `label`. Xem [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nCú pháp break:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nCú pháp continue:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(\"The number 2 is great\");\n    continue;\n  }\n\n  if (i === 5) {\n    break;\n  }\n\n  console.log(\"Number \" + i)\n}\n\n// example 2\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n    continue;\n  }\n  n += i;\n  console.log(n);\n}\n//1,3,7,12\n\nlet i = 0;\nlet n = 0;\nwhile (i < 5) {\n  i++;\n  if (i === 3) {\n     // continue;\n  }\n  n += i;\n  console.log(n);\n}\n// 1,3,6,10,15\n\n// example 3\nlet i = 0;\nlet j = 10;\ncheckiandj:\n  while (i < 4) {\n    console.log(i);\n    i += 1;\n    checkj:\n      while (j > 4) {\n        console.log(j);\n        j -= 1;\n        if ((j % 2) === 0) {\n          continue checkj;\n        }\n        console.log(j + ' is odd.');\n      }\n      console.log('i = ' + i);\n      console.log('j = ' + j);\n  }\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "continue và break sử dụng câu lệnh break để kết thúc một vòng lặp, switch, hoặc kết hợp với một câu lệnh có nhãn.  continue break và iteration while for loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    },
+    {
+      "id": "loop-linh-tinh",
+      "title": "Linh tinh",
+      "headingLevel": 2,
+      "anchor": "#linh-tinh",
+      "summary": "- bộ tích lũy (accumulators)",
+      "keywords": [
+        "for",
+        "iteration",
+        "linh",
+        "loop",
+        "tinh",
+        "while"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "- bộ tích lũy (accumulators)\n- đệ quy: ví dụ trong [function-examples.md](https://github.com/Kernix13/javascript-cheat-sheet/blob/master/function-examples.md)\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "linh tinh - bộ tích lũy (accumulators)  iteration while linh tinh for loop",
+      "sourceFile": "loop-examples.md",
+      "category": "loop"
+    }
+  ]
+}

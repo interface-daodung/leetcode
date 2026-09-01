@@ -41,7 +41,7 @@
       "tables": [],
       "related": [],
       "content": "Introducing JSX: https://reactjs.org/docs/introducing-jsx.html\n\nYou can put any valid JavaScript expression inside the curly braces { } in JSX: `{ ternary }`, `{ FxName(param) }`, `{ obj.prop; }`\n\nYou may use quotes to specify string literals as attributes:\n\n```jsx\nconst element = <a href=\"https://www.reactjs.org\"> React </a>;\n```\n\nUse curly braces to embed a JavaScript expression in an attribute:\n\n```jsx\nconst element = <img src={user.avatarUrl}></img>;\n```\n\nJSX Prevents Injection Attacks: It is safe to embed user input in JSX:\n\n```jsx\nconst title = response.potentiallyMaliciousInput;\n// This is safe:\nconst element = <h1>{title}</h1>;\n```",
-      "searchText": "jsx introducing jsx: https://reactjs.org/docs/introducing-jsx.html  jsx hooks component react",
+      "searchText": "jsx introducing jsx: https://reactjs.org/docs/introducing-jsx.html  hooks jsx react component",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -67,7 +67,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/rendering-elements.html\n\nElements are the smallest building blocks of React apps. An element describes what you want to see on the screen:\n\n```jsx\nconst element = <h1>Hire me!</h1>;\n```",
-      "searchText": "rendering elements link: https://reactjs.org/docs/rendering-elements.html  rendering jsx elements hooks component react",
+      "searchText": "rendering elements link: https://reactjs.org/docs/rendering-elements.html  component react rendering hooks elements jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -113,7 +113,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/components-and-props.html\n\nComponents let you split the UI into independent, reusable pieces. Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called `props`) and return React elements describing what should appear on the screen.\n\nThe simplest way to define a component is to write a JavaScript function (function components):\n\n```jsx\nfunction Welcome(props) {\n  return <h1>Hello, {props.name}</h1>;\n}\n```\n\nYou can also use an ES6 class to define a component: (skip)\n\nElements can also represent user-defined components:\n\n```jsx\nconst element = <Welcome name=\"Jim\" />;\n```\n\nWhen React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object `props`\n\n```jsx\n<div id=\"root\"></div>;\n\nfunction Welcome(props) {\n  return <h1>Hello, {props.name}</h1>;\n}\n\nconst element = <Welcome name=\"Jim\" />;\nconst root = ReactDOM.createRoot(document.getElementById(\"root\"));\nroot.render(element);\n```\n\nRecap of above:\n\n1. We call `root.render()` with the `<Welcome name=\"Jim\" />` element.\n1. React calls the Welcome component with `{name: 'Jim'}` as the props.\n1. Our Welcome component returns a `<h1>Hello, Jim</h1>` element as the result.\n1. React DOM efficiently updates the DOM to match `<h1>Hello, Jim</h1>`.\n\n**Note**: Always start component names with a capital letter. React treats components starting with lowercase letters as DOM tags.",
-      "searchText": "components and props link: https://reactjs.org/docs/components-and-props.html you can also use an es6 class to define a component: (skip) an to jsx define hooks you can props component es6 class also react components and skip use react elements describing what should appear on the screen",
+      "searchText": "components and props link: https://reactjs.org/docs/components-and-props.html you can also use an es6 class to define a component: (skip) and class component you to react define components hooks also jsx can skip an use props es6 react elements describing what should appear on the screen",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -139,7 +139,7 @@
       "tables": [],
       "related": [],
       "content": "Split components into smaller components:\n\n```jsx\nfunction Comment(props) {\n  return (\n    <div className=\"Comment\">\n      <div className=\"UserInfo\">\n        <img className=\"Avatar\" src={props.author.avatarUrl} alt={props.author.name} />\n        <div className=\"UserInfo-name\">{props.author.name}</div>\n      </div>\n      <div className=\"Comment-text\">{props.text}</div>\n      <div className=\"Comment-date\">{formatDate(props.date)}</div>\n    </div>\n  );\n}\n// Better:\nfunction Comment(props) {\n  return (\n    <div className=\"Comment\">\n      <UserInfo user={props.author} />\n      <div className=\"Comment-text\">{props.text}</div>\n      <div className=\"Comment-date\">{formatDate(props.date)}</div>\n    </div>\n  );\n}\n```\n\nIt accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website. This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let’s extract a few components from it.\n\nA good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.",
-      "searchText": "extracting components split components into smaller components:  extracting jsx hooks component react components",
+      "searchText": "extracting components split components into smaller components:  extracting component react components hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -167,7 +167,7 @@
       "tables": [],
       "related": [],
       "content": "A component must never modify its own props. **All React components must act like pure functions with respect to their props.**",
-      "searchText": "props are read-only a component must never modify its own props.  only jsx hooks are props component read react",
+      "searchText": "props are read-only a component must never modify its own props.  component are react only hooks jsx read props",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -194,7 +194,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/state-and-lifecycle.html",
-      "searchText": "state and lifecycle link: https://reactjs.org/docs/state-and-lifecycle.html  jsx hooks component lifecycle state react and",
+      "searchText": "state and lifecycle link: https://reactjs.org/docs/state-and-lifecycle.html  and component react hooks jsx lifecycle state",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -225,7 +225,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/handling-events.html\n\nHandling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:\n\n- React events are named using camelCase, rather than lowercase.\n- With JSX you pass a function as the event handler, rather than a string.\n\n```jsx\n// this:\n<button onclick=\"activateLasers()\">Activate Lasers</button>\n\n// vs this\n<button onClick={activateLasers}>Activate Lasers</button>\n```\n\nAnother difference is that you cannot return false to prevent default behavior in React. You must call preventDefault explicitly:\n\n```jsx\nfunction Form() {\n  function handleSubmit(e) {\n    e.preventDefault();\n    console.log(\"You clicked submit.\");\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}\n```\n\nWhen using React, you generally don’t need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.",
-      "searchText": "handling events link: https://reactjs.org/docs/handling-events.html  jsx handling events hooks component react",
+      "searchText": "handling events link: https://reactjs.org/docs/handling-events.html  component react hooks jsx events handling",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -251,7 +251,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/conditional-rendering.html\n\nIn React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.\n\nConditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like if or the conditional operator to create elements representing the current state, and let React update the UI to match them:\n\n```jsx\nfunction UserGreeting(props) {\n  return <h1>Welcome back!</h1>;\n}\n\nfunction GuestGreeting(props) {\n  return <h1>Please sign up.</h1>;\n}\n\n// Conditional\nfunction Greeting(props) {\n  const isLoggedIn = props.isLoggedIn;\n  if (isLoggedIn) {\n    return <UserGreeting />;\n  }\n  return <GuestGreeting />;\n}\n\nReactDOM.render(\n  // Try changing to isLoggedIn={true}:\n  <Greeting isLoggedIn={false} />,\n  document.getElementById(\"root\")\n);\n```",
-      "searchText": "conditional rendering link: https://reactjs.org/docs/conditional-rendering.html  rendering jsx hooks component react conditional",
+      "searchText": "conditional rendering link: https://reactjs.org/docs/conditional-rendering.html  conditional component react rendering hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -283,7 +283,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/lists-and-keys.html\n\nHow you transform lists in JavaScript: Given the code below, we use the `map()` function to take an array of _numbers_ and double their values. We assign the new array returned by `map()` to the variable _doubled_ and log it:\n\n```jsx\nconst numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(number => number * 2);\nconsole.log(doubled); // [2, 4, 6, 8, 10]\n```\n\nIn React, transforming arrays into lists of elements is nearly identical. You can build collections of elements and include them in JSX using curly braces {}. Below, we loop through the numbers array using the JavaScript map() function. We return a <li> element for each item. Finally, we assign the resulting array of elements to listItems:\n\n```jsx\n<div id=\"root\"></div>;\nconst numbers = [1, 2, 3, 4, 5];\nconst listItems = numbers.map(number => <li>{number}</li>);\nReactDOM.render(<ul>{listItems}</ul>, document.getElementById(\"root\"));\n```\n\nCodepen settings for their version\n\n- JavaScript Preprocessor: Babel\n- Add External Scripts/Pens: https://unpkg.com/react/umd/react.development.js and https://unpkg.com/react-dom/umd/react-dom.development.js",
-      "searchText": "lists and keys link: https://reactjs.org/docs/lists-and-keys.html  jsx hooks component react lists keys and",
+      "searchText": "lists and keys link: https://reactjs.org/docs/lists-and-keys.html  and component keys react hooks jsx lists",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -309,7 +309,7 @@
       "tables": [],
       "related": [],
       "content": "Usually you would render lists inside a component. We can refactor the previous example into a component that accepts an array of numbers and outputs a list of elements.\n\n```jsx\nfunction NumberList(props) {\n  const numbers = props.numbers;\n  const listItems = numbers.map(number => <li key={number.toString()}>{number}</li>);\n  return <ul>{listItems}</ul>;\n}\n\nconst numbers = [1, 2, 3, 4, 5];\nconst root = ReactDOM.createRoot(document.getElementById(\"root\"));\nroot.render(<NumberList numbers={numbers} />);\n```\n\nA `key` is a special string attribute you need to include when creating lists of elements.",
-      "searchText": "basic list component usually you would render lists inside a component.  basic jsx hooks component list react",
+      "searchText": "basic list component usually you would render lists inside a component.  list component react hooks jsx basic",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -343,7 +343,7 @@
       "tables": [],
       "related": [],
       "content": "Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:\n\n```jsx\nconst numbers = [1, 2, 3, 4, 5];\nconst listItems = numbers.map(number => <li key={number.toString()}>{number}</li>);\n```\n\nThe best way to pick a key is to use a string that uniquely identifies a list item among its siblings. Most often you would use IDs from your data as keys:\n\n```js\nconst todoItems = todos.map(todo => <li key={todo.id}>{todo.text}</li>);\n```\n\nWhen you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort:\n\n```jsx\nconst todoItems = todos.map((todo, index) => <li key={index}>{todo.text}</li>);\n```\n\nWe don’t recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state.",
-      "searchText": "keys keys help react identify which items have changed, are added, or are removed.  jsx hooks component react keys",
+      "searchText": "keys keys help react identify which items have changed, are added, or are removed.  component keys react hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -371,7 +371,7 @@
       "tables": [],
       "related": [],
       "content": "Keys only make sense in the context of the surrounding array. For example, if you extract a ListItem component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the `ListItem` itself.\n\n```jsx\nfunction ListItem(props) {\n  // There is no need to specify the key here:\n  return <li>{props.value}</li>;\n}\n\nfunction NumberList(props) {\n  const numbers = props.numbers;\n  const listItems = numbers.map(number => (\n    // Key should be specified inside the array.\n    <ListItem key={number.toString()} value={number} />\n  ));\n  return <ul>{listItems}</ul>;\n}\n```\n\nKeys used within arrays should be unique among their siblings. However, they don’t need to be globally unique. We can use the same keys when we produce two different arrays.",
-      "searchText": "extracting components with keys keys only make sense in the context of the surrounding array.  extracting jsx hooks with component react components keys",
+      "searchText": "extracting components with keys keys only make sense in the context of the surrounding array.  extracting component keys react with components hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -396,7 +396,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/forms.html\n\nHTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state.",
-      "searchText": "forms link: https://reactjs.org/docs/forms.html  jsx hooks component react forms",
+      "searchText": "forms link: https://reactjs.org/docs/forms.html  component react hooks jsx forms",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -422,7 +422,7 @@
       "tables": [],
       "related": [],
       "content": "Form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with `setState()`.\n\nNOTE: This is another example leading to classes - SKIP!\n\n...the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a _controlled component_.\n\nNotes on `input`, `textarea`, `select`, and `input type=\"file\"`.",
-      "searchText": "controlled components form elements such as input, textarea, and select typically maintain their own state and update it based on user input.  jsx hooks controlled component react components",
+      "searchText": "controlled components form elements such as input, textarea, and select typically maintain their own state and update it based on user input.  component react controlled components hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -449,7 +449,7 @@
       "tables": [],
       "related": [],
       "content": "When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.",
-      "searchText": "handling multiple inputs when you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of event.target.name.  multiple jsx handling hooks component inputs react",
+      "searchText": "handling multiple inputs when you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of event.target.name.  component multiple react inputs hooks jsx handling",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -476,7 +476,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/lifting-state-up.html\n\nOften, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. [READ LATER]",
-      "searchText": "lifting state up link: https://reactjs.org/docs/lifting-state-up.html  jsx hooks component up state react lifting",
+      "searchText": "lifting state up link: https://reactjs.org/docs/lifting-state-up.html  component react lifting hooks jsx up state",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -503,7 +503,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/composition-vs-inheritance.html [READ LATER]",
-      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [read later]  composition jsx hooks component vs react inheritance",
+      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [read later]  component composition inheritance react hooks vs jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -529,7 +529,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/thinking-in-react.html\n\n- Step 1: Break The UI Into A Component Hierarchy\n- Step 2: Build A Static Version in React\n- Step 3: Identify The Minimal (but complete) Representation Of UI State\n- Step 4: Identify Where Your State Should Live\n- Step 5: Add Inverse Data Flow",
-      "searchText": "thinking in react link: https://reactjs.org/docs/thinking-in-react.html  thinking jsx hooks component in react",
+      "searchText": "thinking in react link: https://reactjs.org/docs/thinking-in-react.html  component react hooks jsx thinking in",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -554,7 +554,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/accessibility.html",
-      "searchText": "accessibility link: https://reactjs.org/docs/accessibility.html  jsx hooks component react accessibility",
+      "searchText": "accessibility link: https://reactjs.org/docs/accessibility.html  accessibility component react hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -580,7 +580,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/code-splitting.html",
-      "searchText": "code splitting link: https://reactjs.org/docs/code-splitting.html  jsx code hooks component splitting react",
+      "searchText": "code splitting link: https://reactjs.org/docs/code-splitting.html  component code react hooks jsx splitting",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -605,7 +605,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/context.html",
-      "searchText": "context link: https://reactjs.org/docs/context.html  jsx hooks component react context",
+      "searchText": "context link: https://reactjs.org/docs/context.html  component react hooks context jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -631,7 +631,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/error-boundaries.html",
-      "searchText": "error boundaries link: https://reactjs.org/docs/error-boundaries.html  jsx hooks error component boundaries react",
+      "searchText": "error boundaries link: https://reactjs.org/docs/error-boundaries.html  component react hooks error jsx boundaries",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -657,7 +657,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/forwarding-refs.html",
-      "searchText": "forwarding refs link: https://reactjs.org/docs/forwarding-refs.html  jsx hooks component forwarding refs react",
+      "searchText": "forwarding refs link: https://reactjs.org/docs/forwarding-refs.html  component refs react hooks jsx forwarding",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -682,7 +682,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/fragments.html",
-      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  jsx hooks component fragments react",
+      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  component fragments react hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -709,7 +709,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/higher-order-components.html\n\n15 more sections: Integrating with Other Libraries, JSX In Depth (see below), Optimizing Performance, Portals, Profiler API, React Without ES6, React Without JSX, Reconciliation, Refs and the DOM, Render Props (see below), Static Type Checking, Strict Mode, Typechecking With PropTypes (see below), Uncontrolled Components, and Web Components.",
-      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  order jsx hooks higher component react components",
+      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  component higher react components hooks jsx order",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -735,7 +735,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/jsx-in-depth.html\n\n`React.createElement(component, props, ...children)`\n\n```JSX\n// This:\n<MyButton color=\"blue\" shadowSize={2}>\n  Click Me\n</MyButton>\n// Compiles into:\nReact.createElement(\n  MyButton,\n  {color: 'blue', shadowSize: 2},\n  'Click Me'\n)\n\n// And this:\n<div className=\"sidebar\" />\n// Compiles into:\nReact.createElement(\n  'div',\n  {className: 'sidebar'}\n)\n```",
-      "searchText": "jsx in depth link: https://reactjs.org/docs/jsx-in-depth.html  jsx depth hooks component in react",
+      "searchText": "jsx in depth link: https://reactjs.org/docs/jsx-in-depth.html  component react hooks jsx depth in",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -763,7 +763,7 @@
       "tables": [],
       "related": [],
       "content": "The first part of a JSX tag determines the type of the React element. Capitalized types indicate that the JSX tag is referring to a React component.\n\nSince JSX compiles into calls to `React.createElement`, the **React** library must also always be in scope from your JSX code. For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:\n\n```jsx\nimport React from \"react\";\nimport CustomButton from \"./CustomButton\";\n\nfunction WarningButton() {\n  // return React.createElement(CustomButton, {color: 'red'}, null);\n  return <CustomButton color=\"red\" />;\n}\n```\n\nIf you don’t use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the React global.\n\n- Using Dot Notation for JSX Type: if you have a single module that exports many React components",
-      "searchText": "specifying the react element type the first part of a jsx tag determines the type of the react element.  the type jsx hooks component react element specifying",
+      "searchText": "specifying the react element type the first part of a jsx tag determines the type of the react element.  element the component specifying react hooks type jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -793,7 +793,7 @@
       "tables": [],
       "related": [],
       "content": "When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string 'div' or 'span' passed to React.createElement. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.\n\nYou cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:\n\n```jsx\nimport React from \"react\";\nimport { PhotoStory, VideoStory } from \"./stories\";\n\nconst components = {\n  photo: PhotoStory,\n  video: VideoStory\n};\n\nfunction Story(props) {\n  const SpecificStory = components[props.storyType];\n  return <SpecificStory story={props.story} />;\n}\n```",
-      "searchText": "user-defined components must be capitalized when an element type starts with a lowercase letter, it refers to a built-in component like div or span and results in a string 'div' or 'span' passed to react.createelement.  user be capitalized jsx hooks defined component must react components",
+      "searchText": "user-defined components must be capitalized when an element type starts with a lowercase letter, it refers to a built-in component like div or span and results in a string 'div' or 'span' passed to react.createelement.  be component react capitalized components hooks must user jsx defined",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -819,7 +819,7 @@
       "tables": [],
       "related": [],
       "content": "There are several different ways to specify props in JSX.",
-      "searchText": "props in jsx there are several different ways to specify props in jsx.  jsx hooks component props in react",
+      "searchText": "props in jsx there are several different ways to specify props in jsx.  component react hooks jsx props in",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -847,7 +847,7 @@
       "tables": [],
       "related": [],
       "content": "You can pass any JavaScript expression as a prop, by surrounding it with {}. For example, in this JSX: `<MyComponent foo={1 + 2 + 3 + 4} />`\n\n`if` statements and `for` loops are not expressions in JavaScript, so they can’t be used in JSX directly.\n\n**String Literals**: You can pass a string literal as a prop",
-      "searchText": "javascript expressions as props you can pass any javascript expression as a prop, by surrounding it with {}.  as expressions jsx hooks props component javascript react",
+      "searchText": "javascript expressions as props you can pass any javascript expression as a prop, by surrounding it with {}.  component react as expressions hooks jsx javascript props",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -873,7 +873,7 @@
       "tables": [],
       "related": [],
       "content": "stopped here https://reactjs.org/docs/jsx-in-depth.html#spread-attributes",
-      "searchText": "spread attributes stopped here https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  attributes jsx hooks component react spread",
+      "searchText": "spread attributes stopped here https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  component attributes react spread hooks jsx",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -899,7 +899,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/render-props.html",
-      "searchText": "render props link: https://reactjs.org/docs/render-props.html  jsx render hooks component props react",
+      "searchText": "render props link: https://reactjs.org/docs/render-props.html  component react hooks jsx props render",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -926,7 +926,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/typechecking-with-proptypes.html",
-      "searchText": "typechecking with proptypes link: https://reactjs.org/docs/typechecking-with-proptypes.html  jsx proptypes hooks with component react typechecking",
+      "searchText": "typechecking with proptypes link: https://reactjs.org/docs/typechecking-with-proptypes.html  component proptypes react with hooks jsx typechecking",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -952,7 +952,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/react-api.html",
-      "searchText": "api reference link: https://reactjs.org/docs/react-api.html  api jsx hooks component reference react",
+      "searchText": "api reference link: https://reactjs.org/docs/react-api.html  component react reference hooks jsx api",
       "sourceFile": "react.md",
       "category": "react"
     },
@@ -976,7 +976,7 @@
       "tables": [],
       "related": [],
       "content": "Link: https://reactjs.org/docs/react-component.html",
-      "searchText": "react component link: https://reactjs.org/docs/react-component.html  jsx hooks component react",
+      "searchText": "react component link: https://reactjs.org/docs/react-component.html  hooks jsx react component",
       "sourceFile": "react.md",
       "category": "react"
     }

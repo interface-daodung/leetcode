@@ -10,18 +10,35 @@ except Exception:
 # Hỗ trợ chạy từ mọi CWD: mặc định lấy tmp_reference và src/data tương đối với script
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
 DEFAULT_SRC = SCRIPT_DIR.parent / "tmp_reference"
+DEFAULT_SRC_VI = SCRIPT_DIR.parent / "tmp_reference_vi"
 DEFAULT_OUT = SCRIPT_DIR.parent / "src" / "data"
+
+# Map ngôn ngữ → thư mục nguồn .md và thư mục output .json
+LANG_CONFIG = {
+    "en": {"src": DEFAULT_SRC, "out": DEFAULT_OUT / "en"},
+    "vi": {"src": DEFAULT_SRC_VI, "out": DEFAULT_OUT / "vi"},
+}
 
 parser = argparse.ArgumentParser(description="Generate structured JSON from javascript-cheat-sheet markdown")
 parser.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC, help="path to tmp_reference (contains *.md)")
 parser.add_argument("--out", type=pathlib.Path, default=DEFAULT_OUT, help="output path for *.json")
+parser.add_argument("--lang", type=str, default="all", choices=["en", "vi", "all"], help="language to generate (en, vi, or all)")
 args = parser.parse_args()
 
-SRC_DIR = args.src
-OUT_DIR = args.out
-OUT_DIR.mkdir(parents=True, exist_ok=True)
-print(f"SRC_DIR={SRC_DIR}")
-print(f"OUT_DIR={OUT_DIR}")
+# Xác định danh sách (lang, src_dir, out_dir) cần generate
+custom_paths = (args.src != DEFAULT_SRC) or (args.out != DEFAULT_OUT)
+runs = []
+if custom_paths:
+    # custom mode: 1 lần chạy với src/out tuỳ chỉnh, lang dùng để ghi metadata
+    lang = args.lang if args.lang in ("en", "vi") else "en"
+    runs.append((lang, args.src, args.out))
+elif args.lang == "all":
+    for lang in ["en", "vi"]:
+        cfg = LANG_CONFIG[lang]
+        runs.append((lang, cfg["src"], cfg["out"]))
+else:
+    cfg = LANG_CONFIG[args.lang]
+    runs.append((args.lang, cfg["src"], cfg["out"]))
 
 # Category mapping
 CATEGORY_MAP = {
@@ -114,7 +131,7 @@ def parse_markdown_file(path: pathlib.Path):
         clean_title = re.sub(r"<[^>]+>", "", raw_title)
         clean_title = re.sub(r"[*_`]", "", clean_title).strip()
         # skip generic headings like "Table of contents", "Table Comparisons" is ok but we will filter later
-        if clean_title.lower() in ["table of contents", "table of contents "] :
+        if clean_title.lower() in ["table of contents", "table of contents ", "mục lục"] :
             continue
         # anchor
         anchor = "#" + slugify(clean_title)
@@ -290,68 +307,80 @@ def parse_markdown_file(path: pathlib.Path):
     }
     return doc
 
-all_docs=[]
-for p in sorted(SRC_DIR.glob("*.md")):
-    if p.name.startswith("_"):
-        continue
-    doc = parse_markdown_file(p)
-    all_docs.append(doc)
-    out_path = OUT_DIR / (p.stem + ".json")
-    out_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote {out_path.name}: {doc['totalSections']} sections, title: {doc['title'][:60]}")
+def generate_lang(lang: str, src_dir: pathlib.Path, out_dir: pathlib.Path):
+    src_dir = src_dir.resolve()
+    out_dir = out_dir.resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    print(f"\n=== Generating language: {lang} ===")
+    print(f"SRC_DIR={src_dir}")
+    print(f"OUT_DIR={out_dir}")
 
-# Build master index
-entries=[]
-for doc in all_docs:
-    for sec in doc["sections"]:
-        entries.append({
-            "id": sec["id"],
-            "title": sec["title"],
-            "category": sec["category"],
-            "sourceFile": sec["sourceFile"],
-            "anchor": sec["anchor"],
-            "summary": sec["summary"],
-            "keywords": sec["keywords"],
-            "syntax": sec["syntax"],
-            "returns": sec["returns"],
-            "mutates": sec["mutates"],
-            "mdnUrl": sec["mdnUrl"],
-            "searchText": sec["searchText"],
-            "tags": doc["tags"]
-        })
+    all_docs = []
+    for p in sorted(src_dir.glob("*.md")):
+        if p.name.startswith("_"):
+            continue
+        doc = parse_markdown_file(p)
+        all_docs.append(doc)
+        out_path = out_dir / (p.stem + ".json")
+        out_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"Wrote {out_path.name}: {doc['totalSections']} sections, title: {doc['title'][:60]}")
 
-# Sort entries by category then title
-entries.sort(key=lambda x: (x["category"], x["title"].lower()))
+    # Build master index
+    entries = []
+    for doc in all_docs:
+        for sec in doc["sections"]:
+            entries.append({
+                "id": sec["id"],
+                "title": sec["title"],
+                "category": sec["category"],
+                "sourceFile": sec["sourceFile"],
+                "anchor": sec["anchor"],
+                "summary": sec["summary"],
+                "keywords": sec["keywords"],
+                "syntax": sec["syntax"],
+                "returns": sec["returns"],
+                "mutates": sec["mutates"],
+                "mdnUrl": sec["mdnUrl"],
+                "searchText": sec["searchText"],
+                "tags": doc["tags"]
+            })
 
-# keyword index: map keyword -> list of ids
-keyword_index={}
-for e in entries:
-    for kw in e["keywords"]:
-        keyword_index.setdefault(kw, []).append(e["id"])
+    # Sort entries by category then title
+    entries.sort(key=lambda x: (x["category"], x["title"].lower()))
 
-index_doc = {
-    "version": "1.0.0",
-    "generatedAt": datetime.datetime.utcnow().isoformat() + "Z",
-    "generator": "generate_docs.py from Kernix13/javascript-cheat-sheet",
-    "sourceRepo": "https://github.com/Kernix13/javascript-cheat-sheet",
-    "totalSources": len(all_docs),
-    "totalEntries": len(entries),
-    "categories": sorted(list(set(d["category"] for d in all_docs))),
-    "entries": entries,
-    "keywordIndex": keyword_index,
-    "sources": [{"file": d["sourceFile"], "title": d["title"], "category": d["category"], "sections": d["totalSections"]} for d in all_docs]
-}
+    # keyword index: map keyword -> list of ids
+    keyword_index = {}
+    for e in entries:
+        for kw in e["keywords"]:
+            keyword_index.setdefault(kw, []).append(e["id"])
 
-# Write index
-(OUT_DIR / "index.json").write_text(json.dumps(index_doc, ensure_ascii=False, indent=2), encoding="utf-8")
-# Write aggregated all.json
-(OUT_DIR / "all.json").write_text(json.dumps({"docs": all_docs, "index": index_doc}, ensure_ascii=False, indent=2), encoding="utf-8")
+    index_doc = {
+        "version": "1.0.0",
+        "lang": lang,
+        "generatedAt": datetime.datetime.utcnow().isoformat() + "Z",
+        "generator": "generate_docs.py from Kernix13/javascript-cheat-sheet",
+        "sourceRepo": "https://github.com/Kernix13/javascript-cheat-sheet",
+        "totalSources": len(all_docs),
+        "totalEntries": len(entries),
+        "categories": sorted(list(set(d["category"] for d in all_docs))),
+        "entries": entries,
+        "keywordIndex": keyword_index,
+        "sources": [{"file": d["sourceFile"], "title": d["title"], "category": d["category"], "sections": d["totalSections"]} for d in all_docs]
+    }
 
-print(f"\nIndex: {len(entries)} entries, {len(keyword_index)} unique keywords")
-print(f"Categories: {index_doc['categories']}")
-# also output stats for README
-for d in all_docs:
-    print(f"{d['sourceFile']}: {d['totalSections']} sections")
+    # Write index
+    (out_dir / "index.json").write_text(json.dumps(index_doc, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Write aggregated all.json
+    (out_dir / "all.json").write_text(json.dumps({"docs": all_docs, "index": index_doc}, ensure_ascii=False, indent=2), encoding="utf-8")
 
-# quick validation: ensure no empty
-assert len(entries) > 100, "too few entries"
+    print(f"\nIndex: {len(entries)} entries, {len(keyword_index)} unique keywords")
+    print(f"Categories: {index_doc['categories']}")
+    # also output stats for README
+    for d in all_docs:
+        print(f"{d['sourceFile']}: {d['totalSections']} sections")
+
+    # quick validation: ensure no empty
+    assert len(entries) > 100, "too few entries"
+
+for lang, src_dir, out_dir in runs:
+    generate_lang(lang, src_dir, out_dir)

@@ -1,0 +1,1278 @@
+{
+  "sourceFile": "function-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/function-examples.md",
+  "category": "function",
+  "title": "Ví dụ mã quan trọng về hàm",
+  "description": "**Lập trình hàm**: Một trong những nguyên tắc cốt lõi của lập trình hàm là không thay đổi mọi thứ. Lập trình hàm xoay quanh việc tạo và sử dụng các hàm không gây đột biến (non-mutating).",
+  "tags": [
+    "function",
+    "closure",
+    "higher-order",
+    "callback"
+  ],
+  "totalSections": 37,
+  "sections": [
+    {
+      "id": "function-tổng-quan",
+      "title": "Tổng quan",
+      "headingLevel": 2,
+      "anchor": "#tổng-quan",
+      "summary": "Hãy xem các thuộc tính của hàm: .length, và có thể cả .name.",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "quan",
+        "tổng"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Hãy xem các thuộc tính của hàm: `.length`, và có thể cả `.name`. Ngoài ra hãy xem các phương thức của hàm: `apply()`, `bind()`, `call()`, và `toString()`.",
+      "searchText": "tổng quan hãy xem các thuộc tính của hàm: .length, và có thể cả .name.  function closure quan callback tổng higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-định-nghĩa",
+      "title": "Định nghĩa",
+      "headingLevel": 3,
+      "anchor": "#định-nghĩa",
+      "summary": "Định nghĩa",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "nghĩa",
+        "định"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "<dl>\n  <dt>Hàm gọi lại (Callback function)</dt>\n  <dd>là một hàm được truyền vào một hàm khác dưới dạng tham số, sau đó được gọi bên trong hàm ngoài để hoàn thành một loại quy trình hoặc hành động nào đó. Một ví dụ là hàm trong `addEventListener()`.</dd>\n</dl>\n<dl>\n  <dt>Hàm hạng nhất (First class functions)</dt>\n  <dd>Các hàm có thể được gán cho một biến, truyền vào một hàm khác, hoặc trả về từ một hàm khác giống như bất kỳ giá trị thông thường nào khác, được gọi là hàm hạng nhất. Trong JavaScript, mọi hàm đều là hàm hạng nhất.</dd>\n</dl>\n<dl>\n  <dt>Hàm bậc cao (Higher order functions)</dt>\n  <dd>Các hàm nhận một hàm làm tham số, hoặc trả về một hàm làm giá trị trả về.</dd>\n</dl>\n<dl>\n  <dt>Hàm lambda (Lambda functions)</dt>\n  <dd>Khi các hàm được truyền vào hoặc trả về từ một hàm khác, thì những hàm được truyền vào hoặc trả về đó có thể được gọi là lambda. Biểu thức lambda là một hàm ẩn danh cung cấp cú pháp rất ngắn gọn và mang tính hàm, được sử dụng để viết các phương thức ẩn danh... một hàm đơn giản, ngắn, dùng một lần được thiết kế để tạo nội tuyến trong mã. Chúng còn được gọi là biểu thức lambda, hàm ẩn danh, trừu tượng lambda, dạng lambda, hoặc hằng hàm (function literals)</dd>\n</dl>\n<dl>\n  <dt>Arity</dt>\n  <dd>Arity của một hàm là số lượng tham số mà nó yêu cầu.</dd>\n</dl>\n<dl>\n  <dt>Currying</dt>\n  <dd>Currying một hàm nghĩa là chuyển đổi một hàm có arity N thành N hàm có arity 1. Nói cách khác, nó tái cấu trúc một hàm sao cho nó nhận một tham số, rồi trả về một hàm khác nhận tham số tiếp theo, và cứ thế tiếp tục.</dd>\n</dl>\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "định nghĩa định nghĩa  function closure callback định nghĩa higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-cú-pháp",
+      "title": "Cú pháp",
+      "headingLevel": 3,
+      "anchor": "#cú-pháp",
+      "summary": "// typeof:",
+      "keywords": [
+        "callback",
+        "closure",
+        "cú",
+        "function",
+        "higher-order",
+        "pháp"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// typeof:\nlet typeOfTest;\ntypeOfTest = function() {\n  return \"Hello\";\n}\nconsole.log(typeof typeOfTest) // function\n\n\n// no parameter\nfunction lowerCase() {\n  if() {\n    // do something\n    // return something\n  }\n}\n\n// with parameter\nfunction square(number) {\n  return number * number;\n}\n\nfunction lowerCase(str) {\n  return str.toLowerCase();\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// typeof:\nlet typeOfTest;\ntypeOfTest = function() {\n  return \"Hello\";\n}\nconsole.log(typeof typeOfTest) // function\n\n\n// no parameter\nfunction lowerCase() {\n  if() {\n    // do something\n    // return something\n  }\n}\n\n// with parameter\nfunction square(number) {\n  return number * number;\n}\n\nfunction lowerCase(str) {\n  return str.toLowerCase();\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "cú pháp // typeof:  function pháp closure cú callback higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-khai-báo-vs-biểu-thức",
+      "title": "Khai báo vs biểu thức",
+      "headingLevel": 3,
+      "anchor": "#khai-báo-vs-biểu-thức",
+      "summary": "// function declaration:",
+      "keywords": [
+        "biểu",
+        "báo",
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "khai",
+        "thức",
+        "vs"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// function declaration:\nfunction myFunction() {\n  // code here\n}\n\n// function expression:\nlet myFunction = function() {\n  code here\n}\n\n// Arrow function expression:\nlet myFx = () => {\n  // code here\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// function declaration:\nfunction myFunction() {\n  // code here\n}\n\n// function expression:\nlet myFunction = function() {\n  code here\n}\n\n// Arrow function expression:\nlet myFx = () => {\n  // code here\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "khai báo vs biểu thức // function declaration:  khai biểu thức function closure callback higher-order vs báo",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-cú-pháp-rest-và-spread",
+      "title": "Cú pháp rest và spread",
+      "headingLevel": 3,
+      "anchor": "#cú-pháp-rest-và-spread",
+      "summary": "Với tham số rest và toán tử spread trong danh sách tham số:",
+      "keywords": [
+        "callback",
+        "closure",
+        "cú",
+        "function",
+        "higher-order",
+        "pháp",
+        "rest",
+        "spread",
+        "và"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let someVar = [some other array]\nlet mainArray = [1, 2, ...someVar, 10, 11]\n\nfunction someFx(...arr) {\n  code here\n}\nsomeFx(mainArray);",
+          "explanation": ""
+        },
+        {
+          "code": "function howMany(...args) {\n  return \"You have passed \" + args.length + \" arguments.\";\n}\nconsole.log(howMany(0, 1, 2, -1, -2));",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Với tham số rest và toán tử spread trong danh sách tham số:\n\n```js\nlet someVar = [some other array]\nlet mainArray = [1, 2, ...someVar, 10, 11]\n\nfunction someFx(...arr) {\n  code here\n}\nsomeFx(mainArray);\n```\n\n<br />\n\nsử dụng tham số rest với tham số của hàm:\n\n```js\nfunction howMany(...args) {\n  return \"You have passed \" + args.length + \" arguments.\";\n}\nconsole.log(howMany(0, 1, 2, -1, -2));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "cú pháp rest và spread với tham số rest và toán tử spread trong danh sách tham số:  rest function pháp và closure spread cú callback higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-tham-số-mặc-định",
+      "title": "Tham số mặc định",
+      "headingLevel": 3,
+      "anchor": "#tham-số-mặc-định",
+      "summary": "đặt tham số mặc định cho hàm của bạn:",
+      "keywords": [
+        "anonymous",
+        "callback",
+        "closure",
+        "function",
+        "greeting",
+        "hello",
+        "higher-order",
+        "mặc",
+        "name",
+        "số",
+        "tham",
+        "định"
+      ],
+      "syntax": "const greeting = (name = \"Anonymous\") => \"Hello \" + name;",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "const greeting = (name = \"Anonymous\") => \"Hello \" + name;",
+          "explanation": ""
+        },
+        {
+          "code": "function greet(first = \"John\", last = \"Doe\") {\n  console.log(`Hello ${first} ${last}`);\n}\ngreet(\"Jim\", \"Kernix\");",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "đặt tham số mặc định cho hàm của bạn:\n\n```js\nconst greeting = (name = \"Anonymous\") => \"Hello \" + name;\n```\n\n<br />\n\nTham số mặc định 2:\n\n```js\nfunction greet(first = \"John\", last = \"Doe\") {\n  console.log(`Hello ${first} ${last}`);\n}\ngreet(\"Jim\", \"Kernix\");\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "tham số mặc định đặt tham số mặc định cho hàm của bạn: const greeting = (name = \"anonymous\") => \"hello \" + name; greeting function anonymous tham closure callback hello định mặc số name higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-đối-tượng-arguments",
+      "title": "Đối tượng arguments",
+      "headingLevel": 3,
+      "anchor": "#đối-tượng-arguments",
+      "summary": "MDN: arguments là một đối tượng dạng mảng (Array-like) có thể truy cập bên trong hàm, chứa các giá trị của các tham số được truyền cho hàm đó.",
+      "keywords": [
+        "arguments",
+        "callback",
+        "closure",
+        "console",
+        "function",
+        "higher-order",
+        "log",
+        "object",
+        "typeof",
+        "tượng",
+        "đối"
+      ],
+      "syntax": "console.log(typeof arguments); // 'object'",
+      "returns": "the type of the first argument",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "console.log(typeof arguments); // 'object'\nconsole.log(typeof arguments[0]); // returns the type of the first argument\n\n// if a function is passed 3 arguments, you can access them as follows\narguments[0]; // first argument\narguments[1]; // second argument\narguments[2]; // third argument\n\nfunction func1(a, b, c) {\n  console.log(arguments[0]); // expected output: 1\n  console.log(arguments[1]); // expected output: 2\n  console.log(arguments[2]); // expected output: 3\n}\nfunc1(1, 2, 3);\n\n// Each argument can also be set or reassigned:\narguments[1] = \"new value\";\n\n// freeCodeCamp:\nfunction viewArgs() {\n  return arguments;\n}\nconsole.log(viewArgs([3, 5, 1, 2, 2], 2, 3, 5));\n// { '0': [ 3, 5, 1, 2, 2 ], '1': 2, '2': 3, '3': 5 }\nconsole.log(viewArgs([2, 3, 2, 3, 2, 3]));\n// { '0': [ 2, 3, 2, 3, 2, 3 ] }\nconsole.log(viewArgs(3, 2, 1, \"life the universe and all\"));\n// { '0': 3, '1': 2, '2': 1, '3': 'life the universe and all' }\nconsole.log(viewArgs(\"Douglas\", \"Adams\"));\n// { '0': 'Douglas', '1': 'Adams' }",
+          "explanation": ""
+        },
+        {
+          "code": "let args = Array.from(arguments);\n// or\nlet args = [...arguments];",
+          "explanation": ""
+        },
+        {
+          "code": "function storeNames() {\n  return arguments;\n}\n// [\"Springfield\", \"Clayton\", \"Smithville\"]\narguments.length; // 3",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "MDN: `arguments` là một đối tượng dạng mảng (Array-like) có thể truy cập bên trong hàm, chứa các giá trị của các tham số được truyền cho hàm đó.\n\nfreeCodeCamp: Đối tượng arguments là một đối tượng lưu trữ tất cả các giá trị được truyền cho hàm. Đối tượng arguments có cấu trúc của một đối tượng JSON.\n\n```js\nconsole.log(typeof arguments); // 'object'\nconsole.log(typeof arguments[0]); // returns the type of the first argument\n\n// if a function is passed 3 arguments, you can access them as follows\narguments[0]; // first argument\narguments[1]; // second argument\narguments[2]; // third argument\n\nfunction func1(a, b, c) {\n  console.log(arguments[0]); // expected output: 1\n  console.log(arguments[1]); // expected output: 2\n  console.log(arguments[2]); // expected output: 3\n}\nfunc1(1, 2, 3);\n\n// Each argument can also be set or reassigned:\narguments[1] = \"new value\";\n\n// freeCodeCamp:\nfunction viewArgs() {\n  return arguments;\n}\nconsole.log(viewArgs([3, 5, 1, 2, 2], 2, 3, 5));\n// { '0': [ 3, 5, 1, 2, 2 ], '1': 2, '2': 3, '3': 5 }\nconsole.log(viewArgs([2, 3, 2, 3, 2, 3]));\n// { '0': [ 2, 3, 2, 3, 2, 3 ] }\nconsole.log(viewArgs(3, 2, 1, \"life the universe and all\"));\n// { '0': 3, '1': 2, '2': 1, '3': 'life the universe and all' }\nconsole.log(viewArgs(\"Douglas\", \"Adams\"));\n// { '0': 'Douglas', '1': 'Adams' }\n```\n\nĐối tượng arguments không phải là một mảng (Array). Nó tương tự, nhưng thiếu mọi thuộc tính của mảng ngoại trừ `length`. Như bạn có thể làm với bất kỳ đối tượng dạng mảng nào, bạn có thể sử dụng phương thức `Array.from()` của ES2015 hoặc `spread syntax` để chuyển đổi `arguments` thành một mảng thực sự:\n\n```js\nlet args = Array.from(arguments);\n// or\nlet args = [...arguments];\n```\n\nĐối tượng arguments hữu ích cho các hàm được gọi với nhiều tham số hơn số tham số được khai báo chính thức. Kỹ thuật này hữu ích cho các hàm có thể được truyền số lượng tham số biến đổi, chẳng hạn như `Math.min()`.\n\nNếu bạn truyền 3 tham số cho một hàm, ví dụ `storeNames()`, thì 3 tham số đó sẽ được lưu trữ bên trong một đối tượng gọi là **arguments** và nó sẽ trông như thế này khi chúng ta truyền các tham số `storeNames(\"Springfield\", \"Clayton\", \"Smithville\")` cho hàm của mình. Khi bạn thực thi hàm đó với n tham số, trong trường hợp này là 3, nó sẽ trả về đối tượng cho chúng ta và nó sẽ trông giống như một mảng:\n\n```js\nfunction storeNames() {\n  return arguments;\n}\n// [\"Springfield\", \"Clayton\", \"Smithville\"]\narguments.length; // 3\n```\n\nĐối tượng arguments có thể được sử dụng kết hợp với tham số _rest_, _default_, và tham số _destructured_.",
+      "searchText": "đối tượng arguments mdn: arguments là một đối tượng dạng mảng (array-like) có thể truy cập bên trong hàm, chứa các giá trị của các tham số được truyền cho hàm đó. console.log(typeof arguments); // 'object' arguments function object console đối closure callback tượng typeof log higher-order the type of the first argument",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-xem-nó-như-một-mảng",
+      "title": "Xem nó như một mảng",
+      "headingLevel": 4,
+      "anchor": "#xem-nó-như-một-mảng",
+      "summary": "Bạn không nên dùng slice trên arguments vì nó ngăn cản các tối ưu hóa trong các engine JavaScript.",
+      "keywords": [
+        "args",
+        "array",
+        "at",
+        "callback",
+        "closure",
+        "empty",
+        "first",
+        "function",
+        "higher-order",
+        "mảng",
+        "một",
+        "như",
+        "nó",
+        "xem"
+      ],
+      "syntax": "let args = []; // Empty array, at first.",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let args = []; // Empty array, at first.\nfor (let i = 0; i < arguments.length; i++) {\n  args.push(arguments[i]);\n} // Now 'args' is an array that holds your arguments.\n\n// also try the rest parameter or Array.from() method:\nfunction func(...args) {\n  console.log(args); // or\n  console.log(Array.from(arguments));\n}\nfunction func() {\n  console.log(Array.from(arguments)); // or\n  return Array.from(arguments).sort((a, b) => a - b);\n}\nfunc(1, 2, 3); // [ 1, 2, 3 ]",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Bạn không nên dùng `slice` trên `arguments` vì nó ngăn cản các tối ưu hóa trong các engine JavaScript. Thay vào đó, hãy thử tạo một mảng mới bằng cách lặp qua đối tượng arguments — hãy thử vòng lặp `for`:\n\n```js\nlet args = []; // Empty array, at first.\nfor (let i = 0; i < arguments.length; i++) {\n  args.push(arguments[i]);\n} // Now 'args' is an array that holds your arguments.\n\n// also try the rest parameter or Array.from() method:\nfunction func(...args) {\n  console.log(args); // or\n  console.log(Array.from(arguments));\n}\nfunction func() {\n  console.log(Array.from(arguments)); // or\n  return Array.from(arguments).sort((a, b) => a - b);\n}\nfunc(1, 2, 3); // [ 1, 2, 3 ]\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "xem nó như một mảng bạn không nên dùng slice trên arguments vì nó ngăn cản các tối ưu hóa trong các engine javascript. let args = []; // empty array, at first. args function at first nó empty closure callback xem array higher-order như một mảng",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-linh-tinh",
+      "title": "Linh tinh",
+      "headingLevel": 3,
+      "anchor": "#linh-tinh",
+      "summary": "trả về giá trị boolean từ hàm và typeof:",
+      "keywords": [
+        "callback",
+        "checkequal",
+        "closure",
+        "function",
+        "higher-order",
+        "linh",
+        "tinh"
+      ],
+      "syntax": "function checkEqual(a, b) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function checkEqual(a, b) {\n  return a === b;\n}\n\n// or\n\nfunction boolReturn(test) {\n  // return typeof test === \"number\";\n  // return typeof test === \"string\";\n  return typeof test === \"object\";\n  // return typeof test === \"boolean\";\n}\nconsole.log(boolReturn([1, 2, 3]));",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "trả về giá trị boolean từ hàm và `typeof`:\n\n```js\nfunction checkEqual(a, b) {\n  return a === b;\n}\n\n// or\n\nfunction boolReturn(test) {\n  // return typeof test === \"number\";\n  // return typeof test === \"string\";\n  return typeof test === \"object\";\n  // return typeof test === \"boolean\";\n}\nconsole.log(boolReturn([1, 2, 3]));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "linh tinh trả về giá trị boolean từ hàm và typeof: function checkequal(a, b) { function linh tinh closure callback checkequal higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-phương-thức-của-hàm",
+      "title": "Phương thức của hàm",
+      "headingLevel": 2,
+      "anchor": "#phương-thức-của-hàm",
+      "summary": "Cũng hãy xem",
+      "keywords": [
+        "callback",
+        "closure",
+        "của",
+        "function",
+        "higher-order",
+        "hàm",
+        "phương",
+        "thức"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get): Cú pháp `get` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi thuộc tính đó được tra cứu.\n- [set và setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set): Cú pháp `set` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi có nỗ lực gán giá trị cho thuộc tính đó.",
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Cũng hãy xem\n\n- [get và getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get): Cú pháp `get` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi thuộc tính đó được tra cứu.\n- [set và setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set): Cú pháp `set` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi có nỗ lực gán giá trị cho thuộc tính đó.",
+      "searchText": "phương thức của hàm cũng hãy xem  thức function của closure callback hàm higher-order phương",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-apply",
+      "title": "apply",
+      "headingLevel": 3,
+      "anchor": "#apply",
+      "summary": "Phương thức apply() insgọi một hàm/ins với một giá trị this cho trước, và các arguments được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng).",
+      "keywords": [
+        "apply",
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "thisarg"
+      ],
+      "syntax": "apply(thisArg);",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) **<ins>gọi một hàm</ins>** với một giá trị `this` cho trước, và các `arguments` được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng).\n\n```js\n// syntax:\napply(thisArg);\napply(thisArg, argsArray);\n```\n\n<br />",
+      "examples": [
+        {
+          "code": "// syntax:\napply(thisArg);\napply(thisArg, argsArray);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Phương thức [apply()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) **<ins>gọi một hàm</ins>** với một giá trị `this` cho trước, và các `arguments` được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng).\n\n```js\n// syntax:\napply(thisArg);\napply(thisArg, argsArray);\n```\n\n<br />",
+      "searchText": "apply phương thức apply() insgọi một hàm/ins với một giá trị this cho trước, và các arguments được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng). apply(thisarg); function thisarg closure callback apply higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-bind",
+      "title": "bind",
+      "headingLevel": 3,
+      "anchor": "#bind",
+      "summary": "Phương thức bind() tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi.",
+      "keywords": [
+        "bind",
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "thisarg"
+      ],
+      "syntax": "bind(thisArg)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) tạo ra một hàm mới mà khi được gọi, từ khóa `this` của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi.\n\nTôi đã thấy Brad Traversy sử dụng phương thức này trong một số bài học của anh ấy.\n\n```js\n// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\n<br />",
+      "examples": [
+        {
+          "code": "// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Phương thức [bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) tạo ra một hàm mới mà khi được gọi, từ khóa `this` của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi.\n\nTôi đã thấy Brad Traversy sử dụng phương thức này trong một số bài học của anh ấy.\n\n```js\n// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\n<br />",
+      "searchText": "bind phương thức bind() tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi. bind(thisarg) function thisarg closure callback higher-order bind",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-call",
+      "title": "call",
+      "headingLevel": 3,
+      "anchor": "#call",
+      "summary": "Phương thức call() gọi một hàm với một giá trị this cho trước và các tham số được cung cấp riêng lẻ.",
+      "keywords": [
+        "call",
+        "callback",
+        "closure",
+        "function",
+        "higher-order"
+      ],
+      "syntax": "call()",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) gọi một hàm với một giá trị `this` cho trước và các tham số được cung cấp riêng lẻ.\n\n```js\n// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)\n```\n\n<br />",
+      "examples": [
+        {
+          "code": "// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Phương thức [call()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) gọi một hàm với một giá trị `this` cho trước và các tham số được cung cấp riêng lẻ.\n\n```js\n// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)\n```\n\n<br />",
+      "searchText": "call phương thức call() gọi một hàm với một giá trị this cho trước và các tham số được cung cấp riêng lẻ. call() function closure callback call higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-tostring",
+      "title": "toString",
+      "headingLevel": 3,
+      "anchor": "#tostring",
+      "summary": "Phương thức toString() trả về một chuỗi biểu diễn mã nguồn của hàm.",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "tostring"
+      ],
+      "syntax": "toString();",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString) trả về một chuỗi biểu diễn mã nguồn của hàm.\n\n```js\n// syntax:\ntoString();\n```\n\n<div align=",
+      "examples": [
+        {
+          "code": "// syntax:\ntoString();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Phương thức [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString) trả về một chuỗi biểu diễn mã nguồn của hàm.\n\n```js\n// syntax:\ntoString();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "tostring phương thức tostring() trả về một chuỗi biểu diễn mã nguồn của hàm. tostring(); function closure callback tostring higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-hàm-lồng-nhau",
+      "title": "Hàm lồng nhau",
+      "headingLevel": 2,
+      "anchor": "#hàm-lồng-nhau",
+      "summary": "Hàm lồng nhau: Hàm lồng (bên trong) là riêng tư đối với hàm chứa (bên ngoài) nó.",
+      "keywords": [
+        "addsquares",
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "hàm",
+        "lồng",
+        "nhau"
+      ],
+      "syntax": "function addSquares(a, b) {",
+      "returns": "x * x;",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function addSquares(a, b) {\n  function square(x) {\n    return x * x;\n  }\n  return square(a) + square(b);\n}\na = addSquares(2, 3); // returns 13\nb = addSquares(3, 4); // returns 25\nc = addSquares(4, 5); // returns 41\n\n// example 2\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8\n\n// Since the inner function forms a closure, you can call the outer function and specify arguments for both the outer and inner function:\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3);\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "**Hàm lồng nhau**: Hàm lồng (bên trong) là riêng tư đối với hàm chứa (bên ngoài) nó. Hàm bên trong tạo thành một closure: hàm bên trong có thể sử dụng các tham số và biến của hàm bên ngoài, trong khi hàm bên ngoài không thể sử dụng các tham số và biến của hàm bên trong.\n\n```js\nfunction addSquares(a, b) {\n  function square(x) {\n    return x * x;\n  }\n  return square(a) + square(b);\n}\na = addSquares(2, 3); // returns 13\nb = addSquares(3, 4); // returns 25\nc = addSquares(4, 5); // returns 41\n\n// example 2\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8\n\n// Since the inner function forms a closure, you can call the outer function and specify arguments for both the outer and inner function:\nfunction outside(x) {\n  function inside(y) {\n    return x + y;\n  }\n  return inside;\n}\nfn_inside = outside(3);\nresult = fn_inside(5); // returns 8\nresult1 = outside(3)(5); // returns 8\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "hàm lồng nhau hàm lồng nhau: hàm lồng (bên trong) là riêng tư đối với hàm chứa (bên ngoài) nó. function addsquares(a, b) { function closure addsquares callback hàm lồng higher-order nhau x * x;",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-nhiều-hàm-lồng-nhau",
+      "title": "Nhiều hàm lồng nhau",
+      "headingLevel": 3,
+      "anchor": "#nhiều-hàm-lồng-nhau",
+      "summary": "Các hàm có thể được lồng nhau nhiều cấp:",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "hàm",
+        "lồng",
+        "nhau",
+        "nhiều"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// In this example, C accesses B's y and A's x\nfunction A(x) {\n  function B(y) {\n    function C(z) {\n      console.log(x + y + z);\n    }\n    C(3);\n  }\n  B(2);\n}\nA(1); // logs 6 (1 + 2 + 3)",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Các hàm có thể được lồng nhau nhiều cấp:\n\n- Một hàm (`A`) chứa một hàm (`B`), hàm này lại chứa một hàm (`C`).\n- Cả hai hàm `B` và `C` đều tạo thành closure ở đây. Vì vậy, `B` có thể truy cập `A`, và `C` có thể truy cập `B`.\n- Ngoài ra, vì `C` có thể truy cập `B` mà `B` có thể truy cập `A`, nên `C` cũng có thể truy cập `A`.\n\nDo đó, các closure có thể chứa nhiều phạm vi; chúng chứa đệ quy phạm vi của các hàm chứa nó. Điều này được gọi là _chuỗi phạm vi (scope chaining)_.\n\n```js\n// In this example, C accesses B's y and A's x\nfunction A(x) {\n  function B(y) {\n    function C(z) {\n      console.log(x + y + z);\n    }\n    C(3);\n  }\n  B(2);\n}\nA(1); // logs 6 (1 + 2 + 3)\n```\n\n1. `B` tạo thành một closure bao gồm `A`\n1. `C` tạo thành một closure bao gồm `B`\n1. Vì closure của `B` bao gồm `A`, nên closure của `C` bao gồm `A`, `C` có thể truy cập cả tham số và biến của `B` và `A`. Nói cách khác, `C` xâu chuỗi các phạm vi của `B` và `A` theo thứ tự đó\n1. Tuy nhiên, điều ngược lại không đúng. `A` không thể truy cập `C`\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "nhiều hàm lồng nhau các hàm có thể được lồng nhau nhiều cấp:  function closure nhiều callback hàm lồng higher-order nhau",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-closures",
+      "title": "Closures",
+      "headingLevel": 3,
+      "anchor": "#closures",
+      "summary": "JavaScript cho phép lồng nhau các hàm và cấp cho hàm bên trong quyền truy cập đầy đủ tới tất cả các biến và hàm được định nghĩa bên trong hàm bên ngoài (và tất cả các biến và hàm khác mà hàm bên ngoài có quyền truy cập).",
+      "keywords": [
+        "callback",
+        "closure",
+        "closures",
+        "createpet",
+        "function",
+        "higher-order",
+        "name"
+      ],
+      "syntax": "let createPet = function (name) {",
+      "returns": "{",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let createPet = function (name) {\n  let sex;\n\n  return {\n    setName: function (newName) {\n      name = newName;\n    },\n\n    getName: function () {\n      return name;\n    },\n\n    getSex: function () {\n      return sex;\n    },\n\n    setSex: function (newSex) {\n      if (typeof newSex === \"string\" && (newSex.toLowerCase() === \"male\" || newSex.toLowerCase() === \"female\")) {\n        sex = newSex;\n      }\n    }\n  };\n};\n\nlet pet = createPet(\"Vivie\");\npet.getName(); // Vivie\n\npet.setName(\"Oliver\");\npet.setSex(\"male\");\npet.getSex(); // male\npet.getName(); // Oliver\n\n// The functions do not even have to be assigned to a variable, or have a name:\nlet getCode = (function () {\n  let apiCode = \"0]Eal(eh&2\"; // A code we do not want outsiders to be able to modify...\n\n  return function () {\n    return apiCode;\n  };\n})();\n\ngetCode(); // Returns the apiCode",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "JavaScript cho phép lồng nhau các hàm và cấp cho hàm bên trong quyền truy cập đầy đủ tới tất cả các biến và hàm được định nghĩa bên trong hàm bên ngoài (và tất cả các biến và hàm khác mà hàm bên ngoài có quyền truy cập).\n\nTuy nhiên, hàm bên ngoài không có quyền truy cập vào các biến và hàm được định nghĩa bên trong hàm bên trong. Điều này cung cấp một dạng đóng gói cho các biến của hàm bên trong.\n\nNgoài ra, vì hàm bên trong có quyền truy cập vào phạm vi của hàm bên ngoài, các biến và hàm được định nghĩa trong hàm bên ngoài sẽ tồn tại lâu hơn thời gian thực thi của hàm bên ngoài, nếu hàm bên trong bằng cách nào đó tồn tại vượt qua vòng đời của hàm bên ngoài. Một closure được tạo ra khi hàm bên trong bằng cách nào đó được cung cấp ra bất kỳ phạm vi nào bên ngoài hàm bên ngoài.\n\n```js\nlet createPet = function (name) {\n  let sex;\n\n  return {\n    setName: function (newName) {\n      name = newName;\n    },\n\n    getName: function () {\n      return name;\n    },\n\n    getSex: function () {\n      return sex;\n    },\n\n    setSex: function (newSex) {\n      if (typeof newSex === \"string\" && (newSex.toLowerCase() === \"male\" || newSex.toLowerCase() === \"female\")) {\n        sex = newSex;\n      }\n    }\n  };\n};\n\nlet pet = createPet(\"Vivie\");\npet.getName(); // Vivie\n\npet.setName(\"Oliver\");\npet.setSex(\"male\");\npet.getSex(); // male\npet.getName(); // Oliver\n\n// The functions do not even have to be assigned to a variable, or have a name:\nlet getCode = (function () {\n  let apiCode = \"0]Eal(eh&2\"; // A code we do not want outsiders to be able to modify...\n\n  return function () {\n    return apiCode;\n  };\n})();\n\ngetCode(); // Returns the apiCode\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "closures javascript cho phép lồng nhau các hàm và cấp cho hàm bên trong quyền truy cập đầy đủ tới tất cả các biến và hàm được định nghĩa bên trong hàm bên ngoài (và tất cả các biến và hàm khác mà hàm bên ngoài có quyền truy cập). let createpet = function (name) { function closure callback closures createpet higher-order name {",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-iife",
+      "title": "IIFE",
+      "headingLevel": 3,
+      "anchor": "#iife",
+      "summary": "(function () {",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "iife"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// IIFE:\n(function () {\n  console.log(\"I rule because I am an IIFE!\");\n})();\n\n// IIFE with parameter:\n(function (name) {\n  console.log(`Hello, my name is ${name}`);\n})(\"Jim\");\n\n// Arrow IIFE:\n(() => {\n  console.log(\"I am an arrow function IIFE!\");\n})();\n\n// Async IIFE:\n(async () => {\n  console.log(\"I am an async IIFE!\");\n})();",
+          "explanation": ""
+        },
+        {
+          "code": "const getFileStream = async url => {\n  /* implementation */\n};\n\n(async () => {\n  const stream = await getFileStream(\"https://domain.name/path/file.ext\");\n  for await (const chunk of stream) {\n    console.log({ chunk });\n  }\n})();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// IIFE:\n(function () {\n  console.log(\"I rule because I am an IIFE!\");\n})();\n\n// IIFE with parameter:\n(function (name) {\n  console.log(`Hello, my name is ${name}`);\n})(\"Jim\");\n\n// Arrow IIFE:\n(() => {\n  console.log(\"I am an arrow function IIFE!\");\n})();\n\n// Async IIFE:\n(async () => {\n  console.log(\"I am an async IIFE!\");\n})();\n```\n\n<br />\n\nThực thi một hàm async:\n\n```js\nconst getFileStream = async url => {\n  /* implementation */\n};\n\n(async () => {\n  const stream = await getFileStream(\"https://domain.name/path/file.ext\");\n  for await (const chunk of stream) {\n    console.log({ chunk });\n  }\n})();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "iife (function () {  iife function closure callback higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-es6",
+      "title": "ES6",
+      "headingLevel": 2,
+      "anchor": "#es6",
+      "summary": "Dưới đây là các chủ đề cụ thể liên quan đến hàm được giới thiệu với ES6",
+      "keywords": [
+        "callback",
+        "closure",
+        "es6",
+        "function",
+        "higher-order"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Dưới đây là các chủ đề cụ thể liên quan đến hàm được giới thiệu với ES6",
+      "searchText": "es6 dưới đây là các chủ đề cụ thể liên quan đến hàm được giới thiệu với es6  function closure callback higher-order es6",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-export-import",
+      "title": "Export import",
+      "headingLevel": 3,
+      "anchor": "#export-import",
+      "summary": "// Strict mode: a restricted variant of JavaScript, intentionally has different semantics",
+      "keywords": [
+        "callback",
+        "closure",
+        "export",
+        "function",
+        "higher-order",
+        "import"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// Strict mode: a restricted variant of JavaScript, intentionally has different semantics\n\"use strict\";\n\n// script tag if you intend to use import and export (defer attribute added):\n<script type=\"module\" src=\"filename.js\" defer></script>",
+          "explanation": ""
+        },
+        {
+          "code": "// export a code block:\nexport const add = (x, y) => {\n  return x + y;\n}\n\n// export a variable:\nconst add = (x, y) => {\n  return x + y;\n}\nexport { add };\n\n// export multiple objects:\nexport { add, subtract };\n\n// create an export fallback with export default:\nexport default function add(x, y) {\n  return x + y;\n}\n// or\nexport default function(x, y) {\n  return x + y;\n}",
+          "explanation": ""
+        },
+        {
+          "code": "// import a single object:\nimport { add } from \"./math_functions.js\";\n\n// import multiple object:\nimport { add, subtract } from \"./math_functions.js\";\n\n// import all\nimport * as myMathModule from \"./math_functions.js\";\n\n// use the imported module:\nmyMathModule.add(2, 3);\nmyMathModule.subtract(5, 3);\n\n// import a default export\nimport add from \"./math_functions.js\";",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// Strict mode: a restricted variant of JavaScript, intentionally has different semantics\n\"use strict\";\n\n// script tag if you intend to use import and export (defer attribute added):\n<script type=\"module\" src=\"filename.js\" defer></script>\n```\n\n<br />\n\nExport:\n\n```js\n// export a code block:\nexport const add = (x, y) => {\n  return x + y;\n}\n\n// export a variable:\nconst add = (x, y) => {\n  return x + y;\n}\nexport { add };\n\n// export multiple objects:\nexport { add, subtract };\n\n// create an export fallback with export default:\nexport default function add(x, y) {\n  return x + y;\n}\n// or\nexport default function(x, y) {\n  return x + y;\n}\n```\n\n<br />\n\nImport:\n\n```js\n// import a single object:\nimport { add } from \"./math_functions.js\";\n\n// import multiple object:\nimport { add, subtract } from \"./math_functions.js\";\n\n// import all\nimport * as myMathModule from \"./math_functions.js\";\n\n// use the imported module:\nmyMathModule.add(2, 3);\nmyMathModule.subtract(5, 3);\n\n// import a default export\nimport add from \"./math_functions.js\";\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  import function closure callback export higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-async-await",
+      "title": "Async await",
+      "headingLevel": 2,
+      "anchor": "#async-await",
+      "summary": "async function name(parameters) {",
+      "keywords": [
+        "async",
+        "await",
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "name",
+        "parameters"
+      ],
+      "syntax": "async function name(parameters) {",
+      "returns": "data;",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "async function name(parameters) {\n  statements;\n}",
+          "explanation": ""
+        },
+        {
+          "code": "async function fetchByUrl(url) {\n  try {\n    const response = await fetch(url);\n\n    if (response.ok) {\n      const data = await response.json();\n      console.log(data);\n      // Code to output data to the DOM goes here\n      // return data;\n    } else {\n      console.log(\"Not successful\");\n    }\n  } catch (err) {\n    console.error(err);\n  }\n}\nfetchByUrl(\"https://api.dictionaryapi.dev/api/v2/entries/en/hello\");",
+          "explanation": ""
+        },
+        {
+          "code": "function getProcessedData(url) {\n  return downloadData(url) // returns a promise\n    .catch(e => {\n      return downloadFallbackData(url); // returns a promise\n    })\n    .then(v => {\n      return processDataInWorker(v); // returns a promise\n    });\n}\n\n// rewritten as:\nasync function getProcessedData(url) {\n  let v;\n  try {\n    v = await downloadData(url);\n  } catch (e) {\n    v = await downloadFallbackData(url);\n  }\n  return processDataInWorker(v);\n}\n\n// or\nasync function getProcessedData(url) {\n  const v = await downloadData(url).catch(e => {\n    return downloadFallbackData(url);\n  });\n  return processDataInWorker(v);\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Cú pháp:\n\n```js\nasync function name(parameters) {\n  statements;\n}\n```\n\n<br />\n\nVí dụ sử dụng Fetch API:\n\n```js\nasync function fetchByUrl(url) {\n  try {\n    const response = await fetch(url);\n\n    if (response.ok) {\n      const data = await response.json();\n      console.log(data);\n      // Code to output data to the DOM goes here\n      // return data;\n    } else {\n      console.log(\"Not successful\");\n    }\n  } catch (err) {\n    console.error(err);\n  }\n}\nfetchByUrl(\"https://api.dictionaryapi.dev/api/v2/entries/en/hello\");\n```\n\n<br />\n\nViết lại chuỗi Promise bằng hàm async\n\n```js\nfunction getProcessedData(url) {\n  return downloadData(url) // returns a promise\n    .catch(e => {\n      return downloadFallbackData(url); // returns a promise\n    })\n    .then(v => {\n      return processDataInWorker(v); // returns a promise\n    });\n}\n\n// rewritten as:\nasync function getProcessedData(url) {\n  let v;\n  try {\n    v = await downloadData(url);\n  } catch (e) {\n    v = await downloadFallbackData(url);\n  }\n  return processDataInWorker(v);\n}\n\n// or\nasync function getProcessedData(url) {\n  const v = await downloadData(url).catch(e => {\n    return downloadFallbackData(url);\n  });\n  return processDataInWorker(v);\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "async await async function name(parameters) { async function name(parameters) { async function await closure callback higher-order parameters name data;",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-hàm-mũi-tên",
+      "title": "Hàm mũi tên",
+      "headingLevel": 2,
+      "anchor": "#hàm-mũi-tên",
+      "summary": "Hàm mũi tên có từ khóa this theo phạm vi từ vựng (lexical).",
+      "keywords": [
+        "callback",
+        "closure",
+        "expression",
+        "function",
+        "higher-order",
+        "hàm",
+        "mũi",
+        "param",
+        "tên"
+      ],
+      "syntax": "param => expression",
+      "returns": "a + param;",
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions):\n\n```js\n// An empty arrow function returns undefined\nlet empty = () => {};\n\n// An empty arrow function returns undefined\n(() => ",
+      "examples": [
+        {
+          "code": "param => expression\n(param1, paramN) => expression\n\n// examples\nparam => {\n  let a = 1;\n  return a + param;\n}\n\n(param1, paramN) => {\n   let a = 1;\n   return a + param1 + paramN;\n}\n\n// To return an object literal expression requires parentheses around expression\nparams => ({foo: \"a\"}) // returning the object {foo: \"a\"}\n\n// Rest parameters are supported:\n(a, b, ...r) => expression\n\n// Default parameters are supported:\n(a=400, b=20, c) => expression\n\n// Destructuring within params supported:\n([a, b] = [10, 20]) => a + b;  // result is 30\n({ a, b } = { a: 10, b: 20 }) => a + b; // result is 30",
+          "explanation": ""
+        },
+        {
+          "code": "\"use strict\";\n\nvar obj = {\n  // does not create a new scope\n  i: 10,\n  b: () => console.log(this.i, this),\n  c: function () {\n    console.log(this.i, this);\n  }\n};\n\nobj.b(); // prints undefined, Window {...} (or the global object)\nobj.c(); // prints 10, Object {...}",
+          "explanation": ""
+        },
+        {
+          "code": "\"use strict\";\n\nvar obj = {\n  a: 10\n};\n\nObject.defineProperty(obj, \"b\", {\n  get: () => {\n    console.log(this.a, typeof this.a, this); // undefined 'undefined' Window {...} (or the global object)\n    return this.a + 10; // represents global object 'Window', therefore 'this.a' returns 'undefined'\n  }\n});",
+          "explanation": ""
+        },
+        {
+          "code": "// Traditional Anonymous Function\nfunction (a, b){\n  return a + b + 100;\n}\n\n// Arrow Function\n(a, b) => a + b + 100;\n\n// Traditional Anonymous Function (no arguments)\nlet a = 4;\nlet b = 2;\nfunction (){\n  return a + b + 100;\n}\n\n// Arrow Function (no arguments)\nlet a = 4;\nlet b = 2;\n() => a + b + 100;\n\n// Traditional Anonymous Function\nfunction (a, b){\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Arrow Function\n(a, b) => {\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Traditional Function\nfunction bob (a){\n  return a + 100;\n}\n\n// Arrow Function\nlet bob = a => a + 100;",
+          "explanation": ""
+        },
+        {
+          "code": "// An empty arrow function returns undefined\nlet empty = () => {};\n\n// An empty arrow function returns undefined\n(() => \"foobar\")();\n// Returns \"foobar\"\n// (this is an Immediately Invoked Function Expression)\n\nvar simple = a => (a > 15 ? 15 : a);\nsimple(16); // 15\nsimple(10); // 10\n\nlet max = (a, b) => (a > b ? a : b);\n\n// Easy array filtering, mapping, ...\n\nvar arr = [5, 6, 13, 0, 1, 18, 23];\n\nvar sum = arr.reduce((a, b) => a + b);\n// 66\n\nvar even = arr.filter(v => v % 2 == 0);\n// [6, 0, 18]\n\nvar double = arr.map(v => v * 2);\n// [10, 12, 26, 0, 2, 36, 46]\n\n// More concise promise chains\npromise\n  .then(a => {\n    // ...\n  })\n  .then(b => {\n    // ...\n  });\n\n// Parameterless arrow functions that are visually easier to parse\nsetTimeout(() => {\n  console.log(\"I happen sooner\");\n  setTimeout(() => {\n    // deeper code\n    console.log(\"I happen later\");\n  }, 1);\n}, 1);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Hàm mũi tên có từ khóa `this` theo phạm vi từ vựng (lexical).\n\nCú pháp và ví dụ:\n\n```js\nparam => expression\n(param1, paramN) => expression\n\n// examples\nparam => {\n  let a = 1;\n  return a + param;\n}\n\n(param1, paramN) => {\n   let a = 1;\n   return a + param1 + paramN;\n}\n\n// To return an object literal expression requires parentheses around expression\nparams => ({foo: \"a\"}) // returning the object {foo: \"a\"}\n\n// Rest parameters are supported:\n(a, b, ...r) => expression\n\n// Default parameters are supported:\n(a=400, b=20, c) => expression\n\n// Destructuring within params supported:\n([a, b] = [10, 20]) => a + b;  // result is 30\n({ a, b } = { a: 10, b: 20 }) => a + b; // result is 30\n```\n\n<br />\n\nHàm mũi tên được dùng như phương thức:\n\n```js\n\"use strict\";\n\nvar obj = {\n  // does not create a new scope\n  i: 10,\n  b: () => console.log(this.i, this),\n  c: function () {\n    console.log(this.i, this);\n  }\n};\n\nobj.b(); // prints undefined, Window {...} (or the global object)\nobj.c(); // prints 10, Object {...}\n```\n\n<br />\n\nMột ví dụ khác liên quan đến `Object.defineProperty()`:\n\n```js\n\"use strict\";\n\nvar obj = {\n  a: 10\n};\n\nObject.defineProperty(obj, \"b\", {\n  get: () => {\n    console.log(this.a, typeof this.a, this); // undefined 'undefined' Window {...} (or the global object)\n    return this.a + 10; // represents global object 'Window', therefore 'this.a' returns 'undefined'\n  }\n});\n```\n\n<br />\n\nThêm ví dụ:\n\n```js\n// Traditional Anonymous Function\nfunction (a, b){\n  return a + b + 100;\n}\n\n// Arrow Function\n(a, b) => a + b + 100;\n\n// Traditional Anonymous Function (no arguments)\nlet a = 4;\nlet b = 2;\nfunction (){\n  return a + b + 100;\n}\n\n// Arrow Function (no arguments)\nlet a = 4;\nlet b = 2;\n() => a + b + 100;\n\n// Traditional Anonymous Function\nfunction (a, b){\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Arrow Function\n(a, b) => {\n  let chuck = 42;\n  return a + b + chuck;\n}\n\n// Traditional Function\nfunction bob (a){\n  return a + 100;\n}\n\n// Arrow Function\nlet bob = a => a + 100;\n```\n\n<br />\n\nVà thêm ví dụ nữa: Xem [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions):\n\n```js\n// An empty arrow function returns undefined\nlet empty = () => {};\n\n// An empty arrow function returns undefined\n(() => \"foobar\")();\n// Returns \"foobar\"\n// (this is an Immediately Invoked Function Expression)\n\nvar simple = a => (a > 15 ? 15 : a);\nsimple(16); // 15\nsimple(10); // 10\n\nlet max = (a, b) => (a > b ? a : b);\n\n// Easy array filtering, mapping, ...\n\nvar arr = [5, 6, 13, 0, 1, 18, 23];\n\nvar sum = arr.reduce((a, b) => a + b);\n// 66\n\nvar even = arr.filter(v => v % 2 == 0);\n// [6, 0, 18]\n\nvar double = arr.map(v => v * 2);\n// [10, 12, 26, 0, 2, 36, 46]\n\n// More concise promise chains\npromise\n  .then(a => {\n    // ...\n  })\n  .then(b => {\n    // ...\n  });\n\n// Parameterless arrow functions that are visually easier to parse\nsetTimeout(() => {\n  console.log(\"I happen sooner\");\n  setTimeout(() => {\n    // deeper code\n    console.log(\"I happen later\");\n  }, 1);\n}, 1);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "hàm mũi tên hàm mũi tên có từ khóa this theo phạm vi từ vựng (lexical). param => expression expression function tên closure callback hàm higher-order param mũi a + param;",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-phương-thức",
+      "title": "Phương thức",
+      "headingLevel": 2,
+      "anchor": "#phương-thức",
+      "summary": "Cú pháp: Phần này nên nằm trong tệp đối tượng",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "obj",
+        "phương",
+        "thức"
+      ],
+      "syntax": "const obj = {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// syntax (HUH?)\nconst obj = {\n  get property() {},\n  set property(value) {},\n  property( parameters… ) {},\n  *generator( parameters… ) {},\n  async property( parameters… ) {},\n  async* generator( parameters… ) {},\n\n  //  with computed keys\n  get [property]() {},\n  set [property](value) {},\n  [property]( parameters… ) {},\n  *[generator]( parameters… ) {},\n  async [property]( parameters… ) {},\n  async* [generator]( parameters… ) {},\n};\n\n// Given the following code:\nconst obj = {\n  foo: function() {\n    // ...\n  },\n  bar: function() {\n    // ...\n  }\n}\n// You are now able to shorten this to:\nconst obj = {\n  foo() {\n    // ...\n  },\n  bar() {\n    // ...\n  }\n}",
+          "explanation": ""
+        },
+        {
+          "code": "const toDo = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\ntoDo.add();\n\n// define a method outside of the object:\ntoDo.delete = function () {\n  console.log(\"Delete something\");\n};\ntoDo.delete();\n\n// another example:\nconst doSomething = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\n\ndoSomething.add();",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Cú pháp: Phần này nên nằm trong tệp đối tượng\n\n```js\n// syntax (HUH?)\nconst obj = {\n  get property() {},\n  set property(value) {},\n  property( parameters… ) {},\n  *generator( parameters… ) {},\n  async property( parameters… ) {},\n  async* generator( parameters… ) {},\n\n  //  with computed keys\n  get [property]() {},\n  set [property](value) {},\n  [property]( parameters… ) {},\n  *[generator]( parameters… ) {},\n  async [property]( parameters… ) {},\n  async* [generator]( parameters… ) {},\n};\n\n// Given the following code:\nconst obj = {\n  foo: function() {\n    // ...\n  },\n  bar: function() {\n    // ...\n  }\n}\n// You are now able to shorten this to:\nconst obj = {\n  foo() {\n    // ...\n  },\n  bar() {\n    // ...\n  }\n}\n```\n\nCũng hãy xem:\n\n- Phương thức generator\n- Phương thức async\n- Phương thức async generator\n\n<br />\n\nVí dụ:\n\n```js\nconst toDo = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\ntoDo.add();\n\n// define a method outside of the object:\ntoDo.delete = function () {\n  console.log(\"Delete something\");\n};\ntoDo.delete();\n\n// another example:\nconst doSomething = {\n  add: function () {\n    console.log(\"This is a method.\");\n  }\n};\n\ndoSomething.add();\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "phương thức cú pháp: phần này nên nằm trong tệp đối tượng const obj = { thức function obj closure callback higher-order phương",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-hàm-gọi-lại",
+      "title": "Hàm gọi lại",
+      "headingLevel": 2,
+      "anchor": "#hàm-gọi-lại",
+      "summary": "function greeting(name) {",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "greeting",
+        "gọi",
+        "higher-order",
+        "hàm",
+        "lại",
+        "name"
+      ],
+      "syntax": "function greeting(name) {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function greeting(name) {\n  alert(\"Hello \" + name);\n}\n\nfunction processUserInput(callback) {\n  var name = prompt(\"Please enter your name.\");\n  callback(name);\n}\nprocessUserInput(greeting);",
+          "explanation": ""
+        },
+        {
+          "code": "myvar.addEventListener(\"click\", function(e) {\n  console.log(\"Hello);\n\n  e.preventDefault();\n});",
+          "explanation": ""
+        },
+        {
+          "code": "myVar.addEventListener(\"click\", onClick);\n\nfunction onClick(e) {\n  let val;\n  val = e;\n  val = e.target;\n  console.log(val); // look for target\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Ví dụ:\n\n```js\nfunction greeting(name) {\n  alert(\"Hello \" + name);\n}\n\nfunction processUserInput(callback) {\n  var name = prompt(\"Please enter your name.\");\n  callback(name);\n}\nprocessUserInput(greeting);\n```\n\n`addEventListener`:\n\n```js\nmyvar.addEventListener(\"click\", function(e) {\n  console.log(\"Hello);\n\n  e.preventDefault();\n});\n```\n\n1. Tham số `e` là đối tượng sự kiện. Bạn muốn ngăn hành vi mặc định liên quan đến những thứ như biểu mẫu và liên kết.\n\n<br />\n\nĐể xem đối tượng sự kiện:\n\n```js\nmyVar.addEventListener(\"click\", onClick);\n\nfunction onClick(e) {\n  let val;\n  val = e;\n  val = e.target;\n  console.log(val); // look for target\n}\n```\n\nĐiều quan trọng nhất bạn sẽ thấy là `target`, đại diện cho phần tử mà sự kiện đã xảy ra.\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "hàm gọi lại function greeting(name) { function greeting(name) { greeting function gọi lại closure callback hàm higher-order name",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-lưu-trữ-cục-bộ",
+      "title": "Lưu trữ cục bộ",
+      "headingLevel": 2,
+      "anchor": "#lưu-trữ-cục-bộ",
+      "summary": "Đây sẽ là mã bên trong một hàm:",
+      "keywords": [
+        "bộ",
+        "callback",
+        "closure",
+        "cục",
+        "function",
+        "higher-order",
+        "key",
+        "localstorage",
+        "lưu",
+        "setitem",
+        "trữ",
+        "value"
+      ],
+      "syntax": "localStorage.setItem(\"key\", \"value\");",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// set local storage item (syntax first)\nlocalStorage.setItem(\"key\", \"value\");\nlocalStorage.setItem(\"name\", \"Jim\"); // check on Application tab\n\n// get from storage:\nconst name = localStorage.getItem(\"name\");\n\n// remove from storage:\nlocalStorage.removeItem(\"name\");\n\n// to clear everything from local storag:\nlocalStorage.clear();",
+          "explanation": ""
+        },
+        {
+          "code": "document.querySelector('form').addEventListener('submit', function(e) {\n  const task = document.getElementById('task').value;\n\n  let tasks;\n\n  // check local storage\n  if (localStorage.getItem('tasks') === null) {\n    tasks = [];\n  } else {\n    tasks = JSON.parse(localStorage.getItem('tasks'));\n  }\n\n  tasks.push(task);\n\n  localStorage.setItem('tasks', JSON.stringify(tasks);\n  e.preventDefault();\n});",
+          "explanation": ""
+        },
+        {
+          "code": "const tasks = JSON.parse(localStorage.getItem(\"tasks\"));\ntasks.forEach(function (task) {\n  console.log(tasks);\n});",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Đây sẽ là mã bên trong một hàm:\n\n```js\n// set local storage item (syntax first)\nlocalStorage.setItem(\"key\", \"value\");\nlocalStorage.setItem(\"name\", \"Jim\"); // check on Application tab\n\n// get from storage:\nconst name = localStorage.getItem(\"name\");\n\n// remove from storage:\nlocalStorage.removeItem(\"name\");\n\n// to clear everything from local storag:\nlocalStorage.clear();\n```\n\n<br />\n\nđể một biểu mẫu thêm một mục vào bộ nhớ cục bộ (local storage) và lưu trữ nhiều mục trong một mảng dưới dạng chuỗi:\n\n```js\ndocument.querySelector('form').addEventListener('submit', function(e) {\n  const task = document.getElementById('task').value;\n\n  let tasks;\n\n  // check local storage\n  if (localStorage.getItem('tasks') === null) {\n    tasks = [];\n  } else {\n    tasks = JSON.parse(localStorage.getItem('tasks'));\n  }\n\n  tasks.push(task);\n\n  localStorage.setItem('tasks', JSON.stringify(tasks);\n  e.preventDefault();\n});\n```\n\n<br />\n\nSau đó để lấy và sử dụng các mục trong bộ nhớ cục bộ (vẫn bên trong trình lắng nghe sự kiện):\n\n```js\nconst tasks = JSON.parse(localStorage.getItem(\"tasks\"));\ntasks.forEach(function (task) {\n  console.log(tasks);\n});\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "lưu trữ cục bộ đây sẽ là mã bên trong một hàm: localstorage.setitem(\"key\", \"value\"); key value function bộ lưu trữ closure callback localstorage cục setitem higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-ủy-quyền-sự-kiện",
+      "title": "Ủy quyền sự kiện",
+      "headingLevel": 2,
+      "anchor": "#ủy-quyền-sự-kiện",
+      "summary": "// list items with delete link on the items but",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "kiện",
+        "quyền",
+        "sự",
+        "ủy"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// list items with delete link on the items but\n// fa fa-remove icon inside:\nfunction deleteItem(e) {\n  if (e.target.patentElement.className === \"delete-item secondary-content\") {\n    console.log(\"delete item\");\n  }\n\n  // or better...\n  if (e.target.patentElement.classList.contains(\"delete-item\")) {\n    console.log(\"delete item\");\n  }\n}",
+          "explanation": ""
+        },
+        {
+          "code": "if (e.target.patentElement.classList.contains(\"delete-item\")) {\n  // target is the icon\n  e.target.parentElement.parentElement.remove();\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// list items with delete link on the items but\n// fa fa-remove icon inside:\nfunction deleteItem(e) {\n  if (e.target.patentElement.className === \"delete-item secondary-content\") {\n    console.log(\"delete item\");\n  }\n\n  // or better...\n  if (e.target.patentElement.classList.contains(\"delete-item\")) {\n    console.log(\"delete item\");\n  }\n}\n```\n\n<br />\n\nNhưng cấu trúc là ul > li > a > i và để xóa toàn bộ mục danh sách, vốn là phần tử cha của thẻ `<a>`, trong câu lệnh if:\n\n```js\nif (e.target.patentElement.classList.contains(\"delete-item\")) {\n  // target is the icon\n  e.target.parentElement.parentElement.remove();\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ủy quyền sự kiện // list items with delete link on the items but  quyền function kiện closure callback ủy higher-order sự",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-caching",
+      "title": "Caching",
+      "headingLevel": 3,
+      "anchor": "#caching",
+      "summary": "Để tăng hiệu suất, hãy lưu đệm (cache) các lựa chọn của bạn vào một biến nào đó (nếu sử dụng cùng một lựa chọn nhiều lần).",
+      "keywords": [
+        "caching",
+        "callback",
+        "closure",
+        "function",
+        "higher-order"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// example",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Để tăng hiệu suất, hãy lưu đệm (cache) các lựa chọn của bạn vào một biến nào đó (nếu sử dụng cùng một lựa chọn nhiều lần).\n\n```js\n// example\n```",
+      "searchText": "caching để tăng hiệu suất, hãy lưu đệm (cache) các lựa chọn của bạn vào một biến nào đó (nếu sử dụng cùng một lựa chọn nhiều lần).  function caching closure callback higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-memoization",
+      "title": "Memoization",
+      "headingLevel": 3,
+      "anchor": "#memoization",
+      "summary": "// syntax / generic examples",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "memoization",
+        "memoizedadd"
+      ],
+      "syntax": "const memoizedAdd = () => {",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// syntax / generic examples\nconst memoizedAdd = () => {\n  let cache = {};\n  return n => {\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = // calculation here;\n        (cache[n] = result);\n      return result;\n    }\n  };\n};\n\n// second one\nconst memoize = fn => {\n  let cache = {};\n  return (...args) => {\n    let n = args[0]; // just taking one argument here\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = fn(n);\n      cache[n] = result;\n      return result;\n    }\n  };\n};\n\n// third\nfunction memo(func) {\n  var cache = {};\n  return function () {\n    var key = JSON.stringify(arguments);\n    if (cache[key]) {\n      console.log(cache);\n      return cache[key];\n    } else {\n      val = func.apply(null, arguments);\n      cache[key] = val;\n      return val;\n    }\n  };\n}",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "<dl>\n  <dt>Momoize (Memoization)</dt>\n  <dd>một cách để tối ưu hóa hàm và làm chúng thực thi nhanh hơn nhiều: lưu đệm (caching). Nó là một kỹ thuật tối ưu hóa được sử dụng chủ yếu để tăng tốc các chương trình máy tính bằng cách lưu trữ kết quả của các lời gọi hàm tốn kém và trả về kết quả đã lưu khi cùng một đầu vào xuất hiện trở lại — lưu trữ trong bộ nhớ. Một kỹ thuật lưu trữ các phép tính đã thực hiện trước đó. Ghi nhớ (Memoization) là một kỹ thuật tối ưu hóa trong đó các lời gọi hàm tốn kém được lưu đệm sao cho kết quả có thể được trả về ngay lập tức vào lần tiếp theo hàm được gọi với cùng các tham số.</dd>\n</dl>\n\n```js\n// syntax / generic examples\nconst memoizedAdd = () => {\n  let cache = {};\n  return n => {\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = // calculation here;\n        (cache[n] = result);\n      return result;\n    }\n  };\n};\n\n// second one\nconst memoize = fn => {\n  let cache = {};\n  return (...args) => {\n    let n = args[0]; // just taking one argument here\n    if (n in cache) {\n      console.log(\"Fetching from cache\");\n      return cache[n];\n    } else {\n      console.log(\"Calculating result\");\n      let result = fn(n);\n      cache[n] = result;\n      return result;\n    }\n  };\n};\n\n// third\nfunction memo(func) {\n  var cache = {};\n  return function () {\n    var key = JSON.stringify(arguments);\n    if (cache[key]) {\n      console.log(cache);\n      return cache[key];\n    } else {\n      val = func.apply(null, arguments);\n      cache[key] = val;\n      return val;\n    }\n  };\n}\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { memoization function closure callback memoizedadd higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-đệ-quy",
+      "title": "Đệ quy",
+      "headingLevel": 2,
+      "anchor": "#đệ-quy",
+      "summary": "Hành động một hàm tự gọi chính nó, đệ quy được sử dụng để giải các bài toán chứa các bài toán con nhỏ hơn.",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "quy",
+        "recurse",
+        "đệ"
+      ],
+      "syntax": "function recurse() {",
+      "returns": "fxName();",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "function recurse() {\n    if(condition) {\n        // stop calling itself\n    } else {\n        recurse();\n    }\n}\n\n// syntax 2:\nfunction fxName() {\n  return fxName();\n  // executes forever resulting in a \"stack overflow\" - ran out of memory\n  // so you need a base case\n}\n\n// syntax 3:\nfunction recursion(parm) {\n  if (parm cond) {   // base case, when hit stop recursion\n    return;\n  }\n  return recursion(parm + 1); // here is the recursion\n}\n\n//",
+          "explanation": ""
+        },
+        {
+          "code": "// recursive function, sum(arr, n), that returns the sum of the first n elements of an array arr\nfunction sum(arr, n) {\n  if(n <= 0) {\n    return 0;\n  } else {\n    return sum(arr, n - 1) + arr[n - 1];\n  }\n}\n\n\n// countdown\nfunction countDown(fromNumber) {\n    console.log(fromNumber);       // 3 2 1\n    let nextNumber = fromNumber - 1;\n    if (nextNumber > 0) {\n        countDown(nextNumber);\n    }\n}\ncountDown(3);\n// If you add the condition to stop calling itself, you will get this error:\nUncaught RangeError: Maximum call stack size exceeded.\n\n// countdown2\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// or\n// Solution 1\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// Solution 2 (Click to Show/Hide)\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.splice(0, 0, n);\n    return arr;\n  }\n}\n\n// countdown 3\nfunction countdown(n){\n   return n < 1 ? [] : [n].concat(countdown(n - 1));\n}\n// or\nfunction countdown(n){\n   return n < 1 ? [] : [n, ...countdown(n - 1)];\n}\n\n// reverse a string: (use for palindrome?)\nfunction string_reversal(string) {\n  if (string == \"\") {\n    return \"\"\n  }\n\n  return string_reversal(string.slice(1)) + string[0]\n}\n\n// Recursion to Create a Range of Numbers\nfunction rangeOfNumbers(startNum, endNum) {\n  if (endNum - sta",
+          "explanation": ""
+        },
+        {
+          "code": "function factorial(n) {\n  if (n === 0 || n === 1) return 1;\n  else return n * factorial(n - 1);\n}\n\nvar a, b, c, d, e;\na = factorial(1); // a gets the value 1\nb = factorial(2); // b gets the value 2\nc = factorial(3); // c gets the value 6\nd = factorial(4); // d gets the value 24\ne = factorial(5); // e gets the value 120",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Hành động một hàm tự gọi chính nó, đệ quy được sử dụng để giải các bài toán chứa các bài toán con nhỏ hơn. Một hàm đệ quy có thể nhận hai đầu vào: trường hợp cơ sở (kết thúc đệ quy) hoặc trường hợp đệ quy (tiếp tục đệ quy)\n\n- Hàm đệ quy tự gọi cho đến khi điều kiện được đáp ứng\n- Đệ quy bị giới hạn bởi kích thước ngăn xếp\n\nCú pháp:\n\n```js\nfunction recurse() {\n    if(condition) {\n        // stop calling itself\n    } else {\n        recurse();\n    }\n}\n\n// syntax 2:\nfunction fxName() {\n  return fxName();\n  // executes forever resulting in a \"stack overflow\" - ran out of memory\n  // so you need a base case\n}\n\n// syntax 3:\nfunction recursion(parm) {\n  if (parm cond) {   // base case, when hit stop recursion\n    return;\n  }\n  return recursion(parm + 1); // here is the recursion\n}\n\n//\n```\n\n<br />\n\nVí dụ:\n\n```js\n// recursive function, sum(arr, n), that returns the sum of the first n elements of an array arr\nfunction sum(arr, n) {\n  if(n <= 0) {\n    return 0;\n  } else {\n    return sum(arr, n - 1) + arr[n - 1];\n  }\n}\n\n\n// countdown\nfunction countDown(fromNumber) {\n    console.log(fromNumber);       // 3 2 1\n    let nextNumber = fromNumber - 1;\n    if (nextNumber > 0) {\n        countDown(nextNumber);\n    }\n}\ncountDown(3);\n// If you add the condition to stop calling itself, you will get this error:\nUncaught RangeError: Maximum call stack size exceeded.\n\n// countdown2\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// or\n// Solution 1\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.unshift(n);\n    return arr;\n  }\n}\n// Solution 2 (Click to Show/Hide)\nfunction countdown(n) {\n  if (n < 1) {\n    return [];\n  } else {\n    const arr = countdown(n - 1);\n    arr.splice(0, 0, n);\n    return arr;\n  }\n}\n\n// countdown 3\nfunction countdown(n){\n   return n < 1 ? [] : [n].concat(countdown(n - 1));\n}\n// or\nfunction countdown(n){\n   return n < 1 ? [] : [n, ...countdown(n - 1)];\n}\n\n// reverse a string: (use for palindrome?)\nfunction string_reversal(string) {\n  if (string == \"\") {\n    return \"\"\n  }\n\n  return string_reversal(string.slice(1)) + string[0]\n}\n\n// Recursion to Create a Range of Numbers\nfunction rangeOfNumbers(startNum, endNum) {\n  if (endNum - startNum === 0) {\n    return [startNum];\n  } else {\n    var numbers = rangeOfNumbers(startNum, endNum - 1);\n    numbers.push(endNum);\n    return numbers;\n  }\n}\n\n// solution 2\nfunction rangeOfNumbers(startNum, endNum) {\n  return startNum === endNum\n    ? [startNum]\n    : rangeOfNumbers(startNum, endNum - 1).concat(endNum);\n}\n// or\nfunction rangeOfNumbers(startNum, endNum) {\n  return startNum === endNum\n    ? [startNum]\n    : [...rangeOfNumbers(startNum, endNum - 1), endNum ];\n}\n\n```\n\nVí dụ đệ quy (tính giai thừa):\n\n```js\nfunction factorial(n) {\n  if (n === 0 || n === 1) return 1;\n  else return n * factorial(n - 1);\n}\n\nvar a, b, c, d, e;\na = factorial(1); // a gets the value 1\nb = factorial(2); // b gets the value 2\nc = factorial(3); // c gets the value 6\nd = factorial(4); // d gets the value 24\ne = factorial(5); // e gets the value 120\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "đệ quy hành động một hàm tự gọi chính nó, đệ quy được sử dụng để giải các bài toán chứa các bài toán con nhỏ hơn. function recurse() { quy function closure callback higher-order recurse đệ fxname();",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-ví-dụ-freecodecamp",
+      "title": "Ví dụ freeCodeCamp",
+      "headingLevel": 3,
+      "anchor": "#ví-dụ-freecodecamp",
+      "summary": "// factorial example with recursion",
+      "keywords": [
+        "callback",
+        "closure",
+        "dụ",
+        "freecodecamp",
+        "function",
+        "higher-order",
+        "ví"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// factorial example with recursion\nfunction factorial(num){\n    if(num === 1){\n        return num;\n    }\n    return num * factorial(num - 1)\n}\nconsole.log(factorial(4)); // 24 = 4 * 3 * 2 * 1\nconsole.log(factorial(5)); // 120\n\n// for loop solution for factorials\nfunction factorialize(num) {\n  let product = 1;\n  // let i = 1 also works\n  for (let i = 2; i <= num; i++) {\n    product *= i;\n  }\n  return product;\n}\nconsole.log(factorialize(5)); // 120\n\n\n// count down example\nfunction countDownFrom(number) {\n\tif (number === 0) {\n\t\treturn;\n\t}\n    console.log(number);\n    countDownFrom(number - 1);\n}\ncountDownFrom(5); // 5 4 3 2 1\n\n// Essay to revise until accepted:\nfunction revise(essay) {\n  read(essay);\n  get_feedback_on(essay);\n  apply_changes_to(essay);\n  revise(essay) unless essay.complete;\n}\n// you do a little bit of work on ecah invocation of your method call until you hit the stopping condition",
+          "explanation": ""
+        },
+        {
+          "code": "// STRING REVERSAL\n// input str: \"the simple engineer\"\n// output str: \"reenigne elpmis eht\" - string in reverse\n\nfunction revString(str) {\n  // what are the steps? last char becomes 1st\n  let len = str.length;\n  return str[len - 1];\n}\nconsole.log(revString(\"the simple engineer\")); // \"reenigne elpmis eht\"\n// Uncaught RangeError: Maximum call stack size exceeded\n// Uncaught RangeError: Maximum call stack size exceeded at String.substring\n\n//",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Từ video\n\n```js\n// factorial example with recursion\nfunction factorial(num){\n    if(num === 1){\n        return num;\n    }\n    return num * factorial(num - 1)\n}\nconsole.log(factorial(4)); // 24 = 4 * 3 * 2 * 1\nconsole.log(factorial(5)); // 120\n\n// for loop solution for factorials\nfunction factorialize(num) {\n  let product = 1;\n  // let i = 1 also works\n  for (let i = 2; i <= num; i++) {\n    product *= i;\n  }\n  return product;\n}\nconsole.log(factorialize(5)); // 120\n\n\n// count down example\nfunction countDownFrom(number) {\n\tif (number === 0) {\n\t\treturn;\n\t}\n    console.log(number);\n    countDownFrom(number - 1);\n}\ncountDownFrom(5); // 5 4 3 2 1\n\n// Essay to revise until accepted:\nfunction revise(essay) {\n  read(essay);\n  get_feedback_on(essay);\n  apply_changes_to(essay);\n  revise(essay) unless essay.complete;\n}\n// you do a little bit of work on ecah invocation of your method call until you hit the stopping condition\n```\n\n<br />\n\nĐệ quy với chuỗi:\n\n```js\n// STRING REVERSAL\n// input str: \"the simple engineer\"\n// output str: \"reenigne elpmis eht\" - string in reverse\n\nfunction revString(str) {\n  // what are the steps? last char becomes 1st\n  let len = str.length;\n  return str[len - 1];\n}\nconsole.log(revString(\"the simple engineer\")); // \"reenigne elpmis eht\"\n// Uncaught RangeError: Maximum call stack size exceeded\n// Uncaught RangeError: Maximum call stack size exceeded at String.substring\n\n//\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ví dụ freecodecamp // factorial example with recursion  ví function dụ closure callback higher-order freecodecamp",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-ví-dụ-mdn",
+      "title": "Ví dụ MDN",
+      "headingLevel": 3,
+      "anchor": "#ví-dụ-mdn",
+      "summary": "Đệ quy bị giới hạn bởi kích thước ngăn xếp:",
+      "keywords": [
+        "callback",
+        "closure",
+        "dụ",
+        "function",
+        "higher-order",
+        "mdn",
+        "ví"
+      ],
+      "syntax": null,
+      "returns": "the maximum size of the call stack available in the JavaScript runtime in which the code is run",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// The following code defines a function that returns the maximum size of the call stack available in the JavaScript runtime in which the code is run.\nconst getMaxCallStackSize = i => {\n  try {\n    return getMaxCallStackSize(++i);\n  } catch {\n    return i;\n  }\n};\n\nconsole.log(getMaxCallStackSize(0));",
+          "explanation": ""
+        },
+        {
+          "code": "// factorial with recursion\nconst factorial = n => {\n  if (n === 0) return 1;\n  else return n * factorial(n - 1);\n};\nconsole.log(factorial(10)); // 3628800\n\n// fibonacci\nconst fibonacci = n => (n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));\nconsole.log(fibonacci(10)); // 55\nconsole.log(fibonacci(6)); // 8\n\n// reduce method example\nconst reduce = (fn, acc, [cur, ...rest]) => (cur === undefined ? acc : reduce(fn, fn(acc, cur), rest));\nconsole.log(reduce((a, b) => a + b, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9])); // 45",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Đệ quy bị giới hạn bởi kích thước ngăn xếp:\n\n```js\n// The following code defines a function that returns the maximum size of the call stack available in the JavaScript runtime in which the code is run.\nconst getMaxCallStackSize = i => {\n  try {\n    return getMaxCallStackSize(++i);\n  } catch {\n    return i;\n  }\n};\n\nconsole.log(getMaxCallStackSize(0));\n```\n\n<br />\n\nVí dụ sử dụng phổ biến:\n\n```js\n// factorial with recursion\nconst factorial = n => {\n  if (n === 0) return 1;\n  else return n * factorial(n - 1);\n};\nconsole.log(factorial(10)); // 3628800\n\n// fibonacci\nconst fibonacci = n => (n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));\nconsole.log(fibonacci(10)); // 55\nconsole.log(fibonacci(6)); // 8\n\n// reduce method example\nconst reduce = (fn, acc, [cur, ...rest]) => (cur === undefined ? acc : reduce(fn, fn(acc, cur), rest));\nconsole.log(reduce((a, b) => a + b, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9])); // 45\n```\n\nHãy xem _ngăn xếp lời gọi (call stack)_ được đề cập trong [A Quick Intro to Recursion in Javascript](https://www.freecodecamp.org/news/quick-intro-to-recursion/) của freeCodeCamp.\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ví dụ mdn đệ quy bị giới hạn bởi kích thước ngăn xếp:  ví mdn function dụ closure callback higher-order the maximum size of the call stack available in the javascript runtime in which the code is run",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-ghi-chú-về-đệ-quy",
+      "title": "Ghi chú về đệ quy",
+      "headingLevel": 3,
+      "anchor": "#ghi-chú-về-đệ-quy",
+      "summary": "Ghi chú về Video Recursion in Programming - Full Course từ freeCodeCamp:",
+      "keywords": [
+        "callback",
+        "chú",
+        "closure",
+        "function",
+        "ghi",
+        "higher-order",
+        "quy",
+        "về",
+        "đệ"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "Ghi chú về Video [Recursion in Programming - Full Course](https://youtu.be/IJDJ0kBx2LM) từ freeCodeCamp:\n\n- 1. Lượng công việc ít nhất mà tôi có thể làm là gì? Các bài toán con là gì? Làm thế nào để bạn lấy một bài toán lớn và chia nó thành các bài toán con?\n- 2. Điều kiện dừng của tôi là gì? Khi nào quá trình sẽ hoàn tất? Điều kiện dừng là gì?\n- **Ngăn xếp lời gọi (Call Stack)**: khung ngăn xếp (stack frame) -> A phụ thuộc vào B, B phụ thuộc vào C, rồi đến C\n\n**ƯU ĐIỂM**:\n\n- thu hẹp khoảng cách giữa sự tao nhã và phức tạp. Các ví dụ của anh ấy sẽ là những phép duyệt phức tạp qua các cấu trúc dữ liệu như cây và đồ thị.\n- Ngoài ra, giảm nhu cầu về vòng lặp phức tạp và cấu trúc dữ liệu phụ trợ. Đơn giản hóa mã của bạn.\n- có thể giảm độ phức tạp thời gian (ghi nhớ - memoization)\n- hoạt động rất tốt với các cấu trúc dữ liệu như **_đối tượng JSON_**, **_cây_** và **_đồ thị_** — những thứ cho phép bạn tập trung vào một đơn vị rất nhỏ của cấu trúc dữ liệu tại một thời điểm\n\n**NHƯỢC ĐIỂM**:\n\n- chậm do chi phí CPU. Có thể trở nên lộn xộn với các cấu trúc dữ liệu đệ quy.\n- có thể dẫn đến lỗi hết bộ nhớ / ngoại lệ tràn ngăn xếp\n- có thể phức tạp nếu được xây dựng kém. Luôn tự hỏi, \"_Đây có phải là trường hợp sử dụng tốt cho đệ quy không?_\"\n\n> _Uncaught RangeError: Maximum call stack size exceeded_\n\nLƯU Ý: Đối với đệ quy chuỗi, rất thường bạn có thể làm cho nó dễ hơn bằng cách đánh giá độ dài đầu vào — vì vậy hãy thử với chuỗi có độ dài 0 và 1 —\n\nĐỆ QUY SỐ\n\n- Bài toán thứ nhất — chuyển đổi cơ số 10 sang nhị phân —\n- -\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ghi chú về đệ quy ghi chú về video recursion in programming - full course từ freecodecamp:  quy function closure ghi callback higher-order về chú đệ",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-linh-tinh-2",
+      "title": "Linh tinh 2",
+      "headingLevel": 2,
+      "anchor": "#linh-tinh-2",
+      "summary": "- tham số (parameters) vs đối số (arguments)",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "linh",
+        "tinh"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions): Phạm vi và ngăn xếp hàm, Đệ quy, Bảo toàn biến, Không có `this` riêng biệt, và Hàm định sẵn.",
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "- tham số (parameters) vs đối số (arguments)\n- phạm vi (scope)\n- `return`:\n- `undefined`:\n\nCác khái niệm khác từ [Tài liệu Hàm của MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions): Phạm vi và ngăn xếp hàm, Đệ quy, Bảo toàn biến, Không có `this` riêng biệt, và Hàm định sẵn.",
+      "searchText": "linh tinh 2 - tham số (parameters) vs đối số (arguments)  function linh tinh closure callback higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-hàm-định-sẵn",
+      "title": "Hàm định sẵn",
+      "headingLevel": 4,
+      "anchor": "#hàm-định-sẵn",
+      "summary": "- KHÔNG SỬ DỤNG: eval(), uneval(), escape(), và unescape().",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "hàm",
+        "sẵn",
+        "định"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "- KHÔNG SỬ DỤNG: `eval()`, `uneval()`, `escape()`, và `unescape()`.\n- ĐƯỢC PHÉP SỬ DỤNG: `isFinite()`, `isNaN()`, `parseFloat()`, `parseInt()` với `radix`, `decodeURI()`, `decodeURIComponent()`, `encodeURI()`, và `encodeURIComponent()`\n\n`isNaN()`: xác định một giá trị có phải là NaN hay không; bạn có thể muốn sử dụng `Number.isNaN()` thay thế.\n\n`decodeURI()`: giải mã một Định danh Tài nguyên Thống nhất (URI) đã được tạo trước đó bởi `encodeURI` hoặc bởi một quy trình tương tự.\n\n`decodeURIComponent()`: giải mã một thành phần của Định danh Tài nguyên Thống nhất (URI) đã được tạo trước đó bởi `encodeURIComponent` hoặc bởi một quy trình tương tự.\n\n`encodeURI()`: mã hóa một Định danh Tài nguyên Thống nhất (URI) bằng cách thay thế mỗi phiên bản của một số ký tự nhất định bằng một, hai, ba hoặc bốn chuỗi thoát biểu diễn mã hóa UTF-8 của ký tự (sẽ chỉ có bốn chuỗi thoát cho các ký tự được tạo thành từ hai ký tự \"thay thế\" (surrogate)).\n\n`encodeURIComponent()`: mã hóa một thành phần của Định danh Tài nguyên Thống nhất (URI) bằng cách thay thế mỗi phiên bản của một số ký tự nhất định bằng một, hai, ba hoặc bốn chuỗi thoát biểu diễn mã hóa UTF-8 của ký tự (sẽ chỉ có bốn chuỗi thoát cho các ký tự được tạo thành từ hai ký tự \"thay thế\" (surrogate)).\n\n<br />",
+      "searchText": "hàm định sẵn - không sử dụng: eval(), uneval(), escape(), và unescape().  function closure callback định hàm sẵn higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-promise-trong-es6",
+      "title": "Promise trong ES6",
+      "headingLevel": 3,
+      "anchor": "#promise-trong-es6",
+      "summary": "Đối tượng Promise đại diện cho việc hoàn thành (hoặc thất bại) cuối cùng của một thao tác bất đồng bộ và giá trị kết quả của nó.",
+      "keywords": [
+        "callback",
+        "closure",
+        "es6",
+        "function",
+        "higher-order",
+        "promise",
+        "trong"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises), [MDN Incumbent settings object tracking](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#incumbent_settings_object_tracking), [MDN Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#constructor), [MDN Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods), và [MDN Instance methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#instance_methods)\n\n```js\n// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(",
+      "examples": [
+        {
+          "code": "// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(\"Promise was fulfilled\");\n  } else {\n    reject(\"Promise was rejected\");\n  }\n});\n// or this\nconst makeServerRequest = new Promise((resolve, reject) => {\n  let responseFromServer;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\n// lesson 30 & 31 freeCodeCamp (confusing)\nconst makeServerRequest = new Promise((resolve, reject) => {\n  // responseFromServer is set to false to represent an unsuccessful response from a server\n  let responseFromServer = true;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\nmakeServerRequest.then(result => {\n  console.log(result);\n});\n\nmakeServerRequest.catch(error => {\n  console.log(error);\n});",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Đối tượng `Promise` đại diện cho việc hoàn thành (hoặc thất bại) cuối cùng của một thao tác bất đồng bộ và giá trị kết quả của nó.\n\nMột `Promise` là một proxy cho một giá trị không nhất thiết đã biết khi promise được tạo. Nó cho phép bạn liên kết các trình xử lý với giá trị thành công cuối cùng hoặc lý do thất bại của một hành động bất đồng bộ. Điều này cho phép các phương thức bất đồng bộ trả về giá trị giống như các phương thức đồng bộ: thay vì trả về ngay lập tức giá trị cuối cùng, phương thức bất đồng bộ trả về một promise sẽ cung cấp giá trị tại một thời điểm nào đó trong tương lai.\n\nMột Promise ở một trong các trạng thái sau:\n\n- _pending_: trạng thái ban đầu, chưa được thực hiện cũng chưa bị từ chối.\n- _fulfilled_: nghĩa là thao tác đã hoàn thành thành công.\n- _rejected_: nghĩa là thao tác đã thất bại.\n\nMột promise đang chờ (pending) có thể được thực hiện (fulfilled) với một giá trị hoặc bị từ chối (rejected) với một lý do (lỗi). Khi một trong hai trường hợp này xảy ra, các trình xử lý liên quan được xếp hàng bởi phương thức `then` của promise sẽ được gọi. Nếu promise đã được thực hiện hoặc bị từ chối khi một trình xử lý tương ứng được gắn vào, trình xử lý sẽ vẫn được gọi, vì vậy không có tình trạng chạy đua giữa việc một thao tác bất đồng bộ hoàn thành và việc các trình xử lý của nó được gắn vào.\n\nVì các phương thức `Promise.prototype.then()` và `Promise.prototype.catch()` trả về các promise, chúng có thể được nối chuỗi.\n\nXem thêm: [MDN Chained Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises), [MDN Incumbent settings object tracking](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#incumbent_settings_object_tracking), [MDN Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#constructor), [MDN Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods), và [MDN Instance methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#instance_methods)\n\n```js\n// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(\"Promise was fulfilled\");\n  } else {\n    reject(\"Promise was rejected\");\n  }\n});\n// or this\nconst makeServerRequest = new Promise((resolve, reject) => {\n  let responseFromServer;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\n// lesson 30 & 31 freeCodeCamp (confusing)\nconst makeServerRequest = new Promise((resolve, reject) => {\n  // responseFromServer is set to false to represent an unsuccessful response from a server\n  let responseFromServer = true;\n\n  if (responseFromServer) {\n    resolve(\"We got the data\");\n  } else {\n    reject(\"Data not received\");\n  }\n});\n\nmakeServerRequest.then(result => {\n  console.log(result);\n});\n\nmakeServerRequest.catch(error => {\n  console.log(error);\n});\n```\n\n- Promise, new, resolve, reject\n- pending, fulfilled, rejected\n- then, result, catch, try, error\n- refactor\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "promise trong es6 đối tượng promise đại diện cho việc hoàn thành (hoặc thất bại) cuối cùng của một thao tác bất đồng bộ và giá trị kết quả của nó.  function trong closure callback higher-order promise es6",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-hàm-động",
+      "title": "Hàm động",
+      "headingLevel": 3,
+      "anchor": "#hàm-động",
+      "summary": "let foods = {",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "hàm",
+        "động"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let foods = {\n  apples: 25,\n  oranges: 32,\n  plums: 28,\n  bananas: 13,\n  grapes: 35,\n  strawberries: 27\n};\n\nfunction checkInventory(scannedItem) {\n  return foods[scannedItem];\n}\n// console.log(checkInventory(\"apples\"));",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\nlet foods = {\n  apples: 25,\n  oranges: 32,\n  plums: 28,\n  bananas: 13,\n  grapes: 35,\n  strawberries: 27\n};\n\nfunction checkInventory(scannedItem) {\n  return foods[scannedItem];\n}\n// console.log(checkInventory(\"apples\"));\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "hàm động let foods = {  function động closure callback hàm higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    },
+    {
+      "id": "function-ngẫu-nhiên",
+      "title": "Ngẫu nhiên",
+      "headingLevel": 3,
+      "anchor": "#ngẫu-nhiên",
+      "summary": "- freeCodeCamp: Các hàm được coi là đối tượng hạng nhất trong JavaScript, nghĩa là chúng có thể được sử dụng như bất kỳ đối tượng nào khác.",
+      "keywords": [
+        "callback",
+        "closure",
+        "function",
+        "higher-order",
+        "ngẫu",
+        "nhiên",
+        "test"
+      ],
+      "syntax": "function test() {",
+      "returns": null,
+      "mutates": false,
+      "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind): tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi (???)\n\n```js\n// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\nCác thuật ngữ khác:\n\n- cách tiếp cận mệnh lệnh (imperative approach)\n- lập trình khai báo (declarative programming)\n- đột biến (mutation), tác dụng phụ (side effect), hàm thuần túy (pure function)\n- đối tượng hạng nhất (first class objects)\n- 10. Triển khai phương thức filter trên Prototype\n\n<div align=",
+      "examples": [
+        {
+          "code": "function test() {\n  console.log(\"Hello\");\n}\n\nconst test2 = test;\nconsole.log(test2 === test); // true\ntest.prop = \"Hi\";\nconsole.dir(test); // prop: \"Hi\" prototype, name, length,...",
+          "explanation": ""
+        },
+        {
+          "code": "// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "- **freeCodeCamp**: Các hàm được coi là đối tượng hạng nhất trong JavaScript, nghĩa là chúng có thể được sử dụng như bất kỳ đối tượng nào khác. Chúng có thể được lưu trong biến, lưu trữ trong một đối tượng, hoặc truyền làm tham số của hàm.\n\nWeb Dev Simplified: Một khi bạn nhận ra điều này, bạn sẽ không bao giờ vật lộn với hàm gọi lại nữa\n\n- Hàm là biến giống như mọi thứ khác:\n\n```js\nfunction test() {\n  console.log(\"Hello\");\n}\n\nconst test2 = test;\nconsole.log(test2 === test); // true\ntest.prop = \"Hi\";\nconsole.dir(test); // prop: \"Hi\" prototype, name, length,...\n```\n\nFunction.prototype.bind():\n\n[MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind): tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi (???)\n\n```js\n// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\nCác thuật ngữ khác:\n\n- cách tiếp cận mệnh lệnh (imperative approach)\n- lập trình khai báo (declarative programming)\n- đột biến (mutation), tác dụng phụ (side effect), hàm thuần túy (pure function)\n- đối tượng hạng nhất (first class objects)\n- 10. Triển khai phương thức filter trên Prototype\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ngẫu nhiên - freecodecamp: các hàm được coi là đối tượng hạng nhất trong javascript, nghĩa là chúng có thể được sử dụng như bất kỳ đối tượng nào khác. function test() { function ngẫu nhiên closure callback test higher-order",
+      "sourceFile": "function-examples.md",
+      "category": "function"
+    }
+  ]
+}

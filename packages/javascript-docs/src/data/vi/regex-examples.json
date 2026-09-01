@@ -1,0 +1,583 @@
+{
+  "sourceFile": "regex-examples.md",
+  "sourceUrl": "https://github.com/Kernix13/javascript-cheat-sheet/blob/main/regex-examples.md",
+  "category": "regex",
+  "title": "Ví dụ biểu thức chính quy (Regular Expressions)",
+  "description": "Cú pháp cơ bản kèm theo các ví dụ nâng cao hơn. Xem [MDN Regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) để biết các trường hợp sử dụng với `exec(str)`, `test(str)`, `match(regexp)`, `matchAll(regexp)`, `replace()`, `replaceAll()`, `search(regexp)`, `split()`, và đối tượng `String`.",
+  "tags": [
+    "regex",
+    "regexp",
+    "pattern",
+    "string"
+  ],
+  "totalSections": 15,
+  "sections": [
+    {
+      "id": "regex-cơ-bản",
+      "title": "Cơ bản",
+      "headingLevel": 2,
+      "anchor": "#cơ-bản",
+      "summary": "Dùng dấu gạch chéo (/) để bao quanh biểu thức chính quy (RegEx):",
+      "keywords": [
+        "bản",
+        "cơ",
+        "pattern",
+        "regex",
+        "regexp",
+        "string"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "/regex/",
+          "explanation": ""
+        },
+        {
+          "code": "let myString = \"Hello, World!\";\nlet myRegex = /Hello/;\nlet result = myRegex.test(myString);\n\nlet waldoIsHiding = \"Somewhere Waldo is hiding in this text.\";\nlet waldoRegex = /Waldo/; \nlet result = waldoRegex.test(waldoIsHiding);\n\nlet extractStr = \"Extract the word 'coding' from this string.\";\nlet codingRegex = /coding/;\nlet result = extractStr.match(codingRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "let petString = \"James has a pet cat.\";\nlet petRegex = /dog|cat|bird|fish/;\nlet result = petRegex.test(petString);",
+          "explanation": ""
+        },
+        {
+          "code": "/regex/i // ignore upper or lowercase\n/regex/g // to match every occurrence\n/regex/m // multiline\n/regex/x // ignore whitespace/verbose",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Dùng dấu gạch chéo (`/`) để bao quanh biểu thức chính quy (RegEx):\n\n```js\n/regex/\n```\n\n<br />\n\nKhớp chuỗi ký tự theo nghĩa đen:\n```js\nlet myString = \"Hello, World!\";\nlet myRegex = /Hello/;\nlet result = myRegex.test(myString);\n\nlet waldoIsHiding = \"Somewhere Waldo is hiding in this text.\";\nlet waldoRegex = /Waldo/; \nlet result = waldoRegex.test(waldoIsHiding);\n\nlet extractStr = \"Extract the word 'coding' from this string.\";\nlet codingRegex = /coding/;\nlet result = extractStr.match(codingRegex);\n```\n\n<br />\n\nDùng ký tự ống (`|`) như điều kiện \"hoặc\":\n```js\nlet petString = \"James has a pet cat.\";\nlet petRegex = /dog|cat|bird|fish/;\nlet result = petRegex.test(petString);\n```\n\n<br />\n\nCờ (Flags): `i` cho không phân biệt hoa thường, và `g` cho khớp toàn cục hoặc để khớp tất cả lần xuất hiện. Dưới đây là những cờ tốt nhất:\n```js\n/regex/i // ignore upper or lowercase\n/regex/g // to match every occurrence\n/regex/m // multiline\n/regex/x // ignore whitespace/verbose\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "cơ bản dùng dấu gạch chéo (/) để bao quanh biểu thức chính quy (regex):  pattern regex bản cơ string regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-ký-tự-đại-diện-và-lượng-từ",
+      "title": "Ký tự đại diện và lượng từ",
+      "headingLevel": 2,
+      "anchor": "#ký-tự-đại-diện-và-lượng-từ",
+      "summary": "Dấu chấm là ký tự đại diện ..",
+      "keywords": [
+        "diện",
+        "gi",
+        "ký",
+        "lượng",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "từ",
+        "tự",
+        "un",
+        "và",
+        "đại"
+      ],
+      "syntax": "/.un/gi",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// match anything with the wildcard . e.g. fun, gun, pun, run\n/.un/gi\n\nlet exampleStr = \"Let's have fun with regular expressions!\";\nlet unRegex = /.un/; \nlet result = unRegex.test(exampleStr);",
+          "explanation": ""
+        },
+        {
+          "code": "// + Matches one or more consecutive characters: a aa aaa aaaa bab baab\n/a+/gi \n// match s\nlet difficultSpelling = \"Mississippi\";\nlet myRegex = /s+/g; // this is the solution\nlet result = difficultSpelling.match(myRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "// ? Matches a character or nothing.: ba b a\n/ba?/g\n\nlet american = \"color\";\nlet british = \"colour\";\nlet rainbowRegex= /colou?r/;\nrainbowRegex.test(american); // true\nrainbowRegex.test(british); // true\n\nlet favWord = \"favorite\";\nlet favRegex = /favou?rite/; \nlet result = favRegex.test(favWord);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Dấu chấm là ký tự đại diện `.`. Các lượng từ là: `+`, `?`, `*`, `*?`, `++`, `{#}`, `{#,}`, và `{#,#}` \n\n> TẠI SAO LỚP KÝ TỰ (`[]`) KHÔNG HOẠT ĐỘNG VỚI `+`?\n\n- `*` = không hoặc nhiều\n- `+` = một hoặc nhiều\n- `?` = không hoặc một\n- `{n}` = đúng \"n\" lần\n- `{n,}` = \"n\" hoặc nhiều hơn\n- `{n,m}` = ít nhất \"n\" và nhiều nhất \"m\" lần\n- khớp tham lam (greedy) = `*` và `+`\n- khớp lười (lazy) = `*?`, `+?`, `??`, `{n}?`, `{n,}?`, và `{n,m}?`\n\nKhớp bất kỳ ký tự nào với dấu chấm đại diện `.`: khớp khi một ký tự xuất hiện một hoặc nhiều lần. Khớp các ký tự xuất hiện một hoặc nhiều lần:\n```js\n// match anything with the wildcard . e.g. fun, gun, pun, run\n/.un/gi\n\nlet exampleStr = \"Let's have fun with regular expressions!\";\nlet unRegex = /.un/; \nlet result = unRegex.test(exampleStr);\n```\n\n<br />\n\nKhớp ký tự xuất hiện một hoặc nhiều lần với `+`\n```js\n// + Matches one or more consecutive characters: a aa aaa aaaa bab baab\n/a+/gi \n// match s\nlet difficultSpelling = \"Mississippi\";\nlet myRegex = /s+/g; // this is the solution\nlet result = difficultSpelling.match(myRegex);\n```\n\n<br />\n\nKiểm tra không hoặc một với `?`\n```js\n// ? Matches a character or nothing.: ba b a\n/ba?/g\n\nlet american = \"color\";\nlet british = \"colour\";\nlet rainbowRegex= /colou?r/;\nrainbowRegex.test(american); // true\nrainbowRegex.test(british); // true\n\nlet favWord = \"favorite\";\nlet favRegex = /favou?rite/; \nlet result = favRegex.test(favWord);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "ký tự đại diện và lượng từ dấu chấm là ký tự đại diện .. /.un/gi string pattern diện regex và un từ ký tự regexp đại lượng gi",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-khớp-với-dấu-sao",
+      "title": "Khớp với dấu sao",
+      "headingLevel": 3,
+      "anchor": "#khớp-với-dấu-sao",
+      "summary": "Khớp ký tự xuất hiện không hoặc nhiều lần với :",
+      "keywords": [
+        "dấu",
+        "khớp",
+        "pattern",
+        "regex",
+        "regexp",
+        "sao",
+        "string",
+        "với"
+      ],
+      "syntax": null,
+      "returns": "false",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// * Matches zero or more consecutive characters: a ba baa aaa ba b\n/ba*/g\n/Aa*/\n\nlet phrase = \"ba humbug\";\nlet regexPlus = /bah+/;\nlet regexStar = /bah*/;\nregexPlus.test(phrase); // returns false\nregexStar.test(phrase); // returns true\n\nlet regexPlus = /wo+w/;\nlet regexStar = /wo*w/;\nregexPlus.test(phrase); // returns true\nregexStar.test(phrase); // returns true\n\nlet soccerWord = \"gooooooooal!\";\nlet gPhrase = \"gut feeling\";\nlet oPhrase = \"over the moon\";\nlet goRegex = /go*/;\nsoccerWord.match(goRegex); // ['goooooooo']\ngPhrase.match(goRegex); // ['g']\noPhrase.match(goRegex); // null\n\nlet chewieQuote = \"Aaaaaaaaaaaaaaaarrrgh!\";\nlet chewieRegex = /Aa*/; // Change this line\nlet result = chewieQuote.match(chewieRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "/t[a-z]*?i/\n\n// lazy quantifier with `*?`\nlet text = \"<h1>Winter is coming</h1>\";\nlet myRegex = /<.*?>/; // it's the answer!\nlet result = text.match(myRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "// possessive quantifer with ++ (WHY?)\n/\\d++./\n123",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Khớp ký tự xuất hiện không hoặc nhiều lần với `*`: \n```js\n\n// * Matches zero or more consecutive characters: a ba baa aaa ba b\n/ba*/g\n/Aa*/\n\nlet phrase = \"ba humbug\";\nlet regexPlus = /bah+/;\nlet regexStar = /bah*/;\nregexPlus.test(phrase); // returns false\nregexStar.test(phrase); // returns true\n\nlet regexPlus = /wo+w/;\nlet regexStar = /wo*w/;\nregexPlus.test(phrase); // returns true\nregexStar.test(phrase); // returns true\n\nlet soccerWord = \"gooooooooal!\";\nlet gPhrase = \"gut feeling\";\nlet oPhrase = \"over the moon\";\nlet goRegex = /go*/;\nsoccerWord.match(goRegex); // ['goooooooo']\ngPhrase.match(goRegex); // ['g']\noPhrase.match(goRegex); // null\n\nlet chewieQuote = \"Aaaaaaaaaaaaaaaarrrgh!\";\nlet chewieRegex = /Aa*/; // Change this line\nlet result = chewieQuote.match(chewieRegex);\n```\n\n<br />\n\nKhớp lười (lazy matching): dùng ký tự `*?`\n```js\n/t[a-z]*?i/\n\n// lazy quantifier with `*?`\nlet text = \"<h1>Winter is coming</h1>\";\nlet myRegex = /<.*?>/; // it's the answer!\nlet result = text.match(myRegex);\n```\n\n<br />\n\n```js\n// possessive quantifer with ++ (WHY?)\n/\\d++./\n123\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "khớp với dấu sao khớp ký tự xuất hiện không hoặc nhiều lần với :  sao pattern với regex dấu string regexp khớp false",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-số-lần-khớp-cụ-thể",
+      "title": "Số lần khớp cụ thể",
+      "headingLevel": 3,
+      "anchor": "#số-lần-khớp-cụ-thể",
+      "summary": "Khớp số lần cụ thể với {#}:",
+      "keywords": [
+        "cụ",
+        "khớp",
+        "lần",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "số",
+        "thể"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "let A4 = \"haaaah\";\nlet A3 = \"haaah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleHA = /ha{3}h/;\nmultipleHA.test(A4); // false\nmultipleHA.test(A3); // true\nmultipleHA.test(A100); // false\n\nlet timStr = \"Timmmmber\";\nlet timRegex = /Tim{4}ber/; \nlet result = timRegex.test(timStr);",
+          "explanation": ""
+        },
+        {
+          "code": "let A4 = \"haaaah\";\nlet A2 = \"haah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleA = /ha{3,}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\nmultipleA.test(A100); // true\n\nlet haStr = \"Hazzzzah\";\nlet haRegex = /Haz{4,}ah/; \nlet result = haRegex.test(haStr);",
+          "explanation": ""
+        },
+        {
+          "code": "let A4 = \"aaaah\";\nlet A2 = \"aah\";\nlet multipleA = /a{3,5}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\n\nlet threeAs = \"aaa\";\nlet fourAs = \"aaaa\";\nlet sevenAs = \"aaaaaaa\";\n\nlet myRegex = /a{2,4}/;\nmyRegex.test(threeAs); // true\nmyRegex.test(fourAs); // true\nmyRegex.test(sevenAs); // true",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Khớp số lần cụ thể với `{#}`:\n```js\nlet A4 = \"haaaah\";\nlet A3 = \"haaah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleHA = /ha{3}h/;\nmultipleHA.test(A4); // false\nmultipleHA.test(A3); // true\nmultipleHA.test(A100); // false\n\nlet timStr = \"Timmmmber\";\nlet timRegex = /Tim{4}ber/; \nlet result = timRegex.test(timStr);\n```\n\n<br />\n\nChỉ định số lần khớp tối thiểu với `{#,}` : \n```js\nlet A4 = \"haaaah\";\nlet A2 = \"haah\";\nlet A100 = \"h\" + \"a\".repeat(100) + \"h\";\nlet multipleA = /ha{3,}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\nmultipleA.test(A100); // true\n\nlet haStr = \"Hazzzzah\";\nlet haRegex = /Haz{4,}ah/; \nlet result = haRegex.test(haStr);\n```\n\n<br />\n\nChỉ định số lần khớp tối thiểu và tối đa `{#,#}`:\n```js\nlet A4 = \"aaaah\";\nlet A2 = \"aah\";\nlet multipleA = /a{3,5}h/;\nmultipleA.test(A4); // true\nmultipleA.test(A2); // false\n\nlet threeAs = \"aaa\";\nlet fourAs = \"aaaa\";\nlet sevenAs = \"aaaaaaa\";\n\nlet myRegex = /a{2,4}/;\nmyRegex.test(threeAs); // true\nmyRegex.test(fourAs); // true\nmyRegex.test(sevenAs); // true\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "số lần khớp cụ thể khớp số lần cụ thể với {#}:  string thể lần pattern regex số regexp khớp cụ",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-neo-anchors",
+      "title": "Neo (Anchors)",
+      "headingLevel": 2,
+      "anchor": "#neo-anchors",
+      "summary": "Neo: ký hiệu mũ (^ hoặc \\A) cả trong và ngoài lớp ký tự, và ký hiệu đô la ($ hoặc \\Z).",
+      "keywords": [
+        "anchors",
+        "neo",
+        "pattern",
+        "regex",
+        "regexp",
+        "string"
+      ],
+      "syntax": null,
+      "returns": "'T'",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// Anything but/except with the caret symbol INSIDE character set, ^ or \\A:\n/^This/  // returns 'T'\n\n/[^aeiou]/gi\nlet quoteSample = \"3 blind mice.\";\nlet myRegex = /[^aeiou^0-9]/gi; \nlet result = quoteSample.match(myRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "let firstString = \"Ricky is first and can be found.\";\nlet firstRegex = /^Ricky/;\nfirstRegex.test(firstString);\nlet notFirst = \"You can't find Ricky now.\";\nfirstRegex.test(notFirst); // true\n\nlet rickyAndCal = \"Cal and Ricky both like racing.\";\nlet calRegex = /^Cal/; \nlet result = calRegex.test(rickyAndCal);",
+          "explanation": ""
+        },
+        {
+          "code": "/end.$/\n// match end of string with $ or \\Z\n/end.$/ // for 'end.' vs \n/[end.]$/ // just returning `.`\n\nlet theEnding = \"This is a never ending story\";\nlet storyRegex = /story$/;\nstoryRegex.test(theEnding);\nlet noEnding = \"Sometimes a story will have to end\";\nstoryRegex.test(noEnding); // true\n\nlet caboose = \"The last car on a train is the caboose\";\nlet lastRegex = /caboose$/; \nlet result = lastRegex.test(caboose);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Neo: ký hiệu mũ (`^` hoặc `\\A`) cả trong và ngoài lớp ký tự, và ký hiệu đô la (`$` hoặc `\\Z`).\n\nĐể tạo tập ký tự phủ định, bạn đặt ký tự mũ (^) sau dấu ngoặc mở và trước các ký tự bạn không muốn khớp:\n```js\n// Anything but/except with the caret symbol INSIDE character set, ^ or \\A:\n/^This/  // returns 'T'\n\n/[^aeiou]/gi\nlet quoteSample = \"3 blind mice.\";\nlet myRegex = /[^aeiou^0-9]/gi; \nlet result = quoteSample.match(myRegex); \n```\n\n<br />\n\nkhớp đầu chuỗi bằng ^ hoặc \\A BÊN NGOÀI tập ký tự:\n```js\nlet firstString = \"Ricky is first and can be found.\";\nlet firstRegex = /^Ricky/;\nfirstRegex.test(firstString);\nlet notFirst = \"You can't find Ricky now.\";\nfirstRegex.test(notFirst); // true\n\nlet rickyAndCal = \"Cal and Ricky both like racing.\";\nlet calRegex = /^Cal/; \nlet result = calRegex.test(rickyAndCal);\n```\n\n<br />\n\ndùng `$` để khớp cuối chuỗi - cái này nếu làm sai???\n```js\n/end.$/\n// match end of string with $ or \\Z\n/end.$/ // for 'end.' vs \n/[end.]$/ // just returning `.`\n\nlet theEnding = \"This is a never ending story\";\nlet storyRegex = /story$/;\nstoryRegex.test(theEnding);\nlet noEnding = \"Sometimes a story will have to end\";\nstoryRegex.test(noEnding); // true\n\nlet caboose = \"The last car on a train is the caboose\";\nlet lastRegex = /caboose$/; \nlet result = lastRegex.test(caboose);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "neo (anchors) neo: ký hiệu mũ (^ hoặc \\a) cả trong và ngoài lớp ký tự, và ký hiệu đô la ($ hoặc \\z).  string pattern regex anchors neo regexp 't'",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-thoát-ký-tự",
+      "title": "Thoát ký tự",
+      "headingLevel": 2,
+      "anchor": "#thoát-ký-tự",
+      "summary": "Dùng dấu gạch chéo ngược \\ để thoát các ký tự đặc biệt có trong chuỗi của bạn",
+      "keywords": [
+        "ký",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "thoát",
+        "tự"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// escape thw wildcard as part of your regex\n/\\./\n\n// escape one or more character +\n/\\+/\n\n// escape zero or more character *\n/\\*/\n\n// escape end of string character $\n/\\$/\n\n// escape star of string or negation character ^\n/\\^/\n\n// escape zero or one character ?\n/\\?/\n\n// escape backslash\n/\\\\/\n\n// escape parentheses\n/\\(\\)/\n\n// escape square brackets or character classes\n/\\[\\]/\n\n// escape curly brackets\n/\\{\\}/\n\n// escape single quote\n/\\'/\n\n// escape double quotes\n/\\\"/\n\n// escape pipe\n/\\|/\n\n// escape new line\n/\\n/\n\n// escape TAB\n/\\t/",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Dùng dấu gạch chéo ngược `\\` để thoát các ký tự đặc biệt có trong chuỗi của bạn\n```js\n// escape thw wildcard as part of your regex\n/\\./\n\n// escape one or more character +\n/\\+/\n\n// escape zero or more character *\n/\\*/\n\n// escape end of string character $\n/\\$/\n\n// escape star of string or negation character ^\n/\\^/\n\n// escape zero or one character ?\n/\\?/\n\n// escape backslash\n/\\\\/\n\n// escape parentheses\n/\\(\\)/\n\n// escape square brackets or character classes\n/\\[\\]/\n\n// escape curly brackets\n/\\{\\}/\n\n// escape single quote\n/\\'/\n\n// escape double quotes\n/\\\"/\n\n// escape pipe\n/\\|/\n\n// escape new line\n/\\n/\n\n// escape TAB\n/\\t/\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "thoát ký tự dùng dấu gạch chéo ngược \\ để thoát các ký tự đặc biệt có trong chuỗi của bạn  string pattern regex ký thoát tự regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-lớp-ký-tự",
+      "title": "Lớp ký tự",
+      "headingLevel": 2,
+      "anchor": "#lớp-ký-tự",
+      "summary": "Lớp/tập ký tự với [], ví dụ bag, big, bug",
+      "keywords": [
+        "ký",
+        "lớp",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "tự"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "/b[aiu]g/gi\n\nlet quoteSample = \"I have only proved it correct, but not tried it.\";\nlet vowelRegex = /[aeiou]/gi; \nlet result = quoteSample.match(vowelRegex);\n\nlet catStr = \"cat\";\nlet batStr = \"bat\";\nlet matStr = \"mat\";\nlet bgRegex = /[a-e]at/;\ncatStr.match(bgRegex); // ['cat']\nbatStr.match(bgRegex); // ['bat']\nmatStr.match(bgRegex); // null\n\nlet quoteSample = \"The quick brown fox jumps over the lazy dog.\";\nlet alphabetRegex = /[a-z]/gi; \nlet result = quoteSample.match(alphabetRegex);",
+          "explanation": ""
+        },
+        {
+          "code": "/[a-e]/gi\n/[a-z0-9]/ig",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Lớp/tập ký tự với `[]`, ví dụ bag, big, bug\n\n```js\n/b[aiu]g/gi\n\nlet quoteSample = \"I have only proved it correct, but not tried it.\";\nlet vowelRegex = /[aeiou]/gi; \nlet result = quoteSample.match(vowelRegex);\n\nlet catStr = \"cat\";\nlet batStr = \"bat\";\nlet matStr = \"mat\";\nlet bgRegex = /[a-e]at/;\ncatStr.match(bgRegex); // ['cat']\nbatStr.match(bgRegex); // ['bat']\nmatStr.match(bgRegex); // null\n\nlet quoteSample = \"The quick brown fox jumps over the lazy dog.\";\nlet alphabetRegex = /[a-z]/gi; \nlet result = quoteSample.match(alphabetRegex);\n```\n\n<br />\n\nLớp/tập ký tự với dấu gạch ngang (`-`) cho khoảng\n\n```js\n/[a-e]/gi\n/[a-z0-9]/ig\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "lớp ký tự lớp/tập ký tự với [], ví dụ bag, big, bug  string pattern regex tự ký lớp regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-viết-tắt",
+      "title": "Viết tắt",
+      "headingLevel": 3,
+      "anchor": "#viết-tắt",
+      "summary": "Bất kỳ chữ số nào và bất kỳ ký tự không phải chữ số nào với \\d và \\D:",
+      "keywords": [
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "tắt",
+        "viết"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "/\\d/g // match all numbers\nlet movieName = \"2001: A Space Odyssey\";\nlet numRegex = /\\d/g;\nlet result = movieName.match(numRegex).length;\n\n/\\D/ig // match anything but a number\nlet movieName = \"2001: A Space Odyssey\";\nlet noNumRegex = /\\D/g;\nlet result = movieName.match(noNumRegex).length;",
+          "explanation": ""
+        },
+        {
+          "code": "/\\w/ig // shorthand for [A-Za-z0-9_]\n\nlet longHand = /[A-Za-z0-9_]+/;\nlet shortHand = /\\w+/;\nlet numbers = \"42\";\nlet varNames = \"important_var\";\nlongHand.test(numbers); // true\nshortHand.test(numbers); // true\nlongHand.test(varNames); // true\nshortHand.test(varNames); // true\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet alphabetRegexV2 = /\\w/g; \nlet result = quoteSample.match(alphabetRegexV2).length;\n\n/\\W/g // shorthand for [^A-Za-z0-9_]\nlet shortHand = /\\W/;\nlet numbers = \"42%\";\nlet sentence = \"Coding!\";\nnumbers.match(shortHand); // ['%']\nsentence.match(shortHand); // ['!']\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet nonAlphabetRegex = /\\W/g;\nlet result = quoteSample.match(nonAlphabetRegex).length;",
+          "explanation": ""
+        },
+        {
+          "code": "let whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet spaceRegex = /\\s/g;\nwhiteSpace.match(spaceRegex); // [\" \", \" \"]\n\nlet sample = \"Whitespace is important in separating words\";\nlet countWhiteSpace = /\\s\\w*/;\nlet result = sample.match(countWhiteSpace);\n\nlet whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet nonSpaceRegex = /\\S/g;\nwhiteSpace.match(nonSpaceRegex).length; // 32\n\nlet sample = \"Whitespace is important in separating words\";\nlet countNonWhiteSpace = /\\S/g; \nlet result = sample.match(countNonWhiteSpace); \n\n// Remove Whitespace from Start and End with, you could also use str.trim()\nlet hello = \"   Hello, World!  \";\nlet wsRegex = /^\\s+|\\s+$/g; \nlet result = hello.replace(wsRegex, \"\");",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Bất kỳ chữ số nào và bất kỳ ký tự không phải chữ số nào với `\\d` và `\\D`:\n```js\n/\\d/g // match all numbers\nlet movieName = \"2001: A Space Odyssey\";\nlet numRegex = /\\d/g;\nlet result = movieName.match(numRegex).length;\n\n/\\D/ig // match anything but a number\nlet movieName = \"2001: A Space Odyssey\";\nlet noNumRegex = /\\D/g;\nlet result = movieName.match(noNumRegex).length;\n```\n<br />\n\nKhớp ký tự từ hoặc ký tự không phải từ với `\\w` và `\\W`:\n```js\n/\\w/ig // shorthand for [A-Za-z0-9_]\n\nlet longHand = /[A-Za-z0-9_]+/;\nlet shortHand = /\\w+/;\nlet numbers = \"42\";\nlet varNames = \"important_var\";\nlongHand.test(numbers); // true\nshortHand.test(numbers); // true\nlongHand.test(varNames); // true\nshortHand.test(varNames); // true\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet alphabetRegexV2 = /\\w/g; \nlet result = quoteSample.match(alphabetRegexV2).length;\n\n/\\W/g // shorthand for [^A-Za-z0-9_]\nlet shortHand = /\\W/;\nlet numbers = \"42%\";\nlet sentence = \"Coding!\";\nnumbers.match(shortHand); // ['%']\nsentence.match(shortHand); // ['!']\n\nlet quoteSample = \"The five boxing wizards jump quickly.\";\nlet nonAlphabetRegex = /\\W/g;\nlet result = quoteSample.match(nonAlphabetRegex).length;\n```\n\n<br />\n\nKhớp khoảng trắng và không phải khoảng trắng với `\\w` và `\\W`::\n```js\nlet whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet spaceRegex = /\\s/g;\nwhiteSpace.match(spaceRegex); // [\" \", \" \"]\n\nlet sample = \"Whitespace is important in separating words\";\nlet countWhiteSpace = /\\s\\w*/;\nlet result = sample.match(countWhiteSpace);\n\nlet whiteSpace = \"Whitespace. Whitespace everywhere!\"\nlet nonSpaceRegex = /\\S/g;\nwhiteSpace.match(nonSpaceRegex).length; // 32\n\nlet sample = \"Whitespace is important in separating words\";\nlet countNonWhiteSpace = /\\S/g; \nlet result = sample.match(countNonWhiteSpace); \n\n// Remove Whitespace from Start and End with, you could also use str.trim()\nlet hello = \"   Hello, World!  \";\nlet wsRegex = /^\\s+|\\s+$/g; \nlet result = hello.replace(wsRegex, \"\");\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "viết tắt bất kỳ chữ số nào và bất kỳ ký tự không phải chữ số nào với \\d và \\d:  pattern regex tắt viết string regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-nhóm-capture",
+      "title": "Nhóm capture",
+      "headingLevel": 2,
+      "anchor": "#nhóm-capture",
+      "summary": "Đôi khi chúng ta muốn kiểm tra nhóm ký tự bằng biểu thức chính quy và để làm điều đó chúng ta dùng dấu ngoặc đơn ().",
+      "keywords": [
+        "capture",
+        "nhóm",
+        "pattern",
+        "regex",
+        "regexp",
+        "string"
+      ],
+      "syntax": null,
+      "returns": "true",
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// find either Penguin or Pumpkin in a string\nlet testStr = \"Pumpkin\";\nlet testRegex = /P(engu|umpk)in/;\ntestRegex.test(testStr); // true\n\n// check for the names of Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner\nlet myString = \"Eleanor Roosevelt\";\nlet myRegex = /(Franklin|Eleanor).*Roosevelt/;\nlet result = myRegex.test(myString);",
+          "explanation": ""
+        },
+        {
+          "code": "let repeatRegex = /(\\w+) \\1 \\1/;\nrepeatRegex.test(repeatStr); // Returns true\nrepeatStr.match(repeatRegex); // Returns [\"row row row\", \"row\"]\n\n// match a string that consists of only the same number repeated exactly three times separated by single spaces\nlet repeatNum = \"42 42 42\";\nlet reRegex = /^(\\d+)\\s\\1\\s\\1$/;\nlet result = reRegex.test(repeatNum);",
+          "explanation": ""
+        },
+        {
+          "code": "let wrongText = \"The sky is silver.\";\nlet silverRegex = /silver/;\nwrongText.replace(silverRegex, \"blue\"); // \"The sky is blue.\"",
+          "explanation": ""
+        },
+        {
+          "code": "\"Code Camp\".replace(/(\\w+)\\s(\\w+)/, '$2 $1'); // returns \"Code Camp\"\n\n// three capture groups that will search for each word in the string one two three then replace them \nlet str = \"one two three\";\nlet fixRegex = /(\\w+)\\s(\\w+)\\s(\\w+)/; \nlet replaceText = \"$3 $2 $1\"; //\nlet result = str.replace(fixRegex, replaceText);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Đôi khi chúng ta muốn kiểm tra nhóm ký tự bằng biểu thức chính quy và để làm điều đó chúng ta dùng dấu ngoặc đơn `()`.\n\n```js\n// find either Penguin or Pumpkin in a string\nlet testStr = \"Pumpkin\";\nlet testRegex = /P(engu|umpk)in/;\ntestRegex.test(testStr); // true\n\n// check for the names of Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner\nlet myString = \"Eleanor Roosevelt\";\nlet myRegex = /(Franklin|Eleanor).*Roosevelt/;\nlet result = myRegex.test(myString);\n```\n\n<br />\n\nSử dụng lại mẫu bằng nhóm capture: \n```js\nlet repeatRegex = /(\\w+) \\1 \\1/;\nrepeatRegex.test(repeatStr); // Returns true\nrepeatStr.match(repeatRegex); // Returns [\"row row row\", \"row\"]\n\n// match a string that consists of only the same number repeated exactly three times separated by single spaces\nlet repeatNum = \"42 42 42\";\nlet reRegex = /^(\\d+)\\s\\1\\s\\1$/;\nlet result = reRegex.test(repeatNum);\n```\n\n<br />\n\nDùng nhóm capture để tìm kiếm và thay thế:\n```js\nlet wrongText = \"The sky is silver.\";\nlet silverRegex = /silver/;\nwrongText.replace(silverRegex, \"blue\"); // \"The sky is blue.\"\n```\n\n<br />\n\ntruy cập nhóm capture trong chuỗi thay thế bằng dấu đô la `($)`:\n```js\n\"Code Camp\".replace(/(\\w+)\\s(\\w+)/, '$2 $1'); // returns \"Code Camp\"\n\n// three capture groups that will search for each word in the string one two three then replace them \nlet str = \"one two three\";\nlet fixRegex = /(\\w+)\\s(\\w+)\\s(\\w+)/; \nlet replaceText = \"$3 $2 $1\"; //\nlet result = str.replace(fixRegex, replaceText);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "nhóm capture đôi khi chúng ta muốn kiểm tra nhóm ký tự bằng biểu thức chính quy và để làm điều đó chúng ta dùng dấu ngoặc đơn ().  nhóm pattern regex capture string regexp true",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-nhóm-có-tên",
+      "title": "Nhóm có tên",
+      "headingLevel": 3,
+      "anchor": "#nhóm-có-tên",
+      "summary": "/(?name...)/",
+      "keywords": [
+        "có",
+        "name",
+        "nhóm",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "tên"
+      ],
+      "syntax": "/(?<name>...)/",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// syntax\n/(?<name>...)/\n\n// alternate notation\n(?'name'...) // or \n(?P<name>...)\n\n// example\n/(?<name>Sally)/\nCall me Sally.",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// syntax\n/(?<name>...)/\n\n// alternate notation\n(?'name'...) // or \n(?P<name>...)\n\n// example\n/(?<name>Sally)/\nCall me Sally.\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "nhóm có tên /(?name...)/ /(?<name>...)/ nhóm pattern regex tên có string regexp name",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-lookaheads",
+      "title": "Lookaheads",
+      "headingLevel": 3,
+      "anchor": "#lookaheads",
+      "summary": "Lookahead dương được dùng như (?=...) trong đó ...",
+      "keywords": [
+        "lookaheads",
+        "pattern",
+        "regex",
+        "regexp",
+        "string"
+      ],
+      "syntax": "(?=...)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// positive lookahead syntax:\n(?=...)\n/foo(?=bar)/\nlet string = \"foobar foobaz\" // matches both\n\n// negative lookahead syntax:\n(?!...)\n/foo(?!bar)/\nlet string = \"foobar foobaz\" // matches 2nd 'foo'\n\nlet quit = \"qu\";\nlet noquit = \"qt\";\nlet quRegex= /q(?=u)/;\nlet qRegex = /q(?!u)/;\nquit.match(quRegex); // ['q']\nnoquit.match(qRegex); // ['q']\n\n// check two or more patterns in one string: a simple password \n// checker that looks for between 3 and 6 characters and at least one number\nlet password = \"abc123\";\nlet checkPass = /(?=\\w{3,6})(?=\\D*\\d)/;\ncheckPass.test(password);\n\n// Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, \n// and have two consecutive digits:\nlet sampleWord = \"astronaut\";\nlet pwRegex = /(?=\\w{6})(?=\\w*\\d{2})/;\nlet result = pwRegex.test(sampleWord);",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Lookahead dương được dùng như `(?=...)` trong đó ... là phần bắt buộc nhưng không được khớp.\n\nLookahead âm được dùng như `(?!...)` trong đó ... là mẫu bạn không muốn xuất hiện.\n\n```js\n// positive lookahead syntax:\n(?=...)\n/foo(?=bar)/\nlet string = \"foobar foobaz\" // matches both\n\n// negative lookahead syntax:\n(?!...)\n/foo(?!bar)/\nlet string = \"foobar foobaz\" // matches 2nd 'foo'\n\nlet quit = \"qu\";\nlet noquit = \"qt\";\nlet quRegex= /q(?=u)/;\nlet qRegex = /q(?!u)/;\nquit.match(quRegex); // ['q']\nnoquit.match(qRegex); // ['q']\n\n// check two or more patterns in one string: a simple password \n// checker that looks for between 3 and 6 characters and at least one number\nlet password = \"abc123\";\nlet checkPass = /(?=\\w{3,6})(?=\\D*\\d)/;\ncheckPass.test(password);\n\n// Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, \n// and have two consecutive digits:\nlet sampleWord = \"astronaut\";\nlet pwRegex = /(?=\\w{6})(?=\\w*\\d{2})/;\nlet result = pwRegex.test(sampleWord);\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "lookaheads lookahead dương được dùng như (?=...) trong đó ... (?=...) pattern regex string regexp lookaheads",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-lookbehinds",
+      "title": "Lookbehinds",
+      "headingLevel": 3,
+      "anchor": "#lookbehinds",
+      "summary": "(?(?=...)yes|no)",
+      "keywords": [
+        "lookbehinds",
+        "no",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "yes"
+      ],
+      "syntax": "(?(?<=...)yes|no)",
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "// syntax\n(?(?<=...)yes|no)\n\n// positive lookbehind syntax:\n(?<=...)\n/(?<=foo)bar/ \nlet string = \"foobar fuubar\"; // matches 'bar'\n\n// NEGATIVE lookbehind syntax:\n(?<!...)\n/(?<!not )foo/\nlet string = \"not foo but foo\" // matches 2nd 'foo'",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "```js\n// syntax\n(?(?<=...)yes|no)\n\n// positive lookbehind syntax:\n(?<=...)\n/(?<=foo)bar/ \nlet string = \"foobar fuubar\"; // matches 'bar'\n\n// NEGATIVE lookbehind syntax:\n(?<!...)\n/(?<!not )foo/\nlet string = \"not foo but foo\" // matches 2nd 'foo'\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) pattern regex no lookbehinds yes string regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-ví-dụ-thực-tế",
+      "title": "Ví dụ thực tế",
+      "headingLevel": 2,
+      "anchor": "#ví-dụ-thực-tế",
+      "summary": "1.",
+      "keywords": [
+        "dụ",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "thực",
+        "tế",
+        "ví"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [],
+      "tables": [],
+      "related": [],
+      "content": "1. Khớp và thay thế\n1. Xác thực\n1. thứ khác",
+      "searchText": "ví dụ thực tế 1.  ví tế pattern regex thực dụ string regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-khớp-và-thay-thế",
+      "title": "Khớp và thay thế",
+      "headingLevel": 3,
+      "anchor": "#khớp-và-thay-thế",
+      "summary": "Sắp xếp lại và định dạng lại đối tượng thú cưng từ loài, họ, tên:",
+      "keywords": [
+        "khớp",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "thay",
+        "thế",
+        "và"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "const pets = [\n  \"cat: Smith, Meowsalot\",\n  \"young dog: Jones, Barksalot\",\n  \"rabbit: Doe, Fluffy\"\n];\n\nconst petPattern = /([a-z\\s]+):\\s([a-z]+),\\s([a-z]+)/i;\n\nconst petsUpdated = pets.map(pet => pet.replace(petPattern, '$3 $2 <span class=\"description\">$1</span>'));",
+          "explanation": ""
+        },
+        {
+          "code": "12345678920\n123-456-7890\n321.321.4321\n555 555 5555\n1 555 555 5555\n(555) 123 1234\n555 555-5555\n1.987.654.3210",
+          "explanation": ""
+        },
+        {
+          "code": "const phonePattern = /1?[-.\\s]?\\(?(\\d{3})\\)?[-.\\s]?(\\d{3})[-.\\s]?(\\d{4})/g;\n\nlet results = input.match(phonePattern); // input = source text with phone #'s\nif (!results) results = [];\n\nconst resultsUniform = results.map(x => x.replace(phonePattern, '($1) $2-$3'));",
+          "explanation": ""
+        },
+        {
+          "code": "function replaceEntity(str) {\nconst entityPattern = /[&<>\"']/g;\nlet  replacements = {\n    \"&\":\"&amp;\",\n    \"<\":\"&lt;\",\n    \">\":\"&gt;\",\n    \"\\\"\":\"&quot;\",\n    \"'\":\"&apos;\"\n  }\n  return str.replace(entityPattern, match => replacements[match]);\n}\n\nreplaceEntity(`<?php the_post_thumbnail() ?>`)\nconsole.log(replaceEntity(`<?php the_post_thumbnail() ?>`))",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Sắp xếp lại và định dạng lại đối tượng thú cưng từ loài, họ, tên:\n```js\nconst pets = [\n  \"cat: Smith, Meowsalot\",\n  \"young dog: Jones, Barksalot\",\n  \"rabbit: Doe, Fluffy\"\n];\n\nconst petPattern = /([a-z\\s]+):\\s([a-z]+),\\s([a-z]+)/i;\n\nconst petsUpdated = pets.map(pet => pet.replace(petPattern, '$3 $2 <span class=\"description\">$1</span>'));\n```\nRa đầu ra HTML gồm tên, họ, loài:\n\n- Meowsalot Smith cat\n- Barksalot Jones young dog\n- Fluffy Doe rabbit\n\nCông dụng: tập ký tự, `\\s`, `+`, phương thức `.replace()` với nhóm capture `$3`, `$2`, `$1`\n\n- - - \n\n<br />\n\nĐịnh dạng số điện thoại thành định dạng ưa thích. Ví dụ:\n```\n12345678920\n123-456-7890\n321.321.4321\n555 555 5555\n1 555 555 5555\n(555) 123 1234\n555 555-5555\n1.987.654.3210\n```\n\n<br />\n\nTìm và thay thế số điện thoại:\n\n```js\nconst phonePattern = /1?[-.\\s]?\\(?(\\d{3})\\)?[-.\\s]?(\\d{3})[-.\\s]?(\\d{4})/g;\n\nlet results = input.match(phonePattern); // input = source text with phone #'s\nif (!results) results = [];\n\nconst resultsUniform = results.map(x => x.replace(phonePattern, '($1) $2-$3'));\n```\n\nTìm và thay thế thực thể HTML phổ biến (<, >, ', \", &) bằng hàm\n\n```js\nfunction replaceEntity(str) {\nconst entityPattern = /[&<>\"']/g;\nlet  replacements = {\n    \"&\":\"&amp;\",\n    \"<\":\"&lt;\",\n    \">\":\"&gt;\",\n    \"\\\"\":\"&quot;\",\n    \"'\":\"&apos;\"\n  }\n  return str.replace(entityPattern, match => replacements[match]);\n}\n\nreplaceEntity(`<?php the_post_thumbnail() ?>`)\nconsole.log(replaceEntity(`<?php the_post_thumbnail() ?>`))\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "khớp và thay thế sắp xếp lại và định dạng lại đối tượng thú cưng từ loài, họ, tên:  thế pattern regex và thay string regexp khớp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    },
+    {
+      "id": "regex-xác-thực-tên-người-dùng",
+      "title": "Xác thực tên người dùng",
+      "headingLevel": 3,
+      "anchor": "#xác-thực-tên-người-dùng",
+      "summary": "Tạo biểu thức chính quy ở đây thực hiện như sau:",
+      "keywords": [
+        "dùng",
+        "người",
+        "pattern",
+        "regex",
+        "regexp",
+        "string",
+        "thực",
+        "tên",
+        "xác"
+      ],
+      "syntax": null,
+      "returns": null,
+      "mutates": null,
+      "mdnUrl": null,
+      "examples": [
+        {
+          "code": "const usernamePattern = /^[a-z][a-z0-9]{7,29}$/i\n\n  if (usernamePattern.test(userInput)) {\n    showSuccess()\n  } else {\n    showError()\n  }\n}",
+          "explanation": ""
+        },
+        {
+          "code": "let username = \"SomeUserName12\";\nlet userCheck = /^[a-z][a-z]+\\d*$|^[a-z]\\d\\d+$/i;\nlet result = userCheck.test(username);\n// RegEx 2:\nlet userCheck2 = /^[a-z]([0-9]{2,}|[a-z]+\\d*)$/i;",
+          "explanation": ""
+        }
+      ],
+      "tables": [],
+      "related": [],
+      "content": "Tạo biểu thức chính quy ở đây thực hiện như sau:\n\n1. Chỉ có thể chứa chữ cái và 26 chữ cái trong bảng chữ cái\n2. Phải bắt đầu bằng chữ cái, không phải số\n3. Phải dài ít nhất 8 ký tự, và không quá 30 ký tự\n\n```js\nconst usernamePattern = /^[a-z][a-z0-9]{7,29}$/i\n\n  if (usernamePattern.test(userInput)) {\n    showSuccess()\n  } else {\n    showError()\n  }\n}\n```\n\n<br /> \n\nTên người dùng 2:\n\n1. Tên người dùng chỉ có thể dùng ký tự chữ và số.\n1. Các số duy nhất trong tên người dùng phải ở cuối. Có thể có không hoặc nhiều số ở cuối. Tên người dùng không thể bắt đầu bằng số.\n1. Chữ cái trong tên người dùng có thể là thường và hoa.\n1. Tên người dùng phải dài ít nhất hai ký tự. Tên người dùng hai ký tự chỉ có thể dùng chữ cái làm ký tự.\n\n```js\nlet username = \"SomeUserName12\";\nlet userCheck = /^[a-z][a-z]+\\d*$|^[a-z]\\d\\d+$/i;\nlet result = userCheck.test(username);\n// RegEx 2:\nlet userCheck2 = /^[a-z]([0-9]{2,}|[a-z]+\\d*)$/i;\n```\n\n<div align=\"right\">&#8673; <a href=\"#back-to-top\" title=\"Table of Contents\">Lên đầu trang</a></div>",
+      "searchText": "xác thực tên người dùng tạo biểu thức chính quy ở đây thực hiện như sau:  người xác pattern dùng regex tên thực string regexp",
+      "sourceFile": "regex-examples.md",
+      "category": "regex"
+    }
+  ]
+}

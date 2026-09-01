@@ -6,36 +6,37 @@ Kho reference JavaScript có cấu trúc, được sinh từ [Kernix13/javascrip
 
 ```
 packages/javascript-docs/
-├── tmp_reference/          # bản clone (đã xóa .git) — 13 file .md gốc
-│   ├── README.md           # cheatsheet tổng quan (839 lines, 434 table rows)
+├── tmp_reference/          # bản clone (đã xóa .git) — 13 file .md gốc (tiếng Anh)
+│   ├── README.md           # cheatsheet tổng quan (839 lines)
 │   ├── array-examples.md   # 37 sections
 │   ├── string-examples.md  # 23 sections
 │   ├── object-examples.md  # 24 sections
 │   ├── function-examples.md# 37 sections
 │   ├── loop-examples.md, conditionals-examples.md, number-date-examples.md, regex-examples.md, ...
 │   └── _source.md          # ghi chú nguồn & ngày clone
+├── tmp_reference_vi/       # bản dịch tiếng Việt — 13 file .md (song song với tmp_reference/)
+│   └── ... (cùng 13 file, giữ nguyên code block & URL, chỉ dịch văn bản tự nhiên)
 ├── src/
-│   ├── types.ts            # DocSection, DocFile, DocsIndex, IndexEntry, KeywordIndex
-│   ├── search.ts           # searchDocs(), suggestCommands(), getById/Category/Keyword...
+│   ├── types.ts            # DocSection, DocFile, DocsIndex (có field lang), IndexEntry, KeywordIndex
+│   ├── search.ts           # searchDocs() + searchDocsVi() + getById/getByCategory/getByKeyword/... + Vi
 │   ├── index.ts            # re-export + legacy jsDocs giữ tương thích
 │   └── data/               # JSON đã sinh (commit cùng repo)
-│       ├── index.json      # master index: 287 entries, 435 keywords, 13 categories
-│       ├── all.json        # gộp toàn bộ docs + index (1.4 MB)
-│       ├── array-examples.json
-│       ├── string-examples.json
-│       ├── object-examples.json
-│       ├── function-examples.json
-│       ├── number-date-examples.json
-│       ├── regex-examples.json
-│       ├── README.json     # cheatsheet
-│       └── ... (1 JSON / 1 MD)
+│       ├── en/             # JSON tiếng Anh
+│       │   ├── index.json  # master index: 287 entries, 435 keywords, lang="en"
+│       │   ├── all.json    # gộp toàn bộ docs + index
+│       │   ├── array-examples.json
+│       │   └── ... (1 JSON / 1 MD)
+│       └── vi/             # JSON tiếng Việt (cùng 287 entries, 531 keywords, lang="vi")
+│           ├── index.json
+│           ├── all.json
+│           └── ... (1 JSON / 1 MD)
 └── scripts/
-    └── generate.py         # script Python sinh lại JSON từ tmp_reference/
+    └── generate.py         # script Python sinh lại JSON từ tmp_reference/ hoặc tmp_reference_vi/ (--lang en|vi|all)
 ```
 
 ## JSON Schema
 
-Mỗi `*.json` trong `src/data/` (ví dụ `array-examples.json`):
+Mỗi `*.json` trong `src/data/en/` hoặc `src/data/vi/` (ví dụ `array-examples.json`):
 
 ```json
 {
@@ -70,11 +71,12 @@ Mỗi `*.json` trong `src/data/` (ví dụ `array-examples.json`):
 }
 ```
 
-`index.json` — master search index:
+`index.json` — master search index (có thêm `lang: "en" | "vi"`):
 
 ```json
 {
   "version": "1.0.0",
+  "lang": "en",
   "generatedAt": "2026-08-31T04:26:12Z",
   "totalSources": 13,
   "totalEntries": 287,
@@ -98,7 +100,7 @@ Metadata đủ để:
 ```ts
 import { searchDocs, suggestCommands, getByCategory, getById, getIndex, getDocFileSync } from "@leetcode/javascript-docs";
 
-// Tìm kiếm toàn văn
+// Tìm kiếm toàn văn (tiếng Anh — mặc định đọc từ src/data/en/)
 searchDocs("array push mutate");          // → [{id:"array-push", title:"push", ...}]
 searchDocs("string split", { category: "string", limit: 5 });
 searchDocs("closure", { keyword: "closure" });
@@ -121,8 +123,18 @@ const doc = getDocFileSync("array"); // hoặc "array-examples.md"
 console.log(doc.sections.length);
 
 // Index thô (để tự build search khác)
-const idx = getIndex();
+const idx = getIndex(); // lang="en"
 console.log(idx.totalEntries, idx.keywordIndex["map"]);
+
+// ——— Tiếng Việt (đọc từ src/data/vi/) ———
+import { searchDocsVi, suggestCommandsVi, getByCategoryVi, getByIdVi, getIndexVi, getDocFileSyncVi } from "@leetcode/javascript-docs";
+
+searchDocsVi("mảng push");               // tìm bằng tiếng Việt
+suggestCommandsVi("mảng");
+getByCategoryVi("array");
+getByIdVi("array-push");
+getDocFileSyncVi("array");
+getIndexVi(); // lang="vi", 287 entries, 531 keywords
 ```
 
 Legacy API vẫn hoạt động (deprecated):
@@ -144,12 +156,15 @@ pnpm --filter=@leetcode/javascript-docs lint    # eslint src --ext .ts
 
 ```bash
 # Yêu cầu Python 3.10+
-python packages/javascript-docs/scripts/generate.py
+python packages/javascript-docs/scripts/generate.py              # sinh cả en/ và vi/
+python packages/javascript-docs/scripts/generate.py --lang en    # chỉ tiếng Anh → src/data/en/
+python packages/javascript-docs/scripts/generate.py --lang vi    # chỉ tiếng Việt → src/data/vi/
 # hoặc chỉ định lại tmp_reference nếu clone mới:
-python scripts/generate.py --src tmp_reference --out src/data
+python scripts/generate.py --src tmp_reference --out src/data/en --lang en
+python scripts/generate.py --src tmp_reference_vi --out src/data/vi --lang vi
 ```
 
-Script sẽ đọc 13 `*.md`, trích headings (h2/h3/h4), code blocks, bảng, MDN links, và sinh `*.json` + `index.json` + `all.json`.
+Script sẽ đọc 13 `*.md`, trích headings (h2/h3/h4), code blocks, bảng, MDN links, và sinh `*.json` + `index.json` + `all.json` vào thư mục tương ứng (`en/` hoặc `vi/`).
 
 ## tmp_reference
 
