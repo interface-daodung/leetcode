@@ -27,6 +27,22 @@ def md_to_html(md_text: str) -> str:
         except Exception:
             return ""
 
+def strip_nav_divs(md_text: str) -> str:
+    """Bỏ các div điều hướng (<div align=...>Back to Top / MDN ...</div>, div anchor back-to-top)
+    khỏi markdown TRƯỚC khi render HTML — chỉ ảnh hưởng contentHtml, raw giữ nguyên."""
+    out = []
+    for l in md_text.splitlines():
+        s = l.strip()
+        if s.startswith("<div") and "align=" in s and s.endswith("</div>"):
+            continue
+        if s.startswith("<div") and 'id="back-to-top"' in s and s.endswith("</div>"):
+            continue
+        out.append(l)
+    cleaned = "\n".join(out)
+    # gộp dòng trắng thừa do strip
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return cleaned
+
 # Hỗ trợ chạy từ mọi CWD: mặc định lấy tmp_reference và src/data tương đối với script
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
 DEFAULT_SRC = SCRIPT_DIR.parent / "tmp_reference"
@@ -279,8 +295,8 @@ def parse_markdown_file(path: pathlib.Path):
         search_text_parts = [clean_title, summary, syntax or "", " ".join(keywords)]
         if returns: search_text_parts.append(returns)
         search_text = " ".join(search_text_parts).lower()
-        # html render từ markdown nguyên
-        content_html = md_to_html(content) if content else ""
+        # html render từ markdown nguyên (đã strip div điều hướng — raw giữ nguyên)
+        content_html = md_to_html(strip_nav_divs(content)) if content else ""
 
         # create id
         id_slug = f"{category}-{slugify(clean_title)}"
