@@ -58,8 +58,18 @@ export function KnowledgeResultPanel() {
             <pre className="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-text-secondary">{selectedSection.content}</pre>
           </details>
         )}
-        <p className="mt-3 text-[11px] text-text-muted">
-          {selectedSection.sourceFile}#{selectedSection.anchor} · id: {selectedSection.id}
+        <p className="mt-3 flex flex-wrap items-center gap-1 text-[11px] text-text-muted">
+          <a
+            href={`/doc/${selectedSection.sourceFile.replace(/\.md$/i, "")}${selectedSection.anchor ?? ""}`}
+            target="_blank"
+            rel="noreferrer"
+            className="underline decoration-dotted underline-offset-2 hover:text-accent hover:decoration-solid"
+            title={`Mở ${selectedSection.sourceFile} trong trang doc riêng`}
+          >
+            {selectedSection.sourceFile}
+            {selectedSection.anchor}
+          </a>
+          <span>· id: {selectedSection.id}</span>
         </p>
       </div>
     </div>

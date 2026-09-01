@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { Header } from "./components/Header.js";
 import { WorkspaceLayout } from "./components/workspace/WorkspaceLayout.js";
+import { DocPage } from "./pages/DocPage.js";
 import { useWorkspace } from "./components/workspace/WorkspaceContext.js";
 import { fetchProblem } from "./lib/api.js";
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/" element={<Navigate to="/problems" replace />} />
             <Route path="/problems" element={<Navigate to="/problems" replace />} />
             <Route path="/problems/:id" element={<ProblemLoader />} />
+            <Route path="/doc/:file" element={<DocPage />} />
             <Route path="*" element={<Navigate to="/problems" replace />} />
           </Routes>
         </main>
