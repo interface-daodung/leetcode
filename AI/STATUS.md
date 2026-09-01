@@ -1,8 +1,10 @@
 # Project Status
 
-Cập nhật: 2026-08-31
+Cập nhật: 2026-09-01
 
 ## Current Phase
+
+**[mới 2026-09-01] Tách Knowledge panel thành Knowledge Search + Knowledge Result** — nhánh `feat/knowledge-split-panels`. Panel Knowledge cũ gộp search + detail trong 1 tab (vùng hiển thị detail bị nén `max-h-[45%]`). Tách thành 2 panel: `KnowledgeSearchPanel` (ô search + EN/VI + category chips + danh sách kết quả, tabset-output) và `KnowledgeResultPanel` (chi tiết section đầy đủ, tabset riêng `tabset-knowledge-result` cạnh Output). State search chia sẻ qua `KnowledgeContext.tsx` (query debounce, lang, category, results, selectedId). Bấm kết quả search → `focusPanelTab("knowledge-result")` tự mở/focus tab Result. `LayoutComponentName` thêm `knowledge-search`/`knowledge-result`, giữ `knowledge` legacy; `migrateLayoutJson` trong `WorkspaceContext` tự đổi tab `knowledge` cũ trong localStorage → `knowledge-search` + chèn tabset result cạnh tabset-output. `pnpm -r build` pass, 137 tests pass (layout 10, server 36, extension 53, editor 11, engine 10, docs 22... ).
 
 **[mới 2026-08-31] GitNexus + archive tài liệu tĩnh** — cài GitNexus (v1.6.10, index 2.353 symbols / 3.718 edges / 56 clusters / 88 flows, MCP cấu hình trong OpenCode). Archive `AI/index/`, `AI/ARCHITECTURE.md`, `AI/walkthrough/` sang `AI/history/archived/` và xóa `CLAUDE.md`/`.claude/` để agent không đọc lãng phí token; từ nay hiểu codebase bằng GitNexus (`query`/`context`/`impact`) thay vì tài liệu tĩnh. Cập nhật `AGENTS.md`, `AI/INDEX.md`, `AI/README.md`, các skills, decision + history. Xem `AI/history/2026-08/archive-index-architecture-walkthrough.md`.
 

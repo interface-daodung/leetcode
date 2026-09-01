@@ -4,13 +4,26 @@ import type { IJsonModel, IJsonTabNode, TabNode } from "flexlayout-react";
  * Tên component được đăng ký trong FlexLayout factory.
  * App (web) map tên này → React component panel tương ứng.
  */
-export type LayoutComponentName = "explorer" | "editor" | "description" | "output" | "knowledge";
+export type LayoutComponentName =
+  | "explorer"
+  | "editor"
+  | "description"
+  | "output"
+  | "knowledge-search"
+  | "knowledge-result";
 
 /** Danh sách đầy đủ các panel trong workspace. */
-export const ALL_COMPONENTS: LayoutComponentName[] = ["explorer", "editor", "description", "output", "knowledge"];
+export const ALL_COMPONENTS: LayoutComponentName[] = [
+  "explorer",
+  "editor",
+  "description",
+  "output",
+  "knowledge-search",
+  "knowledge-result",
+];
 
 /** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
-export type DefaultTabsetId = "tabset-explorer" | "tabset-editor" | "tabset-output";
+export type DefaultTabsetId = "tabset-explorer" | "tabset-editor" | "tabset-output" | "tabset-knowledge-search" | "tabset-knowledge-result";
 
 export interface LayoutTabDefinition {
   id?: string;
@@ -28,8 +41,10 @@ export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId
     case "description":
       return "tabset-editor";
     case "output":
-    case "knowledge":
+    case "knowledge-search":
       return "tabset-output";
+    case "knowledge-result":
+      return "tabset-knowledge-result";
   }
 }
 
@@ -41,7 +56,8 @@ export function defaultTabJson(component: LayoutComponentName): IJsonTabNode {
 /**
  * Tạo default layout tree (row → tabset → tab) kiểu IDE:
  * - Explorer (trái, weight 25)
- * - Cột phải (weight 75): Editor + Description (trên), Output (dưới)
+ * - Cột phải (weight 75): Editor + Description (trên), Output + Knowledge-Search (dưới)
+ * - Cột giữa dưới: Knowledge-Result (tabset riêng, weight 30)
  */
 export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonModel {
   const tabs = (component: LayoutComponentName, defs?: LayoutTabDefinition[]): LayoutTabDefinition[] =>
@@ -51,7 +67,8 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
   const editor = tabs("editor", defs);
   const description = tabs("description", defs);
   const output = tabs("output", defs);
-  const knowledge = tabs("knowledge", defs);
+  const knowledgeSearch = tabs("knowledge-search", defs);
+  const knowledgeResult = tabs("knowledge-result", defs);
 
   return {
     global: {
@@ -80,10 +97,22 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
               children: [...editor.map(toJsonTab), ...description.map(toJsonTab)],
             },
             {
-              type: "tabset",
-              id: "tabset-output",
+              type: "row",
               weight: 30,
-              children: [...output.map(toJsonTab), ...knowledge.map(toJsonTab)],
+              children: [
+                {
+                  type: "tabset",
+                  id: "tabset-output",
+                  weight: 50,
+                  children: [...output.map(toJsonTab), ...knowledgeSearch.map(toJsonTab)],
+                },
+                {
+                  type: "tabset",
+                  id: "tabset-knowledge-result",
+                  weight: 50,
+                  children: knowledgeResult.map(toJsonTab),
+                },
+              ],
             },
           ],
         },
@@ -102,8 +131,10 @@ function defaultName(component: LayoutComponentName): string {
       return "Description";
     case "output":
       return "Output";
-    case "knowledge":
-      return "Knowledge";
+    case "knowledge-search":
+      return "Knowledge Search";
+    case "knowledge-result":
+      return "Knowledge Result";
   }
 }
 
