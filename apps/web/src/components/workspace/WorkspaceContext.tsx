@@ -153,6 +153,7 @@ export interface WorkspaceActions {
   canRedo: boolean;
   panelsVisible: Record<LayoutComponentName, boolean>;
   reopenPanel: (component: LayoutComponentName) => void;
+  refreshPanelsVisible: () => void;
   persistModel: () => void;
 }
 
@@ -187,6 +188,16 @@ function countTabs(model: Model): Record<LayoutComponentName, number> {
     }
   });
   return counts as Record<LayoutComponentName, number>;
+}
+
+/** Tính trạng thái mở/đóng cho từng panel từ model. */
+function computePanelsVisible(model: Model): Record<LayoutComponentName, boolean> {
+  const counts = countTabs(model);
+  const visible = {} as Record<LayoutComponentName, boolean>;
+  for (const c of ALL_COMPONENTS) {
+    visible[c] = counts[c] > 0;
+  }
+  return visible;
 }
 
 export function WorkspaceProvider({ children }: { children: ReactNode }) {
@@ -230,6 +241,11 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
         // storage đầy / private mode → bỏ qua
       }
     }, 500);
+  }, [model]);
+
+  const refreshPanelsVisible = useCallback(() => {
+    if (!model) return;
+    setPanelsVisible(computePanelsVisible(model));
   }, [model]);
 
   const reopenPanel = useCallback(
@@ -277,6 +293,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     canRedo,
     panelsVisible,
     reopenPanel,
+    refreshPanelsVisible,
     persistModel,
   };
 

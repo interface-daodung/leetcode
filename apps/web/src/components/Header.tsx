@@ -13,7 +13,7 @@ const PANEL_LABELS: Record<LayoutComponentName, string> = {
 
 export function Header() {
   const { theme, toggle } = useTheme();
-  const { undo, redo, canUndo, canRedo, panelsVisible, reopenPanel } = useWorkspace();
+  const { undo, redo, canUndo, canRedo, panelsVisible, reopenPanel, refreshPanelsVisible } = useWorkspace();
   const [viewOpen, setViewOpen] = useState(false);
   const viewRef = useRef<HTMLDivElement>(null);
 
@@ -70,7 +70,10 @@ export function Header() {
       <div className="relative" ref={viewRef}>
         <button
           type="button"
-          onClick={() => setViewOpen((v) => !v)}
+          onClick={() => {
+            refreshPanelsVisible();
+            setViewOpen((v) => !v);
+          }}
           className="rounded-lg px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
         >
           View
