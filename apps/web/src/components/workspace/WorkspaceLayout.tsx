@@ -31,9 +31,6 @@ export function WorkspaceLayout() {
           return <KnowledgeSearchPanel />;
         case "knowledge-result":
           return <KnowledgeResultPanel />;
-        case "knowledge":
-          // Legacy panel (layout cũ) — render search, kết quả mở sang Knowledge Result
-          return <KnowledgeSearchPanel />;
         default:
           return <div>Unknown: {name}</div>;
       }

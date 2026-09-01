@@ -11,7 +11,6 @@ const PANEL_LABELS: Record<LayoutComponentName, string> = {
   output: "Output",
   "knowledge-search": "Knowledge Search",
   "knowledge-result": "Knowledge Result",
-  knowledge: "Knowledge (cũ)",
 };
 
 export function Header() {

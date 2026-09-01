@@ -81,8 +81,8 @@ describe("defaultTabJson", () => {
 });
 
 describe("ALL_COMPONENTS", () => {
-  it("liệt kê đủ 7 panel (5 cũ + 2 knowledge split)", () => {
-    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge-search", "knowledge-result", "knowledge"]);
+  it("liệt kê đủ 6 panel (4 cơ bản + 2 knowledge)", () => {
+    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge-search", "knowledge-result"]);
   });
 });
 

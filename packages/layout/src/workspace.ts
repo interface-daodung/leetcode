@@ -10,8 +10,7 @@ export type LayoutComponentName =
   | "description"
   | "output"
   | "knowledge-search"
-  | "knowledge-result"
-  | "knowledge";
+  | "knowledge-result";
 
 /** Danh sách đầy đủ các panel trong workspace. */
 export const ALL_COMPONENTS: LayoutComponentName[] = [
@@ -21,7 +20,6 @@ export const ALL_COMPONENTS: LayoutComponentName[] = [
   "output",
   "knowledge-search",
   "knowledge-result",
-  "knowledge",
 ];
 
 /** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
@@ -43,7 +41,6 @@ export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId
     case "description":
       return "tabset-editor";
     case "output":
-    case "knowledge":
     case "knowledge-search":
       return "tabset-output";
     case "knowledge-result":
@@ -138,8 +135,6 @@ function defaultName(component: LayoutComponentName): string {
       return "Knowledge Search";
     case "knowledge-result":
       return "Knowledge Result";
-    case "knowledge":
-      return "Knowledge";
   }
 }
 
