@@ -77,23 +77,22 @@ export function Header() {
         </button>
         {viewOpen && (
           <div className="absolute left-0 top-full mt-1 w-44 rounded-lg border border-border bg-bg-elevated py-1 shadow-lg">
-            {ALL_COMPONENTS.map((comp) => (
-              <button
-                key={comp}
-                type="button"
-                onClick={() => handleViewItem(comp)}
-                className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm text-text-primary transition-colors hover:bg-bg-hover"
-              >
-                <span className={`inline-block h-3.5 w-3.5 rounded border ${panelsVisible[comp] ? "border-accent bg-accent" : "border-border"}`}>
-                  {panelsVisible[comp] && (
-                    <svg viewBox="0 0 12 12" className="h-full w-full fill-white">
-                      <path d="M3.5 6.5l1.5 1.5 3-3" stroke="white" strokeWidth="1.2" fill="none" />
-                    </svg>
-                  )}
-                </span>
-                {PANEL_LABELS[comp]}
-              </button>
-            ))}
+            {ALL_COMPONENTS.map((comp) => {
+              const visible = panelsVisible[comp];
+              return (
+                <button
+                  key={comp}
+                  type="button"
+                  disabled={visible}
+                  onClick={() => handleViewItem(comp)}
+                  className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors disabled:cursor-default enabled:hover:bg-bg-hover"
+                >
+                  <span className={visible ? "text-text-muted" : "text-text-primary"}>
+                    {PANEL_LABELS[comp]}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         )}
       </div>
