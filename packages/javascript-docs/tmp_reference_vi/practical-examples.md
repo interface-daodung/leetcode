@@ -47,6 +47,7 @@ Hãy nghĩ về 1) ứng dụng doanh nghiệp (nhỏ) thực tế, 2) sở thí
 1. classList.contains:
 
 Ý tưởng khác:
+
 - Nhiếp ảnh: tốc độ màn trập > khẩu độ > iso / mối quan hệ độ nhạy
 - Guitar / lý thuyết âm nhạc - ứng dụng đặt tên hợp âm (chrod namer app)
 - Bushcraft: định hướng (orienterring)?

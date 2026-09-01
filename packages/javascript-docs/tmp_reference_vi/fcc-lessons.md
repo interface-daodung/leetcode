@@ -22,6 +22,7 @@
 113 bài học: Tôi thích cấu trúc này
 
 **1-24**: Biến, gán, số học, số học tăng cường:
+
 | lesson              | lesson                | lesson                  | 
 | :----               | :-----                | :-----                  |
 | 1. comments         | 2. variable declar.   | 3. Assignment Op.       | 
@@ -36,6 +37,7 @@
 <br />
 
 **25-38**: Chuỗi, nối chuỗi, độ dài, ngoặc vuông (14):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 25. escape quotes   | 26. single vs double  | 27. escape sequences |
@@ -47,6 +49,7 @@
 <br />
 
 **39-48**: Mảng, mảng lồng nhau, ngoặc vuông, sửa đổi mảng (10):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 39. arrays          | 40. nested arrays     | 41. bracket notation |
@@ -57,6 +60,7 @@
 <br />
 
 **49-57**: Hàm, tham số/đối số, phạm vi, trả về (9):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 49. functions       | 50. parameters / args | 51. return      |
@@ -66,6 +70,7 @@
 <br />
 
 **58-82**: Boolean, câu lệnh if, toán tử điều kiện, else, else if, switch (**25**):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 58. Boolean values  | 59. if statement      | 60. Equality Op | 
@@ -81,6 +86,7 @@
 <br />
 
 Đối tượng, dot notation, bracket notation, hasOwnPropery, lồng nhau (13):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 83. Build objects   | 84. Dot notation      | 85. Bracket not. |
@@ -92,6 +98,7 @@
 <br />
 
 Vòng lặp, while, do while, for, đệ quy (9):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 96. While loop      | 97. for loop          | 98. for: odd #'s |
@@ -101,6 +108,7 @@ Vòng lặp, while, do while, for, đệ quy (9):
 <br />
 
 Math.random, Math.floor, parseInt, tam thức, đệ quy (9):
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 105. Math.random    | 106. floor & random   | 107. floor & random2 |
@@ -110,6 +118,7 @@ Math.random, Math.floor, parseInt, tam thức, đệ quy (9):
 <br />
 
 Tất cả bài tập cơ bản với hàng chục bài khó &/hoặc quan trọng: 
+
 - 25 escape sequences trong chuỗi
 - 29 nối biến vào chuỗi
 - 33 ngoặc vuông để lấy ký tự thứ N trong chuỗi
@@ -158,6 +167,7 @@ Math.random(), Math.floor(), parseInt(), a ? b : c
 29 bài học (từng là 31)
 
 var, let, const, hàm mũi tên, tham số mặc định, rest & spread, destructuring, template literals, lớp, module, export/import, promise:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. scope: var vs let | 2. mutation with const | 3. Object.freeze |
@@ -174,6 +184,7 @@ var, let, const, hàm mũi tên, tham số mặc định, rest & spread, destruc
 <br />
 
 Bài học quan trọng / khó:
+
 - 6 đặt tham số mặc định cho hàm - tuyệt vời!
 - 7 sử dụng tham số rest với tham số hàm - XUẤT SẮC!
 - 8 sử dụng toán tử spread để đánh giá mảng tại chỗ - XUẤT SẮC!
@@ -185,6 +196,7 @@ Bài học quan trọng / khó:
 - 29 xử lý promise bị từ chối với `catch` - không hiểu
 
 LÀM LẠI LÀM LẠI: ES6 | 3
+
 - 19 sử dụng getters và setters để kiểm soát truy cập đối tượng: | 
 - 28 xử lý promise đã hoàn thành với then: | 
 - 29 xử lý promise bị từ chối với catch: | 
@@ -240,6 +252,7 @@ console.log(createPerson("Jimi", 33, "Male")) // {name: 'Jimi', age: 33, gender:
 33 bài học
 
 test, hoặc tuỳ chọn, match, cờ, ký tự đại diện, bộ ký tự, phủ định ^, +, *, ?, viết tắt {}, nhóm capture:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. regex.test(str)  | 2. same               | 3. or operator |
@@ -257,6 +270,7 @@ test, hoặc tuỳ chọn, match, cờ, ký tự đại diện, bộ ký tự, p
 <br />
 
 Bài học quan trọng / khó:
+
 - 14 Tìm ký tự bằng Lazy Matching: | 
 - 29 Lookahead Dương và Âm: | 
 - 30 kiểm tra nhóm hỗn hợp ký tự: | 
@@ -273,6 +287,7 @@ Bài học quan trọng / khó:
 12 bài học - tất cả đều tốt
 
 log, typeof, lỗi chính tả, ngoặc đóng, nhầm dấu ngoặc, phép gán vs bằng, gọi hàm, lỗi OBOE, vòng lặp:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. console.log()    | 2. fcc vs dev tools   | 3. typeof | 
@@ -287,6 +302,7 @@ log, typeof, lỗi chính tả, ngoặc đóng, nhầm dấu ngoặc, phép gán
 20 bài học
 
 mảng, ngoặc vuông, thay đổi mảng, slice, toán tử spread, indexOf, vòng lặp for, mảng lồng nhau, khóa-giá trị đối tượng, delete, hasOwnProperty, for in, Object.keys:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. mixed arr        | 2. arr[x] value       | 3. push(), unshift() |
@@ -302,6 +318,7 @@ mảng, ngoặc vuông, thay đổi mảng, slice, toán tử spread, indexOf, v
 Tổng quan: Mảng => [], push, unshift, pop, shift, splice, slice, toán tử spread, indexOf, vòng lặp for, nhiều chiều | Đối tượng => khóa-giá trị, đối tượng lồng nhau, [], từ khoá delete, hasOwnProperty, vòng lặp for in, Object.keys(), mảng trong đối tượng | 
 
 Bài học quan trọng / khó:
+
 - 8 sao chép mảng bằng toán tử spread: | 
 - 17 kiểm tra xem đối tượng có thuộc tính:  không đặt trong vòng lặp for | 
 - 18 duyệt qua các khóa của đối tượng bằng câu lệnh for…in: | 
@@ -325,6 +342,7 @@ newArr.push([...arr])
 16 bài học
 
 Đệ quy, chuỗi phương thức, ...:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. Convert equation | 2. reverse str        | 3. factorial | 
@@ -337,6 +355,7 @@ newArr.push([...arr])
 <br />
 
 Bài học quan trọng / khó:
+
 - 3 phân tích số thành thừa số:  | không dùng đệ quy, vòng lặp for với *=
 - 4 từ dài nhất – Math.max sau split(" ") | độ dài và Math.max với spread
 - 6 xác nhận kết thúc: | endsWith, substring hoặc slice
@@ -360,6 +379,7 @@ Bài học quan trọng / khó:
 26 bài học
 
 đối tượng, dot notation, phương thức, hàm tạo, instanceof, `own` & hasOwnProperty, for in, prototype, kế thừa, supertype, Object.create, mixin, closure, IIFE:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. create obj       | 2. dot notation       | 3. create method |
@@ -375,6 +395,7 @@ Bài học quan trọng / khó:
 <br />
 
 Bài học quan trọng / khó:
+
 - 9 hiểu thuộc tính Own:  | 
 - (11-24): 11 đến cuối ngoại trừ 25. | 
 - 12 hiểu thuộc tính constructor 
@@ -401,6 +422,7 @@ Bài học quan trọng / khó:
 > **RẤT QUAN TRỌNG**: Một nguyên tắc khác của lập trình hàm là luôn khai báo_dependencies một cách rõ ràng. Điều này có nghĩa là nếu một hàm phụ thuộc vào một biến hoặc đối tượng, hãy truyền trực tiếp biến hoặc đối tượng đó vào hàm dưới dạng đối số.
 
 Thay đổi trực tiếp, đối số, map, filter, slice, concat, reduce, sort, split, join, every, some, arity:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. Functional def.  | 2. Terminology        | 3. imperative vs declarative |
@@ -415,11 +437,13 @@ Thay đổi trực tiếp, đối số, map, filter, slice, concat, reduce, sort
 <br />
 
 Bài học quan trọng:
+
 - 7 Sử dụng phương thức map để trích xuất dữ liệu từ mảng
 - 9 sử dụng phương thức filter để trích xuất dữ liệu từ mảng
 - 16 sử dụng hàm bậc cao map, filter, hoặc reduce để giải quyết vấn đề phức tạp
 
 Bài học khó:
+
 - 3 Hiểu mối nguy hiểm của việc sử dụng mã mệnh lệnh |
 - 6 Tái cấu trúc biến toàn cục ra khỏi hàm
 - 8 Triển khai map trên Prototype (KHÔNG HIỂU)
@@ -435,6 +459,7 @@ Bài học khó:
 21 bài học
 
 ...:
+
 | lesson              | lesson                | lesson          | 
 | :----               | :-----                | :-----          |
 | 1. arrray: numbers  | 2. array: comparison  | 3. mutate array |
@@ -448,9 +473,11 @@ Bài học khó:
 <br />
 
 Bài học quan trọng / khó: TẤT CẢ!
+
 - XONG: 1, 2, 3, 
 
 BỎ QUA DO ĐỘ KHÓ: 
+
 - 4, 
 - #5 có lookahead dương và regex tổng hợp mà tôi không thể tự giải được
 - 6 Regex

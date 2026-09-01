@@ -1062,8 +1062,10 @@ const { today, tomorrow } = HIGH_TEMPERATURES;
 
 - 12. sử dụng gán destructuring để gán biến từ các đối tượng
 const { name: userName, age: userAge } = user;
+
 - 13. sử dụng gán destructuring để gán biến từ các đối tượng lồng nhau
 const { johnDoe: { age: userAge, email: userEmail }} = user;
+
 - bài 14 sử dụng gán destructuring để gán biến từ mảng
 - const [a, b, , , c] = [1, 2, 3, 4, 5, 6];
 - console.log(a, b, c);
@@ -1167,6 +1169,7 @@ LearnWebCode:
 ## Bảng cú pháp
 
 Phương thức đối tượng và mã liên quan:
+
 | method          | syntax                      |    
 | :----           | :----                       | 
 | Object.keys     | Object.keys(obj)            | 
@@ -1185,6 +1188,7 @@ Phương thức đối tượng và mã liên quan:
 <br />
 
 Ví dụ Destructuring:
+
 | example         | syntax                                  |    
 | ----:           | :----                                   | 
 |                 | let a, b, rest;                         |

@@ -1329,6 +1329,7 @@ typeOfTest = new Date(); // object
 ### Số
 
 Không có tham số
+
 | "phương thức" | cú pháp | Ghi chú |
 | :---- | :---- | :---- |
 | assign/augment | +=, -=, \*=, /= | sửa đổi một biến |
@@ -1346,6 +1347,7 @@ Không có tham số
 <br />
 
 Một tham số
+
 | phương thức | cú pháp | Ghi chú |
 | :---- | :---- | :---- |
 | toExponential | toExponential(decimals) | Bỏ qua |
@@ -1371,6 +1373,7 @@ Một tham số
 <br />
 
 2 hoặc nhiều tham số hơn:
+
 | phương thức | cú pháp | Ghi chú |
 | :---- | :---- | :---- |
 | Math.max | Math.max(val1, val2) | Chắc chắn dùng |
@@ -1402,6 +1405,7 @@ Không có tham số (`d` là tên biến cho ngày/giờ):
 ### Đặt ngày
 
 Một tham số (`d` là tên biến cho ngày/giờ):
+
 | cú pháp | Ghi chú |
 | :---- | :---- |
 | d.setDate(dayVal) | cần phương thức get tương ứng? |
@@ -1420,6 +1424,7 @@ Một tham số (`d` là tên biến cho ngày/giờ):
 <br />
 
 Hai tham số:
+
 | cú pháp | Ghi chú |
 | :---- | :---- |
 | d.setFullYear(yearVal, moVal) | cần phương thức get tương ứng? |
@@ -1432,6 +1437,7 @@ Hai tham số:
 <br />
 
 Ba tham số:
+
 | cú pháp | Ghi chú |
 | :---- | :---- |
 | d.setFullYear(yearVal, moVal, dateVal) | cần phương thức get tương ứng? |
@@ -1442,6 +1448,7 @@ Ba tham số:
 <br />
 
 Bốn hoặc nhiều tham số hơn:
+
 | cú pháp | Ghi chú |
 | :---- | :---- |
 | d.setHours(hrsVal, minsVal, secsVal, msVal) | không chắc |

@@ -1932,6 +1932,7 @@ Các bảng theo số lượng tham số và việc phương thức có làm tha
 ### Các phương thức phổ biến
 
 Các phương thức phổ biến KHÔNG có tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :----: |
 | pop | arr.pop() | YES |  
@@ -1953,6 +1954,7 @@ Các phương thức phổ biến KHÔNG có tham số:
 <br />
 
 Các phương thức phổ biến với một tham số, hoặc nhiều tham số lặp lại:
+
 | method | syntax1 | syntax2 | Mutates? |
 | :---- | :---- | :---- | :----: |
 | join | arr.join(separator) | | NO |
@@ -1971,6 +1973,7 @@ Các phương thức phổ biến với một tham số, hoặc nhiều tham s�
 <br />
 
 Phương thức phổ biến với hai hoặc nhiều tham số:
+
 | method | syntax1 | syntax2 | Mutates? |
 | :---- | :---- | :---- | :----: |
 | slice | arr.slice(start, end) | | NO |
@@ -1996,6 +1999,7 @@ console.log(newString); // abc - 12345 - #$*%
 ### Mảng bậc cao
 
 Các phương thức mảng bậc cao với hàm **gọi lại**:
+
 | method | syntax1 | syntax2 | Mutates? |
 | :---- | :---- | :---- | :------: |
 | sort | sort(callbackFn) | | YES\* |
@@ -2016,6 +2020,7 @@ Các phương thức mảng bậc cao với hàm **gọi lại**:
 Các phương thức mảng bậc cao với hàm **mũi tên** và hàm nội tuyến.
 
 Một tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :------: |
 | every | arr.every((item) => { ... } ) | N/A |
@@ -2036,6 +2041,7 @@ Một tham số:
 <div align="right">&#8673; <a href="#back-to-top" title="Mục lục">Lên đầu trang</a></div>
 
 hàm **mũi tên** và hàm nội tuyến với hai tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :------: |
 | sort | arr.sort((a, b) => { ... } ) | YES\* |
@@ -2060,6 +2066,7 @@ hàm **mũi tên** và hàm nội tuyến với hai tham số:
 <div align="right">&#8673; <a href="#back-to-top" title="Mục lục">Lên đầu trang</a></div>
 
 hàm **mũi tên** và hàm nội tuyến với ba tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :------: |
 | every | arr.every((item, index, array) => { ... } ) | N/A |
@@ -2082,6 +2089,7 @@ hàm **mũi tên** và hàm nội tuyến với ba tham số:
 <div align="right">&#8673; <a href="#back-to-top" title="Mục lục">Lên đầu trang</a></div>
 
 hàm **mũi tên** và hàm nội tuyến với bốn và năm tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :----: |
 | every | arr.every(function(item, index, array) { ... }, thisArg) | N/A |
@@ -2107,6 +2115,7 @@ hàm **mũi tên** và hàm nội tuyến với bốn và năm tham số:
 ### Phá cấu trúc (Destructuring)
 
 Ví dụ về phá cấu trúc:
+
 | example | syntax |  
 | ----: | :---- |
 | | let a, b, rest; |

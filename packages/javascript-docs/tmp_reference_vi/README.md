@@ -64,6 +64,7 @@ Kiểu dữ liệu nguyên thủy trong JavaScript (dữ liệu bất biến, kh
 <br>
 
 Kiểu đối tượng (nhiều giá trị):
+
 | Tên | Kiểu |
 | :----- | :----: |
 | Objects | tập hợp thuộc tính với giá trị thuộc bất kỳ kiểu nào theo cặp khóa-giá trị |
@@ -79,6 +80,7 @@ Kiểu đối tượng (nhiều giá trị):
 ### Toán học và biến
 
 Toán tử toán học cơ bản:
+
 | Mục đích | Ký hiệu |
 | :----------- | :----: |
 | Cộng | + |
@@ -91,6 +93,7 @@ Toán tử toán học cơ bản:
 <br>
 
 var, let, const:
+
 | Chủ đề | var | let | const |
 | :-------- | :---- | :--- | :---- |
 | Phạm vi | Toàn cục | Khối | Khối |
@@ -133,6 +136,7 @@ Phương thức, điều kiện, v.v. trong JavaScript trả về `true` hoặc 
 ### Toán tử và điều kiện
 
 Toán tử:
+
 | Kiểu | Ví dụ 1 | Ví dụ 2 | Ví dụ 3 | Ví dụ 4 | Ví dụ 5 |
 | :--------- | :----- | :----- | :------ | :------ | :------ |
 | Gán | = | += | -= | \_= | /= |
@@ -144,6 +148,7 @@ Toán tử:
 <br>
 
 So sánh cho điều kiện:
+
 | Mục đích | Ký hiệu |
 | :----------- | :----: |
 | Kiểm tra bằng | == |
@@ -165,6 +170,7 @@ So sánh cho điều kiện:
 <br>
 
 Câu lệnh điều kiện
+
 | Kiểu | Cú pháp 1 | Cú pháp 2 | Cú pháp 3 | Cú pháp 4 | Cú pháp 5 |
 | :----- | :------- | :------ | :-------- | :------ | :------- |
 | if | if (a) {run} | | | | |  
@@ -190,6 +196,7 @@ Các loại vòng lặp:
 <br>
 
 Gán trong vòng lặp:
+
 | Mục đích | Ký hiệu |
 | :----------- | :----: |
 | Cộng trong vòng lặp | += |
@@ -206,6 +213,7 @@ Gán trong vòng lặp:
 ### Phương thức chuỗi và mảng
 
 Phương thức/thuộc tính chuỗi và mảng (Cùng phương thức, cùng hiệu ứng):
+
 | Phương thức | Mục đích: | Trả về: | Mã cơ bản mảng | Mã cơ bản chuỗi |
 | :---------- | -------: | :------ | :------------ | :----------- |
 | slice() | tạo: | mảng/chuỗi mới | arr.slice(start, end) | str.slice(start, end) |
@@ -219,6 +227,7 @@ Phương thức/thuộc tính chuỗi và mảng (Cùng phương thức, cùng h
 <br>
 
 Chuỗi và mảng (Tên phương thức khác nhau, cùng hiệu ứng):
+
 | Phương thức | Trả về: | Cú pháp: |
 | :------------- | :-------------------- | :----------- |
 | str.charAt(i) | Trả về ký tự tại chỉ số | str.charAt(index) |
@@ -241,6 +250,7 @@ Chuỗi và mảng (Tên khác nhau, hiệu ứng ngược nhau):
 ### Phương thức chuỗi và mảng khác
 
 Các phương thức chuỗi phổ biến khác:
+
 | Phương thức | Trả về: | Cú pháp: |
 | :------------- | :-------------------- | :---------- |
 | str.toLowerCase() | chuỗi mới | str.toLowerCase() |
@@ -259,6 +269,7 @@ Các phương thức chuỗi phổ biến khác:
 <br />
 
 Các phương thức mảng phổ biến khác:
+
 | Phương thức | Trả về: | Cú pháp: |
 | :------------- | :-------------- | :---------- |
 | [x][y] | giá trị mảng con | arr[x][y] |
@@ -269,6 +280,7 @@ Các phương thức mảng phổ biến khác:
 | arr.push() | độ dài mảng mới | arr.push(item, item2, ...) |
 | arr.unshift() | độ dài mảng mới | arr.unshift(item, item2, ...) |
 | arr.splice() | mảng đã thay đổi trực tiếp | arr.splice(start, deleteCt, ...items)
+
 | arr.find() | phần tử đầu tiên tìm thấy | arr.find(item, index, array) |
 | arr.sort() | mảng đã thay đổi trực tiếp | arr.sort((a, b) => a - b) |
 | arr.every() | boolean | arr.every((item) => {...}) |
@@ -284,6 +296,7 @@ Các phương thức mảng phổ biến khác:
 ### Phương thức đối tượng
 
 Phương thức đối tượng phổ biến:
+
 | Phương thức, thuật ngữ lớp | Trả về: | Trả về cái gì? |
 | :------------------- | :------- | :------- |  
 | Object.keys(obj) | mảng mới | khóa thuộc tính của obj |
@@ -300,6 +313,7 @@ Phương thức đối tượng phổ biến:
 <br>
 
 Cú pháp và thuật ngữ lớp đối tượng (Fx = 'function'):
+
 | Thuật ngữ lớp | Mục đích: |
 | :---------- | :------- |
 | class | khuôn mẫu để tạo đối tượng |
@@ -319,6 +333,7 @@ Xem [Định nghĩa phương thức MDN](https://developer.mozilla.org/en-US/doc
 ### Phương thức Number
 
 Phương thức Number và Math phổ biến (một đối số):
+
 | Phương thức | Kết quả/Mục đích: |
 | :--- | :---- |
 | toExponential(n) | trả về chuỗi biểu diễn đối tượng Number ở dạng ký hiệu mũ |
@@ -339,6 +354,7 @@ Phương thức Number và Math phổ biến (một đối số):
 <br />
 
 Phương thức Math phổ biến (2 hoặc nhiều đối số):
+
 | Phương thức | Kết quả/Mục đích: |
 | :--- | :---- |
 | Math.max(n1, n2, ...) | Trả về số lớn nhất trong 0 hoặc nhiều số |
@@ -371,6 +387,7 @@ Phương thức Date phổ biến: Lấy giá trị ngày và thời gian
 <br />
 
 Đặt một phần của ngày
+
 | Phương thức | Mô tả: | Cú pháp: |
 | :--- | :------ | :---- |
 | setDate() | Đặt ngày dưới dạng số (1-31) | setDate(dayValue) |
@@ -389,11 +406,13 @@ Phương thức Date phổ biến: Lấy giá trị ngày và thời gian
 ### Hàm và cú pháp Rest
 
 Khai báo & biểu thức hàm cơ bản:
+
 | Kiểu | Khai báo | Gọi |
 | :--- | :----- | :----- |
 | Declaration | function name() {...} | name(); |
 | Expresson | const varName = function() {...} | varName(); |
 | Arrow | () => {...} | -  
+
 | Arrow2 | () => "value" | - |
 | Arrow3 | item => {item...} | - |
 | Arrow4 | (arr1, arr2) => {arr1...arr2} | - |
@@ -403,6 +422,7 @@ Khai báo & biểu thức hàm cơ bản:
 <br>
 
 Toán tử Spread và Rest:
+
 | Kiểu | Khai báo | Dùng với |
 | :--- | :----- | :----- |
 | Toán tử Spread | (...arr) | Giải nén mảng |
@@ -462,6 +482,7 @@ Cú pháp viết tắt:
 <br>
 
 Phương thức Regex
+
 | Phương thức | Mô tả |
 | :----- | :---- |
 | regEx.test(str) | Trả về true hoặc false nếu tìm thấy khớp mẫu |
@@ -471,6 +492,7 @@ Phương thức Regex
 <br>
 
 Ký tự thoát (phổ biến):
+
 | Mã | Đầu ra ký tự |
 | :--- | :----- |
 | `\'` | Nháy đơn `'` |
@@ -486,6 +508,7 @@ Ký tự thoát (phổ biến):
 ### Cú pháp ES6
 
 Bảng cú pháp cho các chủ đề ES6 khác nhau:
+
 | Chủ đề ES6 | Ví dụ mã |
 | -------: | :----------- |
 | Hàm mũi tên: | const varName = () => {code} |
@@ -586,6 +609,7 @@ Hãy xem create, rồi read/return, và cuối cùng là update/mutate và delet
 <!--
 Return position:
 | Method | Does: | Data Type:
+
 | :----  | :----  | :---- |
 | indexOf()     | returns position | str & arr |
 | lastIndexOf() | returns position | str & arr |
@@ -596,6 +620,7 @@ Return position:
 ### Create
 
 Tạo đối tượng hoặc biến mới:
+
 | Phương thức | Tạo: |
 | :---- | :---- |
 | = | gán giá trị bằng `let` hoặc `const` |
@@ -609,6 +634,7 @@ Tạo đối tượng hoặc biến mới:
 <br>
 
 Tạo từ đối tượng hiện có:
+
 | Phương thức | Tạo: |
 | :---- | :---- |
 | str.toLowerCase() | trả về chuỗi dạng thường |  
@@ -629,6 +655,7 @@ Tạo từ đối tượng hiện có:
 ### Đọc và trả về chỉ số và độ dài
 
 Đọc / Trả về chỉ số # và độ dài:
+
 | Cú pháp | Trả về: |
 | :---- | :---- |
 | indexOf() | chỉ số # |
@@ -641,6 +668,7 @@ Tạo từ đối tượng hiện có:
 ### Đọc và trả về giá trị
 
 Trả về / đọc đơn giản:
+
 | Cú pháp | Trả về: |
 | :---- | :---- |
 | str[i] | giá trị chuỗi tại vị trí chỉ số |
@@ -662,6 +690,7 @@ Trả về / đọc đơn giản:
 <br>
 
 Trả về / đọc phức tạp hơn:
+
 | Cú pháp | Trả về: |
 | :---- | :---- |
 | arr.find() | giá trị mảng cho lần xuất hiện đầu tiên vượt qua kiểm tra |  
@@ -680,6 +709,7 @@ Trả về / đọc phức tạp hơn:
 ### Cập nhật và Xóa
 
 Cập nhật, thay đổi trực tiếp, xóa:
+
 | Cú pháp | Trả về: |
 | :---- | :---- |
 | arr.splice(i) | thay đổi nội dung mảng |
@@ -810,6 +840,7 @@ if (id === 100) console.log('Equal');
 Testing meta view of ALL syntax and keywords:
 
 Assign, declare, define, set, reassign, initialize:
+
 | Name / Desc | Keyword, char: | Used with/for: |
 | :------- | :------ | :------- |
 | Assignment | =, +=, etc., set | variables |  
@@ -821,6 +852,7 @@ Assign, declare, define, set, reassign, initialize:
 <br>
 
 Things:
+
 | What | Why |
 | :------- | :------ |
 | data types | storing values |

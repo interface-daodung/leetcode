@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "lang": "vi",
-  "generatedAt": "2026-09-01T10:15:24.946477Z",
+  "generatedAt": "2026-09-01T17:05:34.681735Z",
   "generator": "generate_docs.py from Kernix13/javascript-cheat-sheet",
   "sourceRepo": "https://github.com/Kernix13/javascript-cheat-sheet",
   "totalSources": 13,
@@ -39,7 +39,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice",
-      "searchText": "array slice instrả về bản sao nông của một phần mảng/ins vào một đối tượng mảng mới được chọn từ start đến end (end không bao gồm) trong đó start và end đại diện cho chỉ số của các phần tử trong mảng đó, không làm thay đổi mảng. slice(); array slice collection list",
+      "searchText": "array slice instrả về bản sao nông của một phần mảng/ins vào một đối tượng mảng mới được chọn từ start đến end (end không bao gồm) trong đó start và end đại diện cho chỉ số của các phần tử trong mảng đó, không làm thay đổi mảng. slice(); slice collection list array",
       "tags": [
         "array",
         "collection",
@@ -64,7 +64,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) để biết cách sắp xếp theo khóa của đối tượng.\n\n```js\n// Syntax:\nsort();\n\n// Sorting an array of strings using spread operator to NOT mutate original:\nconst arr = [",
-      "searchText": "basic sort sắp xếp mảng theo thứ tự tăng dần và instrả về mảng đã sắp xếp/ins. sort(); array basic sort collection list",
+      "searchText": "basic sort sắp xếp mảng theo thứ tự tăng dần và instrả về mảng đã sắp xếp/ins. sort(); sort array basic list collection",
       "tags": [
         "array",
         "collection",
@@ -90,7 +90,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "bảng cú pháp các bảng theo số lượng tham số và việc phương thức có làm thay đổi nguồn gốc hay không.  array cú collection pháp bảng list",
+      "searchText": "bảng cú pháp các bảng theo số lượng tham số và việc phương thức có làm thay đổi nguồn gốc hay không.  cú pháp array bảng list collection",
       "tags": [
         "array",
         "collection",
@@ -114,7 +114,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat",
-      "searchText": "concat nối hai hoặc nhiều mảng và instrả về bản sao của các mảng đã nối/ins. concat() array concat collection list",
+      "searchText": "concat nối hai hoặc nhiều mảng và instrả về bản sao của các mảng đã nối/ins. concat() concat collection list array",
       "tags": [
         "array",
         "collection",
@@ -142,7 +142,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap): trả về một mảng mới được tạo bằng cách áp dụng hàm gọi lại đã cho cho mỗi phần tử của mảng, và sau đó làm phẳng kết quả đi một cấp. Nó giống hệt `map()` tiếp theo là `flat()` với độ sâu 1, nhưng hiệu quả hơn một chút so với việc gọi riêng hai phương thức đó.\n- [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from): tạo một thực thể Mảng mới, được sao chép nông từ một đối tượng giống mảng hoặc có thể lặp.\n- [reduceRight()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight): áp dụng một hàm lên bộ tích lũy và mỗi giá trị của mảng (từ phải sang trái) để rút gọn nó thành một giá trị duy nhất.",
-      "searchText": "các phương thức bậc cao phương thức mảng bậc cao = các phương thức sử dụng hàm gọi lại.  array phương thức collection các cao bậc list",
+      "searchText": "các phương thức bậc cao phương thức mảng bậc cao = các phương thức sử dụng hàm gọi lại.  collection thức các bậc array list phương cao",
       "tags": [
         "array",
         "collection",
@@ -171,7 +171,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at): nhận một giá trị nguyên và trả về phần tử tại chỉ số đó, cho phép số nguyên dương và âm. Số nguyên âm đếm ngược từ phần tử cuối cùng trong mảng. Chưa được triển khai trong tất cả trình duyệt.\n- [copyWithin()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin): sao chép nông một phần của mảng tới vị trí khác trong cùng mảng và trả về nó mà không làm thay đổi độ dài của nó.\n- [entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries): trả về một đối tượng Mảng Iterator mới chứa các cặp khóa/giá trị cho mỗi chỉ số trong mảng.\n- [fill()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill): thay đổi tất cả phần tử trong mảng thành một giá trị tĩnh, từ chỉ số bắt đầu (mặc định `0`) đến chỉ số kết thúc (mặc định `mảng.length`). Nó trả về mảng đã được sửa đổi.\n- [keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys): trả về một đối tượng Mảng Iterator mới chứa các khóa cho mỗi chỉ số trong mảng.\n- [of()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of): tạo một thực thể Mảng mới từ số lượng tham số biến đổi, bất kể số lượng hay kiểu của tham số.\n- [toLocaleString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString): trả về một chuỗi đại diện cho các phần tử của mảng. Các phần tử được chuyển thành Chuỗi bằng phương thức `toLocaleString` của chúng và các Chuỗi này được phân tách bằng Chuỗi đặc trưng cho từng vùng (như dấu phẩy ",
-      "searchText": "các phương thức mảng đơn giản cú pháp cơ bản cho các phương thức phổ biến nhất.  array mảng phương thức collection các list giản đơn",
+      "searchText": "các phương thức mảng đơn giản cú pháp cơ bản cho các phương thức phổ biến nhất.  đơn thức các mảng array list giản phương collection",
       "tags": [
         "array",
         "collection",
@@ -206,7 +206,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "các phương thức phổ biến các phương thức phổ biến không có tham số: function replacer(match, p1, p2, p3, offset, string) { array phương thức replacer match offset collection p3 các list biến p1 p2 string phổ",
+      "searchText": "các phương thức phổ biến các phương thức phổ biến không có tham số: function replacer(match, p1, p2, p3, offset, string) { offset p3 replacer thức các p2 array biến phổ p1 list match phương string collection",
       "tags": [
         "array",
         "collection",
@@ -237,7 +237,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "các phương thức đơn giản các phương thức đơn giản của mảng hoặc chuỗi (không có phương thức mảng bậc cao) function frankensplice(arr1, arr2, n) { array phương thức collection frankensplice các list giản arr2 arr1 đơn",
+      "searchText": "các phương thức đơn giản các phương thức đơn giản của mảng hoặc chuỗi (không có phương thức mảng bậc cao) function frankensplice(arr1, arr2, n) { đơn thức các frankensplice array arr2 list giản arr1 phương collection",
       "tags": [
         "array",
         "collection",
@@ -263,7 +263,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cú pháp rest cú pháp rest, điểm thi ăn bánh:  rest array cú collection pháp list",
+      "searchText": "cú pháp rest cú pháp rest, điểm thi ăn bánh:  cú pháp array list rest collection",
       "tags": [
         "array",
         "collection",
@@ -287,7 +287,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every",
-      "searchText": "every instrả về giá trị boolean/ins nếu mọi phần tử trong mảng vượt qua một bài kiểm tra.  array every collection list",
+      "searchText": "every instrả về giá trị boolean/ins nếu mọi phần tử trong mảng vượt qua một bài kiểm tra.  every collection list array",
       "tags": [
         "array",
         "collection",
@@ -311,7 +311,7 @@
       "returns": "companies;",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
-      "searchText": "filter nhận một hàm chứa bài kiểm tra và instrả về một mảng mới/ins với tất cả các phần tử insvượt qua bài kiểm tra/ins.  array filter collection list companies;",
+      "searchText": "filter nhận một hàm chứa bài kiểm tra và instrả về một mảng mới/ins với tất cả các phần tử insvượt qua bài kiểm tra/ins.  array collection list filter companies;",
       "tags": [
         "array",
         "collection",
@@ -335,7 +335,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find",
-      "searchText": "find instrả về phần tử đầu tiên/ins trong mảng được cung cấp thỏa mãn hàm kiểm tra được cung cấp.  array collection list find",
+      "searchText": "find instrả về phần tử đầu tiên/ins trong mảng được cung cấp thỏa mãn hàm kiểm tra được cung cấp.  collection find list array",
       "tags": [
         "array",
         "collection",
@@ -359,7 +359,7 @@
       "returns": "the index of the next element, i + 1???",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex",
-      "searchText": "findindex instrả về chỉ số/ins của phần tử đầu tiên trong mảng thỏa mãn hàm kiểm tra được cung cấp.  array collection findindex list the index of the next element, i + 1???",
+      "searchText": "findindex instrả về chỉ số/ins của phần tử đầu tiên trong mảng thỏa mãn hàm kiểm tra được cung cấp.  collection list findindex array the index of the next element, i + 1???",
       "tags": [
         "array",
         "collection",
@@ -383,7 +383,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat",
-      "searchText": "flat instạo một mảng mới/ins với tất cả các phần tử mảng con được nối vào nó một cách đệ quy tới độ sâu được chỉ định.  array flat collection list",
+      "searchText": "flat instạo một mảng mới/ins với tất cả các phần tử mảng con được nối vào nó một cách đệ quy tới độ sâu được chỉ định.  flat collection list array",
       "tags": [
         "array",
         "collection",
@@ -407,7 +407,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
-      "searchText": "foreach thực thi một hàm được cung cấp một lần cho mỗi phần tử mảng; gọi hàm callbackfn được cung cấp một lần cho mỗi phần tử trong mảng theo thứ tự chỉ số tăng dần.  array foreach collection list",
+      "searchText": "foreach thực thi một hàm được cung cấp một lần cho mỗi phần tử mảng; gọi hàm callbackfn được cung cấp một lần cho mỗi phần tử trong mảng theo thứ tự chỉ số tăng dần.  foreach collection list array",
       "tags": [
         "array",
         "collection",
@@ -432,7 +432,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú chuyển một mảng thành đối tượng.  array collection ghi chú list",
+      "searchText": "ghi chú chuyển một mảng thành đối tượng.  ghi array chú list collection",
       "tags": [
         "array",
         "collection",
@@ -458,7 +458,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes",
-      "searchText": "includes xác định xem một mảng có bao gồm một giá trị nhất định trong các mục của nó hay không, instrả về true hoặc false/ins. arr.includes(item); array item collection includes arr list",
+      "searchText": "includes xác định xem một mảng có bao gồm một giá trị nhất định trong các mục của nó hay không, instrả về true hoặc false/ins. arr.includes(item); includes arr array item list collection",
       "tags": [
         "array",
         "collection",
@@ -483,7 +483,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf",
-      "searchText": "indexof instrả về chỉ số đầu tiên/ins mà tại đó một phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu nó không tồn tại. indexof(searchelement); array searchelement collection indexof list",
+      "searchText": "indexof instrả về chỉ số đầu tiên/ins mà tại đó một phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu nó không tồn tại. indexof(searchelement); array list searchelement indexof collection",
       "tags": [
         "array",
         "collection",
@@ -508,7 +508,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray",
-      "searchText": "isarray xác định xem giá trị được truyền có phải là mảng hay không. array.isarray(value); array collection isarray value list",
+      "searchText": "isarray xác định xem giá trị được truyền có phải là mảng hay không. array.isarray(value); array value isarray list collection",
       "tags": [
         "array",
         "collection",
@@ -532,7 +532,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join",
-      "searchText": "join instrả về một chuỗi mới/ins bằng cách nối tất cả các phần tử trong mảng. join(); join collection array list",
+      "searchText": "join instrả về một chuỗi mới/ins bằng cách nối tất cả các phần tử trong mảng. join(); join collection list array",
       "tags": [
         "array",
         "collection",
@@ -560,7 +560,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "kết hợp các phương thức ví dụ về việc chuỗi các phương thức chuỗi và mảng với nhau.  array hợp phương thức kết collection các list",
+      "searchText": "kết hợp các phương thức ví dụ về việc chuỗi các phương thức chuỗi và mảng với nhau.  thức các kết array hợp list phương collection",
       "tags": [
         "array",
         "collection",
@@ -585,7 +585,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf",
-      "searchText": "lastindexof instrả về chỉ số cuối cùng/ins mà tại đó một phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu nó không tồn tại. lastindexof(searchelement); array searchelement collection lastindexof list",
+      "searchText": "lastindexof instrả về chỉ số cuối cùng/ins mà tại đó một phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu nó không tồn tại. lastindexof(searchelement); lastindexof array list searchelement collection",
       "tags": [
         "array",
         "collection",
@@ -609,7 +609,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) và đối chiếu với `.map()`. Xem [Stackoverflow: Array.from vs Array.prototype.map](https://stackoverflow.com/questions/26052699/array-from-vs-array-prototype-map).\n\n<div align=",
-      "searchText": "map thực hiện một hàm trên mọi phần tử trong mảng và instrả về kết quả trong một mảng mới/ins.  array map collection list",
+      "searchText": "map thực hiện một hàm trên mọi phần tử trong mảng và instrả về kết quả trong một mảng mới/ins.  collection map list array",
       "tags": [
         "array",
         "collection",
@@ -635,7 +635,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "mảng bậc cao các phương thức mảng bậc cao với hàm gọi lại:  array mảng collection cao bậc list",
+      "searchText": "mảng bậc cao các phương thức mảng bậc cao với hàm gọi lại:  collection array mảng list cao bậc",
       "tags": [
         "array",
         "collection",
@@ -662,7 +662,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phá cấu trúc (destructuring) ví dụ về phá cấu trúc:  array collection cấu destructuring phá trúc list",
+      "searchText": "phá cấu trúc (destructuring) ví dụ về phá cấu trúc:  destructuring phá array trúc list cấu collection",
       "tags": [
         "array",
         "collection",
@@ -687,7 +687,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop",
-      "searchText": "pop loại bỏ phần tử cuối cùng khỏi mảng và instrả về phần tử đó/ins. let arr = [\"a\", \"b\", \"c\", \"d\"]; array collection arr pop list",
+      "searchText": "pop loại bỏ phần tử cuối cùng khỏi mảng và instrả về phần tử đó/ins. let arr = [\"a\", \"b\", \"c\", \"d\"]; arr array pop list collection",
       "tags": [
         "array",
         "collection",
@@ -714,7 +714,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
-      "searchText": "push thêm một hoặc nhiều phần tử vào cuối mảng và instrả về độ dài mới/ins của mảng. arr.push(val1, val2, ...) array push collection val2 arr val1 list",
+      "searchText": "push thêm một hoặc nhiều phần tử vào cuối mảng và instrả về độ dài mới/ins của mảng. arr.push(val1, val2, ...) val2 val1 arr array push list collection",
       "tags": [
         "array",
         "collection",
@@ -762,7 +762,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse",
-      "searchText": "reverse đảo ngược thứ tự của mảng và instrả về mảng đã đảo ngược/ins, làm thay đổi mảng. reverse(); array collection reverse list",
+      "searchText": "reverse đảo ngược thứ tự của mảng và instrả về mảng đã đảo ngược/ins, làm thay đổi mảng. reverse(); reverse collection list array",
       "tags": [
         "array",
         "collection",
@@ -787,7 +787,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift",
-      "searchText": "shift loại bỏ phần tử đầu tiên khỏi mảng và instrả về phần tử đó/ins. let arr = [1, 2, 3, 4]; array shift collection arr list",
+      "searchText": "shift loại bỏ phần tử đầu tiên khỏi mảng và instrả về phần tử đó/ins. let arr = [1, 2, 3, 4]; shift arr array list collection",
       "tags": [
         "array",
         "collection",
@@ -811,7 +811,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-      "searchText": "some instrả về giá trị boolean/ins nếu ít nhất một phần tử vượt qua bài kiểm tra.  array collection some list",
+      "searchText": "some instrả về giá trị boolean/ins nếu ít nhất một phần tử vượt qua bài kiểm tra.  collection some list array",
       "tags": [
         "array",
         "collection",
@@ -835,7 +835,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare).\n\n<div align=",
-      "searchText": "sort sắp xếp mảng theo thứ tự tăng dần và instrả về mảng đã sắp xếp/ins.  array sort collection list",
+      "searchText": "sort sắp xếp mảng theo thứ tự tăng dần và instrả về mảng đã sắp xếp/ins.  collection sort list array",
       "tags": [
         "array",
         "collection",
@@ -860,7 +860,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice",
-      "searchText": "splice thay đổi nội dung của mảng bằng cách loại bỏ hoặc thay thế các phần tử hiện có và/hoặc thêm phần tử mới. splice(startindex); array collection splice startindex list",
+      "searchText": "splice thay đổi nội dung của mảng bằng cách loại bỏ hoặc thay thế các phần tử hiện có và/hoặc thêm phần tử mới. splice(startindex); startindex array splice list collection",
       "tags": [
         "array",
         "collection",
@@ -884,7 +884,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString",
-      "searchText": "tostring instrả về một chuỗi/ins đại diện cho mảng đã chỉ định và các phần tử của nó. tostring(); tostring collection array list",
+      "searchText": "tostring instrả về một chuỗi/ins đại diện cho mảng đã chỉ định và các phần tử của nó. tostring(); tostring collection list array",
       "tags": [
         "array",
         "collection",
@@ -910,7 +910,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán tử spread thêm các phần tử mảng khác vào một mảng:  array tử collection toán spread list",
+      "searchText": "toán tử spread thêm các phần tử mảng khác vào một mảng:  toán array list tử spread collection",
       "tags": [
         "array",
         "collection",
@@ -952,7 +952,7 @@
       "returns": "a - b;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tất cả phương thức các phương thức đơn giản với một hoặc nhiều phương thức mảng bậc cao. const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32]; 44 25 phương thức collection ages 45 20 tất 12 13 list array 15 32 cả 21 33 64 16 54 61 a - b;",
+      "searchText": "tất cả phương thức các phương thức đơn giản với một hoặc nhiều phương thức mảng bậc cao. const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32]; 61 21 44 45 64 32 54 15 thức array 13 12 tất 16 cả 25 ages 20 33 list phương collection a - b;",
       "tags": [
         "array",
         "collection",
@@ -979,7 +979,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
-      "searchText": "unshift thêm một hoặc nhiều phần tử vào đầu mảng và instrả về độ dài mới/ins của mảng. arr.unshift(val1, val2, ...) array collection val2 arr unshift val1 list",
+      "searchText": "unshift thêm một hoặc nhiều phần tử vào đầu mảng và instrả về độ dài mới/ins của mảng. arr.unshift(val1, val2, ...) val2 unshift val1 arr array list collection",
       "tags": [
         "array",
         "collection",
@@ -1004,7 +1004,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "create tạo đối tượng hoặc biến mới:  overview cheatsheet reference comparison create",
+      "searchText": "create tạo đối tượng hoặc biến mới:  create overview cheatsheet comparison reference",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1032,7 +1032,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cú pháp es6 bảng cú pháp cho các chủ đề es6 khác nhau:  overview cú cheatsheet reference pháp comparison es6",
+      "searchText": "cú pháp es6 bảng cú pháp cho các chủ đề es6 khác nhau:  overview pháp cheatsheet es6 comparison reference cú",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1061,7 +1061,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cập nhật và xóa cập nhật, thay đổi trực tiếp, xóa:  xóa overview cheatsheet cập reference comparison nhật và",
+      "searchText": "cập nhật và xóa cập nhật, thay đổi trực tiếp, xóa:  overview cập cheatsheet nhật reference comparison xóa và",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1091,7 +1091,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)).\n\n<div align=",
-      "searchText": "ghi chú phương thức chuỗi - str.length: thường dùng trong vòng lặp for để duyệt từng phần tử.  phương thức overview chuỗi cheatsheet reference comparison ghi chú",
+      "searchText": "ghi chú phương thức chuỗi - str.length: thường dùng trong vòng lặp for để duyệt từng phần tử.  overview chuỗi ghi thức cheatsheet chú comparison reference phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1121,7 +1121,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú phương thức mảng - flat(): tạo mảng mới với tất cả phần tử mảng con được nối vào nó một cách đệ quy tới độ sâu chỉ định  mảng phương thức overview cheatsheet reference comparison ghi chú",
+      "searchText": "ghi chú phương thức mảng - flat(): tạo mảng mới với tất cả phần tử mảng con được nối vào nó một cách đệ quy tới độ sâu chỉ định  overview ghi thức cheatsheet mảng chú comparison reference phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1150,7 +1150,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú quan trọng ghi chú về các bảng khác nhau cho phương thức cụ thể và cú pháp cho mọi thứ liệt kê ở trên.  trọng quan overview cheatsheet reference comparison ghi chú",
+      "searchText": "ghi chú quan trọng ghi chú về các bảng khác nhau cho phương thức cụ thể và cú pháp cho mọi thứ liệt kê ở trên.  overview ghi trọng cheatsheet chú reference comparison quan",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1179,7 +1179,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects).\n\n<div align=",
-      "searchText": "ghi chú đối tượng - thay vì dùng chỉ số để truy cập và sửa đổi dữ liệu, bạn truy cập dữ liệu trong đối tượng qua cái gọi là thuộc tính  overview tượng cheatsheet đối reference comparison ghi chú",
+      "searchText": "ghi chú đối tượng - thay vì dùng chỉ số để truy cập và sửa đổi dữ liệu, bạn truy cập dữ liệu trong đối tượng qua cái gọi là thuộc tính  overview ghi tượng cheatsheet chú comparison reference đối",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1209,7 +1209,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hàm và cú pháp rest khai báo & biểu thức hàm cơ bản:  rest overview cú cheatsheet reference pháp comparison hàm và",
+      "searchText": "hàm và cú pháp rest khai báo & biểu thức hàm cơ bản:  overview pháp cheatsheet reference rest comparison hàm và cú",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1237,7 +1237,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "kiểu dữ liệu kiểu dữ liệu nguyên thủy trong javascript (dữ liệu bất biến, không phải đối tượng, và không có phương thức).  kiểu overview cheatsheet dữ reference comparison liệu",
+      "searchText": "kiểu dữ liệu kiểu dữ liệu nguyên thủy trong javascript (dữ liệu bất biến, không phải đối tượng, và không có phương thức).  overview kiểu dữ cheatsheet liệu comparison reference",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1270,7 +1270,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh đây là những ghi chú hay nhất của tôi hoặc mẹo và thủ thuật: if (id === 100) console.log('equal'); 100 console overview equal cheatsheet linh reference log comparison if id tinh",
+      "searchText": "linh tinh đây là những ghi chú hay nhất của tôi hoặc mẹo và thủ thuật: if (id === 100) console.log('equal'); console linh tinh overview if id cheatsheet equal log comparison reference 100",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1301,7 +1301,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lưu trữ cục bộ và phiên lưu trữ cục bộ và phiên  bộ trữ overview cheatsheet phiên reference comparison cục lưu và",
+      "searchText": "lưu trữ cục bộ và phiên lưu trữ cục bộ và phiên  comparison cục overview phiên cheatsheet trữ reference lưu bộ và",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1328,7 +1328,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lệnh console lệnh console hữu ích:  console overview cheatsheet lệnh reference comparison",
+      "searchText": "lệnh console lệnh console hữu ích:  console overview cheatsheet lệnh comparison reference",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1356,7 +1356,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [MDN Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).",
-      "searchText": "mảng và chuỗi ghi chú linh tinh:  mảng overview chuỗi cheatsheet reference comparison và",
+      "searchText": "mảng và chuỗi ghi chú linh tinh:  overview chuỗi cheatsheet mảng reference comparison và",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1386,7 +1386,7 @@
       "returns": "position:",
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "phiên bản javascript của crud có 4 cách làm việc với dữ liệu được gọi chung là crud:  overview cheatsheet crud bản phiên của reference comparison javascript position:",
+      "searchText": "phiên bản javascript của crud có 4 cách làm việc với dữ liệu được gọi chung là crud:  của comparison overview phiên cheatsheet crud bản javascript reference position:",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1414,7 +1414,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức boolean phương thức, điều kiện, v.v.  phương thức overview cheatsheet boolean reference comparison",
+      "searchText": "phương thức boolean phương thức, điều kiện, v.v.  comparison overview thức cheatsheet boolean reference phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1444,7 +1444,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức chuỗi và mảng phương thức/thuộc tính chuỗi và mảng (cùng phương thức, cùng hiệu ứng):  phương thức mảng overview chuỗi cheatsheet reference comparison và",
+      "searchText": "phương thức chuỗi và mảng phương thức/thuộc tính chuỗi và mảng (cùng phương thức, cùng hiệu ứng):  overview chuỗi thức cheatsheet mảng reference comparison và phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1475,7 +1475,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức chuỗi và mảng khác các phương thức chuỗi phổ biến khác:  phương thức mảng overview chuỗi cheatsheet reference comparison khác và",
+      "searchText": "phương thức chuỗi và mảng khác các phương thức chuỗi phổ biến khác:  overview chuỗi thức cheatsheet mảng khác reference comparison và phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1503,7 +1503,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức date phương thức date phổ biến: lấy giá trị ngày và thời gian  phương thức overview cheatsheet reference comparison date",
+      "searchText": "phương thức date phương thức date phổ biến: lấy giá trị ngày và thời gian  overview thức cheatsheet comparison reference phương date",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1531,7 +1531,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức number phương thức number và math phổ biến (một đối số):  phương thức overview cheatsheet reference comparison number",
+      "searchText": "phương thức number phương thức number và math phổ biến (một đối số):  overview thức cheatsheet number comparison reference phương",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1560,7 +1560,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions).\n\n<div align=",
-      "searchText": "phương thức đối tượng phương thức đối tượng phổ biến:  phương thức overview tượng cheatsheet đối reference comparison",
+      "searchText": "phương thức đối tượng phương thức đối tượng phổ biến:  overview thức tượng cheatsheet comparison reference phương đối",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1586,7 +1586,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "regex tổng quan:  overview cheatsheet regex reference comparison",
+      "searchText": "regex tổng quan:  overview regex cheatsheet comparison reference",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1614,7 +1614,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "so sánh bảng các bảng sau đây dùng để ghi nhớ trực quan.  overview cheatsheet sánh reference comparison bảng so",
+      "searchText": "so sánh bảng các bảng sau đây dùng để ghi nhớ trực quan.  overview cheatsheet so sánh bảng comparison reference",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1643,7 +1643,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán học và biến toán tử toán học cơ bản:  overview cheatsheet toán reference biến comparison học và",
+      "searchText": "toán học và biến toán tử toán học cơ bản:  comparison overview cheatsheet biến reference toán học và",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1673,7 +1673,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán tử và điều kiện so sánh cho điều kiện:  điều kiện tử overview cheatsheet toán reference comparison và",
+      "searchText": "toán tử và điều kiện so sánh cho điều kiện:  toán overview điều kiện cheatsheet reference tử comparison và",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1700,7 +1700,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp các loại vòng lặp:  overview vòng cheatsheet reference comparison lặp",
+      "searchText": "vòng lặp các loại vòng lặp:  overview cheatsheet vòng comparison reference lặp",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1733,7 +1733,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "đọc và trả về chỉ số và độ dài đọc / trả về chỉ số # và độ dài:  độ về overview cheatsheet chỉ dài số reference comparison đọc trả và",
+      "searchText": "đọc và trả về chỉ số và độ dài đọc / trả về chỉ số # và độ dài:  chỉ overview độ dài cheatsheet về đọc reference comparison và số trả",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1764,7 +1764,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "đọc và trả về giá trị trả về / đọc đơn giản:  về overview cheatsheet giá reference trị comparison đọc trả và",
+      "searchText": "đọc và trả về giá trị trả về / đọc đơn giản:  overview giá cheatsheet về trị đọc reference comparison và trả",
       "tags": [
         "cheatsheet",
         "overview",
@@ -1794,7 +1794,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "chuỗi điều kiện toán tử ternary có tính kết hợp phải (right-associative), nghĩa là nó có thể được xâu chuỗi theo cách sau, tương tự như chuỗi if … else if … else if … else: function example(…) { điều kiện switch chuỗi ternary boolean example if conditional",
+      "searchText": "chuỗi điều kiện toán tử ternary có tính kết hợp phải (right-associative), nghĩa là nó có thể được xâu chuỗi theo cách sau, tương tự như chuỗi if … else if … else if … else: function example(…) { conditional chuỗi điều kiện if example boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1825,7 +1825,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "câu lệnh if else if (condition) { if (condition) { câu else condition switch ternary boolean lệnh if conditional",
+      "searchText": "câu lệnh if else if (condition) { if (condition) { condition conditional câu if else lệnh boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1854,7 +1854,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "else if if (condition1) if (condition1) else switch ternary boolean condition1 if conditional",
+      "searchText": "else if if (condition1) if (condition1) conditional if else condition1 boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1883,7 +1883,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú một câu lệnh switch đầu tiên đánh giá biểu thức của nó.  switch ternary boolean ghi chú if conditional",
+      "searchText": "ghi chú một câu lệnh switch đầu tiên đánh giá biểu thức của nó.  conditional ghi if chú boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1912,7 +1912,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh - chuyển đổi kiểu dữ liệu  switch ternary boolean linh if conditional tinh",
+      "searchText": "linh tinh - chuyển đổi kiểu dữ liệu  linh conditional tinh if boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1940,7 +1940,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch#block-scope_variables_within_switch_statements)\n\n<div align=",
-      "searchText": "switch switch (expression) { switch (expression) { expression switch ternary boolean if conditional",
+      "searchText": "switch switch (expression) { switch (expression) { expression conditional if boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1969,7 +1969,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán tử ternary condition ? expriftrue : expriffalse;  tử switch ternary toán boolean if conditional",
+      "searchText": "toán tử ternary condition ? expriftrue : expriffalse;  toán conditional if tử boolean switch ternary",
       "tags": [
         "conditional",
         "if",
@@ -1998,7 +1998,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) để biết các nên và không nên cụ thể cho đối tượng này.",
-      "searchText": "đối tượng boolean giá trị được truyền làm tham số đầu tiên được chuyển đổi thành giá trị boolean, nếu cần.  switch tượng ternary boolean đối if conditional",
+      "searchText": "đối tượng boolean giá trị được truyền làm tham số đầu tiên được chuyển đổi thành giá trị boolean, nếu cần.  conditional if tượng boolean switch ternary đối",
       "tags": [
         "conditional",
         "if",
@@ -2028,7 +2028,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "algorithms and data structures projects 1.  freecodecamp curriculum structures data projects and fcc algorithms",
+      "searchText": "algorithms and data structures projects 1.  curriculum projects fcc and freecodecamp algorithms data structures",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2054,7 +2054,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "basic algorithm scripting 16 bài học  basic freecodecamp curriculum algorithm fcc scripting",
+      "searchText": "basic algorithm scripting 16 bài học  curriculum fcc freecodecamp algorithm basic scripting",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2080,7 +2080,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "basic data structures 20 bài học  basic freecodecamp curriculum structures data fcc",
+      "searchText": "basic data structures 20 bài học  curriculum fcc freecodecamp basic data structures",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2105,7 +2105,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "basic javascript 113 bài học: tôi thích cấu trúc này  basic freecodecamp curriculum fcc javascript",
+      "searchText": "basic javascript 113 bài học: tôi thích cấu trúc này  curriculum fcc freecodecamp basic javascript",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2129,7 +2129,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "debugging 12 bài học - tất cả đều tốt  curriculum freecodecamp fcc debugging",
+      "searchText": "debugging 12 bài học - tất cả đều tốt  fcc freecodecamp curriculum debugging",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2158,7 +2158,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": null,
-      "searchText": "es6 29 bài học (từng là 31) let obj = { name:\"some-name\", prop2:\"whatevs\" }; whatevs freecodecamp obj curriculum name prop2 es6 fcc some",
+      "searchText": "es6 29 bài học (từng là 31) let obj = { name:\"some-name\", prop2:\"whatevs\" }; curriculum name whatevs es6 fcc freecodecamp some obj prop2",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2183,7 +2183,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "functional programming 24 bài học  freecodecamp curriculum functional programming fcc",
+      "searchText": "functional programming 24 bài học  curriculum programming fcc freecodecamp functional",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2209,7 +2209,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": null,
-      "searchText": "intermediate algorithm scripting 21 bài học  freecodecamp intermediate curriculum algorithm fcc scripting",
+      "searchText": "intermediate algorithm scripting 21 bài học  curriculum intermediate fcc freecodecamp algorithm scripting",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2235,7 +2235,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "object oriented programming 26 bài học  object freecodecamp curriculum oriented programming fcc",
+      "searchText": "object oriented programming 26 bài học  curriculum programming object fcc freecodecamp oriented",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2260,7 +2260,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "regular expressions 33 bài học  regular freecodecamp expressions curriculum fcc",
+      "searchText": "regular expressions 33 bài học  curriculum expressions regular fcc freecodecamp",
       "tags": [
         "fcc",
         "freecodecamp",
@@ -2286,7 +2286,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) **<ins>gọi một hàm</ins>** với một giá trị `this` cho trước, và các `arguments` được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng).\n\n```js\n// syntax:\napply(thisArg);\napply(thisArg, argsArray);\n```\n\n<br />",
-      "searchText": "apply phương thức apply() insgọi một hàm/ins với một giá trị this cho trước, và các arguments được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng). apply(thisarg); higher-order function thisarg callback closure apply",
+      "searchText": "apply phương thức apply() insgọi một hàm/ins với một giá trị this cho trước, và các arguments được cung cấp dưới dạng một mảng (hoặc một đối tượng dạng mảng). apply(thisarg); apply thisarg closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2315,7 +2315,7 @@
       "returns": "data;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "async await async function name(parameters) { async function name(parameters) { higher-order function parameters name async await closure callback data;",
+      "searchText": "async await async function name(parameters) { async function name(parameters) { await name closure function higher-order parameters async callback data;",
       "tags": [
         "function",
         "closure",
@@ -2342,7 +2342,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) tạo ra một hàm mới mà khi được gọi, từ khóa `this` của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi.\n\nTôi đã thấy Brad Traversy sử dụng phương thức này trong một số bài học của anh ấy.\n\n```js\n// syntax:\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "bind phương thức bind() tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi. bind(thisarg) higher-order function thisarg closure callback bind",
+      "searchText": "bind phương thức bind() tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi. bind(thisarg) bind thisarg closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2368,7 +2368,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "caching để tăng hiệu suất, hãy lưu đệm (cache) các lựa chọn của bạn vào một biến nào đó (nếu sử dụng cùng một lựa chọn nhiều lần).  higher-order function caching callback closure",
+      "searchText": "caching để tăng hiệu suất, hãy lưu đệm (cache) các lựa chọn của bạn vào một biến nào đó (nếu sử dụng cùng một lựa chọn nhiều lần).  caching closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2394,7 +2394,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) gọi một hàm với một giá trị `this` cho trước và các tham số được cung cấp riêng lẻ.\n\n```js\n// syntax:\ncall()\ncall(thisArg)\ncall(thisArg, arg1)\ncall(thisArg, arg1, arg2)\ncall(thisArg, arg1, ... , argN)\n```\n\n<br />",
-      "searchText": "call phương thức call() gọi một hàm với một giá trị this cho trước và các tham số được cung cấp riêng lẻ. call() higher-order function call callback closure",
+      "searchText": "call phương thức call() gọi một hàm với một giá trị this cho trước và các tham số được cung cấp riêng lẻ. call() closure function higher-order call callback",
       "tags": [
         "function",
         "closure",
@@ -2422,7 +2422,7 @@
       "returns": "{",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "closures javascript cho phép lồng nhau các hàm và cấp cho hàm bên trong quyền truy cập đầy đủ tới tất cả các biến và hàm được định nghĩa bên trong hàm bên ngoài (và tất cả các biến và hàm khác mà hàm bên ngoài có quyền truy cập). let createpet = function (name) { higher-order function createpet name callback closure closures {",
+      "searchText": "closures javascript cho phép lồng nhau các hàm và cấp cho hàm bên trong quyền truy cập đầy đủ tới tất cả các biến và hàm được định nghĩa bên trong hàm bên ngoài (và tất cả các biến và hàm khác mà hàm bên ngoài có quyền truy cập). let createpet = function (name) { name createpet closure closures function higher-order callback {",
       "tags": [
         "function",
         "closure",
@@ -2449,7 +2449,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cú pháp // typeof:  higher-order function cú pháp closure callback",
+      "searchText": "cú pháp // typeof:  pháp closure function higher-order callback cú",
       "tags": [
         "function",
         "closure",
@@ -2479,7 +2479,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cú pháp rest và spread với tham số rest và toán tử spread trong danh sách tham số:  rest function higher-order cú pháp spread closure callback và",
+      "searchText": "cú pháp rest và spread với tham số rest và toán tử spread trong danh sách tham số:  callback pháp closure function higher-order rest và spread cú",
       "tags": [
         "function",
         "closure",
@@ -2505,7 +2505,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "es6 dưới đây là các chủ đề cụ thể liên quan đến hàm được giới thiệu với es6  higher-order function callback closure es6",
+      "searchText": "es6 dưới đây là các chủ đề cụ thể liên quan đến hàm được giới thiệu với es6  closure es6 function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2532,7 +2532,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  export function higher-order closure callback import",
+      "searchText": "export import // strict mode: a restricted variant of javascript, intentionally has different semantics  import export closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2562,7 +2562,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú về đệ quy ghi chú về video recursion in programming - full course từ freecodecamp:  higher-order function về ghi chú quy closure callback đệ",
+      "searchText": "ghi chú về đệ quy ghi chú về video recursion in programming - full course từ freecodecamp:  quy đệ ghi closure về chú function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2592,7 +2592,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hàm gọi lại function greeting(name) { function greeting(name) { higher-order function gọi name greeting lại closure callback hàm",
+      "searchText": "hàm gọi lại function greeting(name) { function greeting(name) { gọi name closure lại function higher-order hàm callback greeting",
       "tags": [
         "function",
         "closure",
@@ -2621,7 +2621,7 @@
       "returns": "x * x;",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hàm lồng nhau hàm lồng nhau: hàm lồng (bên trong) là riêng tư đối với hàm chứa (bên ngoài) nó. function addsquares(a, b) { higher-order function nhau addsquares closure callback hàm lồng x * x;",
+      "searchText": "hàm lồng nhau hàm lồng nhau: hàm lồng (bên trong) là riêng tư đối với hàm chứa (bên ngoài) nó. function addsquares(a, b) { nhau lồng closure function higher-order hàm addsquares callback x * x;",
       "tags": [
         "function",
         "closure",
@@ -2651,7 +2651,7 @@
       "returns": "a + param;",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions):\n\n```js\n// An empty arrow function returns undefined\nlet empty = () => {};\n\n// An empty arrow function returns undefined\n(() => ",
-      "searchText": "hàm mũi tên hàm mũi tên có từ khóa this theo phạm vi từ vựng (lexical). param => expression higher-order function expression param mũi closure callback tên hàm a + param;",
+      "searchText": "hàm mũi tên hàm mũi tên có từ khóa this theo phạm vi từ vựng (lexical). param => expression expression mũi closure function higher-order hàm param callback tên a + param;",
       "tags": [
         "function",
         "closure",
@@ -2679,7 +2679,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hàm định sẵn - không sử dụng: eval(), uneval(), escape(), và unescape().  higher-order function định sẵn closure callback hàm",
+      "searchText": "hàm định sẵn - không sử dụng: eval(), uneval(), escape(), và unescape().  định closure function higher-order sẵn hàm callback",
       "tags": [
         "function",
         "closure",
@@ -2706,7 +2706,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hàm động let foods = {  higher-order function động closure callback hàm",
+      "searchText": "hàm động let foods = {  closure động function higher-order hàm callback",
       "tags": [
         "function",
         "closure",
@@ -2732,7 +2732,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "iife (function () {  higher-order function callback closure iife",
+      "searchText": "iife (function () {  closure iife function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2762,7 +2762,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "khai báo vs biểu thức // function declaration:  higher-order function thức báo vs closure callback biểu khai",
+      "searchText": "khai báo vs biểu thức // function declaration:  báo vs biểu thức closure khai function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2790,7 +2790,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh trả về giá trị boolean từ hàm và typeof: function checkequal(a, b) { higher-order function checkequal linh closure callback tinh",
+      "searchText": "linh tinh trả về giá trị boolean từ hàm và typeof: function checkequal(a, b) { linh tinh closure checkequal function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2817,7 +2817,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions): Phạm vi và ngăn xếp hàm, Đệ quy, Bảo toàn biến, Không có `this` riêng biệt, và Hàm định sẵn.",
-      "searchText": "linh tinh 2 - tham số (parameters) vs đối số (arguments)  higher-order function linh closure callback tinh",
+      "searchText": "linh tinh 2 - tham số (parameters) vs đối số (arguments)  linh tinh closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2850,7 +2850,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lưu trữ cục bộ đây sẽ là mã bên trong một hàm: localstorage.setitem(\"key\", \"value\"); higher-order function bộ trữ value localstorage cục lưu closure callback setitem key",
+      "searchText": "lưu trữ cục bộ đây sẽ là mã bên trong một hàm: localstorage.setitem(\"key\", \"value\"); cục localstorage closure trữ value function higher-order lưu bộ key setitem callback",
       "tags": [
         "function",
         "closure",
@@ -2877,7 +2877,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { higher-order function callback closure memoization memoizedadd",
+      "searchText": "memoization // syntax / generic examples const memoizedadd = () => { memoization memoizedadd closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -2905,7 +2905,7 @@
       "returns": null,
       "mutates": false,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind): tạo ra một hàm mới mà khi được gọi, từ khóa this của nó được đặt thành giá trị đã cung cấp, với một chuỗi tham số cho trước đứng trước bất kỳ tham số nào được cung cấp khi hàm mới được gọi (???)\n\n```js\n// syntax\nbind(thisArg)\nbind(thisArg, arg1)\nbind(thisArg, arg1, arg2)\nbind(thisArg, arg1, ... , argN)\n```\n\nCác thuật ngữ khác:\n\n- cách tiếp cận mệnh lệnh (imperative approach)\n- lập trình khai báo (declarative programming)\n- đột biến (mutation), tác dụng phụ (side effect), hàm thuần túy (pure function)\n- đối tượng hạng nhất (first class objects)\n- 10. Triển khai phương thức filter trên Prototype\n\n<div align=",
-      "searchText": "ngẫu nhiên - freecodecamp: các hàm được coi là đối tượng hạng nhất trong javascript, nghĩa là chúng có thể được sử dụng như bất kỳ đối tượng nào khác. function test() { higher-order function nhiên ngẫu test closure callback",
+      "searchText": "ngẫu nhiên - freecodecamp: các hàm được coi là đối tượng hạng nhất trong javascript, nghĩa là chúng có thể được sử dụng như bất kỳ đối tượng nào khác. function test() { nhiên closure ngẫu function higher-order test callback",
       "tags": [
         "function",
         "closure",
@@ -2934,7 +2934,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "nhiều hàm lồng nhau các hàm có thể được lồng nhau nhiều cấp:  higher-order function nhau closure callback hàm nhiều lồng",
+      "searchText": "nhiều hàm lồng nhau các hàm có thể được lồng nhau nhiều cấp:  nhau lồng closure function higher-order hàm nhiều callback",
       "tags": [
         "function",
         "closure",
@@ -2962,7 +2962,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức cú pháp: phần này nên nằm trong tệp đối tượng const obj = { higher-order function phương thức obj closure callback",
+      "searchText": "phương thức cú pháp: phần này nên nằm trong tệp đối tượng const obj = { thức closure function higher-order obj phương callback",
       "tags": [
         "function",
         "closure",
@@ -2991,7 +2991,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get): Cú pháp `get` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi thuộc tính đó được tra cứu.\n- [set và setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set): Cú pháp `set` liên kết một thuộc tính của đối tượng với một hàm sẽ được gọi khi có nỗ lực gán giá trị cho thuộc tính đó.",
-      "searchText": "phương thức của hàm cũng hãy xem  higher-order function phương thức của closure callback hàm",
+      "searchText": "phương thức của hàm cũng hãy xem  của thức closure function higher-order hàm phương callback",
       "tags": [
         "function",
         "closure",
@@ -3019,7 +3019,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#chained_promises), [MDN Incumbent settings object tracking](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#incumbent_settings_object_tracking), [MDN Constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#constructor), [MDN Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods), và [MDN Instance methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#instance_methods)\n\n```js\n// lesson 29 freeCodeCamp\nconst myPromise = new Promise((resolve, reject) => {\n  if (conditionhere) {\n    resolve(",
-      "searchText": "promise trong es6 đối tượng promise đại diện cho việc hoàn thành (hoặc thất bại) cuối cùng của một thao tác bất đồng bộ và giá trị kết quả của nó.  higher-order function trong closure callback es6 promise",
+      "searchText": "promise trong es6 đối tượng promise đại diện cho việc hoàn thành (hoặc thất bại) cuối cùng của một thao tác bất đồng bộ và giá trị kết quả của nó.  trong closure es6 function higher-order callback promise",
       "tags": [
         "function",
         "closure",
@@ -3052,7 +3052,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tham số mặc định đặt tham số mặc định cho hàm của bạn: const greeting = (name = \"anonymous\") => \"hello \" + name; higher-order function hello tham mặc số greeting định name closure callback anonymous",
+      "searchText": "tham số mặc định đặt tham số mặc định cho hàm của bạn: const greeting = (name = \"anonymous\") => \"hello \" + name; tham name định hello anonymous closure mặc function higher-order số callback greeting",
       "tags": [
         "function",
         "closure",
@@ -3078,7 +3078,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString) trả về một chuỗi biểu diễn mã nguồn của hàm.\n\n```js\n// syntax:\ntoString();\n```\n\n<div align=",
-      "searchText": "tostring phương thức tostring() trả về một chuỗi biểu diễn mã nguồn của hàm. tostring(); higher-order function callback closure tostring",
+      "searchText": "tostring phương thức tostring() trả về một chuỗi biểu diễn mã nguồn của hàm. tostring(); tostring closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -3105,7 +3105,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tổng quan hãy xem các thuộc tính của hàm: .length, và có thể cả .name.  higher-order function quan closure callback tổng",
+      "searchText": "tổng quan hãy xem các thuộc tính của hàm: .length, và có thể cả .name.  tổng closure function higher-order quan callback",
       "tags": [
         "function",
         "closure",
@@ -3133,7 +3133,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ví dụ freecodecamp // factorial example with recursion  higher-order freecodecamp function dụ ví closure callback",
+      "searchText": "ví dụ freecodecamp // factorial example with recursion  closure dụ freecodecamp function ví higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -3161,7 +3161,7 @@
       "returns": "the maximum size of the call stack available in the JavaScript runtime in which the code is run",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ví dụ mdn đệ quy bị giới hạn bởi kích thước ngăn xếp:  higher-order function dụ ví closure callback mdn the maximum size of the call stack available in the javascript runtime in which the code is run",
+      "searchText": "ví dụ mdn đệ quy bị giới hạn bởi kích thước ngăn xếp:  mdn closure dụ function ví higher-order callback the maximum size of the call stack available in the javascript runtime in which the code is run",
       "tags": [
         "function",
         "closure",
@@ -3196,7 +3196,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "xem nó như một mảng bạn không nên dùng slice trên arguments vì nó ngăn cản các tối ưu hóa trong các engine javascript. let args = []; // empty array, at first. higher-order xem mảng function array như một first args closure callback nó at empty",
+      "searchText": "xem nó như một mảng bạn không nên dùng slice trên arguments vì nó ngăn cản các tối ưu hóa trong các engine javascript. let args = []; // empty array, at first. một args at empty first như nó mảng closure array function higher-order xem callback",
       "tags": [
         "function",
         "closure",
@@ -3224,7 +3224,7 @@
       "returns": "fxName();",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "đệ quy hành động một hàm tự gọi chính nó, đệ quy được sử dụng để giải các bài toán chứa các bài toán con nhỏ hơn. function recurse() { higher-order function recurse closure quy callback đệ fxname();",
+      "searchText": "đệ quy hành động một hàm tự gọi chính nó, đệ quy được sử dụng để giải các bài toán chứa các bài toán con nhỏ hơn. function recurse() { quy đệ recurse closure function higher-order callback fxname();",
       "tags": [
         "function",
         "closure",
@@ -3251,7 +3251,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "định nghĩa định nghĩa  higher-order function định nghĩa closure callback",
+      "searchText": "định nghĩa định nghĩa  định nghĩa closure function higher-order callback",
       "tags": [
         "function",
         "closure",
@@ -3283,7 +3283,7 @@
       "returns": "the type of the first argument",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "đối tượng arguments mdn: arguments là một đối tượng dạng mảng (array-like) có thể truy cập bên trong hàm, chứa các giá trị của các tham số được truyền cho hàm đó. console.log(typeof arguments); // 'object' higher-order function console object arguments tượng typeof đối log closure callback the type of the first argument",
+      "searchText": "đối tượng arguments mdn: arguments là một đối tượng dạng mảng (array-like) có thể truy cập bên trong hàm, chứa các giá trị của các tham số được truyền cho hàm đó. console.log(typeof arguments); // 'object' console arguments callback tượng closure object function higher-order log đối typeof the type of the first argument",
       "tags": [
         "function",
         "closure",
@@ -3312,7 +3312,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ủy quyền sự kiện // list items with delete link on the items but  higher-order kiện ủy function quyền sự closure callback",
+      "searchText": "ủy quyền sự kiện // list items with delete link on the items but  quyền kiện closure function higher-order ủy sự callback",
       "tags": [
         "function",
         "closure",
@@ -3340,7 +3340,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#break_statement).\n\nCâu lệnh `continue` có thể được dùng để khởi động lại câu lệnh `while`, `do-while`, `for`, hoặc `label`. Xem [MDN continue statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#continue_statement).\n\nCú pháp break:\n```js\nbreak;\nbreak [label];\n\n// example\nfor (let i = 0; i < a.length; i++) {\n  if (a[i] === theValue) {\n    break;\n  }\n}\n```\n\n<br />\n\nCú pháp continue:\n```js\ncontinue [label];\n\n// example 1\nfor (let i = 0; i > 10, i++) {\n  if (i === 2) {\n    console.log(",
-      "searchText": "continue và break sử dụng câu lệnh break để kết thúc một vòng lặp, switch, hoặc kết hợp với một câu lệnh có nhãn.  while loop break iteration continue for và",
+      "searchText": "continue và break sử dụng câu lệnh break để kết thúc một vòng lặp, switch, hoặc kết hợp với một câu lệnh có nhãn.  iteration loop while for break continue và",
       "tags": [
         "loop",
         "iteration",
@@ -3368,7 +3368,7 @@
       "returns": "the keys",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for in câu lệnh for...in duyệt một biến xác định qua tất cả các thuộc tính có thể đếm được (enumerable) của một đối tượng. for (variable in object) { object for iteration loop in while variable the keys",
+      "searchText": "for in câu lệnh for...in duyệt một biến xác định qua tất cả các thuộc tính có thể đếm được (enumerable) của một đối tượng. for (variable in object) { loop iteration while for object in variable the keys",
       "tags": [
         "loop",
         "iteration",
@@ -3396,7 +3396,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "for of câu lệnh for...of tạo một vòng lặp duyệt qua các đối tượng có thể duyệt (iterable) (bao gồm array, map, set, đối tượng arguments v.v.), gọi một hook duyệt tùy chỉnh với các câu lệnh được thực thi cho giá trị của mỗi thuộc tính riêng biệt (?) for (variable of iterable) { iterable iteration loop for while of variable",
+      "searchText": "for of câu lệnh for...of tạo một vòng lặp duyệt qua các đối tượng có thể duyệt (iterable) (bao gồm array, map, set, đối tượng arguments v.v.), gọi một hook duyệt tùy chỉnh với các câu lệnh được thực thi cho giá trị của mỗi thuộc tính riêng biệt (?) for (variable of iterable) { loop iteration while for iterable of variable",
       "tags": [
         "loop",
         "iteration",
@@ -3423,7 +3423,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh - bộ tích lũy (accumulators)  linh iteration loop for while tinh",
+      "searchText": "linh tinh - bộ tích lũy (accumulators)  linh tinh iteration loop while for",
       "tags": [
         "loop",
         "iteration",
@@ -3453,7 +3453,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức mảng sử dụng các phương thức mảng bậc cao như map và foreach thay vì vòng lặp for khi làm việc với mảng: cars.foreach(function(a, b, c) {}) phương thức mảng cars iteration loop foreach for while",
+      "searchText": "phương thức mảng sử dụng các phương thức mảng bậc cao như map và foreach thay vì vòng lặp for khi làm việc với mảng: cars.foreach(function(a, b, c) {}) loop iteration while thức for cars mảng foreach phương",
       "tags": [
         "loop",
         "iteration",
@@ -3481,7 +3481,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp do while câu lệnh do...while tạo một vòng lặp thực thi một câu lệnh xác định cho đến khi điều kiện kiểm tra đánh giá thành false.  do vòng for iteration loop while lặp",
+      "searchText": "vòng lặp do while câu lệnh do...while tạo một vòng lặp thực thi một câu lệnh xác định cho đến khi điều kiện kiểm tra đánh giá thành false.  loop iteration while do for vòng lặp",
       "tags": [
         "loop",
         "iteration",
@@ -3511,7 +3511,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp for vòng lặp for lặp lại cho đến khi một điều kiện xác định đánh giá thành false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) vòng conditionexpression incrementexpression iteration loop for while initialexpression lặp",
+      "searchText": "vòng lặp for vòng lặp for lặp lại cho đến khi một điều kiện xác định đánh giá thành false. for ([initialexpression]; [conditionexpression]; [incrementexpression]) loop iteration while for conditionexpression vòng initialexpression lặp incrementexpression",
       "tags": [
         "loop",
         "iteration",
@@ -3541,7 +3541,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp for in và for of  sự khác biệt giữa vòng lặp for...of và vòng lặp for...in: trong khi for...in duyệt qua các instên/khóa/ins thuộc tính, for...of duyệt qua các insgiá trị/ins thuộc tính.  vòng while for iteration loop in và of lặp",
+      "searchText": "vòng lặp for in và for of  sự khác biệt giữa vòng lặp for...of và vòng lặp for...in: trong khi for...in duyệt qua các instên/khóa/ins thuộc tính, for...of duyệt qua các insgiá trị/ins thuộc tính.  loop iteration while for of vòng in và lặp",
       "tags": [
         "loop",
         "iteration",
@@ -3569,7 +3569,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp while câu lệnh while tạo một vòng lặp thực thi một câu lệnh xác định miễn là condition kiểm tra có giá trị true. while (condition) condition vòng for iteration loop while lặp",
+      "searchText": "vòng lặp while câu lệnh while tạo một vòng lặp thực thi một câu lệnh xác định miễn là condition kiểm tra có giá trị true. while (condition) condition loop iteration while for vòng lặp",
       "tags": [
         "loop",
         "iteration",
@@ -3595,7 +3595,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "animation - animationend — hoạt ảnh css đã hoàn tất  notes dom concepts es6 animation",
+      "searchText": "animation - animationend — hoạt ảnh css đã hoàn tất  es6 concepts dom animation notes",
       "tags": [
         "notes",
         "es6",
@@ -3623,7 +3623,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "binary search tree - 26:03 – cách để lưu dữ liệu mà khi hình dung trông như cây (nghĩ tới hệ phân cấp công ty) – tất cả điểm dữ liệu được gọi là nút – đỉnh cây gọi là nút gốc (thẻ html) và sau đó phân nhánh sang trái và phải, nút cha và con và nút anh chị em, nút lá là nút ở cuối cây không có con – cây tìm kiếm nhị ph  notes tree binary dom concepts es6 search",
+      "searchText": "binary search tree - 26:03 – cách để lưu dữ liệu mà khi hình dung trông như cây (nghĩ tới hệ phân cấp công ty) – tất cả điểm dữ liệu được gọi là nút – đỉnh cây gọi là nút gốc (thẻ html) và sau đó phân nhánh sang trái và phải, nút cha và con và nút anh chị em, nút lá là nút ở cuối cây không có con – cây tìm kiếm nhị ph  tree search es6 binary concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3649,7 +3649,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "clipboard - oncopy — người dùng sao chép nội dung của phần tử  clipboard notes dom concepts es6",
+      "searchText": "clipboard - oncopy — người dùng sao chép nội dung của phần tử  es6 clipboard concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3676,7 +3676,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "code specific code specific  specific notes dom concepts es6 code",
+      "searchText": "code specific code specific  code es6 concepts specific dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3701,7 +3701,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "concepts concepts  dom notes concepts es6",
+      "searchText": "concepts concepts  dom concepts es6 notes",
       "tags": [
         "notes",
         "es6",
@@ -3728,7 +3728,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "data structures video: data structures and algorithms in javascript 1:52:54 |  notes structures data dom concepts es6",
+      "searchText": "data structures video: data structures and algorithms in javascript 1:52:54 |  es6 structures concepts dom data notes",
       "tags": [
         "notes",
         "es6",
@@ -3755,7 +3755,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom element methods - getattribute() — trả về giá trị thuộc tính chỉ định của nút phần tử  notes element methods dom concepts es6",
+      "searchText": "dom element methods - getattribute() — trả về giá trị thuộc tính chỉ định của nút phần tử  es6 concepts methods element dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3782,7 +3782,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom node methods - appendchild() — thêm nút con mới vào phần tử làm nút con cuối cùng  notes methods dom concepts es6 node",
+      "searchText": "dom node methods - appendchild() — thêm nút con mới vào phần tử làm nút con cuối cùng  es6 node concepts methods dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3809,7 +3809,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "dom node properties - attributes — trả về tập hợp động (live collection) của mọi thuộc tính đã đăng ký cho phần tử  notes properties dom concepts es6 node",
+      "searchText": "dom node properties - attributes — trả về tập hợp động (live collection) của mọi thuộc tính đã đăng ký cho phần tử  es6 node concepts properties dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3835,7 +3835,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "drag - ondrag — phần tử đang được kéo  notes dom es6 concepts drag",
+      "searchText": "drag - ondrag — phần tử đang được kéo  drag es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3861,7 +3861,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "form - onblur — khi phần tử mất tiêu điểm (focus)  notes form dom concepts es6",
+      "searchText": "form - onblur — khi phần tử mất tiêu điểm (focus)  form es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3887,7 +3887,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "frame - onabort — việc tải media bị hủy  notes dom frame concepts es6",
+      "searchText": "frame - onabort — việc tải media bị hủy  es6 concepts dom frame notes",
       "tags": [
         "notes",
         "es6",
@@ -3917,7 +3917,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú lộn xộn mọi thứ dưới đây là sổ tay lộn xộn: ghi chú không có thứ tự, ghi chú không rõ ràng, một bản nháp thực sự. function isequal(a, b) { isequal notes xộn lộn dom ghi chú concepts es6",
+      "searchText": "ghi chú lộn xộn mọi thứ dưới đây là sổ tay lộn xộn: ghi chú không có thứ tự, ghi chú không rõ ràng, một bản nháp thực sự. function isequal(a, b) { lộn ghi chú es6 xộn isequal concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3943,7 +3943,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "graphs - 1:42:08 – cấu trúc dữ liệu đồ thị là tập hợp các thứ và mối quan hệ/kết nối giữa chúng – dữ liệu hoặc đồ thị được gọi là nút hoặc đỉnh – kết nối giữa các nút gọi là cạnh – mạng xã hội là ví dụ nơi các nút là bạn và người khác và các cạnh là liệu bạn có là bạn bè – có 2 loại: đồ thị có hướng và vô   notes graphs dom concepts es6",
+      "searchText": "graphs - 1:42:08 – cấu trúc dữ liệu đồ thị là tập hợp các thứ và mối quan hệ/kết nối giữa chúng – dữ liệu hoặc đồ thị được gọi là nút hoặc đỉnh – kết nối giữa các nút gọi là cạnh – mạng xã hội là ví dụ nơi các nút là bạn và người khác và các cạnh là liệu bạn có là bạn bè – có 2 loại: đồ thị có hướng và vô   graphs es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3970,7 +3970,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "hash table - 53:20 – được dùng để triển khai mảng liên hợp hoặc ánh xạ cặp khóa-giá trị – chúng là cách phổ biến để triển khai cấu trúc dữ liệu map hoặc đối tượng – chúng được dùng rộng rãi vì hiệu quả – thời gian tra cứu nhanh, không phụ thuộc số lượng phần tử – cách chúng hoạt động: 1.  notes table dom concepts es6 hash",
+      "searchText": "hash table - 53:20 – được dùng để triển khai mảng liên hợp hoặc ánh xạ cặp khóa-giá trị – chúng là cách phổ biến để triển khai cấu trúc dữ liệu map hoặc đối tượng – chúng được dùng rộng rãi vì hiệu quả – thời gian tra cứu nhanh, không phụ thuộc số lượng phần tử – cách chúng hoạt động: 1.  es6 hash concepts table dom notes",
       "tags": [
         "notes",
         "es6",
@@ -3996,7 +3996,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "heap - 1:27:29 – heap nhị phân là cây nhị phân có thứ tự một phần thỏa mãn tính chất heap – mỗi nút có tối đa 2 nút con – chỉ ra tính chất cụ thể giữa nút cha và nút con – tìm hiểu max heap và min heap cho số nút con  hoặc  số nút cha – lại thuộc tính nút trái và nút phải – chúng thường được triển khai d  heap notes dom concepts es6",
+      "searchText": "heap - 1:27:29 – heap nhị phân là cây nhị phân có thứ tự một phần thỏa mãn tính chất heap – mỗi nút có tối đa 2 nút con – chỉ ra tính chất cụ thể giữa nút cha và nút con – tìm hiểu max heap và min heap cho số nút con  hoặc  số nút cha – lại thuộc tính nút trái và nút phải – chúng thường được triển khai d  es6 concepts heap dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4022,7 +4022,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "keyboard - onkeydown — khi người dùng đang nhấn phím xuống  notes dom concepts es6 keyboard",
+      "searchText": "keyboard - onkeydown — khi người dùng đang nhấn phím xuống  keyboard es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4048,7 +4048,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "media - onabort — việc tải media bị hủy  notes dom media concepts es6",
+      "searchText": "media - onabort — việc tải media bị hủy  media es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4074,7 +4074,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "mouse - onclick — sự kiện xảy ra khi người dùng nhấp vào phần tử  mouse notes dom concepts es6",
+      "searchText": "mouse - onclick — sự kiện xảy ra khi người dùng nhấp vào phần tử  es6 concepts mouse dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4100,7 +4100,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "oop video: giới thiệu lập trình hướng đối tượng - khóa cấp tốc |  notes dom es6 concepts oop",
+      "searchText": "oop video: giới thiệu lập trình hướng đối tượng - khóa cấp tốc |  es6 concepts oop dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4127,7 +4127,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "other events - transitionend — kích hoạt khi chuyển đổi css đã hoàn tất  notes events other dom concepts es6",
+      "searchText": "other events - transitionend — kích hoạt khi chuyển đổi css đã hoàn tất  other events es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4153,7 +4153,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "queue - 19:24 – cấu trúc dữ liệu hàng đợi là cách để lưu dữ liệu – nó tương tự ngăn xếp, ngăn xếp là filo (tôi nghĩ anh ấy muốn nói lifo), hàng đợi là fifo – trong js bạn có thể triển khai hàng đợi bằng mảng, - hãy nghĩ hàng xếp hàng ở cửa hàng hoặc ngân hàng hoặc hàng đợi in – 1.  notes queue dom concepts es6",
+      "searchText": "queue - 19:24 – cấu trúc dữ liệu hàng đợi là cách để lưu dữ liệu – nó tương tự ngăn xếp, ngăn xếp là filo (tôi nghĩ anh ấy muốn nói lifo), hàng đợi là fifo – trong js bạn có thể triển khai hàng đợi bằng mảng, - hãy nghĩ hàng xếp hàng ở cửa hàng hoặc ngân hàng hoặc hàng đợi in – 1.  queue es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4179,7 +4179,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "sets - cấu trúc dữ liệu set giống mảng ngoại trừ không có mục trùng lặp và giá trị không theo thứ tự cụ thể – cách dùng điển hình cho set là kiểm tra sự tồn tại của một mục cụ thể  notes sets dom concepts es6",
+      "searchText": "sets - cấu trúc dữ liệu set giống mảng ngoại trừ không có mục trùng lặp và giá trị không theo thứ tự cụ thể – cách dùng điển hình cho set là kiểm tra sự tồn tại của một mục cụ thể  es6 concepts dom sets notes",
       "tags": [
         "notes",
         "es6",
@@ -4205,7 +4205,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "stacks - 0:20 cấu trúc dữ liệu ngăn xếp → ví dụ: chồng sách, lifo, nút quay lại của trình duyệt (đẩy trang lên đầu),  stacks notes dom concepts es6",
+      "searchText": "stacks - 0:20 cấu trúc dữ liệu ngăn xếp → ví dụ: chồng sách, lifo, nút quay lại của trình duyệt (đẩy trang lên đầu),  stacks es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4231,7 +4231,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "the dom có gì đó ở đây...  notes the dom concepts es6",
+      "searchText": "the dom có gì đó ở đây...  the es6 concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4257,7 +4257,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "trie - 1:15:00 – đôi khi gọi là cây tiền tố, là kiểu cây đặc biệt dùng để lưu cấu trúc dữ liệu liên hợp – chúng lưu dữ liệu theo từng bước, mỗi bước là một nút trong trie, thường dùng để lưu từ – ví dụ, để xác thực một từ có trong từ điển – mỗi bước/nút sẽ đại diện 1 chữ cái của từ  notes trie dom concepts es6",
+      "searchText": "trie - 1:15:00 – đôi khi gọi là cây tiền tố, là kiểu cây đặc biệt dùng để lưu cấu trúc dữ liệu liên hợp – chúng lưu dữ liệu theo từng bước, mỗi bước là một nút trong trie, thường dùng để lưu từ – ví dụ, để xác thực một từ có trong từ điển – mỗi bước/nút sẽ đại diện 1 chữ cái của từ  es6 trie concepts dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4288,7 +4288,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "unique things những thứ bạn ít khi thấy: const range = array(max - min + 1) array notes min max things dom concepts es6 unique range",
+      "searchText": "unique things những thứ bạn ít khi thấy: const range = array(max - min + 1) range es6 array unique concepts max things min dom notes",
       "tags": [
         "notes",
         "es6",
@@ -4316,7 +4316,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs",
-      "searchText": "absolute math.abs() math.abs(x); absolute number-date abs number math date numeric",
+      "searchText": "absolute math.abs() math.abs(x); math absolute numeric abs number number-date date",
       "tags": [
         "number",
         "math",
@@ -4344,7 +4344,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil",
-      "searchText": "ceiling math.ceil(): luôn làm tròn một số lên số nguyên lớn hơn tiếp theo. math.ceil(x); number-date ceil number ceiling math date numeric",
+      "searchText": "ceiling math.ceil(): luôn làm tròn một số lên số nguyên lớn hơn tiếp theo. math.ceil(x); ceiling math numeric ceil number number-date date",
       "tags": [
         "number",
         "math",
@@ -4372,7 +4372,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos",
-      "searchText": "cosine math.cos() math.cos(x); cosine number-date number math date cos numeric",
+      "searchText": "cosine math.cos() math.cos(x); math numeric cos cosine number number-date date",
       "tags": [
         "number",
         "math",
@@ -4399,7 +4399,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor",
-      "searchText": "floor math.floor(): trả về số nguyên lớn nhất nhỏ hơn hoặc bằng một số đã cho math.floor(x); number-date floor number math date numeric",
+      "searchText": "floor math.floor(): trả về số nguyên lớn nhất nhỏ hơn hoặc bằng một số đã cho math.floor(x); math floor numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4427,7 +4427,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite",
-      "searchText": "isfinite hàm toàn cục isfinite() xác định xem giá trị được truyền vào có phải là một số hữu hạn hay không. isfinite(testvalue); isfinite number-date number testvalue math date numeric",
+      "searchText": "isfinite hàm toàn cục isfinite() xác định xem giá trị được truyền vào có phải là một số hữu hạn hay không. isfinite(testvalue); isfinite math testvalue numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4455,7 +4455,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger",
-      "searchText": "isinteger phương thức number.isinteger() xác định xem giá trị được truyền vào có phải là số nguyên hay không. number.isinteger(value); number-date value isinteger number math date numeric",
+      "searchText": "isinteger phương thức number.isinteger() xác định xem giá trị được truyền vào có phải là số nguyên hay không. number.isinteger(value); isinteger math value numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4483,7 +4483,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#confusing_special-case_behavior) để biết các kết quả _lạ_.\n\n```js\n// syntax\nisNaN(value);\n\n// special cases\nisNaN(NaN); // true\nisNaN(undefined); // true\nisNaN({}); // true\n\nisNaN(true); // false\nisNaN(null); // false\nisNaN(37); // false\nisNaN(",
-      "searchText": "isnan hàm isnan() xác định xem một giá trị có phải là nan hay không, trả về giá trị boolean. isnan(value); isnan number-date value number math date numeric",
+      "searchText": "isnan hàm isnan() xác định xem một giá trị có phải là nan hay không, trả về giá trị boolean. isnan(value); isnan math value numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4511,7 +4511,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh let typeoftest;  number-date linh number math date tinh numeric",
+      "searchText": "linh tinh let typeoftest;  linh tinh math numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4539,7 +4539,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lấy ngày không có tham số (d là tên biến cho ngày/giờ):  number-date lấy ngày number math date numeric",
+      "searchText": "lấy ngày không có tham số (d là tên biến cho ngày/giờ):  ngày lấy math numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4566,7 +4566,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max",
-      "searchText": "max math.max(): trả về số lớn nhất trong số không hoặc nhiều số được cho làm tham số đầu vào, hoặc nan nếu bất kỳ tham số nào không phải là số và không thể chuyển đổi thành số. math.max(); number-date max number math date numeric",
+      "searchText": "max math.max(): trả về số lớn nhất trong số không hoặc nhiều số được cho làm tham số đầu vào, hoặc nan nếu bất kỳ tham số nào không phải là số và không thể chuyển đổi thành số. math.max(); math max numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4593,7 +4593,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min",
-      "searchText": "min math.min(): trả về số có giá trị thấp nhất được truyền vào nó, hoặc nan nếu bất kỳ tham số nào không phải là số và không thể chuyển đổi thành số. math.min() min number-date number math date numeric",
+      "searchText": "min math.min(): trả về số có giá trị thấp nhất được truyền vào nó, hoặc nan nếu bất kỳ tham số nào không phải là số và không thể chuyển đổi thành số. math.min() math numeric min number number-date date",
       "tags": [
         "number",
         "math",
@@ -4620,7 +4620,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat",
-      "searchText": "parsefloat phương thức number.parsefloat() phân tích cú pháp một đối số và trả về một số thực dấu phẩy động.  number-date number parsefloat math date numeric",
+      "searchText": "parsefloat phương thức number.parsefloat() phân tích cú pháp một đối số và trả về một số thực dấu phẩy động.  parsefloat math numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4648,7 +4648,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt",
-      "searchText": "parseint hàm parseint() phân tích cú pháp một đối số chuỗi và trả về một số nguyên theo cơ số được chỉ định. parseint(string); parseint number-date number math date string numeric",
+      "searchText": "parseint hàm parseint() phân tích cú pháp một đối số chuỗi và trả về một số nguyên theo cơ số được chỉ định. parseint(string); math numeric parseint number string number-date date",
       "tags": [
         "number",
         "math",
@@ -4679,7 +4679,7 @@
       "returns": "weekday as a number 0-6",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Dưới đây là các liên kết tới tài liệu MDN cho các phương thức `get` phổ biến nhất của Date:\n\n|                                                                                                                |                                                                                                                              |                                                                                                                      |\n| :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |\n|  [MDN getDate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate)  |          [MDN getDay](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay)          | [MDN getFullYear](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear) |\n| [MDN getHours](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours) | [MDN getMilliseconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds) |  [MDN getMinutes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes)  |\n| [MDN getMonth](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth) |      [MDN getSeconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds)      |     [MDN getTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)     |\n\n<br />\n\ngetDate()\n\n```js\n// syntax\ngetDate();\n\n// examples\nconst birthday = new Date(",
-      "searchText": "phương thức get của date dưới đây là liên kết tới tài liệu mdn về date. getdate(); phương thức getdate number-date của get number math date numeric weekday as a number 0-6",
+      "searchText": "phương thức get của date dưới đây là liên kết tới tài liệu mdn về date. getdate(); của math thức get number numeric getdate phương number-date date weekday as a number 0-6",
       "tags": [
         "number",
         "math",
@@ -4707,7 +4707,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)    |  [MDN Math.ceil](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil)  | [MDN Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) |\n| [MDN Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) | [MDN Math.round](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round) |  [MDN Math.sign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign)  |\n|   [MDN Math.sqrt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt)   | [MDN Math.trunc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc) |   [MDN Math.max](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max)   |\n|    [MDN Math.min](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min)    |   [MDN Math.pow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)   |   [MDN Math.cos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cos)   |\n|    [MDN Math.sin](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin)    |   [MDN Math.tan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan)   |                                                                                                               |\n\n<br />",
-      "searchText": "phương thức math dưới đây là các liên kết tới tài liệu mdn cho các phương thức math phổ biến nhất:  phương thức number-date number math date numeric",
+      "searchText": "phương thức math dưới đây là các liên kết tới tài liệu mdn cho các phương thức math phổ biến nhất:  phương math thức numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4735,7 +4735,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential) |   [MDN toFixed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)   | [MDN toPrecision](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision) |\n|         [MDN isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite)          | [MDN isInteger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger) |  [MDN parseFloat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat)  |\n|         [MDN parseInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)          |                                                                                                                    |                                                                                                                        |\n\nĐã bỏ qua: `Number.isSafeInteger()`, `toLocaleString()`, `toString()` và `valueOf()`.",
-      "searchText": "phương thức number dưới đây là các liên kết tới tài liệu mdn cho các phương thức bên dưới:  phương thức number-date number math date numeric",
+      "searchText": "phương thức number dưới đây là các liên kết tới tài liệu mdn cho các phương thức bên dưới:  math thức number numeric phương number-date date",
       "tags": [
         "number",
         "math",
@@ -4767,7 +4767,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate)         | [MDN setFullYear](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear) |   [MDN setHours](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours)   |\n| [MDN setMilliseconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds) |  [MDN setMinutes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes)  |   [MDN setMonth](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth)   |\n|      [MDN setSeconds](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds)      |     [MDN setTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime)     | [MDN setUTCDate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setUTCDate) |\n\nViệc định dạng các giá trị ngày và giờ khá phức tạp. Hãy xem các liên kết sau\n\n- freeCodeCamp: [How to Format Dates in JavaScript](https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/)\n- Stackoverflow: [How to format a JavaScript date](https://stackoverflow.com/questions/3552461/how-to-format-a-javascript-date)\n- CSS Tricks: [Everything You Need to Know About Date in JavaScript](https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/)\n\n<br />\n\nsetDate()\n\n```js\n// syntax\nsetDate(dayValue);\n\n// example\nconst eventDate = new Date(",
-      "searchText": "phương thức set của date dưới đây là các liên kết tới tài liệu mdn cho các phương thức set phổ biến nhất của date: setdate(dayvalue); phương thức number-date setdate dayvalue của number set math date numeric",
+      "searchText": "phương thức set của date dưới đây là các liên kết tới tài liệu mdn cho các phương thức set phổ biến nhất của date: setdate(dayvalue); set của math thức setdate number numeric dayvalue phương number-date date",
       "tags": [
         "number",
         "math",
@@ -4797,7 +4797,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI",
-      "searchText": "pi thuộc tính math.pi biểu thị tỉ số giữa chu vi của một đường tròn và đường kính của nó, xấp xỉ 3,14159. console.log(math.pi); // 3.141592653589793 console number-date log 141592653589793 pi number math date numeric",
+      "searchText": "pi thuộc tính math.pi biểu thị tỉ số giữa chu vi của một đường tròn và đường kính của nó, xấp xỉ 3,14159. console.log(math.pi); // 3.141592653589793 console math 141592653589793 numeric log pi number number-date date",
       "tags": [
         "number",
         "math",
@@ -4827,7 +4827,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow",
-      "searchText": "power math.pow(x, y): phương thức tĩnh, với hai đối số base và exponent, trả về base supexp/sup. math.pow(base, exponent); base exponent number-date number pow math date power numeric",
+      "searchText": "power math.pow(x, y): phương thức tĩnh, với hai đối số base và exponent, trả về base supexp/sup. math.pow(base, exponent); pow math base power exponent numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4854,7 +4854,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random",
-      "searchText": "random math.random(): trả về một số giả ngẫu nhiên dấu phẩy động trong khoảng từ 0 đến nhỏ hơn 1 (bao gồm 0, nhưng không bao gồm 1) với phân bố gần như đồng đều trên khoảng đó — sau đó bạn có thể co giãn theo khoảng mong muốn math.random(); number-date number random math date numeric",
+      "searchText": "random math.random(): trả về một số giả ngẫu nhiên dấu phẩy động trong khoảng từ 0 đến nhỏ hơn 1 (bao gồm 0, nhưng không bao gồm 1) với phân bố gần như đồng đều trên khoảng đó — sau đó bạn có thể co giãn theo khoảng mong muốn math.random(); math random numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4881,7 +4881,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round",
-      "searchText": "round math.round(): trả về giá trị của một số được làm tròn tới số nguyên gần nhất math.round(x); round number-date number math date numeric",
+      "searchText": "round math.round(): trả về giá trị của một số được làm tròn tới số nguyên gần nhất math.round(x); math numeric round number number-date date",
       "tags": [
         "number",
         "math",
@@ -4908,7 +4908,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign",
-      "searchText": "sign math.sign(): trả về dương hoặc âm +/- 1, cho biết dấu của số được truyền vào đối số. math.sign(x); number-date sign number math date numeric",
+      "searchText": "sign math.sign(): trả về dương hoặc âm +/- 1, cho biết dấu của số được truyền vào đối số. math.sign(x); math numeric sign number number-date date",
       "tags": [
         "number",
         "math",
@@ -4936,7 +4936,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sin",
-      "searchText": "sine math.sin() math.sin(x); sin number-date number date math sine numeric",
+      "searchText": "sine math.sin() math.sin(x); sin math sine numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4963,7 +4963,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt",
-      "searchText": "sqrt hàm math.sqrt() trả về căn bậc hai của một số. math.sqrt(x); number-date sqrt number math date numeric",
+      "searchText": "sqrt hàm math.sqrt() trả về căn bậc hai của một số. math.sqrt(x); math sqrt numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -4992,7 +4992,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt",
-      "searchText": "square root math.sqrt(): trả về căn bậc hai của một số math.sqrt(x); root number-date square sqrt number math date numeric",
+      "searchText": "square root math.sqrt(): trả về căn bậc hai của một số math.sqrt(x); root math numeric sqrt square number number-date date",
       "tags": [
         "number",
         "math",
@@ -5019,7 +5019,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "số không có tham số  number-date số number math date numeric",
+      "searchText": "số không có tham số  math số numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -5047,7 +5047,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan",
-      "searchText": "tangent math.tan() math.tan(x); number-date tangent number math date tan numeric",
+      "searchText": "tangent math.tan() math.tan(x); math tan numeric tangent number number-date date",
       "tags": [
         "number",
         "math",
@@ -5076,7 +5076,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tham số rest cú pháp rest: ngược lại, gộp các phần tử riêng lẻ thành một mảng:  rest tham number-date số number math date numeric",
+      "searchText": "tham số rest cú pháp rest: ngược lại, gộp các phần tử riêng lẻ thành một mảng:  tham math số numeric rest number number-date date",
       "tags": [
         "number",
         "math",
@@ -5103,7 +5103,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential",
-      "searchText": "toexponential phương thức toexponential() trả về một chuỗi biểu diễn đối tượng number ở dạng ký hiệu số mũ. toexponential(); toexponential number-date number math date numeric",
+      "searchText": "toexponential phương thức toexponential() trả về một chuỗi biểu diễn đối tượng number ở dạng ký hiệu số mũ. toexponential(); math numeric toexponential number number-date date",
       "tags": [
         "number",
         "math",
@@ -5130,7 +5130,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed",
-      "searchText": "tofixed phương thức tofixed() định dạng một số bằng ký hiệu điểm cố định. tofixed(); number-date tofixed number math date numeric",
+      "searchText": "tofixed phương thức tofixed() định dạng một số bằng ký hiệu điểm cố định. tofixed(); math tofixed numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -5157,7 +5157,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision",
-      "searchText": "toprecision phương thức toprecision()  trả về một chuỗi biểu diễn đối tượng number với độ chính xác được chỉ định. toprecision(); number-date number date math toprecision numeric",
+      "searchText": "toprecision phương thức toprecision()  trả về một chuỗi biểu diễn đối tượng number với độ chính xác được chỉ định. toprecision(); toprecision math numeric number number-date date",
       "tags": [
         "number",
         "math",
@@ -5187,7 +5187,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán tử spread bỏ qua các số sau số thứ 3 function addthreenumbers(x, y, z) { tử number-date toán addthreenumbers spread number math date numeric",
+      "searchText": "toán tử spread bỏ qua các số sau số thứ 3 function addthreenumbers(x, y, z) { toán math addthreenumbers numeric tử spread number number-date date",
       "tags": [
         "number",
         "math",
@@ -5215,7 +5215,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc",
-      "searchText": "truncate math.trunc(): trả về phần nguyên của một số bằng cách loại bỏ mọi chữ số thập phân math.trunc(x); truncate number-date trunc number math date numeric",
+      "searchText": "truncate math.trunc(): trả về phần nguyên của một số bằng cách loại bỏ mọi chữ số thập phân math.trunc(x); math numeric trunc truncate number number-date date",
       "tags": [
         "number",
         "math",
@@ -5251,7 +5251,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "đặt ngày một tham số (d là tên biến cho ngày/giờ): let today = new date(); // \"202203-11t22:13:35.413z\" codepen? today 11t22 413z đặt number-date 202203 ngày number 35 codepen new math date 13 numeric",
+      "searchText": "đặt ngày một tham số (d là tên biến cho ngày/giờ): let today = new date(); // \"202203-11t22:13:35.413z\" codepen? codepen 35 11t22 ngày math new đặt 413z 202203 numeric 13 today number number-date date",
       "tags": [
         "number",
         "math",
@@ -5279,7 +5279,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "bảng cú pháp phương thức đối tượng và mã liên quan:  object class cú prototype pháp oop bảng",
+      "searchText": "bảng cú pháp phương thức đối tượng và mã liên quan:  prototype pháp object class bảng oop cú",
       "tags": [
         "object",
         "prototype",
@@ -5308,7 +5308,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "chủ đề liên quan những chủ đề này đến từ freecodecamp nhưng tôi nghĩ chúng không phải es6.  object class quan liên prototype chủ oop đề",
+      "searchText": "chủ đề liên quan những chủ đề này đến từ freecodecamp nhưng tôi nghĩ chúng không phải es6.  prototype object class liên oop chủ đề quan",
       "tags": [
         "object",
         "prototype",
@@ -5335,7 +5335,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "closure cách đơn giản nhất để làm cho thuộc tính công khai này thành riêng tư là tạo một biến trong hàm khởi tạo. function bird() { object bird class prototype closure oop",
+      "searchText": "closure cách đơn giản nhất để làm cho thuộc tính công khai này thành riêng tư là tạo một biến trong hàm khởi tạo. function bird() { prototype closure object class bird oop",
       "tags": [
         "object",
         "prototype",
@@ -5365,7 +5365,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "destructuring đối tượng cách cũ để destructuring một đối tượng, gán biến từ các đối tượng: var voxel = {x: 3.6, y: 7.4, z: 6.54}; object class tượng prototype destructuring đối oop 54 voxel",
+      "searchText": "destructuring đối tượng cách cũ để destructuring một đối tượng, gán biến từ các đối tượng: var voxel = {x: 3.6, y: 7.4, z: 6.54}; prototype 54 voxel destructuring tượng object class oop đối",
       "tags": [
         "object",
         "prototype",
@@ -5392,7 +5392,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ghi chú điều gì đó ở đây...  object class prototype ghi chú oop",
+      "searchText": "ghi chú điều gì đó ở đây...  prototype ghi chú object class oop",
       "tags": [
         "object",
         "prototype",
@@ -5420,7 +5420,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): Trả về `true` nếu đối tượng có thuộc tính được chỉ định như là thuộc tính riêng của nó (trái ngược với việc kế thừa nó); ngược lại là `false`.\n\n```js\n// syntax\nobj.hasOwnProperty(prop)\t\n// prop: The String name or Symbol of the property to test\n\n\n// Example, RECORD COLLECTION 1:\nfunction updateRecords(records, id, prop, value) {\n  if (prop !== 'tracks' && value !== ",
-      "searchText": "hasownproperty obj.hasownproperty(prop) obj.hasownproperty(prop) object class obj hasownproperty prototype prop oop",
+      "searchText": "hasownproperty obj.hasownproperty(prop) obj.hasownproperty(prop) prototype prop hasownproperty object class obj oop",
       "tags": [
         "object",
         "prototype",
@@ -5451,7 +5451,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "iife và mô-đun đối tượng một biểu thức hàm được gọi ngay lập tức (iife) thường được sử dụng để nhóm chức năng liên quan thành một đối tượng hoặc mô-đun duy nhất.  mô object đun class tượng prototype đối oop iife và",
+      "searchText": "iife và mô-đun đối tượng một biểu thức hàm được gọi ngay lập tức (iife) thường được sử dụng để nhóm chức năng liên quan thành một đối tượng hoặc mô-đun duy nhất.  prototype mô tượng object đun class iife oop và đối",
       "tags": [
         "object",
         "prototype",
@@ -5478,7 +5478,7 @@
       "returns": "true",
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof): kiểm tra xem thuộc tính prototype của một hàm khởi tạo có xuất hiện ở bất kỳ đâu trong chuỗi prototype của một đối tượng hay không. Giá trị trả về là một giá trị boolean. Trả về true nếu một đối tượng là một thể hiện của một kiểu đối tượng. \n\n```js\n// syntax: \nobject instanceof constructor\n\n// MDN examples:\nfunction Car(make, model, year) {\n  this.make = make;\n  this.model = model;\n  this.year = year;\n}\nconst auto = new Car('Honda', 'Accord', 1998);\nconsole.log(auto instanceof Car); // true \nconsole.log(auto instanceof Object); // true\n\n\n// with dates:\nlet myDate = new Date();\nmyDate instanceof Date;      // true\nmyDate instanceof Object;    // true\nmyDate instanceof String;    // false\n\n\n// Objects created using Object.create()\nfunction Shape() {\n}\nfunction Rectangle() {\n  Shape.call(this); // call super constructor.\n}\nRectangle.prototype = Object.create(Shape.prototype);\nRectangle.prototype.constructor = Rectangle;\nlet rect = new Rectangle();\nrect instanceof Object;    // true\nrect instanceof Shape;     // true\nrect instanceof Rectangle; // true\nrect instanceof String;    // false\n\nlet literalObject     = {};\nlet nullObject  = Object.create(null);\nnullObject.name = ",
-      "searchText": "instanceof // syntax: object instanceof constructor object class prototype instanceof constructor oop true",
+      "searchText": "instanceof // syntax: object instanceof constructor prototype instanceof class object oop constructor true",
       "tags": [
         "object",
         "prototype",
@@ -5504,7 +5504,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf): kiểm tra xem một đối tượng có tồn tại trong chuỗi prototype của đối tượng khác hay không\n\n```js\n// syntax\nisPrototypeOf(object)\n\n// example\nfunction Foo() {}\nfunction Bar() {}\n\nBar.prototype = Object.create(Foo.prototype);\nconst bar = new Bar();\nconsole.log(Foo.prototype.isPrototypeOf(bar)); // true\nconsole.log(Bar.prototype.isPrototypeOf(bar)); // true\n\n\n// example 2\nfunction Bird(name) {\n  this.name = name;\n}\nlet duck = new Bird(",
-      "searchText": "isprototypeof isprototypeof(object) isprototypeof(object) object class prototype oop isprototypeof",
+      "searchText": "isprototypeof isprototypeof(object) isprototypeof(object) prototype isprototypeof object class oop",
       "tags": [
         "object",
         "prototype",
@@ -5534,7 +5534,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#inheritance_with_the_prototype_chain): điều gì đó về hàm khởi tạo và siêu kiểu.\n\n`freeCodeCamp`: Nhưng duck và tất cả các thể hiện của Bird nên cho thấy rằng chúng được tạo bởi Bird chứ không phải Animal. Để làm như vậy, bạn có thể thiết lập thủ công thuộc tính constructor của Bird thành đối tượng Bird\n\n```js\n// syntax:\nChildObject.prototype = Object.create(ParentObject.prototype);\n// Then the ChildObject received its own methods by chaining them onto its prototype:\nChildObject.prototype.methodName = function() {...};\n\n\n// A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods\nfunction Animal() { }\nAnimal.prototype.eat = function() {\n  console.log(",
-      "searchText": "kế thừa freecodecamp: nhưng duck và tất cả các thể hiện của bird nên cho thấy rằng chúng được tạo bởi bird chứ không phải animal. childobject.prototype = object.create(parentobject.prototype); object thừa class childobject prototype kế create oop parentobject",
+      "searchText": "kế thừa freecodecamp: nhưng duck và tất cả các thể hiện của bird nên cho thấy rằng chúng được tạo bởi bird chứ không phải animal. childobject.prototype = object.create(parentobject.prototype); create prototype childobject kế parentobject object thừa class oop",
       "tags": [
         "object",
         "prototype",
@@ -5561,7 +5561,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "linh tinh các phương thức khác: object.entries(obj)| object.getownpropertynames()| object.freeze(obj)| obj.tostring() | obj.prop ???  object class prototype linh oop tinh",
+      "searchText": "linh tinh các phương thức khác: object.entries(obj)| object.getownpropertynames()| object.freeze(obj)| obj.tostring() | obj.prop ???  linh tinh prototype object class oop",
       "tags": [
         "object",
         "prototype",
@@ -5587,7 +5587,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lớp video tuyệt vời về lớp es6: https://youtu.be/vmliclijs8  object class prototype oop lớp",
+      "searchText": "lớp video tuyệt vời về lớp es6: https://youtu.be/vmliclijs8  prototype object class lớp oop",
       "tags": [
         "object",
         "prototype",
@@ -5617,7 +5617,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "mixin đối tượng mixin cho phép các đối tượng khác sử dụng một tập hợp các hàm. let flymixin = function(obj) { object class obj tượng prototype đối flymixin oop mixin",
+      "searchText": "mixin đối tượng mixin cho phép các đối tượng khác sử dụng một tập hợp các hàm. let flymixin = function(obj) { prototype mixin tượng flymixin object class obj oop đối",
       "tags": [
         "object",
         "prototype",
@@ -5644,7 +5644,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create): tạo một đối tượng mới, sử dụng một đối tượng hiện có làm prototype của đối tượng mới được tạo - một cách tiếp cận thay thế cho kế thừa thay vì `new ClssName()`.\n\n`freeCodeCamp`: Bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) Animal: tạo một thể hiện mới của Animal. bước tiếp theo: đặt prototype của kiểu con (hoặc con)—trong trường hợp này, Bird—thành một thể hiện của Animal: `Bird.prototype = Object.create(Animal.prototype);`.\n\n```js\n// syntax:\nObject.create(proto)\nObject.create(proto, propertiesObject)\nObject.create(Class.prototype)\n\n\n// example\nconst person = {\n  isHuman: false,\n  printIntroduction: function() {\n    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);\n  }\n};\nconst me = Object.create(person);\nme.name = 'Matthew'; // ",
-      "searchText": "object create freecodecamp: bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) animal: tạo một thể hiện mới của animal. object.create(proto) object proto class prototype create oop",
+      "searchText": "object create freecodecamp: bước đầu tiên để kế thừa hành vi từ siêu kiểu (hoặc cha) animal: tạo một thể hiện mới của animal. object.create(proto) create prototype object class proto oop",
       "tags": [
         "object",
         "prototype",
@@ -5671,7 +5671,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries): trả về một mảng các cặp [khóa, giá trị] của một đối tượng cho trước. Điều này giống như lặp với vòng lặp for...in, ngoại trừ việc vòng lặp for...in liệt kê các thuộc tính trong chuỗi prototype nữa. \n\nThứ tự của mảng được trả về bởi `Object.entries()` giống như thứ tự được cung cấp bởi vòng lặp for...in. Nếu cần thứ tự khác, thì mảng nên được sắp xếp trước, như `Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`.\n\n```js\n// syntax:\nObject.entries(obj)\n\n\n// examples:\nconst object1 = {\n  a: 'word',\n  b: 42\n};\n\nfor (const [key, value] of Object.entries(object1)) {\n  console.log(`${key}: ${value}`); // ",
-      "searchText": "object entries thứ tự của mảng được trả về bởi object.entries() giống như thứ tự được cung cấp bởi vòng lặp for...in. object.entries(obj) object class obj prototype entries oop",
+      "searchText": "object entries thứ tự của mảng được trả về bởi object.entries() giống như thứ tự được cung cấp bởi vòng lặp for...in. object.entries(obj) prototype entries object class obj oop",
       "tags": [
         "object",
         "prototype",
@@ -5698,7 +5698,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys): Trả về một mảng tên các khóa được lặp theo cùng thứ tự mà một vòng lặp thông thường sẽ thực hiện.\n\n```js\n// syntax\nObject.keys(obj)\n\n// Example\nconst chordIntervals = {\n  ",
-      "searchText": "object keys object.keys(obj) object.keys(obj) object class obj prototype keys oop",
+      "searchText": "object keys object.keys(obj) object.keys(obj) prototype keys object class obj oop",
       "tags": [
         "object",
         "prototype",
@@ -5725,7 +5725,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values): Trả về một mảng các giá trị cho mỗi khóa/thuộc tính theo cùng thứ tự được cung cấp bởi vòng lặp `for...in`.\n\n```js\n// syntax\nObject.values(obj)\n\n// Examples:\nconst chordIntervals = {\n    ",
-      "searchText": "object values object.values(obj) object.values(obj) object class obj prototype oop values",
+      "searchText": "object values object.values(obj) object.values(obj) prototype object class obj oop values",
       "tags": [
         "object",
         "prototype",
@@ -5754,7 +5754,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phiên bản lớp es6 ghi chú: nhấp vào tên lớp để hiển thị bóng đèn vàng, nhấp vào bóng đèn, chuyển đổi sang cú pháp lớp es6:  object class prototype bản phiên oop es6 lớp",
+      "searchText": "phiên bản lớp es6 ghi chú: nhấp vào tên lớp để hiển thị bóng đèn vàng, nhấp vào bóng đèn, chuyển đổi sang cú pháp lớp es6:  prototype phiên es6 object class lớp oop bản",
       "tags": [
         "object",
         "prototype",
@@ -5781,7 +5781,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phiên bản prototype // amusement park food pass example:  object class prototype bản phiên oop",
+      "searchText": "phiên bản prototype // amusement park food pass example:  prototype phiên class object oop bản",
       "tags": [
         "object",
         "prototype",
@@ -5812,7 +5812,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign): sao chép tất cả các thuộc tính riêng có thể liệt kê từ một hoặc nhiều đối tượng nguồn tới một đối tượng đích. Nó trả về đối tượng đích đã được sửa đổi\n- [Object.defineProperties()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties): định nghĩa mới hoặc sửa đổi các thuộc tính hiện có trực tiếp trên một đối tượng, trả về đối tượng\n- [Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty): định nghĩa một thuộc tính mới trực tiếp trên một đối tượng, hoặc sửa đổi một thuộc tính hiện có trên một đối tượng, và trả về đối tượng\n- [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze): đóng băng một đối tượng. Một đối tượng đã đóng băng không còn có thể thay đổi được nữa; việc đóng băng một đối tượng ngăn không cho thêm thuộc tính mới vào nó, ngăn xóa các thuộc tính hiện có, ngăn thay đổi tính có thể liệt kê, tính có thể cấu hình hoặc tính có thể ghi của các thuộc tính hiện có, và ngăn thay đổi giá trị của các thuộc tính hiện có. Ngoài ra, việc đóng băng một đối tượng cũng ngăn không cho prototype của nó bị thay đổi. `freeze()` trả về cùng một đối tượng đã được truyền vào.\n- Và những phương thức này: `fromEntries()`, `getOwnPropertyDescriptor()`, `getOwnPropertyDescriptors()`, `getOwnPropertyNames()`, `getOwnPropertySymbols()`, `getPrototypeOf()`, `is()`,  `isExtensible()`, `isFrozen()`, `isSealed()`, `preventExtensions()`, `propertyIsEnumerable()`, `seal()`, `setPrototypeOf()`, `toLocaleString()`, `toString()`, và `valueOf()`. \n\nXem [MDN Object docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) để biết thêm về các phương thức đó.\n\n<div align=",
-      "searchText": "phương thức đối tượng phổ biến dưới đây là các phương thức và thuộc tính đối tượng phổ biến nhất.  object phương thức class tượng prototype đối biến oop phổ",
+      "searchText": "phương thức đối tượng phổ biến dưới đây là các phương thức và thuộc tính đối tượng phổ biến nhất.  prototype thức tượng object class phổ biến oop phương đối",
       "tags": [
         "object",
         "prototype",
@@ -5837,7 +5837,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes): cơ chế mà qua đó các đối tượng JavaScript kế thừa các tính năng từ nhau.\n\n```js\n// prototype chain properties:\n__defineGetter__\n__defineSetter__\n__lookupGetter__\n__lookupSetter__\n__proto__\nconstructor\nobj.hasOwnProperty\nobj.isPrototypeOf\nobj.propertyIsEnumerable\nobj.toLocaleString\nobj.toString\nobj.toValueOf\n```\n\n**constructor**: thuộc tính constructor là một tham chiếu đến hàm khởi tạo đã tạo ra thể hiện. Có một tác dụng phụ quan trọng khi thiết lập thủ công prototype thành một đối tượng mới. Nó xóa thuộc tính constructor. \n*** Để khắc phục điều này, bất cứ khi nào prototype được thiết lập thủ công thành một đối tượng mới, hãy nhớ định nghĩa thuộc tính constructor\n\n```js\nBird.prototype = {\n  constructor: Bird,\n  numLegs: 2, ...\n```\n\nTất cả các đối tượng trong JavaScript (với một vài ngoại lệ) đều có prototype - Vì prototype là một đối tượng, prototype có thể có prototype riêng của nó: prototype của Bird.prototype là Object.prototype: Object.prototype.isPrototypeOf(Bird.prototype)\n\n```js\n\n```\n\n<div align=",
-      "searchText": "prototype // prototype chain properties:  prototype object class oop",
+      "searchText": "prototype // prototype chain properties:  object prototype class oop",
       "tags": [
         "object",
         "prototype",
@@ -5869,7 +5869,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "sửa đổi giá trị và xóa khóa let something = {  xóa object class prototype khóa giá trị oop sửa và đổi",
+      "searchText": "sửa đổi giá trị và xóa khóa let something = {  prototype giá đổi object trị khóa class oop xóa và sửa",
       "tags": [
         "object",
         "prototype",
@@ -5897,7 +5897,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "toán tử spread kéo các cặp khóa-giá trị từ một đối tượng khác:  object class tử prototype toán spread oop",
+      "searchText": "toán tử spread kéo các cặp khóa-giá trị từ một đối tượng khác:  toán prototype object class tử oop spread",
       "tags": [
         "object",
         "prototype",
@@ -5929,7 +5929,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "vòng lặp for in sử dụng for in: obj.hasownproperty('prop1'); object class vòng obj prototype hasownproperty for oop prop1 in lặp",
+      "searchText": "vòng lặp for in sử dụng for in: obj.hasownproperty('prop1'); prototype for hasownproperty object class vòng obj oop in lặp prop1",
       "tags": [
         "object",
         "prototype",
@@ -5957,7 +5957,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "practical 2 cân nhắc tạo một file es6 hoặc các ví dụ khác cho promises, async/await, fetch, local storage, v.v. var p = new promise(function(resolve, reject) { real-world practical resolve example reject new promise",
+      "searchText": "practical 2 cân nhắc tạo một file es6 hoặc các ví dụ khác cho promises, async/await, fetch, local storage, v.v. var p = new promise(function(resolve, reject) { practical new real-world resolve example reject promise",
       "tags": [
         "practical",
         "real-world",
@@ -5984,7 +5984,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "biểu mẫu (forms) link: https://reactjs.org/docs/forms.html  hooks jsx forms react biểu component mẫu",
+      "searchText": "biểu mẫu (forms) link: https://reactjs.org/docs/forms.html  component biểu forms react hooks mẫu jsx",
       "tags": [
         "react",
         "jsx",
@@ -6014,7 +6014,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "biểu thức javascript làm props bạn có thể truyền bất kỳ biểu thức javascript nào làm prop, bằng cách bao quanh nó bằng {}.  thức hooks jsx làm react props biểu component javascript",
+      "searchText": "biểu thức javascript làm props bạn có thể truyền bất kỳ biểu thức javascript nào làm prop, bằng cách bao quanh nó bằng {}.  component biểu làm thức props react hooks javascript jsx",
       "tags": [
         "react",
         "jsx",
@@ -6044,7 +6044,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "chia nhỏ mã (code splitting) link: https://reactjs.org/docs/code-splitting.html  splitting hooks jsx mã chia react nhỏ component code",
+      "searchText": "chia nhỏ mã (code splitting) link: https://reactjs.org/docs/code-splitting.html  component splitting mã code react nhỏ hooks jsx chia",
       "tags": [
         "react",
         "jsx",
@@ -6073,7 +6073,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "chuyển tiếp refs (forwarding refs) link: https://reactjs.org/docs/forwarding-refs.html  forwarding hooks tiếp jsx refs react component chuyển",
+      "searchText": "chuyển tiếp refs (forwarding refs) link: https://reactjs.org/docs/forwarding-refs.html  component chuyển forwarding react refs hooks tiếp jsx",
       "tags": [
         "react",
         "jsx",
@@ -6103,7 +6103,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "chỉ định kiểu phần tử react phần đầu tiên của thẻ jsx quyết định kiểu của phần tử react.  kiểu tử hooks jsx chỉ định react phần component",
+      "searchText": "chỉ định kiểu phần tử react phần đầu tiên của thẻ jsx quyết định kiểu của phần tử react.  component chỉ phần kiểu định hooks react tử jsx",
       "tags": [
         "react",
         "jsx",
@@ -6132,7 +6132,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "component danh sách cơ bản thông thường bạn sẽ render danh sách bên trong một component.  sách jsx hooks bản react cơ component danh",
+      "searchText": "component danh sách cơ bản thông thường bạn sẽ render danh sách bên trong một component.  component react danh hooks bản cơ sách jsx",
       "tags": [
         "react",
         "jsx",
@@ -6165,7 +6165,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "component do người dùng định nghĩa phải viết hoa khi kiểu phần tử bắt đầu bằng chữ thường, nó tham chiếu tới component có sẵn như div hoặc span và tạo ra chuỗi 'div' hoặc 'span' được truyền tới react.createelement.  do hooks jsx người phải định nghĩa viết react hoa component dùng",
+      "searchText": "component do người dùng định nghĩa phải viết hoa khi kiểu phần tử bắt đầu bằng chữ thường, nó tham chiếu tới component có sẵn như div hoặc span và tạo ra chuỗi 'div' hoặc 'span' được truyền tới react.createelement.  component do dùng định nghĩa hooks phải người react viết hoa jsx",
       "tags": [
         "react",
         "jsx",
@@ -6204,7 +6204,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "component và props link: https://reactjs.org/docs/components-and-props.html bạn cũng có thể dùng lớp es6 để định nghĩa component: (bỏ qua) thể để hooks jsx bỏ cũng qua định nghĩa react bạn lớp es6 props component có và dùng",
+      "searchText": "component và props link: https://reactjs.org/docs/components-and-props.html bạn cũng có thể dùng lớp es6 để định nghĩa component: (bỏ qua) component dùng định nghĩa cũng bạn thể es6 bỏ props react có lớp để hooks và jsx qua",
       "tags": [
         "react",
         "jsx",
@@ -6234,7 +6234,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "component được kiểm soát (controlled components) các phần tử biểu mẫu như input, textarea, và select thường duy trì trạng thái riêng và cập nhật nó dựa trên đầu vào của người dùng.  được hooks jsx controlled react soát kiểm component components",
+      "searchText": "component được kiểm soát (controlled components) các phần tử biểu mẫu như input, textarea, và select thường duy trì trạng thái riêng và cập nhật nó dựa trên đầu vào của người dùng.  component kiểm components controlled được soát react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6262,7 +6262,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [đọc sau]  composition inheritance hooks jsx vs react component",
+      "searchText": "composition vs inheritance link: https://reactjs.org/docs/composition-vs-inheritance.html [đọc sau]  component vs inheritance composition react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6288,7 +6288,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "context link: https://reactjs.org/docs/context.html  hooks jsx react component context",
+      "searchText": "context link: https://reactjs.org/docs/context.html  component context react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6320,7 +6320,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "danh sách và khóa (lists and keys) link: https://reactjs.org/docs/lists-and-keys.html  lists sách khóa jsx hooks component keys react and và danh",
+      "searchText": "danh sách và khóa (lists and keys) link: https://reactjs.org/docs/lists-and-keys.html  component keys lists hooks khóa and react danh sách và jsx",
       "tags": [
         "react",
         "jsx",
@@ -6346,7 +6346,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  hooks jsx react fragments component",
+      "searchText": "fragments link: https://reactjs.org/docs/fragments.html  component fragments react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6374,7 +6374,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  hooks jsx higher order react component components",
+      "searchText": "higher-order components link: https://reactjs.org/docs/higher-order-components.html  component components higher react order hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6399,7 +6399,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "jsx giới thiệu jsx: https://reactjs.org/docs/introducing-jsx.html  hooks jsx react component",
+      "searchText": "jsx giới thiệu jsx: https://reactjs.org/docs/introducing-jsx.html  component react jsx hooks",
       "tags": [
         "react",
         "jsx",
@@ -6428,7 +6428,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "jsx chuyên sâu (jsx in depth) link: https://reactjs.org/docs/jsx-in-depth.html  hooks jsx depth chuyên react component in sâu",
+      "searchText": "jsx chuyên sâu (jsx in depth) link: https://reactjs.org/docs/jsx-in-depth.html  component chuyên react sâu hooks depth in jsx",
       "tags": [
         "react",
         "jsx",
@@ -6455,7 +6455,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "khóa (keys) khóa giúp react xác định mục nào đã thay đổi, được thêm vào, hoặc bị xóa.  hooks khóa jsx keys react component",
+      "searchText": "khóa (keys) khóa giúp react xác định mục nào đã thay đổi, được thêm vào, hoặc bị xóa.  component keys khóa react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6485,7 +6485,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "khả năng truy cập (accessibility) link: https://reactjs.org/docs/accessibility.html  truy hooks jsx cập react năng component accessibility khả",
+      "searchText": "khả năng truy cập (accessibility) link: https://reactjs.org/docs/accessibility.html  component truy accessibility cập năng react khả hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6517,7 +6517,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "kiểm tra kiểu với proptypes (typechecking with proptypes) link: https://reactjs.org/docs/typechecking-with-proptypes.html  kiểu typechecking proptypes hooks jsx tra với react kiểm with component",
+      "searchText": "kiểm tra kiểu với proptypes (typechecking with proptypes) link: https://reactjs.org/docs/typechecking-with-proptypes.html  kiểm component kiểu typechecking with proptypes tra react hooks jsx với",
       "tags": [
         "react",
         "jsx",
@@ -6547,7 +6547,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "nâng state lên (lifting state up) link: https://reactjs.org/docs/lifting-state-up.html  lên nâng hooks jsx state react component lifting up",
+      "searchText": "nâng state lên (lifting state up) link: https://reactjs.org/docs/lifting-state-up.html  component nâng state up lifting react lên hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6578,7 +6578,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "props là chỉ đọc (read-only) một component không bao giờ được sửa đổi props của chính nó.  hooks jsx chỉ là read đọc react props component only",
+      "searchText": "props là chỉ đọc (read-only) một component không bao giờ được sửa đổi props của chính nó.  component chỉ là only props react hooks read jsx đọc",
       "tags": [
         "react",
         "jsx",
@@ -6605,7 +6605,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "props trong jsx có nhiều cách khác nhau để chỉ định props trong jsx.  hooks jsx trong react props component",
+      "searchText": "props trong jsx có nhiều cách khác nhau để chỉ định props trong jsx.  component trong props react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6635,7 +6635,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ranh giới lỗi (error boundaries) link: https://reactjs.org/docs/error-boundaries.html  lỗi hooks jsx error boundaries react ranh component giới",
+      "searchText": "ranh giới lỗi (error boundaries) link: https://reactjs.org/docs/error-boundaries.html  component lỗi ranh boundaries react hooks jsx error giới",
       "tags": [
         "react",
         "jsx",
@@ -6660,7 +6660,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "react component link: https://reactjs.org/docs/react-component.html  hooks component jsx react",
+      "searchText": "react component link: https://reactjs.org/docs/react-component.html  component react jsx hooks",
       "tags": [
         "react",
         "jsx",
@@ -6689,7 +6689,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "render có điều kiện link: https://reactjs.org/docs/conditional-rendering.html  điều kiện hooks jsx react render component có",
+      "searchText": "render có điều kiện link: https://reactjs.org/docs/conditional-rendering.html  component điều kiện có react hooks jsx render",
       "tags": [
         "react",
         "jsx",
@@ -6717,7 +6717,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "render phần tử link: https://reactjs.org/docs/rendering-elements.html  tử hooks jsx react phần render component",
+      "searchText": "render phần tử link: https://reactjs.org/docs/rendering-elements.html  component phần hooks react tử jsx render",
       "tags": [
         "react",
         "jsx",
@@ -6744,7 +6744,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "render props link: https://reactjs.org/docs/render-props.html  props hooks jsx react render component",
+      "searchText": "render props link: https://reactjs.org/docs/render-props.html  component props react hooks jsx render",
       "tags": [
         "react",
         "jsx",
@@ -6773,7 +6773,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "state và vòng đời link: https://reactjs.org/docs/state-and-lifecycle.html  vòng hooks jsx đời state react component và",
+      "searchText": "state và vòng đời link: https://reactjs.org/docs/state-and-lifecycle.html  component đời state react vòng hooks và jsx",
       "tags": [
         "react",
         "jsx",
@@ -6801,7 +6801,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tham chiếu api link: https://reactjs.org/docs/react-api.html  api tham hooks jsx react component chiếu",
+      "searchText": "tham chiếu api link: https://reactjs.org/docs/react-api.html  component api tham react hooks jsx chiếu",
       "tags": [
         "react",
         "jsx",
@@ -6830,7 +6830,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "thuộc tính spread (spread attributes) dừng tại đây https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  hooks attributes jsx spread thuộc react tính component",
+      "searchText": "thuộc tính spread (spread attributes) dừng tại đây https://reactjs.org/docs/jsx-in-depth.html#spread-attributes  component tính attributes react hooks thuộc jsx spread",
       "tags": [
         "react",
         "jsx",
@@ -6857,7 +6857,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "trích xuất component chia component thành các component nhỏ hơn:  hooks jsx react xuất trích component",
+      "searchText": "trích xuất component chia component thành các component nhỏ hơn:  component trích xuất react hooks jsx",
       "tags": [
         "react",
         "jsx",
@@ -6886,7 +6886,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "trích xuất component với khóa khóa chỉ có ý nghĩa trong ngữ cảnh của mảng bao quanh.  hooks khóa jsx với react xuất trích component",
+      "searchText": "trích xuất component với khóa khóa chỉ có ý nghĩa trong ngữ cảnh của mảng bao quanh.  component trích xuất khóa react hooks jsx với",
       "tags": [
         "react",
         "jsx",
@@ -6916,7 +6916,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "tư duy trong react (thinking in react) link: https://reactjs.org/docs/thinking-in-react.html  hooks tư jsx trong react thinking component in duy",
+      "searchText": "tư duy trong react (thinking in react) link: https://reactjs.org/docs/thinking-in-react.html  component thinking tư trong duy react hooks in jsx",
       "tags": [
         "react",
         "jsx",
@@ -6946,7 +6946,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "xử lý nhiều đầu vào khi bạn cần xử lý nhiều phần tử input được kiểm soát, bạn có thể thêm thuộc tính name cho mỗi phần tử và để hàm xử lý quyết định phải làm gì dựa trên giá trị của event.target.name.  lý hooks jsx xử vào react đầu component nhiều",
+      "searchText": "xử lý nhiều đầu vào khi bạn cần xử lý nhiều phần tử input được kiểm soát, bạn có thể thêm thuộc tính name cho mỗi phần tử và để hàm xử lý quyết định phải làm gì dựa trên giá trị của event.target.name.  component xử lý đầu vào react hooks nhiều jsx",
       "tags": [
         "react",
         "jsx",
@@ -6975,7 +6975,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "xử lý sự kiện link: https://reactjs.org/docs/handling-events.html  kiện lý hooks jsx sự xử react component",
+      "searchText": "xử lý sự kiện link: https://reactjs.org/docs/handling-events.html  component xử lý kiện react hooks sự jsx",
       "tags": [
         "react",
         "jsx",
@@ -7002,7 +7002,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "cơ bản dùng dấu gạch chéo (/) để bao quanh biểu thức chính quy (regex):  regexp bản regex cơ pattern string",
+      "searchText": "cơ bản dùng dấu gạch chéo (/) để bao quanh biểu thức chính quy (regex):  regex regexp bản cơ pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7031,7 +7031,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "khớp và thay thế sắp xếp lại và định dạng lại đối tượng thú cưng từ loài, họ, tên:  regexp thế regex thay khớp pattern và string",
+      "searchText": "khớp và thay thế sắp xếp lại và định dạng lại đối tượng thú cưng từ loài, họ, tên:  thế thay regex pattern regexp và string khớp",
       "tags": [
         "regex",
         "regexp",
@@ -7060,7 +7060,7 @@
       "returns": "false",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "khớp với dấu sao khớp ký tự xuất hiện không hoặc nhiều lần với :  regexp regex với dấu sao khớp pattern string false",
+      "searchText": "khớp với dấu sao khớp ký tự xuất hiện không hoặc nhiều lần với :  dấu regex sao regexp pattern string với khớp false",
       "tags": [
         "regex",
         "regexp",
@@ -7094,7 +7094,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ký tự đại diện và lượng từ dấu chấm là ký tự đại diện .. /.un/gi regexp diện regex un ký đại gi pattern và lượng tự string từ",
+      "searchText": "ký tự đại diện và lượng từ dấu chấm là ký tự đại diện .. /.un/gi từ regex un gi pattern tự ký regexp diện lượng đại và string",
       "tags": [
         "regex",
         "regexp",
@@ -7120,7 +7120,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lookaheads lookahead dương được dùng như (?=...) trong đó ... (?=...) regexp lookaheads regex pattern string",
+      "searchText": "lookaheads lookahead dương được dùng như (?=...) trong đó ... (?=...) regex lookaheads regexp pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7148,7 +7148,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) regexp yes no lookbehinds regex pattern string",
+      "searchText": "lookbehinds (?(?=...)yes|no) (?(?<=...)yes|no) regex lookbehinds yes regexp pattern string no",
       "tags": [
         "regex",
         "regexp",
@@ -7176,7 +7176,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "lớp ký tự lớp/tập ký tự với [], ví dụ bag, big, bug  regexp regex ký pattern tự string lớp",
+      "searchText": "lớp ký tự lớp/tập ký tự với [], ví dụ bag, big, bug  regex tự lớp ký regexp pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7203,7 +7203,7 @@
       "returns": "'T'",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "neo (anchors) neo: ký hiệu mũ (^ hoặc \\a) cả trong và ngoài lớp ký tự, và ký hiệu đô la ($ hoặc \\z).  regexp anchors regex pattern neo string 't'",
+      "searchText": "neo (anchors) neo: ký hiệu mũ (^ hoặc \\a) cả trong và ngoài lớp ký tự, và ký hiệu đô la ($ hoặc \\z).  regex anchors regexp neo pattern string 't'",
       "tags": [
         "regex",
         "regexp",
@@ -7230,7 +7230,7 @@
       "returns": "true",
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "nhóm capture đôi khi chúng ta muốn kiểm tra nhóm ký tự bằng biểu thức chính quy và để làm điều đó chúng ta dùng dấu ngoặc đơn ().  regexp capture nhóm regex pattern string true",
+      "searchText": "nhóm capture đôi khi chúng ta muốn kiểm tra nhóm ký tự bằng biểu thức chính quy và để làm điều đó chúng ta dùng dấu ngoặc đơn ().  regex nhóm regexp pattern capture string true",
       "tags": [
         "regex",
         "regexp",
@@ -7259,7 +7259,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "nhóm có tên /(?name...)/ /(?<name>...)/ regexp pattern nhóm regex name tên có string",
+      "searchText": "nhóm có tên /(?name...)/ /(?<name>...)/ regex name nhóm có regexp pattern string tên",
       "tags": [
         "regex",
         "regexp",
@@ -7289,7 +7289,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "số lần khớp cụ thể khớp số lần cụ thể với {#}:  lần regexp thể cụ regex số khớp pattern string",
+      "searchText": "số lần khớp cụ thể khớp số lần cụ thể với {#}:  lần regex thể cụ regexp pattern số string khớp",
       "tags": [
         "regex",
         "regexp",
@@ -7317,7 +7317,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "thoát ký tự dùng dấu gạch chéo ngược \\ để thoát các ký tự đặc biệt có trong chuỗi của bạn  regexp thoát regex ký pattern tự string",
+      "searchText": "thoát ký tự dùng dấu gạch chéo ngược \\ để thoát các ký tự đặc biệt có trong chuỗi của bạn  regex thoát tự ký regexp pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7344,7 +7344,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "viết tắt bất kỳ chữ số nào và bất kỳ ký tự không phải chữ số nào với \\d và \\d:  regexp regex viết tắt pattern string",
+      "searchText": "viết tắt bất kỳ chữ số nào và bất kỳ ký tự không phải chữ số nào với \\d và \\d:  regex tắt regexp viết pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7373,7 +7373,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "ví dụ thực tế 1.  thực regexp tế dụ ví regex pattern string",
+      "searchText": "ví dụ thực tế 1.  regex thực dụ tế regexp ví pattern string",
       "tags": [
         "regex",
         "regexp",
@@ -7403,7 +7403,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "xác thực tên người dùng tạo biểu thức chính quy ở đây thực hiện như sau:  thực regexp xác người regex tên pattern string dùng",
+      "searchText": "xác thực tên người dùng tạo biểu thức chính quy ở đây thực hiện như sau:  thực regex dùng người regexp xác pattern string tên",
       "tags": [
         "regex",
         "regexp",
@@ -7429,7 +7429,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "bảng cú pháp bảng theo số lượng đối số và liệu phương thức có thay đổi trực tiếp nguồn gốc hay không.  cú pháp text bảng string",
+      "searchText": "bảng cú pháp bảng theo số lượng đối số và liệu phương thức có thay đổi trực tiếp nguồn gốc hay không.  pháp text bảng string cú",
       "tags": [
         "string",
         "text"
@@ -7452,7 +7452,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt",
-      "searchText": "charat instrả về chuỗi mới/ins gồm một đơn vị mã utf-16 duy nhất tại vị trí offset chỉ định trong chuỗi. charat(index); index text charat string",
+      "searchText": "charat instrả về chuỗi mới/ins gồm một đơn vị mã utf-16 duy nhất tại vị trí offset chỉ định trong chuỗi. charat(index); index charat string text",
       "tags": [
         "string",
         "text"
@@ -7475,7 +7475,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt",
-      "searchText": "charcodeat instrả về số nguyên/ins giữa 0 và 65535 đại diện cho đơn vị mã utf-16 tại chỉ số đã cho. charcodeat(index); text index charcodeat string",
+      "searchText": "charcodeat instrả về số nguyên/ins giữa 0 và 65535 đại diện cho đơn vị mã utf-16 tại chỉ số đã cho. charcodeat(index); index text string charcodeat",
       "tags": [
         "string",
         "text"
@@ -7498,7 +7498,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat",
-      "searchText": "concat nối hai hoặc nhiều mảng và instrả về bản sao của các mảng đã nối/ins. concat(str1) concat str1 string text",
+      "searchText": "concat nối hai hoặc nhiều mảng và instrả về bản sao của các mảng đã nối/ins. concat(str1) concat text string str1",
       "tags": [
         "string",
         "text"
@@ -7521,7 +7521,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith",
-      "searchText": "endswith xác định chuỗi có kết thúc bằng ký tự của chuỗi chỉ định hay không. endswith(searchstring); endswith searchstring string text",
+      "searchText": "endswith xác định chuỗi có kết thúc bằng ký tự của chuỗi chỉ định hay không. endswith(searchstring); text string endswith searchstring",
       "tags": [
         "string",
         "text"
@@ -7544,7 +7544,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode",
-      "searchText": "fromcharcode instrả về chuỗi/ins được tạo từ chuỗi đơn vị mã utf-16 chỉ định. string.fromcharcode(num1) text string num1 fromcharcode",
+      "searchText": "fromcharcode instrả về chuỗi/ins được tạo từ chuỗi đơn vị mã utf-16 chỉ định. string.fromcharcode(num1) num1 text fromcharcode string",
       "tags": [
         "string",
         "text"
@@ -7567,7 +7567,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes",
-      "searchText": "includes thực hiện tìm kiếm phân biệt hoa thường để xác định một chuỗi có thể được tìm thấy trong chuỗi khác hay không, trả về true hoặc false tương ứng includes(searchstring); text searchstring includes string",
+      "searchText": "includes thực hiện tìm kiếm phân biệt hoa thường để xác định một chuỗi có thể được tìm thấy trong chuỗi khác hay không, trả về true hoặc false tương ứng includes(searchstring); includes text string searchstring",
       "tags": [
         "string",
         "text"
@@ -7590,7 +7590,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf",
-      "searchText": "indexof với một đối số: chuỗi con cần tìm, tìm kiếm toàn bộ chuỗi gọi, và trả về chỉ số của lần xuất hiện đầu tiên của chuỗi con chỉ định. indexof(searchstring); text searchstring indexof string",
+      "searchText": "indexof với một đối số: chuỗi con cần tìm, tìm kiếm toàn bộ chuỗi gọi, và trả về chỉ số của lần xuất hiện đầu tiên của chuỗi con chỉ định. indexof(searchstring); indexof string searchstring text",
       "tags": [
         "string",
         "text"
@@ -7613,7 +7613,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf",
-      "searchText": "lastindexof instrả về chỉ số cuối cùng/ins tại đó phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu không tồn tại. lastindexof(searchstring); text searchstring lastindexof string",
+      "searchText": "lastindexof instrả về chỉ số cuối cùng/ins tại đó phần tử cho trước có thể được tìm thấy trong mảng, hoặc -1 nếu không tồn tại. lastindexof(searchstring); lastindexof text string searchstring",
       "tags": [
         "string",
         "text"
@@ -7636,7 +7636,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match",
-      "searchText": "match dùng để khớp biểu thức chính quy với chuỗi. match(regexp); regexp text match string",
+      "searchText": "match dùng để khớp biểu thức chính quy với chuỗi. match(regexp); match string regexp text",
       "tags": [
         "string",
         "text"
@@ -7658,7 +7658,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "miscellaneous let typeoftest;  text miscellaneous string",
+      "searchText": "miscellaneous let typeoftest;  text string miscellaneous",
       "tags": [
         "string",
         "text"
@@ -7690,7 +7690,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức chuỗi str.tolowercase(), và str.touppercase() cơ bản đến mức tôi không cung cấp ví dụ. let badstring = \"   oops, caps lock on. need to fix.   \"; phương thức oops chuỗi on lock need to caps text badstring fix string",
+      "searchText": "phương thức chuỗi str.tolowercase(), và str.touppercase() cơ bản đến mức tôi không cung cấp ví dụ. let badstring = \"   oops, caps lock on. need to fix.   \"; badstring on chuỗi thức lock text oops need to caps fix phương string",
       "tags": [
         "string",
         "text"
@@ -7716,7 +7716,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": null,
-      "searchText": "phương thức chuỗi của mảng đây là các phương thức có thể dùng cho cả chuỗi và mảng.  phương thức mảng chuỗi của text string",
+      "searchText": "phương thức chuỗi của mảng đây là các phương thức có thể dùng cho cả chuỗi và mảng.  của chuỗi thức text mảng phương string",
       "tags": [
         "string",
         "text"
@@ -7747,7 +7747,7 @@
       "returns": null,
       "mutates": true,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter) vì có rất nhiều điều về hàm này.\n\nVí dụ:\n\n```js\nfunction replacer(match, p1, p2, p3, offset, string) {\n  // p1 is nondigits, p2 digits, and p3 non-alphanumerics\n  return [p1, p2, p3].join(",
-      "searchText": "phương thức phổ biến phương thức phổ biến không có đối số/tham số: function replacer(match, p1, p2, p3, offset, string) { phương thức replacer match offset p3 biến text p1 p2 string phổ",
+      "searchText": "phương thức phổ biến phương thức phổ biến không có đối số/tham số: function replacer(match, p1, p2, p3, offset, string) { offset p3 replacer thức text p2 biến phổ p1 match phương string",
       "tags": [
         "string",
         "text"
@@ -7770,7 +7770,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat",
-      "searchText": "repeat xây dựng và instrả về chuỗi mới/ins chứa số lượng bản sao chỉ định của chuỗi mà nó được gọi, nối lại với nhau. repeat(count); repeat count string text",
+      "searchText": "repeat xây dựng và instrả về chuỗi mới/ins chứa số lượng bản sao chỉ định của chuỗi mà nó được gọi, nối lại với nhau. repeat(count); count text string repeat",
       "tags": [
         "string",
         "text"
@@ -7794,7 +7794,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace",
-      "searchText": "replace instrả về chuỗi mới/ins với một số hoặc tất cả lần khớp của pattern được thay bằng replacement. replace(regexp, newsubstr); regexp newsubstr replace text string",
+      "searchText": "replace instrả về chuỗi mới/ins với một số hoặc tất cả lần khớp của pattern được thay bằng replacement. replace(regexp, newsubstr); replace text newsubstr regexp string",
       "tags": [
         "string",
         "text"
@@ -7817,7 +7817,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/at): nhận giá trị nguyên và trả về chuỗi mới gồm một đơn vị mã UTF-16 duy nhất tại vị trí offset chỉ định. Phương thức này cho phép số nguyên dương và âm. Số nguyên âm đếm ngược từ ký tự cuối cùng của chuỗi.\n- [codePointAt()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt): trả về số nguyên không âm là giá trị điểm mã Unicode tại vị trí cho trước.\n- [fromCodePoint()](): trả về chuỗi được tạo bằng cách dùng chuỗi điểm mã chỉ định.\n- [localeCompare()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare): trả về số cho biết chuỗi tham chiếu đứng trước, hay sau, hay bằng chuỗi đã cho theo thứ tự sắp xếp.\n- [matchAll()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll): trả về iterator của tất cả kết quả khớp chuỗi với biểu thức chính quy, bao gồm nhóm capture.\n- [normalize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize): trả về dạng chuẩn hóa Unicode của chuỗi.\n- [replaceAll()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll): trả về chuỗi mới với tất cả lần khớp của mẫu được thay bằng chuỗi thay thế. Mẫu có thể là chuỗi hoặc RegExp, và chuỗi thay thế có thể là chuỗi hoặc hàm được gọi cho mỗi lần khớp.\n- [search()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search): thực thi tìm kiếm khớp giữa biểu thức chính quy và đối tượng String này.\n- [startsWith()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith): xác định chuỗi có bắt đầu bằng ký tự của chuỗi chỉ định hay không, trả về true hoặc false tương ứng.\n- [toLocaleLowerCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase): trả về giá trị chuỗi gọi được chuyển thành chữ thường, theo ánh xạ chữ hoa-thường đặc thù theo locale.\n- [toLocaleUpperCase()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase): trả về giá trị chuỗi gọi được chuyển thành chữ hoa, theo ánh xạ chữ hoa-thường đặc thù theo locale.\n- [trimEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd): xóa khoảng trắng ở cuối chuỗi. trimRight() là bí danh của phương thức này.\n- [trimStart()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart): xóa khoảng trắng ở đầu chuỗi. trimLeft() là bí danh của phương thức này.\n- [valueOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf): trả về giá trị nguyên thủy của đối tượng String.\n\n**Hai phương thức này đáng để xem xét**:\n\n- [padEnd()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd): đệm chuỗi hiện tại bằng chuỗi cho trước (lặp lại nếu cần) sao cho chuỗi kết quả đạt độ dài cho trước. Phần đệm được áp dụng từ cuối chuỗi hiện tại.\n- [padStart()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart): đệm chuỗi hiện tại bằng chuỗi khác (nhiều lần nếu cần) cho đến khi chuỗi kết quả đạt độ dài cho trước. Phần đệm được áp dụng từ đầu chuỗi hiện tại.\n\n<div align=",
-      "searchText": "skipped methods tôi đã bỏ qua các phương thức sau:  text methods string skipped",
+      "searchText": "skipped methods tôi đã bỏ qua các phương thức sau:  skipped text string methods",
       "tags": [
         "string",
         "text"
@@ -7839,7 +7839,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split",
-      "searchText": "split chia chuỗi thành các chuỗi con, đặt các chuỗi con này vào mảng, và instrả về mảng đó/ins. split(); text split string",
+      "searchText": "split chia chuỗi thành các chuỗi con, đặt các chuỗi con này vào mảng, và instrả về mảng đó/ins. split(); text string split",
       "tags": [
         "string",
         "text"
@@ -7861,7 +7861,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice",
-      "searchText": "string slice trích xuất một phần của chuỗi và instrả về nó dưới dạng chuỗi mới/ins, không sửa đổi chuỗi gốc. slice(); slice string text",
+      "searchText": "string slice trích xuất một phần của chuỗi và instrả về nó dưới dạng chuỗi mới/ins, không sửa đổi chuỗi gốc. slice(); slice text string",
       "tags": [
         "string",
         "text"
@@ -7884,7 +7884,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring",
-      "searchText": "substring instrả về phần của chuỗi/ins giữa chỉ số bắt đầu và chỉ số kết thúc (không bao gồm), hoặc tới cuối chuỗi nếu bỏ qua tham số thứ 2. substring(indexstart); text indexstart string substring",
+      "searchText": "substring instrả về phần của chuỗi/ins giữa chỉ số bắt đầu và chỉ số kết thúc (không bao gồm), hoặc tới cuối chuỗi nếu bỏ qua tham số thứ 2. substring(indexstart); text string indexstart substring",
       "tags": [
         "string",
         "text"
@@ -7907,7 +7907,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test",
-      "searchText": "test thực thi tìm kiếm khớp giữa biểu thức chính quy và chuỗi chỉ định. test(str); text str string test",
+      "searchText": "test thực thi tìm kiếm khớp giữa biểu thức chính quy và chuỗi chỉ định. test(str); str test string text",
       "tags": [
         "string",
         "text"
@@ -7930,7 +7930,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)).\n\nCú pháp MDN và ví dụ:\n\n```js\n// num.toString:\nnum.toString()\nnum.toString(radix)\n// all other\ndate.toString()\nobj.toString()\nbool.toString()\narr.toString()\nfunction.toString()\n\n\n// array to stringv(?)\nfunction turnToString(val){\n  return val.toString();\n}\n// let testObj = 108 // ",
-      "searchText": "tostring tostring(): mọi đối tượng javascript đều có phương thức tostring(). num.tostring() tostring num text string",
+      "searchText": "tostring tostring(): mọi đối tượng javascript đều có phương thức tostring(). num.tostring() tostring text string num",
       "tags": [
         "string",
         "text"
@@ -7953,7 +7953,7 @@
       "returns": null,
       "mutates": null,
       "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim",
-      "searchText": "trim trim(): xóa khoảng trắng ở cả hai đầu chuỗi và trả về chuỗi mới, không sửa đổi chuỗi gốc. str.trim(); text str string trim",
+      "searchText": "trim trim(): xóa khoảng trắng ở cả hai đầu chuỗi và trả về chuỗi mới, không sửa đổi chuỗi gốc. str.trim(); str trim string text",
       "tags": [
         "string",
         "text"

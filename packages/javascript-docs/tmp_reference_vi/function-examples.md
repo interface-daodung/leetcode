@@ -18,6 +18,7 @@ Dưới đây là các nguyên tắc lập trình hàm mà tôi sử dụng:
 - Không đột biến hoặc đột biến có giới hạn và được kiểm soát
   - Không sử dụng các phương thức mảng làm đột biến mảng gọi
   - Không làm đột biến đối tượng
+
 - Không dùng vòng lặp `for` hoặc `while`
 - Không dùng `console.log`, `addEventListener`, `Math.random`, `Date.now`, v.v.
 - Tuân theo Quy luật Pareto: 80% hàm thuần túy, 20% hàm không thuần túy

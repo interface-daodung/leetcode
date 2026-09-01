@@ -281,6 +281,7 @@ Những thứ quan trọng tôi cần ghi nhớ và áp dụng:
 - Làm việc với mảng nhiều chiều
 - Bài viết cấu trúc dữ liệu tuyệt vời: https://www.educative.io/blog/javascript-data-structures
   - file chord-intervals.json của tôi có lẽ là bảng băm hoặc có lẽ là cây nào đó -
+
 - Ghi nhớ và hiểu đầy đủ `JSON.stringify()` vs `JSON.parse()` - tại sao bạn lại dùng chúng với mảng?
 - Vì ==, <, >, <=, >= thực hiện ép kiểu, bạn có thể cần bao gồm `&& typeof` == "kiểu bạn muốn"
 - Nhớ không dùng `=` trong điều kiện if mà dùng `==` hoặc `===`
@@ -432,6 +433,7 @@ Video: Data Structures and Algorithms in JavaScript 1:52:54 |
 - 53:20 – được dùng để triển khai mảng liên hợp hoặc ánh xạ cặp khóa-giá trị – chúng là cách phổ biến để triển khai cấu trúc dữ liệu map hoặc đối tượng – chúng được dùng rộng rãi vì hiệu quả – thời gian tra cứu nhanh, không phụ thuộc số lượng phần tử – cách chúng hoạt động: 1. nó nhận đầu vào khóa và chạy qua hàm băm – hàm băm → khớp chuỗi với số và thường số tương ứng với chỉ số trong mảng – khóa được gửi qua hàm băm và trả về hash/chỉ số – hàm băm cần nhất quán sao cho khi chạy khóa qua nó, luôn cho cùng một số (không có “xung đột”) -
 - bảng băm đã được xây dựng sẵn trong JS và các ngôn ngữ khác – trong JS chúng được dùng để triển khai đối tượng, 56:27 như ví dụ thủ công – this.add(), this.remove, this.lookup,
   1:03:05 Danh sách liên kết – phần tử được lưu trong nút – nút có 2 thông tin chính: 1) phần tử, 2) tham chiếu (liên kết) tới nút tiếp theo – như mảng, danh sách liên kết có thể dùng để triển khai nhiều cấu trúc dữ liệu khác – chúng có ưu và nhược điểm khi so với mảng – mỗi danh sách liên kết có con trỏ đầu (head) trỏ tới nút đầu tiên – nút cuối trỏ tới null -
+
 - this.element, this.next, info1 → link → info2 → link, ... 1) tạo nút, 2) rồi this.size return, this.head return, this.add element, this.remove element,
 
 ### Trie
@@ -455,10 +457,12 @@ Video: Giới thiệu Lập trình hướng đối tượng - Khóa cấp tốc 
 - việc gom các biến liên quan lại với nhau là quan trọng -
 - Định nghĩa: Đối tượng = thể hiện của lớp | Lớp = khuôn mẫu cho đối tượng -
   - Ví dụ: Quân cờ vua, quân Mã, trắng hoặc đen, đã bị bắt hay chưa, với vị trí hiện tại, hàm hoặc phương thức sẽ là move() và sẽ trả về các ô có thể mà mã có thể đi tới – vì vậy move(), biến position, biến color nhưng không khởi tạo các biến đó – tốt nhất là định nghĩa chúng khi bạn tạo lớp thay vì trong chính lớp – tạo hàm move trong lớp thay vì trong mỗi đối tượng bạn tạo -
+
 - khi tạo đối tượng mã, bạn khởi tạo biến / thuộc tính và phương thức của nó để chứa thông tin cụ thể cho quân mã đó -
   - lớp Knight đại diện cho bất kỳ quân mã nào, đối tượng mã đại diện cho một quân mã cụ thể
   - OOP là công cụ tốt nhất để tạo chương trình phức tạp bằng cách gom dữ liệu và hàm liên quan lại với nhau
   - 4 nguyên tắc chính của OOP: 1) Đóng gói (Encapsulation), 2) Trừu tượng (Abstraction), 3) Kế thừa (Inheritance), 4) Đa hình (Polymorphism)
+
 - Đóng gói (Encapsulation): trong OOP, chỉ việc đóng gói dữ liệu với các phương thức có thể thao tác trên dữ liệu đó trong một lớp. Đó là ý tưởng ẩn dữ liệu trong một lớp, ngăn bất kỳ thứ gì bên ngoài lớp đó tương tác trực tiếp với nó. Thành viên của các lớp khác có thể tương tác với thuộc tính của đối tượng khác qua các phương thức của nó: phương thức `get` và `set`. Ngoài ra, bạn có thể muốn một số thuộc tính chỉ được đọc từ bên ngoài lớp, nghĩa là bạn chỉ có phương thức getter, không có setter. Đừng cho phép lớp bên ngoài chỉnh sửa trực tiếp thuộc tính của đối tượng. Mỗi phần không nên có quyền truy cập hoặc phụ thuộc vào cách hoạt động nội tại của các phần mã khác (che giấu thông tin)!!!
 - Trừu tượng (Abstraction): trong OOP, chỉ việc chỉ hiển thị chi tiết thiết yếu và giữ mọi thứ khác bị ẩn. Người dùng lớp của bạn không nên lo về chi tiết nội tại của các lớp đó. Hãy chia mã thành các phần nhỏ. Tốt nhất nếu phần bạn đang làm việc có thể hoạt động mà không cần biết cách hoạt động bên trong của phần khác. Hãy suy nghĩ theo giao diện và triển khai. Giao diện đề cập tới cách các phần mã có thể giao tiếp với nhau (thực hiện qua các phương thức mà mỗi lớp có thể truy cập). Việc triển khai các phương thức (cách chúng được viết) nên bị ẩn.
 - Kế thừa (Inheritance): trong OOP, là nguyên tắc cho phép các lớp kế thừa từ các lớp khác – phương thức và thuộc tính. Lớp cha (SuperClass) với các lớp con (Subclasses). Lớp con kế thừa phương thức và thuộc tính từ lớp cha của chúng. Bổ từ truy cập (access modifiers) thay đổi lớp nào có quyền truy cập vào lớp, phương thức hoặc thuộc tính khác. Có 3 bổ từ truy cập chính: Public, Private và Protected.
@@ -520,6 +524,7 @@ week1Format = week1.toLocaleDateString("en-us", format);
   - Biến được khai báo không có từ khóa let hoặc const tự động được tạo trong phạm vi toàn cục.
   - Điều này có thể tạo ra hậu quả không mong muốn ở nơi khác trong mã hoặc khi chạy lại hàm. Bạn nên luôn khai báo biến bằng let hoặc const
   - **Phạm vi cục bộ** = biến được khai báo trong hàm, chúng chỉ hiển thị trong hàm đó
+
 - **Return**: Chúng ta có thể truyền giá trị vào hàm bằng đối số. Bạn có thể dùng câu lệnh `return` để gửi giá trị trở lại ra khỏi hàm
 - Khi câu lệnh `return` được dùng trong thân hàm, việc thực thi hàm bị dừng và quyền điều khiển trở lại vị trí gọi
 - Nếu được chỉ định, giá trị cho trước được trả về cho bên gọi hàm
@@ -561,6 +566,7 @@ If, Else, Else If, Switch:
   - `for (a; b; c) { }`, trong đó a là câu lệnh khởi tạo, b là câu lệnh điều kiện, và c là biểu thức cuối
   - Nhiệm vụ phổ biến trong JavaScript là duyệt qua nội dung của mảng. Một cách để làm là dùng vòng lặp `for`
   - Bộ tích lũy (Accumulators): Biểu thức += chỉ là viết tắt của x = x + i
+
 - Vòng lặp `for` lồng nhau: mảng bên trong mảng khác
 - Vòng lặp `do...while`: nó sẽ `do` một lượt mã bên trong vòng lặp bất kể điều gì, và sau đó tiếp tục chạy vòng lặp `while` điều kiện chỉ định đánh giá thành `true`
 - Toán tử điều kiện (tam thức): a ? b : c
@@ -573,6 +579,7 @@ If, Else, Else If, Switch:
 - Số ngẫu nhiên:
   - Số nguyên ngẫu nhiên: `Math.floor(Math.random() * 20); `
   - Số nguyên ngẫu nhiên trong khoảng: `Math.floor(Math.random() * (max - min + 1)) + min`
+
 - Hàm `parseInt()` phân tích chuỗi và trả về số nguyên: `var a = parseInt("007");`
 - Toán tử điều kiện (tam thức): `a ? b : c`, trong đó `a` là điều kiện, `b` là mã chạy khi điều kiện trả về `true`, và `c` là mã chạy khi điều kiện trả về `false`
 
@@ -592,6 +599,7 @@ If, Else, Else If, Switch:
 - `"use strict"`: khai báo ở đầu file hoặc trong hàm: bạn không thể dùng <ins>biến chưa khai báo</ins> - Nó giúp bạn viết mã sạch hơn
 - Phạm vi: Khi bạn khai báo biến bằng từ khóa `let` bên trong khối, câu lệnh hoặc biểu thức, phạm vi của nó bị giới hạn trong khối, câu lệnh hoặc biểu thức đó
   - Hành vi này sẽ gây vấn đề nếu bạn tạo hàm và lưu nó để dùng sau bên trong vòng lặp `for` dùng biến `i`. Điều này là vì hàm đã lưu sẽ luôn tham chiếu tới giá trị của biến `i` toàn cục đã cập nhật???
+
 - Khai báo biến chỉ đọc bằng từ khóa `const`: `const` có mọi tính năng tuyệt vời mà let có, với lợi ích thêm là biến khai báo bằng `const` là chỉ đọc
 - Biến `const` có phạm vi khối và phải được khởi tạo khi khai báo
 - Bạn nên luôn đặt tên biến không muốn gán lại bằng từ khóa `const`

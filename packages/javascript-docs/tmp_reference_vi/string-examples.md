@@ -610,6 +610,7 @@ Bảng theo số lượng đối số và liệu phương thức có thay đổi
 ### Phương thức phổ biến
 
 Phương thức phổ biến KHÔNG có đối số/tham số:
+
 | method | syntax | Mutates? |
 | :---- | :---- | :----: |
 | split | str.split() | YES |
@@ -621,6 +622,7 @@ Phương thức phổ biến KHÔNG có đối số/tham số:
 <br />
 
 Phương thức phổ biến với một đối số, hoặc nhiều đối số lặp lại:
+
 | method | syntax1 | syntax2 | Mutates? |
 | :---- | :---- | :---- | :----: |
 | charCodeAt | str.charCodeAt(index) | | NO |
@@ -641,6 +643,7 @@ Phương thức phổ biến với một đối số, hoặc nhiều đối số
 <br />
 
 Phương thức phổ biến với hai đối số:
+
 | method | syntax1 | syntax2 | Mutates? |
 | :---- | :---- | :---- | :----: |
 | slice | str.slice(start, end) | | NO |
