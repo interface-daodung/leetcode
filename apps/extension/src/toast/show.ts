@@ -17,8 +17,8 @@ function positionToast(el: HTMLElement): void {
   if (widget) {
     const widgetRect = widget.getBoundingClientRect();
     el.style.position = "fixed";
-    el.style.bottom = `${window.innerHeight - widgetRect.top * 1.24}px`;
-    el.style.right = `${window.innerWidth - widgetRect.right * 1.2}px`;
+    el.style.bottom = `${window.innerHeight - widgetRect.top - 80}px`;
+    el.style.right = `${window.innerWidth - widgetRect.right - 30}px`;
     el.style.left = "auto";
     el.style.top = "auto";
   } else {
