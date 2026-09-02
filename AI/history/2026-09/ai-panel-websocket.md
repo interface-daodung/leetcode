@@ -27,7 +27,7 @@ Thêm panel **AI** vào dockable layout của `apps/web` nhằm sinh hướng d�
 - `controllers/ai.controller.ts` — nhận `{ type: "guide", problem }`, gọi `generateGuide`, trả `{ type: "guide", guide }`; lỗi → `{ type: "error", error }`.
 - `routes/index.ts` — đăng ký `registerAiRoutes`.
 - `ai.controller.test.ts` (3 tests) — test handler trực tiếp bằng MockSocket.
-- Thêm `@fastify/websocket`, `ws` (deps) + `@types/ws` (devDeps).
+- Thêm `@fastify/websocket@^10.0.0` (v11 yêu cầu Fastify 5, dự án dùng Fastify 4 → v10 là phiên bản tương thích cuối cùng), `ws` (deps) + `@types/ws` (devDeps).
 
 ### `packages/layout/src/workspace.ts`
 - `LayoutComponentName` thêm `"ai"`.
