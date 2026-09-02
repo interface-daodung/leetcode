@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@fastify/static": "^7.0.0",
-    "@fastify/websocket": "^11.3.0",
+    "@fastify/websocket": "^10.0.1",
     "@leetcode/ai": "workspace:*",
     "@leetcode/database": "workspace:*",
     "@leetcode/problem-engine": "workspace:*",
