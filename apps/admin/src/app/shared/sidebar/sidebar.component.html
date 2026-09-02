@@ -1,0 +1,21 @@
+<aside class="border-b border-border bg-card md:border-b-0">
+  <nav class="flex w-full gap-1 p-2 md:flex-col md:gap-1 md:p-3">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="bg-primary text-primary-fg"
+      [routerLinkActiveOptions]="{ exact: false }"
+      class="sidebar-link"
+    >
+      <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+      <span>Dashboard</span>
+    </a>
+    <a
+      routerLink="/database"
+      routerLinkActive="bg-primary text-primary-fg"
+      class="sidebar-link"
+    >
+      <i class="fa-solid fa-database" aria-hidden="true"></i>
+      <span>Database</span>
+    </a>
+  </nav>
+</aside>

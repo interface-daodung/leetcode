@@ -1,35 +1,220 @@
 <div class="space-y-4">
-  <div class="flex items-center justify-between">
+  <!-- Toolbar -->
+  <div class="flex flex-wrap items-center justify-between gap-3">
     <div>
       <h1 class="text-2xl font-bold">Database — Problems</h1>
       <p class="text-sm text-muted">CRUD bảng <code>problems</code>. Hints/assets xem read-only ở panel dưới.</p>
     </div>
-    <button type="button" class="btn-primary" (click)="reload()">⟳ Tải lại</button>
+    <div class="flex items-center gap-2">
+      <div class="relative">
+        <i class="fa-solid fa-search absolute left-2.5 top-2.5 text-muted text-xs" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="input !w-48 !pl-7"
+          placeholder="Tìm kiếm…"
+          [ngModel]="query()"
+          (ngModelChange)="query.set($event); page.set(1)"
+        />
+      </div>
+      <button type="button" class="btn-primary" (click)="reload()">
+        <i class="fa-solid fa-rotate" aria-hidden="true"></i> Tải lại
+      </button>
+      <button type="button" class="btn-primary" (click)="openAddForm()">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm
+      </button>
+    </div>
   </div>
 
-  <dx-data-grid
-    [dataSource]="problems()"
-    [columns]="columns"
-    [showBorders]="true"
-    [hoverStateEnabled]="true"
-    [rowAlternationEnabled]="true"
-    [allowColumnResizing]="true"
-    [allowColumnReordering]="true"
-    [editing]="{ mode: 'row', allowUpdating: true, allowDeleting: true, allowAdding: true, useIcons: true }"
-    (onRowInserted)="onRowInserted($event)"
-    (onRowUpdated)="onRowUpdated($event)"
-    (onRowRemoved)="onRowRemoved($event)"
-    (onRowClick)="onRowClick($event)"
-    (onRowDblClick)="onRowDblClick($event)"
-    (onEditorPreparing)="onEditorPreparing($event)"
-  >
-    <dxo-paging [pageSize]="15"></dxo-paging>
-    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 30, 50]"></dxo-pager>
-    <dxo-search-panel [visible]="true" [width]="240" placeholder="Tìm kiếm…"></dxo-search-panel>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-header-filter [visible]="true"></dxo-header-filter>
-  </dx-data-grid>
+  <!-- Add form -->
+  @if (showAddForm()) {
+    <div class="card space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="label">Thêm problem mới</div>
+        <button type="button" class="btn !px-2" (click)="closeAddForm()" title="Đóng">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <label class="label">Tiêu đề *</label>
+          <input type="text" class="input" [ngModel]="newDraft().title" (ngModelChange)="patchDraft('title', $event)" />
+        </div>
+        <div>
+          <label class="label">Slug</label>
+          <input type="text" class="input" [ngModel]="newDraft().slug" (ngModelChange)="patchDraft('slug', $event)" />
+        </div>
+        <div>
+          <label class="label">Độ khó</label>
+          <select class="input" [ngModel]="newDraft().difficulty" (ngModelChange)="patchDraft('difficulty', $event)">
+            @for (d of difficulties; track d) {
+              <option [value]="d">{{ d }}</option>
+            }
+          </select>
+        </div>
+        <div>
+          <label class="label">Tags (phân cách bằng dấu phẩy)</label>
+          <input type="text" class="input" [ngModel]="newDraft().tags.join(', ')" (ngModelChange)="patchDraftTags($event)" />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="label">URL</label>
+          <input type="text" class="input" [ngModel]="newDraft().url" (ngModelChange)="patchDraft('url', $event)" />
+        </div>
+        <div class="sm:col-span-2 lg:col-span-3">
+          <label class="label">Mô tả *</label>
+          <textarea class="input !min-h-[80px]" [ngModel]="newDraft().description" (ngModelChange)="patchDraft('description', $event)"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button type="button" class="btn" (click)="closeAddForm()">Hủy</button>
+        <button type="button" class="btn-primary" (click)="submitAdd()">
+          <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Lưu
+        </button>
+      </div>
+    </div>
+  }
 
+  <!-- Loading -->
+  @if (loading()) {
+    <div class="flex items-center justify-center py-12 text-muted">
+      <i class="fa-solid fa-spinner fa-spin mr-2" aria-hidden="true"></i> Đang tải…
+    </div>
+  } @else {
+    <!-- Table -->
+    <div class="overflow-x-auto rounded-lg border border-border">
+      <table class="w-full text-sm">
+        <thead class="bg-card">
+          <tr>
+            @for (col of columns; track col.key) {
+              <th
+                class="cursor-pointer select-none border-b border-border px-3 py-2 !text-left text-xs font-medium uppercase tracking-wider text-muted transition-colors hover:text-fg"
+                [class.text-right]="col.align === 'right'"
+                [class.text-center]="col.align === 'center'"
+                [style.width]="col.width"
+                (click)="col.sortable && toggleSort(col)"
+              >
+                <span class="inline-flex items-center gap-1">
+                  {{ col.label }}
+                  @if (col.sortable) {
+                    <i class="fa-solid" [ngClass]="sortIcon(col)"></i>
+                  }
+                </span>
+              </th>
+            }
+            <th class="border-b border-border px-3 py-2 text-right text-xs font-medium uppercase tracking-wider text-muted" style="width: 100px">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of paged(); track p.id) {
+            @if (editingId() === p.id) {
+              <!-- Edit row -->
+              <tr class="bg-card">
+                <td class="border-b border-border px-3 py-1.5 text-right text-muted">{{ p.id }}</td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <input type="text" class="input !min-w-0" [ngModel]="editBuffer()?.title" (ngModelChange)="patchEdit('title', $event)" />
+                </td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <input type="text" class="input" [ngModel]="editBuffer()?.slug" (ngModelChange)="patchEdit('slug', $event)" />
+                </td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <select class="input" [ngModel]="editBuffer()?.difficulty" (ngModelChange)="patchEdit('difficulty', $event)">
+                    @for (d of difficulties; track d) {
+                      <option [value]="d">{{ d }}</option>
+                    }
+                  </select>
+                </td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <input type="text" class="input" [ngModel]="editBuffer()?.url" (ngModelChange)="patchEdit('url', $event)" />
+                </td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <input type="text" class="input" [ngModel]="tagsStr(editBuffer()?.tags)" (ngModelChange)="patchEditTags($event)" />
+                </td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <textarea class="input !min-h-[60px] !min-w-0" [ngModel]="editBuffer()?.description" (ngModelChange)="patchEdit('description', $event)"></textarea>
+                </td>
+                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.createdAt | slice:0:10 }}</td>
+                <td class="border-b border-border px-3 py-1.5 text-right">
+                  <div class="inline-flex gap-1">
+                    <button type="button" class="btn !px-2" (click)="saveEdit()" title="Lưu">
+                      <i class="fa-solid fa-check text-green-500" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn !px-2" (click)="cancelEdit()" title="Hủy">
+                      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @else {
+              <!-- Data row -->
+              <tr
+                class="cursor-pointer transition-colors hover:bg-card"
+                [class.bg-card]="selected()?.id === p.id"
+                (click)="selectProblem(p)"
+              >
+                <td class="border-b border-border px-3 py-1.5 text-right text-muted">{{ p.id }}</td>
+                <td class="border-b border-border px-3 py-1.5 font-medium">{{ p.title }}</td>
+                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.slug }}</td>
+                <td class="border-b border-border px-3 py-1.5">
+                  <span [class]="'inline-block rounded-full px-2 py-0.5 text-xs font-medium ' + diffBadgeClass(p.difficulty)">{{ p.difficulty }}</span>
+                </td>
+                <td class="max-w-[200px] truncate border-b border-border px-3 py-1.5 text-muted" title="{{ p.url }}">{{ p.url }}</td>
+                <td class="border-b border-border px-3 py-1.5 text-muted">{{ tagsStr(p.tags).slice(0, 40) }}{{ tagsStr(p.tags).length > 40 ? '…' : '' }}</td>
+                <td class="max-w-[220px] truncate border-b border-border px-3 py-1.5 text-muted" [title]="p.description">{{ p.description }}</td>
+                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.createdAt | slice:0:10 }}</td>
+                <td class="border-b border-border px-3 py-1.5 text-right">
+                  <div class="inline-flex gap-1">
+                    <button type="button" class="btn !px-2" (click)="startEdit(p); $event.stopPropagation()" title="Sửa">
+                      <i class="fa-solid fa-pen-to-square text-primary" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn !px-2" (click)="remove(p); $event.stopPropagation()" title="Xóa">
+                      <i class="fa-solid fa-trash-can text-red-500" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          } @empty {
+            <tr>
+              <td [attr.colspan]="columns.length + 1" class="py-12 text-center text-muted">
+                <i class="fa-solid fa-inbox mr-2" aria-hidden="true"></i> Không có dữ liệu
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex flex-wrap items-center justify-between gap-2 text-sm">
+      <div class="text-muted">
+        Hiển thị {{ rangeStart() }}–{{ rangeEnd() }} / {{ sorted().length }}
+      </div>
+      <div class="flex items-center gap-2">
+        <select class="input !w-auto" [ngModel]="pageSize()" (ngModelChange)="pageSize.set($event); page.set(1)">
+          @for (s of pageSizeOptions; track s) {
+            <option [value]="s">{{ s }} / trang</option>
+          }
+        </select>
+        <div class="inline-flex items-center gap-1">
+          <button type="button" class="btn !px-2" [disabled]="page() <= 1" (click)="prevPage()" title="Trang trước">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          @for (p of pages(); track p) {
+            <button
+              type="button"
+              class="btn !px-2.5"
+              [class.btn-primary]="page() === p"
+              (click)="goPage(p)"
+            >{{ p }}</button>
+          }
+          <button type="button" class="btn !px-2" [disabled]="page() >= totalPages()" (click)="nextPage()" title="Trang sau">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Detail panel (hints + assets) -->
   @if (selected(); as p) {
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="card">
@@ -73,9 +258,15 @@
   }
 </div>
 
-<dx-toast
-  [visible]="toastVisible()"
-  [type]="toast()?.type === 'error' ? 'error' : 'success'"
-  [message]="toast()?.message ?? ''"
-  [displayTime]="3000"
-></dx-toast>
+<!-- Toast -->
+@if (toast(); as t) {
+  <div
+    class="fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium shadow-lg"
+    [class.bg-green-600]="t.type === 'success'"
+    [class.bg-red-600]="t.type === 'error'"
+    [class.text-white]="true"
+  >
+    <i class="fa-solid" [ngClass]="t.type === 'success' ? 'fa-check-circle' : 'fa-circle-exclamation'" aria-hidden="true"></i>
+    {{ t.message }}
+  </div>
+}

@@ -1,4 +1,25 @@
-<app-header></app-header>
-<main class="mx-auto max-w-7xl p-4 md:p-6">
-  <router-outlet></router-outlet>
-</main>
+<div class="flex h-full flex-col">
+  <header class="border-b border-border bg-card">
+    <div class="flex items-center justify-between gap-4 px-4 py-2.5 md:px-6">
+      <a routerLink="/dashboard" class="flex items-center gap-2.5">
+        <i class="fa-solid fa-code text-xl text-primary" aria-hidden="true"></i>
+        <span class="text-lg font-bold">LeetCode Lab Admin</span>
+      </a>
+      <button
+        type="button"
+        class="btn !px-2.5 !py-2"
+        (click)="toggleTheme()"
+        [attr.aria-label]="theme.isDark() ? 'Chuyển sang sáng' : 'Chuyển sang tối'"
+        [title]="theme.isDark() ? 'Sáng' : 'Tối'"
+      >
+        <i class="fa-solid fa-xl" [ngClass]="theme.isDark() ? 'fa-sun' : 'fa-moon'" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+  <div class="flex min-h-0 flex-1 flex-col md:flex-row-reverse">
+    <app-sidebar class="md:w-56 md:flex-none md:border-l md:border-border"></app-sidebar>
+    <main class="min-w-0 flex-1 overflow-auto p-4 md:p-6">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

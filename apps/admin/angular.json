@@ -28,7 +28,7 @@
               { "glob": "**/*", "input": "public" }
             ],
             "styles": [
-              "node_modules/devextreme/dist/css/dx.light.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -36,7 +36,7 @@
           "configurations": {
             "production": {
               "budgets": [
-                { "type": "initial", "maximumWarning": "3mb", "maximumError": "4mb" },
+                { "type": "initial", "maximumWarning": "1mb", "maximumError": "2mb" },
                 { "type": "anyComponentStyle", "maximumWarning": "8kb", "maximumError": "16kb" }
               ],
               "outputHashing": "all"
