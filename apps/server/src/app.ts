@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import fastifyWebsocket from "@fastify/websocket";
 import { registerCors } from "./plugins/cors.js";
 import { registerStatic } from "./plugins/static.js";
 import { registerRoutes } from "./routes/index.js";
@@ -9,6 +10,7 @@ export async function createApp(deps: { service?: ProblemService } = {}) {
   const app = Fastify({ logger: true });
   const service = deps.service ?? new ProblemService();
 
+  await app.register(fastifyWebsocket);
   registerCors(app);
   await registerStatic(app);
   registerRoutes(app, service);

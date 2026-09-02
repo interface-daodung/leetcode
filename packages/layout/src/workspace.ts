@@ -10,7 +10,8 @@ export type LayoutComponentName =
   | "description"
   | "output"
   | "knowledge-search"
-  | "knowledge-result";
+  | "knowledge-result"
+  | "ai";
 
 /** Danh sách đầy đủ các panel trong workspace. */
 export const ALL_COMPONENTS: LayoutComponentName[] = [
@@ -20,6 +21,7 @@ export const ALL_COMPONENTS: LayoutComponentName[] = [
   "output",
   "knowledge-search",
   "knowledge-result",
+  "ai",
 ];
 
 /** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
@@ -42,6 +44,7 @@ export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId
       return "tabset-editor";
     case "output":
     case "knowledge-search":
+    case "ai":
       return "tabset-output";
     case "knowledge-result":
       return "tabset-knowledge-result";
@@ -56,7 +59,7 @@ export function defaultTabJson(component: LayoutComponentName): IJsonTabNode {
 /**
  * Tạo default layout tree (row → tabset → tab) kiểu IDE:
  * - Explorer (trái, weight 25)
- * - Cột phải (weight 75): Editor + Description (trên), Output + Knowledge-Search (dưới)
+ * - Cột phải (weight 75): Editor + Description (trên), Output + Knowledge-Search + AI (dưới)
  * - Cột giữa dưới: Knowledge-Result (tabset riêng, weight 30)
  */
 export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonModel {
@@ -69,6 +72,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
   const output = tabs("output", defs);
   const knowledgeSearch = tabs("knowledge-search", defs);
   const knowledgeResult = tabs("knowledge-result", defs);
+  const ai = tabs("ai", defs);
 
   return {
     global: {
@@ -104,7 +108,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
                   type: "tabset",
                   id: "tabset-output",
                   weight: 50,
-                  children: [...output.map(toJsonTab), ...knowledgeSearch.map(toJsonTab)],
+                  children: [...output.map(toJsonTab), ...knowledgeSearch.map(toJsonTab), ...ai.map(toJsonTab)],
                 },
                 {
                   type: "tabset",
@@ -135,6 +139,8 @@ function defaultName(component: LayoutComponentName): string {
       return "Knowledge Search";
     case "knowledge-result":
       return "Knowledge Result";
+    case "ai":
+      return "AI";
   }
 }
 

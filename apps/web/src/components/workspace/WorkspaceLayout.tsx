@@ -10,6 +10,7 @@ import { DescriptionPanel } from "./DescriptionPanel.js";
 import { OutputPanel } from "./OutputPanel.js";
 import { KnowledgeSearchPanel } from "./KnowledgeSearchPanel.js";
 import { KnowledgeResultPanel } from "./KnowledgeResultPanel.js";
+import { AIPanel } from "./AIPanel.js";
 
 export function WorkspaceLayout() {
   const { theme } = useTheme();
@@ -31,6 +32,8 @@ export function WorkspaceLayout() {
           return <KnowledgeSearchPanel />;
         case "knowledge-result":
           return <KnowledgeResultPanel />;
+        case "ai":
+          return <AIPanel />;
         default:
           return <div>Unknown: {name}</div>;
       }

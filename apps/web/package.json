@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.3.1",
+    "@leetcode/ai": "workspace:*",
     "@leetcode/editor": "workspace:*",
     "@leetcode/javascript-docs": "workspace:*",
     "@leetcode/layout": "workspace:*",

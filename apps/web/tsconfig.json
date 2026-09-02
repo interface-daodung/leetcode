@@ -20,7 +20,8 @@
       "@leetcode/shared": ["../../packages/shared/src"],
       "@leetcode/editor": ["../../packages/editor/src"],
       "@leetcode/problem-engine": ["../../packages/problem-engine/src"],
-      "@leetcode/layout": ["../../packages/layout/src"]
+      "@leetcode/layout": ["../../packages/layout/src"],
+      "@leetcode/ai": ["../../packages/ai/src"]
     }
   },
   "include": ["src"],
