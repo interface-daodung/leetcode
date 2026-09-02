@@ -4,8 +4,6 @@ import type { LayoutComponentName } from "@leetcode/layout";
 import { useTheme } from "../../lib/theme.js";
 import { useWorkspace } from "./WorkspaceContext.js";
 import { KnowledgeProvider } from "./KnowledgeContext.js";
-import { ErrorProvider } from "./ErrorContext.js";
-import { ErrorBoundary } from "./ErrorBoundary.js";
 import { ExplorerPanel } from "./ExplorerPanel.js";
 import { EditorPanel } from "./EditorPanel.js";
 import { DescriptionPanel } from "./DescriptionPanel.js";
@@ -50,13 +48,9 @@ export function WorkspaceLayout() {
 
   return (
     <div className={`flexlayout__theme ${themeClass}`} style={{ ...cssOverrides, position: "relative", height: "100%", width: "100%" }}>
-      <ErrorProvider>
-        <ErrorBoundary>
-          <KnowledgeProvider>
-            <Layout model={model} factory={factory} onModelChange={persistModel} />
-          </KnowledgeProvider>
-        </ErrorBoundary>
-      </ErrorProvider>
+      <KnowledgeProvider>
+        <Layout model={model} factory={factory} onModelChange={persistModel} />
+      </KnowledgeProvider>
     </div>
   );
 }
