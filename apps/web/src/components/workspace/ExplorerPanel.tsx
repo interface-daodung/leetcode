@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { ProblemMeta } from "@leetcode/shared";
-import { fetchProblems } from "../../lib/api.js";
+import { fetchProblems, diagnoseConnection } from "../../lib/api.js";
 import { useErrorStore } from "./ErrorContext.js";
 import { DifficultyBadge } from "../DifficultyBadge.js";
 
@@ -21,10 +21,12 @@ export function ExplorerPanel() {
       .then((data) => {
         if (!cancelled) setProblems(data);
       })
-      .catch((e) => {
+      .catch(async (e) => {
         if (cancelled) return;
         const detail = e instanceof Error ? e.message : String(e);
-        pushError({ source: "fetch", message: "Không tải được danh sách đề bài (GET /api/problems)", detail });
+        const diag = await diagnoseConnection().catch(() => null);
+        const diagLine = diag ? ` | Chuẩn đoán: ${diag.detail}` : "";
+        pushError({ source: "fetch", message: "Không tải được danh sách đề bài (GET /api/problems)", detail: `${detail}${diagLine}` });
       });
     return () => {
       cancelled = true;

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useWorkspace } from "./WorkspaceContext.js";
 import { useErrorStore } from "./ErrorContext.js";
 import { CodeEditor } from "../CodeEditor.js";
-import { runCode, saveToPlayground } from "../../lib/api.js";
+import { runCode, saveToPlayground, diagnoseConnection } from "../../lib/api.js";
 
 export function EditorPanel() {
   const { problem, code, setCode, setResults, setRunPassed, setRunTotal, setOutput, setRunning, running, output, vscodeMsg, setVscodeMsg } = useWorkspace();
@@ -29,7 +29,9 @@ export function EditorPanel() {
     } catch (e) {
       const detail = e instanceof Error ? e.message : String(e);
       setOutput(`Lỗi: ${detail}`);
-      pushError({ source: "code", message: `Run #${problem.id} ngoại lệ`, detail });
+      const diag = await diagnoseConnection().catch(() => null);
+      const diagLine = diag ? ` | Chuẩn đoán: ${diag.detail}` : "";
+      pushError({ source: "code", message: `Run #${problem.id} ngoại lệ`, detail: `${detail}${diagLine}` });
     } finally {
       setRunning(false);
     }
@@ -44,7 +46,9 @@ export function EditorPanel() {
     const res = await saveToPlayground(problem.slug, code);
     if (!res.ok) {
       setVscodeMsg(`Lỗi: ${res.error}`);
-      pushError({ source: "code", message: `Lưu playground thất bại (${problem.slug})`, detail: res.error });
+      const diag = await diagnoseConnection().catch(() => null);
+      const diagLine = diag ? ` | Chuẩn đoán: ${diag.detail}` : "";
+      pushError({ source: "code", message: `Lưu playground thất bại (${problem.slug})`, detail: `${res.error}${diagLine}` });
       return;
     }
     const { path, line, column } = res.result;

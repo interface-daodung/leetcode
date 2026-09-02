@@ -5,7 +5,7 @@ import { WorkspaceLayout } from "./components/workspace/WorkspaceLayout.js";
 import { DocPage } from "./pages/DocPage.js";
 import { useWorkspace } from "./components/workspace/WorkspaceContext.js";
 import { useErrorStore } from "./components/workspace/ErrorContext.js";
-import { fetchProblem } from "./lib/api.js";
+import { fetchProblem, diagnoseConnection } from "./lib/api.js";
 
 function ProblemLoader() {
   const { id } = useParams();
@@ -36,10 +36,16 @@ function ProblemLoader() {
         setResults(null);
         setLoading(false);
       })
-      .catch((e) => {
+      .catch(async (e) => {
         if (cancelled) return;
         const detail = e instanceof Error ? e.message : String(e);
-        pushError({ source: "fetch", message: `Không tải được đề bài #${numericId} (GET /api/problems/${numericId})`, detail });
+        const diag = await diagnoseConnection().catch(() => null);
+        const diagLine = diag ? ` | Chuẩn đoán: ${diag.detail}` : "";
+        pushError({
+          source: "fetch",
+          message: `Không tải được đề bài #${numericId} (GET /api/problems/${numericId})`,
+          detail: `${detail}${diagLine}`,
+        });
         setProblem(null);
         setLoading(false);
         setResults(null);
