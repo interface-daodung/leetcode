@@ -1,0 +1,30 @@
+<header class="border-b border-border bg-card">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 p-3 md:p-4">
+    <div class="flex items-center gap-6">
+      <a routerLink="/dashboard" class="text-lg font-bold text-primary">LeetCode Lab Admin</a>
+      <nav class="flex items-center gap-1">
+        <a
+          routerLink="/dashboard"
+          routerLinkActive="bg-primary text-primary-fg"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="btn"
+        >Dashboard</a>
+        <a
+          routerLink="/database"
+          routerLinkActive="bg-primary text-primary-fg"
+          class="btn"
+        >Database</a>
+      </nav>
+    </div>
+    <button
+      type="button"
+      class="btn"
+      (click)="toggleTheme()"
+      [attr.aria-label]="theme.isDark() ? 'Chuyển sang sáng' : 'Chuyển sang tối'"
+      [title]="theme.isDark() ? 'Sáng' : 'Tối'"
+    >
+      <span aria-hidden="true">{{ theme.isDark() ? '☀️' : '🌙' }}</span>
+      <span class="hidden sm:inline">{{ theme.isDark() ? 'Light' : 'Dark' }}</span>
+    </button>
+  </div>
+</header>

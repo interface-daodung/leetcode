@@ -1,0 +1,39 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-2xl font-bold">Dashboard</h1>
+    <p class="text-sm text-muted">Tổng quan dữ liệu từ <code>GET /api/problems</code></p>
+  </div>
+
+  @if (loading()) {
+    <div class="text-muted">Đang tải…</div>
+  } @else {
+    @if (error(); as err) {
+      <div class="card border-red-500 text-red-500">Lỗi: {{ err }}</div>
+    } @else {
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="card">
+          <div class="label">Tổng</div>
+          <div class="mt-1 text-3xl font-bold">{{ stats().total }}</div>
+          <div class="text-xs text-muted">problems</div>
+        </div>
+        <div class="card">
+          <div class="label">Easy</div>
+          <div class="mt-1 text-3xl font-bold text-green-500">{{ stats().easy }}</div>
+        </div>
+        <div class="card">
+          <div class="label">Medium</div>
+          <div class="mt-1 text-3xl font-bold text-yellow-500">{{ stats().medium }}</div>
+        </div>
+        <div class="card">
+          <div class="label">Hard</div>
+          <div class="mt-1 text-3xl font-bold text-red-500">{{ stats().hard }}</div>
+        </div>
+        <div class="card sm:col-span-2 lg:col-span-4">
+          <div class="label">Tags distinct</div>
+          <div class="mt-1 text-3xl font-bold">{{ stats().tagCount }}</div>
+          <div class="text-xs text-muted">Tổng số tag duy nhất (sau khi union)</div>
+        </div>
+      </div>
+    }
+  }
+</div>

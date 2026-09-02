@@ -1,0 +1,81 @@
+<div class="space-y-4">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold">Database — Problems</h1>
+      <p class="text-sm text-muted">CRUD bảng <code>problems</code>. Hints/assets xem read-only ở panel dưới.</p>
+    </div>
+    <button type="button" class="btn-primary" (click)="reload()">⟳ Tải lại</button>
+  </div>
+
+  <dx-data-grid
+    [dataSource]="problems()"
+    [columns]="columns"
+    [showBorders]="true"
+    [hoverStateEnabled]="true"
+    [rowAlternationEnabled]="true"
+    [allowColumnResizing]="true"
+    [allowColumnReordering]="true"
+    [editing]="{ mode: 'row', allowUpdating: true, allowDeleting: true, allowAdding: true, useIcons: true }"
+    (onRowInserted)="onRowInserted($event)"
+    (onRowUpdated)="onRowUpdated($event)"
+    (onRowRemoved)="onRowRemoved($event)"
+    (onRowClick)="onRowClick($event)"
+    (onRowDblClick)="onRowDblClick($event)"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    <dxo-paging [pageSize]="15"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 30, 50]"></dxo-pager>
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Tìm kiếm…"></dxo-search-panel>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+  </dx-data-grid>
+
+  @if (selected(); as p) {
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div class="card">
+        <div class="mb-2 flex items-center justify-between">
+          <div class="label">Hints — #{{ p.id }} {{ p.title }}</div>
+          <span class="text-xs text-muted">{{ hints().length }} hints</span>
+        </div>
+        @if (hints().length === 0) {
+          <div class="text-sm text-muted">Không có hint.</div>
+        } @else {
+          <ol class="space-y-2 text-sm">
+            @for (h of hints(); track h.id) {
+              <li class="rounded border border-border p-2">
+                <div class="text-xs font-semibold text-muted">Hint {{ h.ord }}</div>
+                <div [innerHTML]="h.content"></div>
+              </li>
+            }
+          </ol>
+        }
+      </div>
+      <div class="card">
+        <div class="mb-2 flex items-center justify-between">
+          <div class="label">Assets — #{{ p.id }}</div>
+          <span class="text-xs text-muted">{{ assets().length }} ảnh</span>
+        </div>
+        @if (assets().length === 0) {
+          <div class="text-sm text-muted">Không có asset.</div>
+        } @else {
+          <ul class="space-y-1 text-xs">
+            @for (a of assets(); track a.id) {
+              <li class="rounded border border-border p-2">
+                <div class="truncate"><span class="text-muted">hash:</span> {{ a.hash.slice(0, 12) }}…</div>
+                <div class="truncate"><span class="text-muted">local:</span> {{ a.localPath }}</div>
+                <div class="truncate"><span class="text-muted">orig:</span> <a [href]="a.originalUrl" target="_blank" class="text-primary underline">{{ a.originalUrl }}</a></div>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<dx-toast
+  [visible]="toastVisible()"
+  [type]="toast()?.type === 'error' ? 'error' : 'success'"
+  [message]="toast()?.message ?? ''"
+  [displayTime]="3000"
+></dx-toast>

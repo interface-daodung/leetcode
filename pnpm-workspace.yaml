@@ -5,8 +5,12 @@ allowBuilds:
   '@ladybugdb/core': true
   '@scarf/scarf': true
   better-sqlite3: true
+  core-js: false
   esbuild: true
   gitnexus: true
+  inferno: false
+  lmdb: false
+  msgpackr-extract: false
   onnxruntime-node: true
   protobufjs: true
   sharp: true

@@ -6,6 +6,7 @@
   "scripts": {
     "web": "pnpm --filter=@leetcode/web dev",
     "server": "pnpm --filter=@leetcode/server dev",
+    "admin": "pnpm --filter=@leetcode/admin start",
     "dev": "concurrently \"pnpm web\" \"pnpm server\"",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
