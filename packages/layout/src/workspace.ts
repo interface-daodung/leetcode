@@ -11,7 +11,8 @@ export type LayoutComponentName =
   | "output"
   | "knowledge-search"
   | "knowledge-result"
-  | "ai";
+  | "ai"
+  | "error";
 
 /** Danh sách đầy đủ các panel trong workspace. */
 export const ALL_COMPONENTS: LayoutComponentName[] = [
@@ -22,6 +23,7 @@ export const ALL_COMPONENTS: LayoutComponentName[] = [
   "knowledge-search",
   "knowledge-result",
   "ai",
+  "error",
 ];
 
 /** Id cố định của tabset mặc định chứa từng panel (dùng để mở lại panel về vị trí ban đầu). */
@@ -45,6 +47,7 @@ export function defaultTabsetId(component: LayoutComponentName): DefaultTabsetId
     case "output":
     case "knowledge-search":
     case "ai":
+    case "error":
       return "tabset-output";
     case "knowledge-result":
       return "tabset-knowledge-result";
@@ -73,6 +76,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
   const knowledgeSearch = tabs("knowledge-search", defs);
   const knowledgeResult = tabs("knowledge-result", defs);
   const ai = tabs("ai", defs);
+  const error = tabs("error", defs);
 
   return {
     global: {
@@ -108,7 +112,7 @@ export function createDefaultLayout(defs: LayoutTabDefinition[] = []): IJsonMode
                   type: "tabset",
                   id: "tabset-output",
                   weight: 50,
-                  children: [...output.map(toJsonTab), ...knowledgeSearch.map(toJsonTab), ...ai.map(toJsonTab)],
+                  children: [...output.map(toJsonTab), ...knowledgeSearch.map(toJsonTab), ...ai.map(toJsonTab), ...error.map(toJsonTab)],
                 },
                 {
                   type: "tabset",
@@ -141,6 +145,8 @@ function defaultName(component: LayoutComponentName): string {
       return "Knowledge Result";
     case "ai":
       return "AI";
+    case "error":
+      return "Error";
   }
 }
 

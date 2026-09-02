@@ -4,6 +4,8 @@ import type { LayoutComponentName } from "@leetcode/layout";
 import { useTheme } from "../../lib/theme.js";
 import { useWorkspace } from "./WorkspaceContext.js";
 import { KnowledgeProvider } from "./KnowledgeContext.js";
+import { ErrorProvider } from "./ErrorContext.js";
+import { ErrorBoundary } from "./ErrorBoundary.js";
 import { ExplorerPanel } from "./ExplorerPanel.js";
 import { EditorPanel } from "./EditorPanel.js";
 import { DescriptionPanel } from "./DescriptionPanel.js";
@@ -11,6 +13,7 @@ import { OutputPanel } from "./OutputPanel.js";
 import { KnowledgeSearchPanel } from "./KnowledgeSearchPanel.js";
 import { KnowledgeResultPanel } from "./KnowledgeResultPanel.js";
 import { AIPanel } from "./AIPanel.js";
+import { ErrorPanel } from "./ErrorPanel.js";
 
 export function WorkspaceLayout() {
   const { theme } = useTheme();
@@ -34,6 +37,8 @@ export function WorkspaceLayout() {
           return <KnowledgeResultPanel />;
         case "ai":
           return <AIPanel />;
+        case "error":
+          return <ErrorPanel />;
         default:
           return <div>Unknown: {name}</div>;
       }
@@ -45,9 +50,13 @@ export function WorkspaceLayout() {
 
   return (
     <div className={`flexlayout__theme ${themeClass}`} style={{ ...cssOverrides, position: "relative", height: "100%", width: "100%" }}>
-      <KnowledgeProvider>
-        <Layout model={model} factory={factory} onModelChange={persistModel} />
-      </KnowledgeProvider>
+      <ErrorProvider>
+        <ErrorBoundary>
+          <KnowledgeProvider>
+            <Layout model={model} factory={factory} onModelChange={persistModel} />
+          </KnowledgeProvider>
+        </ErrorBoundary>
+      </ErrorProvider>
     </div>
   );
 }

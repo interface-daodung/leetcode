@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AIGuide, AIProblemInput } from "@leetcode/ai";
 import { API_BASE } from "../../lib/api.js";
+import { useErrorStore } from "./ErrorContext.js";
 
 /** WebSocket route phục vụ AI hướng dẫn giải (server giữ prompt, không lộ ra client). */
 const WS_PATH = "/ws/ai";
@@ -27,6 +28,7 @@ export function useAI() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const socketRef = useRef<WebSocket | null>(null);
+  const { pushError } = useErrorStore();
 
   const connect = useCallback(() => {
     if (socketRef.current && socketRef.current.readyState <= WebSocket.OPEN) {
@@ -45,16 +47,19 @@ export function useAI() {
         } else if (msg.type === "error") {
           setError(msg.error);
           setLoading(false);
+          pushError({ source: "ai", message: `AI server: ${msg.error}` });
         }
       } catch {
         setError("Không đọc được phản hồi từ AI");
         setLoading(false);
+        pushError({ source: "ai", message: "Không đọc được phản hồi từ AI" });
       }
     };
 
     ws.onerror = () => {
       setError("Không kết nối được máy chủ AI (WebSocket)");
       setLoading(false);
+      pushError({ source: "ws", message: "Không kết nối được máy chủ AI (WebSocket)", detail: `URL: ${wsUrl()}` });
     };
 
     ws.onclose = () => {
@@ -62,7 +67,7 @@ export function useAI() {
     };
 
     return ws;
-  }, []);
+  }, [pushError]);
 
   // Ngắt kết nối khi unmount
   useEffect(() => {

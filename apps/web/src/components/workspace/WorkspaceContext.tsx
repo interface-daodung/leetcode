@@ -298,6 +298,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     "knowledge-search": true,
     "knowledge-result": true,
     ai: true,
+    error: true,
   });
 
   // Theo dõi model thay đổi (useUndo replace model mỗi lần undo/redo, hoặc user thao tác layout)

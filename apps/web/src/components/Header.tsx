@@ -13,6 +13,7 @@ const PANEL_LABELS: Record<LayoutComponentName, string> = {
   "knowledge-search": "Knowledge Search",
   "knowledge-result": "Knowledge Result",
   ai: "AI",
+  error: "Error",
 };
 
 export function Header() {

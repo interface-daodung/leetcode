@@ -67,6 +67,7 @@ describe("defaultTabsetId", () => {
     expect(defaultTabsetId("knowledge-search")).toBe("tabset-output");
     expect(defaultTabsetId("knowledge-result")).toBe("tabset-knowledge-result");
     expect(defaultTabsetId("ai")).toBe("tabset-output");
+    expect(defaultTabsetId("error")).toBe("tabset-output");
   });
 });
 
@@ -79,12 +80,13 @@ describe("defaultTabJson", () => {
     expect(defaultTabJson("knowledge-search")).toEqual({ type: "tab", name: "Knowledge Search", component: "knowledge-search" });
     expect(defaultTabJson("knowledge-result")).toEqual({ type: "tab", name: "Knowledge Result", component: "knowledge-result" });
     expect(defaultTabJson("ai")).toEqual({ type: "tab", name: "AI", component: "ai" });
+    expect(defaultTabJson("error")).toEqual({ type: "tab", name: "Error", component: "error" });
   });
 });
 
 describe("ALL_COMPONENTS", () => {
-  it("liệt kê đủ 7 panel (4 cơ bản + 2 knowledge + 1 ai)", () => {
-    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge-search", "knowledge-result", "ai"]);
+  it("liệt kê đủ 8 panel (4 cơ bản + 2 knowledge + 1 ai + 1 error)", () => {
+    expect(ALL_COMPONENTS).toEqual(["explorer", "editor", "description", "output", "knowledge-search", "knowledge-result", "ai", "error"]);
   });
 });
 
