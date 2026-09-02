@@ -6,11 +6,11 @@ const idParams = z.object({ id: z.string().transform(Number) });
 const difficultyParams = z.object({ difficulty: z.enum(["easy", "medium", "hard"]).optional() });
 const codeBody = z.object({ code: z.string() });
 
-// Schema cho admin CRUD — không yêu cầu id (server tự sinh nếu thiếu),
+// Schema cho admin CRUD — id optional (server tự sinh nếu 0/thiếu),
 // không cần hints/assets pipeline (admin add thủ công).
 const adminProblemSchema = z
   .object({
-    id: z.number().int().positive().optional(),
+    id: z.number().int().nonnegative().optional(),
     slug: z.string().optional().nullable(),
     title: z.string({ required_error: "Thiếu title" }).min(1),
     url: z.string().url().optional().nullable(),
