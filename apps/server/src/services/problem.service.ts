@@ -126,6 +126,61 @@ export class ProblemService {
     return Boolean(this.reg.get(id) ?? (await this.db.get(id)));
   }
 
+  /** Admin tạo mới problem (không qua clip/asset pipeline). Nếu id = 0 → tự sinh id kế tiếp. */
+  async createFromAdmin(input: {
+    id: number;
+    slug: string | null;
+    title: string;
+    url: string | null;
+    difficulty: "easy" | "medium" | "hard";
+    tags: string[];
+    description: string;
+    template: string | null;
+    testCases: { input: unknown; expected: unknown }[];
+  }): Promise<Problem & { hints: string[]; assets: unknown[] }> {
+    let id = input.id;
+    if (!id || id <= 0) {
+      id = await this.nextId();
+    }
+    if (await this.exists(id)) {
+      throw new Error(`Problem #${id} đã tồn tại`);
+    }
+
+    const problem: Problem = {
+      id,
+      slug: input.slug ?? undefined,
+      title: input.title,
+      url: input.url ?? undefined,
+      difficulty: input.difficulty,
+      tags: input.tags ?? [],
+      description: input.description,
+      template: input.template ?? undefined,
+      testCases: input.testCases ?? [],
+      hints: undefined,
+    };
+
+    this.reg.register(problem);
+    try {
+      await this.db.add(problem);
+    } catch (e) {
+      throw new Error(`Ghi DB thất bại: ${String(e)}`);
+    }
+    return { ...problem, hints: [], assets: [] };
+  }
+
+  /** Xóa problem khỏi engine + DB (cascade hints/assets). */
+  async delete(id: number): Promise<void> {
+    this.reg.remove(id);
+    await this.db.delete(id);
+  }
+
+  /** Tìm id trống kế tiếp (max + 1) trong DB. */
+  private async nextId(): Promise<number> {
+    const all = await this.db.getAll();
+    const max = all.reduce((m, p) => Math.max(m, p.id), 0);
+    return max + 1;
+  }
+
   /** Update existing problem from clip (ghi đè) */
   async updateClip(parsed: ProblemClip, apiBase: string): Promise<ImportClipResult> {
     const rawSlug = (parsed.slug && parsed.slug.length > 0 ? parsed.slug : `problem-${parsed.id}`).trim();

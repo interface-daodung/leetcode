@@ -15,4 +15,6 @@ export function registerProblemRoutes(app: FastifyInstance, service: ProblemServ
   app.get("/problems/:id/assets", ctrl.getAssets);
   app.post("/problems/import", ctrl.importClip);
   app.put("/problems/:id", ctrl.updateClip);
+  app.post("/problems", ctrl.create);
+  app.delete("/problems/:id", ctrl.remove);
 }

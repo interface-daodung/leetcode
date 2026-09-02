@@ -13,6 +13,7 @@ const { downloadAndRewriteImages } = await import("./asset.service.js");
 const dbMock = {
   getAllWithHints: vi.fn(),
   get: vi.fn(),
+  getAll: vi.fn(),
   add: vi.fn(),
   updateDescription: vi.fn(),
   setHints: vi.fn(),
@@ -20,6 +21,7 @@ const dbMock = {
   findAssetsByProblem: vi.fn(),
   findAssetByHash: vi.fn(),
   addAsset: vi.fn(),
+  delete: vi.fn(),
 };
 
 // Mock engine (registry)
@@ -33,6 +35,9 @@ function createEngineMock() {
     getRandom: vi.fn(),
     runTests: vi.fn(),
     runTestsDetailed: vi.fn(),
+    remove: vi.fn((id: number) => {
+      problems.delete(id);
+    }),
   };
 }
 
@@ -137,5 +142,60 @@ describe("ProblemService", () => {
     const svc = new ProblemService(dbMock as never, reg as never);
     expect(await svc.exists(5)).toBe(true);
     expect(await svc.exists(6)).toBe(false);
+  });
+
+  it("createFromAdmin: tự sinh id kế tiếp, register + add DB", async () => {
+    const reg = createEngineMock();
+    dbMock.getAll.mockResolvedValue([
+      { id: 1, title: "A" } as never,
+      { id: 5, title: "B" } as never,
+    ]);
+    dbMock.add.mockResolvedValue(undefined);
+
+    const svc = new ProblemService(dbMock as never, reg as never);
+    const result = await svc.createFromAdmin({
+      id: 0,
+      slug: null,
+      title: "New",
+      url: null,
+      difficulty: "easy",
+      tags: ["array"],
+      description: "<p>desc</p>",
+      template: null,
+      testCases: [],
+    });
+
+    expect(result.id).toBe(6);
+    expect(reg.register).toHaveBeenCalledWith(expect.objectContaining({ id: 6, title: "New" }));
+    expect(dbMock.add).toHaveBeenCalledTimes(1);
+  });
+
+  it("createFromAdmin: throw khi id đã tồn tại", async () => {
+    const reg = createEngineMock();
+    reg.register({ id: 1, slug: "a", title: "A", difficulty: "easy", tags: [], description: "", testCases: [] });
+    dbMock.add.mockResolvedValue(undefined);
+    const svc = new ProblemService(dbMock as never, reg as never);
+    await expect(
+      svc.createFromAdmin({
+        id: 1,
+        slug: null,
+        title: "Dup",
+        url: null,
+        difficulty: "easy",
+        tags: [],
+        description: "x",
+        template: null,
+        testCases: [],
+      }),
+    ).rejects.toThrow(/đã tồn tại/);
+  });
+
+  it("delete: gọi engine.remove + db.delete", async () => {
+    const reg = createEngineMock();
+    dbMock.delete.mockResolvedValue(undefined);
+    const svc = new ProblemService(dbMock as never, reg as never);
+    await svc.delete(42);
+    expect(reg.remove).toHaveBeenCalledWith(42);
+    expect(dbMock.delete).toHaveBeenCalledWith(42);
   });
 });

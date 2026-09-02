@@ -6,6 +6,25 @@ const idParams = z.object({ id: z.string().transform(Number) });
 const difficultyParams = z.object({ difficulty: z.enum(["easy", "medium", "hard"]).optional() });
 const codeBody = z.object({ code: z.string() });
 
+// Schema cho admin CRUD — không yêu cầu id (server tự sinh nếu thiếu),
+// không cần hints/assets pipeline (admin add thủ công).
+const adminProblemSchema = z
+  .object({
+    id: z.number().int().positive().optional(),
+    slug: z.string().optional().nullable(),
+    title: z.string({ required_error: "Thiếu title" }).min(1),
+    url: z.string().url().optional().nullable(),
+    difficulty: z.enum(["easy", "medium", "hard"], { required_error: "difficulty phải là easy|medium|hard" }),
+    tags: z.array(z.string()).optional().default([]),
+    description: z.string({ required_error: "Thiếu description" }).min(1),
+    template: z.string().optional().nullable(),
+    testCases: z
+      .array(z.object({ input: z.unknown(), expected: z.unknown() }))
+      .optional()
+      .default([]),
+  })
+  .strict();
+
 const importSchema = z
   .object({
     id: z.number({ required_error: "Thiếu id" }).int().positive(),
@@ -120,5 +139,46 @@ export function createProblemController(service: ProblemService) {
     return reply.code(201).send(result);
   }
 
-  return { list, getById, getRandom, run, hint, getHints, getAssets, importClip, updateClip };
+  /** POST /api/problems — admin tạo mới (id tự sinh nếu thiếu) */
+  async function create(request: FastifyRequest, reply: FastifyReply) {
+    let parsed: z.infer<typeof adminProblemSchema>;
+    try {
+      parsed = adminProblemSchema.parse(request.body);
+    } catch (e) {
+      return reply.code(400).send({ error: "Invalid problem", details: String(e) });
+    }
+
+    try {
+      const result = await service.createFromAdmin({
+        id: parsed.id ?? 0,
+        slug: parsed.slug ?? null,
+        url: parsed.url ?? null,
+        template: parsed.template ?? null,
+        tags: parsed.tags ?? [],
+        title: parsed.title,
+        difficulty: parsed.difficulty,
+        description: parsed.description,
+        testCases: (parsed.testCases ?? []).map((tc) => ({
+          input: tc.input,
+          expected: tc.expected,
+        })),
+      });
+      return reply.code(201).send(result);
+    } catch (e) {
+      return reply.code(400).send({ error: "Create failed", details: String(e) });
+    }
+  }
+
+  /** DELETE /api/problems/:id */
+  async function remove(request: FastifyRequest, reply: FastifyReply) {
+    const params = idParams.parse(request.params);
+    const existed = await service.exists(params.id);
+    if (!existed) {
+      return reply.code(404).send({ error: "Problem not found" });
+    }
+    await service.delete(params.id);
+    return reply.code(204).send();
+  }
+
+  return { list, getById, getRandom, run, hint, getHints, getAssets, importClip, updateClip, create, remove };
 }
