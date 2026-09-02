@@ -1,29 +1,39 @@
 import { useCallback } from "react";
 import { useWorkspace } from "./WorkspaceContext.js";
+import { useErrorStore } from "./ErrorContext.js";
 import { CodeEditor } from "../CodeEditor.js";
 import { runCode, saveToPlayground } from "../../lib/api.js";
 
 export function EditorPanel() {
   const { problem, code, setCode, setResults, setRunPassed, setRunTotal, setOutput, setRunning, running, output, vscodeMsg, setVscodeMsg } = useWorkspace();
+  const { pushError } = useErrorStore();
 
   const handleRun = useCallback(async () => {
     if (!problem) return;
     setRunning(true);
     setOutput("Đang chạy...");
     setResults(null);
-    const result = await runCode(problem.id, code);
-    if (result.error) {
-      setOutput(`Lỗi: ${result.error}`);
-    } else if (result.results) {
-      setResults(result.results);
-      setRunPassed(result.passed ?? 0);
-      setRunTotal(result.total ?? 0);
-      setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
-    } else {
-      setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
+    try {
+      const result = await runCode(problem.id, code);
+      if (result.error) {
+        setOutput(`Lỗi: ${result.error}`);
+        pushError({ source: "code", message: `Run #${problem.id} thất bại`, detail: result.error });
+      } else if (result.results) {
+        setResults(result.results);
+        setRunPassed(result.passed ?? 0);
+        setRunTotal(result.total ?? 0);
+        setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
+      } else {
+        setOutput(`Kết quả: ${result.passed} / ${result.total} test case đúng`);
+      }
+    } catch (e) {
+      const detail = e instanceof Error ? e.message : String(e);
+      setOutput(`Lỗi: ${detail}`);
+      pushError({ source: "code", message: `Run #${problem.id} ngoại lệ`, detail });
+    } finally {
+      setRunning(false);
     }
-    setRunning(false);
-  }, [problem, code, setRunning, setOutput, setResults, setRunPassed, setRunTotal]);
+  }, [problem, code, setRunning, setOutput, setResults, setRunPassed, setRunTotal, pushError]);
 
   const handleOpenInVscode = useCallback(async () => {
     if (!problem || !problem.slug) {
@@ -34,13 +44,14 @@ export function EditorPanel() {
     const res = await saveToPlayground(problem.slug, code);
     if (!res.ok) {
       setVscodeMsg(`Lỗi: ${res.error}`);
+      pushError({ source: "code", message: `Lưu playground thất bại (${problem.slug})`, detail: res.error });
       return;
     }
     const { path, line, column } = res.result;
     const uri = `vscode://file/${path}:${line}:${column}`;
     window.location.href = uri;
     setVscodeMsg(`Đã mở ${path}:${line}:${column}`);
-  }, [problem, code, setVscodeMsg]);
+  }, [problem, code, setVscodeMsg, pushError]);
 
   if (!problem) {
     return (

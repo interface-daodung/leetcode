@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { ProblemMeta } from "@leetcode/shared";
 import { fetchProblems } from "../../lib/api.js";
+import { useErrorStore } from "./ErrorContext.js";
 import { DifficultyBadge } from "../DifficultyBadge.js";
 
 type Filter = "all" | "easy" | "medium" | "hard";
@@ -9,13 +10,26 @@ type Filter = "all" | "easy" | "medium" | "hard";
 export function ExplorerPanel() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { pushError } = useErrorStore();
   const [problems, setProblems] = useState<ProblemMeta[]>([]);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
   useEffect(() => {
-    void fetchProblems().then(setProblems);
-  }, []);
+    let cancelled = false;
+    fetchProblems()
+      .then((data) => {
+        if (!cancelled) setProblems(data);
+      })
+      .catch((e) => {
+        if (cancelled) return;
+        const detail = e instanceof Error ? e.message : String(e);
+        pushError({ source: "fetch", message: "Không tải được danh sách đề bài (GET /api/problems)", detail });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [pushError]);
 
   const counts = useMemo(() => {
     const c = { all: problems.length, easy: 0, medium: 0, hard: 0 };

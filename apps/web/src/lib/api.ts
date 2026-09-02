@@ -19,13 +19,9 @@ export async function fetchProblems(): Promise<ProblemMeta[]> {
 }
 
 export async function fetchProblem(id: number): Promise<ProblemMeta | null> {
-  try {
-    const res = await fetch(`${API_BASE}/api/problems/${id}`);
-    if (!res.ok) return null;
-    return (await res.json()) as ProblemMeta;
-  } catch {
-    return null;
-  }
+  const res = await fetch(`${API_BASE}/api/problems/${id}`);
+  if (!res.ok) return null;
+  return (await res.json()) as ProblemMeta;
 }
 
 export async function runCode(
