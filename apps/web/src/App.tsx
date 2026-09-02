@@ -44,7 +44,7 @@ function App() {
         <main className="min-w-0 flex-1">
           <Routes>
             <Route path="/" element={<Navigate to="/problems" replace />} />
-            <Route path="/problems" element={<Navigate to="/problems" replace />} />
+            <Route path="/problems" element={<WorkspaceLayout />} />
             <Route path="/problems/:id" element={<ProblemLoader />} />
             <Route path="/doc/:file" element={<DocPage />} />
             <Route path="*" element={<Navigate to="/problems" replace />} />
