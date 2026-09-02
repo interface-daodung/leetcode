@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 
-const CORS_METHODS = "GET, POST, PUT, OPTIONS";
+const CORS_METHODS = "GET, POST, PUT, DELETE, OPTIONS";
 const CORS_HEADERS = "Content-Type";
 
 // CORS cho web (localhost:5173) gọi API
