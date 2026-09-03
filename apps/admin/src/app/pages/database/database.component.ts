@@ -1,14 +1,20 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, effect, inject, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { ProblemService, Problem, ProblemInput, Difficulty } from "../../core/problem.service";
 
+const EMPTY_HINTS: { id: number; ord: number; content: string }[] = [];
+const EMPTY_ASSETS: { id: number; originalUrl: string; localPath: string; hash: string }[] = [];
+
 type SortDir = "asc" | "desc" | null;
+type ColumnId = keyof Problem | "tagsStr" | "hints" | "expander" | "actions";
 type ColumnDef = {
-  key: keyof Problem | "tagsStr";
+  key: ColumnId;
   label: string;
   sortable: boolean;
   editable: boolean;
+  visible: boolean;
   width?: string;
   type?: "text" | "select" | "textarea";
   options?: readonly string[];
@@ -24,16 +30,15 @@ type ColumnDef = {
 })
 export class DatabaseComponent implements OnInit {
   private readonly problemService = inject(ProblemService);
+  private readonly sanitizer = inject(DomSanitizer);
 
   readonly problems = signal<Problem[]>([]);
   readonly loading = signal<boolean>(true);
-  readonly selected = signal<Problem | null>(null);
-  readonly hints = signal<{ id: number; ord: number; content: string }[]>([]);
-  readonly assets = signal<{ id: number; originalUrl: string; localPath: string; hash: string }[]>([]);
   readonly toast = signal<{ type: "success" | "error"; message: string } | null>(null);
 
   readonly query = signal<string>("");
-  readonly sortKey = signal<ColumnDef["key"] | null>(null);
+  readonly selectedTag = signal<string>("");
+  readonly sortKey = signal<ColumnId | null>(null);
   readonly sortDir = signal<SortDir>(null);
   readonly page = signal<number>(1);
   readonly pageSize = signal<number>(20);
@@ -53,35 +58,67 @@ export class DatabaseComponent implements OnInit {
     testCases: [],
   });
 
+  // Column visibility
+  readonly visibleColumnKeys = signal<Set<ColumnId>>(new Set(["id", "title", "slug", "difficulty", "url", "tagsStr", "description", "hints"]));
+
+  // Row expansion (hints/assets)
+  readonly expandedIds = signal<Set<number>>(new Set());
+  readonly rowHints = signal<Map<number, { id: number; ord: number; content: string }[]>>(new Map());
+  readonly rowAssets = signal<Map<number, { id: number; originalUrl: string; localPath: string; hash: string }[]>>(new Map());
+
+  // Description modal
+  readonly descModal = signal<Problem | null>(null);
+
   readonly difficulties: readonly Difficulty[] = ["easy", "medium", "hard"];
 
-  readonly columns: readonly ColumnDef[] = [
-    { key: "id", label: "ID", sortable: true, editable: false, width: "70px", align: "right" },
-    { key: "title", label: "Tiêu đề", sortable: true, editable: true, width: "minmax(160px, 1fr)" },
-    { key: "slug", label: "Slug", sortable: true, editable: true, width: "140px" },
-    { key: "difficulty", label: "Độ khó", sortable: true, editable: true, type: "select", options: this.difficulties, width: "110px" },
-    { key: "url", label: "URL", sortable: false, editable: true, width: "minmax(140px, 1.2fr)" },
-    { key: "tagsStr", label: "Tags", sortable: true, editable: true, width: "140px" },
-    { key: "description", label: "Mô tả", sortable: false, editable: true, type: "textarea", width: "minmax(160px, 1.4fr)" },
-    { key: "createdAt", label: "Tạo lúc", sortable: true, editable: false, width: "150px" },
+  readonly allColumns: readonly ColumnDef[] = [
+    { key: "expander", label: "", sortable: false, editable: false, visible: true, width: "36px" },
+    { key: "id", label: "ID", sortable: true, editable: false, visible: true, width: "70px", align: "right" },
+    { key: "title", label: "Tiêu đề", sortable: true, editable: true, visible: true, width: "minmax(160px, 1fr)" },
+    { key: "slug", label: "Slug", sortable: true, editable: true, visible: true, width: "140px" },
+    { key: "difficulty", label: "Độ khó", sortable: true, editable: true, visible: true, type: "select", options: this.difficulties, width: "110px" },
+    { key: "url", label: "URL", sortable: false, editable: true, visible: true, width: "minmax(140px, 1.2fr)" },
+    { key: "tagsStr", label: "Tags", sortable: true, editable: true, visible: true, width: "160px" },
+    { key: "description", label: "Mô tả", sortable: false, editable: true, visible: true, type: "textarea", width: "minmax(160px, 1.4fr)" },
+    { key: "hints", label: "Hints", sortable: false, editable: false, visible: true, width: "minmax(140px, 1fr)" },
+    { key: "createdAt", label: "Tạo lúc", sortable: true, editable: false, visible: false, width: "150px" },
   ] as const;
+
+  readonly visibleColumns = computed<ColumnDef[]>(() => {
+    const keys = this.visibleColumnKeys();
+    return this.allColumns.filter((c) => keys.has(c.key));
+  });
+
+  readonly allTags = computed<string[]>(() => {
+    const set = new Set<string>();
+    for (const p of this.problems()) {
+      for (const t of p.tags ?? []) set.add(t);
+    }
+    return Array.from(set).sort();
+  });
 
   readonly filtered = computed<Problem[]>(() => {
     const q = this.query().trim().toLowerCase();
-    const list = this.problems();
-    if (!q) return list;
-    return list.filter((p) =>
-      [p.id, p.title, p.slug, p.difficulty, p.url, this.tagsStr(p.tags), p.description]
-        .filter(Boolean)
-        .some((v) => String(v).toLowerCase().includes(q)),
-    );
+    const tag = this.selectedTag().trim();
+    let list = this.problems();
+    if (q) {
+      list = list.filter((p) =>
+        [p.id, p.title, p.slug, p.difficulty, p.url, this.tagsStr(p.tags), p.description]
+          .filter(Boolean)
+          .some((v) => String(v).toLowerCase().includes(q)),
+      );
+    }
+    if (tag) {
+      list = list.filter((p) => (p.tags ?? []).includes(tag));
+    }
+    return list;
   });
 
   readonly sorted = computed<Problem[]>(() => {
     const list = this.filtered();
     const key = this.sortKey();
     const dir = this.sortDir();
-    if (!key || !dir) return list;
+    if (!key || !dir || key === "expander" || key === "hints") return list;
     const mul = dir === "asc" ? 1 : -1;
     return [...list].sort((a, b) => {
       const av = this.cellValue(a, key);
@@ -108,6 +145,20 @@ export class DatabaseComponent implements OnInit {
     this.load();
   }
 
+  private readonly prefetchHints = effect(() => {
+    const rows = this.paged();
+    for (const p of rows) {
+      this.ensureHintsLoaded(p.id);
+    }
+  });
+
+  private ensureHintsLoaded(id: number): void {
+    if (this.rowHints().has(id)) return;
+    this.problemService.getHints(id).subscribe((h) => {
+      this.rowHints.update((m) => new Map(m).set(id, h));
+    });
+  }
+
   load(): void {
     this.loading.set(true);
     this.problemService.list().subscribe({
@@ -125,6 +176,39 @@ export class DatabaseComponent implements OnInit {
 
   reload(): void {
     this.load();
+  }
+
+  // ===== Column visibility =====
+  toggleColumn(key: ColumnId): void {
+    this.visibleColumnKeys.update((set) => {
+      const next = new Set(set);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
+
+  // ===== Row selection toggle =====
+  toggleExpand(p: Problem): void {
+    const id = p.id;
+    this.expandedIds.update((set) => {
+      const next = new Set(set);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
+  // ===== Description modal =====
+  openDesc(p: Problem): void {
+    this.descModal.set(p);
+  }
+
+  closeDesc(): void {
+    this.descModal.set(null);
   }
 
   // ===== Sort =====
@@ -242,28 +326,13 @@ export class DatabaseComponent implements OnInit {
     this.problemService.delete(p.id).subscribe({
       next: () => {
         this.showToast("success", `Đã xóa #${p.id}`);
-        if (this.selected()?.id === p.id) {
-          this.selected.set(null);
-          this.hints.set([]);
-          this.assets.set([]);
-        }
+        this.expandedIds.update((s) => { const n = new Set(s); n.delete(p.id); return n; });
+        this.rowHints.update((m) => { const n = new Map(m); n.delete(p.id); return n; });
+        this.rowAssets.update((m) => { const n = new Map(m); n.delete(p.id); return n; });
         this.load();
       },
       error: (err: Error) => this.showToast("error", `Xóa thất bại: ${err.message}`),
     });
-  }
-
-  // ===== Selection + detail panel =====
-  selectProblem(p: Problem): void {
-    if (this.editingId() === p.id) return;
-    this.selected.set(p);
-    if (p?.id != null) {
-      this.problemService.getHints(p.id).subscribe((h) => this.hints.set(h));
-      this.problemService.getAssets(p.id).subscribe((a) => this.assets.set(a));
-    } else {
-      this.hints.set([]);
-      this.assets.set([]);
-    }
   }
 
   // ===== Pagination =====
@@ -281,32 +350,63 @@ export class DatabaseComponent implements OnInit {
   }
 
   // ===== Helpers =====
-  cellValue(p: Problem, key: ColumnDef["key"]): unknown {
+  cellValue(p: Problem, key: ColumnId): unknown {
     if (key === "tagsStr") return this.tagsStr(p.tags);
     return (p as never)[key];
   }
 
   diffBadgeClass(diff: string): string {
     switch (diff) {
-      case "easy":
-        return "bg-green-500/15 text-green-500";
-      case "medium":
-        return "bg-yellow-500/15 text-yellow-500";
-      case "hard":
-        return "bg-red-500/15 text-red-500";
-      default:
-        return "bg-gray-500/15 text-gray-500";
+      case "easy": return "bg-green-500/15 text-green-500";
+      case "medium": return "bg-yellow-500/15 text-yellow-500";
+      case "hard": return "bg-red-500/15 text-red-500";
+      default: return "bg-gray-500/15 text-gray-500";
     }
+  }
+
+  tagColor(tag: string): string {
+    const colors = [
+      "bg-blue-500/15 text-blue-500",
+      "bg-purple-500/15 text-purple-500",
+      "bg-cyan-500/15 text-cyan-500",
+      "bg-pink-500/15 text-pink-500",
+      "bg-orange-500/15 text-orange-500",
+      "bg-teal-500/15 text-teal-500",
+      "bg-indigo-500/15 text-indigo-500",
+      "bg-rose-500/15 text-rose-500",
+    ];
+    let hash = 0;
+    for (let i = 0; i < tag.length; i++) {
+      hash = ((hash << 5) - hash) + tag.charCodeAt(i);
+      hash |= 0;
+    }
+    return colors[Math.abs(hash) % colors.length];
   }
 
   tagsStr(tags: string[] | undefined | null): string {
     return (tags ?? []).join(", ");
   }
 
-  inputCellValue(p: Problem, key: ColumnDef["key"]): string {
+  inputCellValue(p: Problem, key: ColumnId): string {
     const v = this.cellValue(p, key);
     if (v == null) return "";
     return String(v);
+  }
+
+  isExpanded(id: number): boolean {
+    return this.expandedIds().has(id);
+  }
+
+  hintsFor(id: number): { id: number; ord: number; content: string }[] {
+    return this.rowHints().get(id) ?? EMPTY_HINTS;
+  }
+
+  assetsFor(id: number): { id: number; originalUrl: string; localPath: string; hash: string }[] {
+    return this.rowAssets().get(id) ?? EMPTY_ASSETS;
+  }
+
+  safeHtml(content: string | null | undefined): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
   }
 
   private toInput(data: Problem): ProblemInput {

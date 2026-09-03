@@ -3,9 +3,9 @@
   <div class="flex flex-wrap items-center justify-between gap-3">
     <div>
       <h1 class="text-2xl font-bold">Database — Problems</h1>
-      <p class="text-sm text-muted">CRUD bảng <code>problems</code>. Hints/assets xem read-only ở panel dưới.</p>
+      <p class="text-sm text-muted">CRUD bảng <code>problems</code>.</p>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex flex-wrap items-center gap-2">
       <div class="relative">
         <i class="fa-solid fa-search absolute left-2.5 top-2.5 text-muted text-xs" aria-hidden="true"></i>
         <input
@@ -16,12 +16,40 @@
           (ngModelChange)="query.set($event); page.set(1)"
         />
       </div>
+      @if (allTags().length > 0) {
+        <select class="input !w-auto" [ngModel]="selectedTag()" (ngModelChange)="selectedTag.set($event); page.set(1)">
+          <option value="">Tất cả tags</option>
+          @for (t of allTags(); track t) {
+            <option [value]="t">{{ t }}</option>
+          }
+        </select>
+      }
       <button type="button" class="btn-primary" (click)="reload()">
         <i class="fa-solid fa-rotate" aria-hidden="true"></i> Tải lại
       </button>
       <button type="button" class="btn-primary" (click)="openAddForm()">
         <i class="fa-solid fa-plus" aria-hidden="true"></i> Thêm
       </button>
+    </div>
+  </div>
+
+  <!-- Column visibility -->
+  <div class="card space-y-2 !p-3">
+    <div class="label">Cột hiển thị</div>
+    <div class="flex flex-wrap gap-x-4 gap-y-2">
+      @for (col of allColumns; track col.key) {
+        @if (col.key !== 'expander') {
+          <label class="flex cursor-pointer items-center gap-1.5 text-sm">
+            <input
+              type="checkbox"
+              class="accent-blue-500"
+              [checked]="visibleColumnKeys().has(col.key)"
+              (change)="toggleColumn(col.key)"
+            />
+            {{ col.label }}
+          </label>
+        }
+      }
     </div>
   </div>
 
@@ -84,7 +112,7 @@
       <table class="w-full text-sm">
         <thead class="bg-card">
           <tr>
-            @for (col of columns; track col.key) {
+            @for (col of visibleColumns(); track col.key) {
               <th
                 class="cursor-pointer select-none border-b border-border px-3 py-2 !text-left text-xs font-medium uppercase tracking-wider text-muted transition-colors hover:text-fg"
                 [class.text-right]="col.align === 'right'"
@@ -108,30 +136,25 @@
             @if (editingId() === p.id) {
               <!-- Edit row -->
               <tr class="bg-card">
-                <td class="border-b border-border px-3 py-1.5 text-right text-muted">{{ p.id }}</td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <input type="text" class="input !min-w-0" [ngModel]="editBuffer()?.title" (ngModelChange)="patchEdit('title', $event)" />
-                </td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <input type="text" class="input" [ngModel]="editBuffer()?.slug" (ngModelChange)="patchEdit('slug', $event)" />
-                </td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <select class="input" [ngModel]="editBuffer()?.difficulty" (ngModelChange)="patchEdit('difficulty', $event)">
-                    @for (d of difficulties; track d) {
-                      <option [value]="d">{{ d }}</option>
+                @for (col of visibleColumns(); track col.key) {
+                  <td class="border-b border-border px-3 py-1.5" [class.text-right]="col.align === 'right'">
+                    @switch (col.key) {
+                      @case ('expander') {}
+                      @case ('id') { {{ p.id }} }
+                      @case ('title') { <input type="text" class="input !min-w-0" [ngModel]="editBuffer()?.title" (ngModelChange)="patchEdit('title', $event)" /> }
+                      @case ('slug') { <input type="text" class="input" [ngModel]="editBuffer()?.slug" (ngModelChange)="patchEdit('slug', $event)" /> }
+                      @case ('difficulty') {
+                        <select class="input" [ngModel]="editBuffer()?.difficulty" (ngModelChange)="patchEdit('difficulty', $event)">
+                          @for (d of difficulties; track d) { <option [value]="d">{{ d }}</option> }
+                        </select>
+                      }
+                      @case ('url') { <input type="text" class="input" [ngModel]="editBuffer()?.url" (ngModelChange)="patchEdit('url', $event)" /> }
+                      @case ('tagsStr') { <input type="text" class="input" [ngModel]="tagsStr(editBuffer()?.tags)" (ngModelChange)="patchEditTags($event)" /> }
+                      @case ('description') { <textarea class="input !min-h-[60px] !min-w-0" [ngModel]="editBuffer()?.description" (ngModelChange)="patchEdit('description', $event)"></textarea> }
+                      @case ('hints') { <span class="text-muted text-xs">—</span> }
                     }
-                  </select>
-                </td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <input type="text" class="input" [ngModel]="editBuffer()?.url" (ngModelChange)="patchEdit('url', $event)" />
-                </td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <input type="text" class="input" [ngModel]="tagsStr(editBuffer()?.tags)" (ngModelChange)="patchEditTags($event)" />
-                </td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <textarea class="input !min-h-[60px] !min-w-0" [ngModel]="editBuffer()?.description" (ngModelChange)="patchEdit('description', $event)"></textarea>
-                </td>
-                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.createdAt | slice:0:10 }}</td>
+                  </td>
+                }
                 <td class="border-b border-border px-3 py-1.5 text-right">
                   <div class="inline-flex gap-1">
                     <button type="button" class="btn !px-2" (click)="saveEdit()" title="Lưu">
@@ -147,19 +170,57 @@
               <!-- Data row -->
               <tr
                 class="cursor-pointer transition-colors hover:bg-card"
-                [class.bg-card]="selected()?.id === p.id"
-                (click)="selectProblem(p)"
+                [class.bg-card]="expandedIds().has(p.id)"
+                (click)="toggleExpand(p)"
               >
-                <td class="border-b border-border px-3 py-1.5 text-right text-muted">{{ p.id }}</td>
-                <td class="border-b border-border px-3 py-1.5 font-medium">{{ p.title }}</td>
-                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.slug }}</td>
-                <td class="border-b border-border px-3 py-1.5">
-                  <span [class]="'inline-block rounded-full px-2 py-0.5 text-xs font-medium ' + diffBadgeClass(p.difficulty)">{{ p.difficulty }}</span>
-                </td>
-                <td class="max-w-[200px] truncate border-b border-border px-3 py-1.5 text-muted" title="{{ p.url }}">{{ p.url }}</td>
-                <td class="border-b border-border px-3 py-1.5 text-muted">{{ tagsStr(p.tags).slice(0, 40) }}{{ tagsStr(p.tags).length > 40 ? '…' : '' }}</td>
-                <td class="max-w-[220px] truncate border-b border-border px-3 py-1.5 text-muted" [title]="p.description">{{ p.description }}</td>
-                <td class="border-b border-border px-3 py-1.5 text-muted">{{ p.createdAt | slice:0:10 }}</td>
+                @for (col of visibleColumns(); track col.key) {
+                  <td class="border-b border-border px-3 py-1.5" [class.text-right]="col.align === 'right'" [class.max-w-[200px]]="col.key === 'url'" [class.max-w-[220px]]="col.key === 'description'" [class.truncate]="col.key === 'url' || col.key === 'description'">
+                    @switch (col.key) {
+                      @case ('expander') {
+                        <i class="fa-solid text-xs text-muted" [ngClass]="expandedIds().has(p.id) ? 'fa-chevron-down' : 'fa-chevron-right'" aria-hidden="true"></i>
+                      }
+                      @case ('id') { <span class="text-muted">{{ p.id }}</span> }
+                      @case ('title') { <span class="font-medium">{{ p.title }}</span> }
+                      @case ('slug') { <span class="text-muted">{{ p.slug }}</span> }
+                      @case ('difficulty') {
+                        <span [class]="'inline-block rounded-full px-2 py-0.5 text-xs font-medium ' + diffBadgeClass(p.difficulty)">{{ p.difficulty }}</span>
+                      }
+                      @case ('url') {
+                        @if (p.url) {
+                          <a [href]="p.url" target="_blank" rel="noopener" class="text-primary underline hover:opacity-80" (click)="$event.stopPropagation()">{{ p.url }}</a>
+                        } @else { <span class="text-muted">—</span> }
+                      }
+                      @case ('tagsStr') {
+                        <div class="flex flex-wrap gap-1">
+                          @for (t of p.tags.slice(0, 6); track t) {
+                            <span class="cursor-pointer rounded px-1.5 py-0.5 text-xs font-medium" [class]="tagColor(t)" (click)="selectedTag.set(t); page.set(1); $event.stopPropagation()">{{ t }}</span>
+                          }
+                          @if (p.tags.length > 6) { <span class="text-xs text-muted">+{{ p.tags.length - 6 }}</span> }
+                        </div>
+                      }
+                      @case ('description') {
+                        <span [title]="p.description" (click)="openDesc(p); $event.stopPropagation()" class="cursor-pointer">{{ p.description }}</span>
+                      }
+                      @case ('hints') {
+                        @let hh = hintsFor(p.id);
+                        @if (hh.length === 0) {
+                          <span class="text-muted text-xs">Không có hint</span>
+                        } @else {
+                          <div class="space-y-1">
+                            @for (h of hh.slice(0, 2); track h.id) {
+                              <div class="rounded border border-border bg-card p-1.5 text-xs">
+                                <span class="font-semibold text-muted">Hint {{ h.ord }}:</span>
+                                <div [innerHTML]="safeHtml(h.content)" class="line-clamp-2"></div>
+                              </div>
+                            }
+                            @if (hh.length > 2) { <span class="text-xs text-muted">+{{ hh.length - 2 }} thêm</span> }
+                          </div>
+                        }
+                      }
+                      @case ('createdAt') { <span class="text-muted">{{ p.createdAt | slice:0:10 }}</span> }
+                    }
+                  </td>
+                }
                 <td class="border-b border-border px-3 py-1.5 text-right">
                   <div class="inline-flex gap-1">
                     <button type="button" class="btn !px-2" (click)="startEdit(p); $event.stopPropagation()" title="Sửa">
@@ -174,7 +235,7 @@
             }
           } @empty {
             <tr>
-              <td [attr.colspan]="columns.length + 1" class="py-12 text-center text-muted">
+              <td [attr.colspan]="visibleColumns().length + 1" class="py-12 text-center text-muted">
                 <i class="fa-solid fa-inbox mr-2" aria-hidden="true"></i> Không có dữ liệu
               </td>
             </tr>
@@ -214,59 +275,37 @@
     </div>
   }
 
-  <!-- Detail panel (hints + assets) -->
-  @if (selected(); as p) {
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <div class="card">
-        <div class="mb-2 flex items-center justify-between">
-          <div class="label">Hints — #{{ p.id }} {{ p.title }}</div>
-          <span class="text-xs text-muted">{{ hints().length }} hints</span>
-        </div>
-        @if (hints().length === 0) {
-          <div class="text-sm text-muted">Không có hint.</div>
-        } @else {
-          <ol class="space-y-2 text-sm">
-            @for (h of hints(); track h.id) {
-              <li class="rounded border border-border p-2">
-                <div class="text-xs font-semibold text-muted">Hint {{ h.ord }}</div>
-                <div [innerHTML]="h.content"></div>
-              </li>
-            }
-          </ol>
-        }
-      </div>
-      <div class="card">
-        <div class="mb-2 flex items-center justify-between">
-          <div class="label">Assets — #{{ p.id }}</div>
-          <span class="text-xs text-muted">{{ assets().length }} ảnh</span>
-        </div>
-        @if (assets().length === 0) {
-          <div class="text-sm text-muted">Không có asset.</div>
-        } @else {
-          <ul class="space-y-1 text-xs">
-            @for (a of assets(); track a.id) {
-              <li class="rounded border border-border p-2">
-                <div class="truncate"><span class="text-muted">hash:</span> {{ a.hash.slice(0, 12) }}…</div>
-                <div class="truncate"><span class="text-muted">local:</span> {{ a.localPath }}</div>
-                <div class="truncate"><span class="text-muted">orig:</span> <a [href]="a.originalUrl" target="_blank" class="text-primary underline">{{ a.originalUrl }}</a></div>
-              </li>
-            }
-          </ul>
-        }
-      </div>
+  <!-- Toast -->
+  @if (toast(); as t) {
+    <div
+      class="fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium shadow-lg"
+      [class.bg-green-600]="t.type === 'success'"
+      [class.bg-red-600]="t.type === 'error'"
+      [class.text-white]="true"
+    >
+      <i class="fa-solid" [ngClass]="t.type === 'success' ? 'fa-check-circle' : 'fa-circle-exclamation'" aria-hidden="true"></i>
+      {{ t.message }}
     </div>
   }
 </div>
 
-<!-- Toast -->
-@if (toast(); as t) {
+<!-- Description modal -->
+@if (descModal(); as d) {
   <div
-    class="fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium shadow-lg"
-    [class.bg-green-600]="t.type === 'success'"
-    [class.bg-red-600]="t.type === 'error'"
-    [class.text-white]="true"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+    (click)="closeDesc()"
   >
-    <i class="fa-solid" [ngClass]="t.type === 'success' ? 'fa-check-circle' : 'fa-circle-exclamation'" aria-hidden="true"></i>
-    {{ t.message }}
+    <div class="card max-h-[85vh] w-full max-w-3xl overflow-auto" (click)="$event.stopPropagation()">
+      <div class="mb-3 flex items-start justify-between gap-4">
+        <div>
+          <div class="text-xs text-muted">#{{ d.id }} — Mô tả</div>
+          <h2 class="text-lg font-bold">{{ d.title }}</h2>
+        </div>
+        <button type="button" class="btn !px-2" (click)="closeDesc()" title="Đóng">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="prose-sm max-w-none space-y-3 text-sm [&_img]:max-w-full [&_img]:rounded [&_img]:border [&_img]:border-border" [innerHTML]="safeHtml(d.description)"></div>
+    </div>
   </div>
 }
