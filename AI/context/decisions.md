@@ -4,6 +4,36 @@
 
 ## Decisions
 
+### [2026-09-04] Nhắc code LeetCode: data-driven + regex, không AI/không Monaco
+
+#### Context
+
+Cần tính năng nhắc code (autocomplete) trong CodeEditor để giảm lỗi chính tả và tăng tốc gõ khi giải
+LeetCode bằng JS. Tài liệu tham khảo (`packages/javascript-docs/tmp_reference_vi/Clippings/Liệt kê cú pháp JavaScript.md`)
+đề xuất kiến trúc JSON DB + AST + ranking. Roadmap cũ có ý định tích hợp Monaco.
+
+#### Decision
+
+- **Không AI, không LSP, không Monaco**: editor contentEditable + Prism giữ nguyên.
+- **Data + logic pure trong `packages/javascript-docs/src/suggest/`** (luật phân tầng 3): `SuggestItem`
+  + snippets/patterns hand-written (`data/snippets.json`, `members.ts`, `keywords.ts`) + API build từ
+  `docsIndex.entries` có sẵn + `detectContext`/`extractVars`/`suggestForCode` bằng regex.
+- **UI dropdown trong `apps/web/src/components/CodeEditor.tsx`** (luật 4): Ctrl+Space/↑↓/Tab/Enter/Esc,
+  vị trí theo caret rect, chỉ bật cho JavaScript.
+- Type inference chỉ nhận khai báo trực tiếp (`= []`, `new Map()`, chuỗi literal, ListNode/TreeNode) —
+  không AST, không chain inference.
+
+#### Reason
+
+- Tập "nguyên liệu" LeetCode JS hữu hạn → liệt kê tay + tái dùng docsIndex rẻ và kiểm soát được hơn AI.
+- Monaco = rewrite editor + bundle ~5MB, chỉ cần khi muốn tab-stop placeholder → upgrade path rõ ràng.
+- Regex đủ đúng ở scale bài LeetCode; AST chỉ đáng khi cần chain inference.
+
+#### Consequences
+
+- 16 test mới trong package docs; `docId` trên API item sẵn cho việc nối Knowledge panel sau này.
+- Snippet chèn plain text (không con trỏ giữa ngoặc); chấp nhận đổi bằng tốc độ triển khai.
+
 ### [2026-08-31] Mở khóa AI tự chủ thao tác git (chỉ cục bộ)
 
 #### Context
