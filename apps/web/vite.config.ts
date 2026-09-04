@@ -10,9 +10,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@leetcode/shared": path.resolve(__dirname, "../../packages/shared/src"),
-      "@leetcode/editor": path.resolve(__dirname, "../../packages/editor/src"),
-      "@leetcode/problem-engine": path.resolve(__dirname, "../../packages/problem-engine/src"),
-      "@leetcode/layout": path.resolve(__dirname, "../../packages/layout/src"),
       "@leetcode/ai": path.resolve(__dirname, "../../packages/ai/src"),
     },
   },

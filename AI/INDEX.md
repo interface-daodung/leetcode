@@ -112,12 +112,14 @@ Monorepo pnpm với 3 ứng dụng và 6 package:
 apps/web       # React 18 + Vite frontend (Tailwind + Router, Sidebar + ProblemDetail)
 apps/server    # Fastify API server (có POST /api/problems/import)
 apps/extension # MV3 Browser Extension — widget clip DOM trên leetcode.com/problems/*
+apps/admin     # Angular admin (dashboard, database)
 packages/shared           # Types, utilities, constants (có ProblemClip)
 packages/database         # Drizzle ORM + SQLite (libsql)
-packages/editor           # Editor state, language templates
 packages/problem-engine   # Problem registry, test runner (in-memory + hydrate)
 packages/ai               # LLM integration (placeholder)
 packages/javascript-docs  # JS/TS reference docs (static)
 ```
+
+> `packages/editor` và `packages/layout` đã bị xóa (2026-09-04): editor là dead dep; layout gộp vào `apps/web/src/layout/`. Code vẽ giao diện nằm trong `apps/web/src/components/` + `apps/web/src/layout/`.
 
 Chi tiết: dùng GitNexus (`gitnexus://repo/leetcode/clusters`, `query`) — bản sao tĩnh tại `history/archived/index/PROJECT_STRUCTURE.md`.

@@ -52,6 +52,15 @@
 
 ---
 
+## Luật phân tầng (bắt buộc)
+
+1. **Server chỉ chứa code API** (routes, controllers, plugins, config, wiring) — không chứa domain logic.
+2. **Model/entity dùng chung đặt ở `packages/shared`** — server và client import chung, không khai báo trùng type/field.
+3. **Domain logic độc lập đặt trong `packages/*`** — server chỉ gọi service, không nhét logic vào server.
+4. **Logic vẽ giao diện đặt trong `apps/web/src/components/`** — không tách component web ra package riêng; layout nằm ở `apps/web/src/layout/`.
+
+---
+
 ## Import Conventions
 
 - Import package nội bộ qua alias workspace `@leetcode/<name>`.

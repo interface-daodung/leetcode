@@ -1,8 +1,10 @@
 # Project Status
 
-Cập nhật: 2026-09-01
+Cập nhật: 2026-09-04
 
 ## Current Phase
+
+**[mới 2026-09-04] Cleanup package + luật phân tầng** — nhánh `feat/admin-web-devextreme`. Xóa `packages/editor` (dead dependency — web khai báo nhưng không file nào import). Gộp `packages/layout` vào `apps/web/src/layout/` (`workspace.ts`, `theme.ts`, `workspace.test.ts` — 10 test vẫn pass; import trực tiếp `flexlayout-react` thay vì re-export). Bỏ dep khai báo khống trong `apps/web/package.json`: `@leetcode/editor`, `@leetcode/problem-engine`, `@leetcode/layout` (web chỉ dùng `shared`, `ai`, `javascript-docs`); dọn alias tương ứng trong `vite.config.ts` + `tsconfig.json` (web + root). Thêm **luật phân tầng** vào `AGENTS.md` + `AI/CONVENTIONS.md`: (1) server chỉ chứa code API — không domain logic; (2) model/entity dùng chung đặt ở `packages/shared` để không lệch tên trường; (3) domain logic độc lập để trong `packages/*` (problem-engine), server chỉ gọi service; (4) logic vẽ giao diện đặt trong `apps/web/src/components/`, không tách lẻ package. `pnpm -r build` pass, `pnpm -r test` pass (web 14, server 42, extension 53, engine 10, docs 22, ai 6, admin 11). Lưu ý: `pnpm -r lint` fail sẵn ở `packages/shared` + `apps/extension` (thiếu `eslint.config.*`) — lỗi có từ trước, không liên quan cleanup.
 
 **[mới 2026-09-02] Panel Error hiển thị lỗi WebSocket/server/render** — nhánh `feat/ai-panel-websocket`. Thêm panel **Error** vào dockable layout (tabset-output) + `ErrorContext` (global store, nguồn `ws/ai/code/render/fetch/other`, badge đếm, xoá từng/tất cả) + `ErrorBoundary` (class component bọc layout, catch lỗi render → đẩy vào store) + `ErrorPanel` (danh sách lỗi, nguồn + thời gian + chi tiết mở rộng). `useAI` đẩy lỗi WS (`onerror`) và lỗi AI server vào store toàn cục — khi server crash (vd lỗi plugin version) hay WS lỗi sẽ hiện ở tab Error thay vì chỉ trong AI panel. `LayoutComponentName` thêm `error`. `pnpm -r build` + `pnpm -r test` pass.
 

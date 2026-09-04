@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../lib/theme.js";
 import { useWorkspace } from "./workspace/WorkspaceContext.js";
-import { ALL_COMPONENTS } from "@leetcode/layout";
-import type { LayoutComponentName } from "@leetcode/layout";
+import { ALL_COMPONENTS } from "../layout/workspace.js";
+import type { LayoutComponentName } from "../layout/workspace.js";
 
 const PANEL_LABELS: Record<LayoutComponentName, string> = {
   explorer: "Explorer",

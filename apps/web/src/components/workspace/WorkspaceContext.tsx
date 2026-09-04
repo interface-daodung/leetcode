@@ -1,11 +1,11 @@
 import { createContext, useContext, useCallback, useState, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
-import { Model, Actions, DockLocation } from "@leetcode/layout";
-import { createDefaultLayout, defaultTabsetId, defaultTabJson, ALL_COMPONENTS } from "@leetcode/layout";
-import type { LayoutComponentName } from "@leetcode/layout";
+import { Model, Actions, DockLocation } from "flexlayout-react";
+import { createDefaultLayout, defaultTabsetId, defaultTabJson, ALL_COMPONENTS } from "../../layout/workspace.js";
+import type { LayoutComponentName } from "../../layout/workspace.js";
 import type { ProblemMeta } from "@leetcode/shared";
 import type { TestCaseResultView } from "../../lib/api.js";
-import type { TabNode } from "@leetcode/layout";
+import type { TabNode } from "flexlayout-react";
 
 const STORAGE_KEY = "lc:layout:json";
 const MAX_UNDO = 50;

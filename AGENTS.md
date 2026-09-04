@@ -27,10 +27,17 @@ pnpm --filter=@leetcode/database db:generate|db:migrate|db:studio   # drizzle-ki
 
 ## Kiến trúc
 
-- pnpm monorepo: `apps/*` (web, server) + `packages/*` (shared, database, editor, problem-engine, ai, javascript-docs).
+- pnpm monorepo: `apps/*` (web, server) + `packages/*` (shared, database, problem-engine, ai, javascript-docs).
 - Dependency chảy `apps → packages`; package nội bộ import qua alias `@leetcode/*` + `workspace:*`.
 - Toàn bộ ESM (`"type": "module"`, NodeNext). Import file cùng package phải ghi đuôi `.js` (vd `./schema.js`).
 - Package chỉ export qua `src/index.ts`.
+
+### Luật phân tầng (bắt buộc)
+
+1. **Server (`apps/server`) chỉ chứa code API**: routes, controllers, plugins, config, wiring. Không chứa domain logic.
+2. **Model/entity dùng chung đặt ở `packages/shared`** — server và client import từ đó để không lệch tên trường, không khai báo trùng.
+3. **Domain logic độc lập đặt trong `packages/*`** (vd `problem-engine`: registry, tree, test runner) — không nhét vào server. Server chỉ gọi service từ package.
+4. **Logic vẽ giao diện đặt trong `apps/web/src/components/`** — không tách component web ra package riêng (layout cũng nằm trong `apps/web/src/layout/`).
 
 ## Gotchas
 

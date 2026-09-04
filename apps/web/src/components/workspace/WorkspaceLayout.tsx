@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { Layout, flexThemeClass, flexCssOverrides } from "@leetcode/layout";
-import type { LayoutComponentName } from "@leetcode/layout";
+import { Layout } from "flexlayout-react";
+import { flexThemeClass, flexCssOverrides } from "../../layout/theme.js";
+import type { LayoutComponentName } from "../../layout/workspace.js";
 import { useTheme } from "../../lib/theme.js";
 import { useWorkspace } from "./WorkspaceContext.js";
 import { KnowledgeProvider } from "./KnowledgeContext.js";
