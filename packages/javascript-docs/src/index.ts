@@ -79,6 +79,18 @@ export {
 // Alias mới từ search (tìm trên index) — tránh trùng tên với legacy getDoc ở trên
 export { getDoc as searchGetDoc } from "./search.js";
 
+// Bộ nhắc code (autocomplete LeetCode JS)
+export type { SuggestItem, SuggestContext } from "./suggest/index.js";
+export {
+  detectContext,
+  extractVars,
+  getAllSuggestItems,
+  MEMBER_ITEMS,
+  snippetItems,
+  suggest,
+  suggestForCode,
+} from "./suggest/index.js";
+
 // Export index đã build sẵn để consumer dùng nhanh mà không cần gọi getIndex()
 import { getIndex as _getIndex } from "./search.js";
 export const docsIndex = _getIndex();
