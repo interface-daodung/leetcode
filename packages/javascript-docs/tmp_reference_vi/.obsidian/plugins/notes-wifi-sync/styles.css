@@ -1,0 +1,146 @@
+/* Notes WiFi Sync — compare modal styles */
+
+.notes-wifi-sync-status {
+	margin-bottom: 12px;
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.notes-wifi-sync-title {
+	margin-bottom: 8px;
+	font-weight: var(--font-semibold);
+}
+
+.notes-wifi-sync-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+}
+
+.notes-wifi-sync-table th {
+	text-align: left;
+	padding: 4px 8px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	position: sticky;
+	top: 0;
+	background: var(--background-primary);
+}
+
+.notes-wifi-sync-table td {
+	padding: 4px 8px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	vertical-align: middle;
+}
+
+.notes-wifi-sync-table tr:last-child td {
+	border-bottom: none;
+}
+
+.notes-wifi-sync-file {
+	word-break: break-all;
+}
+
+.notes-wifi-sync-size {
+	white-space: nowrap;
+	color: var(--text-muted);
+}
+
+.notes-wifi-sync-table select {
+	max-width: 100%;
+}
+
+.notes-wifi-sync-btns {
+	margin-top: 14px;
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.notes-wifi-sync-btns button {
+	margin-right: 0;
+}
+
+.notes-wifi-sync-table {
+	max-height: 60vh;
+	display: block;
+	overflow-y: auto;
+}
+
+.notes-wifi-sync-table thead,
+.notes-wifi-sync-table tbody {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+/* Pairing (OTP) modal */
+
+.notes-wifi-sync-code {
+	font-size: 2.2em;
+	letter-spacing: 0.3em;
+	font-weight: var(--font-bold);
+	color: var(--text-accent);
+	text-align: center;
+	margin: 12px 0;
+	padding: 12px;
+	background: var(--background-secondary);
+	border-radius: 8px;
+}
+
+.notes-wifi-sync-hint {
+	font-size: 0.9em;
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+/* Transfer progress bar */
+
+.notes-wifi-sync-bar {
+	display: block;
+	width: 100%;
+	height: 10px;
+	margin: 12px 0;
+}
+
+/* Pairing QR code (zero-dependency table render) */
+
+.notes-wifi-sync-qr {
+	border-collapse: collapse;
+	margin: 12px auto;
+	table-layout: fixed;
+	border: 4px solid #000;
+	background: #fff;
+}
+
+.notes-wifi-sync-qr td {
+	width: 5px;
+	height: 5px;
+	padding: 0;
+	border: 0;
+}
+
+.notes-wifi-sync-qr td.dark {
+	background: #000;
+}
+
+.notes-wifi-sync-qr td.light {
+	background: #fff;
+}
+
+/* Device avatar (colored initial disc) */
+
+.notes-wifi-sync-avatar {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	margin-right: 8px;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 14px;
+	font-weight: var(--font-bold);
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+

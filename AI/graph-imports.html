@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GitNexus import graph</title>
+<style>
+  html,body{margin:0;height:100%;background:#0b1020;color:#e2e8f0;font-family:ui-sans-serif,system-ui,sans-serif;overflow:hidden}
+  #legend{position:fixed;top:10px;left:10px;background:rgba(15,23,42,.85);padding:10px 14px;border-radius:8px;font-size:13px;z-index:10;user-select:none;max-width:280px}
+  #legend b{display:block;margin-bottom:6px}
+  .lg{cursor:pointer;display:inline-block;margin:2px 8px 2px 0}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+  #info{position:fixed;bottom:10px;left:10px;background:rgba(15,23,42,.85);padding:8px 12px;border-radius:8px;font-size:12px;z-index:10;max-width:700px}
+</style>
+<script src="https://unpkg.com/force-graph@1"></script>
+</head>
+<body>
+<div id="legend"><b>Groups (click = toggle)</b><div id="lgitems"></div></div>
+<div id="info"></div>
+<div id="graph"></div>
+<script>
+const MD = `apps/extension/src/clipper.test.ts|apps/extension/src/parsers/difficulty.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/title.ts
+apps/extension/src/toast/show.ts|apps/extension/src/shared.ts
+apps/extension/src/toast/index.ts|apps/extension/src/toast/create.ts
+apps/server/src/services/asset.service.ts|apps/server/src/config.ts
+apps/server/src/ai.controller.test.ts|apps/server/src/controllers/ai.controller.ts
+apps/web/src/App.tsx|apps/web/src/lib/api.ts
+apps/web/README.md|docs/features/web-frontend.md
+packages/problem-engine/src/index.ts|packages/shared/src/index.ts
+apps/admin/src/app/app.config.ts|apps/admin/src/app/app.routes.ts
+apps/admin/src/app/core/theme.service.test.ts|apps/admin/src/app/core/theme.service.ts
+apps/admin/src/app/app.routes.ts|apps/admin/src/app/pages/database/database.component.ts
+apps/extension/src/api/post.ts|apps/extension/src/api/validate.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/description.ts
+apps/extension/src/toast/create.ts|apps/extension/src/shared.ts
+apps/extension/src/api/post.ts|apps/extension/src/shared.ts
+apps/extension/src/index.ts|apps/extension/src/toast/index.ts
+apps/extension/src/toast/index.ts|apps/extension/src/toast/show.ts
+apps/extension/src/widget/index.ts|apps/extension/src/widget/types.ts
+apps/server/src/services/playground.service.ts|apps/server/src/config.ts
+apps/server/src/services/playground.service.test.ts|apps/server/src/services/playground.service.ts
+apps/web/src/main.tsx|apps/web/src/App.tsx
+apps/web/src/components/workspace/ExplorerPanel.tsx|apps/web/src/components/DifficultyBadge.tsx
+apps/web/src/main.tsx|apps/web/src/components/workspace/ErrorBoundary.tsx
+apps/web/src/components/workspace/ExplorerPanel.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/KnowledgeSearchPanel.tsx|apps/web/src/components/workspace/KnowledgeContext.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/useAI.ts|apps/web/src/lib/api.ts
+apps/web/src/components/workspace/DescriptionPanel.tsx|apps/web/src/lib/sanitize.ts
+packages/ai/README.md|docs/features/ai-hints.md
+README.md|docs/features/ai-hints.md
+README.md|docs/features/database.md
+docs/README.md|docs/getting-started.md
+packages/ai/src/index.test.ts|packages/ai/src/index.ts
+apps/server/src/controllers/ai.controller.ts|packages/ai/src/index.ts
+packages/editor/src/editorTree.ts|packages/editor/src/templates.ts
+packages/problem-engine/src/problemTree.ts|packages/shared/src/index.ts
+packages/editor/src/editorTree.ts|packages/shared/src/index.ts
+apps/web/src/components/DifficultyBadge.tsx|packages/shared/src/index.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/clip.ts
+apps/extension/src/widget/create.ts|apps/extension/src/shared.ts
+apps/extension/src/toast/show.ts|apps/extension/src/toast/svg.ts
+apps/server/src/routes/index.ts|apps/server/src/routes/ai.routes.ts
+apps/server/src/routes/index.ts|apps/server/src/routes/playground.routes.ts
+apps/server/src/assets.test.ts|apps/server/src/services/asset.service.ts
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/ErrorPanel.tsx
+apps/web/src/components/TestCaseTabs.tsx|apps/web/src/lib/api.ts
+apps/web/src/components/workspace/useAI.ts|packages/ai/src/index.ts
+apps/server/src/services/problem.service.ts|packages/ai/src/index.ts
+apps/server/src/services/problem.service.ts|packages/database/src/index.ts
+apps/web/src/components/workspace/WorkspaceContext.tsx|packages/layout/src/index.ts
+apps/admin/src/app/app.routes.ts|apps/admin/src/app/pages/dashboard/dashboard.component.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/template.ts
+apps/server/src/app.ts|apps/server/src/plugins/cors.ts
+apps/server/src/routes/index.ts|apps/server/src/routes/health.routes.ts
+apps/web/src/components/workspace/OutputPanel.tsx|apps/web/src/components/TestCaseTabs.tsx
+apps/web/src/App.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/App.tsx|apps/web/src/components/workspace/WorkspaceLayout.tsx
+docs/README.md|docs/features/layout.md
+apps/web/src/components/workspace/AIPanel.tsx|packages/ai/src/index.ts
+packages/editor/src/index.ts|packages/shared/src/index.ts
+apps/web/src/lib/api.ts|packages/shared/src/index.ts
+apps/web/src/components/workspace/WorkspaceContext.tsx|packages/shared/src/index.ts
+apps/admin/src/app/pages/database/database.component.ts|apps/admin/src/app/core/problem.service.ts
+apps/extension/src/parsers/testcases.ts|apps/extension/src/parsers/template.ts
+apps/extension/src/widget/state.ts|apps/extension/src/shared.ts
+apps/extension/src/index.ts|apps/extension/src/shared.ts
+apps/extension/src/api/post.ts|apps/extension/src/toast/index.ts
+apps/server/src/routes/problems.routes.ts|apps/server/src/controllers/problems.controller.ts
+apps/server/src/app.ts|apps/server/src/plugins/static.ts
+apps/server/src/controllers/problems.controller.ts|apps/server/src/services/problem.service.ts
+packages/layout/src/workspace.test.ts|packages/layout/src/workspace.ts
+packages/layout/src/index.ts|packages/layout/src/workspace.ts
+packages/problem-engine/src/problemTree.test.ts|packages/problem-engine/src/problemTree.ts
+packages/database/src/index.ts|packages/shared/src/index.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/template.ts
+apps/extension/src/parsers/description.ts|apps/extension/src/parsers/title.ts
+apps/extension/src/index.ts|apps/extension/src/widget/index.ts
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/AIPanel.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/DescriptionPanel.tsx
+apps/web/src/components/Header.tsx|apps/web/src/lib/theme.tsx
+README.md|docs/architecture.md
+README.md|docs/features/api-server.md
+apps/web/src/components/Header.tsx|packages/layout/src/index.ts
+apps/server/src/services/problem.service.test.ts|packages/shared/src/index.ts
+apps/admin/src/main.ts|apps/admin/src/app/app.config.ts
+apps/admin/src/app/core/problem.service.ts|apps/admin/src/app/core/api.config.ts
+apps/admin/src/app/pages/dashboard/dashboard.component.ts|apps/admin/src/app/core/problem.service.ts
+apps/admin/src/app/app.component.ts|apps/admin/src/app/shared/sidebar/sidebar.component.ts
+apps/extension/src/api/index.ts|apps/extension/src/api/post.ts
+apps/extension/src/parsers/testcases.ts|apps/extension/src/parsers/description.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/hints.ts
+apps/extension/src/toast/svg.ts|apps/extension/src/shared.ts
+apps/extension/src/widget/index.ts|apps/extension/src/widget/drag.ts
+apps/extension/src/widget/index.ts|apps/extension/src/widget/state.ts
+apps/server/src/plugins/static.ts|apps/server/src/config.ts
+apps/server/src/index.ts|apps/server/src/config.ts
+apps/server/src/routes/ai.routes.ts|apps/server/src/controllers/ai.controller.ts
+apps/server/src/routes/playground.routes.ts|apps/server/src/controllers/playground.controller.ts
+apps/server/src/routes/index.ts|apps/server/src/routes/problems.routes.ts
+apps/server/src/services/problem.service.ts|apps/server/src/services/asset.service.ts
+apps/server/src/services/solution.util.test.ts|apps/server/src/services/solution.util.ts
+apps/web/src/components/workspace/EditorPanel.tsx|apps/web/src/components/CodeEditor.tsx
+apps/web/src/components/workspace/DescriptionPanel.tsx|apps/web/src/components/DifficultyBadge.tsx
+apps/web/src/main.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/useAI.ts|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/KnowledgeResultPanel.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/OutputPanel.tsx
+apps/web/src/components/workspace/OutputPanel.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/EditorPanel.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/ExplorerPanel.tsx|apps/web/src/lib/api.ts
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/lib/theme.tsx
+docs/getting-started.md|docs/architecture.md
+docs/README.md|docs/architecture.md
+docs/README.md|docs/features/api-server.md
+README.md|docs/features/problem-engine.md
+packages/editor/README.md|docs/features/web-frontend.md
+apps/server/src/services/asset.service.ts|packages/database/src/index.ts
+apps/server/src/assets.test.ts|packages/database/src/index.ts
+packages/javascript-docs/src/search.test.ts|packages/javascript-docs/src/search.ts
+apps/web/src/components/workspace/WorkspaceLayout.tsx|packages/layout/src/index.ts
+packages/layout/src/workspace.test.ts|packages/layout/src/theme.ts
+packages/layout/src/index.ts|packages/layout/src/theme.ts
+packages/problem-engine/src/index.ts|packages/problem-engine/src/problemTree.ts
+apps/admin/src/main.ts|apps/admin/src/app/app.component.ts
+apps/extension/src/index.ts|apps/extension/src/clip.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/difficulty.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/title.ts
+apps/extension/src/clip.ts|apps/extension/src/shared.ts
+apps/web/src/components/Header.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/WorkspaceContext.tsx|apps/web/src/lib/api.ts
+docs/README.md|docs/features/ai-hints.md
+docs/README.md|docs/features/database.md
+README.md|docs/getting-started.md
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/tags.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/testcases.ts
+apps/extension/src/parsers/testcases.ts|apps/extension/src/shared.ts
+apps/extension/src/widget/index.ts|apps/extension/src/widget/create.ts
+apps/server/src/index.ts|apps/server/src/app.ts
+apps/server/src/app.ts|apps/server/src/routes/index.ts
+apps/server/src/controllers/playground.controller.ts|apps/server/src/services/playground.service.ts
+apps/server/src/index.ts|apps/server/src/services/problem.service.ts
+apps/server/src/app.ts|apps/server/src/services/problem.service.ts
+apps/web/src/App.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/AIPanel.tsx|apps/web/src/components/workspace/useAI.ts
+docs/README.md|docs/features/problem-engine.md
+packages/database/src/index.ts|packages/database/src/client.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/hints.ts
+apps/extension/src/parsers/difficulty.ts|apps/extension/src/shared.ts
+apps/extension/src/toast/show.ts|apps/extension/src/toast/create.ts
+apps/extension/src/toast/index.ts|apps/extension/src/toast/svg.ts
+apps/extension/src/widget/drag.ts|apps/extension/src/widget/types.ts
+apps/server/src/services/problem.service.test.ts|apps/server/src/services/problem.service.ts
+apps/server/src/services/problem.service.ts|apps/server/src/services/solution.util.ts
+apps/web/src/App.tsx|apps/web/src/components/Header.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/EditorPanel.tsx
+apps/web/src/components/workspace/EditorPanel.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/ExplorerPanel.tsx
+apps/web/src/components/workspace/KnowledgeResultPanel.tsx|apps/web/src/components/workspace/KnowledgeContext.tsx
+apps/web/src/main.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/DescriptionPanel.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/server/README.md|docs/features/api-server.md
+packages/database/README.md|docs/features/database.md
+README.md|docs/features/web-frontend.md
+packages/problem-engine/src/index.ts|packages/database/src/index.ts
+packages/editor/src/index.ts|packages/editor/src/editorTree.ts
+apps/web/src/components/workspace/KnowledgeContext.tsx|packages/javascript-docs/src/index.ts
+packages/problem-engine/src/problemTree.test.ts|packages/shared/src/index.ts
+apps/server/src/services/problem.service.ts|packages/shared/src/index.ts
+apps/extension/src/clip.ts|apps/extension/src/parsers/tags.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/testcases.ts
+apps/server/src/routes/health.routes.ts|apps/server/src/controllers/health.controller.ts
+apps/server/src/services/problem.service.test.ts|apps/server/src/services/asset.service.ts
+README.md|docs/README.md
+docs/README.md|docs/features/web-frontend.md
+packages/editor/src/index.ts|packages/editor/src/templates.ts
+apps/admin/src/app/core/problem.service.test.ts|apps/admin/src/app/core/api.config.ts
+apps/admin/src/app/core/problem.service.test.ts|apps/admin/src/app/core/problem.service.ts
+apps/admin/src/app/app.component.ts|apps/admin/src/app/core/theme.service.ts
+apps/extension/src/index.ts|apps/extension/src/api/index.ts
+apps/extension/src/api/index.ts|apps/extension/src/api/validate.ts
+apps/extension/src/clipper.test.ts|apps/extension/src/parsers/description.ts
+apps/extension/src/widget/drag.ts|apps/extension/src/shared.ts
+apps/extension/src/api/validate.ts|apps/extension/src/shared.ts
+apps/server/src/routes/problems.routes.ts|apps/server/src/services/problem.service.ts
+apps/server/src/routes/index.ts|apps/server/src/services/problem.service.ts
+apps/web/src/components/workspace/ErrorPanel.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/ErrorBoundary.tsx|apps/web/src/components/workspace/ErrorContext.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/KnowledgeContext.tsx
+apps/web/src/components/workspace/WorkspaceLayout.tsx|apps/web/src/components/workspace/KnowledgeSearchPanel.tsx
+apps/web/src/components/workspace/KnowledgeSearchPanel.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/components/workspace/AIPanel.tsx|apps/web/src/components/workspace/WorkspaceContext.tsx
+apps/web/src/lib/api.test.ts|apps/web/src/lib/api.ts
+apps/web/src/components/workspace/EditorPanel.tsx|apps/web/src/lib/api.ts
+apps/web/src/main.tsx|apps/web/src/lib/theme.tsx
+apps/web/src/components/CodeEditor.tsx|apps/web/src/lib/theme.tsx
+apps/web/src/App.tsx|apps/web/src/pages/DocPage.tsx
+packages/problem-engine/README.md|docs/features/problem-engine.md
+packages/database/src/client.ts|packages/database/src/schema.ts
+packages/editor/src/editorTree.test.ts|packages/editor/src/editorTree.ts
+packages/javascript-docs/src/index.ts|packages/javascript-docs/src/search.ts
+packages/javascript-docs/src/search.ts|packages/javascript-docs/src/types.ts
+packages/javascript-docs/src/index.ts|packages/javascript-docs/src/types.ts
+apps/server/src/services/problem.service.ts|packages/problem-engine/src/index.ts
+apps/web/src/components/workspace/ExplorerPanel.tsx|packages/shared/src/index.ts`;
+
+function groupOf(p) {
+  if (p.startsWith("apps/web")) return "web";
+  if (p.startsWith("apps/server")) return "server";
+  if (p.startsWith("apps/extension")) return "extension";
+  if (p.startsWith("apps/admin")) return "admin";
+  if (p.startsWith("packages/")) return p.split("/")[1];
+  return "docs";
+}
+const palette = {
+  web: "#60a5fa", server: "#f87171", extension: "#34d399", admin: "#fbbf24",
+  shared: "#a78bfa", database: "#f472b6", editor: "#94a3b8", layout: "#22d3ee",
+  "problem-engine": "#fb923c", ai: "#e879f9", "javascript-docs": "#4ade80", docs: "#64748b"
+};
+
+const links = [];
+const deg = {};
+for (const line of MD.split("\n")) {
+  const [s, t] = line.split("|");
+  if (!s || !t) continue;
+  links.push({ source: s, target: t });
+  deg[s] = (deg[s] || 0) + 1;
+  deg[t] = (deg[t] || 0) + 1;
+}
+const nodes = [...new Set(links.flatMap(l => [l.source, l.target]))].map(p => ({
+  id: p, group: groupOf(p), color: palette[groupOf(p)] || "#999", val: 2 + (deg[p] || 1)
+}));
+
+const fg = ForceGraph()(document.getElementById("graph"))
+  .backgroundColor("#0b1020")
+  .nodeId("id").nodeLabel("id")
+  .nodeColor("color").nodeVal("val")
+  .linkColor(() => "rgba(148,163,184,0.25)")
+  .linkDirectionalParticles(1).linkDirectionalParticleWidth(1.5)
+  .linkDirectionalArrowLength(3.5).linkDirectionalArrowRelPos(1)
+  .onNodeClick(n => { fg.centerAt(n.x, n.y, 800); fg.zoom(3, 800); });
+fg.d3Force("charge").strength(-80);
+
+const active = new Set(Object.keys(palette));
+function apply() {
+  const ns = nodes.filter(n => active.has(n.group));
+  const ids = new Set(ns.map(n => n.id));
+  fg.graphData({ nodes: ns, links: links.filter(l => ids.has(l.source.id ?? l.source) && ids.has(l.target.id ?? l.target)) });
+  document.getElementById("info").textContent = ns.length + " files, " + fg.graphData().links.length + " import edges. Hover = path, click = zoom.";
+}
+const lg = document.getElementById("lgitems");
+for (const [name, color] of Object.entries(palette)) {
+  const span = document.createElement("span");
+  span.className = "lg";
+  span.innerHTML = '<span class="dot" style="background:' + color + '"></span>' + name;
+  span.onclick = () => { active.has(name) ? active.delete(name) : active.add(name); span.style.opacity = active.has(name) ? 1 : 0.3; apply(); };
+  lg.appendChild(span);
+}
+apply();
+</script>
+</body>
+</html>

@@ -23,16 +23,16 @@
 
 **1-24**: Biến, gán, số học, số học tăng cường:
 
-| lesson              | lesson                | lesson                  | 
-| :----               | :-----                | :-----                  |
-| 1. comments         | 2. variable declar.   | 3. Assignment Op.       | 
-| 4. var to var assign | 5. initialize vars   | 6. string vars          | 
-| 7. undefined        | 8. var name case      | 9. var vs let           |
-| 10. const           | 11. addition          | 12. subtraction         | 
-| 13. multiplication  | 14. division          | 15. increment           | 
-| 16. decrement       | 17. decimals          | 18. multiply decimals   | 
-| 19. divide decimals | 20. remainder         | 21. augmented addition  |
-| 22. aug subtraction | 23. aug multiplication | 24. aug division       | 
+| lesson               | lesson                 | lesson                 |     |
+| :------------------- | :--------------------- | :--------------------- | --- |
+| 1. comments          | 2. variable declar.    | 3. Assignment Op.      |     |
+| 4. var to var assign | 5. initialize vars     | 6. string vars         |     |
+| 7. undefined         | 8. var name case       | 9. var vs let          |     |
+| 10. const            | 11. addition           | 12. subtraction        |     |
+| 13. multiplication   | 14. division           | 15. increment          |     |
+| 16. decrement        | 17. decimals           | 18. multiply decimals  |     |
+| 19. divide decimals  | 20. remainder          | 21. augmented addition |     |
+| 22. aug subtraction  | 23. aug multiplication | 24. aug division       |     |
 
 <br />
 
