@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
@@ -6,6 +6,8 @@ import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typesc
 import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { suggestForCode } from "@leetcode/javascript-docs";
+import type { SuggestItem } from "@leetcode/javascript-docs";
 import { useTheme } from "../lib/theme.js";
 
 SyntaxHighlighter.registerLanguage("javascript", javascript);
@@ -83,17 +85,98 @@ function setCaretOffset(root: HTMLElement, offset: number): void {
   sel.addRange(range);
 }
 
+/** Vị trí pixel của caret trong editor (để đặt dropdown). */
+function getCaretRect(): DOMRect | null {
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0) return null;
+  const range = sel.getRangeAt(0).cloneRange();
+  range.collapse(true);
+  let rect = range.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0 && range.startContainer.nodeType === Node.ELEMENT_NODE) {
+    const el = range.startContainer as HTMLElement;
+    const child = el.childNodes[range.startOffset] ?? el.lastChild;
+    if (child) {
+      const r = document.createRange();
+      r.selectNode(child);
+      rect = r.getBoundingClientRect();
+    }
+  }
+  return rect;
+}
+
+const KIND_BADGE: Record<SuggestItem["kind"], string> = {
+  keyword: "kw",
+  snippet: "snip",
+  pattern: "algo",
+  api: "api",
+};
+
 /**
- * Code editor contentEditable + SyntaxHighlighter.
+ * Code editor contentEditable + SyntaxHighlighter + bộ nhắc code (autocomplete).
  * - Div contentEditable hiển thị code highlight thật (text có màu, selection tự nhiên).
  * - Không overlay → không lệch dòng, không bị che selection.
  * - Mỗi lần nhập: lưu vị trí caret → update state → render lại highlight → khôi phục caret.
+ * - Gợi ý: `suggestForCode` từ @leetcode/javascript-docs (API + snippet + pattern, không AI).
  */
 export function CodeEditor({ value, onChange, language = "javascript", placeholder }: CodeEditorProps) {
   const { theme } = useTheme();
   const editorRef = useRef<HTMLDivElement | null>(null);
   const caretRef = useRef<number | null>(null);
   const lang = language === "typescript" ? "typescript" : language === "python" ? "python" : "javascript";
+  const jsOnly = lang === "javascript";
+
+  const [items, setItems] = useState<SuggestItem[]>([]);
+  const [active, setActive] = useState(0);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
+  const [manual, setManual] = useState(false);
+  const itemsRef = useRef<SuggestItem[]>([]);
+  itemsRef.current = items;
+
+  const computeSuggestions = useCallback(
+    (force = false) => {
+      const el = editorRef.current;
+      if (!el || !jsOnly) return;
+      const caret = getCaretOffset(el);
+      const text = el.innerText.replace(/\u00a0/g, " ").replace(/\n$/, "");
+      const before = text.slice(0, caret);
+      const next = suggestForCode(text, before);
+      if (next.length === 0 && !force) {
+        setItems([]);
+        return;
+      }
+      const rect = getCaretRect();
+      const host = el.getBoundingClientRect();
+      if (rect) setPos({ top: rect.bottom - host.top + 2, left: rect.left - host.left });
+      setItems(next);
+      setActive(0);
+    },
+    [jsOnly],
+  );
+
+  const hideSuggestions = useCallback(() => {
+    setItems([]);
+    setManual(false);
+  }, []);
+
+  const applySuggestion = useCallback(
+    (item: SuggestItem) => {
+      const el = editorRef.current;
+      if (!el) return;
+      const caret = getCaretOffset(el);
+      const text = el.innerText.replace(/\u00a0/g, " ").replace(/\n$/, "");
+      const before = text.slice(0, caret);
+      const wordM = before.match(/[A-Za-z_$][\w$]*$/);
+      const start = caret - (wordM ? wordM[0].length : 0);
+      const next = text.slice(0, start) + item.insertText + text.slice(caret);
+      caretRef.current = start + item.insertText.length;
+      onChange(next);
+      hideSuggestions();
+    },
+    [onChange, hideSuggestions],
+  );
+
+  const applySuggestionRef = useRef(applySuggestion);
+  applySuggestionRef.current = applySuggestion;
 
   const highlightedHtml = useMemo(
     () => (value.trim() === "" ? "" : buildHighlightedHtml(value, lang, theme)),
@@ -121,8 +204,37 @@ export function CodeEditor({ value, onChange, language = "javascript", placehold
       caretRef.current = getCaretOffset(el);
       const text = el.innerText.replace(/\u00a0/g, " ");
       onChange(text.replace(/\n$/, ""));
+      computeSuggestions();
     },
-    [onChange],
+    [onChange, computeSuggestions],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (!jsOnly) return;
+      const list = itemsRef.current;
+      if (e.ctrlKey && e.code === "Space") {
+        e.preventDefault();
+        if (list.length > 0 && !manual) hideSuggestions();
+        else computeSuggestions(true);
+        return;
+      }
+      if (list.length === 0) return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActive((i) => (i + 1) % list.length);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActive((i) => (i - 1 + list.length) % list.length);
+      } else if (e.key === "Tab" || e.key === "Enter") {
+        e.preventDefault();
+        applySuggestionRef.current(list[Math.min(active, list.length - 1)]);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        hideSuggestions();
+      }
+    },
+    [jsOnly, manual, active, computeSuggestions, hideSuggestions],
   );
 
   return (
@@ -136,9 +248,36 @@ export function CodeEditor({ value, onChange, language = "javascript", placehold
         aria-label="Trình soạn thảo mã"
         spellCheck={false}
         onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        onBlur={hideSuggestions}
         className="code-editor-ce"
         data-placeholder={placeholder ?? ""}
       />
+      {jsOnly && items.length > 0 && pos && (
+        <div
+          className="absolute z-20 max-h-64 w-80 overflow-auto rounded-lg border border-border bg-panel shadow-xl"
+          style={{ top: pos.top, left: pos.left }}
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          {items.map((it, i) => (
+            <button
+              key={it.id}
+              type="button"
+              className={`flex w-full items-center gap-2 px-2 py-1 text-left text-xs ${
+                i === active ? "bg-accent/20" : "hover:bg-accent/10"
+              }`}
+              onMouseEnter={() => setActive(i)}
+              onClick={() => applySuggestion(it)}
+            >
+              <span className="shrink-0 rounded bg-accent/20 px-1 font-mono text-[10px] uppercase text-accent">
+                {KIND_BADGE[it.kind]}
+              </span>
+              <span className="truncate font-mono text-text-primary">{it.label}</span>
+              {it.detail && <span className="truncate text-text-muted">{it.detail}</span>}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
