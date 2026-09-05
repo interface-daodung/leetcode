@@ -11,7 +11,7 @@ Khi được yêu cầu tạo/cập nhật tài liệu người dùng (README, d
 
 ## Nguồn dữ liệu
 
-**CHỈ ĐỌC từ `AI/` + GitNexus**, KHÔNG đọc source code (trừ khi cần xác nhận qua GitNexus `query`/`context`):
+**CHỈ ĐỌC từ `AI/` + graphify**, KHÔNG đọc source code (trừ khi cần xác nhận qua `graphify query "<question>"`/`explain`):
 
 ```text
 AI/INDEX.md

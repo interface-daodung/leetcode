@@ -21,7 +21,7 @@ Giữ cho `AI/` luôn "tươi" để Agent mới không bị rối và không t�
 ### Phase 0 — Pre-flight
 
 1. Đọc `AI/INDEX.md`, `AI/STATUS.md`, `AI/CONVENTIONS.md` (theo AGENTS.md).
-2. Dùng GitNexus (`query`/`context`) để nắm "source of truth" hiện tại — không dọn nhầm. (`AI/ARCHITECTURE.md` đã archive sang `history/archived/`.)
+2. Dùng graphify (`graphify query "<question>"` / `explain`) để nắm "source of truth" hiện tại — không dọn nhầm. (`AI/ARCHITECTURE.md` đã archive sang `history/archived/`.)
 
 ### Phase 1 — Đánh giá độ phình
 

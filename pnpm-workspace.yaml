@@ -7,7 +7,6 @@ allowBuilds:
   better-sqlite3: true
   core-js: false
   esbuild: true
-  gitnexus: true
   inferno: false
   lmdb: false
   msgpackr-extract: false

@@ -7,7 +7,7 @@ description: Hướng dẫn viết lại AI/walkthrough thành hướng dẫn s�
 
 ## Trạng thái: ARCHIVED
 
-`AI/walkthrough/` đã archive sang **`AI/history/archived/walkthrough/`** (2026-08-31). Hiểu kiến trúc/codebase bằng **GitNexus** (`query`, `context`, `impact`) thay vì walkthrough.
+`AI/walkthrough/` đã archive sang **`AI/history/archived/walkthrough/`** (2026-08-31). Hiểu kiến trúc/codebase bằng **graphify** (`graphify query`/`path`/`explain` — graph ở `graphify-out/graph.json`) thay vì walkthrough.
 
 **KHÔNG tạo lại `AI/walkthrough/` hoặc cập nhật file trong đó.** Nếu cần hướng dẫn sử dụng cho người dùng, viết vào `docs/` (xem `skills/docs-generator`).
 

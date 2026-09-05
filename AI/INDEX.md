@@ -10,7 +10,7 @@
 - `CONVENTIONS.md`
 - `STATUS.md`
 
-> Lưu ý: `ARCHITECTURE.md`, `index/`, `walkthrough/` đã archive sang `history/archived/` — hiểu kiến trúc/codebase bằng GitNexus (`query`, `context`, `impact`), không đọc các file archive.
+> Lưu ý: `ARCHITECTURE.md`, `index/`, `walkthrough/` đã archive sang `history/archived/` — hiểu kiến trúc/codebase bằng graphify (`graphify query/path/explain`), không đọc các file archive.
 
 ---
 
@@ -95,12 +95,12 @@ INDEX
  ↓
 STATUS / CONVENTIONS
  ↓
-GitNexus (query / context / impact)
+graphify (query / path / explain)
  ↓
 Relevant source
 ```
 
-Nếu cấu trúc repository thay đổi, dùng GitNexus để cập nhật hiểu biết — `AI/index/` đã archive, không cập nhật nữa.
+Nếu cấu trúc repository thay đổi, chạy `graphify update .` để cập nhật graph — `AI/index/` đã archive, không cập nhật nữa.
 
 ---
 
@@ -122,4 +122,4 @@ packages/javascript-docs  # JS/TS reference docs (static)
 
 > `packages/editor` và `packages/layout` đã bị xóa (2026-09-04): editor là dead dep; layout gộp vào `apps/web/src/layout/`. Code vẽ giao diện nằm trong `apps/web/src/components/` + `apps/web/src/layout/`.
 
-Chi tiết: dùng GitNexus (`gitnexus://repo/leetcode/clusters`, `query`) — bản sao tĩnh tại `history/archived/index/PROJECT_STRUCTURE.md`.
+Chi tiết: bản sao tĩnh tại `history/archived/index/PROJECT_STRUCTURE.md`.

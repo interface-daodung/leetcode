@@ -10,4 +10,7 @@ playground/
 tham_khao/
 dist/
 .gitnexus/
+graphify-out/cache/
+graphify-out/cost.json
+.opencode/
 .angular/

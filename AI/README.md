@@ -23,7 +23,7 @@ Thư mục này chứa kiến thức, hướng dẫn và lịch sử dành cho A
 
 ## Hiểu codebase
 
-Dùng **GitNexus** (`query`, `context`, `impact`) thay vì đọc các file archive trong `history/archived/` (`index/`, `ARCHITECTURE.md`, `walkthrough/`). GitNexus tự động biết cấu trúc source, import, dependency, cluster và execution flow — luôn đồng bộ với source code, không cần cập nhật tay.
+Dùng **graphify** (`graphify query "<question>"`, `graphify path "<A>" "<B>"`, `graphify explain "<concept>"`) thay vì đọc các file archive trong `history/archived/` (`index/`, `ARCHITECTURE.md`, `walkthrough/`). Graph ở `graphify-out/graph.json` (AST local, deterministic) — biết cấu trúc source, import, dependency, community; cập nhật bằng `graphify update .` sau khi sửa code.
 
 ## Nguyên tắc
 
