@@ -166,7 +166,9 @@ export function CodeEditor({ value, onChange, language = "javascript", placehold
       const text = el.innerText.replace(/\u00a0/g, " ").replace(/\n$/, "");
       const before = text.slice(0, caret);
       const wordM = before.match(/[A-Za-z_$][\w$]*$/);
-      const start = caret - (wordM ? wordM[0].length : 0);
+      let start = caret - (wordM ? wordM[0].length : 0);
+      // Xóa trigger "al/" khi chèn pattern thuật toán
+      if (start >= 3 && before.slice(start - 3, start) === "al/") start -= 3;
       const next = text.slice(0, start) + item.insertText + text.slice(caret);
       caretRef.current = start + item.insertText.length;
       onChange(next);
