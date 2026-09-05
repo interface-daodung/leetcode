@@ -8,6 +8,7 @@ export type { SuggestContext } from "./suggest.js";
 export { detectContext, suggest, suggestForCode } from "./suggest.js";
 export { extractVars } from "./vars.js";
 export { MEMBER_ITEMS } from "./members.js";
+export { VALUE_ITEMS } from "./values.js";
 
 /** Danh sách snippet + pattern LeetCode (hand-written, hữu hạn). */
 export const snippetItems: SuggestItem[] = snippetsData as SuggestItem[];

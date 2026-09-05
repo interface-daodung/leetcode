@@ -109,6 +109,7 @@ const KIND_BADGE: Record<SuggestItem["kind"], string> = {
   snippet: "snip",
   pattern: "algo",
   api: "api",
+  value: "val",
 };
 
 /**

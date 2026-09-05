@@ -9,24 +9,40 @@ describe("detectContext", () => {
       wordPrefix: "pu",
       receiver: "arr",
       algo: false,
+      afterEquals: false,
+      afterSpace: false,
     });
   });
 
   it("chỉ có dấu chấm, chưa gõ word", () => {
-    expect(detectContext("arr.")).toEqual({ linePrefix: "arr.", wordPrefix: "", receiver: "arr", algo: false });
+    expect(detectContext("arr.")).toEqual({ linePrefix: "arr.", wordPrefix: "", receiver: "arr", algo: false, afterEquals: false, afterSpace: false });
   });
 
   it("word thường không receiver", () => {
-    expect(detectContext("cons")).toEqual({ linePrefix: "cons", wordPrefix: "cons", receiver: null, algo: false });
+    expect(detectContext("cons")).toEqual({ linePrefix: "cons", wordPrefix: "cons", receiver: null, algo: false, afterEquals: false, afterSpace: false });
   });
 
   it("trigger 'al/' → algo mode, word sau trigger", () => {
-    expect(detectContext("al/bs")).toEqual({ linePrefix: "al/bs", wordPrefix: "bs", receiver: null, algo: true });
-    expect(detectContext("al/")).toEqual({ linePrefix: "al/", wordPrefix: "", receiver: null, algo: true });
+    expect(detectContext("al/bs")).toEqual({ linePrefix: "al/bs", wordPrefix: "bs", receiver: null, algo: true, afterEquals: false, afterSpace: false });
+    expect(detectContext("al/")).toEqual({ linePrefix: "al/", wordPrefix: "", receiver: null, algo: true, afterEquals: false, afterSpace: false });
   });
 
   it("'al/' giữa identifier không kích hoạt", () => {
-    expect(detectContext("xal/bs")).toEqual({ linePrefix: "xal/bs", wordPrefix: "bs", receiver: null, algo: false });
+    expect(detectContext("xal/bs")).toEqual({ linePrefix: "xal/bs", wordPrefix: "bs", receiver: null, algo: false, afterEquals: false, afterSpace: false });
+  });
+
+  it("sau '=' / '= ' → afterEquals (kể cả đang gõ word sau '=')", () => {
+    expect(detectContext("const x =").afterEquals).toBe(true);
+    expect(detectContext("const x = ").afterEquals).toBe(true);
+    expect(detectContext("const x = ma").afterEquals).toBe(true);
+    expect(detectContext("const x").afterEquals).toBe(false);
+  });
+
+  it("ký tự cuối là space → afterSpace (trừ sau '=')", () => {
+    expect(detectContext("  ").afterSpace).toBe(true);
+    expect(detectContext("for (").afterSpace).toBe(false);
+    expect(detectContext("const x = ").afterSpace).toBe(false);
+    expect(detectContext("const x ").afterSpace).toBe(true);
   });
 
   it("dòng mới reset receiver", () => {
@@ -35,12 +51,14 @@ describe("detectContext", () => {
       wordPrefix: "con",
       receiver: null,
       algo: false,
+      afterEquals: false,
+      afterSpace: false,
     });
   });
 
   it("chuỗi rỗng / chỉ khoảng trắng", () => {
-    expect(detectContext("")).toEqual({ linePrefix: "", wordPrefix: "", receiver: null, algo: false });
-    expect(detectContext("  ")).toEqual({ linePrefix: "  ", wordPrefix: "", receiver: null, algo: false });
+    expect(detectContext("")).toEqual({ linePrefix: "", wordPrefix: "", receiver: null, algo: false, afterEquals: false, afterSpace: false });
+    expect(detectContext("  ")).toEqual({ linePrefix: "  ", wordPrefix: "", receiver: null, algo: false, afterEquals: false, afterSpace: true });
   });
 });
 
@@ -103,6 +121,27 @@ describe("suggest", () => {
   it("'al/bs' → pattern binary search", () => {
     const items = suggestForCode(code, "al/bs");
     expect(items[0].id).toBe("pattern.bs");
+  });
+
+  it("sau '=' → gợi ý giá trị (new Map/Set/[], parseInt...)", () => {
+    const items = suggestForCode(code, "const freq = ");
+    expect(items.some((i) => i.id === "value.map")).toBe(true);
+    expect(items.some((i) => i.id === "value.array")).toBe(true);
+    expect(items.some((i) => i.id === "value.parseint")).toBe(true);
+  });
+
+  it("sau '= ' gõ 'pa' → lọc parseInt (value trước, api sau)", () => {
+    const items = suggestForCode(code, "const n = pa");
+    expect(items[0].id).toBe("value.parseint");
+    expect(items.some((i) => i.id === "value.parsefloat")).toBe(true);
+  });
+
+  it("space trắng → chỉ khai báo const/let/var/function/class", () => {
+    const items = suggestForCode(code, "  ");
+    const labels = items.map((i) => i.label);
+    expect(labels).toEqual(expect.arrayContaining(["const", "let", "var"]));
+    expect(labels).not.toContain("fori");
+    expect(items.length).toBeLessThanOrEqual(10);
   });
 
   it("1 ký tự → chỉ keyword + snippet (không API)", () => {

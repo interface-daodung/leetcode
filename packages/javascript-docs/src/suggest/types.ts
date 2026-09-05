@@ -5,7 +5,7 @@ export interface SuggestItem {
   id: string;
   /** text dùng để match prefix */
   label: string;
-  kind: "api" | "snippet" | "pattern" | "keyword";
+  kind: "api" | "snippet" | "pattern" | "keyword" | "value";
   /** text chèn vào editor (plain, nhiều dòng cho snippet/pattern) */
   insertText: string;
   /** mô tả ngắn 1 dòng (signature / giải thích) */

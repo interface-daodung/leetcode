@@ -89,6 +89,7 @@ export {
   snippetItems,
   suggest,
   suggestForCode,
+  VALUE_ITEMS,
 } from "./suggest/index.js";
 
 // Export index đã build sẵn để consumer dùng nhanh mà không cần gọi getIndex()
