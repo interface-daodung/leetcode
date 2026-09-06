@@ -1,6 +1,8 @@
 # Project Status
 
-Cập nhật: 2026-09-04
+Cập nhật: 2026-09-06
+
+**[mới 2026-09-06] Package `tray-spawn` — spawn `pnpm preview` ẩn console** — nhánh `feat/tray-spawn`. Package Node ESM stdlib-only tại `packages/tray-spawn/` tham khảo code C# WinForms (`PnpmTray`) nhưng viết lại bằng Node vì repo là TS monorepo. API `spawnHidden({ command?, cwd?, env? })` → `child_process.spawn` với `shell: true, windowsHide: true, stdio: "ignore"` (vứt stdout/stderr luôn — user không đọc log). `kill()` dùng `taskkill /T /F` trên Windows để kill cả cây (pnpm → vite), fallback `process.kill(-pid, SIGTERM)` POSIX. Root scripts: `pnpm preview:hidden` (chạy `pnpm preview` ẩn CMD) + `pnpm preview:kill` (tìm `pnpm.cmd` qua `tasklist`, kill sạch). 7 tests pass (1 skip POSIX trên Windows), build pass. YAGNI: không tray icon OS, không log UI, không ring buffer. Xem `AI/history/2026-09/tray-spawn.md`.
 
 ## Current Phase
 
