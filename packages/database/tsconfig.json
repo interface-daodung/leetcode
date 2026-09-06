@@ -7,7 +7,11 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "noEmit": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "isolatedModules": true,
     "paths": {
       "*": ["./*"],
       "@leetcode/shared": ["../../packages/shared/src"]
