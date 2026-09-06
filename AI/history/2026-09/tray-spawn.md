@@ -46,3 +46,26 @@ User muốn chạy `pnpm preview` ở chế độ nền trên Windows, ẩn cử
 - `pnpm preview` script trong root `package.json` đã bị xóa trước đó — package này sẵn sàng nhưng root cần thêm lại script `preview` để `pnpm preview:hidden` chạy thật.
 - `packages/tray-spawn` đứng riêng (không phụ thuộc package khác trong monorepo) — tuân thủ luật phân tầng: domain logic OS-level, không lẫn API server, không lẫn React.
 - Lint fail do thiếu `eslint.config.*` — đã có sẵn ở `packages/shared` + `apps/extension`, không phải do package này.
+
+---
+
+## Fix build chain (commit thứ 4)
+
+Vấn đề phát hiện khi smoke: `pnpm start:hidden` chạy web OK nhưng server fail vì `apps/server/dist/index.js` resolve `@leetcode/database` qua workspace → `packages/database/src/index.ts` (TS) → Node load thất bại.
+
+Nguyên nhân gốc: 4 package (`shared`, `ai`, `database`, `problem-engine`) đều `build: tsc --noEmit` → không emit `.js`. Khi runtime resolve qua `package.json#main` trỏ về `src/index.ts`, Node không load được.
+
+### Thay đổi
+
+| File | Trước | Sau |
+|---|---|---|
+| `packages/{shared,ai,database,problem-engine}/package.json` | `build: tsc --noEmit`, `main: src/index.ts` | `build: tsc`, `main: dist/index.js` |
+| `packages/{shared,ai,database,problem-engine}/tsconfig.json` | `noEmit: true`, không có `outDir` | bỏ `noEmit`, thêm `outDir: "dist"`, `declaration: true`, `declarationMap: true`, `sourceMap: true` |
+
+`apps/server` không cần đổi (đã có `start: node dist/index.js`).
+
+### Kết quả
+
+- `pnpm -r build` pass — 4 package emit `.js` + `.d.ts` ra `dist/`.
+- `pnpm -r test` pass — 13 test files, ~150 tests.
+- E2E `pnpm start:hidden`: server `:3000` `GET /api/problems` trả **200** (10 problems từ SQLite), web `:4173` trả **200**.
