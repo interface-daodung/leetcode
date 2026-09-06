@@ -15,7 +15,7 @@ export interface SpawnedHandle {
 const isWin = process.platform === "win32";
 
 export function spawnHidden(opts: SpawnOpts = {}): SpawnedHandle {
-  const command = opts.command ?? "pnpm preview";
+  const command = opts.command ?? "node .";
   const child = spawn(command, {
     shell: true,
     windowsHide: true,

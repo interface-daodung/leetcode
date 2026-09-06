@@ -41,7 +41,7 @@ describe("spawnHidden", () => {
 
     expect(spawn).toHaveBeenCalledTimes(1);
     const [cmd, passed] = vi.mocked(spawn).mock.calls[0]!;
-    expect(cmd).toBe("pnpm preview");
+    expect(cmd).toBe("node .");
     expect(passed).toMatchObject({
       shell: true,
       windowsHide: true,
