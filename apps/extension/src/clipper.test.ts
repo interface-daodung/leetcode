@@ -6,6 +6,7 @@ import { extractTags } from "./parsers/tags.js";
 import { extractHints } from "./parsers/hints.js";
 import { extractTemplate } from "./parsers/template.js";
 import { extractTestCases } from "./parsers/testcases.js";
+import { extractEditorial, cleanEditorial } from "./parsers/editorial.js";
 import { buildProblemClip, isValidProblemClip } from "./clip.js";
 
 describe("parseTitle", () => {
@@ -556,5 +557,79 @@ describe("regression: shortestPathBinaryMatrix — template không bị nhiễm 
     expect(clip!.testCases).toBeDefined();
     expect(clip!.testCases).toHaveLength(3);
     expect(clip!.testCases![0].expected).toBe(2);
+  });
+
+  // ----- Editorial (solution article) -----
+
+  const EDITORIAL_HTML = `
+    <div class="relative break-words"><div class="flex flex-col w-full" style="position: relative;">
+      <div class="markdown-content_markdown__cVmKc solution-markdown_markdown__d2RC0">
+        <h2 id="video-solution"><a href="#video-solution" aria-hidden="true" tabindex="-1"><svg>link</svg></a>Video Solution</h2>
+        <hr>
+        <div class="video-container">
+          <iframe src="https://player.vimeo.com/video/567281997" width="640" height="360" allowfullscreen="" translate="no" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+        </div>
+        <div>&nbsp;</div>
+        <h2 id="solution-article"><a href="#solution-article" aria-hidden="true" tabindex="-1"><svg>link</svg></a>Solution Article</h2>
+        <hr>
+        <h3 id="approach-1-brute-force"><a href="#approach-1-brute-force" aria-hidden="true"><svg>link</svg></a>Approach 1: Brute Force</h3>
+        <p><strong>Algorithm</strong></p>
+        <p>Loop through each element x and find target - x.</p>
+        <iframe src="https://leetcode.com/playground/WTVGRyeD/shared" width="100%" height="327" name="user-content-WTVGRyeD" allowfullscreen="" translate="no" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+        <p><strong>Complexity Analysis</strong></p>
+        <ul><li><p>Time complexity: O(n^2).</p></li><li><p>Space complexity: O(1).</p></li></ul>
+      </div>
+      <span style="font-size: 0px;">&nbsp;</span>
+    </div></div>
+  `;
+
+  it("extractEditorial lấy markdown solution-markdown với video + playground", () => {
+    document.body.innerHTML = EDITORIAL_HTML;
+    const html = extractEditorial(document);
+    expect(html).toBeDefined();
+    expect(html).toContain("Approach 1: Brute Force");
+    expect(html).toContain("player.vimeo.com/video/567281997");
+    expect(html).toContain("leetcode.com/playground/WTVGRyeD");
+    expect(html).not.toContain("<svg");
+    expect(html).not.toContain("sandbox=");
+  });
+
+  it("extractEditorial bỏ heading-anchor svg rỗng", () => {
+    document.body.innerHTML = EDITORIAL_HTML;
+    const html = extractEditorial(document)!;
+    expect(html).not.toContain('aria-hidden="true"');
+    expect(html).toContain("Video Solution");
+  });
+
+  it("extractEditorial trả undefined trên trang đề bài thường (không marker editorial)", () => {
+    document.body.innerHTML = `
+      <div data-track-load="description_content">
+        <p>Given an array of integers nums and an integer target.</p>
+        <pre><strong>Input:</strong> nums = [2,7,11,15]</pre>
+      </div>
+    `;
+    expect(extractEditorial(document)).toBeUndefined();
+  });
+
+  it("cleanEditorial chuẩn hoá &nbsp; thành space", () => {
+    document.body.innerHTML = `<div class="markdown-content_markdown__cVmKc"><h2>Solution Article</h2><div>&nbsp;&nbsp;</div></div>`;
+    const el = document.querySelector(".markdown-content_markdown__cVmKc")!;
+    const html = cleanEditorial(el);
+    expect(html).not.toContain("&nbsp;");
+    expect(html).toContain("Solution Article");
+  });
+
+  it("buildProblemClip gắn editorial khi đang ở trang editorial", () => {
+    document.body.innerHTML = `
+      <div class="text-title-large"><a href="/problems/two-sum/">1. Two Sum</a></div>
+      <div class="text-difficulty-easy">Easy</div>
+      <div data-track-load="description_content"><p>Given an array of integers nums.</p></div>
+      ${EDITORIAL_HTML}
+    `;
+    const clip = buildProblemClip(document, "https://leetcode.com/problems/two-sum/editorial/");
+    expect(clip).not.toBeNull();
+    expect(clip!.editorial).toBeDefined();
+    expect(clip!.editorial).toContain("Approach 1: Brute Force");
+    expect(isValidProblemClip(clip)).toBe(true);
   });
 });

@@ -35,6 +35,7 @@ export class ProblemService {
         tags: row.tags ?? [],
         description: row.description ?? "",
         template: row.template ?? undefined,
+        editorial: row.editorial ?? undefined,
         testCases: (row.testCases as { input: unknown; expected: unknown }[]) ?? [],
         hints: row.hints ?? undefined,
       });
@@ -74,6 +75,7 @@ export class ProblemService {
           tags: row.tags ?? [],
           description: row.description ?? "",
           template: row.template ?? undefined,
+          editorial: row.editorial ?? undefined,
           testCases: (row.testCases as { input: unknown; expected: unknown }[]) ?? [],
           hints: hints.length > 0 ? hints : undefined,
         };
@@ -194,6 +196,7 @@ export class ProblemService {
       tags: parsed.tags ?? [],
       description: parsed.description,
       template: parsed.template,
+      editorial: parsed.editorial,
       testCases: (parsed.testCases as { input: unknown; expected: unknown }[]) ?? [],
       hints: parsed.hints ?? undefined,
     };
@@ -207,6 +210,7 @@ export class ProblemService {
       template: parsed.template,
       url: parsed.url,
       slug: rawSlug,
+      editorial: parsed.editorial,
     });
 
     // Process images
@@ -258,6 +262,7 @@ export class ProblemService {
       tags: parsed.tags ?? [],
       description: parsed.description,
       template: parsed.template,
+      editorial: parsed.editorial,
       testCases: (parsed.testCases as { input: unknown; expected: unknown }[]) ?? [],
       hints: parsed.hints ?? undefined,
     };

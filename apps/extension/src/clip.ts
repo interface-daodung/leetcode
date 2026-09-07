@@ -9,6 +9,7 @@ import { findDescriptionContainer, findTitleAnchor, cleanDescription } from "./p
 import { extractHints } from "./parsers/hints.js";
 import { extractTemplate } from "./parsers/template.js";
 import { extractTestCases } from "./parsers/testcases.js";
+import { extractEditorial } from "./parsers/editorial.js";
 
 export { parseTitle, extractSlug };
 export { normalizeDifficulty, extractDifficulty };
@@ -17,6 +18,7 @@ export { findDescriptionContainer, findTitleAnchor, cleanDescription };
 export { extractHints };
 export { extractTemplate };
 export { extractTestCases };
+export { extractEditorial };
 
 /**
  * Build ProblemClip từ document hiện tại.
@@ -82,6 +84,7 @@ export function buildProblemClip(doc: Document, url: string): ProblemClip | null
   const hints = extractHints(doc);
   const template = extractTemplate(doc);
   const testCases = extractTestCases(doc);
+  const editorial = extractEditorial(doc);
 
   return {
     id,
@@ -92,6 +95,7 @@ export function buildProblemClip(doc: Document, url: string): ProblemClip | null
     tags,
     description,
     template,
+    editorial,
     testCases,
     hints: hints.length > 0 ? hints : undefined,
     clippedAt: new Date().toISOString(),
@@ -118,6 +122,7 @@ export function isValidProblemClip(obj: unknown): obj is ProblemClip {
   if (!basic) return false;
   if (o["url"] !== undefined && o["url"] !== null && typeof o["url"] !== "string") return false;
   if (o["template"] !== undefined && o["template"] !== null && typeof o["template"] !== "string") return false;
+  if (o["editorial"] !== undefined && o["editorial"] !== null && typeof o["editorial"] !== "string") return false;
   if (o["hints"] !== undefined && o["hints"] !== null && !Array.isArray(o["hints"])) return false;
   if (o["testCases"] !== undefined && o["testCases"] !== null) {
     if (!Array.isArray(o["testCases"])) return false;

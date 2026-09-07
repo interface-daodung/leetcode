@@ -10,6 +10,7 @@ export const problems = sqliteTable("problems", {
   tags: text("tags", { mode: "json" }).$type<string[]>().default([]),
   description: text("description").notNull(),
   template: text("template"),
+  editorial: text("editorial"),
   testCases: text("test_cases", { mode: "json" }).$type<{ input: unknown; expected: unknown }[]>().default([]),
   createdAt: text("created_at").default(sql`(datetime('now'))`),
 });

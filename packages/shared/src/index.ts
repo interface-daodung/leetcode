@@ -20,6 +20,7 @@ export interface ProblemMeta {
   tags: string[];
   description?: string;
   template?: string;
+  editorial?: string;
   testCases?: TestCase[];
   hints?: string[];
 }
@@ -33,6 +34,7 @@ export interface ProblemClip {
   tags: string[];
   description: string;
   template?: string;
+  editorial?: string;
   testCases?: TestCase[];
   hints?: string[];
   clippedAt?: string;

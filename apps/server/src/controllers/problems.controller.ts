@@ -35,6 +35,7 @@ const importSchema = z
     description: z.string({ required_error: "Thiếu description" }).min(1).refine((v) => v.trim().length > 0, "description rỗng"),
     url: z.string().url().optional().nullable().transform((v) => (v ?? "").trim() || undefined),
     template: z.string().optional().nullable().transform((v) => (v ?? "").trim() || undefined),
+    editorial: z.string().optional().nullable().transform((v) => (v ?? "").trim() || undefined),
     hints: z.array(z.string()).optional().nullable().default([]).transform((arr) => (arr ?? []).map((h) => h.trim()).filter(Boolean)),
     clippedAt: z.string().optional().nullable(),
     testCases: z.array(z.object({ input: z.unknown(), expected: z.unknown() })).optional().nullable().default([]),

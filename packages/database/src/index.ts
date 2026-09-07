@@ -15,6 +15,7 @@ export class ProblemDatabase {
         tags: problem.tags,
         description: problem.description ?? "",
         template: problem.template ?? null,
+        editorial: problem.editorial ?? null,
         testCases: problem.testCases ?? [],
       })
       .onConflictDoNothing();
@@ -46,6 +47,7 @@ export class ProblemDatabase {
       slug: row.slug ?? undefined,
       url: row.url ?? undefined,
       template: row.template ?? undefined,
+      editorial: row.editorial ?? undefined,
       tags: (row.tags as string[]) ?? [],
       testCases: (row.testCases as { input: unknown; expected: unknown }[]) ?? [],
       hints: hints.length > 0 ? hints : undefined,
@@ -182,12 +184,17 @@ export class ProblemDatabase {
     await db.update(schema.problems).set({ description }).where(eq(schema.problems.id, id));
   }
 
-  async update(id: number, patch: Partial<Pick<ProblemMeta, "description" | "template" | "url" | "slug">>): Promise<void> {
+  async updateEditorial(id: number, editorial: string): Promise<void> {
+    await db.update(schema.problems).set({ editorial }).where(eq(schema.problems.id, id));
+  }
+
+  async update(id: number, patch: Partial<Pick<ProblemMeta, "description" | "template" | "url" | "slug" | "editorial">>): Promise<void> {
     const set: Record<string, unknown> = {};
     if (patch.description !== undefined) set["description"] = patch.description;
     if (patch.template !== undefined) set["template"] = patch.template;
     if (patch.url !== undefined) set["url"] = patch.url;
     if (patch.slug !== undefined) set["slug"] = patch.slug;
+    if (patch.editorial !== undefined) set["editorial"] = patch.editorial;
     if (Object.keys(set).length === 0) return;
     await db.update(schema.problems).set(set as never).where(eq(schema.problems.id, id));
   }

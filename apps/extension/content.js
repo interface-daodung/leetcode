@@ -620,6 +620,44 @@
     return cases.length > 0 ? cases : void 0;
   }
 
+  // src/parsers/editorial.ts
+  var EDITORIAL_SELECTORS = [
+    '[class*="solution-markdown_markdown"]',
+    '[class*="markdown-content_markdown"]',
+    '[data-track-load="description_content"]'
+  ];
+  function findEditorialContainer(doc) {
+    for (const sel of EDITORIAL_SELECTORS) {
+      const el = doc.querySelector(sel);
+      if (el) return el;
+    }
+    return null;
+  }
+  function cleanEditorial(container) {
+    const clone = container.cloneNode(true);
+    clone.querySelectorAll("script, style, noscript, button, svg, form").forEach((el) => el.remove());
+    clone.querySelectorAll("iframe").forEach((el) => {
+      const src = el.getAttribute("src") ?? "";
+      el.setAttribute("src", src);
+      el.removeAttribute("sandbox");
+      el.removeAttribute("translate");
+      el.removeAttribute("loading");
+      if (el.hasAttribute("width") && el.getAttribute("width") !== "100%") el.setAttribute("width", "100%");
+    });
+    clone.querySelectorAll("a[aria-hidden='true']").forEach((el) => el.remove());
+    let html = clone.innerHTML;
+    html = html.replace(/&nbsp;/g, " ");
+    return html.trim();
+  }
+  function extractEditorial(doc) {
+    const container = findEditorialContainer(doc);
+    if (!container) return void 0;
+    const html = cleanEditorial(container);
+    const hasEditorialMarkers = /Solution Article/i.test(html) || /Approach\s*\d/i.test(html) || /player\.vimeo\.com/.test(html) || /leetcode\.com\/playground\//.test(html);
+    if (!html || !hasEditorialMarkers) return void 0;
+    return html;
+  }
+
   // src/clip.ts
   function buildProblemClip(doc, url) {
     const container = findDescriptionContainer(doc);
@@ -672,6 +710,7 @@
     const hints = extractHints(doc);
     const template = extractTemplate(doc);
     const testCases = extractTestCases(doc);
+    const editorial = extractEditorial(doc);
     return {
       id,
       slug,
@@ -681,6 +720,7 @@
       tags,
       description,
       template,
+      editorial,
       testCases,
       hints: hints.length > 0 ? hints : void 0,
       clippedAt: (/* @__PURE__ */ new Date()).toISOString()
@@ -735,8 +775,8 @@
       }
       let newLeft = initialLeft + dx;
       let newTop = initialTop + dy;
-      const w = el.offsetWidth || 52;
-      const h = el.offsetHeight || 52;
+      const w = el.offsetWidth || 120;
+      const h = el.offsetHeight || 120;
       const maxLeft = window.innerWidth - w;
       const maxTop = window.innerHeight - h;
       newLeft = Math.max(0, Math.min(newLeft, maxLeft));
@@ -758,8 +798,8 @@
   function keepInBounds(el) {
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const w = rect.width || el.offsetWidth || 80;
-    const h = rect.height || el.offsetHeight || 80;
+    const w = rect.width || el.offsetWidth || 120;
+    const h = rect.height || el.offsetHeight || 120;
     if (el.style.left || el.style.top) {
       const maxLeft = Math.max(0, window.innerWidth - w);
       const maxTop = Math.max(0, window.innerHeight - h);
