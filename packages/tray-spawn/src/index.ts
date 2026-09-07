@@ -16,7 +16,8 @@ const isWin = process.platform === "win32";
 
 export function spawnHidden(opts: SpawnOpts = {}): SpawnedHandle {
   const command = opts.command ?? "node .";
-  const child = spawn(command, {
+  const shellCmd = isWin ? `cmd.exe /c start "" /B ${command}` : command;
+  const child = spawn(shellCmd, {
     shell: true,
     windowsHide: true,
     stdio: "ignore",

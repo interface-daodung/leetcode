@@ -1,6 +1,8 @@
 # Project Status
 
-Cập nhật: 2026-09-06
+Cập nhật: 2026-09-07
+
+**[mới 2026-09-07] Ẩn console hoàn toàn — `cmd.exe /c start "" /B`** — nhánh `feat/tray-spawn`. Trước đó `windowsHide: true` của Node chỉ ẩn cửa sổ con đầu tiên; `pnpm.cmd` batch script vẫn mở console mới cho `node.exe`/`tsx.exe`. Fix: `spawnHidden` chạy command qua `cmd.exe /c start "" /B <cmd>` — `/B` của Windows `start` = chạy app không tạo cửa sổ mới (khác `/min` chỉ minimize). Verify `Get-Process | Where MainWindowTitle` = 0 khi chạy `pnpm start:hidden` từ cmd visible; cả 2 port 3000 + 4173 vẫn listen. POSIX giữ nguyên.
 
 **[mới 2026-09-06] Fix build chain 4 package — `tsc --noEmit` → `tsc` + emit `dist/`** — nhánh `feat/tray-spawn`. Server build chạy được từ `node dist/index.js` thay vì crash `ERR_MODULE_NOT_FOUND` ở `packages/database/src/index.ts`. Đổi `packages/{shared,ai,database,problem-engine}`: `build` = `tsc` (không `--noEmit`), `tsconfig` bỏ `noEmit` + thêm `outDir=dist/` + `declaration/declarationMap/sourceMap`, `main`/`types` trỏ vào `dist/index.js` / `dist/index.d.ts`. Lý do sâu: khi `apps/server/dist/index.js` resolve `@leetcode/database` qua workspace, Node dùng `package.json#main` (là `src/index.ts`) → load file TS thất bại. E2E: `pnpm start:hidden` → server `:3000` `GET /api/problems` trả 200 (10 problems từ SQLite), web `:4173` trả 200. `pnpm -r build` + `pnpm -r test` pass. Xem `AI/history/2026-09/tray-spawn.md`.
 

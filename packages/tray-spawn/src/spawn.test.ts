@@ -41,7 +41,10 @@ describe("spawnHidden", () => {
 
     expect(spawn).toHaveBeenCalledTimes(1);
     const [cmd, passed] = vi.mocked(spawn).mock.calls[0]!;
-    expect(cmd).toBe("node .");
+    const expected = process.platform === "win32"
+      ? 'cmd.exe /c start "" /B node .'
+      : "node .";
+    expect(cmd).toBe(expected);
     expect(passed).toMatchObject({
       shell: true,
       windowsHide: true,
@@ -61,7 +64,10 @@ describe("spawnHidden", () => {
     });
 
     const [cmd, passed] = vi.mocked(spawn).mock.calls[0]!;
-    expect(cmd).toBe("node server.js");
+    const expected = process.platform === "win32"
+      ? 'cmd.exe /c start "" /B node server.js'
+      : "node server.js";
+    expect(cmd).toBe(expected);
     expect(passed).toMatchObject({
       cwd: "D:/work",
       env: expect.objectContaining({ FOO: "bar" }),

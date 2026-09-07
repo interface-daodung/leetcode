@@ -69,3 +69,36 @@ Nguyên nhân gốc: 4 package (`shared`, `ai`, `database`, `problem-engine`) đ
 - `pnpm -r build` pass — 4 package emit `.js` + `.d.ts` ra `dist/`.
 - `pnpm -r test` pass — 13 test files, ~150 tests.
 - E2E `pnpm start:hidden`: server `:3000` `GET /api/problems` trả **200** (10 problems từ SQLite), web `:4173` trả **200**.
+
+---
+
+## Ẩn console hoàn toàn — `cmd.exe /c start "" /B`
+
+Sau fix build chain, smoke E2E: app chạy được nhưng **console vẫn hiện**. Lý do: `spawn` với `windowsHide: true` chỉ ẩn cửa sổ console của process đầu; nhưng `pnpm.cmd` là batch script nên chạy qua `cmd.exe` → mỗi lần `pnpm.cmd` invoke `node.exe` lại bật cửa sổ mới.
+
+### Fix
+
+`packages/tray-spawn/src/index.ts`: bọc command trong `cmd.exe /c start "" /B <command>` (Windows only). `/B` của `start` = chạy app **không tạo cửa sổ mới** (khác `/min` chỉ minimize). Cú pháp `start "" /B` (title rỗng `"")` tránh bị start hiểu `command` là title.
+
+```ts
+const shellCmd = isWin ? `cmd.exe /c start "" /B ${command}` : command;
+const child = spawn(shellCmd, { shell: true, windowsHide: true, stdio: "ignore", ... });
+```
+
+POSIX giữ `command` thẳng, không bọc.
+
+### Verify
+
+Chạy `pnpm start:hidden` từ cmd visible, sau 5s:
+
+```powershell
+Get-Process | Where { $_.MainWindowTitle -ne "" -and $_.ProcessName -in "node","pnpm","cmd","tsx" }
+# → 0 rows (zero window)
+
+Get-NetTCPConnection -State Listen | Where LocalPort -in 3000,4173
+# → 4173 + 3000 listen OK
+```
+
+### Tại sao không dùng `CREATE_NO_WINDOW` qua spawn?
+
+Node stdlib không expose flag `CREATE_NO_WINDOW` (0x08000000) của Win32 `CreateProcess`. Cách portable nhất qua Node là `windowsHide: true` (đã dùng) + `start /B` (mới thêm). Nếu sau này cần ẩn cả stdout pipe → dùng `node-gyp` build wrapper riêng; YAGNI hiện tại.
