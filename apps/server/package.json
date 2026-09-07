@@ -15,6 +15,7 @@
     "@fastify/websocket": "^10.0.1",
     "@leetcode/ai": "workspace:*",
     "@leetcode/database": "workspace:*",
+    "@leetcode/javascript-docs": "workspace:*",
     "@leetcode/problem-engine": "workspace:*",
     "@leetcode/shared": "workspace:*",
     "dotenv": "^16.4.0",

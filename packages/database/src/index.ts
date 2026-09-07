@@ -194,3 +194,8 @@ export class ProblemDatabase {
 }
 
 export const problemDb = new ProblemDatabase();
+
+export { docsDb, DocsDatabase } from "./docs-db.js";
+export type { DocsLang, DocSectionFull } from "./docs-db.js";
+export { seedDocs } from "./seed-docs.js";
+export type { DocFile, DocSectionRow, DocExample } from "./docs-types.js";

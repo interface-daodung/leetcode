@@ -5,11 +5,13 @@ import { registerStatic } from "./plugins/static.js";
 import { registerWebSpa } from "./plugins/web-spa.js";
 import { registerRoutes } from "./routes/index.js";
 import { ProblemService } from "./services/problem.service.js";
+import { DocsService } from "./services/docs.service.js";
 
 // Tạo Fastify instance + đăng ký plugin & route — tách khỏi listen để dễ test
-export async function createApp(deps: { service?: ProblemService } = {}) {
+export async function createApp(deps: { service?: ProblemService; docs?: DocsService } = {}) {
   const app = Fastify({ logger: true });
   const service = deps.service ?? new ProblemService();
+  const docs = deps.docs ?? new DocsService();
 
   await app.register(fastifyWebsocket);
   registerCors(app);
@@ -17,7 +19,7 @@ export async function createApp(deps: { service?: ProblemService } = {}) {
   // /api/*, /health, /ws/* sẽ rơi vào static và được trả index.html.
   await registerWebSpa(app);
   await registerStatic(app);
-  registerRoutes(app, service);
+  registerRoutes(app, service, docs);
 
   return app;
 }

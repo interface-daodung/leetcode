@@ -129,6 +129,9 @@ importers:
       '@leetcode/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@leetcode/javascript-docs':
+        specifier: workspace:*
+        version: link:../../packages/javascript-docs
       '@leetcode/problem-engine':
         specifier: workspace:*
         version: link:../../packages/problem-engine
@@ -271,6 +274,9 @@ importers:
       eslint:
         specifier: ^9.0.0
         version: 9.39.5(jiti@2.7.0)(supports-color@10.2.2)
+      tsx:
+        specifier: ^4.19.0
+        version: 4.23.12
       typescript:
         specifier: ^5.5.0
         version: 5.9.3

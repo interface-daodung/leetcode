@@ -46,3 +46,55 @@ export const hints = sqliteTable(
     problemOrdIdx: index("hints_problem_ord_idx").on(table.problemId, table.ord),
   }),
 );
+
+export const docFiles = sqliteTable(
+  "doc_files",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    lang: text("lang", { enum: ["en", "vi"] }).notNull(),
+    sourceFile: text("source_file").notNull(),
+    sourceUrl: text("source_url"),
+    category: text("category").notNull(),
+    title: text("title").notNull(),
+    description: text("description"),
+    tags: text("tags", { mode: "json" }).$type<string[]>().default([]),
+    totalSections: integer("total_sections").notNull().default(0),
+  },
+  (table) => ({
+    langSourceIdx: index("doc_files_lang_source_idx").on(table.lang, table.sourceFile),
+  }),
+);
+
+export const docSections = sqliteTable(
+  "doc_sections",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    lang: text("lang", { enum: ["en", "vi"] }).notNull(),
+    sectionId: text("section_id").notNull(),
+    docFileId: integer("doc_file_id")
+      .notNull()
+      .references(() => docFiles.id, { onDelete: "cascade" }),
+    ord: integer("ord").notNull(),
+    title: text("title").notNull(),
+    headingLevel: integer("heading_level").notNull().default(2),
+    anchor: text("anchor"),
+    summary: text("summary"),
+    keywords: text("keywords", { mode: "json" }).$type<string[]>().default([]),
+    syntax: text("syntax"),
+    returns: text("returns"),
+    mutates: integer("mutates"),
+    mdnUrl: text("mdn_url"),
+    examples: text("examples", { mode: "json" }).$type<{ code: string; explanation: string }[]>().default([]),
+    tables: text("tables", { mode: "json" }).$type<string[]>().default([]),
+    related: text("related", { mode: "json" }).$type<string[]>().default([]),
+    content: text("content").notNull(),
+    contentHtml: text("content_html"),
+    searchText: text("search_text"),
+    category: text("category").notNull(),
+  },
+  (table) => ({
+    langSectionIdx: index("doc_sections_lang_section_idx").on(table.lang, table.sectionId),
+    langCategoryIdx: index("doc_sections_lang_category_idx").on(table.lang, table.category),
+    fileOrdIdx: index("doc_sections_file_ord_idx").on(table.docFileId, table.ord),
+  }),
+);

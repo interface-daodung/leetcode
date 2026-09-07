@@ -22,12 +22,14 @@ export function setDocsData(en: { index: DocsIndex; files?: DocFile[] }, vi: { i
   viDocFiles = vi.files ?? [];
 }
 
-/** Build keywordIndex (keyword → entry ids) từ entries — dùng khi nạp từ DB. */
+/** Build keywordIndex (keyword → entry ids) từ entries — dùng khi nạp từ DB.
+ *  Dùng null-prototype để keyword như "constructor"/"toString" không dính prototype chain. */
 export function buildKeywordIndex(entries: IndexEntry[]): Record<string, string[]> {
-  const kw: Record<string, string[]> = {};
+  const kw: Record<string, string[]> = Object.create(null);
   for (const e of entries) {
     for (const k of e.keywords) {
-      (kw[k] ??= []).push(e.id);
+      if (!Object.prototype.hasOwnProperty.call(kw, k)) kw[k] = [];
+      kw[k].push(e.id);
     }
   }
   return kw;
@@ -148,7 +150,7 @@ function searchIn(idx: DocsIndex, query: string, opts: SearchOptions): IndexEntr
   // Lọc theo keyword nếu chỉ định
   if (keyword) {
     const kwLower = keyword.toLowerCase();
-    const ids = idx.keywordIndex[kwLower] ?? [];
+    const ids = Object.prototype.hasOwnProperty.call(idx.keywordIndex, kwLower) ? idx.keywordIndex[kwLower] : [];
     const idSet = new Set(ids.map((id) => id.toLowerCase()));
     pool = pool.filter((e) => idSet.has(e.id.toLowerCase()) || e.keywords.map((k) => k.toLowerCase()).includes(kwLower));
   }
@@ -239,7 +241,6 @@ export function getByKeyword(keyword: string): IndexEntry[] {
 export function getAllKeywords(): string[] {
   return Object.keys(requireIndex().keywordIndex).sort();
 }
-
 /**
  * Lấy danh sách categories
  */
