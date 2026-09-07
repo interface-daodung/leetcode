@@ -1,23 +1,23 @@
 # Graph Report - leetcode  (2026-09-07)
 
 ## Corpus Check
-- 310 files · ~1,281,157 words
+- 307 files · ~1,279,559 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2905 nodes · 3480 edges · 218 communities (181 shown, 24 thin omitted)
+- 2899 nodes · 3466 edges · 218 communities (182 shown, 23 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7c2185cc`
+- Built from commit: `fb2bfff2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - search.ts
 - createProblemController
-- clip.ts
+- shared.ts
 - options
 - ai/src/index.ts
 - workspace.ts
@@ -25,7 +25,7 @@
 - dependencies
 - problem-engine/src/index.ts
 - dependencies
-- ProblemDatabase
+- ProblemService
 - Important Function Code Examples
 - compilerOptions
 - scripts
@@ -134,7 +134,7 @@
 - Thay đổi
 - Project
 - tsconfig.spec.json
-- ProblemService
+- ProblemMeta
 - Kiến trúc LeetCode Lab {#kien-truc}
 - Conditional statements
 - Câu lệnh điều kiện
@@ -226,8 +226,8 @@
 2. `ProblemService` - 23 edges
 3. `ProblemMeta` - 22 edges
 4. `compilerOptions` - 18 edges
-5. `ProblemDatabase` - 18 edges
-6. `compilerOptions` - 17 edges
+5. `compilerOptions` - 17 edges
+6. `ProblemDatabase` - 17 edges
 7. `Simple array methods` - 17 edges
 8. `Math methods` - 17 edges
 9. `Các phương thức mảng đơn giản` - 17 edges
@@ -248,7 +248,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (218 total, 24 thin omitted)
+## Communities (218 total, 23 thin omitted)
 
 ### Community 0 - "search.ts"
 Cohesion: 0.06
@@ -258,16 +258,16 @@ Nodes (80): DocEntry, docsIndex, jsDocs, buildDocFileMap(), buildKeywordIndex(),
 Cohesion: 0.11
 Nodes (6): adminProblemSchema, codeBody, createProblemController(), difficultyParams, idParams, importSchema
 
-### Community 2 - "clip.ts"
+### Community 2 - "shared.ts"
 Cohesion: 0.07
-Nodes (55): PostResult, postToServer(), isValidClipForPost(), buildProblemClip(), isValidProblemClip(), handleClip(), init(), cleanDescription() (+47 more)
+Nodes (51): PostResult, postToServer(), isValidClipForPost(), buildProblemClip(), isValidProblemClip(), handleClip(), init(), cleanDescription() (+43 more)
 
 ### Community 3 - "options"
 Cohesion: 0.04
 Nodes (46): architect, prefix, projectType, root, schematics, sourceRoot, build, serve (+38 more)
 
 ### Community 4 - "ai/src/index.ts"
-Cohesion: 0.12
+Cohesion: 0.11
 Nodes (23): MockSocket, parseMessage(), ClientMessage, createAiController(), handle(), registerAiRoutes(), AIPanel(), AiMessage (+15 more)
 
 ### Community 5 - "workspace.ts"
@@ -283,12 +283,16 @@ Cohesion: 0.11
 Nodes (19): @angular/animations, @angular/common, @angular/compiler, @angular/forms, @angular/platform-browser, @angular/platform-browser-dynamic, dependencies, @angular/animations (+11 more)
 
 ### Community 8 - "problem-engine/src/index.ts"
-Cohesion: 0.24
-Nodes (13): createProblemTreeState(), findProblem(), getDifficultyCounts(), getTags(), hydrateProblems(), listByDifficulty(), listByTag(), ProblemNode (+5 more)
+Cohesion: 0.31
+Nodes (11): createProblemTreeState(), findProblem(), getDifficultyCounts(), getTags(), hydrateProblems(), listByDifficulty(), listByTag(), ProblemSearchParams (+3 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.11
 Nodes (19): dependencies, flexlayout-react, @fortawesome/fontawesome-free, @leetcode/ai, @leetcode/javascript-docs, @leetcode/shared, marked, react (+11 more)
+
+### Community 10 - "ProblemService"
+Cohesion: 0.14
+Nodes (5): ensureAssetFiles(), ProblemService, ProblemDatabase, engine, ProblemClip
 
 ### Community 11 - "Important Function Code Examples"
 Cohesion: 0.05
@@ -303,8 +307,8 @@ Cohesion: 0.07
 Nodes (27): concurrently, description, devDependencies, concurrently, typescript, typescript-language-server, vitest, @vitest/ui (+19 more)
 
 ### Community 15 - "services/problem.service.ts"
-Cohesion: 0.19
-Nodes (11): downloadAndRewriteImages(), ensureDir(), extensionFromContentType(), extractImgSrcs(), sanitizeFilename(), sanitizeSlug(), RunOutcome, dbMock (+3 more)
+Cohesion: 0.23
+Nodes (10): downloadAndRewriteImages(), ensureDir(), extensionFromContentType(), extractImgSrcs(), sanitizeFilename(), sanitizeSlug(), RunOutcome, dbMock (+2 more)
 
 ### Community 16 - "ThemeService"
 Cohesion: 0.23
@@ -405,10 +409,6 @@ Nodes (17): devDependencies, eslint, typescript, vitest, eslint, typescript, vit
 ### Community 41 - "database.component.ts"
 Cohesion: 0.15
 Nodes (10): API_URL_TOKEN, Window, Difficulty, ProblemInput, SAMPLE, ColumnDef, ColumnId, EMPTY_ASSETS (+2 more)
-
-### Community 42 - "shared/src/index.ts"
-Cohesion: 0.20
-Nodes (5): ImportClipResult, styles, Problem, TestCase, version
 
 ### Community 43 - "KnowledgeContext.tsx"
 Cohesion: 0.25
@@ -685,6 +685,10 @@ Nodes (10): Các thành phần chính, Công nghệ, Ghi chú, Mục tiêu, Ngư
 ### Community 129 - "tsconfig.spec.json"
 Cohesion: 0.18
 Nodes (10): compilerOptions, outDir, types, extends, include, node, src/**/*.d.ts, ./tsconfig.json (+2 more)
+
+### Community 130 - "ProblemMeta"
+Cohesion: 0.22
+Nodes (5): ImportClipResult, Problem, ProblemNode, ProblemMeta, TestCase
 
 ### Community 131 - "Kiến trúc LeetCode Lab {#kien-truc}"
 Cohesion: 0.18
@@ -975,24 +979,24 @@ Cohesion: 0.50
 Nodes (3): Dependency, @leetcode/shared, Nội dung
 
 ## Knowledge Gaps
-- **1711 isolated node(s):** `$schema`, `.opencode/plugins/graphify.js`, `$schema`, `version`, `newProjectRoot` (+1706 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1908 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1710 isolated node(s):** `$schema`, `.opencode/plugins/graphify.js`, `$schema`, `version`, `newProjectRoot` (+1705 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1907 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ProblemDatabase` connect `ProblemDatabase` to `problem-engine/src/index.ts`, `ProblemService`, `database/src/index.ts`, `services/problem.service.ts`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
-- **Why does `ProblemMeta` connect `problem-engine/src/index.ts` to `ProblemService`, `WorkspaceContext.tsx`, `workspace.ts`, `TestCaseTabs.tsx`, `ProblemDatabase`, `shared/src/index.ts`, `services/problem.service.ts`, `ProblemEngine`, `database/src/index.ts`, `lib/api.ts`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **Why does `createProblemController()` connect `createProblemController` to `routes/index.ts`?**
   _High betweenness centrality (0.001) - this node is a cross-community bridge._
+- **Why does `ProblemMeta` connect `ProblemMeta` to `WorkspaceContext.tsx`, `workspace.ts`, `TestCaseTabs.tsx`, `problem-engine/src/index.ts`, `ProblemService`, `shared/src/index.ts`, `services/problem.service.ts`, `ProblemEngine`, `database/src/index.ts`, `lib/api.ts`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
+- **Why does `ProblemService` connect `ProblemService` to `createProblemController`, `ProblemMeta`, `ai/src/index.ts`, `services/problem.service.ts`, `app.ts`, `solution.util.ts`, `routes/index.ts`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **What connects `$schema`, `.opencode/plugins/graphify.js`, `$schema` to the rest of the system?**
-  _1711 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1710 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `search.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.060470324748040316 - nodes in this community are weakly interconnected._
 - **Should `createProblemController` be split into smaller, more focused modules?**
   _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._
-- **Should `clip.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06641198942109904 - nodes in this community are weakly interconnected._
+- **Should `shared.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.07126207126207126 - nodes in this community are weakly interconnected._

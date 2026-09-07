@@ -147,13 +147,26 @@
       "source_location": "L79"
     },
     {
+      "id": "apps_server_src_services_problem_service_problemservice",
+      "label": "ProblemService",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": "problemservice",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L19"
+    },
+    {
       "id": "packages_database_src_index_problemdatabase",
       "label": "ProblemDatabase",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": "problemdatabase",
       "source_file": "packages/database/src/index.ts",
@@ -166,11 +179,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": "problemclip",
       "source_file": "packages/shared/src/index.ts",
-      "source_location": "L28"
+      "source_location": "L27"
     },
     {
       "id": "apps_web_src_layout_workspace_defaulttabsetid",
@@ -238,17 +251,69 @@
       "source_location": "L7"
     },
     {
-      "id": "apps_server_src_services_problem_service_problemservice",
-      "label": "ProblemService",
+      "id": "apps_server_src_services_problem_service_importclipresult",
+      "label": "ImportClipResult",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
-      "norm_label": "problemservice",
+      "norm_label": "importclipresult",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L19"
+      "source_location": "L14"
+    },
+    {
+      "id": "packages_problem_engine_src_index_problem",
+      "label": "Problem",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 130,
+      "community_name": "ProblemMeta",
+      "file_type": "code",
+      "norm_label": "problem",
+      "source_file": "packages/problem-engine/src/index.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "packages_problem_engine_src_problemtree_problemnode",
+      "label": "ProblemNode",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 130,
+      "community_name": "ProblemMeta",
+      "file_type": "code",
+      "norm_label": "problemnode",
+      "source_file": "packages/problem-engine/src/problemTree.ts",
+      "source_location": "L10"
+    },
+    {
+      "id": "packages_shared_src_index_problemmeta",
+      "label": "ProblemMeta",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 130,
+      "community_name": "ProblemMeta",
+      "file_type": "code",
+      "norm_label": "problemmeta",
+      "source_file": "packages/shared/src/index.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "packages_shared_src_index_testcase",
+      "label": "TestCase",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 130,
+      "community_name": "ProblemMeta",
+      "file_type": "code",
+      "norm_label": "testcase",
+      "source_file": "packages/shared/src/index.ts",
+      "source_location": "L9"
     },
     {
       "id": "apps_server_src_services_docs_service_docsservice",
@@ -387,7 +452,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "postresult",
       "source_file": "apps/extension/src/api/post.ts",
@@ -400,7 +465,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "difficulty",
       "source_file": "apps/extension/src/shared.ts",
@@ -413,7 +478,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "problemclip",
       "source_file": "apps/extension/src/shared.ts",
@@ -426,7 +491,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "testcase",
       "source_file": "apps/extension/src/shared.ts",
@@ -439,7 +504,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "toastvariant",
       "source_file": "apps/extension/src/toast/show.ts",
@@ -452,7 +517,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widgetstate",
       "source_file": "apps/extension/src/widget/state.ts",
@@ -465,7 +530,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widgethandleclip",
       "source_file": "apps/extension/src/widget/types.ts",
@@ -691,45 +756,6 @@
       "norm_label": "sortdir",
       "source_file": "apps/admin/src/app/pages/database/database.component.ts",
       "source_location": "L10"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_importclipresult",
-      "label": "ImportClipResult",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "shared/src/index.ts",
-      "file_type": "code",
-      "norm_label": "importclipresult",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L14"
-    },
-    {
-      "id": "packages_problem_engine_src_index_problem",
-      "label": "Problem",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "shared/src/index.ts",
-      "file_type": "code",
-      "norm_label": "problem",
-      "source_file": "packages/problem-engine/src/index.ts",
-      "source_location": "L15"
-    },
-    {
-      "id": "packages_shared_src_index_testcase",
-      "label": "TestCase",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "shared/src/index.ts",
-      "file_type": "code",
-      "norm_label": "testcase",
-      "source_file": "packages/shared/src/index.ts",
-      "source_location": "L9"
     },
     {
       "id": "apps_web_src_components_workspace_knowledgecontext_knowledgestate",
@@ -1096,19 +1122,6 @@
       "source_location": "L4"
     },
     {
-      "id": "packages_problem_engine_src_problemtree_problemnode",
-      "label": "ProblemNode",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "problem-engine/src/index.ts",
-      "file_type": "code",
-      "norm_label": "problemnode",
-      "source_file": "packages/problem-engine/src/problemTree.ts",
-      "source_location": "L10"
-    },
-    {
       "id": "packages_problem_engine_src_problemtree_problemsearchparams",
       "label": "ProblemSearchParams",
       "_callable": true,
@@ -1120,19 +1133,6 @@
       "norm_label": "problemsearchparams",
       "source_file": "packages/problem-engine/src/problemTree.ts",
       "source_location": "L96"
-    },
-    {
-      "id": "packages_shared_src_index_problemmeta",
-      "label": "ProblemMeta",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "problem-engine/src/index.ts",
-      "file_type": "code",
-      "norm_label": "problemmeta",
-      "source_file": "packages/shared/src/index.ts",
-      "source_location": "L14"
     },
     {
       "id": "apps_web_src_components_workspace_explorerpanel_filter",
@@ -1831,7 +1831,7 @@
       "file_type": "code",
       "norm_label": "createproblemcontroller()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L45"
+      "source_location": "L44"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_create",
@@ -1843,7 +1843,7 @@
       "file_type": "code",
       "norm_label": "create()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L144"
+      "source_location": "L143"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_getassets",
@@ -1855,7 +1855,7 @@
       "file_type": "code",
       "norm_label": "getassets()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L98"
+      "source_location": "L97"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_getbyid",
@@ -1867,7 +1867,7 @@
       "file_type": "code",
       "norm_label": "getbyid()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L52"
+      "source_location": "L51"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_gethints",
@@ -1879,7 +1879,7 @@
       "file_type": "code",
       "norm_label": "gethints()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L92"
+      "source_location": "L91"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_getrandom",
@@ -1891,7 +1891,7 @@
       "file_type": "code",
       "norm_label": "getrandom()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L62"
+      "source_location": "L61"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_hint",
@@ -1903,7 +1903,7 @@
       "file_type": "code",
       "norm_label": "hint()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L85"
+      "source_location": "L84"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_importclip",
@@ -1915,7 +1915,7 @@
       "file_type": "code",
       "norm_label": "importclip()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L125"
+      "source_location": "L124"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_list",
@@ -1927,7 +1927,7 @@
       "file_type": "code",
       "norm_label": "list()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L47"
+      "source_location": "L46"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_remove",
@@ -1939,7 +1939,7 @@
       "file_type": "code",
       "norm_label": "remove()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L174"
+      "source_location": "L173"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_run",
@@ -1951,7 +1951,7 @@
       "file_type": "code",
       "norm_label": "run()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L72"
+      "source_location": "L71"
     },
     {
       "id": "apps_server_src_controllers_problems_controller_createproblemcontroller_updateclip",
@@ -1963,7 +1963,31 @@
       "file_type": "code",
       "norm_label": "updateclip()",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L104"
+      "source_location": "L103"
+    },
+    {
+      "id": "apps_server_src_services_asset_service_ensureassetfiles",
+      "label": "ensureAssetFiles()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": "ensureassetfiles()",
+      "source_file": "apps/server/src/services/asset.service.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_constructor",
+      "label": ".constructor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".constructor()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L20"
     },
     {
       "id": "apps_server_src_services_problem_service_problemservice_delete",
@@ -1971,11 +1995,71 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".delete()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L174"
+      "source_location": "L172"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_exists",
+      "label": ".exists()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".exists()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L125"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_getassets",
+      "label": ".getAssets()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".getassets()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L120"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_getbyid",
+      "label": ".getById()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".getbyid()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L61"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_gethints",
+      "label": ".getHints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".gethints()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L115"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_hydrate",
+      "label": ".hydrate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".hydrate()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L26"
     },
     {
       "id": "apps_server_src_services_problem_service_problemservice_importclip",
@@ -1983,11 +2067,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".importclip()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L252"
+      "source_location": "L248"
+    },
+    {
+      "id": "apps_server_src_services_problem_service_problemservice_list",
+      "label": ".list()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".list()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L56"
     },
     {
       "id": "apps_server_src_services_problem_service_problemservice_updateclip",
@@ -1995,23 +2091,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".updateclip()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L187"
-    },
-    {
-      "id": "packages_database_src_index_problemdatabase_add",
-      "label": ".add()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "ProblemDatabase",
-      "file_type": "code",
-      "norm_label": ".add()",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L6"
+      "source_location": "L185"
     },
     {
       "id": "packages_database_src_index_problemdatabase_addasset",
@@ -2019,11 +2103,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".addasset()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L134"
+      "source_location": "L132"
     },
     {
       "id": "packages_database_src_index_problemdatabase_delete",
@@ -2031,11 +2115,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".delete()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L125"
+      "source_location": "L123"
     },
     {
       "id": "packages_database_src_index_problemdatabase_findassetbyhash",
@@ -2043,11 +2127,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".findassetbyhash()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L138"
+      "source_location": "L136"
     },
     {
       "id": "packages_database_src_index_problemdatabase_findassetbyoriginalurl",
@@ -2055,11 +2139,47 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".findassetbyoriginalurl()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L148"
+      "source_location": "L146"
+    },
+    {
+      "id": "packages_database_src_index_problemdatabase_findassetsbyproblem",
+      "label": ".findAssetsByProblem()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".findassetsbyproblem()",
+      "source_file": "packages/database/src/index.ts",
+      "source_location": "L142"
+    },
+    {
+      "id": "packages_database_src_index_problemdatabase_get",
+      "label": ".get()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".get()",
+      "source_file": "packages/database/src/index.ts",
+      "source_location": "L35"
+    },
+    {
+      "id": "packages_database_src_index_problemdatabase_getallwithhints",
+      "label": ".getAllWithHints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".getallwithhints()",
+      "source_file": "packages/database/src/index.ts",
+      "source_location": "L86"
     },
     {
       "id": "packages_database_src_index_problemdatabase_getbydifficulty",
@@ -2067,11 +2187,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".getbydifficulty()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L57"
+      "source_location": "L55"
+    },
+    {
+      "id": "packages_database_src_index_problemdatabase_gethints",
+      "label": ".getHints()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": ".gethints()",
+      "source_file": "packages/database/src/index.ts",
+      "source_location": "L160"
     },
     {
       "id": "packages_database_src_index_problemdatabase_sethints",
@@ -2079,11 +2211,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".sethints()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L171"
+      "source_location": "L169"
     },
     {
       "id": "packages_database_src_index_problemdatabase_update",
@@ -2091,11 +2223,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".update()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L191"
+      "source_location": "L185"
     },
     {
       "id": "packages_database_src_index_problemdatabase_updatedescription",
@@ -2103,23 +2235,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 10,
-      "community_name": "ProblemDatabase",
+      "community_name": "ProblemService",
       "file_type": "code",
       "norm_label": ".updatedescription()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L183"
-    },
-    {
-      "id": "packages_database_src_index_problemdatabase_updateeditorial",
-      "label": ".updateEditorial()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "ProblemDatabase",
-      "file_type": "code",
-      "norm_label": ".updateeditorial()",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L187"
+      "source_location": "L181"
     },
     {
       "id": "apps_web_src_components_workspace_workspacecontext_computepanelsvisible",
@@ -2422,112 +2542,28 @@
       "source_location": "L62"
     },
     {
-      "id": "apps_server_src_services_asset_service_ensureassetfiles",
-      "label": "ensureAssetFiles()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": "ensureassetfiles()",
-      "source_file": "apps/server/src/services/asset.service.ts",
-      "source_location": "L11"
-    },
-    {
       "id": "apps_server_src_services_problem_service_problemservice_createfromadmin",
       "label": ".createFromAdmin()",
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
       "norm_label": ".createfromadmin()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L132"
+      "source_location": "L130"
     },
     {
-      "id": "apps_server_src_services_problem_service_problemservice_exists",
-      "label": ".exists()",
+      "id": "apps_server_src_services_problem_service_problemservice_getrandom",
+      "label": ".getRandom()",
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
-      "norm_label": ".exists()",
+      "norm_label": ".getrandom()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L127"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_getassets",
-      "label": ".getAssets()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".getassets()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L122"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_getbyid",
-      "label": ".getById()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".getbyid()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L62"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_gethints",
-      "label": ".getHints()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".gethints()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L117"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_hint",
-      "label": ".hint()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".hint()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L113"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_hydrate",
-      "label": ".hydrate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".hydrate()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L26"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_list",
-      "label": ".list()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".list()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L57"
+      "source_location": "L94"
     },
     {
       "id": "apps_server_src_services_problem_service_problemservice_nextid",
@@ -2535,59 +2571,47 @@
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
       "norm_label": ".nextid()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L180"
+      "source_location": "L178"
     },
     {
-      "id": "packages_database_src_index_problemdatabase_findassetsbyproblem",
-      "label": ".findAssetsByProblem()",
+      "id": "packages_database_src_index_problemdatabase_add",
+      "label": ".add()",
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
-      "norm_label": ".findassetsbyproblem()",
+      "norm_label": ".add()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L144"
+      "source_location": "L6"
     },
     {
-      "id": "packages_database_src_index_problemdatabase_get",
-      "label": ".get()",
+      "id": "packages_database_src_index_problemdatabase_getall",
+      "label": ".getAll()",
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
-      "norm_label": ".get()",
+      "norm_label": ".getall()",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L36"
+      "source_location": "L71"
     },
     {
-      "id": "packages_database_src_index_problemdatabase_getallwithhints",
-      "label": ".getAllWithHints()",
+      "id": "packages_problem_engine_src_index_problemengine_findmeta",
+      "label": ".findMeta()",
       "_callable": true,
       "_origin": "ast",
       "community": 130,
-      "community_name": "ProblemService",
+      "community_name": "ProblemMeta",
       "file_type": "code",
-      "norm_label": ".getallwithhints()",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L88"
-    },
-    {
-      "id": "packages_database_src_index_problemdatabase_gethints",
-      "label": ".getHints()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 130,
-      "community_name": "ProblemService",
-      "file_type": "code",
-      "norm_label": ".gethints()",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L162"
+      "norm_label": ".findmeta()",
+      "source_file": "packages/problem-engine/src/index.ts",
+      "source_location": "L121"
     },
     {
       "id": "apps_server_src_services_docs_service_docsservice_getcategories",
@@ -3070,18 +3094,6 @@
       "source_location": "L37"
     },
     {
-      "id": "apps_server_src_services_problem_service_problemservice_constructor",
-      "label": ".constructor()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "services/problem.service.ts",
-      "file_type": "code",
-      "norm_label": ".constructor()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L20"
-    },
-    {
       "id": "apps_server_src_services_problem_service_test_createenginemock",
       "label": "createEngineMock()",
       "_callable": true,
@@ -3279,7 +3291,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "posttoserver()",
       "source_file": "apps/extension/src/api/post.ts",
@@ -3291,7 +3303,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "isvalidclipforpost()",
       "source_file": "apps/extension/src/api/validate.ts",
@@ -3303,11 +3315,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "buildproblemclip()",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L27"
+      "source_location": "L25"
     },
     {
       "id": "apps_extension_src_clip_isvalidproblemclip",
@@ -3315,11 +3327,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "isvalidproblemclip()",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L108"
+      "source_location": "L104"
     },
     {
       "id": "apps_extension_src_index_handleclip",
@@ -3327,7 +3339,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "handleclip()",
       "source_file": "apps/extension/src/index.ts",
@@ -3339,7 +3351,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "init()",
       "source_file": "apps/extension/src/index.ts",
@@ -3351,7 +3363,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "cleandescription()",
       "source_file": "apps/extension/src/parsers/description.ts",
@@ -3363,7 +3375,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "finddescriptioncontainer()",
       "source_file": "apps/extension/src/parsers/description.ts",
@@ -3375,7 +3387,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "findtitleanchor()",
       "source_file": "apps/extension/src/parsers/description.ts",
@@ -3387,7 +3399,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extractdifficulty()",
       "source_file": "apps/extension/src/parsers/difficulty.ts",
@@ -3399,47 +3411,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "normalizedifficulty()",
       "source_file": "apps/extension/src/parsers/difficulty.ts",
       "source_location": "L9"
-    },
-    {
-      "id": "apps_extension_src_parsers_editorial_cleaneditorial",
-      "label": "cleanEditorial()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "clip.ts",
-      "file_type": "code",
-      "norm_label": "cleaneditorial()",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L28"
-    },
-    {
-      "id": "apps_extension_src_parsers_editorial_extracteditorial",
-      "label": "extractEditorial()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "clip.ts",
-      "file_type": "code",
-      "norm_label": "extracteditorial()",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L51"
-    },
-    {
-      "id": "apps_extension_src_parsers_editorial_findeditorialcontainer",
-      "label": "findEditorialContainer()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "clip.ts",
-      "file_type": "code",
-      "norm_label": "findeditorialcontainer()",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L14"
     },
     {
       "id": "apps_extension_src_parsers_hints_extracthints",
@@ -3447,7 +3423,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extracthints()",
       "source_file": "apps/extension/src/parsers/hints.ts",
@@ -3459,7 +3435,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extracttags()",
       "source_file": "apps/extension/src/parsers/tags.ts",
@@ -3471,7 +3447,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extracttemplate()",
       "source_file": "apps/extension/src/parsers/template.ts",
@@ -3483,7 +3459,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "findcodesnippetinjson()",
       "source_file": "apps/extension/src/parsers/template.ts",
@@ -3495,7 +3471,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "buildtestcasesfromlines()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3507,7 +3483,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extracttestcases()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3519,7 +3495,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extracttestcasesfromdescription()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3531,7 +3507,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "findtestcasesinjson()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3543,7 +3519,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "parseexampletestcasesstring()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3555,7 +3531,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "parsejsonline()",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -3567,7 +3543,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extractslug()",
       "source_file": "apps/extension/src/parsers/title.ts",
@@ -3579,7 +3555,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "parsetitle()",
       "source_file": "apps/extension/src/parsers/title.ts",
@@ -3591,11 +3567,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "copytoclipboard()",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L68"
+      "source_location": "L67"
     },
     {
       "id": "apps_extension_src_shared_getasseturl",
@@ -3603,11 +3579,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "getasseturl()",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L41"
+      "source_location": "L40"
     },
     {
       "id": "apps_extension_src_toast_create_ensuretoast",
@@ -3615,7 +3591,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "ensuretoast()",
       "source_file": "apps/extension/src/toast/create.ts",
@@ -3627,7 +3603,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "resettoast()",
       "source_file": "apps/extension/src/toast/create.ts",
@@ -3639,7 +3615,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "positiontoast()",
       "source_file": "apps/extension/src/toast/show.ts",
@@ -3651,7 +3627,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "showtoast()",
       "source_file": "apps/extension/src/toast/show.ts",
@@ -3663,7 +3639,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "generatetoastsvg()",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -3675,7 +3651,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "escapexml()",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -3687,7 +3663,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "estimatewidth()",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -3699,7 +3675,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "robustextreme()",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -3711,7 +3687,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "wraptext()",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -3723,7 +3699,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "createwidget()",
       "source_file": "apps/extension/src/widget/create.ts",
@@ -3735,7 +3711,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "keepinbounds()",
       "source_file": "apps/extension/src/widget/drag.ts",
@@ -3747,7 +3723,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "makedraggable()",
       "source_file": "apps/extension/src/widget/drag.ts",
@@ -3759,7 +3735,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "playsquashstretch()",
       "source_file": "apps/extension/src/widget/state.ts",
@@ -3771,7 +3747,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "setwidgetstate()",
       "source_file": "apps/extension/src/widget/state.ts",
@@ -3823,7 +3799,7 @@
       "file_type": "code",
       "norm_label": ".run()",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L100"
+      "source_location": "L98"
     },
     {
       "id": "apps_server_src_services_solution_util_extractfunctionname",
@@ -4030,6 +4006,18 @@
       "source_location": "L5"
     },
     {
+      "id": "apps_server_src_services_problem_service_problemservice_hint",
+      "label": ".hint()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "ai/src/index.ts",
+      "file_type": "code",
+      "norm_label": ".hint()",
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L111"
+    },
+    {
       "id": "apps_web_src_components_workspace_aipanel_aipanel",
       "label": "AIPanel()",
       "_callable": true,
@@ -4160,18 +4148,6 @@
       "norm_label": ".toinput()",
       "source_file": "apps/admin/src/app/pages/database/database.component.ts",
       "source_location": "L412"
-    },
-    {
-      "id": "apps_server_src_services_problem_service_problemservice_getrandom",
-      "label": ".getRandom()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 42,
-      "community_name": "shared/src/index.ts",
-      "file_type": "code",
-      "norm_label": ".getrandom()",
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L96"
     },
     {
       "id": "apps_web_src_components_difficultybadge_difficultybadge",
@@ -4904,30 +4880,6 @@
       "norm_label": "outputpanel()",
       "source_file": "apps/web/src/components/workspace/OutputPanel.tsx",
       "source_location": "L4"
-    },
-    {
-      "id": "packages_database_src_index_problemdatabase_getall",
-      "label": ".getAll()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "problem-engine/src/index.ts",
-      "file_type": "code",
-      "norm_label": ".getall()",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L73"
-    },
-    {
-      "id": "packages_problem_engine_src_index_problemengine_findmeta",
-      "label": ".findMeta()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "problem-engine/src/index.ts",
-      "file_type": "code",
-      "norm_label": ".findmeta()",
-      "source_file": "packages/problem-engine/src/index.ts",
-      "source_location": "L121"
     },
     {
       "id": "packages_problem_engine_src_index_problemengine_search",
@@ -5744,6 +5696,17 @@
       "norm_label": "importschema",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
       "source_location": "L28"
+    },
+    {
+      "id": "packages_problem_engine_src_index_engine",
+      "label": "engine",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "ProblemService",
+      "file_type": "code",
+      "norm_label": "engine",
+      "source_file": "packages/problem-engine/src/index.ts",
+      "source_location": "L134"
     },
     {
       "id": "apps_web_src_components_workspace_workspacecontext",
@@ -13091,18 +13054,7 @@
       "file_type": "code",
       "norm_label": "problemdb",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L203"
-    },
-    {
-      "id": "packages_problem_engine_src_index_engine",
-      "label": "engine",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "services/problem.service.ts",
-      "file_type": "code",
-      "norm_label": "engine",
-      "source_file": "packages/problem-engine/src/index.ts",
-      "source_location": "L134"
+      "source_location": "L196"
     },
     {
       "id": "ai_history_2026_08_archive_index_architecture_walkthrough",
@@ -16209,7 +16161,7 @@
       "file_type": "code",
       "norm_label": "docfiles",
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L51"
+      "source_location": "L50"
     },
     {
       "id": "packages_database_src_schema_docsections",
@@ -16220,7 +16172,7 @@
       "file_type": "code",
       "norm_label": "docsections",
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L69"
+      "source_location": "L68"
     },
     {
       "id": "packages_database_src_schema_hints",
@@ -16231,7 +16183,7 @@
       "file_type": "code",
       "norm_label": "hints",
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L36"
+      "source_location": "L35"
     },
     {
       "id": "packages_database_src_schema_problemassets",
@@ -16242,7 +16194,7 @@
       "file_type": "code",
       "norm_label": "problemassets",
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L18"
+      "source_location": "L17"
     },
     {
       "id": "packages_database_src_schema_problems",
@@ -17542,7 +17494,7 @@
       "label": "api/index.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "api/index.ts",
       "source_file": "apps/extension/src/api/index.ts",
@@ -17553,7 +17505,7 @@
       "label": "post.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "post.ts",
       "source_file": "apps/extension/src/api/post.ts",
@@ -17564,7 +17516,7 @@
       "label": "validate.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "validate.ts",
       "source_file": "apps/extension/src/api/validate.ts",
@@ -17575,7 +17527,7 @@
       "label": "clip.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "clip.ts",
       "source_file": "apps/extension/src/clip.ts",
@@ -17586,7 +17538,7 @@
       "label": "clipper.test.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "clipper.test.ts",
       "source_file": "apps/extension/src/clipper.test.ts",
@@ -17597,7 +17549,7 @@
       "label": "extension/src/index.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "extension/src/index.ts",
       "source_file": "apps/extension/src/index.ts",
@@ -17608,7 +17560,7 @@
       "label": "description.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "description.ts",
       "source_file": "apps/extension/src/parsers/description.ts",
@@ -17619,40 +17571,18 @@
       "label": "difficulty.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "difficulty.ts",
       "source_file": "apps/extension/src/parsers/difficulty.ts",
       "source_location": "L1"
     },
     {
-      "id": "apps_extension_src_parsers_editorial",
-      "label": "editorial.ts",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "clip.ts",
-      "file_type": "code",
-      "norm_label": "editorial.ts",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "apps_extension_src_parsers_editorial_editorial_selectors",
-      "label": "EDITORIAL_SELECTORS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "clip.ts",
-      "file_type": "code",
-      "norm_label": "editorial_selectors",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L7"
-    },
-    {
       "id": "apps_extension_src_parsers_hints",
       "label": "hints.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "hints.ts",
       "source_file": "apps/extension/src/parsers/hints.ts",
@@ -17663,7 +17593,7 @@
       "label": "tags.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "tags.ts",
       "source_file": "apps/extension/src/parsers/tags.ts",
@@ -17674,7 +17604,7 @@
       "label": "template.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "template.ts",
       "source_file": "apps/extension/src/parsers/template.ts",
@@ -17685,7 +17615,7 @@
       "label": "testcases.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "testcases.ts",
       "source_file": "apps/extension/src/parsers/testcases.ts",
@@ -17696,7 +17626,7 @@
       "label": "title.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "title.ts",
       "source_file": "apps/extension/src/parsers/title.ts",
@@ -17707,7 +17637,7 @@
       "label": "shared.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "shared.ts",
       "source_file": "apps/extension/src/shared.ts",
@@ -17718,106 +17648,106 @@
       "label": "API_BASE",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "api_base",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L60"
+      "source_location": "L59"
     },
     {
       "id": "apps_extension_src_shared_drag_threshold",
       "label": "DRAG_THRESHOLD",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "drag_threshold",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L33"
+      "source_location": "L32"
     },
     {
       "id": "apps_extension_src_shared_error_img",
       "label": "ERROR_IMG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "error_img",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L52"
+      "source_location": "L51"
     },
     {
       "id": "apps_extension_src_shared_idle_img",
       "label": "IDLE_IMG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "idle_img",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L49"
+      "source_location": "L48"
     },
     {
       "id": "apps_extension_src_shared_loading_img",
       "label": "LOADING_IMG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "loading_img",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L50"
+      "source_location": "L49"
     },
     {
       "id": "apps_extension_src_shared_success_img",
       "label": "SUCCESS_IMG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "success_img",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L51"
+      "source_location": "L50"
     },
     {
       "id": "apps_extension_src_shared_toast_id",
       "label": "TOAST_ID",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "toast_id",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L32"
+      "source_location": "L31"
     },
     {
       "id": "apps_extension_src_shared_toast_svg",
       "label": "TOAST_SVG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "toast_svg",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L53"
+      "source_location": "L52"
     },
     {
       "id": "apps_extension_src_shared_widget_id",
       "label": "WIDGET_ID",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widget_id",
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L31"
+      "source_location": "L30"
     },
     {
       "id": "apps_extension_src_toast_create",
       "label": "toast/create.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "toast/create.ts",
       "source_file": "apps/extension/src/toast/create.ts",
@@ -17828,7 +17758,7 @@
       "label": "toast/index.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "toast/index.ts",
       "source_file": "apps/extension/src/toast/index.ts",
@@ -17839,7 +17769,7 @@
       "label": "show.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "show.ts",
       "source_file": "apps/extension/src/toast/show.ts",
@@ -17850,7 +17780,7 @@
       "label": "svg.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "svg.ts",
       "source_file": "apps/extension/src/toast/svg.ts",
@@ -17861,7 +17791,7 @@
       "label": "widget/create.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widget/create.ts",
       "source_file": "apps/extension/src/widget/create.ts",
@@ -17872,7 +17802,7 @@
       "label": "drag.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "drag.ts",
       "source_file": "apps/extension/src/widget/drag.ts",
@@ -17883,7 +17813,7 @@
       "label": "widget/index.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widget/index.ts",
       "source_file": "apps/extension/src/widget/index.ts",
@@ -17894,7 +17824,7 @@
       "label": "state.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "state.ts",
       "source_file": "apps/extension/src/widget/state.ts",
@@ -17905,7 +17835,7 @@
       "label": "widget/types.ts",
       "_origin": "ast",
       "community": 2,
-      "community_name": "clip.ts",
+      "community_name": "shared.ts",
       "file_type": "code",
       "norm_label": "widget/types.ts",
       "source_file": "apps/extension/src/widget/types.ts",
@@ -34325,7 +34255,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L28",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -34337,7 +34267,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L31",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -34349,7 +34279,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L34",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -34361,7 +34291,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L40",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -34373,7 +34303,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L47",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -34385,7 +34315,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L82",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -34397,7 +34327,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L83",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -34409,7 +34339,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L84",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -34421,7 +34351,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L85",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -34433,19 +34363,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L86",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clip_buildproblemclip",
-      "target": "apps_extension_src_parsers_editorial_extracteditorial",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L87",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -34578,30 +34496,6 @@
       "context": "call",
       "source_file": "apps/extension/src/parsers/difficulty.ts",
       "source_location": "L24",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial_extracteditorial",
-      "target": "apps_extension_src_parsers_editorial_findeditorialcontainer",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L52",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial_extracteditorial",
-      "target": "apps_extension_src_parsers_editorial_cleaneditorial",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -35105,7 +34999,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L145",
+      "source_location": "L143",
       "weight": 1.0
     },
     {
@@ -35117,7 +35011,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L147",
+      "source_location": "L145",
       "weight": 1.0
     },
     {
@@ -35129,7 +35023,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L83",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -35141,7 +35035,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L114",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -35153,7 +35047,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -35165,7 +35059,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L281",
+      "source_location": "L276",
       "weight": 1.0
     },
     {
@@ -35177,7 +35071,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L105",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -35189,7 +35083,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L105",
+      "source_location": "L103",
       "weight": 1.0
     },
     {
@@ -35201,7 +35095,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L220",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -35705,7 +35599,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L31",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -35717,7 +35611,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L93",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -35729,7 +35623,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L172",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -35741,19 +35635,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L184",
-      "weight": 1.0
-    },
-    {
-      "source": "packages_database_src_index_problemdatabase_updateeditorial",
-      "target": "packages_database_src_index_problemdatabase_update",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L188",
+      "source_location": "L182",
       "weight": 1.0
     },
     {
@@ -36810,7 +36692,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L14",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -36822,7 +36704,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L15",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -36834,7 +36716,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L16",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -36846,7 +36728,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L17",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -36858,7 +36740,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L18",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -36870,7 +36752,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -36882,19 +36764,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clip",
-      "target": "apps_extension_src_parsers_editorial",
-      "relation": "re_exports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "export",
-      "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L21",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -36992,7 +36862,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L205",
+      "source_location": "L198",
       "type_only": true,
       "weight": 1.0
     },
@@ -37005,7 +36875,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L207",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -37017,7 +36887,7 @@
       "confidence_score": 1.0,
       "context": "export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L208",
+      "source_location": "L201",
       "type_only": true,
       "weight": 1.0
     },
@@ -37298,7 +37168,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L132",
+      "source_location": "L130",
       "weight": 1.0
     },
     {
@@ -37322,7 +37192,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L36",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -37334,7 +37204,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L73",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -37346,7 +37216,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L88",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -37358,7 +37228,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L57",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -37370,7 +37240,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L191",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -38983,18 +38853,6 @@
     },
     {
       "source": "apps_extension_src_clip",
-      "target": "apps_extension_src_parsers_editorial_extracteditorial",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clip",
       "target": "apps_extension_src_shared_problemclip",
       "relation": "imports",
       "_origin": "ast",
@@ -39111,30 +38969,6 @@
       "context": "import",
       "source_file": "apps/extension/src/clip.ts",
       "source_location": "L9",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_clip_buildproblemclip",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "apps/extension/src/clipper.test.ts",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_clip_isvalidproblemclip",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "apps/extension/src/clipper.test.ts",
-      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -39271,7 +39105,7 @@
     },
     {
       "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_parsers_editorial_cleaneditorial",
+      "target": "apps_extension_src_clip_buildproblemclip",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -39283,7 +39117,7 @@
     },
     {
       "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_parsers_editorial_extracteditorial",
+      "target": "apps_extension_src_clip_isvalidproblemclip",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -43006,18 +42840,6 @@
     },
     {
       "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_clip",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "apps/extension/src/clipper.test.ts",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_clipper_test",
       "target": "apps_extension_src_parsers_title",
       "relation": "imports_from",
       "_origin": "ast",
@@ -43102,7 +42924,7 @@
     },
     {
       "source": "apps_extension_src_clipper_test",
-      "target": "apps_extension_src_parsers_editorial",
+      "target": "apps_extension_src_clip",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -44817,7 +44639,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L252",
+      "source_location": "L248",
       "weight": 1.0
     },
     {
@@ -44829,7 +44651,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L187",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -45072,7 +44894,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L205",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -45084,7 +44906,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L205",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -45096,7 +44918,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L206",
+      "source_location": "L199",
       "type_only": true,
       "weight": 1.0
     },
@@ -45109,7 +44931,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L206",
+      "source_location": "L199",
       "type_only": true,
       "weight": 1.0
     },
@@ -45122,7 +44944,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L207",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -45134,7 +44956,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L208",
+      "source_location": "L201",
       "type_only": true,
       "weight": 1.0
     },
@@ -45147,7 +44969,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L208",
+      "source_location": "L201",
       "type_only": true,
       "weight": 1.0
     },
@@ -45160,7 +44982,7 @@
       "confidence_score": 1.0,
       "context": "re-export",
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L208",
+      "source_location": "L201",
       "type_only": true,
       "weight": 1.0
     },
@@ -45843,7 +45665,7 @@
       "confidence_score": 1.0,
       "context": "return_type",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L96",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -55419,7 +55241,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L108",
+      "source_location": "L104",
       "weight": 1.0
     },
     {
@@ -55430,7 +55252,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/clip.ts",
-      "source_location": "L27",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -55497,50 +55319,6 @@
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/parsers/difficulty.ts",
       "source_location": "L9",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial",
-      "target": "apps_extension_src_parsers_editorial_findeditorialcontainer",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial",
-      "target": "apps_extension_src_parsers_editorial_cleaneditorial",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L28",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial",
-      "target": "apps_extension_src_parsers_editorial_extracteditorial",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L51",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_extension_src_parsers_editorial",
-      "target": "apps_extension_src_parsers_editorial_editorial_selectors",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/extension/src/parsers/editorial.ts",
-      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -55694,7 +55472,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L31",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -55705,7 +55483,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L32",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -55716,7 +55494,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L33",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -55727,7 +55505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L41",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -55738,7 +55516,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L49",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -55749,7 +55527,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -55760,7 +55538,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -55771,7 +55549,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L52",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -55782,7 +55560,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L53",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -55793,7 +55571,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L60",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -55804,7 +55582,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/extension/src/shared.ts",
-      "source_location": "L68",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -56794,7 +56572,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L45",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -61260,7 +61038,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L203",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -61282,7 +61060,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L18",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -61293,7 +61071,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L36",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -61315,7 +61093,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -61326,7 +61104,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/schema.ts",
-      "source_location": "L69",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -70797,7 +70575,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/shared/src/index.ts",
-      "source_location": "L28",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -72116,24 +71894,13 @@
     },
     {
       "source": "apps_server_src_services_problem_service_problemservice",
-      "target": "apps_server_src_services_problem_service_problemservice_run",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L100",
-      "weight": 1.0
-    },
-    {
-      "source": "apps_server_src_services_problem_service_problemservice",
       "target": "apps_server_src_services_problem_service_problemservice_hint",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L113",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -72144,7 +71911,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L117",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -72155,7 +71922,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L122",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -72166,7 +71933,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L127",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
@@ -72177,7 +71944,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L132",
+      "source_location": "L130",
       "weight": 1.0
     },
     {
@@ -72188,7 +71955,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L174",
+      "source_location": "L172",
       "weight": 1.0
     },
     {
@@ -72199,7 +71966,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L180",
+      "source_location": "L178",
       "weight": 1.0
     },
     {
@@ -72210,7 +71977,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L187",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -72232,7 +71999,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L252",
+      "source_location": "L248",
       "weight": 1.0
     },
     {
@@ -72254,7 +72021,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L57",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -72265,7 +72032,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L62",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -72276,7 +72043,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L96",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "apps_server_src_services_problem_service_problemservice",
+      "target": "apps_server_src_services_problem_service_problemservice_run",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/server/src/services/problem.service.ts",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -72364,7 +72142,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L125",
+      "source_location": "L123",
       "weight": 1.0
     },
     {
@@ -72375,7 +72153,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L134",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -72386,7 +72164,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L138",
+      "source_location": "L136",
       "weight": 1.0
     },
     {
@@ -72397,7 +72175,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L144",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -72408,7 +72186,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L148",
+      "source_location": "L146",
       "weight": 1.0
     },
     {
@@ -72419,7 +72197,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L162",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -72430,7 +72208,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L171",
+      "source_location": "L169",
       "weight": 1.0
     },
     {
@@ -72441,18 +72219,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L183",
-      "weight": 1.0
-    },
-    {
-      "source": "packages_database_src_index_problemdatabase",
-      "target": "packages_database_src_index_problemdatabase_updateeditorial",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "packages/database/src/index.ts",
-      "source_location": "L187",
+      "source_location": "L181",
       "weight": 1.0
     },
     {
@@ -72463,7 +72230,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L191",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -72474,7 +72241,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L36",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -72485,7 +72252,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L57",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -72507,7 +72274,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L73",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -72518,7 +72285,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "packages/database/src/index.ts",
-      "source_location": "L88",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -72926,7 +72693,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L166",
+      "source_location": "L164",
       "weight": 1.0
     },
     {
@@ -72938,7 +72705,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L176",
+      "source_location": "L174",
       "weight": 1.0
     },
     {
@@ -72950,7 +72717,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L128",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -72962,7 +72729,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L123",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -72974,7 +72741,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L65",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -72986,7 +72753,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L67",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -72998,7 +72765,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L68",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -73010,7 +72777,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L118",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -73034,7 +72801,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L49",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -73046,7 +72813,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L272",
+      "source_location": "L267",
       "weight": 1.0
     },
     {
@@ -73058,7 +72825,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L289",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -73070,7 +72837,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L301",
+      "source_location": "L296",
       "weight": 1.0
     },
     {
@@ -73082,7 +72849,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L308",
+      "source_location": "L303",
       "weight": 1.0
     },
     {
@@ -73094,7 +72861,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L58",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -73106,7 +72873,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L181",
+      "source_location": "L179",
       "weight": 1.0
     },
     {
@@ -73118,7 +72885,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L208",
+      "source_location": "L205",
       "weight": 1.0
     },
     {
@@ -73130,7 +72897,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L228",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -73142,7 +72909,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L240",
+      "source_location": "L236",
       "weight": 1.0
     },
     {
@@ -73154,7 +72921,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "apps/server/src/services/problem.service.ts",
-      "source_location": "L247",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -73322,7 +73089,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73334,7 +73101,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73346,7 +73113,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73358,7 +73125,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73370,7 +73137,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73382,7 +73149,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73394,7 +73161,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73406,7 +73173,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73418,7 +73185,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73430,7 +73197,7 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -73442,10 +73209,10 @@
       "confidence_score": 0.85,
       "context": "collection",
       "source_file": "apps/server/src/controllers/problems.controller.ts",
-      "source_location": "L184",
+      "source_location": "L183",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7c2185cc72d578aa963f5647ef3269423efca3b7"
+  "built_at_commit": "fb2bfff2978e1fd7657e643f89521f03d90e3207"
 }

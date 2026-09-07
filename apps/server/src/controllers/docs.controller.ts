@@ -18,29 +18,35 @@ const sectionParams = z.object({ id: z.string().min(1) });
 export function createDocsController(service: DocsService) {
   /** GET /api/docs/search?q=&lang=&category=&keyword=&limit= */
   async function search(request: FastifyRequest, _reply: FastifyReply) {
-    const q = searchQuery.parse(request.query);
-    return service.search(q.q, q.lang, { category: q.category, keyword: q.keyword, limit: q.limit });
+    const q = searchQuery.safeParse(request.query);
+    if (!q.success) return _reply.code(400).send({ error: "Tham số không hợp lệ", detail: q.error.flatten() });
+    const p = q.data;
+    return service.search(p.q, p.lang, { category: p.category, keyword: p.keyword, limit: p.limit });
   }
 
   /** GET /api/docs/categories?lang= */
   async function categories(request: FastifyRequest, _reply: FastifyReply) {
-    const q = langQuery.parse(request.query);
-    return service.getCategories(q.lang);
+    const q = langQuery.safeParse(request.query);
+    if (!q.success) return _reply.code(400).send({ error: "Tham số không hợp lệ" });
+    return service.getCategories(q.data.lang);
   }
 
   /** GET /api/docs/section/:id?lang= */
   async function getSection(request: FastifyRequest, reply: FastifyReply) {
-    const params = sectionParams.parse(request.params);
-    const q = langQuery.parse(request.query);
-    const section = service.getSection(params.id, q.lang);
+    const params = sectionParams.safeParse(request.params);
+    if (!params.success) return reply.code(400).send({ error: "Thiếu id" });
+    const q = langQuery.safeParse(request.query);
+    if (!q.success) return reply.code(400).send({ error: "Tham số không hợp lệ" });
+    const section = service.getSection(params.data.id, q.data.lang);
     if (!section) return reply.code(404).send({ error: "Section not found" });
     return section;
   }
 
   /** GET /api/docs/meta?lang= — entries cho client autocomplete */
   async function meta(request: FastifyRequest, _reply: FastifyReply) {
-    const q = langQuery.parse(request.query);
-    return service.getMeta(q.lang);
+    const q = langQuery.safeParse(request.query);
+    if (!q.success) return _reply.code(400).send({ error: "Tham số không hợp lệ" });
+    return service.getMeta(q.data.lang);
   }
 
   return { search, categories, getSection, meta };

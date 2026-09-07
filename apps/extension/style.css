@@ -8,8 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   cursor: grab;
   user-select: none;
   border-radius: 50%;
@@ -88,7 +88,7 @@
 /* Toast */
 #lc-clipper-toast {
   position: fixed;
-  bottom: 110px;
+  bottom: 150px;
   right: 20px;
   z-index: 999998;
   max-width: 500px;

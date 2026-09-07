@@ -42,8 +42,8 @@ export function makeDraggable(el: HTMLElement, onClick: WidgetHandleClip): void 
     }
     let newLeft = initialLeft + dx;
     let newTop = initialTop + dy;
-    const w = el.offsetWidth || 52;
-    const h = el.offsetHeight || 52;
+    const w = el.offsetWidth || 120;
+    const h = el.offsetHeight || 120;
     const maxLeft = window.innerWidth - w;
     const maxTop = window.innerHeight - h;
     newLeft = Math.max(0, Math.min(newLeft, maxLeft));
@@ -71,8 +71,8 @@ export function makeDraggable(el: HTMLElement, onClick: WidgetHandleClip): void 
 export function keepInBounds(el: HTMLElement): void {
   if (!el) return;
   const rect = el.getBoundingClientRect();
-  const w = rect.width || el.offsetWidth || 80;
-  const h = rect.height || el.offsetHeight || 80;
+  const w = rect.width || el.offsetWidth || 120;
+  const h = rect.height || el.offsetHeight || 120;
   if (el.style.left || el.style.top) {
     const maxLeft = Math.max(0, window.innerWidth - w);
     const maxTop = Math.max(0, window.innerHeight - h);
