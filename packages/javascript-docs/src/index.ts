@@ -2,7 +2,7 @@
  * @leetcode/javascript-docs — entry point
  *
  * Dữ liệu được sinh từ https://github.com/Kernix13/javascript-cheat-sheet
- * (clone vào `tmp_reference/`, parse → `src/data/*.json`)
+ * (nguồn .md tại `src/docs/en|vi`, parse → `src/data/*.json`)
  *
  * Cung cấp:
  * - Types (src/types.ts)

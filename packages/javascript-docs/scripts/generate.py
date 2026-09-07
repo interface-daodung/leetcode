@@ -43,10 +43,10 @@ def strip_nav_divs(md_text: str) -> str:
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
     return cleaned
 
-# Hỗ trợ chạy từ mọi CWD: mặc định lấy tmp_reference và src/data tương đối với script
+# Hỗ trợ chạy từ mọi CWD: mặc định lấy src/docs (bản .md đã chuẩn hoá) và src/data tương đối với script
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
-DEFAULT_SRC = SCRIPT_DIR.parent / "tmp_reference"
-DEFAULT_SRC_VI = SCRIPT_DIR.parent / "tmp_reference_vi"
+DEFAULT_SRC = SCRIPT_DIR.parent / "src" / "docs" / "en"
+DEFAULT_SRC_VI = SCRIPT_DIR.parent / "src" / "docs" / "vi"
 DEFAULT_OUT = SCRIPT_DIR.parent / "src" / "data"
 
 # Map ngôn ngữ → thư mục nguồn .md và thư mục output .json
@@ -56,7 +56,7 @@ LANG_CONFIG = {
 }
 
 parser = argparse.ArgumentParser(description="Generate structured JSON from javascript-cheat-sheet markdown")
-parser.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC, help="path to tmp_reference (contains *.md)")
+parser.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC, help="path to source *.md dir (contains *.md)")
 parser.add_argument("--out", type=pathlib.Path, default=DEFAULT_OUT, help="output path for *.json")
 parser.add_argument("--lang", type=str, default="all", choices=["en", "vi", "all"], help="language to generate (en, vi, or all)")
 args = parser.parse_args()

@@ -1,9 +1,10 @@
-# Nguồn tmp_reference
+# Nguồn docs
 
 - **Repo gốc**: https://github.com/Kernix13/javascript-cheat-sheet
 - **Clone ngày**: 2026-08-31
 - **Lệnh clone**: `git clone https://github.com/Kernix13/javascript-cheat-sheet.git packages/javascript-docs/tmp_reference`
 - **Đã xóa** thư mục `.git` bên trong để tránh nested git repo; giữ nguyên toàn bộ `*.md` để làm source cho việc sinh JSON.
+- **2026-09-07**: `tmp_reference/` và `tmp_reference_vi/` đã bị xóa; các file `*.md` chuẩn hoá chuyển vào `src/docs/en` + `src/docs/vi` và `generate.py` đọc trực tiếp từ đó.
 
 ## Danh sách file .md (13 file)
 
@@ -25,4 +26,4 @@
 
 - **Script sinh JSON**: `packages/javascript-docs/scripts/generate.py`
 - **Output**: `packages/javascript-docs/src/data/*.json` + `index.json` + `all.json` (287 entries, 435 keywords)
-- **Cập nhật**: nếu pull mới từ upstream, chạy `git -C tmp_reference pull` (nếu còn .git) hoặc clone lại rồi chạy `python scripts/generate.py`.
+- **Cập nhật**: clone lại upstream vào thư mục tạm, đồng bộ `*.md` vào `src/docs/en|vi` rồi chạy `python scripts/generate.py`.
