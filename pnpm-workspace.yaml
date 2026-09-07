@@ -10,6 +10,7 @@ allowBuilds:
   inferno: false
   lmdb: false
   msgpackr-extract: false
+  nice-napi: true
   onnxruntime-node: true
   protobufjs: true
   sharp: true

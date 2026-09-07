@@ -68,7 +68,7 @@ export function Header() {
     <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-border bg-header-bg px-3 backdrop-blur-md">
       <div className="flex items-center gap-2 rounded-lg px-1 py-1">
         <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-accent">
-          <img src="/assets/leetcodeLab.webp" alt="LeetCode Lab" className="h-full w-full object-cover" />
+          <img src="/static/leetcodeLab.webp" alt="LeetCode Lab" className="h-full w-full object-cover" />
         </span>
         <span className="hidden text-sm font-semibold text-text-primary sm:inline">LeetCode Lab</span>
       </div>

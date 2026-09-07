@@ -12,6 +12,6 @@ export const API_URL_TOKEN = new InjectionToken<string>("API_URL", {
     if (typeof window !== "undefined" && window.__ADMIN_API_URL__) {
       return window.__ADMIN_API_URL__;
     }
-    return "http://localhost:3000";
+    return "";
   },
 });

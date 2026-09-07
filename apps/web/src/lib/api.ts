@@ -8,8 +8,8 @@ export interface TestCaseResultView {
   error?: string;
 }
 
-export const API_BASE: string =
-  (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL ?? "http://localhost:3000";
+const envBase = (import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL;
+export const API_BASE: string = envBase ?? "";
 
 /** Chuẩn đoán nhanh kết nối server — gọi GET /health, trả về thông tin để log/gỡ lỗi. */
 export interface ConnectionDiag {

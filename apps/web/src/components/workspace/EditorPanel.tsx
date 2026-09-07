@@ -85,7 +85,7 @@ export function EditorPanel() {
             title="Mở trong VS Code"
             className="flex items-center gap-1.5 rounded-lg border border-border bg-bg-elevated px-2.5 py-1.5 text-xs font-medium text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
           >
-            <img src="/assets/vscode.svg" alt="VS Code" className="h-4 w-4" />
+            <img src="/static/vscode.svg" alt="VS Code" className="h-4 w-4" />
             VS Code
           </button>
           <button

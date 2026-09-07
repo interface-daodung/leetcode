@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NODE_VERSION: 20-alpine
+        NODE_VERSION: 22-alpine
         PNPM_VERSION: 11.24.0
     image: leetcode-monorepo:dev
     container_name: leetcode-app
@@ -24,8 +24,8 @@ services:
       - "${PORT:-3000}:3000"
 
     volumes:
-      # Persist SQLite DB + assets qua volume, không mất khi recreate container
-      - leetcode-data:/app/packages/database/data
+      # Bind mount trực tiếp vào repo để dùng chung DB với dev local
+      - ./packages/database/data:/app/packages/database/data
 
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/health"]
@@ -33,7 +33,3 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-
-volumes:
-  leetcode-data:
-    driver: local

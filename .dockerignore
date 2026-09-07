@@ -23,9 +23,8 @@ packages/database/data/assets/
 packages/database/data/*.db
 packages/database/data/*.db-*
 
-# App không dùng (extension load unpacked, admin không build trong Docker)
+# App không dùng (extension load unpacked)
 apps/extension/
-apps/admin/
 
 # Docs / agent context / graphify — không build, không runtime
 docs/

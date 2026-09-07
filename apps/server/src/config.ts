@@ -8,9 +8,19 @@ export const PLAYGROUND_ROOT = fileURLToPath(new URL("../../../playground", impo
 
 // Web SPA build artifacts (apps/web/dist). Trong Docker image copy từ builder stage.
 // Khi chạy dev local ngoài Docker, nếu thiếu sẽ warn — không crash server.
-import { existsSync } from "node:fs";
+import { existsSync, statSync } from "node:fs";
 export const WEB_DIST_ROOT = fileURLToPath(new URL("../../../apps/web/dist", import.meta.url));
 export const WEB_DIST_AVAILABLE = existsSync(WEB_DIST_ROOT);
+
+// Admin SPA build artifacts. Angular 18 application builder emits `dist/admin/browser`
+// (subfolder = `browser`); nếu không có thì dùng chính `dist/admin` (fallback).
+export const ADMIN_DIST_ROOT = (() => {
+  const root = fileURLToPath(new URL("../../../apps/admin/dist/admin/browser", import.meta.url));
+  if (existsSync(root) && statSync(root).isDirectory()) return root;
+  const flat = fileURLToPath(new URL("../../../apps/admin/dist/admin", import.meta.url));
+  return existsSync(flat) ? flat : root;
+})();
+export const ADMIN_DIST_AVAILABLE = existsSync(ADMIN_DIST_ROOT) && statSync(ADMIN_DIST_ROOT).isDirectory();
 
 // Cấu hình server — đọc từ env một chỗ duy nhất
 export const config = {
