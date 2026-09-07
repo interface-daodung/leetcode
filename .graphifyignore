@@ -4,3 +4,6 @@ apps/extension/api-config.js
 
 # Build output
 dist/
+
+# Cloned wiki repo — không phải source của repo này, tránh index lồng
+docs/wiki/

@@ -10,7 +10,8 @@
     "dev": "concurrently \"pnpm web\" \"pnpm server\"",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "wiki:push": "node scripts/wiki-push.mjs"
   },
   "engines": {
     "node": ">=20"

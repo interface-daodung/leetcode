@@ -11,6 +11,7 @@ playground/
 tham_khao/
 dist/
 **/dist/
+docs/wiki/
 .gitnexus/
 graphify-out/cache/
 graphify-out/cost.json
