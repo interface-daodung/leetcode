@@ -1,0 +1,9 @@
+{
+	"id": "notes-wifi-sync",
+	"name": "Notes WiFi Sync",
+	"version": "1.5.0",
+	"minAppVersion": "1.0.0",
+	"description": "Two-way sync of a folder (or whole vault) between devices over WiFi, with OTP pairing, auto-discovery, compare-and-choose transfer UI with file sizes, live progress, and notifications on both devices. Phones connect to a desktop host by IP.",
+	"author": "emran",
+	"isDesktopOnly": false
+}

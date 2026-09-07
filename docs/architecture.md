@@ -35,7 +35,7 @@ javascript-docs ──> shared
 GET  /health                        → health check
 GET  /api/problems/:id              → engine.get(id)
 GET  /api/problems/random/:difficulty? → engine.getRandom(difficulty)
-POST /api/problems/:id/run          → new Function + engine.runTests
+POST /api/problems/:id/run          → lọc comment → trích hàm → engine.runTestsDetailed (trả per-case results)
 POST /api/problems/:id/hint         → ai.getHint (placeholder)
 ```
 

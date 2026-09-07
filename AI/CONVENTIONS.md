@@ -52,6 +52,15 @@
 
 ---
 
+## Luật phân tầng (bắt buộc)
+
+1. **Server chỉ chứa code API** (routes, controllers, plugins, config, wiring) — không chứa domain logic.
+2. **Model/entity dùng chung đặt ở `packages/shared`** — server và client import chung, không khai báo trùng type/field.
+3. **Domain logic độc lập đặt trong `packages/*`** — server chỉ gọi service, không nhét logic vào server.
+4. **Logic vẽ giao diện đặt trong `apps/web/src/components/`** — không tách component web ra package riêng; layout nằm ở `apps/web/src/layout/`.
+
+---
+
 ## Import Conventions
 
 - Import package nội bộ qua alias workspace `@leetcode/<name>`.
@@ -87,6 +96,15 @@ Không tự viết lại:
 nếu project đã có giải pháp phù hợp.
 
 Nếu cố tình tự triển khai, phải ghi rõ lý do.
+
+---
+
+## Git Workflow
+
+- AI tự chủ commit/tạo nhánh/merge cục bộ — không cần xin phép từng lần.
+- Chỉ stage đúng file thuộc phạm vi task (kiểm tra `git status`/`git diff` trước).
+- KHÔNG push lên remote, không publish, không tạo PR — remote chỉ do user chủ động.
+- Message commit: `feat(x):`, `fix(x):`, `refactor(x):`, `docs(x):` — xem `git log --oneline`.
 
 ---
 

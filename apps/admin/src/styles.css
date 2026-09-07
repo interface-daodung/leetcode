@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #f9fafb;
+  --color-fg: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-card: #ffffff;
+  --color-primary: #2563eb;
+  --color-primary-fg: #ffffff;
+  --color-hover: #f3f4f6;
+  --color-row-hover: #f3f4f6;
+}
+
+html.dark {
+  --color-bg: #0b1220;
+  --color-fg: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-border: #1f2937;
+  --color-card: #111827;
+  --color-primary: #3b82f6;
+  --color-primary-fg: #0b1220;
+  --color-hover: #1f2937;
+  --color-row-hover: #1e293b;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.card {
+  @apply bg-card text-fg border border-border rounded-lg p-4 shadow-sm;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium border border-border bg-card hover:bg-bg;
+}
+
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium bg-primary text-primary-fg hover:opacity-90;
+}
+
+.btn-primary:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.input {
+  @apply w-full px-2 py-1.5 rounded-md border border-border bg-card text-fg text-sm;
+}
+
+.input:focus,
+.btn:focus,
+.btn-primary:focus {
+  @apply outline-none ring-2 ring-blue-500/40;
+}
+
+.label {
+  @apply text-xs font-medium text-muted uppercase tracking-wide;
+}
+
+.sidebar-link {
+  @apply flex flex-1 items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium text-fg transition-colors hover:bg-bg;
+}

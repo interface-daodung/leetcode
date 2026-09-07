@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "@leetcode/shared",
   "version": "0.0.0",
   "private": true,
@@ -7,7 +7,7 @@
   "types": "src/index.ts",
   "scripts": {
     "build": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint src --ext .ts"
   },
   "devDependencies": {

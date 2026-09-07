@@ -1,0 +1,20 @@
+[
+  { "id": "snippet.fori", "label": "fori", "kind": "snippet", "insertText": "for (let i = 0; i < arr.length; i++) {\n    \n}", "detail": "For loop with index (arr)", "priority": 900 },
+  { "id": "snippet.forof", "label": "forof", "kind": "snippet", "insertText": "for (const x of arr) {\n    \n}", "detail": "For...of over array", "priority": 890 },
+  { "id": "snippet.forj", "label": "forj", "kind": "snippet", "insertText": "for (let j = 0; j < arr.length; j++) {\n    \n}", "detail": "For loop with index (j)", "priority": 880 },
+  { "id": "snippet.while", "label": "whiles", "kind": "snippet", "insertText": "while (cond) {\n    \n}", "detail": "While loop", "priority": 800 },
+  { "id": "snippet.func", "label": "fn", "kind": "snippet", "insertText": "function name(args) {\n    \n}", "detail": "Function declaration", "priority": 790 },
+  { "id": "snippet.arrow", "label": "afn", "kind": "snippet", "insertText": "const name = (args) => {\n    \n}", "detail": "Arrow function const", "priority": 780 },
+  { "id": "snippet.stack", "label": "stack", "kind": "pattern", "insertText": "const stack = [];\n\nstack.push(x);\nstack.pop();", "detail": "Stack pattern (array)", "priority": 850 },
+  { "id": "snippet.queue", "label": "queue", "kind": "pattern", "insertText": "const queue = [];\nlet head = 0;\n\nqueue.push(x);\nconst x = queue[head++];", "detail": "Queue pattern (array + head index)", "priority": 840 },
+  { "id": "snippet.mapnew", "label": "mapnew", "kind": "pattern", "insertText": "const map = new Map();", "detail": "Hash map", "priority": 860 },
+  { "id": "snippet.setnew", "label": "setnew", "kind": "pattern", "insertText": "const set = new Set();", "detail": "Hash set", "priority": 855 },
+  { "id": "snippet.freq", "label": "freq", "kind": "pattern", "insertText": "const freq = new Map();\nfor (const x of arr) {\n    freq.set(x, (freq.get(x) ?? 0) + 1);\n}", "detail": "Frequency counter", "priority": 830 },
+  { "id": "pattern.bs", "label": "bs", "kind": "pattern", "insertText": "let left = 0;\nlet right = arr.length - 1;\n\nwhile (left <= right) {\n    const mid = Math.floor((left + right) / 2);\n    if (arr[mid] === target) {\n        return mid;\n    } else if (arr[mid] < target) {\n        left = mid + 1;\n    } else {\n        right = mid - 1;\n    }\n}", "detail": "Binary search (O(log n))", "priority": 950 },
+  { "id": "pattern.tp", "label": "tp", "kind": "pattern", "insertText": "let left = 0;\nlet right = arr.length - 1;\n\nwhile (left < right) {\n    \n}", "detail": "Two pointers (O(n))", "priority": 940 },
+  { "id": "pattern.sw", "label": "sw", "kind": "pattern", "insertText": "let left = 0;\nlet sum = 0;\n\nfor (let right = 0; right < arr.length; right++) {\n    sum += arr[right];\n    while (sum > target) {\n        sum -= arr[left];\n        left++;\n    }\n}", "detail": "Sliding window", "priority": 930 },
+  { "id": "pattern.dfs", "label": "dfs", "kind": "pattern", "insertText": "function dfs(node) {\n    if (!node) return;\n    \n    dfs(node.left);\n    dfs(node.right);\n}", "detail": "DFS tree recursive", "priority": 920 },
+  { "id": "pattern.bfs", "label": "bfs", "kind": "pattern", "insertText": "const queue = [root];\nlet head = 0;\n\nwhile (head < queue.length) {\n    const node = queue[head++];\n    \n}", "detail": "BFS tree iterative", "priority": 910 },
+  { "id": "snippet.listnode", "label": "ListNode", "kind": "pattern", "insertText": "function ListNode(val, next) {\n    this.val = (val === undefined ? 0 : val);\n    this.next = (next === undefined ? null : next);\n}", "detail": "Linked list node", "priority": 700 },
+  { "id": "snippet.treenode", "label": "TreeNode", "kind": "pattern", "insertText": "function TreeNode(val, left, right) {\n    this.val = (val === undefined ? 0 : val);\n    this.left = (left === undefined ? null : left);\n    this.right = (right === undefined ? null : right);\n}", "detail": "Binary tree node", "priority": 690 }
+]

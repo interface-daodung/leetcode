@@ -1,0 +1,6 @@
+# File sinh tự động — bản gốc đã được index qua src/, khỏi trùng node trong graph
+apps/extension/content.js
+apps/extension/api-config.js
+
+# Build output
+dist/

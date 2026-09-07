@@ -1,37 +1,77 @@
-import { formatProblemId } from "@leetcode/shared";
-import { createEditorState, languageTemplates } from "@leetcode/editor";
-import { engine } from "@leetcode/problem-engine";
-import { useState } from "react";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Header } from "./components/Header.js";
+import { WorkspaceLayout } from "./components/workspace/WorkspaceLayout.js";
+import { DocPage } from "./pages/DocPage.js";
+import { useWorkspace } from "./components/workspace/WorkspaceContext.js";
+import { useErrorStore } from "./components/workspace/ErrorContext.js";
+import { fetchProblem, diagnoseConnection } from "./lib/api.js";
+
+function ProblemLoader() {
+  const { id } = useParams();
+  const { setProblem, setCode, setLoading, setResults, setOutput } = useWorkspace();
+  const { pushError } = useErrorStore();
+
+  useEffect(() => {
+    if (!id) return;
+    setLoading(true);
+    const numericId = Number(id);
+    if (!Number.isFinite(numericId)) {
+      setLoading(false);
+      return;
+    }
+    let cancelled = false;
+    fetchProblem(numericId)
+      .then((p) => {
+        if (cancelled) return;
+        if (!p) {
+          setProblem(null);
+          setLoading(false);
+          setResults(null);
+          return;
+        }
+        setProblem(p);
+        setCode(p?.template ?? "");
+        setOutput("");
+        setResults(null);
+        setLoading(false);
+      })
+      .catch(async (e) => {
+        if (cancelled) return;
+        const detail = e instanceof Error ? e.message : String(e);
+        const diag = await diagnoseConnection().catch(() => null);
+        const diagLine = diag ? ` | Chuẩn đoán: ${diag.detail}` : "";
+        pushError({
+          source: "fetch",
+          message: `Không tải được đề bài #${numericId} (GET /api/problems/${numericId})`,
+          detail: `${detail}${diagLine}`,
+        });
+        setProblem(null);
+        setLoading(false);
+        setResults(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [id, setProblem, setCode, setLoading, setResults, setOutput, pushError]);
+
+  return <WorkspaceLayout />;
+}
 
 function App() {
-  const [editorState, setEditorState] = useState(createEditorState());
-  const [output, setOutput] = useState("");
-
-  const handleRun = () => {
-    try {
-      const fn = new Function("return " + editorState.code)();
-      const result = fn();
-      setOutput(`Result: ${JSON.stringify(result)}`);
-    } catch (e) {
-      setOutput(`Error: ${e}`);
-    }
-  };
-
   return (
-    <div style={{ padding: "2rem", fontFamily: "system-ui" }}>
-      <h1>LeetCode Lab</h1>
-      <p>Problem ID format: {formatProblemId(1)}</p>
-      <textarea
-        value={editorState.code}
-        onChange={(e) => setEditorState({ ...editorState, code: e.target.value })}
-        defaultValue={languageTemplates.javascript}
-        style={{ width: "100%", height: "300px", fontFamily: "monospace", fontSize: "14px" }}
-      />
-      <div style={{ marginTop: "1rem" }}>
-        <button onClick={handleRun} style={{ marginRight: "1rem", padding: "0.5rem 1rem" }}>
-          Run Code
-        </button>
-        <pre style={{ background: "#f5f5f5", padding: "1rem", whiteSpace: "pre-wrap" }}>{output}</pre>
+    <div className="flex h-full flex-col">
+      <Header />
+      <div className="flex min-h-0 flex-1">
+        <main className="min-w-0 flex-1">
+          <Routes>
+            <Route path="/" element={<Navigate to="/problems" replace />} />
+            <Route path="/problems" element={<WorkspaceLayout />} />
+            <Route path="/problems/:id" element={<ProblemLoader />} />
+            <Route path="/doc/:file" element={<DocPage />} />
+            <Route path="*" element={<Navigate to="/problems" replace />} />
+          </Routes>
+        </main>
       </div>
     </div>
   );

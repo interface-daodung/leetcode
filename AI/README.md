@@ -13,16 +13,17 @@ Thư mục này chứa kiến thức, hướng dẫn và lịch sử dành cho A
 
 - `INDEX.md`: Điểm bắt đầu cho Agent.
 - `PROJECT.md`: Mục tiêu và phạm vi project.
-- `ARCHITECTURE.md`: Kiến trúc tổng thể.
 - `CONVENTIONS.md`: Quy ước code.
 - `STATUS.md`: Trạng thái hiện tại.
 
-- `index/`: Bản đồ source code.
 - `plans/`: Kế hoạch phát triển.
-- `walkthrough/`: Giải thích execution flow.
 - `skills/`: Quy trình làm việc của Agent.
-- `history/`: Lịch sử phát triển.
+- `history/`: Lịch sử phát triển (gồm `archived/` chứa `index/`, `ARCHITECTURE.md`, `walkthrough/` đã ngưng dùng).
 - `context/`: Decision, issue và glossary.
+
+## Hiểu codebase
+
+Dùng **graphify** (`graphify query "<question>"`, `graphify path "<A>" "<B>"`, `graphify explain "<concept>"`) thay vì đọc các file archive trong `history/archived/` (`index/`, `ARCHITECTURE.md`, `walkthrough/`). Graph ở `graphify-out/graph.json` (AST local, deterministic) — biết cấu trúc source, import, dependency, community; cập nhật bằng `graphify update .` sau khi sửa code.
 
 ## Nguyên tắc
 

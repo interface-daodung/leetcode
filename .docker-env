@@ -1,0 +1,6 @@
+# Copy thành `.env.docker` và sửa nếu cần.
+# Compose tự load file này cho service `app`.
+
+PORT=3000
+HOST=0.0.0.0
+API_URL=http://localhost:3000

@@ -7,29 +7,10 @@
 ## Project
 
 - `PROJECT.md`
-- `ARCHITECTURE.md`
 - `CONVENTIONS.md`
 - `STATUS.md`
 
----
-
-## Source Code Index
-
-### Repository
-
-`index/PROJECT_STRUCTURE.md`
-
-### Applications
-
-`index/APP_STRUCTURE.md`
-
-### Packages
-
-`index/PACKAGE_STRUCTURE.md`
-
-### Data
-
-`index/DATA_STRUCTURE.md`
+> Lưu ý: `ARCHITECTURE.md`, `index/`, `walkthrough/` đã archive sang `history/archived/` — hiểu kiến trúc/codebase bằng graphify (`graphify query/path/explain`), không đọc các file archive.
 
 ---
 
@@ -43,25 +24,29 @@
 
 `skills/bug-fix/SKILL.md`
 
+### Context Cleanup
+
+`skills/context-cleanup/SKILL.md`
+
 ### Code Review
 
 `skills/code-review/SKILL.md`
-
-### API
-
-`skills/add-api/SKILL.md`
 
 ### Database
 
 `skills/database-change/SKILL.md`
 
-### General Agent Workflow
-
-`skills/agent-workflow/SKILL.md`
-
 ### Docs Generator
 
 `skills/docs-generator/SKILL.md`
+
+### Walkthrough
+
+`skills/walkthrough/SKILL.md` (archive: `history/archived/walkthrough/`)
+
+### Layout
+
+`skills/layout-add-tab/SKILL.md`
 
 ---
 
@@ -108,30 +93,33 @@ Task
  ↓
 INDEX
  ↓
-Relevant index
+STATUS / CONVENTIONS
  ↓
-Relevant walkthrough
+graphify (query / path / explain)
  ↓
 Relevant source
 ```
 
-Nếu cấu trúc repository thay đổi, cập nhật `AI/index/`.
+Nếu cấu trúc repository thay đổi, chạy `graphify update .` để cập nhật graph — `AI/index/` đã archive, không cập nhật nữa.
 
 ---
 
 ## Cấu trúc repository (đã xác định từ source code)
 
-Monorepo pnpm với 2 ứng dụng và 6 package:
+Monorepo pnpm với 3 ứng dụng và 6 package:
 
 ```text
-apps/web      # React 18 + Vite frontend
-apps/server   # Fastify API server
-packages/shared           # Types, utilities, constants
+apps/web       # React 18 + Vite frontend (Tailwind + Router, Sidebar + ProblemDetail)
+apps/server    # Fastify API server (có POST /api/problems/import)
+apps/extension # MV3 Browser Extension — widget clip DOM trên leetcode.com/problems/*
+apps/admin     # Angular admin (dashboard, database)
+packages/shared           # Types, utilities, constants (có ProblemClip)
 packages/database         # Drizzle ORM + SQLite (libsql)
-packages/editor           # Editor state, language templates
-packages/problem-engine   # Problem registry, test runner (in-memory)
+packages/problem-engine   # Problem registry, test runner (in-memory + hydrate)
 packages/ai               # LLM integration (placeholder)
 packages/javascript-docs  # JS/TS reference docs (static)
 ```
 
-Chi tiết: `index/PROJECT_STRUCTURE.md`
+> `packages/editor` và `packages/layout` đã bị xóa (2026-09-04): editor là dead dep; layout gộp vào `apps/web/src/layout/`. Code vẽ giao diện nằm trong `apps/web/src/components/` + `apps/web/src/layout/`.
+
+Chi tiết: bản sao tĩnh tại `history/archived/index/PROJECT_STRUCTURE.md`.

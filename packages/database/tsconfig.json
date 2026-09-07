@@ -8,8 +8,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "baseUrl": ".",
     "paths": {
+      "*": ["./*"],
       "@leetcode/shared": ["../../packages/shared/src"]
     }
   },

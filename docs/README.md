@@ -10,8 +10,9 @@
 ## Tính năng
 
 - [API Server](features/api-server.md) — Fastify endpoints, validation
-- [Web Frontend](features/web-frontend.md) — React SPA, code editor
-- [Problem Engine](features/problem-engine.md) — In-memory registry, test runner
+- [Web Frontend](features/web-frontend.md) — React SPA, dockable layout
+- [Problem Engine](features/problem-engine.md) — In-memory registry, test runner, state/tree model
+- [Layout](features/layout.md) — FlexLayout wrap, dockable IDE layout
 - [Database](features/database.md) — SQLite, Drizzle ORM, migrations
 - [AI Hints](features/ai-hints.md) — LLM integration (placeholder)
 

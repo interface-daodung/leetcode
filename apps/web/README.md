@@ -4,8 +4,12 @@ React 18 + Vite frontend cho LeetCode Lab.
 
 ## Tính năng
 
-- Textarea editor + run code cục bộ (`new Function`)
-- Hiển thị output dạng JSON hoặc error
+- Layout Header + Sidebar + chi tiết đề bài (React Router DOM 7)
+- Sidebar: danh sách đề từ DB, tìm kiếm, lọc theo độ khó (Easy/Medium/Hard)
+- Chi tiết đề: mô tả HTML, tags, gợi ý (hints), template, editor + Run
+- Code editor có syntax highlighting (react-syntax-highlighter, oneDark/oneLight)
+- Theme sáng/tối bằng CSS variables (data-theme + Tailwind @custom-variant dark)
+- Nhập đề tự động qua extension (đã bỏ nhập tay)
 
 ## Chạy
 
@@ -13,17 +17,19 @@ React 18 + Vite frontend cho LeetCode Lab.
 pnpm dev
 ```
 
-Web chạy tại `http://localhost:5173`.
+Web chạy tại `http://localhost:5173` (cần server `pnpm --filter=@leetcode/server dev`).
 
 ## Entry
 
 ```text
-index.html → src/main.tsx → App.tsx
+index.html → src/main.tsx (BrowserRouter + ThemeProvider) → App.tsx (Routes) → Layout → ProblemDetail
 ```
 
 ## Công nghệ
 
 - React 18.3, Vite 5, `@vitejs/plugin-react`
+- Tailwind CSS 4 (`@tailwindcss/vite`), React Router DOM 7
+- react-syntax-highlighter (PrismLight)
 
 ## Tài liệu
 
@@ -31,5 +37,5 @@ index.html → src/main.tsx → App.tsx
 
 ## Ghi chú
 
-- Hiện chạy code cục bộ, chưa gọi API server.
-- Chưa có routing, state management, Monaco Editor thật, API client.
+- Code chạy qua server `POST /api/problems/:id/run` (test case chạy cục bộ bằng `new Function`).
+- Chưa có Monaco Editor thật, state management.

@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "@leetcode/javascript-docs",
   "version": "0.0.0",
   "private": true,
@@ -7,8 +7,9 @@
   "types": "src/index.ts",
   "scripts": {
     "build": "tsc --noEmit",
-    "test": "vitest run",
-    "lint": "eslint src --ext .ts"
+    "test": "vitest run --passWithNoTests",
+    "lint": "eslint src --ext .ts",
+    "generate": "python scripts/generate.py"
   },
   "dependencies": {
     "@leetcode/shared": "workspace:*"
