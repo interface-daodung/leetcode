@@ -5,10 +5,12 @@ node_modules
 *.db-shm
 .env
 !.env.example
+.env.docker.local
 packages/database/data/assets/
 playground/
 tham_khao/
 dist/
+**/dist/
 .gitnexus/
 graphify-out/cache/
 graphify-out/cost.json

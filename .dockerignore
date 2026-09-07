@@ -1,0 +1,64 @@
+# ─── Source / dev artifacts — loại khỏi Docker build context ───
+# Docker chỉ cần: package.json, source để build, lockfile, .npmrc.
+# Bỏ mọi thứ dev/runtime side-effect.
+
+# VCS / IDE
+.git/
+.gitignore
+.gitattributes
+.gitnexus/
+.opencode/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Workspace side-effects
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+playground/
+packages/database/data/assets/
+packages/database/data/*.db
+packages/database/data/*.db-*
+
+# App không dùng (extension load unpacked, admin không build trong Docker)
+apps/extension/
+apps/admin/
+
+# Docs / agent context / graphify — không build, không runtime
+docs/
+AI/
+graphify-out/
+.history/
+tmp_reference*/
+
+# Tests / lint outputs
+coverage/
+*.log
+.turbo/
+.cache/
+.eslintcache
+
+# Env files (chỉ .env.example cho build context nếu cần)
+.env
+.env.*
+!.env.example
+
+# CI / Docker runtime config — không phải build input
+.github/
+.gitlab-ci.yml
+.circleci/
+docker-compose*.yml
+Dockerfile
+.dockerignore
+.docker-env
+
+# Scripts: chỉ docker-build.mjs cần copy vào image, bỏ qua bằng include lại
+scripts/*
+!scripts/docker-build.mjs
+
+# Thư mục assets / ảnh rác trong source
+assets/
+public/uploads/

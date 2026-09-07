@@ -6,6 +6,12 @@ export const ASSETS_ROOT = fileURLToPath(new URL("../../../packages/database/dat
 // Thư mục playground: repo root/playground (file .js để mở trong VS Code)
 export const PLAYGROUND_ROOT = fileURLToPath(new URL("../../../playground", import.meta.url));
 
+// Web SPA build artifacts (apps/web/dist). Trong Docker image copy từ builder stage.
+// Khi chạy dev local ngoài Docker, nếu thiếu sẽ warn — không crash server.
+import { existsSync } from "node:fs";
+export const WEB_DIST_ROOT = fileURLToPath(new URL("../../../apps/web/dist", import.meta.url));
+export const WEB_DIST_AVAILABLE = existsSync(WEB_DIST_ROOT);
+
 // Cấu hình server — đọc từ env một chỗ duy nhất
 export const config = {
   port: Number(process.env.PORT ?? 3000),

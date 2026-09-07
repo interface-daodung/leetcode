@@ -1,8 +1,10 @@
 # Project Status
 
-Cập nhật: 2026-09-04
+Cập nhật: 2026-09-07
 
 ## Current Phase
+
+**[mới 2026-09-07] feat/docker-build — single image Docker cho monorepo** — nhánh `feat/docker-build` (base `4788ae2`). `docker compose up --build` một lần → build + chạy toàn bộ (web + server). Multi-stage `Dockerfile`: deps (pnpm install) → builder (`scripts/docker-build.mjs` patch 4 package `main`/`types` + tsc emit, `pnpm web build`, `pnpm server build`) → runtime (chỉ dist + drizzle + assets). Server Fastify serve SPA qua `apps/server/src/plugins/web-spa.ts` (`@fastify/static` + `setNotFoundHandler` — `/api/*` 404 JSON, browser request HTML → index.html). `.dockerignore` loại `.git/`, `AI/`, `docs/`, `graphify-out/`, `apps/extension`, `apps/admin`, `node_modules`, `dist/`. Volume `leetcode-data` mount `/app/packages/database/data` (persist DB + assets). Smoke test local (không Docker daemon): script build pass, server chạy từ `dist/index.js` PORT=3300 → `/health`, `/api/problems`, `/problems/1` (SPA fallback), `/api/problems/99999` đều đúng. Xem `AI/history/2026-09/docker-build.md`.
 
 **[mới 2026-09-04] Nhắc code (autocomplete) LeetCode trong CodeEditor** — nhánh `feat/code-suggest`. Tính năng gợi ý code không AI theo hướng dẫn `tmp_reference_vi/Clippings/Liệt kê cú pháp JavaScript.md`: data + logic pure ở `packages/javascript-docs/src/suggest/` (`SuggestItem`, 18 snippet/pattern LeetCode hand-written trong `data/snippets.json` — `fori/bs/tp/sw/dfs/bfs/ListNode...`, `members.ts` method theo Array/String/Map/Set/ListNode/TreeNode, `keywords.ts`, `api.ts` build từ `docsIndex.entries` có sẵn, `vars.ts` type-inference regex, `suggest.ts` detectContext + ranking cap 10) + UI dropdown trong `apps/web/src/components/CodeEditor.tsx` (Ctrl+Space mở/đóng ép, ↑/↓ chọn, Tab/Enter chèn, Esc đóng, vị trí theo caret rect, chỉ bật cho JavaScript). Không Monaco (giữ contentEditable + Prism; upgrade path khi cần tab-stop). 16 test mới — docs 38 tests pass, web build + 14 tests pass. Xem `AI/history/2026-09/code-suggest.md` + decision 2026-09-04.
 

@@ -285,3 +285,26 @@ Clip `1091. Shortest Path in Binary Matrix` cho JSON `template: "shipWithinDays"
 - `pnpm --filter=@leetcode/extension test` → 53 pass (49 cũ + 4 mới).
 - Clip `1091` giờ cho `template: "shortestPathBinaryMatrix"` và `testCases.length === 3` (`grid → 2/4/-1`).
 - Cần giữ đồng bộ `content.js` khi sửa `clipper.ts` (hiện làm thủ công, có thể thêm script generate).
+
+### [2026-09-07] feat/docker-build — single image, server serve SPA, package main→dist
+
+#### Context
+
+- Repo monorepo lớn (`apps/{web,server,extension,admin}` + 5 packages) cần cách chạy production 1 lệnh không phụ thuộc dev env. Trước đó chỉ có `pnpm dev` (tsx + vite watch).
+- Yêu cầu: bỏ qua `apps/extension` (MV3 load unpacked), `apps/admin` (Angular), `docs/`, `AI/`, `graphify-out/` khỏi image — chỉ giữ artifact build + manifest.
+- Tại commit `4788ae2`, 4 package (`shared`, `database`, `problem-engine`, `ai`) có `"main": "src/index.ts"` + `build: "tsc --noEmit"`. Server dist không thể load vì Node không hiểu `.ts` runtime.
+
+#### Decision
+
+1. **Dockerfile multi-stage 3 layer**: deps (pnpm install --frozen-lockfile) → builder (patch + tsc packages, vite build web, tsc server) → runtime (chỉ dist + drizzle + assets + prod node_modules).
+2. **Patch packages main/types qua Docker build script**, không sửa source code: `scripts/docker-build.mjs` đổi `package.json#main` → `dist/index.js` rồi gọi `tsc --noEmit false --outDir dist`. Tránh phải merge nhánh riêng để đổi 4 file package.json.
+3. **Server serve SPA thay vì nginx/2 service**: thêm `apps/server/src/plugins/web-spa.ts` (`@fastify/static` root `/`, `wildcard: false`) + `setNotFoundHandler` (path bắt đầu `/api/`, `/ws/`, `/health` → 404 JSON; còn lại Accept `text/html` → trả `index.html`). Fastify match route trước → route đã đăng ký không bị nuốt.
+4. **1 service compose + volume**: `leetcode-data` mount `/app/packages/database/data` persist DB + assets. Healthcheck `wget /health`.
+5. **`.dockerignore` rất chạn**: chỉ cho qua source + manifest cần build; `apps/extension`, `apps/admin`, `AI/`, `docs/`, `graphify-out/`, `node_modules`, `dist`, `.env`.
+
+#### Consequences
+
+- Image runtime ~150 MB (alpine + workspace deps), không có devDeps/source.
+- SPA fallback OK: `/problems/1` trả HTML để React Router xử lý. `/api/*` 404 vẫn trả JSON.
+- Khi merge về master (nhánh `feat/tray-spawn` có thêm `packages/tray-spawn`), Dockerfile runtime filter có thể cần thêm `--filter=@leetcode/tray-spawn` (tùy nhu cầu).
+- `apps/extension` vẫn load unpacked thủ công; không có Docker cho extension.
