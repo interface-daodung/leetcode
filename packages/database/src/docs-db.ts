@@ -116,6 +116,25 @@ export class DocsDatabase {
       .limit(1);
     return row ? sectionRowToDomain(row as unknown as DocSectionDbRow) : undefined;
   }
+
+  /** Raw markdown của 1 doc file (per-lang) — web DocPage fetch để render */
+  async getRawMarkdown(lang: DocsLang, sourceFile: string): Promise<string | undefined> {
+    const [row] = await db
+      .select({ rawMarkdown: schema.docFiles.rawMarkdown })
+      .from(schema.docFiles)
+      .where(and(eq(schema.docFiles.lang, lang), eq(schema.docFiles.sourceFile, sourceFile)))
+      .limit(1);
+    return row?.rawMarkdown ?? undefined;
+  }
+
+  /** Danh sách sourceFile có sẵn (per-lang) — cho fallback lang và list trang doc */
+  async listSourceFiles(lang: DocsLang): Promise<string[]> {
+    const rows = await db
+      .select({ sourceFile: schema.docFiles.sourceFile })
+      .from(schema.docFiles)
+      .where(eq(schema.docFiles.lang, lang));
+    return rows.map((r) => r.sourceFile);
+  }
 }
 
 export const docsDb = new DocsDatabase();

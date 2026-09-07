@@ -255,6 +255,9 @@ importers:
 
   packages/database:
     dependencies:
+      '@leetcode/javascript-docs':
+        specifier: workspace:*
+        version: link:../javascript-docs
       '@leetcode/shared':
         specifier: workspace:*
         version: link:../shared

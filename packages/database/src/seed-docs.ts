@@ -1,11 +1,13 @@
 /**
  * Seed docs data từ `packages/javascript-docs/src/data/{en,vi}/*.json` vào SQLite.
+ * Kèm raw markdown từ `src/docs/{lang}/<sourceFile>` lưu vào doc_files.raw_markdown
+ * (web DocPage fetch từ API thay vì bundle .md vào build).
  * Idempotent: xoá doc_files theo lang (cascade doc_sections) rồi insert lại.
  *
  * Chạy: pnpm --filter=@leetcode/database db:seed-docs
  */
 import { readdirSync, readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { createRequire } from "node:module";
 import { db, sqlite, schema } from "./client.js";
 import type { DocFile } from "./docs-types.js";
@@ -15,6 +17,10 @@ const require = createRequire(import.meta.url);
 const docsRoot = resolve(
   dirname(require.resolve("@leetcode/javascript-docs/package.json")),
   "src/data",
+);
+const mdRoot = resolve(
+  dirname(require.resolve("@leetcode/javascript-docs/package.json")),
+  "src/docs",
 );
 
 const LANGS = ["en", "vi"] as const;
@@ -28,6 +34,13 @@ export async function seedDocs(): Promise<{ lang: string; files: number; section
     await db.delete(schema.docFiles).where(sqlEq(lang));
     for (const file of files) {
       const doc = JSON.parse(readFileSync(`${dir}/${file}`, "utf-8")) as DocFile;
+      // Raw markdown cùng tên (sourceFile), bỏ qua nếu thiếu — DocPage sẽ báo 404
+      let rawMarkdown: string | null = null;
+      try {
+        rawMarkdown = readFileSync(`${mdRoot}/${lang}/${doc.sourceFile}`, "utf-8");
+      } catch {
+        rawMarkdown = null;
+      }
       const [row] = await db
         .insert(schema.docFiles)
         .values({
@@ -39,6 +52,7 @@ export async function seedDocs(): Promise<{ lang: string; files: number; section
           description: doc.description ?? null,
           tags: doc.tags ?? [],
           totalSections: doc.sections.length,
+          rawMarkdown,
         })
         .returning({ id: schema.docFiles.id });
       if (doc.sections.length > 0) {

@@ -15,6 +15,8 @@ const searchQuery = langQuery.extend({
 
 const sectionParams = z.object({ id: z.string().min(1) });
 
+const fileParams = z.object({ file: z.string().min(1).max(128) });
+
 export function createDocsController(service: DocsService) {
   /** GET /api/docs/search?q=&lang=&category=&keyword=&limit= */
   async function search(request: FastifyRequest, _reply: FastifyReply) {
@@ -49,5 +51,22 @@ export function createDocsController(service: DocsService) {
     return service.getMeta(q.data.lang);
   }
 
-  return { search, categories, getSection, meta };
+  /** GET /api/docs/file/:file?lang= — raw markdown từ DB (DocPage render) */
+  async function getRawMarkdown(request: FastifyRequest, reply: FastifyReply) {
+    const params = fileParams.safeParse(request.params);
+    if (!params.success) return reply.code(400).send({ error: "Thiếu tên file" });
+    const q = langQuery.safeParse(request.query);
+    if (!q.success) return reply.code(400).send({ error: "Tham số không hợp lệ" });
+    const file = params.data.file.endsWith(".md") ? params.data.file : `${params.data.file}.md`;
+    const md = await service.getRawMarkdown(file, q.data.lang);
+    if (md === undefined) {
+      // fallback lang kia (DocPage cũ cũng làm vậy)
+      const alt = await service.getRawMarkdown(file, q.data.lang === "vi" ? "en" : "vi");
+      if (alt === undefined) return reply.code(404).send({ error: `Không tìm thấy file: ${file}` });
+      return { lang: q.data.lang === "vi" ? "en" : "vi", markdown: alt };
+    }
+    return { lang: q.data.lang, markdown: md };
+  }
+
+  return { search, categories, getSection, meta, getRawMarkdown };
 }

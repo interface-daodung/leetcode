@@ -10,4 +10,5 @@ export function registerDocsRoutes(app: FastifyInstance, service: DocsService): 
   app.get("/docs/categories", ctrl.categories);
   app.get("/docs/section/:id", ctrl.getSection);
   app.get("/docs/meta", ctrl.meta);
+  app.get("/docs/file/:file", ctrl.getRawMarkdown);
 }

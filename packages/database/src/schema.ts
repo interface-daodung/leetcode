@@ -60,6 +60,7 @@ export const docFiles = sqliteTable(
     description: text("description"),
     tags: text("tags", { mode: "json" }).$type<string[]>().default([]),
     totalSections: integer("total_sections").notNull().default(0),
+    rawMarkdown: text("raw_markdown"),
   },
   (table) => ({
     langSourceIdx: index("doc_files_lang_source_idx").on(table.lang, table.sourceFile),

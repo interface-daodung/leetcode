@@ -1,38 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useSearchParams, useLocation } from "react-router-dom";
 import { marked } from "marked";
+import { API_BASE } from "../lib/api";
 
 /**
- * DocPage — đọc 1 file .md từ packages/javascript-docs/src/docs/vi|en
- * và render ra HTML (không tạo nhiều file html, chỉ đọc từ code).
+ * DocPage — đọc 1 file .md docs (tiếng Việt mặc định) và render ra HTML.
  *
  * Route: /doc/:file  (file không gồm .md, vd "function-examples")
  * Query: ?lang=vi|en  (mặc định vi) — để mở cả bản en nếu cần
  * Hash: #anchor — tự scroll tới heading (slug từ KnowledgeResultPanel)
  *
- * Nguồn: packages/javascript-docs/src/docs/vi/*.md  (đã copy từ tmp_reference_vi)
- *        packages/javascript-docs/src/docs/en/*.md
- * Dùng Vite import.meta.glob với ?raw để bundle toàn bộ .md thành string.
+ * Nguồn: SQLite (doc_files.raw_markdown) qua GET /api/docs/file/:file?lang=
+ * — không bundle .md vào build (trước đây import.meta.glob ?raw ~890KB).
  */
-
-// Glob toàn bộ md của cả 2 ngôn ngữ — Vite sẽ bundle dưới dạng ?raw
-// Đường dẫn tính từ file này: apps/web/src/pages/DocPage.tsx
-const viModules = import.meta.glob("../../../../packages/javascript-docs/src/docs/vi/*.md", {
-  query: "?raw",
-  import: "default",
-}) as Record<string, () => Promise<string>>;
-
-const enModules = import.meta.glob("../../../../packages/javascript-docs/src/docs/en/*.md", {
-  query: "?raw",
-  import: "default",
-}) as Record<string, () => Promise<string>>;
-
-function resolveModule(file: string, lang: string): (() => Promise<string>) | undefined {
-  const modules = lang === "en" ? enModules : viModules;
-  // key dạng "../../../../packages/javascript-docs/src/docs/vi/array-examples.md"
-  const hit = Object.entries(modules).find(([k]) => k.endsWith(`/${file}.md`) || k.endsWith(`/${file}`));
-  return hit?.[1];
-}
 
 // slug giống logic python slugify trong generate.py — để anchor #es6-syntax khớp với heading
 // Python dùng re.UNICODE nên \w giữ chữ có dấu (phương-thức -> phương-thức)
@@ -62,16 +42,16 @@ export function DocPage() {
       setLoading(false);
       return;
     }
-    const loader = resolveModule(file, lang) ?? resolveModule(file, lang === "vi" ? "en" : "vi");
-    if (!loader) {
-      setError(`Không tìm thấy file: ${file}.md (${lang})`);
-      setLoading(false);
-      return;
-    }
+    const controller = new AbortController();
     setLoading(true);
     setError(null);
-    loader()
-      .then((md) => {
+    fetch(`${API_BASE}/api/docs/file/${encodeURIComponent(file)}?lang=${lang}`, {
+      signal: controller.signal,
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Không tìm thấy file: ${file}.md (${lang}) — lỗi ${res.status}`);
+        const data = (await res.json()) as { lang: "vi" | "en"; markdown: string };
+        const md = data.markdown;
         setRaw(md);
         const rawHtml = marked.parse(md, { gfm: true, breaks: false }) as string;
         // Gắn id cho heading để anchor #es6-syntax hoạt động — khớp logic slugify của generate.py
@@ -82,8 +62,11 @@ export function DocPage() {
         });
         setHtml(parsed);
       })
-      .catch((e) => setError(String(e)))
+      .catch((e) => {
+        if ((e as Error).name !== "AbortError") setError(String((e as Error).message ?? e));
+      })
       .finally(() => setLoading(false));
+    return () => controller.abort();
   }, [file, lang]);
 
   // Scroll tới anchor sau khi render — hỗ trợ http://localhost:5173/doc/README#es6-syntax

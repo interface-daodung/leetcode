@@ -25,7 +25,6 @@ type DocsLang = "en" | "vi";
 
 export class DocsService {
   private loaded = false;
-
   /** Nạp data từ DB (seed nếu rỗng), build index, setDocsData cho cả 2 lang */
   async hydrate(log: FastifyBaseLogger): Promise<void> {
     if (this.loaded) return;
@@ -81,5 +80,10 @@ export class DocsService {
   /** Kiểm tra đã nạp chưa (cho health/debug) */
   isLoaded(): boolean {
     return this.loaded;
+  }
+
+  /** GET /api/docs/file/:file — raw markdown từ DB (DocPage fetch) */
+  async getRawMarkdown(file: string, lang: DocsLang): Promise<string | undefined> {
+    return docsDb.getRawMarkdown(lang, file);
   }
 }
