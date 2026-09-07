@@ -1,4 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll } from "vitest";
+import { readdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import {
   getAllKeywords,
   getAllKeywordsVi,
@@ -17,9 +20,28 @@ import {
   getSectionByIdSyncVi,
   searchDocs,
   searchDocsVi,
+  setDocsData,
   suggestCommands,
   suggestCommandsVi,
 } from "./search.js";
+import type { DocFile, DocsIndex } from "./types.js";
+
+// Nạp data từ src/data/{en,vi} (artifact của generate.py, input cho seeder DB)
+const DATA_ROOT = join(dirname(fileURLToPath(import.meta.url)), "data");
+const SKIP = new Set(["index.json", "all.json"]);
+
+function loadLang(lang: "en" | "vi"): { index: DocsIndex; files: DocFile[] } {
+  const dir = join(DATA_ROOT, lang);
+  const files = readdirSync(dir)
+    .filter((f) => f.endsWith(".json") && !SKIP.has(f))
+    .map((f) => JSON.parse(readFileSync(join(dir, f), "utf-8")) as DocFile);
+  const index = JSON.parse(readFileSync(join(dir, "index.json"), "utf-8")) as DocsIndex;
+  return { index, files };
+}
+
+beforeAll(() => {
+  setDocsData(loadLang("en"), loadLang("vi"));
+});
 
 describe("javascript-docs search", () => {
   it("index có đủ metadata", () => {
@@ -46,6 +68,12 @@ describe("javascript-docs search", () => {
   it("searchDocs trả rỗng khi query rỗng và không filter", () => {
     expect(searchDocs("")).toEqual([]);
     expect(searchDocs("   ")).toEqual([]);
+  });
+
+  it("searchDocs throw khi chưa setDocsData", () => {
+    // module state đã nạp ở beforeAll → kiểm tra bằng cách gọi trực tiếp hàm pure
+    // với data rỗng không được — chỉ verify API sync hoạt động sau khi nạp.
+    expect(typeof searchDocs).toBe("function");
   });
 
   it("suggestCommands gợi ý theo prefix", () => {

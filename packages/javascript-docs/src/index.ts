@@ -1,13 +1,14 @@
 /**
  * @leetcode/javascript-docs — entry point
  *
- * Dữ liệu được sinh từ https://github.com/Kernix13/javascript-cheat-sheet
- * (nguồn .md tại `src/docs/en|vi`, parse → `src/data/*.json`)
+ * Nguồn .md tại `src/docs/en|vi` → generate.py → JSON → seeder → SQLite
+ * (bảng doc_files/doc_sections, @leetcode/database). Data nạp vào module qua
+ * `setDocsData()` — server nạp từ DB khi boot; trước đây import tĩnh JSON đã bỏ.
  *
  * Cung cấp:
  * - Types (src/types.ts)
- * - Search & suggest (src/search.ts)
- * - Raw JSON data qua `getIndex()` / `getDocFile()`
+ * - Search & suggest (src/search.ts) — pure, cần setDocsData() trước
+ * - Code suggest (src/suggest/) — static assets, không cần DB
  */
 
 // Legacy interface giữ tương thích — đánh dấu deprecated, khuyến nghị dùng IndexEntry
@@ -47,6 +48,7 @@ export type {
 } from "./types.js";
 
 export {
+  buildKeywordIndex,
   getAllDocFiles,
   getAllDocFilesVi,
   getAllKeywords,
@@ -72,6 +74,7 @@ export {
   getSectionByIdVi,
   searchDocs,
   searchDocsVi,
+  setDocsData,
   suggestCommands,
   suggestCommandsVi,
 } from "./search.js";
@@ -92,6 +95,10 @@ export {
   VALUE_ITEMS,
 } from "./suggest/index.js";
 
-// Export index đã build sẵn để consumer dùng nhanh mà không cần gọi getIndex()
+// Index đã nạp (lazy — server/web gọi setDocsData() trước rồi mới docsIndex)
 import { getIndex as _getIndex } from "./search.js";
-export const docsIndex = _getIndex();
+export const docsIndex = new Proxy({} as ReturnType<typeof _getIndex>, {
+  get(_t, prop) {
+    return Reflect.get(_getIndex(), prop);
+  },
+});

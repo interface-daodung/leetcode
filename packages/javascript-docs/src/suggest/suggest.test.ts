@@ -1,6 +1,23 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
+import { readdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { detectContext, suggest, suggestForCode } from "./suggest.js";
 import { extractVars } from "./vars.js";
+import { setDocsData } from "../search.js";
+import type { DocFile, DocsIndex } from "../types.js";
+
+// suggestForCode cần API items từ docs index EN — nạp từ JSON artifact của generate.py
+const DATA_EN = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "en");
+const SKIP = new Set(["index.json", "all.json"]);
+
+beforeAll(() => {
+  const files = readdirSync(DATA_EN)
+    .filter((f) => f.endsWith(".json") && !SKIP.has(f))
+    .map((f) => JSON.parse(readFileSync(join(DATA_EN, f), "utf-8")) as DocFile);
+  const index = JSON.parse(readFileSync(join(DATA_EN, "index.json"), "utf-8")) as DocsIndex;
+  setDocsData({ index, files }, { index: { ...index, lang: "vi" }, files: [] });
+});
 
 describe("detectContext", () => {
   it("lấy word + receiver sau dấu chấm", () => {
