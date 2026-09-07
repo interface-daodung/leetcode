@@ -1,21 +1,15 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import {
-  searchDocs,
-  searchDocsVi,
-  getCategories,
-  getCategoriesVi,
-  getSectionByIdSync,
-  getSectionByIdSyncVi,
-} from "@leetcode/javascript-docs";
+import { API_BASE } from "../../lib/api";
 import type { IndexEntry, DocSection } from "@leetcode/javascript-docs";
 
 type Lang = "en" | "vi";
 
-const CATEGORIES_EN = getCategories();
-const CATEGORIES_VI = getCategoriesVi();
-// gộp danh sách category duy nhất (EN và VI giống nhau)
-export const KNOWLEDGE_CATEGORIES: string[] = Array.from(new Set([...CATEGORIES_EN, ...CATEGORIES_VI])).sort();
+// Categories EN+VI giống nhau (server trả từ DB) — hard list cho chips filter khi chưa fetch
+export const KNOWLEDGE_CATEGORIES: string[] = [
+  "array", "cheatsheet", "conditional", "fcc", "function", "loop", "notes",
+  "number-date", "object", "practical", "react", "regex", "string",
+];
 
 export interface KnowledgeState {
   /** Từ khoá đang gõ (chưa debounce) */
@@ -30,7 +24,7 @@ export interface KnowledgeState {
   /** Section đang mở trong panel Result (null = chưa chọn) */
   selectedId: string | null;
   selectSection: (id: string | null) => void;
-  /** Kết quả tìm kiếm đã debounce + filter theo lang/category */
+  /** Kết quả tìm kiếm đã debounce + filter theo lang/category (fetch từ server) */
   results: IndexEntry[];
   /** Danh sách category (EN+VI gộp) cho filter chips */
   categories: string[];
@@ -44,6 +38,7 @@ export function KnowledgeProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<string | null>(null);
   const [lang, setLang] = useState<Lang>("vi");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [results, setResults] = useState<IndexEntry[]>([]);
 
   // debounce 180ms
   useEffect(() => {
@@ -51,13 +46,23 @@ export function KnowledgeProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(t);
   }, [query]);
 
-  const results = useMemo(() => {
-    const opts = { limit: 30, ...(category ? { category } : {}) };
+  // search qua server API (data nằm trong SQLite, server build index khi boot)
+  useEffect(() => {
     const q = debounced.trim();
-    // Nếu không có query và không có category → không trả gì (tránh spam 287 entries)
-    if (!q && !category) return [];
-    if (lang === "vi") return searchDocsVi(q, opts);
-    return searchDocs(q, opts);
+    if (!q && !category) {
+      setResults([]);
+      return;
+    }
+    const controller = new AbortController();
+    const params = new URLSearchParams({ q, lang, limit: "30" });
+    if (category) params.set("category", category);
+    fetch(`${API_BASE}/api/docs/search?${params}`, { signal: controller.signal })
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: unknown) => setResults(Array.isArray(data) ? (data as IndexEntry[]) : []))
+      .catch(() => {
+        // abort hoặc lỗi mạng — giữ nguyên kết quả cũ
+      });
+    return () => controller.abort();
   }, [debounced, category, lang]);
 
   // đổi lang/category thì reset selection để tránh lệch dữ liệu
@@ -94,11 +99,25 @@ export function useKnowledgeState(): KnowledgeState {
   return ctx;
 }
 
-/** Resolve section theo lang hiện tại (dùng chung cho panel Result). */
+/** Resolve section theo lang hiện tại (fetch server — dùng chung cho panel Result). */
 export function useSelectedSection(): DocSection | null {
   const { selectedId, lang } = useKnowledgeState();
-  return useMemo(() => {
-    if (!selectedId) return null;
-    return (lang === "vi" ? getSectionByIdSyncVi(selectedId) : getSectionByIdSync(selectedId)) ?? null;
+  const [section, setSection] = useState<DocSection | null>(null);
+
+  useEffect(() => {
+    if (!selectedId) {
+      setSection(null);
+      return;
+    }
+    const controller = new AbortController();
+    fetch(`${API_BASE}/api/docs/section/${encodeURIComponent(selectedId)}?lang=${lang}`, {
+      signal: controller.signal,
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: DocSection | null) => setSection(data))
+      .catch(() => {});
+    return () => controller.abort();
   }, [selectedId, lang]);
+
+  return section;
 }

@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
@@ -6,8 +6,9 @@ import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typesc
 import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { suggestForCode } from "@leetcode/javascript-docs";
-import type { SuggestItem } from "@leetcode/javascript-docs";
+import { suggestForCode, setDocsData } from "@leetcode/javascript-docs";
+import type { SuggestItem, DocsIndex } from "@leetcode/javascript-docs";
+import { API_BASE } from "../lib/api.js";
 import { useTheme } from "../lib/theme.js";
 
 SyntaxHighlighter.registerLanguage("javascript", javascript);
@@ -125,6 +126,25 @@ export function CodeEditor({ value, onChange, language = "javascript", placehold
   const caretRef = useRef<number | null>(null);
   const lang = language === "typescript" ? "typescript" : language === "python" ? "python" : "javascript";
   const jsOnly = lang === "javascript";
+
+  // Nạp docs index từ server 1 lần cho autocomplete API items (data nằm trong SQLite,
+  // trước đây bundle JSON tĩnh ~5MB — giờ fetch nhẹ chỉ entries EN)
+  useEffect(() => {
+    if (!jsOnly) return;
+    let cancelled = false;
+    fetch(`${API_BASE}/api/docs/meta?lang=en`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((meta: { index?: DocsIndex; entries?: unknown[] } | null) => {
+        if (!cancelled && meta?.entries) {
+          const idx = meta as unknown as DocsIndex;
+          setDocsData({ index: idx, files: [] }, { index: idx, files: [] });
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [jsOnly]);
 
   const [items, setItems] = useState<SuggestItem[]>([]);
   const [active, setActive] = useState(0);
