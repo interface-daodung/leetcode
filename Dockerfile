@@ -92,6 +92,8 @@ COPY --from=builder /repo/packages/database/dist                packages/databas
 COPY --from=builder /repo/packages/database/drizzle             packages/database/drizzle
 COPY --from=builder /repo/packages/problem-engine/dist          packages/problem-engine/dist
 COPY --from=builder /repo/packages/ai/dist                      packages/ai/dist
+# JSON docs data — server auto-seed vào SQLite lần đầu boot (docs.service.hydrate)
+COPY --from=builder /repo/packages/javascript-docs/src/data/    packages/javascript-docs/src/data/
 COPY --from=builder /repo/apps/server/dist                      apps/server/dist
 COPY --from=builder /repo/apps/web/dist                          apps/web/dist
 COPY --from=builder /repo/apps/admin/dist/admin/browser          apps/admin/dist/admin/browser
