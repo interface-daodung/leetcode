@@ -11,7 +11,7 @@ import { execSync } from "node:child_process";
 const repoRoot = resolve(fileURLToPath(import.meta.url), "../../");
 process.chdir(repoRoot);
 
-const packages = ["shared", "database", "problem-engine", "ai"];
+const packages = ["shared", "database", "problem-engine", "ai", "javascript-docs"];
 
 for (const name of packages) {
   const pkgPath = pathJoin(repoRoot, "packages", name, "package.json");

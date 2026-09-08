@@ -68,6 +68,7 @@ COPY --from=builder /repo/packages/shared/package.json          packages/shared/
 COPY --from=builder /repo/packages/database/package.json        packages/database/package.json
 COPY --from=builder /repo/packages/problem-engine/package.json  packages/problem-engine/package.json
 COPY --from=builder /repo/packages/ai/package.json              packages/ai/package.json
+COPY --from=builder /repo/packages/javascript-docs/package.json packages/javascript-docs/package.json
 COPY --from=builder /repo/apps/server/package.json              apps/server/package.json
 
 RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate && \
@@ -92,6 +93,8 @@ COPY --from=builder /repo/packages/database/dist                packages/databas
 COPY --from=builder /repo/packages/database/drizzle             packages/database/drizzle
 COPY --from=builder /repo/packages/problem-engine/dist          packages/problem-engine/dist
 COPY --from=builder /repo/packages/ai/dist                      packages/ai/dist
+# javascript-docs runtime: dist (search/suggest core) — .json/.md data copy riêng bên dưới
+COPY --from=builder /repo/packages/javascript-docs/dist         packages/javascript-docs/dist
 # JSON docs data + raw markdown — server auto-seed vào SQLite lần đầu boot (docs.service.hydrate)
 COPY --from=builder /repo/packages/javascript-docs/src/data/    packages/javascript-docs/src/data/
 COPY --from=builder /repo/packages/javascript-docs/src/docs/    packages/javascript-docs/src/docs/
