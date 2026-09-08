@@ -1,8 +1,10 @@
 # Project Status
 
-Cập nhật: 2026-09-07
+Cập nhật: 2026-09-08
 
 ## Current Phase
+
+**[mới 2026-09-08] fix(docker) — javascript-docs thiếu runtime package** — server dist import `@leetcode/javascript-docs` (docs-db) nhưng stage prod-deps/runtime không copy `packages/javascript-docs/package.json` và không có `dist/` → `ERR_MODULE_NOT_FOUND` khi boot container. Fix: `scripts/docker-build.mjs` thêm `javascript-docs` vào list patch main + tsc emit; Dockerfile copy `package.json` vào prod-deps + `dist/` vào runtime. `docker compose up --build` pass: container healthy, `/api/docs/file/notes?lang=vi` 200 (55KB), `/api/docs/search` 200, problems 200, SPA 200. Commit `0aef3d4`.
 
 **[mới 2026-09-07] feat(docs) — raw markdown vào SQLite, DocPage bỏ bundle .md** — migration `0004_add_doc_raw_markdown` (cột `doc_files.raw_markdown`); seeder `db:seed-docs` đọc thêm `.md` từ `javascript-docs/src/docs/{lang}` (dep mới `@leetcode/javascript-docs` trong `packages/database`); API `GET /api/docs/file/:file?lang=` (controller `getRawMarkdown`, fallback lang kia, 404 Zod chuẩn); `DocPage.tsx` bỏ `import.meta.glob ?raw` (~890KB md × 2 lang) → fetch API. **Web bundle: các chunk `*-examples/notes` biến mất — còn 1 file `index.js` 635KB (gzip 186KB)**. Dockerfile copy thêm `src/docs/` cho auto-seed volume trống. Smoke test: `/api/docs/file/notes?lang=vi` 200 (55KB md), `.md` suffix OK, file lạ 404, search vẫn chạy. `pnpm -r build` + `pnpm -r test` pass (server 44, web 14, extension 58, docs 48). Commit `a3defea` trên `feat/docs-db`.
 
